@@ -41,7 +41,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""e2833d8d-5a87-4de2-a83c-5792675df043"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -202,7 +202,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse;Touch"",
