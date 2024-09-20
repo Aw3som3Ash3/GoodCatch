@@ -20,17 +20,17 @@ public class Element : ScriptableObject
     {
         if (strong.Contains(element))
         {
-            return 1;
+            return 2;
         }else if (veryStrong.Contains(element)) 
         {
-            return 2;
+            return 4;
         }else if (weak.Contains(element))
         {
-            return -1;
+            return 1;
 
         }else if (veryWeak.Contains(element))
         {
-            return -2;
+            return 3;
         }else
         {
             return 0;

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Playables;
 //using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,8 +45,11 @@ public class FishMonsterType : ScriptableObject
     int minSpecialFort;
     [SerializeField]
     int maxSpecialFort;
+    [SerializeField]
+    Ability[] baseAbilities;
+    public Ability[] BaseAbilities { get { return baseAbilities; } }
 
-    FishMonster GenerateMonster()
+    public FishMonster GenerateMonster()
     {
         float value= Mathf.Clamp01(minSpeed);
         int speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
@@ -63,6 +67,7 @@ public class FishMonsterType : ScriptableObject
 [Serializable]
 public class FishMonster
 {
+    
     FishMonsterType type;
     string name;
     int speed,attack,special,fortitude,specialFort;
@@ -70,10 +75,12 @@ public class FishMonster
     int level;
     float xp;
     const int xpToLevelUp=1000;
-    public FishMonster(FishMonsterType type, int speed,int attack,int special,int fortitude, int specialFort)
+    Ability[] abilities;
+    Dictionary<Ability, int> abilityUsage = new Dictionary<Ability, int>();
+    public FishMonster(FishMonsterType monsterType, int speed,int attack,int special,int fortitude, int specialFort)
     {
-        this.type = type;
-        name=type.name;
+        this.type = monsterType;
+        name=monsterType.name;
         this.speed = speed;
         this.attack = attack;
         this.special = special;
@@ -81,8 +88,31 @@ public class FishMonster
         this.specialFort = specialFort;
         maxHealth = HealthFormula();
         health = maxHealth;
+        abilities = monsterType.BaseAbilities;
+        foreach ( Ability ability in abilities)
+        {
+            abilityUsage[ability] = ability.MaxUsages;
+        }
+
+        
     }
-    
+    public void ReplaceAbility(Ability newAbility, int index)
+    {
+        abilityUsage.Remove(abilities[index]);
+        abilityUsage[newAbility] = newAbility.MaxUsages;
+        abilities[index]=newAbility;
+
+    }
+
+    public void UseAbility(int index)
+    {
+        if (abilityUsage[abilities[index]] > 0)
+        {
+            abilities[index].UseAbility();
+            abilityUsage[abilities[index]]--;
+        }
+       
+    }
     public void ChangeName(string newName)
     {
         name=newName;
@@ -133,10 +163,11 @@ public class FishMonster
     }
 }
 
+[Flags]
 public enum Depth
 {
-    shallow,
-    middile,
-    abyss
+    shallow=1<<0,
+    middile=1<<1,
+    abyss=1<<2
 
 }
