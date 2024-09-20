@@ -649,6 +649,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 391203277066980914, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
+      propertyPath: Damping.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 391203277066980914, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: CameraCollisionFilter.m_Bits
       value: 1
       objectReference: {fileID: 0}

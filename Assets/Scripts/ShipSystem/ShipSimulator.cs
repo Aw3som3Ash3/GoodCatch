@@ -21,6 +21,7 @@ public class ShipSimulator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      
         //sailRatio = 1;
         sail.SetrWindStrength(1);
         sail.SetSailsAmount(sailRatio);
