@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform cameraRig;
     [SerializeField]
-    float moveSpeed, accel;
+    float moveSpeed, accel,jumpStrength;
     [SerializeField]
     float maxPitch, minPitch;
     Vector3 velocity;
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         moveAction = inputs.Move;
         moveAction.performed += OnMove;
         lookAction = inputs.Look;
+        inputs.Jump.performed += OnJump;
         characterController=this.GetComponent<CharacterController>();   
     }
     private void OnEnable()
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
-        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * moveSpeed, accel);
+        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * moveSpeed,characterController.isGrounded ? accel:accel/4);
         if (moveAction.IsPressed())
         {
             var angles = cameraRig.localEulerAngles;
@@ -98,5 +99,13 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
        
+    }
+    void OnJump(InputAction.CallbackContext context)
+    {
+        if (!characterController.isGrounded)
+        {
+            return;
+        }
+        fallSpeed = Mathf.Sqrt(jumpStrength * -1.0f * Gravity);
     }
 }
