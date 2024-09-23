@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     float fallSpeed;
     const float Gravity = -9.8f;
     const float rotSensitivity=10;
+    [SerializeField]
+    float mouseSensitiviy;
     Vector2 rotVelocity;
     private void Awake()
     {
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
 
 
-        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>(), 0.5f);
+        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>()* mouseSensitiviy, 0.5f);
         cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
         var angles = cameraRig.localEulerAngles;
         angles.z = 0;
