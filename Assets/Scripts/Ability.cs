@@ -47,26 +47,18 @@ public class Ability:ScriptableObject
 
     //List<FishMonster> targets;
 
-    public void UseAbility(FishMonster target)
+    public bool UseAbility(FishMonster target)
     {
         Debug.Log("attacking: " + target);
-        target.TakeDamage(baseDamage,element);
-        //switch (targetingType)
-        //{
-        //    case TargetingType.singleEnemy:
-        //        break;
-        //    case TargetingType.multiEnemy:
-        //        break;
-        //    case TargetingType.self:
-        //        break;
-        //    case TargetingType.singleTeam:
-        //        break;
-        //    case TargetingType.multiTeam:
-        //        break;
-        //    case TargetingType.allEnemy: 
-        //        break;
-        //    case TargetingType.allFish:
-        //        break;
-        //}
+        target.TakeDamage(baseDamage, element);
+        return true;
+    }
+    public bool DepthTargetable(Depth depth)
+    {
+        return targetableDepths.HasFlag(depth);
+    }
+    public bool CanUse(Depth depth)
+    {
+        return availableDepths.HasFlag(depth);
     }
 }

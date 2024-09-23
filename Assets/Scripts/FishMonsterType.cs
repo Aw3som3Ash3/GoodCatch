@@ -95,6 +95,7 @@ public class FishMonster
         this.special = special;
         this.fortitude = fortitude;
         this.specialFort = specialFort;
+        level = 1;
         maxHealth = HealthFormula();
         health = maxHealth;
         abilities = monsterType.BaseAbilities;
@@ -102,7 +103,7 @@ public class FishMonster
         {
             abilityUsage[ability] = ability.MaxUsages;
         }
-
+       
         
     }
     public void ReplaceAbility(Ability newAbility, int index)
@@ -171,7 +172,9 @@ public class FishMonster
             Debug.Log("took no damage");
             return;
         }
+       
         health -= damage*DamageModifier(elementType);
+        Debug.Log("took " + damage * DamageModifier(elementType) + " damage \n current health: "+ health);
         if (health < 0)
         {
             Feint();

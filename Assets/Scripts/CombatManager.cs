@@ -53,9 +53,9 @@ public class CombatManager : MonoBehaviour
     EventHandler changingDepth;
     private void Start()
     {
-        //shallows = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
-        //middle = new CombatDepth(Depth.middle, middleLocation.GetChild(0), middleLocation.GetChild(1));
-        //abyss = new CombatDepth(Depth.abyss, abyssLocation.GetChild(0), abyssLocation.GetChild(1));
+        shallows = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
+        middle = new CombatDepth(Depth.middle, middleLocation.GetChild(0), middleLocation.GetChild(1));
+        abyss = new CombatDepth(Depth.abyss, abyssLocation.GetChild(0), abyssLocation.GetChild(1));
         depthTransform[shallows] = shallowsLocation;
         depthTransform[middle] = middleLocation;
         depthTransform[abyss] = abyssLocation;
@@ -204,6 +204,11 @@ public class CombatManager : MonoBehaviour
     {
       
         abilityToUse =selectedFish.GetAbility(index);
+        if (!abilityToUse.CanUse(fishCurrentDepth[selectedFish].depth))
+        {
+            print("cannot use ability in this depth");
+            return;
+        }
         FishMonster[] targets = new FishMonster[3];
         if (abilityToUse.Targeting==Ability.TargetingType.all )
         {
@@ -223,11 +228,19 @@ public class CombatManager : MonoBehaviour
     }
     void ConfirmAttack()
     {
-        Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : currentTurnTeam;
-        abilityToUse.UseAbility(targetedDepth.TargetFirst(targetedTeam));
-        StopTargeting();
-        hasTargeted -= ConfirmAttack;
-        NextTurn();
+        if (abilityToUse.DepthTargetable(targetedDepth.depth))
+        {
+            Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : currentTurnTeam;
+            abilityToUse.UseAbility(targetedDepth.TargetFirst(targetedTeam));
+            StopTargeting();
+            hasTargeted -= ConfirmAttack;
+            NextTurn();
+        }
+        else
+        {
+            print("can't target");
+        }
+        
     }
     void TargetDepth(int index)
     {
@@ -276,17 +289,17 @@ public class CombatManager : MonoBehaviour
     public class CombatDepth
     {
         
-        Depth depth;
+        public Depth depth { get; private set; }
         ObservableCollection<FishMonster> player=new ObservableCollection<FishMonster>();
         ObservableCollection<FishMonster> enemy=new ObservableCollection<FishMonster>();
-        //Dictionary<FishMonster, GameObject> fishObject;
-        //Transform playerSide; 
-        //Transform enemySide;
+        Dictionary<FishMonster, GameObject> fishObject;
+        Transform playerSide;
+        Transform enemySide;
 
-        //public CombatDepth(Depth depth,Transform playerSide,Transform enemySide)
-        //{
-        //    this.depth = depth;
-        //}
+        public CombatDepth(Depth depth, Transform playerSide, Transform enemySide)
+        {
+            this.depth = depth;
+        }
         public void AddFish(FishMonster fish,Team team)
         {
             //this.fishObject[fish] = fishObject;
