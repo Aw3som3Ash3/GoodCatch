@@ -10,7 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
-  m_Name: Fish Monster
+  m_Name: CoD
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
+  model: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
   icon: {fileID: 0}
+  homeDepth: 0
+  elements: []
+  minSpeed: 5
+  maxSpeed: 10
+  minAttack: 4
+  maxAttack: 7
+  minSpecial: 2
+  maxSpecial: 4
+  minFortitude: 8
+  maxFortitude: 12
+  minSpecialFort: 4
+  maxSpecialFort: 6
+  baseAbilities:
+  - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}

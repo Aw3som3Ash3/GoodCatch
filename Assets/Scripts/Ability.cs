@@ -1,29 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ability", menuName = "Fish Monster/Ability", order = 1)]
 public class Ability:ScriptableObject
 {
-    enum TargetingType
+    //enum TargetingType
+    //{
+    //    singleEnemy,
+    //    multiEnemy,
+    //    self,
+    //    singleTeam,
+    //    multiTeam,
+    //    allEnemy,
+    //    allFish
+    //}
+    enum TargetTeam
     {
-        singleEnemy,
-        multiEnemy,
-        self,
-        singleTeam,
-        multiTeam,
-        allEnemy,
-        allFish
+        friendly,
+        enemy,
+        all
     }
-
+    public enum TargetingType
+    {
+        single,
+        all
+    }
     [SerializeField]
-    Depth availableDepths;
+    Depth availableDepths,targetableDepths;
+    [SerializeField]
+    TargetTeam targetTeam;
     [SerializeField]
     TargetingType targetingType;
-    [SerializeField]
-    [Tooltip("only needed for multi")]
-    int numOfTarget;
+    public TargetingType Targeting { get { return targetingType; } }
     [SerializeField]
     int maxUsages;
     public int MaxUsages { get { return maxUsages; } }
@@ -36,25 +47,26 @@ public class Ability:ScriptableObject
 
     //List<FishMonster> targets;
 
-    public void UseAbility()
+    public void UseAbility(FishMonster target)
     {
-
-        switch (targetingType)
-        {
-            case TargetingType.singleEnemy:
-                break;
-            case TargetingType.multiEnemy:
-                break;
-            case TargetingType.self:
-                break;
-            case TargetingType.singleTeam:
-                break;
-            case TargetingType.multiTeam:
-                break;
-            case TargetingType.allEnemy: 
-                break;
-            case TargetingType.allFish:
-                break;
-        }
+        Debug.Log("attacking: " + target);
+        target.TakeDamage(baseDamage,element);
+        //switch (targetingType)
+        //{
+        //    case TargetingType.singleEnemy:
+        //        break;
+        //    case TargetingType.multiEnemy:
+        //        break;
+        //    case TargetingType.self:
+        //        break;
+        //    case TargetingType.singleTeam:
+        //        break;
+        //    case TargetingType.multiTeam:
+        //        break;
+        //    case TargetingType.allEnemy: 
+        //        break;
+        //    case TargetingType.allFish:
+        //        break;
+        //}
     }
 }

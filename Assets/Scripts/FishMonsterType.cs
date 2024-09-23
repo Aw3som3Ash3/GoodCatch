@@ -12,6 +12,9 @@ public class FishMonsterType : ScriptableObject
 {
     [SerializeField]
     GameObject model;
+    public GameObject Model { get { return model; } }
+    
+
     [SerializeField]
     Image icon;
     [SerializeField]
@@ -70,8 +73,14 @@ public class FishMonster
     
     FishMonsterType type;
     string name;
-    int speed,attack,special,fortitude,specialFort;
-    float health, maxHealth;
+    public int speed { get; private set; }
+    public int attack { get; private set; }
+    public int special { get; private set; }
+    public int fortitude { get; private set; }
+    public int specialFort { get; private set; }
+    public float health { get; private set; }
+    public float maxHealth { get; private set; }
+    public GameObject Model { get { return type.Model; } }
     int level;
     float xp;
     const int xpToLevelUp=1000;
@@ -103,15 +112,31 @@ public class FishMonster
         abilities[index]=newAbility;
 
     }
-
-    public void UseAbility(int index)
+    public void UseAbility(int index, FishMonster target)
     {
         if (abilityUsage[abilities[index]] > 0)
         {
-            abilities[index].UseAbility();
+            abilities[index].UseAbility(target);
+            abilityUsage[abilities[index]]--;
+        }
+
+    }
+    public void UseAbility(int index,FishMonster[] targets)
+    {
+        if (abilityUsage[abilities[index]] > 0)
+        {
+            foreach(FishMonster target in targets)
+            {
+                abilities[index].UseAbility(target);
+            }
+            
             abilityUsage[abilities[index]]--;
         }
        
+    }
+    public Ability GetAbility(int index)
+    {
+        return abilities[index];
     }
     public void ChangeName(string newName)
     {
@@ -155,11 +180,20 @@ public class FishMonster
 
     float DamageModifier(Element elementType)
     {
+        if (elementType == null)
+        {
+            return 1;
+        }
         return type.Elements.OrderByDescending(e => e.CompareStrength(elementType)).First().DamageModifier(elementType);
     }
     void Feint()
     {
         Debug.Log("Should Feint or die");
+    }
+
+    public override string ToString()
+    {
+        return name;
     }
 }
 
@@ -167,7 +201,7 @@ public class FishMonster
 public enum Depth
 {
     shallow=1<<0,
-    middile=1<<1,
+    middle=1<<1,
     abyss=1<<2
 
 }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Ability
   m_EditorClassIdentifier: 
   availableDepths: 0
+  targetableDepths: 0
+  targetTeam: 1
   targetingType: 0
-  numOfTarget: 0
-  maxUsages: 0
-  baseDamage: 0
+  maxUsages: 10
+  baseDamage: 5
   statusEffect: {fileID: 0}
   element: {fileID: 0}
