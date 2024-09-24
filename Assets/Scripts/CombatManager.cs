@@ -47,10 +47,10 @@ public class CombatManager : MonoBehaviour
 
     public Action IsTargeting;
     Action hasTargeted;
-    
-   // delegate void ChangingDepth();
-  
-    EventHandler changingDepth;
+
+
+    bool hasActionLeft;
+
     private void Start()
     {
         shallows = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -77,6 +77,7 @@ public class CombatManager : MonoBehaviour
 
         ui.MoveAction += Move;
         ui.Ability += UseAbility;
+        ui.EndTurn += NextTurn;
         
         shallows.AddFish(playerFishes[0], Team.player);
         fishCurrentDepth[playerFishes[0]] = shallows;
@@ -137,6 +138,7 @@ public class CombatManager : MonoBehaviour
         selectedFish = turnList[currentTurn];
         isTargeting = false;
         ui.SetTurnMarker(fishRepresentation[selectedFish].transform);
+        hasActionLeft = true;
         if (playerFishes.Contains(selectedFish))
         {
             //player
@@ -150,6 +152,7 @@ public class CombatManager : MonoBehaviour
             currentTurnTeam = Team.enemy;
             ui.DisableButtons();
             //Oponent Decision
+            //temp next turn for right now just to skip the enemy
             NextTurn();
         }
     }
@@ -168,10 +171,9 @@ public class CombatManager : MonoBehaviour
         {
             t.localPosition= Vector3.zero + Vector3.left * t.transform.GetSiblingIndex() * (currentTurnTeam == Team.player ? 1.5f : -1.5f);
         }
-        
+        hasActionLeft = false;
         print("new destination: " + fishCurrentDepth[fish]);
-
-        NextTurn();
+        ui.SetTurnMarker(fishRepresentation[selectedFish].transform);
     }
     void ChangingDepth()
     {
@@ -181,7 +183,10 @@ public class CombatManager : MonoBehaviour
     public void Move()
     {
         //changingDepth;
-        
+        if (!hasActionLeft)
+        {
+            return;
+        }
         
         hasTargeted =ChangingDepth;
         StartTargeting();
@@ -202,7 +207,11 @@ public class CombatManager : MonoBehaviour
     }
     public void UseAbility(int index)
     {
-      
+        if (!hasActionLeft)
+        {
+            return;
+        }
+
         abilityToUse =selectedFish.GetAbility(index);
         if (!abilityToUse.CanUse(fishCurrentDepth[selectedFish].depth))
         {
@@ -217,7 +226,7 @@ public class CombatManager : MonoBehaviour
             targets[1] = middle.TargetFirst(targetedTeam);
             targets[2] = abyss.TargetFirst(targetedTeam);
             selectedFish.UseAbility(index, targets);
-            NextTurn();
+            hasActionLeft = false;
         }
         else if(abilityToUse.Targeting == Ability.TargetingType.single)
         {
@@ -234,7 +243,7 @@ public class CombatManager : MonoBehaviour
             abilityToUse.UseAbility(targetedDepth.TargetFirst(targetedTeam));
             StopTargeting();
             hasTargeted -= ConfirmAttack;
-            NextTurn();
+            hasActionLeft = false;
         }
         else
         {

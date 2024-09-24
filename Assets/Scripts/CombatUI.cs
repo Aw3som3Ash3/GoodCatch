@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class CombatUI : MonoBehaviour
 {
     [SerializeField]
-    Button move,goFirst,ability1,ability2,ability3,ability4;
+    Button move,goFirst,ability1,ability2,ability3,ability4,endTurn;
 
-    public Action MoveAction, GoFirstAction;
+    public Action MoveAction, GoFirstAction,EndTurn;
     public Action<int> Ability;
     bool isActive;
     [SerializeField]
@@ -18,8 +18,15 @@ public class CombatUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
-        
+
+        move.onClick.AddListener(() => MoveAction());
+        goFirst.onClick.AddListener(() => GoFirstAction());
+
+        ability1.onClick.AddListener(() => Ability(0));
+        ability2.onClick.AddListener(() => Ability(1));
+        ability3.onClick.AddListener(() => Ability(2));
+        ability4.onClick.AddListener(() => Ability(3));
+        endTurn.onClick.AddListener(() => EndTurn());
 
     }
 
@@ -31,15 +38,10 @@ public class CombatUI : MonoBehaviour
         ability1.enabled = true;
         ability2.enabled = true;
         ability3.enabled = true;
-        ability4.enabled = true;
+        ability4.enabled = true; 
+        endTurn.enabled = true;
 
-        move.onClick.AddListener(() => MoveAction());
-        goFirst.onClick.AddListener(() => GoFirstAction());
-
-        ability1.onClick.AddListener(() => Ability(0));
-        ability2.onClick.AddListener(() => Ability(1));
-        ability3.onClick.AddListener(() => Ability(2));
-        ability4.onClick.AddListener(() => Ability(3));
+        
     }
     public void DisableButtons()
     {
@@ -49,14 +51,15 @@ public class CombatUI : MonoBehaviour
         ability2.enabled = false;
         ability3.enabled = false;
         ability4.enabled = false;
-        
-        move.onClick.RemoveListener(() => MoveAction());
-        goFirst.onClick.RemoveListener(() => GoFirstAction());
+        endTurn.enabled = false;
+        //move.onClick.RemoveListener(() => MoveAction());
+        //goFirst.onClick.RemoveListener(() => GoFirstAction());
 
-        ability1.onClick.RemoveListener(() => Ability(0));
-        ability2.onClick.RemoveListener(() => Ability(1));
-        ability3.onClick.RemoveListener(() => Ability(2));
-        ability4.onClick.RemoveListener(() => Ability(3));
+        //ability1.onClick.RemoveListener(() => Ability(0));
+        //ability2.onClick.RemoveListener(() => Ability(1));
+        //ability3.onClick.RemoveListener(() => Ability(2));
+        //ability4.onClick.RemoveListener(() => Ability(3));
+        //endTurn.onClick.RemoveListener(() => EndTurn());
     }
     public void SetTurnMarker(Transform target)
     {
@@ -71,6 +74,9 @@ public class CombatUI : MonoBehaviour
     {
         
     }
+    public void UpdateUI(FishMonster fish)
+    {
 
+    }
     
 }

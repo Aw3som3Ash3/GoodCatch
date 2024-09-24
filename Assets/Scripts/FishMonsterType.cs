@@ -81,7 +81,7 @@ public class FishMonster
     public float health { get; private set; }
     public float maxHealth { get; private set; }
     public GameObject Model { get { return type.Model; } }
-    int level;
+    int level=1;
     float xp;
     const int xpToLevelUp=1000;
     Ability[] abilities;
@@ -95,7 +95,6 @@ public class FishMonster
         this.special = special;
         this.fortitude = fortitude;
         this.specialFort = specialFort;
-        level = 1;
         maxHealth = HealthFormula();
         health = maxHealth;
         abilities = monsterType.BaseAbilities;
