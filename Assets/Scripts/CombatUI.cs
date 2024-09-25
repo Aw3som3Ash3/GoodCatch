@@ -75,6 +75,10 @@ public class CombatUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (turnTarget==null)
+        {
+            return;
+        }
         turnMarker.position = Camera.main.WorldToScreenPoint(turnTarget.position + Vector3.up * 1.5f);
     }
     public void UpdateUI(FishMonster fish)

@@ -26,13 +26,15 @@ public class CombatManager : MonoBehaviour
     CombatUI ui;
     [SerializeField]
     TurnListUI turnListUI;
+    [SerializeField]
+    CombatVisualizer combatVisualizer;
+
 
     [SerializeField]
     FishMonsterType testType;
     
     List<FishMonster> playerFishes=new List<FishMonster>(), enemyFishes = new List<FishMonster>();
 
-    Dictionary<FishMonster, GameObject> fishRepresentation=new Dictionary<FishMonster, GameObject>();
     [SerializeField]
     CombatDepth shallows, middle, abyss;
     Dictionary<FishMonster,CombatDepth> fishCurrentDepth=new Dictionary<FishMonster,CombatDepth>();
@@ -52,6 +54,7 @@ public class CombatManager : MonoBehaviour
 
 
     bool hasActionLeft;
+    bool actionsCompleted;
 
     private void Start()
     {
@@ -83,39 +86,32 @@ public class CombatManager : MonoBehaviour
         ui.Ability += UseAbility;
         ui.EndTurn += NextTurn;
         ui.DepthSelection += TargetDepth;
-        shallows.AddFish(playerFishes[0], Team.player);
-        fishCurrentDepth[playerFishes[0]] = shallows;
 
-        middle.AddFish(playerFishes[1],Team.player);
-        fishCurrentDepth[playerFishes[1]] = middle;
+        AddFish(playerFishes[0], shallows, Team.player);
+        AddFish(playerFishes[1], middle, Team.player);
+        AddFish(playerFishes[2], abyss, Team.player);
 
-        abyss.AddFish(playerFishes[2], Team.player);
-        fishCurrentDepth[playerFishes[2]] = abyss;
+        AddFish(enemyFishes[0], shallows, Team.enemy);
+        AddFish(enemyFishes[1], middle, Team.enemy);
+        AddFish(enemyFishes[2], abyss, Team.enemy);
 
-        ////
-        ////
-        shallows.AddFish(enemyFishes[0], Team.enemy);
-        fishCurrentDepth[enemyFishes[0]] = shallows;
 
-        middle.AddFish(enemyFishes[1], Team.enemy);
-        fishCurrentDepth[enemyFishes[1]] = middle;
-
-        abyss.AddFish(enemyFishes[2], Team.enemy);
-        fishCurrentDepth[enemyFishes[2]] = abyss;
         for (int i = 0; i < 3; i++)
         {
             turnList.Add(new Turn(playerFishes[i],Team.player));
-            
-            fishRepresentation[playerFishes[i]] = Instantiate(playerFishes[i].Model, depthTransform[fishCurrentDepth[playerFishes[i]]].GetChild(0));
-
 
             turnList.Add(new Turn(enemyFishes[i],Team.enemy));
-            
-            fishRepresentation[enemyFishes[i]] = Instantiate(enemyFishes[i].Model, depthTransform[fishCurrentDepth[enemyFishes[i]]].GetChild(1));
         }
         
         OrderTurn();
         turnListUI.SetTurnBar(turnList);
+    }
+
+    void AddFish(FishMonster fish,CombatDepth destination,Team team)
+    {
+        destination.AddFish(fish, team);
+        fishCurrentDepth[fish] = destination;
+        combatVisualizer.AddFish(fish, destination.GetSideTransform(team).position);
     }
     void OrderTurn()
     {
@@ -127,11 +123,15 @@ public class CombatManager : MonoBehaviour
     {
         return  x.speed - y.speed;
     }
-   
+    void ActionsCompleted()
+    {
+        actionsCompleted = true;
+    }
     void StartTurn()
     {
+        actionsCompleted = false;
         selectedFish = turnList[currentTurn].fish;
-        ui.SetTurnMarker(fishRepresentation[selectedFish].transform);
+        ui.SetTurnMarker(combatVisualizer.fishToObject[selectedFish].transform);
         hasActionLeft = true;
         if (playerFishes.Contains(selectedFish))
         {
@@ -152,6 +152,10 @@ public class CombatManager : MonoBehaviour
     }
  void NextTurn() 
     {
+        if (!actionsCompleted && turnList[currentTurn].team==Team.player)
+        {
+            return;
+        }
         currentTurn++;
         if (currentTurn >= turnList.Count)
         {
@@ -164,21 +168,31 @@ public class CombatManager : MonoBehaviour
     }
     void ChangeDepth(FishMonster fish, CombatDepth destination)
     {
+        if(destination== fishCurrentDepth[fish])
+        {
+            return;
+        }
         var prevDepth = fishCurrentDepth[fish];
         prevDepth.RemoveFish(fish);
         destination.AddFish(fish, currentTurnTeam);
         fishCurrentDepth[fish] = destination;
         hasTargeted -=ChangingDepth;
         ui.StopTargeting();
-        fishRepresentation[fish].transform.parent = depthTransform[destination].GetChild(currentTurnTeam==Team.player? 0:1).transform;
-        fishRepresentation[fish].transform.localPosition = Vector3.zero + Vector3.left * fishRepresentation[fish].transform.GetSiblingIndex() * (currentTurnTeam == Team.player ? 1.5f : -1.5f);
-        foreach (Transform t in depthTransform[prevDepth].GetChild(currentTurnTeam == Team.player ? 0 : 1))
+
+        combatVisualizer.MoveFish(fish, destination.GetPositionOfFish(fish), ActionsCompleted);
+        //fishRepresentation[fish].transform.parent = depthTransform[destination].GetChild(currentTurnTeam==Team.player? 0:1).transform;
+        //fishRepresentation[fish].transform.localPosition = Vector3.zero + Vector3.left * fishRepresentation[fish].transform.GetSiblingIndex() * (currentTurnTeam == Team.player ? 1.5f : -1.5f);
+        foreach (FishMonster t in prevDepth.player)
         {
-            t.localPosition= Vector3.zero + Vector3.left * t.transform.GetSiblingIndex() * (currentTurnTeam == Team.player ? 1.5f : -1.5f);
+              combatVisualizer.MoveFish(t, prevDepth.GetPositionOfFish(t));
+        }
+        foreach (FishMonster t in prevDepth.enemy)
+        {
+            combatVisualizer.MoveFish(t, prevDepth.GetPositionOfFish(t));
         }
         hasActionLeft = false;
         print("new destination: " + fishCurrentDepth[fish]);
-        ui.SetTurnMarker(fishRepresentation[selectedFish].transform);
+        //ui.SetTurnMarker(fishRepresentation[selectedFish].transform);
     }
     void ChangingDepth()
     {
@@ -286,15 +300,18 @@ public class CombatManager : MonoBehaviour
     {
         
         public Depth depth { get; private set; }
-        ObservableCollection<FishMonster> player=new ObservableCollection<FishMonster>();
-        ObservableCollection<FishMonster> enemy=new ObservableCollection<FishMonster>();
+        public ObservableCollection<FishMonster> player { get; private set; } = new ObservableCollection<FishMonster>();
+        public ObservableCollection<FishMonster> enemy { get; private set; } = new ObservableCollection<FishMonster>();
         Dictionary<FishMonster, GameObject> fishObject;
         Transform playerSide;
         Transform enemySide;
+       
 
         public CombatDepth(Depth depth, Transform playerSide, Transform enemySide)
         {
             this.depth = depth;
+            this.playerSide = playerSide;
+            this.enemySide = enemySide;
         }
         public void AddFish(FishMonster fish,Team team)
         {
@@ -302,6 +319,7 @@ public class CombatManager : MonoBehaviour
             if (team == Team.player)
             {
                 player.Add(fish);
+
             }
             else
             {
@@ -311,15 +329,9 @@ public class CombatManager : MonoBehaviour
         }
         public void RemoveFish(FishMonster fish)
         {
-            if (!player.Remove(fish))
-            {
-                enemy.Remove(fish);
-
-            }
-            else
-            {
-
-            }
+            player.Remove(fish);
+            enemy.Remove(fish);
+            
         }
         public FishMonster TargetFirst(Team team)
         {
@@ -343,6 +355,29 @@ public class CombatManager : MonoBehaviour
             {
                 enemy.Move(index, 0);
             }
+        }
+        public Transform GetSideTransform(Team team)
+        {
+            if (team == Team.player)
+            {
+                return playerSide;
+            }
+            else
+            {
+                return enemySide;
+            }
+        }
+        public Vector3 GetPositionOfFish(FishMonster fish)
+        {
+            if (player.Contains(fish))
+            {
+                print(player.IndexOf(fish));
+                return  (player.IndexOf(fish) * Vector3.left * 1.5f) +playerSide.position;
+            }else if (enemy.Contains(fish))
+            {
+                return (enemy.IndexOf(fish) * Vector3.right * 1.5f) + enemySide.position;
+            }
+            return Vector3.zero;
         }
     }
     [Serializable]

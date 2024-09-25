@@ -1502,6 +1502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504126692}
   - component: {fileID: 504126691}
+  - component: {fileID: 504126693}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -1523,6 +1524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui: {fileID: 546409810}
   turnListUI: {fileID: 962200090}
+  combatVisualizer: {fileID: 504126693}
   testType: {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
   shallowsLocation: {fileID: 1500697474}
   middleLocation: {fileID: 1338373266}
@@ -1546,6 +1548,19 @@ Transform:
   - {fileID: 1850296207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &504126693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504126690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed897e691fb90404080ab50748b39947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishObjectPrefab: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
 --- !u!1 &546409806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,7 +1902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -6}
+  m_AnchoredPosition: {x: 0, y: -5.999939}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &896676273
@@ -2280,10 +2295,10 @@ RectTransform:
   - {fileID: 1397938785}
   m_Father: {fileID: 896676272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.53300005, y: 0.89400005}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 512.01, y: 479.87}
-  m_SizeDelta: {x: -1024.0164, y: -959.7486}
+  m_AnchoredPosition: {x: -0.98999023, y: -2.630005}
+  m_SizeDelta: {x: -0.016357422, y: 5.251404}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &962200090
 MonoBehaviour:
@@ -2943,7 +2958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 66.608, y: -13.1439}
+  m_AnchoredPosition: {x: 66.60791, y: -13.143921}
   m_SizeDelta: {x: 95.2917, y: 12.4135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1397938786
@@ -3515,7 +3530,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -5.206909}
+  m_AnchoredPosition: {x: 0, y: -5.206909}
   m_SizeDelta: {x: -37.9243, y: -28.287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019920441

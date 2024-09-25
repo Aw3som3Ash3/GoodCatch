@@ -104,6 +104,7 @@ public class FishMonster
     float xp;
     const int xpToLevelUp=1000;
     Ability[] abilities;
+    public Action ValueChanged;
     
     public FishMonster(FishMonsterType monsterType, int speed,int attack,int special,int fortitude, int specialFort)
     {
@@ -134,6 +135,7 @@ public class FishMonster
         {
             abilities[index].UseAbility(target);
             stamina -= abilities[index].StaminaUsage;
+            ValueChanged?.Invoke();
             return true;
         }else
         {
@@ -151,6 +153,7 @@ public class FishMonster
                 abilities[index].UseAbility(target);
             }
             stamina -= abilities[index].StaminaUsage;
+            ValueChanged?.Invoke();
             return true;
         }
         else
@@ -210,6 +213,7 @@ public class FishMonster
         {
             Feint();
         }
+        ValueChanged?.Invoke();
     }
 
     float DamageModifier(Element elementType)
