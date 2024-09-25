@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static CombatManager;
@@ -16,7 +17,6 @@ public class CombatManager : MonoBehaviour
         player,
         enemy
     }
-    bool isTargeting;
     Team currentTurnTeam;
     //Turn currentTurn;
     int currentTurn;
@@ -24,6 +24,8 @@ public class CombatManager : MonoBehaviour
 
     [SerializeField]
     CombatUI ui;
+    [SerializeField]
+    TurnListUI turnListUI;
 
     [SerializeField]
     FishMonsterType testType;
@@ -41,9 +43,9 @@ public class CombatManager : MonoBehaviour
 
     FishMonster selectedFish;
     CombatDepth targetedDepth;
-    List<FishMonster> turnList=new List<FishMonster>();
+    List<Turn> turnList=new List<Turn>();
 
-    Ability abilityToUse;
+   
 
     public Action IsTargeting;
     Action hasTargeted;
@@ -56,12 +58,14 @@ public class CombatManager : MonoBehaviour
         shallows = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
         middle = new CombatDepth(Depth.middle, middleLocation.GetChild(0), middleLocation.GetChild(1));
         abyss = new CombatDepth(Depth.abyss, abyssLocation.GetChild(0), abyssLocation.GetChild(1));
+
+
         depthTransform[shallows] = shallowsLocation;
         depthTransform[middle] = middleLocation;
         depthTransform[abyss] = abyssLocation;
 
 
-        InputManager.Input.Enable();
+        //temporary just for generating monsters right now
         for (int i = 0; i < 3; i++)
         {
             playerFishes.Add(testType.GenerateMonster());
@@ -78,7 +82,7 @@ public class CombatManager : MonoBehaviour
         ui.MoveAction += Move;
         ui.Ability += UseAbility;
         ui.EndTurn += NextTurn;
-        
+        ui.DepthSelection += TargetDepth;
         shallows.AddFish(playerFishes[0], Team.player);
         fishCurrentDepth[playerFishes[0]] = shallows;
 
@@ -100,17 +104,18 @@ public class CombatManager : MonoBehaviour
         fishCurrentDepth[enemyFishes[2]] = abyss;
         for (int i = 0; i < 3; i++)
         {
-            turnList.Add(playerFishes[i]);
+            turnList.Add(new Turn(playerFishes[i],Team.player));
             
             fishRepresentation[playerFishes[i]] = Instantiate(playerFishes[i].Model, depthTransform[fishCurrentDepth[playerFishes[i]]].GetChild(0));
 
 
-            turnList.Add(enemyFishes[i]);
+            turnList.Add(new Turn(enemyFishes[i],Team.enemy));
             
             fishRepresentation[enemyFishes[i]] = Instantiate(enemyFishes[i].Model, depthTransform[fishCurrentDepth[enemyFishes[i]]].GetChild(1));
         }
-      
+        
         OrderTurn();
+        turnListUI.SetTurnBar(turnList);
     }
     void OrderTurn()
     {
@@ -118,25 +123,14 @@ public class CombatManager : MonoBehaviour
         currentTurn = 0;
        
     }
-    int SortBySpeed(FishMonster x, FishMonster y)
+    int SortBySpeed(Turn x, Turn y)
     {
         return  x.speed - y.speed;
     }
-    void NextTurn() 
-    {
-        currentTurn++;
-        if (currentTurn >= turnList.Count)
-        {
-            //OrderTurn();
-            currentTurn = 0;
-            roundNmber++;
-        }
-        StartTurn();
-    }
+   
     void StartTurn()
     {
-        selectedFish = turnList[currentTurn];
-        isTargeting = false;
+        selectedFish = turnList[currentTurn].fish;
         ui.SetTurnMarker(fishRepresentation[selectedFish].transform);
         hasActionLeft = true;
         if (playerFishes.Contains(selectedFish))
@@ -156,7 +150,18 @@ public class CombatManager : MonoBehaviour
             NextTurn();
         }
     }
-
+ void NextTurn() 
+    {
+        currentTurn++;
+        if (currentTurn >= turnList.Count)
+        {
+            //OrderTurn();
+            currentTurn = 0;
+            roundNmber++;
+        }
+        turnListUI.UpdateTurns(currentTurn);
+        StartTurn();
+    }
     void ChangeDepth(FishMonster fish, CombatDepth destination)
     {
         var prevDepth = fishCurrentDepth[fish];
@@ -164,7 +169,7 @@ public class CombatManager : MonoBehaviour
         destination.AddFish(fish, currentTurnTeam);
         fishCurrentDepth[fish] = destination;
         hasTargeted -=ChangingDepth;
-        StopTargeting();
+        ui.StopTargeting();
         fishRepresentation[fish].transform.parent = depthTransform[destination].GetChild(currentTurnTeam==Team.player? 0:1).transform;
         fishRepresentation[fish].transform.localPosition = Vector3.zero + Vector3.left * fishRepresentation[fish].transform.GetSiblingIndex() * (currentTurnTeam == Team.player ? 1.5f : -1.5f);
         foreach (Transform t in depthTransform[prevDepth].GetChild(currentTurnTeam == Team.player ? 0 : 1))
@@ -189,22 +194,11 @@ public class CombatManager : MonoBehaviour
         }
         
         hasTargeted =ChangingDepth;
-        StartTargeting();
+        ui.StartTargeting();
         
 
     }
-    void StartTargeting()
-    {
-        isTargeting = true;
-        InputManager.Input.UI.Click.performed += OnClick;
-    }
-    void StopTargeting()
-    {
-        isTargeting = false;
-        InputManager.Input.UI.Click.performed -= OnClick;
-        
-
-    }
+   
     public void UseAbility(int index)
     {
         if (!hasActionLeft)
@@ -212,14 +206,14 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
-        abilityToUse =selectedFish.GetAbility(index);
-        if (!abilityToUse.CanUse(fishCurrentDepth[selectedFish].depth))
+        //Ability abilityToUse =;
+        if (!selectedFish.GetAbility(index).CanUse(fishCurrentDepth[selectedFish].depth))
         {
             print("cannot use ability in this depth");
             return;
         }
         FishMonster[] targets = new FishMonster[3];
-        if (abilityToUse.Targeting==Ability.TargetingType.all )
+        if (selectedFish.GetAbility(index).Targeting==Ability.TargetingType.all )
         {
             Team targetedTeam= currentTurnTeam==Team.player ? Team.enemy : currentTurnTeam;
             targets[0] = shallows.TargetFirst(targetedTeam);
@@ -228,21 +222,21 @@ public class CombatManager : MonoBehaviour
             selectedFish.UseAbility(index, targets);
             hasActionLeft = false;
         }
-        else if(abilityToUse.Targeting == Ability.TargetingType.single)
+        else if(selectedFish.GetAbility(index).Targeting == Ability.TargetingType.single)
         {
             //target
-            hasTargeted = ConfirmAttack;
-            StartTargeting();
+            hasTargeted = ()=> ConfirmAttack(index);
+            ui.StartTargeting();
         }
     }
-    void ConfirmAttack()
+    void ConfirmAttack(int index)
     {
-        if (abilityToUse.DepthTargetable(targetedDepth.depth))
+        if (selectedFish.GetAbility(index).DepthTargetable(targetedDepth.depth))
         {
             Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : currentTurnTeam;
-            abilityToUse.UseAbility(targetedDepth.TargetFirst(targetedTeam));
-            StopTargeting();
-            hasTargeted -= ConfirmAttack;
+            selectedFish.UseAbility(index,targetedDepth.TargetFirst(targetedTeam));
+            ui.StopTargeting();
+            hasTargeted=null;
             hasActionLeft = false;
         }
         else
@@ -268,6 +262,8 @@ public class CombatManager : MonoBehaviour
                 targetedDepth = null;
                 break;
         }
+        print("targeted "+ targetedDepth);
+        hasTargeted?.Invoke();
         //selectedFish.UseAbility(index, targetedDepth.TargetFirst());
         //targetedDepth = null;
     }
@@ -284,16 +280,7 @@ public class CombatManager : MonoBehaviour
     {
         
     }
-    void OnClick(InputAction.CallbackContext context)
-    {
-        RaycastHit2D hit= Physics2D.Raycast(Camera.main.ScreenToWorldPoint(InputManager.Input.UI.Point.ReadValue<Vector2>()), (Vector2)Camera.main.ScreenToWorldPoint(InputManager.Input.UI.Point.ReadValue<Vector2>()) + Vector2.right);
-        if (hit)
-        {
-            TargetDepth(hit.collider.transform.GetSiblingIndex());
-            print(targetedDepth);
-            hasTargeted.Invoke();
-        }
-    }
+   
     [Serializable]
     public class CombatDepth
     {
@@ -358,8 +345,29 @@ public class CombatManager : MonoBehaviour
             }
         }
     }
-}
+    [Serializable]
+    public class Turn
+    {
+        public Team team { get; private set; }
+        int actionsPerTurn=1,actionsLeft;
+        public bool ActionLeft { get { return actionsLeft > 0; } }
+        public FishMonster fish { get; private set; }
+        public int speed{ get { return fish.speed; } }
+        public Turn(FishMonster fish, Team team, int actionsPerTurn=1)
+        {
+            this.team = team;
+            this.fish = fish;
+            this.actionsPerTurn = actionsPerTurn;
 
+        }
+        public void NewTurn()
+        {
+            actionsLeft = actionsPerTurn;
+
+        }
+        
+    }
+}
 
 
 

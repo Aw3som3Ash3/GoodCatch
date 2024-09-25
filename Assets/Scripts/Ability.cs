@@ -28,6 +28,13 @@ public class Ability:ScriptableObject
         single,
         all
     }
+    public enum AbilityType
+    {
+        attack,
+        special,
+    }
+    [SerializeField]
+    AbilityType abilityType;
     [SerializeField]
     Depth availableDepths,targetableDepths;
     [SerializeField]
@@ -36,10 +43,11 @@ public class Ability:ScriptableObject
     TargetingType targetingType;
     public TargetingType Targeting { get { return targetingType; } }
     [SerializeField]
-    int maxUsages;
-    public int MaxUsages { get { return maxUsages; } }
+    int staminaUsage;
+    public int StaminaUsage { get { return staminaUsage; } }
     [SerializeField]
     int baseDamage;
+    
     [SerializeField]
     StatusEffect statusEffect;
     [SerializeField]
@@ -50,7 +58,7 @@ public class Ability:ScriptableObject
     public bool UseAbility(FishMonster target)
     {
         Debug.Log("attacking: " + target);
-        target.TakeDamage(baseDamage, element);
+        target.TakeDamage(baseDamage, element, abilityType);
         return true;
     }
     public bool DepthTargetable(Depth depth)

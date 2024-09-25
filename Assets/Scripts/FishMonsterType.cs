@@ -16,7 +16,8 @@ public class FishMonsterType : ScriptableObject
     
 
     [SerializeField]
-    Image icon;
+    Sprite icon;
+    public Sprite Icon { get { return icon; } }
     [SerializeField]
     Depth homeDepth;
     [SerializeField]
@@ -48,8 +49,21 @@ public class FishMonsterType : ScriptableObject
     int minSpecialFort;
     [SerializeField]
     int maxSpecialFort;
+
+
+    [Header("Health")]
+    [SerializeField]
+    int healthPerLevel;
+    public int HealthPerLevel { get {  return healthPerLevel; }  }
+    [Header("Stamina")]
+    [SerializeField]
+    int staminaPerLevel;
+    public int StaminaPerLevel { get { return staminaPerLevel; } }
     [SerializeField]
     Ability[] baseAbilities;
+
+   
+
     public Ability[] BaseAbilities { get { return baseAbilities; } }
 
     public FishMonster GenerateMonster()
@@ -78,14 +92,19 @@ public class FishMonster
     public int special { get; private set; }
     public int fortitude { get; private set; }
     public int specialFort { get; private set; }
+ 
     public float health { get; private set; }
     public float maxHealth { get; private set; }
+    public float stamina { get; private set; }
+    public float maxStamina { get; private set; }
+
+    public Sprite Icon { get { return type.Icon; } }
     public GameObject Model { get { return type.Model; } }
     int level=1;
     float xp;
     const int xpToLevelUp=1000;
     Ability[] abilities;
-    Dictionary<Ability, int> abilityUsage = new Dictionary<Ability, int>();
+    
     public FishMonster(FishMonsterType monsterType, int speed,int attack,int special,int fortitude, int specialFort)
     {
         this.type = monsterType;
@@ -95,44 +114,52 @@ public class FishMonster
         this.special = special;
         this.fortitude = fortitude;
         this.specialFort = specialFort;
+        maxStamina = StaminaFormula();
+        stamina = maxStamina;
         maxHealth = HealthFormula();
         health = maxHealth;
         abilities = monsterType.BaseAbilities;
-        foreach ( Ability ability in abilities)
-        {
-            abilityUsage[ability] = ability.MaxUsages;
-        }
+
        
         
     }
     public void ReplaceAbility(Ability newAbility, int index)
     {
-        abilityUsage.Remove(abilities[index]);
-        abilityUsage[newAbility] = newAbility.MaxUsages;
         abilities[index]=newAbility;
 
     }
-    public void UseAbility(int index, FishMonster target)
+    public bool UseAbility(int index, FishMonster target)
     {
-        if (abilityUsage[abilities[index]] > 0)
+        if (stamina > 0)
         {
             abilities[index].UseAbility(target);
-            abilityUsage[abilities[index]]--;
+            stamina -= abilities[index].StaminaUsage;
+            return true;
+        }else
+        {
+            return false;
         }
 
     }
-    public void UseAbility(int index,FishMonster[] targets)
+    public bool UseAbility(int index,FishMonster[] targets)
     {
-        if (abilityUsage[abilities[index]] > 0)
+
+        if (stamina > 0)
         {
-            foreach(FishMonster target in targets)
+            foreach (FishMonster target in targets)
             {
                 abilities[index].UseAbility(target);
             }
-            
-            abilityUsage[abilities[index]]--;
+            stamina -= abilities[index].StaminaUsage;
+            return true;
         }
-       
+        else
+        {
+            return false;
+        }
+
+
+
     }
     public Ability GetAbility(int index)
     {
@@ -161,19 +188,24 @@ public class FishMonster
     }
     int HealthFormula()
     {
-        return level * 100;
+        return level * type.HealthPerLevel;
+    }
+    int StaminaFormula()
+    {
+        return level * type.StaminaPerLevel;
     }
 
-    public void TakeDamage(float damage, Element elementType)
+    public void TakeDamage(float damage, Element elementType,Ability.AbilityType abilityType)
     {
         if (damage<=0)
         {
             Debug.Log("took no damage");
             return;
         }
-       
-        health -= damage*DamageModifier(elementType);
-        Debug.Log("took " + damage * DamageModifier(elementType) + " damage \n current health: "+ health);
+        float defenseMod =1-(abilityType == Ability.AbilityType.attack ? fortitude : specialFort)*0.01f;
+        float damageTaken = damage * DamageModifier(elementType) * defenseMod;
+        health -= damageTaken;
+        Debug.Log("took " + damageTaken + " damage \n current health: "+ health);
         if (health < 0)
         {
             Feint();

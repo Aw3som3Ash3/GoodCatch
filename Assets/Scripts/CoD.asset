@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CoD
   m_EditorClassIdentifier: 
   model: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: 0
-  elements: []
+  elements:
+  - {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
   minSpeed: 5
   maxSpeed: 10
   minAttack: 4
@@ -26,5 +27,7 @@ MonoBehaviour:
   maxFortitude: 12
   minSpecialFort: 4
   maxSpecialFort: 6
+  healthPerLevel: 100
+  staminaPerLevel: 50
   baseAbilities:
   - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}

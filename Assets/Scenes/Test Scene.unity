@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 211948748}
   - component: {fileID: 211948747}
   - component: {fileID: 211948746}
+  - component: {fileID: 211948750}
   m_Layer: 0
   m_Name: WaterBlock
   m_TagString: Untagged
@@ -183,7 +184,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d6fe57185fd1ed448129a6d60e31b98, type: 2}
+  - {fileID: 2100000, guid: 23f4488768b9d0449a493c0b3bf0e4c7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -228,6 +229,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &211948750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211948745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f5c33a9c5ece148be4f6a22ad8067b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveHeightX: 0
+  waveFrequencyX: 0
+  waveSpeedX: 0
+  waveHeightZ: 0
+  waveFrequencyZ: 0
+  waveSpeedZ: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
