@@ -86,6 +86,10 @@ public class Ability:ScriptableObject
 
         public bool UseAbility(FishMonster target)
         {
+            if (target == null)
+            {
+                return false;
+            }
             Debug.Log("attacking: " + target);
             float damageMod = ability.damageMultiplier * (ability.abilityType == AbilityType.attack ? parent.attack : parent.special);
             target.TakeDamage(ability.baseDamage+ damageMod, ability.element, ability.abilityType);

@@ -8,12 +8,12 @@ public class Fishventory
 {
     [SerializeField]
     [SerializeReference]
-    List<FishMonster> fishies;
+    List<FishMonster> fishies=new List<FishMonster>();
     [SerializeField]
     int maxSize;
     public IReadOnlyList<FishMonster> Fishies { get { return fishies; } }
 
-    public bool AddFish(ref FishMonster fish)
+    public bool AddFish(FishMonster fish)
     {
         if (fishies.Count > maxSize)
         {

@@ -8,9 +8,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    Fishventory playerFishventory;
+    Fishventory playerFishventory= new Fishventory();
 
     List<FishMonster> fishesToFight;
+
+    [SerializeField]
+    FishMonsterType testfisth;
     private void Awake()
     {
         if (Instance == null)
@@ -26,7 +29,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        CapturedFish(testfisth);
     }
 
     // Update is called once per frame
@@ -35,10 +38,14 @@ public class GameManager : MonoBehaviour
 
 
     }
-
+    public void CapturedFish(FishMonsterType fishMonsterType)
+    {
+        playerFishventory.AddFish(fishMonsterType.GenerateMonster());
+    }
     public void LoadCombatScene(List<FishMonster> enemyFishes)
     {
         SceneManager.LoadScene("BattleScene");
+        fishesToFight = enemyFishes;
         SceneManager.sceneLoaded += SetUpCombat;
     }
 

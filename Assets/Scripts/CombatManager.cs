@@ -101,21 +101,31 @@ public class CombatManager : MonoBehaviour
         ui.EndTurn += NextTurn;
         ui.DepthSelection += TargetDepth;
 
-        AddFish(playerFishes[0], shallows, Team.player);
-        AddFish(playerFishes[1], middle, Team.player);
-        AddFish(playerFishes[2], abyss, Team.player);
-
-        AddFish(enemyFishes[0], shallows, Team.enemy);
-        AddFish(enemyFishes[1], middle, Team.enemy);
-        AddFish(enemyFishes[2], abyss, Team.enemy);
-
-
-        for (int i = 0; i < 3; i++)
+        for(int i = 0; i < playerFishes.Count; i++)
         {
-            turnList.Add(new Turn(playerFishes[i],Team.player));
-
-            turnList.Add(new Turn(enemyFishes[i],Team.enemy));
+            AddFish(playerFishes[i], shallows, Team.player);
+            turnList.Add(new Turn(playerFishes[i], Team.player));
         }
+        for (int i = 0; i < enemyFishes.Count; i++)
+        {
+            AddFish(enemyFishes[i], shallows, Team.enemy);
+            turnList.Add(new Turn(enemyFishes[i], Team.enemy));
+        }
+        //if (playerFishes[0] != null)
+
+        //if (playerFishes[1] != null)
+        //    AddFish(playerFishes[1], middle, Team.player);
+        //if (playerFishes[2] != null)
+        //    AddFish(playerFishes[2], abyss, Team.player);
+
+        //if (enemyFishes[0] != null)
+        //    AddFish(enemyFishes[0], shallows, Team.enemy);
+        //if (enemyFishes[1] != null)
+        //    AddFish(enemyFishes[1], middle, Team.enemy);
+        //if (enemyFishes[2] != null)
+        //    AddFish(enemyFishes[2], abyss, Team.enemy);
+
+
         
         OrderTurn();
         turnListUI.SetTurnBar(turnList);
@@ -351,13 +361,17 @@ public class CombatManager : MonoBehaviour
         }
         public FishMonster TargetFirst(Team team)
         {
-            if (team == Team.player)
+            if (team == Team.player&&player.Count>0)
             {
                 return player[0];
             }
-            else
+            else if(enemy.Count>0)
             {
                 return enemy[0];
+            }
+            else
+            {
+                return null;
             }
            
         }
