@@ -8,8 +8,9 @@ using UnityEngine.UI;
 public class CombatUI : MonoBehaviour
 {
     [SerializeField]
-    Button move,goFirst,ability1,ability2,ability3,ability4,endTurn;
-
+    Button move,goFirst,endTurn;
+    [SerializeField]
+    AbilityButton[] abilityButtons;
     public Action MoveAction, GoFirstAction,EndTurn;
     public Action<int> Ability,DepthSelection;
     bool isActive;
@@ -28,10 +29,12 @@ public class CombatUI : MonoBehaviour
         move.onClick.AddListener(() => MoveAction());
         goFirst.onClick.AddListener(() => GoFirstAction());
 
-        ability1.onClick.AddListener(() => Ability(0));
-        ability2.onClick.AddListener(() => Ability(1));
-        ability3.onClick.AddListener(() => Ability(2));
-        ability4.onClick.AddListener(() => Ability(3));
+        for(int i = 0; i < abilityButtons.Length; i++)
+        {
+
+            abilityButtons[i].SetIndex(i);
+            abilityButtons[i].Subscribe(Ability);
+        }
         endTurn.onClick.AddListener(() => EndTurn());
         for(int i = 0; i < depthSelectors.Length; i++)
         {
@@ -46,10 +49,10 @@ public class CombatUI : MonoBehaviour
 
         move.enabled = true;
         goFirst.enabled = true;
-        ability1.enabled = true;
-        ability2.enabled = true;
-        ability3.enabled = true;
-        ability4.enabled = true; 
+        foreach(AbilityButton button in abilityButtons)
+        {
+            button.enabled = true;
+        }
         endTurn.enabled = true;
         
         
@@ -58,10 +61,10 @@ public class CombatUI : MonoBehaviour
     {
         move.enabled = false;
         goFirst.enabled = false;
-        ability1.enabled = false;
-        ability2.enabled = false;
-        ability3.enabled = false;
-        ability4.enabled = false;
+        foreach (AbilityButton button in abilityButtons)
+        {
+            button.enabled = false;
+        }
         endTurn.enabled = false;
        
     }
@@ -127,6 +130,10 @@ public class CombatUI : MonoBehaviour
             {
                 selector.SetSelection(true);
             }
+            else
+            {
+                selector.SetSelection(false);
+            }
             
         }
 
@@ -148,6 +155,15 @@ public class CombatUI : MonoBehaviour
         foreach (DepthSelectors selectors in depthSelectors)
         {
             selectors.SetSelection(false);
+        }
+
+
+    }
+    public void UpdateVisuals(FishMonster fish)
+    {
+        for (int i = 0;i<abilityButtons.Length;i++)
+        {
+            abilityButtons[i].UpdateVisuals(fish.GetAbility(i)?.name, fish.GetAbility(i)?.Icon);
         }
 
 

@@ -164,7 +164,11 @@ public class FishMonster
     }
     public Ability GetAbility(int index)
     {
-        return abilities[index].ability;
+        if (index >= abilities.Length)
+        {
+            return null;
+        }
+        return abilities[index]?.ability;
     }
     public void ChangeName(string newName)
     {

@@ -55,7 +55,9 @@ public class Ability:ScriptableObject
     StatusEffect statusEffect;
     [SerializeField]
     Element element;
-
+    [SerializeField]
+    Sprite icon;
+    public Sprite Icon { get; private set; }
     //List<FishMonster> targets;
 
     

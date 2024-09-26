@@ -31,3 +31,4 @@ MonoBehaviour:
   staminaPerLevel: 50
   baseAbilities:
   - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}
+  - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}

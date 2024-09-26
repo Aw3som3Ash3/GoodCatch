@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ public class CombatManager : MonoBehaviour
 
     [SerializeField]
     Transform shallowsLocation, middleLocation, abyssLocation;
-    Dictionary<CombatDepth,Transform> depthTransform = new Dictionary<CombatDepth,Transform>();
+    //Dictionary<CombatDepth,Transform> depthTransform = new Dictionary<CombatDepth,Transform>();
 
     FishMonster selectedFish;
     CombatDepth targetedDepth;
@@ -55,33 +56,46 @@ public class CombatManager : MonoBehaviour
 
     bool hasActionLeft;
     bool actionsCompleted;
-
-    private void Start()
+    [SerializeField]
+    CinemachineVirtualCamera virtualCamera;
+    private void Awake()
     {
         shallows = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
         middle = new CombatDepth(Depth.middle, middleLocation.GetChild(0), middleLocation.GetChild(1));
         abyss = new CombatDepth(Depth.abyss, abyssLocation.GetChild(0), abyssLocation.GetChild(1));
 
 
-        depthTransform[shallows] = shallowsLocation;
-        depthTransform[middle] = middleLocation;
-        depthTransform[abyss] = abyssLocation;
+        //depthTransform[shallows] = shallowsLocation;
+        //depthTransform[middle] = middleLocation;
+        //depthTransform[abyss] = abyssLocation;
+    }
+    private void Start()
+    {
+       
 
 
         //temporary just for generating monsters right now
-        for (int i = 0; i < 3; i++)
-        {
-            playerFishes.Add(testType.GenerateMonster());
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    playerFishes.Add(testType.GenerateMonster());
 
-            enemyFishes.Add(testType.GenerateMonster());
-        }
+        //    enemyFishes.Add(testType.GenerateMonster());
+        //}
+       
+
+    }
+
+    //void Set
+    public void NewCombat(List<FishMonster> playerFishes, List<FishMonster> enemyFishes)
+    {
+        this.playerFishes = playerFishes;
+        this.enemyFishes= enemyFishes;
         SetUp();
         StartTurn();
-
     }
     void SetUp()
     {
-
+        virtualCamera.Priority = 11;
         ui.MoveAction += Move;
         ui.Ability += UseAbility;
         ui.EndTurn += NextTurn;
@@ -139,6 +153,7 @@ public class CombatManager : MonoBehaviour
             
             currentTurnTeam = Team.player;
             ui.EnableButtons();
+            ui.UpdateVisuals(selectedFish);
         }
         else
         {
@@ -388,6 +403,7 @@ public class CombatManager : MonoBehaviour
         int actionsPerTurn=1,actionsLeft;
         public bool ActionLeft { get { return actionsLeft > 0; } }
         public FishMonster fish { get; private set; }
+        //CombatDepth currentDepth;
         public int speed{ get { return fish.speed; } }
         public Turn(FishMonster fish, Team team, int actionsPerTurn=1)
         {
@@ -410,7 +426,12 @@ public class CombatManager : MonoBehaviour
         {
 
         }
-        
+
+        public void Move()
+        {
+            
+        }
+
     }
 }
 
