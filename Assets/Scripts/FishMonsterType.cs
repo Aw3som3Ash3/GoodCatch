@@ -103,7 +103,7 @@ public class FishMonster
     int level=1;
     float xp;
     const int xpToLevelUp=1000;
-    Ability[] abilities;
+    Ability.AbilityInstance[] abilities;
     public Action ValueChanged;
     
     public FishMonster(FishMonsterType monsterType, int speed,int attack,int special,int fortitude, int specialFort)
@@ -119,14 +119,14 @@ public class FishMonster
         stamina = maxStamina;
         maxHealth = HealthFormula();
         health = maxHealth;
-        abilities = monsterType.BaseAbilities;
+        abilities = monsterType.BaseAbilities.Select(e=>e.NewInstance(this)).ToArray();
 
        
         
     }
     public void ReplaceAbility(Ability newAbility, int index)
     {
-        abilities[index]=newAbility;
+        abilities[index]=newAbility.NewInstance(this);
 
     }
     public bool UseAbility(int index, FishMonster target)
@@ -134,7 +134,7 @@ public class FishMonster
         if (stamina > 0)
         {
             abilities[index].UseAbility(target);
-            stamina -= abilities[index].StaminaUsage;
+            stamina -= abilities[index].ability.StaminaUsage;
             ValueChanged?.Invoke();
             return true;
         }else
@@ -152,7 +152,7 @@ public class FishMonster
             {
                 abilities[index].UseAbility(target);
             }
-            stamina -= abilities[index].StaminaUsage;
+            stamina -= abilities[index].ability.StaminaUsage;
             ValueChanged?.Invoke();
             return true;
         }
@@ -161,12 +161,10 @@ public class FishMonster
             return false;
         }
 
-
-
     }
     public Ability GetAbility(int index)
     {
-        return abilities[index];
+        return abilities[index].ability;
     }
     public void ChangeName(string newName)
     {

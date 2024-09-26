@@ -26,16 +26,7 @@ public class FishObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shouldMove && Vector3.Distance(this.transform.position, destination) > 0.01f)
-        {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, destination, moveSpeed * Time.deltaTime);
-
-        }
-        else if(shouldMove)
-        {
-            shouldMove = false;
-            ReachedDestination?.Invoke();
-        }
+        
         
     }
 
@@ -43,5 +34,19 @@ public class FishObject : MonoBehaviour
     {
        this.destination = destination;
         shouldMove = true;
+        StartCoroutine(MoveToDestination());
+    }
+
+    IEnumerator MoveToDestination()
+    {
+        while(shouldMove && Vector3.Distance(this.transform.position, destination) > 0.01f)
+        {
+            this.transform.position = Vector3.MoveTowards(this.transform.position, destination, moveSpeed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+
+        shouldMove = false;
+        ReachedDestination?.Invoke();
+        
     }
 }

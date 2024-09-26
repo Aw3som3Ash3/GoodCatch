@@ -129,7 +129,7 @@ public class CombatManager : MonoBehaviour
     }
     void StartTurn()
     {
-        actionsCompleted = false;
+        
         selectedFish = turnList[currentTurn].fish;
         ui.SetTurnMarker(combatVisualizer.fishToObject[selectedFish].transform);
         hasActionLeft = true;
@@ -172,6 +172,7 @@ public class CombatManager : MonoBehaviour
         {
             return;
         }
+        actionsCompleted = false;
         var prevDepth = fishCurrentDepth[fish];
         prevDepth.RemoveFish(fish);
         destination.AddFish(fish, currentTurnTeam);
@@ -180,8 +181,6 @@ public class CombatManager : MonoBehaviour
         ui.StopTargeting();
 
         combatVisualizer.MoveFish(fish, destination.GetPositionOfFish(fish), ActionsCompleted);
-        //fishRepresentation[fish].transform.parent = depthTransform[destination].GetChild(currentTurnTeam==Team.player? 0:1).transform;
-        //fishRepresentation[fish].transform.localPosition = Vector3.zero + Vector3.left * fishRepresentation[fish].transform.GetSiblingIndex() * (currentTurnTeam == Team.player ? 1.5f : -1.5f);
         foreach (FishMonster t in prevDepth.player)
         {
               combatVisualizer.MoveFish(t, prevDepth.GetPositionOfFish(t));
@@ -197,7 +196,7 @@ public class CombatManager : MonoBehaviour
     void ChangingDepth()
     {
         ChangeDepth(selectedFish, targetedDepth);
-        hasTargeted -= ChangingDepth;
+        
     }
     public void Move()
     {
@@ -219,7 +218,7 @@ public class CombatManager : MonoBehaviour
         {
             return;
         }
-
+        actionsCompleted = false;
         //Ability abilityToUse =;
         if (!selectedFish.GetAbility(index).CanUse(fishCurrentDepth[selectedFish].depth))
         {
@@ -235,12 +234,13 @@ public class CombatManager : MonoBehaviour
             targets[2] = abyss.TargetFirst(targetedTeam);
             selectedFish.UseAbility(index, targets);
             hasActionLeft = false;
+            ActionsCompleted();
         }
         else if(selectedFish.GetAbility(index).Targeting == Ability.TargetingType.single)
         {
             //target
             hasTargeted = ()=> ConfirmAttack(index);
-            ui.StartTargeting();
+            ui.StartTargeting(selectedFish.GetAbility(index).TargetableDepths);
         }
     }
     void ConfirmAttack(int index)
@@ -252,6 +252,7 @@ public class CombatManager : MonoBehaviour
             ui.StopTargeting();
             hasTargeted=null;
             hasActionLeft = false;
+            ActionsCompleted();
         }
         else
         {
@@ -398,6 +399,15 @@ public class CombatManager : MonoBehaviour
         public void NewTurn()
         {
             actionsLeft = actionsPerTurn;
+
+        }
+        public void StartTurn()
+        {
+            
+        }
+
+        public void EndTurn()
+        {
 
         }
         

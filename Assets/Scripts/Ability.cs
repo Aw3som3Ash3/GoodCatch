@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ability", menuName = "Fish Monster/Ability", order = 1)]
@@ -37,6 +38,7 @@ public class Ability:ScriptableObject
     AbilityType abilityType;
     [SerializeField]
     Depth availableDepths,targetableDepths;
+    public Depth TargetableDepths { get { return targetableDepths; } }
     [SerializeField]
     TargetTeam targetTeam;
     [SerializeField]
@@ -47,7 +49,8 @@ public class Ability:ScriptableObject
     public int StaminaUsage { get { return staminaUsage; } }
     [SerializeField]
     int baseDamage;
-    
+    [SerializeField]
+    float damageMultiplier;
     [SerializeField]
     StatusEffect statusEffect;
     [SerializeField]
@@ -55,12 +58,7 @@ public class Ability:ScriptableObject
 
     //List<FishMonster> targets;
 
-    public bool UseAbility(FishMonster target)
-    {
-        Debug.Log("attacking: " + target);
-        target.TakeDamage(baseDamage, element, abilityType);
-        return true;
-    }
+    
     public bool DepthTargetable(Depth depth)
     {
         return targetableDepths.HasFlag(depth);
@@ -68,5 +66,28 @@ public class Ability:ScriptableObject
     public bool CanUse(Depth depth)
     {
         return availableDepths.HasFlag(depth);
+    }
+    public AbilityInstance NewInstance(FishMonster parent)
+    {
+        return new AbilityInstance(this, parent);
+    }
+    public class AbilityInstance
+    {
+        public Ability ability { get; private set; }
+        public FishMonster parent;
+
+        public AbilityInstance(Ability ability, FishMonster parent)
+        {
+            this.ability = ability;
+            this.parent = parent;
+        }
+
+        public bool UseAbility(FishMonster target)
+        {
+            Debug.Log("attacking: " + target);
+            float damageMod = ability.damageMultiplier * (ability.abilityType == AbilityType.attack ? parent.attack : parent.special);
+            target.TakeDamage(ability.baseDamage+ damageMod, ability.element, ability.abilityType);
+            return true;
+        }
     }
 }

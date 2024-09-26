@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         inputs = InputManager.Input.Player;
         InputManager.EnablePlayer();
         moveAction = inputs.Move;
-        moveAction.performed += OnMove;
+        //moveAction.performed += OnMove;
         lookAction = inputs.Look;
         inputs.Jump.performed += OnJump;
         characterController=this.GetComponent<CharacterController>();   

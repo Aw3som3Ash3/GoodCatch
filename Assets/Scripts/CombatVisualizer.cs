@@ -39,6 +39,10 @@ public class CombatVisualizer : MonoBehaviour
         CompletedMove += ()=> fishToObject[fish].ReachedDestination-=CompletedMove;
     }
 
+    public void AnimateAttack(Vector3 start ,Vector3 target, Action CompletedMove = null)
+    {
+        throw new NotImplementedException();
+    }
 
 
 }
