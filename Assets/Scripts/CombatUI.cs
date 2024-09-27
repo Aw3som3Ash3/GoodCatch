@@ -22,6 +22,8 @@ public class CombatUI : MonoBehaviour
     DepthSelectors[] depthSelectors;
     Transform turnTarget;
     DepthSelectors prevDepth;
+
+    FishMonster currentFish;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class CombatUI : MonoBehaviour
         {
 
             abilityButtons[i].SetIndex(i);
+            abilityButtons[i].OnHover += OnHover;
+            abilityButtons[i].OnHoverExit += OnHoverExit;
             abilityButtons[i].Subscribe(Ability);
         }
         endTurn.onClick.AddListener(() => EndTurn());
@@ -43,7 +47,29 @@ public class CombatUI : MonoBehaviour
         }
 
     }
+    void OnHover(int index)
+    {
+        print("hovered: "+index);
+        foreach (DepthSelectors selector in depthSelectors)
+        {
+            if (currentFish.GetAbility(index).TargetableDepths.HasFlag(selector.CurrentDepth))
+            {
+                selector.SetSelection(true);
+            }
+            else
+            {
+                selector.SetSelection(false);
+            }
 
+        }
+    }
+    void OnHoverExit(int index)
+    {
+        foreach (DepthSelectors selector in depthSelectors)
+        {
+            selector.SetSelection(false);
+        }
+    }
     public void EnableButtons()
     {
 
@@ -106,10 +132,6 @@ public class CombatUI : MonoBehaviour
             prevDepth = null;
         }
     }
-    public void UpdateUI(FishMonster fish)
-    {
-
-    }
     void OnClick(InputAction.CallbackContext context)
     {
         RaycastHit hit;
@@ -161,6 +183,7 @@ public class CombatUI : MonoBehaviour
     }
     public void UpdateVisuals(FishMonster fish)
     {
+        currentFish = fish;
         for (int i = 0;i<abilityButtons.Length;i++)
         {
             abilityButtons[i].UpdateVisuals(fish.GetAbility(i)?.name, fish.GetAbility(i)?.Icon);

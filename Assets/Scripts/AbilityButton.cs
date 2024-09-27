@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class AbilityButton : MonoBehaviour
@@ -15,12 +17,25 @@ public class AbilityButton : MonoBehaviour
     int index;
     [SerializeField]
     Button button;
-    // Start is called before the first frame update
+
+    public Action<int> OnHover,OnHoverExit;
+
+// Start is called before the first frame update
     void Start()
     {
-        
-    }
+        EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
+        hoverEvent.eventID = EventTriggerType.PointerEnter;
+        hoverEvent.callback.AddListener((eventData) => { OnHover?.Invoke(index); });
+        EventTrigger.Entry exitEvent = new EventTrigger.Entry();
 
+        exitEvent.eventID = EventTriggerType.PointerExit;
+        exitEvent.callback.AddListener((eventData) => { OnHoverExit?.Invoke(index); });
+        button.AddComponent<EventTrigger>().triggers.Add(hoverEvent);
+        button.GetComponent<EventTrigger>().triggers.Add(exitEvent);
+        
+
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -41,4 +56,6 @@ public class AbilityButton : MonoBehaviour
         print(action);
         button.onClick.AddListener(() => action(index));
     }
+
+
 }
