@@ -59,12 +59,12 @@ public class CombatUI : MonoBehaviour
         {
             if (currentFish.GetAbility(index).TargetableDepths.HasFlag(selector.CurrentDepth))
             {
-                selector.SetSelection(true);
+                selector.PreviewSelection(true);
 
             }
             else
             {
-                selector.SetSelection(false);
+                selector.PreviewSelection(false);
             }
 
         }
@@ -73,7 +73,7 @@ public class CombatUI : MonoBehaviour
     {
         foreach (DepthSelectors selector in depthSelectors)
         {
-            selector.SetSelection(false);
+            selector.PreviewSelection(false);
         }
     }
     public void EnableButtons()
