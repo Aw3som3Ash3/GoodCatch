@@ -42,6 +42,7 @@ public class ShipControls : Station
         }
         InputManager.Input.Ship.Enable();
         InputManager.Input.Ship.Move.performed += OnMove;
+        InputManager.Input.Ship.Exit.performed += (InputAction.CallbackContext context) => LeaveSation();
         return true;
 
     }
@@ -51,8 +52,9 @@ public class ShipControls : Station
     }
     public override void LeaveSation()
     {
-        base.LeaveSation();
         InputManager.Input.Ship.Disable();
+        base.LeaveSation();
+        
     }
     // Update is called once per frame
     void Update()

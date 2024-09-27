@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Station.StationInteracted += StationInteracted;
+        Station.LeftStation += StationLeft;
     }
 
     bool InteractionCheck(out IInteractable interactable)
@@ -71,8 +72,8 @@ public class PlayerController : MonoBehaviour
         if(InteractionCheck(out interactable))
         {
             interactable.Interact();
-           
-            inputs.Disable();
+
+            InputManager.DisablePlayer();
             inStation = true;
         }
 
@@ -83,7 +84,13 @@ public class PlayerController : MonoBehaviour
        this.transform.position = transform.position;
        this.transform.rotation = transform.rotation;
     }
+    void StationLeft(Station station)
+    {
+        inStation = false;
+        InputManager.EnablePlayer();
+        
 
+    }
     // Update is called once per frame
     void Update()
     {
