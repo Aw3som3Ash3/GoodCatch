@@ -19,13 +19,14 @@ public class ShipObject : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.GetComponentInParent<ShipSimulator>())
+        if (other.gameObject.GetComponentInParent<ShipSimulator>())
         {
-            parent = collision.transform.GetComponentInParent<ShipSimulator>().transform;
-            collision.transform.GetComponentInParent<ShipSimulator>()?.AddObject(this.transform);
-            this.transform.localEulerAngles= new Vector3(0, 0, 0);
+            parent = other.transform.GetComponentInParent<ShipSimulator>().transform;
+            other.transform.GetComponentInParent<ShipSimulator>()?.AddObject(this.transform);
+            //this.transform.localEulerAngles= new Vector3(0, 0, 0);
             StopAllCoroutines();
             
         }
@@ -52,7 +53,7 @@ public class ShipObject : MonoBehaviour
         
         yield return new WaitForSeconds(exitTime);
         this.transform.parent=null;
-        this.transform.localEulerAngles = new Vector3(0, 0, 0);
+        //this.transform.localEulerAngles = new Vector3(0, 0, 0);
         this.transform.localScale = Vector3.one;
     }
 }

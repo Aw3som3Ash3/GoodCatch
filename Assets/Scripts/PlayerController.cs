@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +24,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float mouseSensitiviy;
     Vector2 rotVelocity;
+    [SerializeField]
+    LayerMask interactionLayer;
+
+    bool inStation;
     private void Awake()
     {
         inputs = InputManager.Input.Player;
@@ -30,7 +36,8 @@ public class PlayerController : MonoBehaviour
         //moveAction.performed += OnMove;
         lookAction = inputs.Look;
         inputs.Jump.performed += OnJump;
-        characterController=this.GetComponent<CharacterController>();   
+        characterController=this.GetComponent<CharacterController>();
+        inputs.Interact.performed += OnInteract;
     }
     private void OnEnable()
     {
@@ -39,14 +46,52 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Station.StationInteracted += StationInteracted;
+    }
+
+    bool InteractionCheck(out IInteractable interactable)
+    {
+        var colliders = Physics.OverlapSphere(this.transform.position, 2,interactionLayer);
+        foreach(var collider in colliders)
+        {
+            interactable=collider.GetComponentInParent<IInteractable>();
+           
+            if (interactable != null)
+            {
+                return true;
+            }
+        }
+        interactable = null;
+        return false;
+       // return interactable != null? true: false;
+    }
+    void OnInteract(InputAction.CallbackContext context)
+    {
+        IInteractable interactable;
+        if(InteractionCheck(out interactable))
+        {
+            interactable.Interact();
+           
+            inputs.Disable();
+            inStation = true;
+        }
+
+    }
+
+    private void StationInteracted(Station station, Transform transform)
+    {
+       this.transform.position = transform.position;
+       this.transform.rotation = transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
+        if (inStation)
+        {
+            return;
+        }
         rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>()* mouseSensitiviy, 0.5f);
         cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
         var angles = cameraRig.localEulerAngles;
@@ -55,9 +100,15 @@ public class PlayerController : MonoBehaviour
         angles.x = ClampRotation(angle, minPitch, maxPitch);
         //print(angles.x);
         cameraRig.localEulerAngles = angles;
+
+
     }
     private void FixedUpdate()
     {
+        if (inStation)
+        {
+            return;
+        }
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
         velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * moveSpeed,(characterController.isGrounded ? accel:accel/4));
@@ -76,7 +127,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            fallSpeed = -0.1f;
+            fallSpeed = -9.8f;
         }
     }
 

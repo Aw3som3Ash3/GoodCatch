@@ -36,7 +36,7 @@ public class ShipSimulator : MonoBehaviour
     {
 
         physicSim.AddRelativeForce(Vector3.forward*(maxSpeed*sailRatio), ForceMode.Acceleration);
-        physicSim.AddRelativeTorque(Vector3.up*turningSpeed*turnRatio,ForceMode.Acceleration);
+        physicSim.AddRelativeTorque(Vector3.up*turningSpeed*turnRatio, ForceMode.Acceleration);
         this.transform.position = physicSim.transform.position;
         this.transform.rotation = physicSim.transform.rotation;
         physicSim.transform.localPosition = Vector3.zero;
@@ -45,14 +45,16 @@ public class ShipSimulator : MonoBehaviour
     public void AdjustSails(float adjustment)
     {
         
-        sailRatio = Mathf.Clamp(sailRatio + adjustment , 0, 1);
+        //sailRatio = Mathf.Clamp(sailRatio + adjustment , 0, 1);
+        sailRatio =  adjustment ;
         sail.SetSailsAmount(sailRatio);
 
 
     }
     public void AdjustTurn(float adjustment)
     {
-        turnRatio= Mathf.Clamp(turnRatio + adjustment, -1, 1);
+        // turnRatio= Mathf.Clamp(turnRatio + adjustment, -1, 1);
+        turnRatio= adjustment;
     }
     private void LateUpdate()
     {

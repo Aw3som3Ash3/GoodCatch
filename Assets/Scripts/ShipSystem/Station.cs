@@ -9,9 +9,9 @@ public abstract class Station : MonoBehaviour, IInteractable
     static public Action<Station,Transform> StationInteracted;
     bool beingUsed = false;
     [SerializeField]
-    Transform stationZone;
+    protected Transform stationZone;
     [SerializeField]
-    CinemachineVirtualCamera virtualCamera;
+    protected CinemachineVirtualCamera virtualCamera;
     [SerializeField]
     string stationName;
     public Vector3 StationPosition { get { return stationZone.position; } }
@@ -28,7 +28,7 @@ public abstract class Station : MonoBehaviour, IInteractable
     }
 
     public abstract void MoveInput(Vector2 input);
-    public void LeaveSation() 
+    virtual public void LeaveSation() 
     {
         virtualCamera.Priority = 0;
 
@@ -36,13 +36,13 @@ public abstract class Station : MonoBehaviour, IInteractable
     }
 
 
-    public bool Interact()
+    virtual public bool Interact()
     {
         if (beingUsed)
         {
             return false;
         }
-       StationInteracted(this,stationZone);
+       StationInteracted?.Invoke(this,stationZone);
         virtualCamera.Priority = 11;
         return true;
 
