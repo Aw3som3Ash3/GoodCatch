@@ -24,6 +24,7 @@ public class CombatUI : MonoBehaviour
     DepthSelectors prevDepth;
 
     FishMonster currentFish;
+    CombatManager.Turn currentTurn;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +51,16 @@ public class CombatUI : MonoBehaviour
     void OnHover(int index)
     {
         print("hovered: "+index);
+        if (!currentTurn.ActionLeft)
+        {
+            return;
+        }
         foreach (DepthSelectors selector in depthSelectors)
         {
             if (currentFish.GetAbility(index).TargetableDepths.HasFlag(selector.CurrentDepth))
             {
                 selector.SetSelection(true);
+
             }
             else
             {
@@ -80,8 +86,8 @@ public class CombatUI : MonoBehaviour
             button.enabled = true;
         }
         endTurn.enabled = true;
-        
-        
+        isActive = true;
+
     }
     public void DisableButtons()
     {
@@ -92,7 +98,7 @@ public class CombatUI : MonoBehaviour
             button.enabled = false;
         }
         endTurn.enabled = false;
-       
+        isActive = false;
     }
     public void SetTurnMarker(Transform target)
     {
@@ -158,7 +164,7 @@ public class CombatUI : MonoBehaviour
             }
             
         }
-
+        
     }
     public void StartTargeting()
     {
@@ -168,7 +174,7 @@ public class CombatUI : MonoBehaviour
         {
             selector.SetSelection(true);
         }
-
+        
     }
     public void StopTargeting()
     {
@@ -179,14 +185,16 @@ public class CombatUI : MonoBehaviour
             selectors.SetSelection(false);
         }
 
-
+        //isActive = true;
     }
-    public void UpdateVisuals(FishMonster fish)
+    public void UpdateVisuals(CombatManager.Turn currentTurn)
     {
-        currentFish = fish;
+        this.currentTurn = currentTurn;
+        currentFish = currentTurn.fish;
+      
         for (int i = 0;i<abilityButtons.Length;i++)
         {
-            abilityButtons[i].UpdateVisuals(fish.GetAbility(i)?.name, fish.GetAbility(i)?.Icon);
+            abilityButtons[i].UpdateVisuals(currentFish.GetAbility(i)?.name, currentFish.GetAbility(i)?.Icon);
         }
 
 
