@@ -7,6 +7,8 @@ using UnityEngine;
 public abstract class Station : MonoBehaviour, IInteractable
 {
     static public Action<Station,Transform> StationInteracted;
+    static public Action<Station> LeftStation;
+    //static public Action<Station,Transform> StationInteracted;
     bool beingUsed = false;
     [SerializeField]
     protected Transform stationZone;
@@ -30,6 +32,7 @@ public abstract class Station : MonoBehaviour, IInteractable
     public abstract void MoveInput(Vector2 input);
     virtual public void LeaveSation() 
     {
+        LeftStation?.Invoke(this);
         virtualCamera.Priority = 0;
 
 

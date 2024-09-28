@@ -857,6 +857,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""b46a852b-550e-4e74-be93-06875ab97ee8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -991,6 +1000,17 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13ee994c-cb6a-499d-ac51-198682152422"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1080,6 +1100,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
+        m_Ship_Exit = m_Ship.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1338,11 +1359,13 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Ship;
     private List<IShipActions> m_ShipActionsCallbackInterfaces = new List<IShipActions>();
     private readonly InputAction m_Ship_Move;
+    private readonly InputAction m_Ship_Exit;
     public struct ShipActions
     {
         private @GoodCatchInputs m_Wrapper;
         public ShipActions(@GoodCatchInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Ship_Move;
+        public InputAction @Exit => m_Wrapper.m_Ship_Exit;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1355,6 +1378,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
         }
 
         private void UnregisterCallbacks(IShipActions instance)
@@ -1362,6 +1388,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
         }
 
         public void RemoveCallbacks(IShipActions instance)
@@ -1448,5 +1477,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     public interface IShipActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }

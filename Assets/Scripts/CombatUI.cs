@@ -22,6 +22,9 @@ public class CombatUI : MonoBehaviour
     DepthSelectors[] depthSelectors;
     Transform turnTarget;
     DepthSelectors prevDepth;
+
+    FishMonster currentFish;
+    CombatManager.Turn currentTurn;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,8 @@ public class CombatUI : MonoBehaviour
         {
 
             abilityButtons[i].SetIndex(i);
+            abilityButtons[i].OnHover += OnHover;
+            abilityButtons[i].OnHoverExit += OnHoverExit;
             abilityButtons[i].Subscribe(Ability);
         }
         endTurn.onClick.AddListener(() => EndTurn());
@@ -43,7 +48,34 @@ public class CombatUI : MonoBehaviour
         }
 
     }
+    void OnHover(int index)
+    {
+        print("hovered: "+index);
+        if (!currentTurn.ActionLeft)
+        {
+            return;
+        }
+        foreach (DepthSelectors selector in depthSelectors)
+        {
+            if (currentFish.GetAbility(index).TargetableDepths.HasFlag(selector.CurrentDepth))
+            {
+                selector.PreviewSelection(true);
 
+            }
+            else
+            {
+                selector.PreviewSelection(false);
+            }
+
+        }
+    }
+    void OnHoverExit(int index)
+    {
+        foreach (DepthSelectors selector in depthSelectors)
+        {
+            selector.PreviewSelection(false);
+        }
+    }
     public void EnableButtons()
     {
 
@@ -54,8 +86,8 @@ public class CombatUI : MonoBehaviour
             button.enabled = true;
         }
         endTurn.enabled = true;
-        
-        
+        isActive = true;
+
     }
     public void DisableButtons()
     {
@@ -66,7 +98,7 @@ public class CombatUI : MonoBehaviour
             button.enabled = false;
         }
         endTurn.enabled = false;
-       
+        isActive = false;
     }
     public void SetTurnMarker(Transform target)
     {
@@ -106,10 +138,6 @@ public class CombatUI : MonoBehaviour
             prevDepth = null;
         }
     }
-    public void UpdateUI(FishMonster fish)
-    {
-
-    }
     void OnClick(InputAction.CallbackContext context)
     {
         RaycastHit hit;
@@ -136,7 +164,7 @@ public class CombatUI : MonoBehaviour
             }
             
         }
-
+        
     }
     public void StartTargeting()
     {
@@ -146,7 +174,7 @@ public class CombatUI : MonoBehaviour
         {
             selector.SetSelection(true);
         }
-
+        
     }
     public void StopTargeting()
     {
@@ -157,13 +185,16 @@ public class CombatUI : MonoBehaviour
             selectors.SetSelection(false);
         }
 
-
+        //isActive = true;
     }
-    public void UpdateVisuals(FishMonster fish)
+    public void UpdateVisuals(CombatManager.Turn currentTurn)
     {
+        this.currentTurn = currentTurn;
+        currentFish = currentTurn.fish;
+      
         for (int i = 0;i<abilityButtons.Length;i++)
         {
-            abilityButtons[i].UpdateVisuals(fish.GetAbility(i)?.name, fish.GetAbility(i)?.Icon);
+            abilityButtons[i].UpdateVisuals(currentFish.GetAbility(i)?.name, currentFish.GetAbility(i)?.Icon);
         }
 
 

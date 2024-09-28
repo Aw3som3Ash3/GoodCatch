@@ -37,6 +37,11 @@ public class DepthSelectors : MonoBehaviour
         visualizer.SetActive(b);
 
     }
+    public void PreviewSelection(bool b)
+    {
+        if(!selectorEnabled)
+            visualizer.SetActive(b);
+    }
 
     public void SelectDepth()
     {

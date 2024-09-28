@@ -54,7 +54,7 @@ public class CombatManager : MonoBehaviour
     Action hasTargeted;
 
 
-    bool hasActionLeft;
+   // bool hasActionLeft;
     bool actionsCompleted;
     [SerializeField]
     CinemachineVirtualCamera virtualCamera;
@@ -156,14 +156,14 @@ public class CombatManager : MonoBehaviour
         
         selectedFish = turnList[currentTurn].fish;
         ui.SetTurnMarker(combatVisualizer.fishToObject[selectedFish].transform);
-        hasActionLeft = true;
+        turnList[currentTurn].NewTurn();
         if (playerFishes.Contains(selectedFish))
         {
             //player
             
             currentTurnTeam = Team.player;
             ui.EnableButtons();
-            ui.UpdateVisuals(selectedFish);
+            ui.UpdateVisuals(turnList[currentTurn]);
         }
         else
         {
@@ -214,8 +214,8 @@ public class CombatManager : MonoBehaviour
         {
             combatVisualizer.MoveFish(t, prevDepth.GetPositionOfFish(t));
         }
-        hasActionLeft = false;
-        print("new destination: " + fishCurrentDepth[fish]);
+        turnList[currentTurn].UseAction();
+         print("new destination: " + fishCurrentDepth[fish]);
         //ui.SetTurnMarker(fishRepresentation[selectedFish].transform);
     }
     void ChangingDepth()
@@ -226,7 +226,7 @@ public class CombatManager : MonoBehaviour
     public void Move()
     {
         //changingDepth;
-        if (!hasActionLeft)
+        if (!turnList[currentTurn].ActionLeft)
         {
             return;
         }
@@ -239,7 +239,7 @@ public class CombatManager : MonoBehaviour
    
     public void UseAbility(int index)
     {
-        if (!hasActionLeft)
+        if (!turnList[currentTurn].ActionLeft)
         {
             return;
         }
@@ -258,7 +258,7 @@ public class CombatManager : MonoBehaviour
             targets[1] = middle.TargetFirst(targetedTeam);
             targets[2] = abyss.TargetFirst(targetedTeam);
             selectedFish.UseAbility(index, targets);
-            hasActionLeft = false;
+            turnList[currentTurn].UseAction();
             ActionsCompleted();
         }
         else if(selectedFish.GetAbility(index).Targeting == Ability.TargetingType.single)
@@ -276,7 +276,7 @@ public class CombatManager : MonoBehaviour
             selectedFish.UseAbility(index,targetedDepth.TargetFirst(targetedTeam));
             ui.StopTargeting();
             hasTargeted=null;
-            hasActionLeft = false;
+            turnList[currentTurn].UseAction();
             ActionsCompleted();
         }
         else
@@ -430,6 +430,10 @@ public class CombatManager : MonoBehaviour
         {
             actionsLeft = actionsPerTurn;
 
+        }
+        public void UseAction()
+        {
+            actionsLeft--;
         }
         public void StartTurn()
         {
