@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    Fishventory playerFishventory= new Fishventory();
+
+    public Fishventory playerFishventory { get; private set; } = new Fishventory();
 
     List<FishMonster> fishesToFight;
 
