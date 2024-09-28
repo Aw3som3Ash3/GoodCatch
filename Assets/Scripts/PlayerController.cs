@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
     GoodCatchInputs.PlayerActions inputs;
@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     LayerMask interactionLayer;
 
+    
     bool inStation;
+    
     private void Awake()
     {
         inputs = InputManager.Input.Player;

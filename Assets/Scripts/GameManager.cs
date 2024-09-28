@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         CapturedFish(testfisth);
+        playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
     }
 
     // Update is called once per frame
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
         playerFishventory.AddFish(fishMonsterType.GenerateMonster());
-        playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
+        
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes)
     {
