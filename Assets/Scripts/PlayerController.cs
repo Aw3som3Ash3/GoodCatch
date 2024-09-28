@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     LayerMask interactionLayer;
 
     bool inStation;
+    [SerializeField]
+    TextMeshProUGUI InteractionUI;
     
     private void Awake()
     {
