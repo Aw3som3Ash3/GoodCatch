@@ -5,6 +5,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
     GoodCatchInputs.PlayerActions inputs;
@@ -27,7 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     LayerMask interactionLayer;
 
-    
     bool inStation;
     
     private void Awake()
@@ -109,7 +110,15 @@ public class PlayerController : MonoBehaviour
         angles.x = ClampRotation(angle, minPitch, maxPitch);
         //print(angles.x);
         cameraRig.localEulerAngles = angles;
-
+        IInteractable interactible;
+        if(InteractionCheck(out interactible))
+        {
+           InteractionUI.text = interactible.StationName();
+        }
+        else
+        {
+            InteractionUI.text = "";
+        }
 
     }
     private void FixedUpdate()
