@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public Fishventory playerFishventory { get; private set; } = new Fishventory();
+    public Fishventory playerFishventory { get; private set; } = new Fishventory(7);
 
     List<FishMonster> fishesToFight;
 
