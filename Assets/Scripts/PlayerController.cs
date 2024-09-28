@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     Vector2 rotVelocity;
     [SerializeField]
     LayerMask interactionLayer;
+
+    [SerializeField] TextMeshProUGUI InteractionUI;
 
     bool inStation;
     private void Awake()
@@ -100,7 +103,15 @@ public class PlayerController : MonoBehaviour
         angles.x = ClampRotation(angle, minPitch, maxPitch);
         //print(angles.x);
         cameraRig.localEulerAngles = angles;
-
+        IInteractable interactible;
+        if(InteractionCheck(out interactible))
+        {
+           InteractionUI.text = interactible.StationName();
+        }
+        else
+        {
+            InteractionUI.text = "";
+        }
 
     }
     private void FixedUpdate()
