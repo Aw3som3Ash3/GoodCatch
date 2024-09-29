@@ -28,7 +28,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     LayerMask interactionLayer;
 
+
+    [SerializeField]
+    FishingRod fishingRod;
     [SerializeField] TextMeshProUGUI InteractionUI;
+
 
     bool inStation;
     private void Awake()
@@ -39,6 +43,7 @@ public class PlayerController : MonoBehaviour
         //moveAction.performed += OnMove;
         lookAction = inputs.Look;
         inputs.Jump.performed += OnJump;
+        inputs.Fish.performed += StartFishing;
         characterController=this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
     }
@@ -178,5 +183,10 @@ public class PlayerController : MonoBehaviour
             return;
         }
         fallSpeed = Mathf.Sqrt(jumpStrength * -1.0f * Gravity);
+    }
+
+    void StartFishing(InputAction.CallbackContext context)
+    {
+        fishingRod.CastLine(cameraRig.forward);
     }
 }

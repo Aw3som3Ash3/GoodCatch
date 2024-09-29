@@ -13,7 +13,8 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     GameObject model;
     public GameObject Model { get { return model; } }
-    
+
+    public int fishId;
 
     [SerializeField]
     Sprite icon;
@@ -62,7 +63,12 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     Ability[] baseAbilities;
 
-   
+    [Header("Misc")]
+    [SerializeField]
+    int difficulty;
+
+  
+
 
     public Ability[] BaseAbilities { get { return baseAbilities; } }
 

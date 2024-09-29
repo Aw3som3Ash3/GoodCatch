@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WaterSimulator : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class WaterSimulator : MonoBehaviour
     float waveHeightZ,waveFrequencyZ,waveSpeedZ;
     float timer;
     Vector3 originOffset;
+    Mesh mesh;
     // Start is called before the first frame update
     void Start()
     {
         meshRenderer=GetComponent<MeshRenderer>();
         FloatingOrigin.OriginShift += OnOriginShift;
+        mesh=GetComponent<MeshFilter>().mesh;
     }
 
     // Update is called once per frame
@@ -33,6 +36,8 @@ public class WaterSimulator : MonoBehaviour
         meshRenderer.material.SetFloat("_amplitudeZ", waveHeightZ);
         meshRenderer.material.SetFloat("_time", -timer);
         meshRenderer.material.SetVector("_Offset",this.transform.position+originOffset);
+
+        
     }
     private void OnTriggerStay(Collider other)
     {

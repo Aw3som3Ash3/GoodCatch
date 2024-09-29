@@ -35,18 +35,25 @@ public class WaterPhysics : MonoBehaviour
     {
         ApplyWaterForce();
     }
-    public void EnterWater(float waterHeight, WaterSimulator waterSimulator)
+    public virtual void EnterWater(float waterHeight, WaterSimulator waterSimulator)
     {
         inWater = true;
         this.waterHeight = waterHeight;
         this.waterSimulator = waterSimulator;
+        print(this + " entered water");
     }
     
     protected virtual void ApplyWaterForce()
     {
         if (!inWater) { return; }
-        waterForce = Mathf.Clamp(-Physics.gravity.y * bouyancy *(waterHeight + waterSimulator.SineWave(this.transform.position) - this.transform.position.y),0,float.MaxValue);
+        float targetHeight = waterHeight + waterSimulator.SineWave(this.transform.position);
+        float distance = targetHeight - this.transform.position.y;
+        waterForce= -Physics.gravity.y * Mathf.Clamp(bouyancy * distance, 0, float.MaxValue);
+        Debug.DrawLine(this.transform.position, this.transform.position + waterForce * Vector3.up, waterForce >= 0 ? Color.cyan : Color.magenta);
+        Debug.DrawLine(this.transform.position, new Vector3(this.transform.position.x, targetHeight, this.transform.position.z), distance > 0 ? Color.blue : Color.red);
         rb.AddForce(waterForce * Vector3.up, ForceMode.Acceleration);
+       
+
     }
 
 }
