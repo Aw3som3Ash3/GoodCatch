@@ -46,7 +46,7 @@ public class WaterPhysics : MonoBehaviour
     protected virtual void ApplyWaterForce()
     {
         if (!inWater) { return; }
-        float targetHeight = waterHeight + waterSimulator.SineWave(this.transform.position);
+        float targetHeight = waterHeight + waterSimulator.WaterWave(this.transform.position);
         float distance = targetHeight - this.transform.position.y;
         waterForce= -Physics.gravity.y * Mathf.Clamp(bouyancy * distance, 0, float.MaxValue);
         Debug.DrawLine(this.transform.position, this.transform.position + waterForce * Vector3.up, waterForce >= 0 ? Color.cyan : Color.magenta);

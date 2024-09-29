@@ -24,7 +24,7 @@ public class SimpleWaterPhysics : WaterPhysics
     {
         if (!inWater) { return; }
      
-        float targetHeight = waterHeight + waterSimulator.SineWave(this.transform.position);
+        float targetHeight = waterHeight + waterSimulator.WaterWave(this.transform.position);
         //print("target height "+ targetHeight+ " sinewave: " + waterSimulator.SineWave(this.transform.position));
         this.transform.position = new Vector3(this.transform.position.x, targetHeight, this.transform.position.z);
     }

@@ -33,7 +33,7 @@ public class ShipWaterPhysics : WaterPhysics
        
         foreach (Transform t in waterSimulationPoints)
         {
-            float targetHeight = waterHeight + waterSimulator.SineWave(t.position);
+            float targetHeight = waterHeight + waterSimulator.WaterWave(t.position);
             float distance = targetHeight - t.position.y;
             waterForceAtPoint[t] = -Physics.gravity.y * Mathf.Clamp(bouyancy *distance,0,float.MaxValue);
             Debug.DrawLine(t.position, t.position+ waterForceAtPoint[t] * Vector3.up, waterForceAtPoint[t] >= 0 ? Color.cyan : Color.magenta);

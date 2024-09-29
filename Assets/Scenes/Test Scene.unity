@@ -680,19 +680,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveHeightX
-      value: 0.0005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveHeightZ
-      value: 0.001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveFrequencyX
-      value: 0.001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveFrequencyZ
-      value: 0.001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9161884261594812790, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: m_Enabled
