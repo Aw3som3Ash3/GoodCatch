@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
+  m_Name: Goldy Plus
+  m_EditorClassIdentifier: 
+  model: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
+  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  homeDepth: 0
+  elements:
+  - {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
+  minSpeed: 5
+  maxSpeed: 10
+  minAttack: 4
+  maxAttack: 7
+  minSpecial: 2
+  maxSpecial: 4
+  minFortitude: 8
+  maxFortitude: 12
+  minSpecialFort: 4
+  maxSpecialFort: 6
+  healthPerLevel: 100
+  staminaPerLevel: 50
+  baseAbilities:
+  - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}
+  - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}
