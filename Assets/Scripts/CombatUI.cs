@@ -25,6 +25,12 @@ public class CombatUI : MonoBehaviour
 
     FishMonster currentFish;
     CombatManager.Turn currentTurn;
+
+    [SerializeField]
+    RectTransform actionsLeftBar;
+    [SerializeField]
+    GameObject actionTokenPrefab;
+    List<ActionToken> actionTokens=new List<ActionToken>();
     // Start is called before the first frame update
     void Start()
     {
@@ -191,13 +197,32 @@ public class CombatUI : MonoBehaviour
     {
         this.currentTurn = currentTurn;
         currentFish = currentTurn.fish;
-      
+        if (actionTokens != null)
+        {
+            foreach (var token in actionTokens)
+            {
+                Destroy(token.gameObject);
+            }
+            actionTokens.Clear();
+        }
+       
+        for(int i = 0; i < currentTurn.actionsPerTurn;i++)
+        {
+            actionTokens.Add(Instantiate(actionTokenPrefab, actionsLeftBar).GetComponent<ActionToken>());
+        }
         for (int i = 0;i<abilityButtons.Length;i++)
         {
             abilityButtons[i].UpdateVisuals(currentFish.GetAbility(i)?.name, currentFish.GetAbility(i)?.Icon);
         }
 
 
+    }
+    public void UpdateActionsLeft(int amountLeft)
+    {
+        for(int i = amountLeft; i < actionTokens.Count; i++)
+        {
+            actionTokens[i].Use();
+        }
     }
 
 }

@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes)
     {
-        SceneManager.LoadScene("BattleScene");
+        SceneManager.LoadScene("BattleScene",LoadSceneMode.Additive);
         fishesToFight = enemyFishes;
         SceneManager.sceneLoaded += SetUpCombat;
     }

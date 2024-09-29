@@ -8,6 +8,7 @@ using Unity.Collections;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static CombatManager;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -47,8 +48,7 @@ public class CombatManager : MonoBehaviour
     FishMonster selectedFish;
     CombatDepth targetedDepth;
     List<Turn> turnList=new List<Turn>();
-
-   
+    
 
     public Action IsTargeting;
     Action hasTargeted;
@@ -58,6 +58,10 @@ public class CombatManager : MonoBehaviour
     bool actionsCompleted;
     [SerializeField]
     CinemachineVirtualCamera virtualCamera;
+    [SerializeField]
+    Camera cam;
+
+    Camera prevCam;
     private void Awake()
     {
         shallows = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -95,7 +99,11 @@ public class CombatManager : MonoBehaviour
     }
     void SetUp()
     {
-        virtualCamera.Priority = 11;
+        prevCam = Camera.main;
+        prevCam.gameObject.SetActive(false);
+        cam.enabled = true;
+        Camera.SetupCurrent(cam);
+        //virtualCamera.Priority = 11;
         ui.MoveAction += Move;
         ui.Ability += UseAbility;
         ui.EndTurn += NextTurn;
@@ -150,6 +158,28 @@ public class CombatManager : MonoBehaviour
     void ActionsCompleted()
     {
         actionsCompleted = true;
+        int amountDead=0;
+        for(int i = 0; i < enemyFishes.Count; i++)
+        {
+            if (enemyFishes[i].isDead)
+            {
+                amountDead++;
+            }
+           
+
+        }
+        if (amountDead == enemyFishes.Count)
+        {
+            EndFight();
+        }
+    }
+
+    void EndFight()
+    {
+        prevCam.gameObject.SetActive(true);
+        Camera.SetupCurrent(prevCam);
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene"));
+
     }
     void StartTurn()
     {
@@ -215,6 +245,7 @@ public class CombatManager : MonoBehaviour
             combatVisualizer.MoveFish(t, prevDepth.GetPositionOfFish(t));
         }
         turnList[currentTurn].UseAction();
+        ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
          print("new destination: " + fishCurrentDepth[fish]);
         //ui.SetTurnMarker(fishRepresentation[selectedFish].transform);
     }
@@ -258,8 +289,13 @@ public class CombatManager : MonoBehaviour
             targets[1] = middle.TargetFirst(targetedTeam);
             targets[2] = abyss.TargetFirst(targetedTeam);
             selectedFish.UseAbility(index, targets);
+            foreach (var target in targets)
+            {
+                combatVisualizer.AnimateAttack(selectedFish, target, ActionsCompleted);
+            }
             turnList[currentTurn].UseAction();
-            ActionsCompleted();
+            ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
+            //ActionsCompleted();
         }
         else if(selectedFish.GetAbility(index).Targeting == Ability.TargetingType.single)
         {
@@ -273,11 +309,13 @@ public class CombatManager : MonoBehaviour
         if (selectedFish.GetAbility(index).DepthTargetable(targetedDepth.depth))
         {
             Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : currentTurnTeam;
-            selectedFish.UseAbility(index,targetedDepth.TargetFirst(targetedTeam));
+            FishMonster targetedFish = targetedDepth.TargetFirst(targetedTeam);
+            selectedFish.UseAbility(index, targetedFish);
             ui.StopTargeting();
             hasTargeted=null;
             turnList[currentTurn].UseAction();
-            ActionsCompleted();
+            ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
+            combatVisualizer.AnimateAttack(selectedFish, targetedFish, ActionsCompleted);
         }
         else
         {
@@ -414,7 +452,9 @@ public class CombatManager : MonoBehaviour
     public class Turn
     {
         public Team team { get; private set; }
-        int actionsPerTurn=1,actionsLeft;
+        public int actionsPerTurn { get; private set; } = 1;
+        public int actionsLeft { get; private set; }
+
         public bool ActionLeft { get { return actionsLeft > 0; } }
         public FishMonster fish { get; private set; }
         //CombatDepth currentDepth;

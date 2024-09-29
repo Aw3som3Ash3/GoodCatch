@@ -10,6 +10,8 @@ public class CombatVisualizer : MonoBehaviour
     List<FishObject> fishObjects = new List<FishObject>();
     [SerializeField]
     GameObject fishObjectPrefab;
+    [SerializeField]
+    GameObject projectilPrefab;
     //public Action CompletedMove;
     // Start is called before the first frame update
     void Start()
@@ -39,9 +41,22 @@ public class CombatVisualizer : MonoBehaviour
         CompletedMove += ()=> fishToObject[fish].ReachedDestination-=CompletedMove;
     }
 
-    public void AnimateAttack(Vector3 start ,Vector3 target, Action CompletedMove = null)
+    public void AnimateAttack(FishMonster fish, FishMonster target, Action CompletedMove = null)
     {
-        throw new NotImplementedException();
+        StartCoroutine(TempAttackAnim(fishToObject[fish].transform.position, fishToObject[target].transform.position,CompletedMove));
+        //throw new NotImplementedException();
+    }
+
+    IEnumerator TempAttackAnim(Vector3 start, Vector3 destination, Action CompletedMove)
+    {
+
+        GameObject projectile= Instantiate(projectilPrefab, start, projectilPrefab.transform.rotation);
+        while(Vector3.Distance(projectile.transform.position,destination)>0.01f)
+        {
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position,destination,Time.deltaTime*5);
+            yield return new WaitForEndOfFrame();
+        }
+        CompletedMove?.Invoke();
     }
 
 

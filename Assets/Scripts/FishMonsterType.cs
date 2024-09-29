@@ -67,6 +67,7 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     int difficulty;
 
+   
   
 
 
@@ -90,7 +91,7 @@ public class FishMonsterType : ScriptableObject
 [Serializable]
 public class FishMonster
 {
-    
+
     FishMonsterType type;
     string name;
     public int speed { get; private set; }
@@ -98,7 +99,7 @@ public class FishMonster
     public int special { get; private set; }
     public int fortitude { get; private set; }
     public int specialFort { get; private set; }
- 
+
     public float health { get; private set; }
     public float maxHealth { get; private set; }
     public float stamina { get; private set; }
@@ -106,12 +107,12 @@ public class FishMonster
 
     public Sprite Icon { get { return type.Icon; } }
     public GameObject Model { get { return type.Model; } }
-    int level=1;
+    int level = 1;
     float xp;
-    const int xpToLevelUp=1000;
+    const int xpToLevelUp = 1000;
     Ability.AbilityInstance[] abilities;
     public Action ValueChanged;
-    
+    public bool isDead { get; set; } = false;
     public FishMonster(FishMonsterType monsterType, int speed,int attack,int special,int fortitude, int specialFort)
     {
         this.type = monsterType;
@@ -234,6 +235,7 @@ public class FishMonster
     }
     void Feint()
     {
+        isDead = true;
         Debug.Log("Should Feint or die");
     }
 
