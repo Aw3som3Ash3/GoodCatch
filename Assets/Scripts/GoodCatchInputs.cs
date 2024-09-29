@@ -1046,6 +1046,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hook"",
+                    ""type"": ""Button"",
+                    ""id"": ""f84010e2-925f-42f9-a8b0-a05a5409f111"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1068,6 +1077,17 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6f929d5-a020-4df9-93f1-b66ea5a5f32e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1164,6 +1184,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         // Fishing
         m_Fishing = asset.FindActionMap("Fishing", throwIfNotFound: true);
         m_Fishing_Exit = m_Fishing.FindAction("Exit", throwIfNotFound: true);
+        m_Fishing_Hook = m_Fishing.FindAction("Hook", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1484,11 +1505,13 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Fishing;
     private List<IFishingActions> m_FishingActionsCallbackInterfaces = new List<IFishingActions>();
     private readonly InputAction m_Fishing_Exit;
+    private readonly InputAction m_Fishing_Hook;
     public struct FishingActions
     {
         private @GoodCatchInputs m_Wrapper;
         public FishingActions(@GoodCatchInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Exit => m_Wrapper.m_Fishing_Exit;
+        public InputAction @Hook => m_Wrapper.m_Fishing_Hook;
         public InputActionMap Get() { return m_Wrapper.m_Fishing; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1501,6 +1524,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Exit.started += instance.OnExit;
             @Exit.performed += instance.OnExit;
             @Exit.canceled += instance.OnExit;
+            @Hook.started += instance.OnHook;
+            @Hook.performed += instance.OnHook;
+            @Hook.canceled += instance.OnHook;
         }
 
         private void UnregisterCallbacks(IFishingActions instance)
@@ -1508,6 +1534,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Exit.started -= instance.OnExit;
             @Exit.performed -= instance.OnExit;
             @Exit.canceled -= instance.OnExit;
+            @Hook.started -= instance.OnHook;
+            @Hook.performed -= instance.OnHook;
+            @Hook.canceled -= instance.OnHook;
         }
 
         public void RemoveCallbacks(IFishingActions instance)
@@ -1600,5 +1629,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     public interface IFishingActions
     {
         void OnExit(InputAction.CallbackContext context);
+        void OnHook(InputAction.CallbackContext context);
     }
 }
