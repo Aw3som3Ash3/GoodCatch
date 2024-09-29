@@ -27,7 +27,7 @@ public class FishingMiniGame : MonoBehaviour
 
     void ExitFishing()
     {
-
+        //cancel
     }
 
     private void Update()
@@ -35,12 +35,20 @@ public class FishingMiniGame : MonoBehaviour
         floater.transform.position = new Vector3(circle.position.x, floater.transform.position.y, circle.position.z);
     }
 
+    private void FixedUpdate()
+    {
+        ReelIn();
+    }
+
     void FishingSucces()
     {
-        //SuccesfulFishing?.Invoke();
+        SuccesfulFishing?.Invoke(fishMonster.GenerateMonster());
     }
-    //Start Mini Game
+
+    void ReelIn()
+    {
+
+    }
+    //Start Mini Game 
     //Detect Win/Loss
-    //Output Fish
-    //Start Battle
 }

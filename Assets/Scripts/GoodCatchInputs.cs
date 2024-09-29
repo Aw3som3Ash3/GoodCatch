@@ -1046,6 +1046,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MiniGame"",
+                    ""type"": ""Value"",
+                    ""id"": ""6aadf39d-8438-4035-80ad-cf7b8e131e2f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1055,7 +1064,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1066,8 +1075,52 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f23dc83-b83a-41e4-a4cb-4753561a1b41"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MiniGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aec1b0bf-9e66-4709-8d1e-c46d4a1e63ac"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MiniGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1aa8c6c-f75f-4381-8d7c-ac1bb9f093ae"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MiniGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc98393b-0c68-49ff-9f4a-b70586e53540"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MiniGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1164,6 +1217,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         // Fishing
         m_Fishing = asset.FindActionMap("Fishing", throwIfNotFound: true);
         m_Fishing_Exit = m_Fishing.FindAction("Exit", throwIfNotFound: true);
+        m_Fishing_MiniGame = m_Fishing.FindAction("MiniGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1484,11 +1538,13 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Fishing;
     private List<IFishingActions> m_FishingActionsCallbackInterfaces = new List<IFishingActions>();
     private readonly InputAction m_Fishing_Exit;
+    private readonly InputAction m_Fishing_MiniGame;
     public struct FishingActions
     {
         private @GoodCatchInputs m_Wrapper;
         public FishingActions(@GoodCatchInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Exit => m_Wrapper.m_Fishing_Exit;
+        public InputAction @MiniGame => m_Wrapper.m_Fishing_MiniGame;
         public InputActionMap Get() { return m_Wrapper.m_Fishing; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1501,6 +1557,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Exit.started += instance.OnExit;
             @Exit.performed += instance.OnExit;
             @Exit.canceled += instance.OnExit;
+            @MiniGame.started += instance.OnMiniGame;
+            @MiniGame.performed += instance.OnMiniGame;
+            @MiniGame.canceled += instance.OnMiniGame;
         }
 
         private void UnregisterCallbacks(IFishingActions instance)
@@ -1508,6 +1567,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Exit.started -= instance.OnExit;
             @Exit.performed -= instance.OnExit;
             @Exit.canceled -= instance.OnExit;
+            @MiniGame.started -= instance.OnMiniGame;
+            @MiniGame.performed -= instance.OnMiniGame;
+            @MiniGame.canceled -= instance.OnMiniGame;
         }
 
         public void RemoveCallbacks(IFishingActions instance)
@@ -1600,5 +1662,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     public interface IFishingActions
     {
         void OnExit(InputAction.CallbackContext context);
+        void OnMiniGame(InputAction.CallbackContext context);
     }
 }
