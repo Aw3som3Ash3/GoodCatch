@@ -24,6 +24,6 @@ public class TestCombatStarter : MonoBehaviour
     void StartFight()
     {
 
-        GameManager.Instance.LoadCombatScene(fishMonsters);
+        GameManager.Instance.LoadCombatScene(fishMonsters,true);
     }
 }

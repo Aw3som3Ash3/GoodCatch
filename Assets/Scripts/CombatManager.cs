@@ -62,6 +62,7 @@ public class CombatManager : MonoBehaviour
     Camera cam;
 
     Camera prevCam;
+    bool rewardFish;
     private void Awake()
     {
         shallows = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -69,33 +70,24 @@ public class CombatManager : MonoBehaviour
         abyss = new CombatDepth(Depth.abyss, abyssLocation.GetChild(0), abyssLocation.GetChild(1));
 
 
-        //depthTransform[shallows] = shallowsLocation;
-        //depthTransform[middle] = middleLocation;
-        //depthTransform[abyss] = abyssLocation;
+
     }
     private void Start()
     {
-       
 
-
-        //temporary just for generating monsters right now
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    playerFishes.Add(testType.GenerateMonster());
-
-        //    enemyFishes.Add(testType.GenerateMonster());
-        //}
        
 
     }
-
+   
     //void Set
-    public void NewCombat(List<FishMonster> playerFishes, List<FishMonster> enemyFishes)
+    public void NewCombat(List<FishMonster> playerFishes, List<FishMonster> enemyFishes,bool rewardFish=false)
     {
         this.playerFishes = playerFishes;
         this.enemyFishes= enemyFishes;
+        this.rewardFish = rewardFish;
         SetUp();
         StartTurn();
+        
     }
     void SetUp()
     {
@@ -358,7 +350,7 @@ public class CombatManager : MonoBehaviour
     {
         
     }
-   
+
     [Serializable]
     public class CombatDepth
     {

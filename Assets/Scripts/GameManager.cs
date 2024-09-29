@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     FishMonsterType testfisth;
+    bool rewardFish;
     private void Awake()
     {
         if (Instance == null)
@@ -45,19 +46,22 @@ public class GameManager : MonoBehaviour
         playerFishventory.AddFish(fishMonsterType.GenerateMonster());
         
     }
-    public void LoadCombatScene(List<FishMonster> enemyFishes)
+    public void LoadCombatScene(List<FishMonster> enemyFishes,bool rewardFish=false)
     {
         SceneManager.LoadScene("BattleScene",LoadSceneMode.Additive);
         fishesToFight = enemyFishes;
         SceneManager.sceneLoaded += SetUpCombat;
+        this.rewardFish = rewardFish;
     }
 
     private void SetUpCombat(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == "BattleScene")
         {
-            GameObject.FindObjectOfType<CombatManager>().NewCombat(playerFishventory.Fishies.ToList(), fishesToFight);
+     
+            GameObject.FindObjectOfType<CombatManager>().NewCombat(playerFishventory.Fishies.ToList(), fishesToFight,rewardFish);
         }
+        SceneManager.sceneLoaded -= SetUpCombat;
         //throw new NotImplementedException();
     }
 
