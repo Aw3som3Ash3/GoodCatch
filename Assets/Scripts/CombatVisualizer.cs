@@ -60,6 +60,7 @@ public class CombatVisualizer : MonoBehaviour
             projectile.transform.position = Vector3.MoveTowards(projectile.transform.position,destination,Time.deltaTime*5);
             yield return new WaitForEndOfFrame();
         }
+        Destroy(projectile.gameObject);
         CompletedMove?.Invoke();
     }
 

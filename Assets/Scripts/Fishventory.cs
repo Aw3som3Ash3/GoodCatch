@@ -18,7 +18,7 @@ public class Fishventory
     }
     public bool AddFish(FishMonster fish)
     {
-        if (fishies.Count > maxSize)
+        if (fishies.Count >= maxSize)
         {
             return false;
         }

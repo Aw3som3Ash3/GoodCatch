@@ -215,7 +215,9 @@ public class CombatManager : MonoBehaviour
             ui.DisableButtons();
             //Oponent Decision
             //temp next turn for right now just to skip the enemy
-            NextTurn();
+            UseAbility(0);
+            ConfirmAttack(0);
+            //NextTurn();
         }
     }
  void NextTurn() 
