@@ -17,7 +17,7 @@ MonoBehaviour:
   targetableDepths: 3
   targetTeam: 1
   targetingType: 0
-  staminaUsage: 10
+  staminaUsage: 15
   baseDamage: 25
   damageMultiplier: 0.5
   statusEffect: {fileID: 0}

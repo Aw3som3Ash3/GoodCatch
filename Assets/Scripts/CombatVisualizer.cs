@@ -64,7 +64,7 @@ public class CombatVisualizer : MonoBehaviour
         GameObject projectile= Instantiate(projectilPrefab, start, projectilPrefab.transform.rotation);
         while(Vector3.Distance(projectile.transform.position,destination)>0.01f)
         {
-            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position,destination,Time.deltaTime*5);
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position,destination,Time.deltaTime*15);
             yield return new WaitForEndOfFrame();
         }
         Destroy(projectile.gameObject);

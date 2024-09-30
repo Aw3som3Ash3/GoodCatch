@@ -111,19 +111,22 @@ public class CombatManager : MonoBehaviour
             {
                 case 0:
                     AddFish(playerFishes[i], shallows, Team.player);
+                    combatVisualizer.MoveFish(playerFishes[i], shallows.GetPositionOfFish(playerFishes[i]));
                     break;
                 case 1:
                     AddFish(playerFishes[i], middle, Team.player);
+                    combatVisualizer.MoveFish(playerFishes[i], middle.GetPositionOfFish(playerFishes[i]));
                     break;
                 case 2:
                     AddFish(playerFishes[i], abyss, Team.player);
+                    combatVisualizer.MoveFish(playerFishes[i], abyss.GetPositionOfFish(playerFishes[i]));
                     break;
 
             }
             Turn turn = new Turn(playerFishes[i], Team.player);
             turnList.Add(turn);
             getFishesTurn[playerFishes[i]]=turn;
-            combatVisualizer.MoveFish(playerFishes[i],shallows.GetPositionOfFish(playerFishes[i]));
+            
         }
         for (int i = 0; i < enemyFishes.Count; i++)
         {

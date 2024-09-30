@@ -26,7 +26,8 @@ public class DepthSelectors : MonoBehaviour
     void Start()
     {
 
-       
+        visualizer.GetComponent<Renderer>().material.color = color;
+
         EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
         hoverEvent.eventID = EventTriggerType.PointerEnter;
         hoverEvent.callback.AddListener((eventData) => { OnHover(true);  });

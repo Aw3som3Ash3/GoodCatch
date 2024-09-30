@@ -61,6 +61,7 @@ public class FishToCatch : MonoBehaviour
             if(this.transform.localPosition == transform.parent.InverseTransformPoint(hook.transform.position))
             {
                 behaviour = FishBehaviour.biting;
+                StartCoroutine(AnimatedHook());
                 Invoke("ResetBehaviour", 0.5f);
             }
         }
@@ -72,12 +73,29 @@ public class FishToCatch : MonoBehaviour
         {
             CancelInvoke();
             print("caught " + this);
+           
             return true;
         }
         else
         {
             return false;
         }
+    }
+    IEnumerator AnimatedHook()
+    {
+        float startY = hook.position.y;
+        hook.GetComponent<SimpleWaterPhysics>().enabled = false;
+        while (hook.position.y > (startY - 0.5f))
+        {
+            hook.Translate(Vector3.down * 3 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        while (hook.position.y < (startY))
+        {
+            hook.Translate(Vector3.up * 3 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        hook.GetComponent<SimpleWaterPhysics>().enabled = true;
     }
     void ResetBehaviour()
     {
