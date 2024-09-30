@@ -239,9 +239,9 @@ public class CombatManager : MonoBehaviour
             ui.DisableButtons();
             //Oponent Decision
             //temp next turn for right now just to skip the enemy
-            UseAbility(0);
-            targetedDepth = shallows;
-            ConfirmAttack(0);
+            //UseAbility(0);
+            //targetedDepth = shallows;
+            //ConfirmAttack(0);
             NextTurn();
         }
     }

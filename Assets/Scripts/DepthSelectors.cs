@@ -14,18 +14,22 @@ public class DepthSelectors : MonoBehaviour
     [SerializeField]
     Color color, hoverColor;
     public Depth CurrentDepth { get { return currentDepth; } }
-    public Action Selected;
+    public Action<int> Selected;
+    public Action<float>Navigate;
 
     [SerializeField]
     Transform playerSide, enemySide;
     bool selectorEnabled;
+
+    int index;
     // Start is called before the first frame update
     void Start()
     {
 
+       
         EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
         hoverEvent.eventID = EventTriggerType.PointerEnter;
-        hoverEvent.callback.AddListener((eventData) => { OnHover(true); });
+        hoverEvent.callback.AddListener((eventData) => { OnHover(true);  });
         GetComponent<EventTrigger>().triggers.Add(hoverEvent);
 
         EventTrigger.Entry hoverExitEvent = new EventTrigger.Entry();
@@ -50,19 +54,32 @@ public class DepthSelectors : MonoBehaviour
 
         EventTrigger.Entry submitEvent = new EventTrigger.Entry();
         submitEvent.eventID = EventTriggerType.Submit;
-        submitEvent.callback.AddListener((eventData) => { SelectDepth(); });
+        submitEvent.callback.AddListener((eventData) => { SelectDepth(); EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject); });
         GetComponent<EventTrigger>().triggers.Add(submitEvent);
 
-
+        
+        EventTrigger.Entry moveEvent = new EventTrigger.Entry();
+        moveEvent.eventID = EventTriggerType.Move;
+        moveEvent.callback.AddListener((eventData) => { Navigate?.Invoke(-InputManager.Input.UI.Navigate.ReadValue<Vector2>().y); });
+        GetComponent<EventTrigger>().triggers.Add(moveEvent);
 
         visualizer.SetActive(false);
         targetingMarker.SetActive(false);
+    }
+    public void SetIndex(int index)
+    {
+        this.index = index;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void OnNavigate()
+    {
+
     }
     
     public void SetSelection(bool b)
@@ -84,7 +101,7 @@ public class DepthSelectors : MonoBehaviour
             return;
         }
         targetingMarker.SetActive(false);
-        Selected?.Invoke();
+        Selected?.Invoke(index);
         
     }
     public void OnHover(bool b)
@@ -93,10 +110,10 @@ public class DepthSelectors : MonoBehaviour
         {
 
             targetingMarker.SetActive(b);
-            visualizer.GetComponent<Renderer>().material.color = b ? hoverColor : color;
+            
         }
-       
 
+        visualizer.GetComponent<Renderer>().material.color = b ? hoverColor : color;
 
     }
 
