@@ -259,6 +259,7 @@ public class CombatManager : MonoBehaviour
             roundNmber++;
         }
         turnListUI.UpdateTurns(currentTurn);
+        selectedFish.RecoverStamina();
         StartTurn();
     }
     void ChangeDepth(FishMonster fish, CombatDepth destination)

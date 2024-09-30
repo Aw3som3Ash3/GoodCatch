@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 147039937}
   - component: {fileID: 147039936}
   - component: {fileID: 147039935}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: GoFirst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 159833523}
   - component: {fileID: 159833522}
   - component: {fileID: 159833521}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 189095888}
   - component: {fileID: 189095887}
   - component: {fileID: 189095886}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ Canvas:
   m_GameObject: {fileID: 189095885}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1850296206}
   m_PlaneDistance: 5
   m_PixelPerfect: 0
@@ -805,6 +805,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ability Button
       objectReference: {fileID: 0}
+    - target: {fileID: 1034309993142496157, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1517880327548252908, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -867,7 +871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1517880327548252908, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -117.9
+      value: -117.900024
       objectReference: {fileID: 0}
     - target: {fileID: 1517880327548252908, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -884,6 +888,10 @@ PrefabInstance:
     - target: {fileID: 1517880327548252908, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384636293115183098, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3639516188500164806, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
@@ -913,6 +921,10 @@ PrefabInstance:
     - target: {fileID: 1034309993142496157, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Name
       value: Ability Button (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1034309993142496157, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1517880327548252908, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Pivot.x
@@ -994,6 +1006,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3384636293115183098, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3639516188500164806, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
       value: 1
@@ -1022,7 +1038,7 @@ GameObject:
   - component: {fileID: 365399855}
   - component: {fileID: 365399857}
   - component: {fileID: 365399856}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1188,6 +1204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ability Button (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1034309993142496157, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1517880327548252908, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1267,6 +1287,10 @@ PrefabInstance:
     - target: {fileID: 1517880327548252908, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384636293115183098, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3639516188500164806, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
@@ -1388,6 +1412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishObjectPrefab: {fileID: 9069000482066618501, guid: bc024d329b8143e41b9b3c4e4ba9b359, type: 3}
   projectilPrefab: {fileID: 1364470266701324871, guid: b5651602582c7e14aa12a8106ac6531a, type: 3}
+  canvas: {fileID: 189095888}
+  fishUIPrefab: {fileID: 8857152815139288913, guid: 6c2b88944c7b5554fa9f0e018f07c65d, type: 3}
 --- !u!1 &546409806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1426,7 @@ GameObject:
   - component: {fileID: 546409809}
   - component: {fileID: 546409808}
   - component: {fileID: 546409810}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: ActionBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1508,7 +1534,7 @@ GameObject:
   - component: {fileID: 766798988}
   - component: {fileID: 766798987}
   - component: {fileID: 766798986}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: End Turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1628,7 +1654,7 @@ GameObject:
   - component: {fileID: 779921830}
   - component: {fileID: 779921832}
   - component: {fileID: 779921831}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: AbiltiyArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1706,7 +1732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 896676272}
   - component: {fileID: 896676274}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: CombatUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1771,7 +1797,7 @@ GameObject:
   - component: {fileID: 915511624}
   - component: {fileID: 915511626}
   - component: {fileID: 915511625}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: turnMaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1795,7 +1821,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915511625
 MonoBehaviour:
@@ -1847,7 +1873,7 @@ GameObject:
   - component: {fileID: 962200092}
   - component: {fileID: 962200091}
   - component: {fileID: 962200090}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: TurnBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2124,7 +2150,7 @@ GameObject:
   - component: {fileID: 1123841493}
   - component: {fileID: 1123841495}
   - component: {fileID: 1123841494}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2702,7 +2728,7 @@ GameObject:
   - component: {fileID: 1397938785}
   - component: {fileID: 1397938787}
   - component: {fileID: 1397938786}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3099,7 +3125,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2080
+    m_Bits: 2048
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3368,7 +3394,7 @@ GameObject:
   - component: {fileID: 2019920443}
   - component: {fileID: 2019920442}
   - component: {fileID: 2019920441}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3469,7 +3495,7 @@ GameObject:
   - component: {fileID: 2046372716}
   - component: {fileID: 2046372718}
   - component: {fileID: 2046372717}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3622,6 +3648,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ability1
       objectReference: {fileID: 0}
+    - target: {fileID: 1034309993142496157, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1517880327548252908, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3702,6 +3732,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3384636293115183098, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3639516188500164806, guid: 38345b8d1b4b91f439e8af7e2ab75895, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
       value: 1
@@ -3730,6 +3764,10 @@ PrefabInstance:
     - target: {fileID: 4560710840787226760, guid: 24b80c146e51e1947b0ac41728086af2, type: 3}
       propertyPath: m_Name
       value: Actions Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560710840787226760, guid: 24b80c146e51e1947b0ac41728086af2, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4621700983035778122, guid: 24b80c146e51e1947b0ac41728086af2, type: 3}
       propertyPath: m_AnchorMax.y

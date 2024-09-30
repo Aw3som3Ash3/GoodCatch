@@ -143,6 +143,7 @@ public class FishMonster
         {
             abilities[index].UseAbility(target);
             stamina -= abilities[index].ability.StaminaUsage;
+
             ValueChanged?.Invoke();
             return true;
         }else
@@ -207,7 +208,12 @@ public class FishMonster
     {
         return level * type.StaminaPerLevel;
     }
-
+    public void RecoverStamina()
+    {
+        stamina += maxStamina/4;
+        stamina = Mathf.Clamp(stamina, 0, maxStamina);
+        ValueChanged?.Invoke();
+    }
     public void TakeDamage(float damage, Element elementType,Ability.AbilityType abilityType)
     {
         if (damage<=0)

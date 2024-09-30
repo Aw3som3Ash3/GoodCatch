@@ -7,11 +7,16 @@ public class CombatVisualizer : MonoBehaviour
 {
     // Dictionary<FishMonster, Vector3> fishToDestination;
     public Dictionary<FishMonster, FishObject> fishToObject { get; private set; } = new Dictionary<FishMonster, FishObject>();
+    Dictionary<FishObject,FishUI> FishUI = new Dictionary<FishObject, FishUI>();
     List<FishObject> fishObjects = new List<FishObject>();
     [SerializeField]
     GameObject fishObjectPrefab;
     [SerializeField]
     GameObject projectilPrefab;
+    [SerializeField]
+    Canvas canvas;
+    [SerializeField]
+    GameObject fishUIPrefab;
     //public Action CompletedMove;
     // Start is called before the first frame update
     void Start()
@@ -32,6 +37,8 @@ public class CombatVisualizer : MonoBehaviour
     {
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
         fishObject.SetFish(fish);
+        FishUI[fishObject] = Instantiate(fishUIPrefab, canvas.transform).GetComponent<FishUI>();
+        FishUI[fishObject].SetFish(fish,fishObject.transform);
         fishObjects.Add(fishObject);
         fishToObject[fish] = fishObject;
         fishObject.transform.position = startingLocation;

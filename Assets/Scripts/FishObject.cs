@@ -13,6 +13,7 @@ public class FishObject : MonoBehaviour
     float moveSpeed;
 
     public Action ReachedDestination;
+   
 
     //public FishObject(FishMonster fish)
     //{
