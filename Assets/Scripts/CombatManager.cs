@@ -92,6 +92,8 @@ public class CombatManager : MonoBehaviour
     }
     void SetUp()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         prevCam = Camera.main;
         prevCam.gameObject.SetActive(false);
         cam.enabled = true;
@@ -189,7 +191,8 @@ public class CombatManager : MonoBehaviour
                 GameManager.Instance.CapturedFish(fish);
             }
         }
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     void StartTurn()
     {

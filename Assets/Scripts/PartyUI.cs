@@ -44,7 +44,18 @@ public class PartyUI : MonoBehaviour
         if (context.performed)
         {
             partyPanel.SetActive(!partyPanel.activeSelf);
+            Cursor.lockState = partyPanel.activeSelf? CursorLockMode.Confined:CursorLockMode.Locked;
+            Cursor.visible = partyPanel.activeSelf;
+            if (partyPanel.activeSelf)
+            {
+                InputManager.DisablePlayer();
+            }
+            else
+            {
+                InputManager.EnablePlayer();
+            }
             UpdateUI();
+
         }
     }
 }

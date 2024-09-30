@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     {
         Station.StationInteracted += StationInteracted;
         Station.LeftStation += StationLeft;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     bool InteractionCheck(out IInteractable interactable)
