@@ -28,14 +28,17 @@ public class FishingMiniGame : MonoBehaviour
         fishMonster = FishDatabase.instance.GetRandom();
         InputManager.Input.Fishing.Enable();
         InputManager.Input.Fishing.Hook.performed += OnHook;
+        InputManager.Input.Fishing.Exit.performed += ExitFishing;
         print(fishMonster);
         Invoke("SpawnFish", UnityEngine.Random.Range(0,2f));
     }
 
-    void ExitFishing()
+    void ExitFishing(InputAction.CallbackContext context)
     {
         InputManager.Input.Fishing.Disable();
         Destroy(this.gameObject);
+        InputManager.Input.Fishing.Hook.performed -= OnHook;
+        InputManager.Input.Fishing.Exit.performed -= ExitFishing;
         InputManager.EnablePlayer();
     }
 
