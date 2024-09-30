@@ -26,10 +26,11 @@ public class AbilityButton : MonoBehaviour
         EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
         hoverEvent.eventID = EventTriggerType.PointerEnter;
         hoverEvent.callback.AddListener((eventData) => { OnHover?.Invoke(index); });
-        EventTrigger.Entry exitEvent = new EventTrigger.Entry();
 
+        EventTrigger.Entry exitEvent = new EventTrigger.Entry();
         exitEvent.eventID = EventTriggerType.PointerExit;
         exitEvent.callback.AddListener((eventData) => { OnHoverExit?.Invoke(index); });
+
         button.AddComponent<EventTrigger>().triggers.Add(hoverEvent);
         button.GetComponent<EventTrigger>().triggers.Add(exitEvent);
         

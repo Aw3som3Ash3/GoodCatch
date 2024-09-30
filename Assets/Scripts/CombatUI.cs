@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -37,7 +38,12 @@ public class CombatUI : MonoBehaviour
         InputManager.Input.UI.Enable();
         move.onClick.AddListener(() => MoveAction());
         goFirst.onClick.AddListener(() => GoFirstAction());
-
+        foreach (var selector in depthSelectors)
+        {
+           
+           
+            
+        }
         for(int i = 0; i < abilityButtons.Length; i++)
         {
 
@@ -123,26 +129,26 @@ public class CombatUI : MonoBehaviour
             return;
         }
         turnMarker.position = Camera.main.WorldToScreenPoint(turnTarget.position + Vector3.up * 1.5f);
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(InputManager.Input.UI.Point.ReadValue<Vector2>()), out hit))
-        {
-            print("hit");
-            if(prevDepth!= hit.collider.GetComponent<DepthSelectors>())
-            {
-                if (prevDepth != null)
-                {
-                    prevDepth.OnHover(false);
-                }
-                prevDepth = hit.collider.GetComponent<DepthSelectors>();
-                prevDepth.OnHover(true);
-            }
+        //RaycastHit hit;
+        //if (Physics.Raycast(Camera.main.ScreenPointToRay(InputManager.Input.UI.Point.ReadValue<Vector2>()), out hit))
+        //{
+        //    print("hit");
+        //    if(prevDepth!= hit.collider.GetComponent<DepthSelectors>())
+        //    {
+        //        if (prevDepth != null)
+        //        {
+        //            prevDepth.OnHover(false);
+        //        }
+        //        prevDepth = hit.collider.GetComponent<DepthSelectors>();
+        //        prevDepth.OnHover(true);
+        //    }
             
-        }
-        else if(prevDepth!=null)
-        {
-            prevDepth.OnHover(false);
-            prevDepth = null;
-        }
+        //}
+        //else if(prevDepth!=null)
+        //{
+        //    prevDepth.OnHover(false);
+        //    prevDepth = null;
+        //}
     }
     void OnClick(InputAction.CallbackContext context)
     {
@@ -157,7 +163,7 @@ public class CombatUI : MonoBehaviour
     public void StartTargeting(Depth targetableDepths)
     {
         //isTargeting = true;
-        InputManager.Input.UI.Click.performed += OnClick;
+        //InputManager.Input.UI.Click.performed += OnClick;
         foreach (DepthSelectors selector in depthSelectors)
         {
             if (targetableDepths.HasFlag(selector.CurrentDepth))
@@ -175,7 +181,7 @@ public class CombatUI : MonoBehaviour
     public void StartTargeting()
     {
         //isTargeting = true;
-        InputManager.Input.UI.Click.performed += OnClick;
+        //InputManager.Input.UI.Click.performed += OnClick;
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(true);
@@ -185,7 +191,7 @@ public class CombatUI : MonoBehaviour
     public void StopTargeting()
     {
         //isTargeting = false;
-        InputManager.Input.UI.Click.performed -= OnClick;
+        //InputManager.Input.UI.Click.performed -= OnClick;
         foreach (DepthSelectors selectors in depthSelectors)
         {
             selectors.SetSelection(false);

@@ -2575,6 +2575,7 @@ GameObject:
   - component: {fileID: 1338373266}
   - component: {fileID: 1338373267}
   - component: {fileID: 1338373268}
+  - component: {fileID: 1338373269}
   m_Layer: 11
   m_Name: Middle
   m_TagString: Untagged
@@ -2641,6 +2642,19 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 0, b: 0, a: 0.7176471}
   playerSide: {fileID: 1123050743}
   enemySide: {fileID: 2004793922}
+--- !u!114 &1338373269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338373265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1397938784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,6 +2741,7 @@ GameObject:
   - component: {fileID: 1500697474}
   - component: {fileID: 1500697475}
   - component: {fileID: 1500697476}
+  - component: {fileID: 1500697477}
   m_Layer: 11
   m_Name: Shallow
   m_TagString: Untagged
@@ -2793,6 +2808,19 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 0, b: 0, a: 0.7176471}
   playerSide: {fileID: 409260976}
   enemySide: {fileID: 449498630}
+--- !u!114 &1500697477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500697473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1708040324
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,6 +2915,7 @@ GameObject:
   - component: {fileID: 1733710230}
   - component: {fileID: 1733710231}
   - component: {fileID: 1733710232}
+  - component: {fileID: 1733710233}
   m_Layer: 11
   m_Name: abyss
   m_TagString: Untagged
@@ -2953,6 +2982,19 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 0, b: 0, a: 0.7176471}
   playerSide: {fileID: 1257826330}
   enemySide: {fileID: 36103076}
+--- !u!114 &1733710233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733710229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
 --- !u!1 &1850296204
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,6 +3008,7 @@ GameObject:
   - component: {fileID: 1850296205}
   - component: {fileID: 1850296208}
   - component: {fileID: 1850296209}
+  - component: {fileID: 1850296210}
   m_Layer: 11
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3125,6 +3168,22 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1850296210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850296204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_MaxRayIntersections: 0
 --- !u!1 &1994696237
 GameObject:
   m_ObjectHideFlags: 0

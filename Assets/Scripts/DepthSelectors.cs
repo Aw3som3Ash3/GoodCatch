@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.LowLevel;
 
 public class DepthSelectors : MonoBehaviour
 {
@@ -20,6 +22,38 @@ public class DepthSelectors : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
+        hoverEvent.eventID = EventTriggerType.PointerEnter;
+        hoverEvent.callback.AddListener((eventData) => { OnHover(true); });
+        GetComponent<EventTrigger>().triggers.Add(hoverEvent);
+
+        EventTrigger.Entry hoverExitEvent = new EventTrigger.Entry();
+        hoverExitEvent.eventID = EventTriggerType.PointerExit;
+        hoverExitEvent.callback.AddListener((eventData) => { OnHover(false); });
+        GetComponent<EventTrigger>().triggers.Add(hoverExitEvent);
+
+        EventTrigger.Entry selectedEvent = new EventTrigger.Entry();
+        selectedEvent.eventID = EventTriggerType.Select;
+        selectedEvent.callback.AddListener((eventData) => { OnHover(true); });
+        GetComponent<EventTrigger>().triggers.Add(selectedEvent);
+
+        EventTrigger.Entry deselectedEvent = new EventTrigger.Entry();
+        deselectedEvent.eventID = EventTriggerType.Deselect;
+        deselectedEvent.callback.AddListener((eventData) => { OnHover(false); });
+        GetComponent<EventTrigger>().triggers.Add(deselectedEvent);
+
+        EventTrigger.Entry clickEvent = new EventTrigger.Entry();
+        clickEvent.eventID = EventTriggerType.PointerClick;
+        clickEvent.callback.AddListener((eventData) => { SelectDepth(); });
+        GetComponent<EventTrigger>().triggers.Add(clickEvent);
+
+        EventTrigger.Entry submitEvent = new EventTrigger.Entry();
+        submitEvent.eventID = EventTriggerType.Submit;
+        submitEvent.callback.AddListener((eventData) => { SelectDepth(); });
+        GetComponent<EventTrigger>().triggers.Add(submitEvent);
+
+
 
         visualizer.SetActive(false);
         targetingMarker.SetActive(false);
