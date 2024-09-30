@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: bubble shot
   m_EditorClassIdentifier: 
   abilityType: 0
-  availableDepths: 1
+  availableDepths: -1
   targetableDepths: 3
   targetTeam: 1
   targetingType: 0
