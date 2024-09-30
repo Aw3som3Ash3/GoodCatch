@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     FishMonsterType testfisth;
     bool rewardFish;
+    EventSystem mainEventSystem;
     private void Awake()
     {
         if (Instance == null)
@@ -27,12 +29,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        FishingMiniGame.SuccesfulFishing += () => { mainEventSystem.enabled = true; };
     }
     // Start is called before the first frame update
     void Start()
     {
         CapturedFish(testfisth);
         playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
+        mainEventSystem=EventSystem.current;
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
 
@@ -55,6 +60,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes,bool rewardFish=false)
     {
+        mainEventSystem.enabled = false;
         SceneManager.LoadScene("BattleScene",LoadSceneMode.Additive);
         fishesToFight = enemyFishes;
         SceneManager.sceneLoaded += SetUpCombat;
