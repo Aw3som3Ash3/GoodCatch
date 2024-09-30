@@ -1350,7 +1350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed897e691fb90404080ab50748b39947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishObjectPrefab: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
+  fishObjectPrefab: {fileID: 9069000482066618501, guid: bc024d329b8143e41b9b3c4e4ba9b359, type: 3}
   projectilPrefab: {fileID: 1364470266701324871, guid: b5651602582c7e14aa12a8106ac6531a, type: 3}
 --- !u!1 &546409806
 GameObject:

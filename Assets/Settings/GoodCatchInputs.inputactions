@@ -1024,6 +1024,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Hook",
+                    "type": "Button",
+                    "id": "09ffcd8b-1d0b-4b8f-8dba-1ac23f191489",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1046,6 +1055,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2523b0d7-2dc9-4af6-8094-4c6a52df25a0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

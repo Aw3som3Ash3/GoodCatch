@@ -6,6 +6,7 @@ using UnityEngine;
 public class FishObject : MonoBehaviour
 {
     FishMonster fish;
+    GameObject model;
     Vector3 destination;
     bool shouldMove;
     [SerializeField]
@@ -29,7 +30,11 @@ public class FishObject : MonoBehaviour
         
         
     }
-
+    public void SetFish(FishMonster fish)
+    {
+        model =Instantiate(fish.Model,this.transform);
+        model.transform.localPosition = Vector3.zero;
+    }
     public void SetDestination(Vector3 destination)
     {
        this.destination = destination;

@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         CapturedFish(testfisth);
         playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
+        //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
 
     // Update is called once per frame
@@ -41,10 +42,16 @@ public class GameManager : MonoBehaviour
 
 
     }
+
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
         playerFishventory.AddFish(fishMonsterType.GenerateMonster());
         
+    }
+    public void CapturedFish(FishMonster fishMonster)
+    {
+        playerFishventory.AddFish(fishMonster);
+
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes,bool rewardFish=false)
     {

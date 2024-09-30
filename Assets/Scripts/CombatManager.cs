@@ -48,6 +48,7 @@ public class CombatManager : MonoBehaviour
     FishMonster selectedFish;
     CombatDepth targetedDepth;
     List<Turn> turnList=new List<Turn>();
+    Dictionary<FishMonster, Turn> getFishesTurn=new Dictionary<FishMonster, Turn>();
     
 
     public Action IsTargeting;
@@ -104,12 +105,19 @@ public class CombatManager : MonoBehaviour
         for(int i = 0; i < playerFishes.Count; i++)
         {
             AddFish(playerFishes[i], shallows, Team.player);
-            turnList.Add(new Turn(playerFishes[i], Team.player));
+            Turn turn = new Turn(playerFishes[i], Team.player);
+            turnList.Add(turn);
+            getFishesTurn[playerFishes[i]]=turn;
+            combatVisualizer.MoveFish(playerFishes[i],shallows.GetPositionOfFish(playerFishes[i]));
         }
         for (int i = 0; i < enemyFishes.Count; i++)
         {
             AddFish(enemyFishes[i], shallows, Team.enemy);
-            turnList.Add(new Turn(enemyFishes[i], Team.enemy));
+            Turn turn = new Turn(enemyFishes[i], Team.enemy);
+            turnList.Add(turn);
+            combatVisualizer.MoveFish(enemyFishes[i], shallows.GetPositionOfFish(enemyFishes[i]));
+
+            getFishesTurn[enemyFishes[i]] = turn;
         }
         //if (playerFishes[0] != null)
 
@@ -133,9 +141,12 @@ public class CombatManager : MonoBehaviour
 
     void AddFish(FishMonster fish,CombatDepth destination,Team team)
     {
+
         destination.AddFish(fish, team);
         fishCurrentDepth[fish] = destination;
         combatVisualizer.AddFish(fish, destination.GetSideTransform(team).position);
+        fish.HasFeinted += () => RemoveFishFromBattle(fish);
+
     }
     void OrderTurn()
     {
@@ -171,6 +182,13 @@ public class CombatManager : MonoBehaviour
         prevCam.gameObject.SetActive(true);
         Camera.SetupCurrent(prevCam);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene"));
+        if (rewardFish)
+        {
+            foreach(var fish in enemyFishes)
+            {
+                GameManager.Instance.CapturedFish(fish);
+            }
+        }
 
     }
     void StartTurn()
@@ -302,12 +320,12 @@ public class CombatManager : MonoBehaviour
         {
             Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : currentTurnTeam;
             FishMonster targetedFish = targetedDepth.TargetFirst(targetedTeam);
-            selectedFish.UseAbility(index, targetedFish);
+            
             ui.StopTargeting();
             hasTargeted=null;
             turnList[currentTurn].UseAction();
             ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
-            combatVisualizer.AnimateAttack(selectedFish, targetedFish, ActionsCompleted);
+            combatVisualizer.AnimateAttack(selectedFish, targetedFish, ()=>{ selectedFish.UseAbility(index, targetedFish); ActionsCompleted(); });
         }
         else
         {
@@ -338,6 +356,14 @@ public class CombatManager : MonoBehaviour
         //targetedDepth = null;
     }
 
+    void RemoveFishFromBattle(FishMonster fish)
+    {
+        turnList.Remove(getFishesTurn[fish]);
+        shallows.RemoveFish(fish);
+        middle.RemoveFish(fish);
+        abyss.RemoveFish(fish);
+        combatVisualizer.RemoveFish(fish);
+    }
 
     void TargetDepth(CombatDepth target)
     {

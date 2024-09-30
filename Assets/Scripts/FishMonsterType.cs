@@ -112,6 +112,7 @@ public class FishMonster
     const int xpToLevelUp = 1000;
     Ability.AbilityInstance[] abilities;
     public Action ValueChanged;
+    public Action HasFeinted;
     public bool isDead { get; set; } = false;
     public FishMonster(FishMonsterType monsterType, int speed,int attack,int special,int fortitude, int specialFort)
     {
@@ -236,6 +237,7 @@ public class FishMonster
     void Feint()
     {
         isDead = true;
+        HasFeinted?.Invoke();
         Debug.Log("Should Feint or die");
     }
 

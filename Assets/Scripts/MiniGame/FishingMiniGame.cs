@@ -3,41 +3,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using UnityEngine.InputSystem;
 
 public class FishingMiniGame : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
-    [SerializeField] Transform circle;
+    //[SerializeField] Transform circle;
     Floater floater;
 
-    public static Action<FishMonster> SuccesfulFishing;
+    public static Action SuccesfulFishing;
 
     float score;
 
     int difficulty;
     FishMonsterType fishMonster;
+    [SerializeField]
+    GameObject fishToCatchPrefab;
+    FishToCatch fishToCatch;
 
     public void Initiate(Floater floater)
     {
         this.floater = floater;
         virtualCamera.Priority = 15;
         fishMonster = FishDatabase.instance.GetRandom();
+        InputManager.Input.Fishing.Enable();
+        InputManager.Input.Fishing.Hook.performed += OnHook;
         print(fishMonster);
+        Invoke("SpawnFish", UnityEngine.Random.Range(0,2f));
     }
 
     void ExitFishing()
     {
-
+        InputManager.Input.Fishing.Disable();
+        Destroy(this.gameObject);
+        InputManager.EnablePlayer();
     }
 
     private void Update()
     {
-        floater.transform.position = new Vector3(circle.position.x, floater.transform.position.y, circle.position.z);
+        //floater.transform.position = new Vector3(circle.position.x, floater.transform.position.y, circle.position.z);
     }
 
-    void FishingSucces()
+    void SpawnFish()
     {
-        //SuccesfulFishing?.Invoke();
+        fishToCatch = Instantiate(fishToCatchPrefab, this.transform).GetComponent<FishToCatch>();
+        fishToCatch.SetFish(fishMonster, floater.transform);
+    }
+
+    void OnHook(InputAction.CallbackContext context)
+    {
+        if (fishToCatch.CatchFish()) 
+        {
+            FishingSuccess();
+            
+        }
+    }
+
+    void FishingSuccess()
+    {
+        List<FishMonster> fishMonsters= new List<FishMonster>();
+        int num = UnityEngine.Random.Range(1, 1);
+        for(int i = 0; i < num; i++) 
+        {
+            fishMonsters.Add(fishMonster.GenerateMonster());
+        }
+        GameManager.Instance.LoadCombatScene(fishMonsters,true);
+        SuccesfulFishing?.Invoke();
+        ExitFishing();
     }
     //Start Mini Game
     //Detect Win/Loss

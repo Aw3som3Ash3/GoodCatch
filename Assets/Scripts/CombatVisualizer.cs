@@ -24,10 +24,14 @@ public class CombatVisualizer : MonoBehaviour
     {
         
     }
-
+    public void RemoveFish(FishMonster fish)
+    {
+        Destroy(fishToObject[fish].gameObject);
+    }
     public void AddFish(FishMonster fish,Vector3 startingLocation)
     {
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
+        fishObject.SetFish(fish);
         fishObjects.Add(fishObject);
         fishToObject[fish] = fishObject;
         fishObject.transform.position = startingLocation;
