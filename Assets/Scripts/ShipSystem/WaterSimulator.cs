@@ -25,8 +25,9 @@ public class WaterSimulator : MonoBehaviour
     void Update()
     {
         //print(SineWave(Vector3.zero));
-        timer += Time.deltaTime;
-        timer %= 200*Mathf.PI;
+        //timer += Time.deltaTime;
+        timer=Time.time;
+        //timer %= 200*Mathf.PI;
 
         meshRenderer.material.SetFloat("_speedX", waveSpeedX);
         meshRenderer.material.SetFloat("_frequencyX", waveFrequencyX);
@@ -34,7 +35,7 @@ public class WaterSimulator : MonoBehaviour
         meshRenderer.material.SetFloat("_speedZ", waveSpeedZ);
         meshRenderer.material.SetFloat("_frequencyZ", waveFrequencyZ);
         meshRenderer.material.SetFloat("_amplitudeZ", waveHeightZ);
-        meshRenderer.material.SetFloat("_time", -timer);
+        meshRenderer.material.SetFloat("_time", timer);
         meshRenderer.material.SetVector("_Offset",this.transform.position+originOffset);
 
         
@@ -48,11 +49,16 @@ public class WaterSimulator : MonoBehaviour
         other.GetComponentInParent<WaterPhysics>()?.EnterWater(this.transform.position.y,this);
     }
 
-    public float SineWave(Vector3 position)
+    public float WaterWave(Vector3 position)
     {
         //return Mathf.Clamp(Mathf.Sin(timer + position.z),0,1) * waveHeight;
-
-        return (Mathf.Sin(((position.z+originOffset.z) * waveFrequencyZ) - timer*waveSpeedZ) * waveHeightZ) + Mathf.Sin(((position.x + originOffset.x) * waveFrequencyX) - timer * waveSpeedX)*waveHeightZ;
+        float sineWaveZ = SineWave(position.z + originOffset.z, waveFrequencyZ, waveSpeedZ, waveHeightZ);
+        float sineWaveX = SineWave(position.x + originOffset.x, waveFrequencyX, waveSpeedX, waveHeightX);
+        return -(sineWaveZ+sineWaveX);
+    }
+    float SineWave(float position,float waveFrequency,float speed,float waveHeight)
+    {
+        return Mathf.Sin((position * waveFrequency) - timer * speed) * waveHeight;
     }
     void OnOriginShift(Vector3 position)
     {

@@ -12,7 +12,10 @@ public class Fishventory
     [SerializeField]
     int maxSize;
     public IReadOnlyList<FishMonster> Fishies { get { return fishies; } }
-
+    public Fishventory(int maxSize) 
+    {
+        this.maxSize = maxSize;
+    }
     public bool AddFish(FishMonster fish)
     {
         if (fishies.Count > maxSize)

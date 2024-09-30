@@ -3,28 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FishIcon : MonoBehaviour
+public class ActionToken : MonoBehaviour
 {
     [SerializeField]
-    Image icon;
+    Image token;
     [SerializeField]
-    Image border;
-
+    Color used, left;
     // Start is called before the first frame update
     void Start()
     {
-        
+        token.color = left;
     }
-
+    public void Use()
+    {
+        token.color = used;
+    }
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    public void SetIcon(Sprite sprite,Color color)
-    {
-        icon.sprite=sprite;
-        border.color=color;
     }
 }

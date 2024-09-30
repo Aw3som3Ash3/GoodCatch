@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
+using TMPro;
 public class PlayerController : MonoBehaviour
 {
     GoodCatchInputs.PlayerActions inputs;

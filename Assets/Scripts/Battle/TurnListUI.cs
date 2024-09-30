@@ -10,8 +10,8 @@ public class TurnListUI : MonoBehaviour
     RectTransform turnBar;
     [SerializeField]
     GameObject turnPreviewPrefab;
-    ObservableCollection<TurnIcon> turnIcons=new ObservableCollection<TurnIcon>();
-    Dictionary<CombatManager.Turn, TurnIcon> turnToIcon=new Dictionary<CombatManager.Turn, TurnIcon>();
+    ObservableCollection<FishIcon> turnIcons=new ObservableCollection<FishIcon>();
+    Dictionary<CombatManager.Turn, FishIcon> turnToIcon=new Dictionary<CombatManager.Turn, FishIcon>();
     //List<FishMonster> fishesInTurn;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class TurnListUI : MonoBehaviour
     {
         foreach (CombatManager.Turn turn in turns)
         {
-            TurnIcon turnIcon= Instantiate(turnPreviewPrefab, turnBar).GetComponent<TurnIcon>();
+            FishIcon turnIcon= Instantiate(turnPreviewPrefab, turnBar).GetComponent<FishIcon>();
             turnIcon.SetIcon(turn.fish.Icon,turn.team==CombatManager.Team.player ? Color.green:Color.red);
             turnToIcon[turn] = turnIcon;
             turnIcons.Add(turnIcon);
