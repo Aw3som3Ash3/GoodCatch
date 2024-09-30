@@ -31,6 +31,7 @@ public class FishUI : MonoBehaviour
     }
     public void SetFish(FishMonster fish,Transform target)
     {
+        
         //this.fish.ValueChanged -= UpdateUI;
         this.fish = fish;
         this.fish.ValueChanged += UpdateUI;
@@ -42,5 +43,8 @@ public class FishUI : MonoBehaviour
         staminaBar.fillAmount = fish.stamina / fish.maxStamina;
     }
 
-
+    private void OnDestroy()
+    {
+        this.fish.ValueChanged -= UpdateUI;
+    }
 }
