@@ -106,7 +106,20 @@ public class CombatManager : MonoBehaviour
 
         for(int i = 0; i < playerFishes.Count; i++)
         {
-            AddFish(playerFishes[i], shallows, Team.player);
+            
+            switch (i % 3)
+            {
+                case 0:
+                    AddFish(playerFishes[i], shallows, Team.player);
+                    break;
+                case 1:
+                    AddFish(playerFishes[i], middle, Team.player);
+                    break;
+                case 2:
+                    AddFish(playerFishes[i], abyss, Team.player);
+                    break;
+
+            }
             Turn turn = new Turn(playerFishes[i], Team.player);
             turnList.Add(turn);
             getFishesTurn[playerFishes[i]]=turn;
@@ -114,8 +127,19 @@ public class CombatManager : MonoBehaviour
         }
         for (int i = 0; i < enemyFishes.Count; i++)
         {
-            AddFish(enemyFishes[i], shallows, Team.enemy);
-            Turn turn = new Turn(enemyFishes[i], Team.enemy);
+            switch (i % 3)
+            {
+                case 0:
+                    AddFish(enemyFishes[i], shallows, Team.enemy);
+                    break;
+                case 1:
+                    AddFish(enemyFishes[i], middle, Team.enemy);
+                    break;
+                case 2:
+                    AddFish(enemyFishes[i], abyss, Team.enemy);
+                    break;
+            }
+                Turn turn = new Turn(enemyFishes[i], Team.enemy);
             turnList.Add(turn);
             combatVisualizer.MoveFish(enemyFishes[i], shallows.GetPositionOfFish(enemyFishes[i]));
 
@@ -216,8 +240,9 @@ public class CombatManager : MonoBehaviour
             //Oponent Decision
             //temp next turn for right now just to skip the enemy
             UseAbility(0);
+            targetedDepth = shallows;
             ConfirmAttack(0);
-            //NextTurn();
+            NextTurn();
         }
     }
  void NextTurn() 
@@ -304,10 +329,15 @@ public class CombatManager : MonoBehaviour
             targets[1] = middle.TargetFirst(targetedTeam);
             targets[2] = abyss.TargetFirst(targetedTeam);
             selectedFish.UseAbility(index, targets);
+
             foreach (var target in targets)
             {
-                combatVisualizer.AnimateAttack(selectedFish, target, ActionsCompleted);
+                if (target != null)
+                {
+                    combatVisualizer.AnimateAttack(selectedFish, target, ActionsCompleted);
+                }
             }
+                
             turnList[currentTurn].UseAction();
             ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
             //ActionsCompleted();
@@ -323,7 +353,7 @@ public class CombatManager : MonoBehaviour
     {
         if (selectedFish.GetAbility(index).DepthTargetable(targetedDepth.depth))
         {
-            Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : currentTurnTeam;
+            Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : Team.player;
             FishMonster targetedFish = targetedDepth.TargetFirst(targetedTeam);
             
             ui.StopTargeting();
