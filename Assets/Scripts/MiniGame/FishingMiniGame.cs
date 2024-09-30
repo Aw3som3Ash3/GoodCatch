@@ -43,6 +43,7 @@ public class FishingMiniGame : MonoBehaviour
         Destroy(this.gameObject);
         InputManager.Input.Fishing.Hook.performed -= OnHook;
         InputManager.Input.Fishing.Exit.performed -= OnExit;
+        Destroy(floater.gameObject);
         InputManager.EnablePlayer();
     }
 
