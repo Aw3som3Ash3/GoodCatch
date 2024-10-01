@@ -836,23 +836,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveSpeedX
-      value: 1
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
+      propertyPath: waveSpeedZ
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveHeightX
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveHeightZ
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveFrequencyX
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveFrequencyZ
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 9161884261594812790, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: m_Enabled
@@ -1789,7 +1793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6575424345204521440, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: maxSpeed
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6575424345204521440, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: turningSpeed
