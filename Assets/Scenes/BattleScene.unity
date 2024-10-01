@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnBar: {fileID: 2019920440}
-  turnPreviewPrefab: {fileID: 6770412076911598044, guid: 17a0ebeb9eaf719448d57156d9617597, type: 3}
+  turnPreviewPrefab: {fileID: 4701845846633588722, guid: 4697857cd7eaa2f45a376799578ea652, type: 3}
 --- !u!114 &962200091
 MonoBehaviour:
   m_ObjectHideFlags: 0

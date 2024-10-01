@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEditor;
-
-[FilePath("Database/FishDatabase", FilePathAttribute.Location.ProjectFolder)]
-[CreateAssetMenu(fileName = "Fish Database", menuName = "Fish Monster/Fish Database", order = 3)]
-public class FishDatabase : ScriptableSingleton<FishDatabase>, ISerializationCallbackReceiver
+#if UNITY_EDITOR
+[FilePath("Assets/Database/FishDatabase", FilePathAttribute.Location.ProjectFolder)]
+#endif
+public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
 {
     [SerializeField]
     public List<FishMonsterType> fishMonsters;
@@ -39,50 +39,51 @@ public class FishDatabase : ScriptableSingleton<FishDatabase>, ISerializationCal
         return fishMonsters[1];
         return fishMonsters[Random.Range(0, fishMonsters.Count)];
     }
-    public void SaveDatabase()
-    {
+    //public void SaveDatabase()
+    //{
 
-        Debug.Log(GetFilePath());
-        Save(false);
-    }
+    //    Debug.Log(GetFilePath());
+    //    Save(false);
+    //}
 }
+//#if UNITY_EDITOR
+//public class WizardFishDataBase : ScriptableWizard
+//{
+//    [SerializeField]
+//    List<FishMonsterType> fishMonsters;
 
-public class WizardFishDataBase : ScriptableWizard
-{
-    [SerializeField]
-    List<FishMonsterType> fishMonsters;
+//    [MenuItem("FishDatabase/Edit FishDatabase")]
+//    static void CreateWizard()
+//    {
+//        //
+//        ScriptableWizard.DisplayWizard<WizardFishDataBase>("Fish Database","Save");
+//        //If you don't want to use the secondary button simply leave it out:
+//        //ScriptableWizard.DisplayWizard<WizardCreateLight>("Create Light", "Create");
+//    }
 
-    [MenuItem("FishDatabase/Edit FishDatabase")]
-    static void CreateWizard()
-    {
-        //
-        ScriptableWizard.DisplayWizard<WizardFishDataBase>("Fish Database","Save");
-        //If you don't want to use the secondary button simply leave it out:
-        //ScriptableWizard.DisplayWizard<WizardCreateLight>("Create Light", "Create");
-    }
+//    void OnWizardCreate()
+//    {
+//        FishDatabase.instance.SaveDatabase();
+//    }
 
-    void OnWizardCreate()
-    {
-        FishDatabase.instance.SaveDatabase();
-    }
+//    void OnWizardUpdate()
+//    {
+//        fishMonsters = FishDatabase.instance.fishMonsters;
+//        //helpString = "Please set the color of the light!";
+//    }
 
-    void OnWizardUpdate()
-    {
-        fishMonsters = FishDatabase.instance.fishMonsters;
-        //helpString = "Please set the color of the light!";
-    }
+//    // When the user presses the "Apply" button OnWizardOtherButton is called.
+//    void OnWizardOtherButton()
+//    {
+//        //if (Selection.activeTransform != null)
+//        //{
+//        //    Light lt = Selection.activeTransform.GetComponent<Light>();
 
-    // When the user presses the "Apply" button OnWizardOtherButton is called.
-    void OnWizardOtherButton()
-    {
-        //if (Selection.activeTransform != null)
-        //{
-        //    Light lt = Selection.activeTransform.GetComponent<Light>();
-
-        //    if (lt != null)
-        //    {
-        //        lt.color = Color.red;
-        //    }
-        //}
-    }
-}
+//        //    if (lt != null)
+//        //    {
+//        //        lt.color = Color.red;
+//        //    }
+//        //}
+//    }
+//}
+//#endif

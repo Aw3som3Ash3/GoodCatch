@@ -36,6 +36,7 @@ public class FishUI : MonoBehaviour
         this.fish = fish;
         this.fish.ValueChanged += UpdateUI;
         this.target = target;
+        UpdateUI();
     }
     void UpdateUI()
     {

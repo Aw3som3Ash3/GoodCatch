@@ -16,16 +16,18 @@ public class FishingMiniGame : MonoBehaviour
     float score;
 
     int difficulty;
+    [SerializeField]
     FishMonsterType fishMonster;
     [SerializeField]
     GameObject fishToCatchPrefab;
     FishToCatch fishToCatch;
+    
 
     public void Initiate(Floater floater)
     {
         this.floater = floater;
         virtualCamera.Priority = 15;
-        fishMonster = FishDatabase.instance.GetRandom();
+        //fishMonster = FishDatabase.instance.GetRandom();
         InputManager.Input.Fishing.Enable();
         InputManager.Input.Fishing.Hook.performed += OnHook;
         InputManager.Input.Fishing.Exit.performed += OnExit;

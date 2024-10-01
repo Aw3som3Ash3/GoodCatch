@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 7167736343119052799}
+  fishMonster: {fileID: 11400000, guid: 83b76f7996fb49142a3e9d1b11213e7d, type: 2}
   fishToCatchPrefab: {fileID: 3968644854167743072, guid: 19013359ca738e6408ee3a5729206266, type: 3}
 --- !u!1 &5616424345788957043
 GameObject:
