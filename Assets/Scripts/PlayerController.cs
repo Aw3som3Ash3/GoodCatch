@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
 
     private void StationInteracted(Station station, Transform transform)
     {
+        inStation = true;
        this.transform.position = transform.position;
        this.transform.rotation = transform.rotation;
     }

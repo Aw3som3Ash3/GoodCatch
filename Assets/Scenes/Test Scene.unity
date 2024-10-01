@@ -1580,6 +1580,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.0022763668
       objectReference: {fileID: 0}
+    - target: {fileID: 5758302426657960898, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
+      propertyPath: stationName
+      value: Drive Boat
+      objectReference: {fileID: 0}
     - target: {fileID: 5851534397508104266, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: m_Layer
       value: 10
