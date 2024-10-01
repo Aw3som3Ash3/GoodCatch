@@ -33,9 +33,10 @@ public class CombatVisualizer : MonoBehaviour
     {
         Destroy(fishToObject[fish].gameObject);
     }
-    public void AddFish(FishMonster fish,Vector3 startingLocation)
+    public void AddFish(FishMonster fish,Vector3 startingLocation,CombatManager.Team team)
     {
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
+        fishObject.transform.localEulerAngles = new Vector3(0, team== CombatManager.Team.player? 90:-90, 0);
         fishObject.SetFish(fish);
         FishUI[fishObject] = Instantiate(fishUIPrefab, canvas.transform).GetComponent<FishUI>();
         FishUI[fishObject].SetFish(fish,fishObject.transform);
