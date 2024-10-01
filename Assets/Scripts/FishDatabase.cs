@@ -37,7 +37,7 @@ public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
     public FishMonsterType GetRandom()
     {
         return fishMonsters[1];
-        return fishMonsters[Random.Range(0, fishMonsters.Count)];
+        //return fishMonsters[Random.Range(0, fishMonsters.Count)];
     }
     //public void SaveDatabase()
     //{
