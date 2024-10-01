@@ -364,9 +364,10 @@ public class CombatManager : MonoBehaviour
     }
     void ConfirmAttack(int index)
     {
-        if (selectedFish.GetAbility(index).DepthTargetable(targetedDepth.depth)&&targetedDepth.depth)
+        Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : Team.player;
+        if (selectedFish.GetAbility(index).DepthTargetable(targetedDepth.depth)&&targetedDepth.SideHasFish(targetedTeam))
         {
-            Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : Team.player;
+            
             FishMonster targetedFish = targetedDepth.TargetFirst(targetedTeam);
             
             ui.StopTargeting();
