@@ -3,20 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ShipArea
+  - Water
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ShipSurface
+  - ShipPhysics
+  - ObjectPhysics
+  - Ground
+  - Interactables
+  - CombatScene
   - 
   - 
   - 
