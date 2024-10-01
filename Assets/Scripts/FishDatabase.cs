@@ -36,6 +36,7 @@ public class FishDatabase : ScriptableSingleton<FishDatabase>, ISerializationCal
     }
     public FishMonsterType GetRandom()
     {
+        return fishMonsters[1];
         return fishMonsters[Random.Range(0, fishMonsters.Count)];
     }
     public void SaveDatabase()

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Goldy Plus
   m_EditorClassIdentifier: 
   model: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
+  fishId: 2
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: 0
   elements:
@@ -32,3 +33,6 @@ MonoBehaviour:
   baseAbilities:
   - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}
   - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}
+  - {fileID: 11400000, guid: d91d835999b3c03468f55c3f346e42d7, type: 2}
+  - {fileID: 11400000, guid: a43937895c7355440b407090bb640eb5, type: 2}
+  difficulty: 0

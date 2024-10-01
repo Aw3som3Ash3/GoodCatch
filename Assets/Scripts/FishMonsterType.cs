@@ -132,6 +132,10 @@ public class FishMonster
        
         
     }
+    public void RestoreAllHealth()
+    {
+        health = maxHealth;
+    }
     public void ReplaceAbility(Ability newAbility, int index)
     {
         abilities[index]=newAbility.NewInstance(this);

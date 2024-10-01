@@ -215,6 +215,7 @@ public class CombatManager : MonoBehaviour
         {
             foreach(var fish in enemyFishes)
             {
+                fish.RestoreAllHealth();
                 GameManager.Instance.CapturedFish(fish);
             }
         }
@@ -240,14 +241,22 @@ public class CombatManager : MonoBehaviour
             
             currentTurnTeam = Team.enemy;
             ui.DisableButtons();
+            ui.UpdateVisuals(turnList[currentTurn]);
             //Oponent Decision
             //temp next turn for right now just to skip the enemy
-            //UseAbility(0);
-            //targetedDepth = shallows;
-            //ConfirmAttack(0);
-            NextTurn();
+            Invoke("EnemyLogic",0.5f);
         }
     }
+
+    void EnemyLogic()
+    {
+        UseAbility(0);
+        targetedDepth = shallows;
+        hasTargeted?.Invoke();
+        //ConfirmAttack(0);
+        NextTurn();
+    }
+
  void NextTurn() 
     {
         if (!actionsCompleted && turnList[currentTurn].team==Team.player)
@@ -364,7 +373,9 @@ public class CombatManager : MonoBehaviour
             hasTargeted=null;
             turnList[currentTurn].UseAction();
             ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
-            combatVisualizer.AnimateAttack(selectedFish, targetedFish, ()=>{ selectedFish.UseAbility(index, targetedFish); ActionsCompleted(); });
+            var attackingFish = selectedFish;
+            combatVisualizer.AnimateAttack(selectedFish, targetedFish, ()=>{ attackingFish.UseAbility(index, targetedFish); ActionsCompleted(); });
+            
         }
         else
         {
