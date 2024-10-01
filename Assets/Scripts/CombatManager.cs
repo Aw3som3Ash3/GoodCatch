@@ -173,7 +173,7 @@ public class CombatManager : MonoBehaviour
 
         destination.AddFish(fish, team);
         fishCurrentDepth[fish] = destination;
-        combatVisualizer.AddFish(fish, destination.GetSideTransform(team).position);
+        combatVisualizer.AddFish(fish, destination.GetSideTransform(team).position,team);
         fish.HasFeinted += () => RemoveFishFromBattle(fish);
 
     }
