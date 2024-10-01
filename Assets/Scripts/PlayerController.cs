@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
 
         if (inStation)
         {
+            InteractionUI.text = "";
             return;
         }
         rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>()* mouseSensitiviy, 0.5f);
