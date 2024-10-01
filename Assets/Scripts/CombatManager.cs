@@ -364,7 +364,7 @@ public class CombatManager : MonoBehaviour
     }
     void ConfirmAttack(int index)
     {
-        if (selectedFish.GetAbility(index).DepthTargetable(targetedDepth.depth))
+        if (selectedFish.GetAbility(index).DepthTargetable(targetedDepth.depth)&&targetedDepth.depth)
         {
             Team targetedTeam = currentTurnTeam == Team.player ? Team.enemy : Team.player;
             FishMonster targetedFish = targetedDepth.TargetFirst(targetedTeam);
@@ -438,7 +438,17 @@ public class CombatManager : MonoBehaviour
         Transform playerSide;
         Transform enemySide;
        
-
+        public bool SideHasFish(Team team)
+        {
+            if (team == Team.player)
+            {
+                return player.Count > 0;
+            }
+            else
+            {
+                return enemy.Count > 0;
+            }
+        }
         public CombatDepth(Depth depth, Transform playerSide, Transform enemySide)
         {
             this.depth = depth;
