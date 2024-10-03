@@ -9,8 +9,6 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static CombatManager;
-using static UnityEngine.Rendering.DebugUI;
 
 public class CombatManager : MonoBehaviour
 {
@@ -148,20 +146,6 @@ public class CombatManager : MonoBehaviour
 
             getFishesTurn[enemyFishes[i]] = turn;
         }
-        //if (playerFishes[0] != null)
-
-        //if (playerFishes[1] != null)
-        //    AddFish(playerFishes[1], middle, Team.player);
-        //if (playerFishes[2] != null)
-        //    AddFish(playerFishes[2], abyss, Team.player);
-
-        //if (enemyFishes[0] != null)
-        //    AddFish(enemyFishes[0], shallows, Team.enemy);
-        //if (enemyFishes[1] != null)
-        //    AddFish(enemyFishes[1], middle, Team.enemy);
-        //if (enemyFishes[2] != null)
-        //    AddFish(enemyFishes[2], abyss, Team.enemy);
-
 
         
         OrderTurn();
