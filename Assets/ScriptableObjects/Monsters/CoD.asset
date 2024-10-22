@@ -16,10 +16,12 @@ MonoBehaviour:
   fishId: 0
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: 0
+  preferredBait:
+  - {fileID: 11400000, guid: 34160b880143d944f988b3d6818b4405, type: 2}
   elements:
   - {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
-  minSpeed: 5
-  maxSpeed: 10
+  minAgility: 15
+  maxAgility: 20
   minAttack: 4
   maxAttack: 7
   minSpecial: 2
@@ -28,6 +30,8 @@ MonoBehaviour:
   maxFortitude: 12
   minSpecialFort: 4
   maxSpecialFort: 6
+  minAccuracy: 10
+  maxAccuracy: 15
   healthPerLevel: 100
   staminaPerLevel: 50
   baseAbilities:

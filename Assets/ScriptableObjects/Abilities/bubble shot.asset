@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: bubble shot
   m_EditorClassIdentifier: 
   abilityType: 0
-  availableDepths: -1
+  availableDepths: 1
   targetableDepths: 3
   targetTeam: 1
   targetingType: 0
   staminaUsage: 15
   baseDamage: 25
+  accuracy: 0.71
   damageMultiplier: 0.5
   statusEffect: {fileID: 0}
   element: {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}

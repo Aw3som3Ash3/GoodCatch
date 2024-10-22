@@ -25,11 +25,11 @@ public class AbilityButton : MonoBehaviour
     {
         EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
         hoverEvent.eventID = EventTriggerType.PointerEnter;
-        hoverEvent.callback.AddListener((eventData) => { OnHover?.Invoke(index); });
+        hoverEvent.callback.AddListener((eventData) => { if (isActiveAndEnabled) { OnHover?.Invoke(index); } });
 
         EventTrigger.Entry exitEvent = new EventTrigger.Entry();
         exitEvent.eventID = EventTriggerType.PointerExit;
-        exitEvent.callback.AddListener((eventData) => { OnHoverExit?.Invoke(index); });
+        exitEvent.callback.AddListener((eventData) => { if (isActiveAndEnabled) { OnHoverExit?.Invoke(index);} });
 
         button.AddComponent<EventTrigger>().triggers.Add(hoverEvent);
         button.GetComponent<EventTrigger>().triggers.Add(exitEvent);
@@ -55,8 +55,17 @@ public class AbilityButton : MonoBehaviour
     public void Subscribe(Action<int> action)
     {
         print(action);
-        button.onClick.AddListener(() => action(index));
+        button.onClick.AddListener(() => { if (isActiveAndEnabled) { action(index); } });
     }
-
+    private void OnEnable()
+    {
+        button.enabled = true;
+        icon.color= Color.white;
+    }
+    private void OnDisable()
+    {
+        button.enabled = false;
+        icon.color = Color.gray;
+    }
 
 }
