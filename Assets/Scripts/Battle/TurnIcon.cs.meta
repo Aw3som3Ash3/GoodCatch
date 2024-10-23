@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Bait.cs.meta
-guid: aa4e223bfa4972044872f7d7d6eb6f23
-========
-guid: a58e3743f9fd8984ca2d227ae6dbe65a
->>>>>>>> FishingMiniGame:Assets/Scripts/MiniGame/QTEManager.cs.meta
+guid: a7afd6027f481f742b741d48dc7467b5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

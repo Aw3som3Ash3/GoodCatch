@@ -327,30 +327,8 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""03e28f70-92b9-4553-ac57-2963f44ddcf8"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2724e0c8-8570-4343-ac68-3939eb8a9e05"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8b975e96-eca6-4d32-90a5-96e0da0233a4"",
-                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -365,17 +343,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fish"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f5e470a3-34be-4289-b199-4930f5f65f2f"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
                     ""action"": ""Fish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -472,15 +439,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""3c57eaaa-d003-4472-b9d5-9488fa9c6dc9"",
                     ""expectedControlType"": ""Quaternion"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Party"",
-                    ""type"": ""Button"",
-                    ""id"": ""8b30b06c-9bb1-477e-b8db-e8d1f84bcbc0"",
-                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -904,28 +862,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5c9fb5b6-c746-4454-a88a-a24225a45adf"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Party"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2f9b24e0-98ab-40b4-86b0-deffb1cc93a5"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Party"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1095,17 +1031,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c921dc8c-e292-413d-b6d4-260ca8b22b3a"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Exit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1123,13 +1048,13 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Hook"",
-                    ""type"": ""Button"",
-                    ""id"": ""09ffcd8b-1d0b-4b8f-8dba-1ac23f191489"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""MiniGame"",
+                    ""type"": ""Value"",
+                    ""id"": ""6aadf39d-8438-4035-80ad-cf7b8e131e2f"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1139,7 +1064,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1150,41 +1075,52 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""16fc22e8-917a-4ed4-9f75-d3fcde593eec"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""id"": ""0f23dc83-b83a-41e4-a4cb-4753561a1b41"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Exit"",
+                    ""processors"": ""Scale"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MiniGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2523b0d7-2dc9-4af6-8094-4c6a52df25a0"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""aec1b0bf-9e66-4709-8d1e-c46d4a1e63ac"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Hook"",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MiniGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c6f7c39c-5164-41a9-9b08-fe67d41c1f36"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""id"": ""c1aa8c6c-f75f-4381-8d7c-ac1bb9f093ae"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Hook"",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MiniGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc98393b-0c68-49ff-9f4a-b70586e53540"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MiniGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1274,7 +1210,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        m_UI_Party = m_UI.FindAction("Party", throwIfNotFound: true);
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
@@ -1282,7 +1217,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         // Fishing
         m_Fishing = asset.FindActionMap("Fishing", throwIfNotFound: true);
         m_Fishing_Exit = m_Fishing.FindAction("Exit", throwIfNotFound: true);
-        m_Fishing_Hook = m_Fishing.FindAction("Hook", throwIfNotFound: true);
+        m_Fishing_MiniGame = m_Fishing.FindAction("MiniGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1440,7 +1375,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
-    private readonly InputAction m_UI_Party;
     public struct UIActions
     {
         private @GoodCatchInputs m_Wrapper;
@@ -1455,7 +1389,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
-        public InputAction @Party => m_Wrapper.m_UI_Party;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1495,9 +1428,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
-            @Party.started += instance.OnParty;
-            @Party.performed += instance.OnParty;
-            @Party.canceled += instance.OnParty;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1532,9 +1462,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
-            @Party.started -= instance.OnParty;
-            @Party.performed -= instance.OnParty;
-            @Party.canceled -= instance.OnParty;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1611,13 +1538,13 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Fishing;
     private List<IFishingActions> m_FishingActionsCallbackInterfaces = new List<IFishingActions>();
     private readonly InputAction m_Fishing_Exit;
-    private readonly InputAction m_Fishing_Hook;
+    private readonly InputAction m_Fishing_MiniGame;
     public struct FishingActions
     {
         private @GoodCatchInputs m_Wrapper;
         public FishingActions(@GoodCatchInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Exit => m_Wrapper.m_Fishing_Exit;
-        public InputAction @Hook => m_Wrapper.m_Fishing_Hook;
+        public InputAction @MiniGame => m_Wrapper.m_Fishing_MiniGame;
         public InputActionMap Get() { return m_Wrapper.m_Fishing; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1630,9 +1557,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Exit.started += instance.OnExit;
             @Exit.performed += instance.OnExit;
             @Exit.canceled += instance.OnExit;
-            @Hook.started += instance.OnHook;
-            @Hook.performed += instance.OnHook;
-            @Hook.canceled += instance.OnHook;
+            @MiniGame.started += instance.OnMiniGame;
+            @MiniGame.performed += instance.OnMiniGame;
+            @MiniGame.canceled += instance.OnMiniGame;
         }
 
         private void UnregisterCallbacks(IFishingActions instance)
@@ -1640,9 +1567,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Exit.started -= instance.OnExit;
             @Exit.performed -= instance.OnExit;
             @Exit.canceled -= instance.OnExit;
-            @Hook.started -= instance.OnHook;
-            @Hook.performed -= instance.OnHook;
-            @Hook.canceled -= instance.OnHook;
+            @MiniGame.started -= instance.OnMiniGame;
+            @MiniGame.performed -= instance.OnMiniGame;
+            @MiniGame.canceled -= instance.OnMiniGame;
         }
 
         public void RemoveCallbacks(IFishingActions instance)
@@ -1726,7 +1653,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
-        void OnParty(InputAction.CallbackContext context);
     }
     public interface IShipActions
     {
@@ -1736,6 +1662,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     public interface IFishingActions
     {
         void OnExit(InputAction.CallbackContext context);
-        void OnHook(InputAction.CallbackContext context);
+        void OnMiniGame(InputAction.CallbackContext context);
     }
 }

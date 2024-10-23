@@ -8,81 +8,52 @@ using UnityEngine.InputSystem;
 public class FishingMiniGame : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
-    //[SerializeField] Transform circle;
+    [SerializeField] Transform circle;
     Floater floater;
 
-    public static Action SuccesfulFishing;
+    public static Action<FishMonster> SuccesfulFishing;
 
     float score;
 
     int difficulty;
-    [SerializeField]
     FishMonsterType fishMonster;
-    [SerializeField]
-    GameObject fishToCatchPrefab;
-    FishToCatch fishToCatch;
-    
+
+
 
     public void Initiate(Floater floater)
     {
         this.floater = floater;
         virtualCamera.Priority = 15;
-        //fishMonster = FishDatabase.instance.GetRandom();
-        InputManager.Input.Fishing.Enable();
-        InputManager.Input.Fishing.Hook.performed += OnHook;
-        InputManager.Input.Fishing.Exit.performed += OnExit;
+        fishMonster = FishDatabase.instance.GetRandom();
         print(fishMonster);
-        Invoke("SpawnFish", UnityEngine.Random.Range(0,2f));
+
     }
 
-    void OnExit(InputAction.CallbackContext context)
-    {
-        ExitFishing();
-    }
     void ExitFishing()
     {
-        InputManager.Input.Fishing.Disable();
-        Destroy(this.gameObject);
-        InputManager.Input.Fishing.Hook.performed -= OnHook;
-        InputManager.Input.Fishing.Exit.performed -= OnExit;
-        Destroy(floater.gameObject);
-        InputManager.EnablePlayer();
+        //cancel
     }
 
     private void Update()
     {
+
         //floater.transform.position = new Vector3(circle.position.x, floater.transform.position.y, circle.position.z);
     }
 
-    void SpawnFish()
+    private void FixedUpdate()
     {
-        fishToCatch = Instantiate(fishToCatchPrefab, this.transform).GetComponent<FishToCatch>();
-        fishToCatch.SetFish(fishMonster, floater.transform);
+        ReelIn();
     }
 
-    void OnHook(InputAction.CallbackContext context)
+    void FishingSucces()
     {
-        if (fishToCatch.CatchFish()) 
-        {
-            FishingSuccess();
-            
-        }
+        SuccesfulFishing?.Invoke(fishMonster.GenerateMonster());
     }
 
-    void FishingSuccess()
+    void ReelIn()
     {
-        List<FishMonster> fishMonsters= new List<FishMonster>();
-        int num = UnityEngine.Random.Range(1, 1);
-        for(int i = 0; i < num; i++) 
-        {
-            fishMonsters.Add(fishMonster.GenerateMonster());
-        }
-        GameManager.Instance.LoadCombatScene(fishMonsters,true);
-        SuccesfulFishing?.Invoke();
-        ExitFishing();
+
     }
-    //Start Mini Game
+    //Start Mini Game 
     //Detect Win/Loss
-    //Output Fish
-    //Start Battle
 }
