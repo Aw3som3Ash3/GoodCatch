@@ -64,6 +64,10 @@ public class Ability:ScriptableObject
     [SerializeField]
     Element element;
     [SerializeField]
+    [Range(-2,2)]
+    int forcedMovement=0;
+
+    [SerializeField]
     Sprite icon;
     public Sprite Icon { get; private set; }
     //List<FishMonster> targets;
@@ -77,7 +81,7 @@ public class Ability:ScriptableObject
     {
         return availableDepths.HasFlag(depth);
     }
-    public bool UseAbility(FishMonster user,FishMonster target, out bool hit)
+    public bool UseAbility(FishMonster user,CombatManager.Turn target, out bool hit)
     {
         if (target == null)
         {
@@ -88,7 +92,8 @@ public class Ability:ScriptableObject
         {
             Debug.Log("attacking: " + target);
             float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
-            target.TakeDamage(baseDamage + damageMod, element, abilityType);
+            target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+            target.ForcedMove(forcedMovement);
             hit = true;
         }
         else
@@ -96,45 +101,9 @@ public class Ability:ScriptableObject
             Debug.Log("missed: " + target);
             hit = false;
         }
-
+        
         return true;
     }
-    //public AbilityInstance NewInstance(FishMonster parent)
-    //{
-    //    return new AbilityInstance(this, parent);
-    //}
-    //public class AbilityInstance
-    //{
-    //    public Ability ability { get; private set; }
-    //    public FishMonster parent { get; private set; }
-
-    //    public AbilityInstance(Ability ability, FishMonster parent)
-    //    {
-    //        this.ability = ability;
-    //        this.parent = parent;
-    //    }
-
-    //    public bool UseAbility(FishMonster target,out bool hit)
-    //    {
-    //        if (target == null)
-    //        {
-    //            hit = false;
-    //            return false;
-    //        }
-    //        if (UnityEngine.Random.Range(0, 1) < ability.accuracy)
-    //        {
-    //            Debug.Log("attacking: " + target);
-    //            float damageMod = ability.damageMultiplier * (ability.abilityType == AbilityType.attack ? parent.attack : parent.special);
-    //            target.TakeDamage(ability.baseDamage + damageMod, ability.element, ability.abilityType);
-    //            hit = true;
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("missed: " + target);
-    //            hit = false;
-    //        }
-           
-    //        return true;
-    //    }
-    //}
 }
+
+
