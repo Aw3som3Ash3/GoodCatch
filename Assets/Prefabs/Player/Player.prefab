@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 110072618089533300}
   serializedVersion: 2
   m_LocalRotation: {x: 0.025999403, y: 0.6388635, z: -0.021602986, w: 0.76857716}
-  m_LocalPosition: {x: 1.0000099, y: 1.6099997, z: -5.0000215}
+  m_LocalPosition: {x: 1.0000019, y: 1.6100001, z: -4.999992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 4696074230909722863}
   - component: {fileID: 2671815497669752644}
   - component: {fileID: 4514534321718377144}
-  - component: {fileID: 1633991271194278044}
+  - component: {fileID: 5494617037479837059}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -143,7 +143,7 @@ Transform:
   - {fileID: 4487889710765378260}
   - {fileID: 484757505211879692}
   - {fileID: 7526077783615441307}
-  - {fileID: 3977499661730253119}
+  - {fileID: 2413190370162188623}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &2671815497669752644
@@ -194,9 +194,9 @@ MonoBehaviour:
   interactionLayer:
     serializedVersion: 2
     m_Bits: 1024
-  fishingRod: {fileID: 7134313050167269367}
+  fishingRod: {fileID: 8452586820765843335}
   InteractionUI: {fileID: 0}
---- !u!114 &1633991271194278044
+--- !u!114 &5494617037479837059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,7 +522,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4696074230909722863}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4236389289175311049
+--- !u!1001 &3207997357343001273
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -579,15 +579,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d04b75d55220df4d871e3d0ef40a83f, type: 3}
---- !u!4 &3977499661730253119 stripped
+--- !u!4 &2413190370162188623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1006632868333186038, guid: 4d04b75d55220df4d871e3d0ef40a83f, type: 3}
-  m_PrefabInstance: {fileID: 4236389289175311049}
+  m_PrefabInstance: {fileID: 3207997357343001273}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7134313050167269367 stripped
+--- !u!114 &8452586820765843335 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6469568712662267198, guid: 4d04b75d55220df4d871e3d0ef40a83f, type: 3}
-  m_PrefabInstance: {fileID: 4236389289175311049}
+  m_PrefabInstance: {fileID: 3207997357343001273}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
