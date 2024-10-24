@@ -4,19 +4,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public abstract class StatusEffect : ScriptableObject
+public abstract class StatusEffect : ScriptableObject 
 {
     [SerializeField]
     int duration;
-    [SerializeField]
-    protected Element element;
+    
 
    
     public StatusEffectInstance NewInstance()
     {
         return new StatusEffectInstance(this);
     }
-    protected abstract void DoEffect(FishMonster fish);
+    protected abstract void DoEffect(CombatManager.Turn turn);
 
     public class StatusEffectInstance
     {
@@ -28,9 +27,11 @@ public abstract class StatusEffect : ScriptableObject
             this.effect = effect;
 
         }
-        public void DoEffect(FishMonster fish)
+        public bool DoEffect(CombatManager.Turn turn)
         {
-            effect.DoEffect(fish);
+            remainingDuration--;
+            effect.DoEffect(turn);
+            return remainingDuration > 0;
         }
         public bool IsEffect(StatusEffect effect)
         {

@@ -125,7 +125,7 @@ public class Ability:ScriptableObject
             float proctBonus= (user.special / 5)*0.01f;
             if (UnityEngine.Random.Range(0, 1)+ proctBonus < (effect.Chance))
             {
-                target.fish.AddEffects(effect.Effect);
+                target.AddEffects(effect.Effect);
             }
         }
         

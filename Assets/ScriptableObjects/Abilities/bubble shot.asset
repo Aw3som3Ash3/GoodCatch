@@ -22,7 +22,9 @@ MonoBehaviour:
   baseDamage: 25
   accuracy: 0.71
   damageMultiplier: 0.5
-  statusEffect: {fileID: 11400000, guid: 117721be37746594bbae2b229eda4f3e, type: 2}
   element: {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 117721be37746594bbae2b229eda4f3e, type: 2}
+    effectChance: 0.7
   forcedMovement: 0
   icon: {fileID: 0}

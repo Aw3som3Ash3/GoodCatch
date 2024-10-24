@@ -413,7 +413,7 @@ public class CombatManager : MonoBehaviour
         public static Action TurnEnded;
         public Action HasFeinted;
         bool actionsCompleted=true;
-
+        HashSet<StatusEffect.StatusEffectInstance> effects = new HashSet<StatusEffect.StatusEffectInstance>();
         public float Health { get { return fish.health; } }
         public float MaxHealth { get { return fish.maxHealth; } }
 
@@ -434,15 +434,15 @@ public class CombatManager : MonoBehaviour
         {
             actionsLeft = actionsPerTurn;
             NewTurn?.Invoke(this,team==Team.player);
-            fish.TickEffects();
+            TickEffects();
         }
         void ActionsCompleted()
         {
             actionsCompleted = true;
         }
-        public void UseAction()
+        public void UseAction(int amount=1)
         {
-            actionsLeft--;
+            actionsLeft = Mathf.Clamp(actionsLeft-amount, 0, actionsPerTurn);
         }
         public void RollInitiative()
         {
@@ -503,6 +503,31 @@ public class CombatManager : MonoBehaviour
         public void TakeDamage()
         {
             //fish.TakeDamage()
+        }
+        public void AddEffects(StatusEffect effect)
+        {
+            foreach (var e in effects)
+            {
+                if (e.IsEffect(effect))
+                {
+
+                    return;
+                }
+
+            }
+            effects.Add(effect.NewInstance());
+        }
+        public void TickEffects()
+        {
+            foreach (StatusEffect.StatusEffectInstance effect in effects)
+            {
+                Debug.Log(effect);
+                if (effect.DoEffect(this))
+                {
+                    effects.Remove(effect);
+                }
+               
+            }
         }
 
     }

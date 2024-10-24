@@ -8,10 +8,12 @@ public class DoTStatusEffect : StatusEffect
 
     [SerializeField]
     float damage;
+    [SerializeField]
+    protected Element element;
 
-    protected override void DoEffect(FishMonster fish)
+    protected override void DoEffect(CombatManager.Turn turn)
     {
-        fish.TakeDamage(damage, element, Ability.AbilityType.special);
+        turn.fish.TakeDamage(damage, element, Ability.AbilityType.special);
     }
 
    
