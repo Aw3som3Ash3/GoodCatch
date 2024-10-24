@@ -190,7 +190,14 @@ public class CombatManager : MonoBehaviour
     void StartTurn()
     {
         ui.SetTurnMarker(combatVisualizer.fishToObject[turnList[currentTurn].fish].transform);
-        turnList[currentTurn].StartTurn();
+        if(turnList[currentTurn] is PlayerTurn)
+        {
+            (turnList[currentTurn] as PlayerTurn).StartTurn();
+        }else if (turnList[currentTurn] is EnemyTurn)
+        {
+            (turnList[currentTurn] as EnemyTurn).StartTurn();
+        }
+       
         
     }
  void NextTurn() 
@@ -443,6 +450,7 @@ public class CombatManager : MonoBehaviour
         public void UseAction(int amount=1)
         {
             actionsLeft = Mathf.Clamp(actionsLeft-amount, 0, actionsPerTurn);
+            Debug.Log("remaining actions: " + actionsLeft);
         }
         public void RollInitiative()
         {
@@ -559,12 +567,14 @@ public class EnemyTurn : Turn
     public override void StartTurn()
     {
         base.StartTurn();
-        if (ActionLeft)
+        if (actionsLeft>0)
         {
+            Debug.Log(actionsLeft);
             UseAbility(0, 0);
-            EndTurn();
+            
         }
-      
+        EndTurn();
+
 
     }
 }

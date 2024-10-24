@@ -8,7 +8,7 @@ public class StunStatusEffect : StatusEffect
     protected override void DoEffect(CombatManager.Turn turn)
     {
        
-        turn.UseAction(-10);
+        turn.UseAction(10);
         //turn.EndTurn();
     }
 
