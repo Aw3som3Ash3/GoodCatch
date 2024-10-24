@@ -519,14 +519,19 @@ public class CombatManager : MonoBehaviour
         }
         public void TickEffects()
         {
+            HashSet<StatusEffect.StatusEffectInstance> effectsToRemove=new HashSet<StatusEffect.StatusEffectInstance>();
             foreach (StatusEffect.StatusEffectInstance effect in effects)
             {
                 Debug.Log(effect);
                 if (effect.DoEffect(this))
                 {
-                    effects.Remove(effect);
+                   effectsToRemove.Add(effect);
                 }
                
+            }
+            foreach (var effect in effectsToRemove)
+            {
+                effects.Remove(effect);
             }
         }
 
@@ -554,8 +559,12 @@ public class EnemyTurn : Turn
     public override void StartTurn()
     {
         base.StartTurn();
-        UseAbility(0, 0);
-        EndTurn();
+        if (ActionLeft)
+        {
+            UseAbility(0, 0);
+            EndTurn();
+        }
+      
 
     }
 }
