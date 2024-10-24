@@ -9,33 +9,10 @@ public class DoTStatusEffect : StatusEffect
     [SerializeField]
     float damage;
 
-    public class DoTInstance:StatusEffectInstance
+    protected override void DoEffect(FishMonster fish)
     {
-        int remainingDuration;
-        float damage;
-
-        public DoTInstance(StatusEffect effect) : base(effect)
-        {
-            damage = ((DoTStatusEffect)effect).damage;
-        }
-
-        public bool TickDamage(out float damage)
-        {
-            remainingDuration--;
-
-            if (remainingDuration > 0)
-            {
-
-                damage = this.damage;
-                return true;
-            }
-            else
-            {
-                damage = 0f;
-                return false;
-            }
-
-        }
-
+        fish.TakeDamage(damage, element, Ability.AbilityType.special);
     }
+
+   
 }

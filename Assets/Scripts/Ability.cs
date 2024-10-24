@@ -32,6 +32,17 @@ public class Ability:ScriptableObject
         attack,
         special,
     }
+    [Serializable]
+    public struct EffectChance
+    {
+        [SerializeField]
+        StatusEffect statusEffect;
+        public StatusEffect Effect { get { return statusEffect; } }
+        [SerializeField]
+        [Range(0,1)]
+        float effectChance;
+        public float Chance { get { return effectChance; } }
+    }
     [SerializeField]
     AbilityType abilityType;
     [SerializeField]
@@ -59,10 +70,11 @@ public class Ability:ScriptableObject
     float accuracy;
     [SerializeField]
     float damageMultiplier;
-    [SerializeField]
-    StatusEffect statusEffect;
+    
     [SerializeField]
     Element element;
+    [SerializeField]
+    EffectChance[] effects;
     [SerializeField]
     [Range(-2,2)]
     int forcedMovement=0;
@@ -88,12 +100,13 @@ public class Ability:ScriptableObject
             hit = false;
             return false;
         }
-        if (UnityEngine.Random.Range(0, 1)+ (user.accuracy * 0.01) < accuracy)
+        if (UnityEngine.Random.Range(0, 1)+ ((user.accuracy - target.fish.dodge)* 0.01)< accuracy)
         {
             Debug.Log("attacking: " + target);
             float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
             target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
             target.ForcedMove(forcedMovement);
+            ProctEffect(user,target);
             hit = true;
         }
         else
@@ -103,6 +116,19 @@ public class Ability:ScriptableObject
         }
         
         return true;
+    }
+
+    void ProctEffect(FishMonster user,CombatManager.Turn target)
+    {
+        foreach(var effect in effects)
+        {
+            float proctBonus= (user.special / 5)*0.01f;
+            if (UnityEngine.Random.Range(0, 1)+ proctBonus < (effect.Chance))
+            {
+                target.fish.AddEffects(effect.Effect);
+            }
+        }
+        
     }
 }
 

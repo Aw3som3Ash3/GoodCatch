@@ -434,6 +434,7 @@ public class CombatManager : MonoBehaviour
         {
             actionsLeft = actionsPerTurn;
             NewTurn?.Invoke(this,team==Team.player);
+            fish.TickEffects();
         }
         void ActionsCompleted()
         {

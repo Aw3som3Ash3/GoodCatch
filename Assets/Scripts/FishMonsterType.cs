@@ -125,6 +125,7 @@ public class FishMonster
     public Action ValueChanged;
     public Action HasFeinted;
     public bool isDead { get; set; } = false;
+    HashSet<StatusEffect.StatusEffectInstance>effects=new HashSet<StatusEffect.StatusEffectInstance>();
     public FishMonster(FishMonsterType monsterType, int agility,int attack,int special,int fortitude, int specialFort,int accuracy)
     {
         this.type = monsterType;
@@ -273,6 +274,27 @@ public class FishMonster
     public override string ToString()
     {
         return name;
+    }
+    public void AddEffects(StatusEffect effect)
+    {
+        foreach(var e in effects)
+        {
+            if (e.IsEffect(effect))
+            {
+
+                return;
+            }
+            
+        }
+        effects.Add(effect.NewInstance());
+    }
+    public void TickEffects()
+    {
+        foreach(StatusEffect.StatusEffectInstance effect in effects)
+        {
+            Debug.Log(effect);
+            effect.DoEffect(this);
+        }
     }
 }
 
