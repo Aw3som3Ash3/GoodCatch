@@ -427,7 +427,7 @@ public class CombatManager : MonoBehaviour
             this.combatManager = combatManager;
             currentDepth = startingDepth;
             combatManager.CompletedAllActions += ActionsCompleted;
-            fish.HasFeinted = HasFeinted;
+            fish.HasFeinted += HasFeinted;
             //stamina = maxStamina;
         }
         public virtual void StartTurn()
