@@ -24,5 +24,5 @@ MonoBehaviour:
   damageMultiplier: 0.5
   element: {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
   effects: []
-  forcedMovement: -2
+  forcedMovement: 2
   icon: {fileID: 0}
