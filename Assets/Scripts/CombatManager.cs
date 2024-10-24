@@ -190,15 +190,8 @@ public class CombatManager : MonoBehaviour
     void StartTurn()
     {
         ui.SetTurnMarker(combatVisualizer.fishToObject[turnList[currentTurn].fish].transform);
-        if(turnList[currentTurn] is PlayerTurn)
-        {
-            (turnList[currentTurn] as PlayerTurn).StartTurn();
-        }else if (turnList[currentTurn] is EnemyTurn)
-        {
-            (turnList[currentTurn] as EnemyTurn).StartTurn();
-        }
-       
-        
+        turnList[currentTurn].StartTurn();
+
     }
  void NextTurn() 
     {
@@ -531,7 +524,7 @@ public class CombatManager : MonoBehaviour
             foreach (StatusEffect.StatusEffectInstance effect in effects)
             {
                 Debug.Log(effect);
-                if (effect.DoEffect(this))
+                if (!effect.DoEffect(this))
                 {
                    effectsToRemove.Add(effect);
                 }
@@ -539,6 +532,7 @@ public class CombatManager : MonoBehaviour
             }
             foreach (var effect in effectsToRemove)
             {
+                Debug.Log(effect+" removed");
                 effects.Remove(effect);
             }
         }
