@@ -132,7 +132,9 @@ public class CombatUI : MonoBehaviour
         if (currentTurn.fish.GetAbility(abilityIndex).Targeting == Ability.TargetingType.all)
         {
             currentTurn.UseAbility(abilityIndex, -1);
+            EnableButtons();
             UpdateActionsLeft();
+            
         }
         else
         {
