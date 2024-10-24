@@ -536,6 +536,7 @@ public class CombatManager : MonoBehaviour
                 effects.Remove(effect);
             }
         }
+        
 
     }
 }
@@ -567,8 +568,11 @@ public class EnemyTurn : Turn
             UseAbility(0, 0);
             
         }
+        
         EndTurn();
 
 
     }
+
+    
 }
