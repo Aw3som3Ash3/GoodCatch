@@ -125,6 +125,7 @@ public class FishMonster
     public Action ValueChanged;
     public Action HasFeinted;
     public bool isDead { get; set; } = false;
+  
     public FishMonster(FishMonsterType monsterType, int agility,int attack,int special,int fortitude, int specialFort,int accuracy)
     {
         this.type = monsterType;
@@ -150,40 +151,46 @@ public class FishMonster
         abilities[index]=newAbility;
 
     }
-    public bool UseAbility(int index, FishMonster target)
+    //public bool UseAbility(int index, FishMonster target)
+    //{
+    //    if (stamina > 0)
+    //    {
+    //        bool hit;
+    //        abilities[index].UseAbility(this,target,out hit);
+    //        stamina -= abilities[index].StaminaUsage;
+
+    //        ValueChanged?.Invoke();
+    //        return true;
+    //    }else
+    //    {
+    //        return false;
+    //    }
+
+    //}
+    //public bool UseAbility(int index,FishMonster[] targets)
+    //{
+
+    //    if (stamina > 0)
+    //    {
+    //        foreach (FishMonster target in targets)
+    //        {
+    //            bool hit;
+    //            abilities[index].UseAbility(this, target, out hit);
+    //        }
+    //        stamina -= abilities[index].StaminaUsage;
+    //        ValueChanged?.Invoke();
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+
+    //}
+    public void ConsumeStamina(int amount) 
     {
-        if (stamina > 0)
-        {
-            bool hit;
-            abilities[index].UseAbility(this,target,out hit);
-            stamina -= abilities[index].StaminaUsage;
-
-            ValueChanged?.Invoke();
-            return true;
-        }else
-        {
-            return false;
-        }
-
-    }
-    public bool UseAbility(int index,FishMonster[] targets)
-    {
-
-        if (stamina > 0)
-        {
-            foreach (FishMonster target in targets)
-            {
-                bool hit;
-                abilities[index].UseAbility(this, target, out hit);
-            }
-            stamina -= abilities[index].StaminaUsage;
-            ValueChanged?.Invoke();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        stamina -= amount;
+        ValueChanged?.Invoke();
 
     }
     public Ability GetAbility(int index)
@@ -268,6 +275,7 @@ public class FishMonster
     {
         return name;
     }
+    
 }
 
 [Flags]

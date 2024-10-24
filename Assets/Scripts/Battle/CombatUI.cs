@@ -27,7 +27,7 @@ public class CombatUI : MonoBehaviour
     Transform turnTarget;
 
     //FishMonster currentFish;
-    CombatManager.Turn currentTurn;
+    PlayerTurn currentTurn;
 
     [SerializeField]
     RectTransform actionsLeftBar;
@@ -39,13 +39,14 @@ public class CombatUI : MonoBehaviour
     int selected;
     private void Awake()
     {
-        CombatManager.Turn.NewTurn +=(turn,b)=> { UpdateVisuals(turn);if (b) { EnableButtons(); } else { DisableButtons(); } };
+        CombatManager.Turn.NewTurn +=(turn,b)=> {if (b && turn is PlayerTurn) { UpdateVisuals(turn as PlayerTurn); EnableButtons();  } else { DisableButtons(); } };
     }
     // Start is called before the first frame update
     void Start()
     {
         eventSystem = EventSystem.current;
         InputManager.Input.UI.Enable();
+        InputManager.Input.UI.RightClick.performed += (x)=> StopTargeting();
         move.onClick.AddListener(() =>Move());
         //goFirst.onClick.AddListener(() => GoFirstAction());
        
@@ -93,13 +94,13 @@ public class CombatUI : MonoBehaviour
     {
         print("hovered: "+index);
         print(currentTurn);
-        if (!currentTurn.ActionLeft|| !currentTurn.fish.GetAbility(index).AvailableDepths.HasFlag(currentTurn.currentDepth.depth))
+        if (!currentTurn.ActionLeft|| !currentTurn.AbilityUsable(index))
         {
             return;
         }
         foreach (DepthSelectors selector in depthSelectors)
         {
-            if (currentTurn.fish.GetAbility(index).TargetableDepths.HasFlag(selector.CurrentDepth))
+            if (currentTurn.DepthTargetable(index,selector.CurrentDepth))
             {
                 selector.PreviewSelection(true);
 
@@ -128,8 +129,17 @@ public class CombatUI : MonoBehaviour
         {
             return;
         }
-        DepthSelection = (i) => { currentTurn.UseAbility(abilityIndex, i); UpdateActionsLeft(); };
-        StartTargeting(currentTurn.fish.GetAbility(abilityIndex).TargetableDepths);
+        if (currentTurn.fish.GetAbility(abilityIndex).Targeting == Ability.TargetingType.all)
+        {
+            currentTurn.UseAbility(abilityIndex, -1);
+            UpdateActionsLeft();
+        }
+        else
+        {
+            DepthSelection = (i) => { currentTurn.UseAbility(abilityIndex, i); EnableButtons(); UpdateActionsLeft();  };
+            StartTargeting(abilityIndex, currentTurn.fish.GetAbility(abilityIndex).TargetableDepths);
+        }
+       
 
     }
     void OnHoverExit(int index)
@@ -187,11 +197,11 @@ public class CombatUI : MonoBehaviour
         turnMarker.position = Camera.main.WorldToScreenPoint(turnTarget.position + Vector3.up * 1.5f);
 
     }
-    void StartTargeting(Depth targetableDepths)
+    void StartTargeting(int index,Depth targetableDepths)
     {
         foreach (DepthSelectors selector in depthSelectors)
         {
-            if (targetableDepths.HasFlag(selector.CurrentDepth))
+            if (currentTurn.DepthTargetable(index, selector.CurrentDepth))
             {
                 eventSystem.SetSelectedGameObject(selector.gameObject);
                 selected=depthSelectors.IndexOf(selector);
@@ -218,17 +228,18 @@ public class CombatUI : MonoBehaviour
     }
     void StopTargeting()
     {
-        foreach (DepthSelectors selectors in depthSelectors)
+        foreach (DepthSelectors selector in depthSelectors)
         {
-            selectors.SetSelection(false);
+            selector.SetSelection(false);
+            selector.PreviewSelection(false);
         }
         DepthSelection = null;
         //isActive = true;
     }
-    public void UpdateVisuals(CombatManager.Turn currentTurn)
+    public void UpdateVisuals(PlayerTurn currentTurn)
     {
         print(currentTurn);
-        this.currentTurn = currentTurn;
+        this.currentTurn = currentTurn as PlayerTurn;
         if (actionTokens != null)
         {
             foreach (var token in actionTokens)

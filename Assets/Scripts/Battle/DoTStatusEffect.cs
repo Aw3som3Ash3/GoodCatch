@@ -8,34 +8,13 @@ public class DoTStatusEffect : StatusEffect
 
     [SerializeField]
     float damage;
+    [SerializeField]
+    protected Element element;
 
-    public class DoTInstance:StatusEffectInstance
+    protected override void DoEffect(CombatManager.Turn turn)
     {
-        int remainingDuration;
-        float damage;
-
-        public DoTInstance(StatusEffect effect) : base(effect)
-        {
-            damage = ((DoTStatusEffect)effect).damage;
-        }
-
-        public bool TickDamage(out float damage)
-        {
-            remainingDuration--;
-
-            if (remainingDuration > 0)
-            {
-
-                damage = this.damage;
-                return true;
-            }
-            else
-            {
-                damage = 0f;
-                return false;
-            }
-
-        }
-
+        turn.fish.TakeDamage(damage, element, Ability.AbilityType.special);
     }
+
+   
 }
