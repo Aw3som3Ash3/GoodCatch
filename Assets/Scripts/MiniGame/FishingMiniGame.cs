@@ -72,7 +72,7 @@ public class FishingMiniGame : MonoBehaviour
     void FishingSuccess()
     {
         List<FishMonster> fishMonsters= new List<FishMonster>();
-        int num = UnityEngine.Random.Range(1, 1);
+        int num = UnityEngine.Random.Range(1, 4);
         for(int i = 0; i < num; i++) 
         {
             fishMonsters.Add(fishMonster.GenerateMonster());

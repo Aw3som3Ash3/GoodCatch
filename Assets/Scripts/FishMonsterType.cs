@@ -21,14 +21,16 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     Depth homeDepth;
     [SerializeField]
+    Bait[] preferredBait;
+    [SerializeField]
     Element[] elements;
     public Element[] Elements { get { return elements; } }
     
     [SerializeField]
-    [Header("Speed")]
-    int minSpeed;
+    [Header("Agility")]
+    int minAgility;
     [SerializeField]
-    int maxSpeed;
+    int maxAgility;
     [SerializeField]
     [Header("Attack")]
     int minAttack;
@@ -44,12 +46,19 @@ public class FishMonsterType : ScriptableObject
     int minFortitude;
     [SerializeField]
     int maxFortitude;
+
     [SerializeField]
     [Header("SpecialFort")]
     int minSpecialFort;
     [SerializeField]
     int maxSpecialFort;
 
+    [SerializeField]
+    [Header("Accuracy")]
+    int minAccuracy;
+    [SerializeField]
+    int maxAccuracy;
+    
 
     [Header("Health")]
     [SerializeField]
@@ -74,14 +83,15 @@ public class FishMonsterType : ScriptableObject
 
     public FishMonster GenerateMonster()
     {
-        float value= Mathf.Clamp01(minSpeed);
-        int speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
+        float value= Mathf.Clamp01(minAgility);
+        int speed = UnityEngine.Random.Range(minAgility, maxAgility);
         int attack = UnityEngine.Random.Range(minAttack, maxAttack);
         int special = UnityEngine.Random.Range(minSpecial, maxSpecial);
         int fortitude = UnityEngine.Random.Range(minFortitude, maxFortitude);
         int specialFort = UnityEngine.Random.Range(minSpecialFort, maxSpecialFort);
+        int accuracy = UnityEngine.Random.Range(minAccuracy, maxAccuracy);
 
-        return new FishMonster(this,speed, attack, special, fortitude, specialFort);
+        return new FishMonster(this,speed, attack, special, fortitude, specialFort,accuracy);
     }
 
 }
@@ -93,7 +103,9 @@ public class FishMonster
 
     FishMonsterType type;
     string name;
-    public int speed { get; private set; }
+    public int agility { get; private set; }
+    public int dodge { get { return agility / 2; } }
+    public int accuracy { get; private set; }
     public int attack { get; private set; }
     public int special { get; private set; }
     public int fortitude { get; private set; }
@@ -109,27 +121,26 @@ public class FishMonster
     int level = 1;
     float xp;
     const int xpToLevelUp = 1000;
-    Ability.AbilityInstance[] abilities;
+    Ability[] abilities;
     public Action ValueChanged;
     public Action HasFeinted;
     public bool isDead { get; set; } = false;
-    public FishMonster(FishMonsterType monsterType, int speed,int attack,int special,int fortitude, int specialFort)
+  
+    public FishMonster(FishMonsterType monsterType, int agility,int attack,int special,int fortitude, int specialFort,int accuracy)
     {
         this.type = monsterType;
         name=monsterType.name;
-        this.speed = speed;
+        this.agility = agility;
         this.attack = attack;
         this.special = special;
         this.fortitude = fortitude;
         this.specialFort = specialFort;
+        this.accuracy = accuracy;
         maxStamina = StaminaFormula();
         stamina = maxStamina;
         maxHealth = HealthFormula();
         health = maxHealth;
-        abilities = monsterType.BaseAbilities.Select(e=>e.NewInstance(this)).ToArray();
-
-       
-        
+        abilities = monsterType.BaseAbilities;
     }
     public void RestoreAllHealth()
     {
@@ -137,41 +148,49 @@ public class FishMonster
     }
     public void ReplaceAbility(Ability newAbility, int index)
     {
-        abilities[index]=newAbility.NewInstance(this);
+        abilities[index]=newAbility;
 
     }
-    public bool UseAbility(int index, FishMonster target)
+    //public bool UseAbility(int index, FishMonster target)
+    //{
+    //    if (stamina > 0)
+    //    {
+    //        bool hit;
+    //        abilities[index].UseAbility(this,target,out hit);
+    //        stamina -= abilities[index].StaminaUsage;
+
+    //        ValueChanged?.Invoke();
+    //        return true;
+    //    }else
+    //    {
+    //        return false;
+    //    }
+
+    //}
+    //public bool UseAbility(int index,FishMonster[] targets)
+    //{
+
+    //    if (stamina > 0)
+    //    {
+    //        foreach (FishMonster target in targets)
+    //        {
+    //            bool hit;
+    //            abilities[index].UseAbility(this, target, out hit);
+    //        }
+    //        stamina -= abilities[index].StaminaUsage;
+    //        ValueChanged?.Invoke();
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+
+    //}
+    public void ConsumeStamina(int amount) 
     {
-        if (stamina > 0)
-        {
-            abilities[index].UseAbility(target);
-            stamina -= abilities[index].ability.StaminaUsage;
-
-            ValueChanged?.Invoke();
-            return true;
-        }else
-        {
-            return false;
-        }
-
-    }
-    public bool UseAbility(int index,FishMonster[] targets)
-    {
-
-        if (stamina > 0)
-        {
-            foreach (FishMonster target in targets)
-            {
-                abilities[index].UseAbility(target);
-            }
-            stamina -= abilities[index].ability.StaminaUsage;
-            ValueChanged?.Invoke();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        stamina -= amount;
+        ValueChanged?.Invoke();
 
     }
     public Ability GetAbility(int index)
@@ -180,7 +199,7 @@ public class FishMonster
         {
             return null;
         }
-        return abilities[index]?.ability;
+        return abilities[index];
     }
     public void ChangeName(string newName)
     {
@@ -202,6 +221,8 @@ public class FishMonster
         xp = 0;
         maxHealth=HealthFormula();
         health = maxHealth;
+        maxStamina = StaminaFormula();
+        stamina = maxStamina;
     }
     int HealthFormula()
     {
@@ -254,6 +275,7 @@ public class FishMonster
     {
         return name;
     }
+    
 }
 
 [Flags]
