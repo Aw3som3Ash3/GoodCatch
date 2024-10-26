@@ -78,6 +78,7 @@ public class Ability:ScriptableObject
     [SerializeField]
     [Range(-2,2)]
     int forcedMovement=0;
+    public int ForcedMovement { get { return forcedMovement; } }
 
     [SerializeField]
     Sprite icon;
@@ -105,7 +106,8 @@ public class Ability:ScriptableObject
             Debug.Log("attacking: " + target);
             float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
             target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
-            target.ForcedMove(forcedMovement);
+           
+           
             ProctEffect(user,target);
             hit = true;
         }

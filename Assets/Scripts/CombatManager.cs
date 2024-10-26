@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,7 +38,7 @@ public class CombatManager : MonoBehaviour
     List<FishMonster> playerFishes=new List<FishMonster>(), enemyFishes = new List<FishMonster>();
 
     [SerializeField]
-    CombatDepth[] depths=new CombatDepth[3];
+    public CombatDepth[] depths { get; private set; } = new CombatDepth[3];
     Dictionary<Depth, CombatDepth> depth=new Dictionary<Depth, CombatDepth>();
     //Dictionary<FishMonster,CombatDepth> fishCurrentDepth=new Dictionary<FishMonster,CombatDepth>();
     Dictionary<CombatDepth, int> depthIndex=new Dictionary<CombatDepth, int>();
@@ -46,15 +47,8 @@ public class CombatManager : MonoBehaviour
     Transform shallowsLocation, middleLocation, abyssLocation;
     List<Turn> turnList=new List<Turn>();
     Dictionary<FishMonster, Turn> getFishesTurn=new Dictionary<FishMonster, Turn>();
-    
-    
-    //public Action IsTargeting;
-    //Action hasTargeted;
-
-
-   // bool hasActionLeft;
     bool actionsCompleted;
-    Action CompletedAllActions;
+    public Action CompletedAllActions;
     [SerializeField]
     CinemachineVirtualCamera virtualCamera;
     [SerializeField]
@@ -62,6 +56,8 @@ public class CombatManager : MonoBehaviour
 
     Camera prevCam;
     bool rewardFish;
+
+    public CombatAI combatAI { get; private set; }
     private void Awake()
     {
         depths[0] = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -73,6 +69,8 @@ public class CombatManager : MonoBehaviour
         depths[2] = new CombatDepth(Depth.abyss, abyssLocation.GetChild(0), abyssLocation.GetChild(1));
         depth[Depth.abyss] = depths[2];
         depthIndex[depths[2]] = 2;
+        combatAI = this.AddComponent<CombatAI>();
+        combatAI.SetCombatManager(this);
 
     }
     private void Start()
@@ -191,6 +189,11 @@ public class CombatManager : MonoBehaviour
     {
         ui.SetTurnMarker(combatVisualizer.fishToObject[turnList[currentTurn].fish].transform);
         turnList[currentTurn].StartTurn();
+        if (turnList[currentTurn] is EnemyTurn)
+        {
+            
+        }
+        //Invoke("turnList[currentTurn].StartTurn",1);
 
     }
  void NextTurn() 
@@ -261,7 +264,7 @@ public class CombatManager : MonoBehaviour
                 {
                     bool hit;
                     ability.UseAbility(turn.fish, target, out hit);
-                    combatVisualizer.AnimateAttack(turn.fish, target.fish,()=> {  ActionsCompleted(); } );
+                    combatVisualizer.AnimateAttack(turn.fish, target.fish,()=> { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } } );
                 }
             }
         }
@@ -278,7 +281,7 @@ public class CombatManager : MonoBehaviour
             // var attackingFish = turn.fish;
             bool hit;
             ability.UseAbility(turn.fish, targetedFish, out hit);
-            combatVisualizer.AnimateAttack(turn.fish, targetedFish.fish, () => {  ActionsCompleted(); });
+            combatVisualizer.AnimateAttack(turn.fish, targetedFish.fish, () => {  ActionsCompleted(); if (ability.ForcedMovement != 0) { targetedFish.ForcedMove(ability.ForcedMovement); } });
         }
     }
     void RemoveFishFromBattle(Turn turn)
@@ -562,14 +565,14 @@ public class EnemyTurn : Turn
     public override void StartTurn()
     {
         base.StartTurn();
-        if (actionsLeft>0)
-        {
-            Debug.Log(actionsLeft);
-            UseAbility(0, 0);
-            
-        }
-        
-        EndTurn();
+        combatManager.combatAI.StartTurn(this);
+        //if (actionsLeft>0)
+        //{
+        //    Debug.Log(actionsLeft);
+        //    //UseAbility(0, 0);
+        //}
+
+        //EndTurn();
 
 
     }

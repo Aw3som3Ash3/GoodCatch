@@ -151,42 +151,6 @@ public class FishMonster
         abilities[index]=newAbility;
 
     }
-    //public bool UseAbility(int index, FishMonster target)
-    //{
-    //    if (stamina > 0)
-    //    {
-    //        bool hit;
-    //        abilities[index].UseAbility(this,target,out hit);
-    //        stamina -= abilities[index].StaminaUsage;
-
-    //        ValueChanged?.Invoke();
-    //        return true;
-    //    }else
-    //    {
-    //        return false;
-    //    }
-
-    //}
-    //public bool UseAbility(int index,FishMonster[] targets)
-    //{
-
-    //    if (stamina > 0)
-    //    {
-    //        foreach (FishMonster target in targets)
-    //        {
-    //            bool hit;
-    //            abilities[index].UseAbility(this, target, out hit);
-    //        }
-    //        stamina -= abilities[index].StaminaUsage;
-    //        ValueChanged?.Invoke();
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-
-    //}
     public void ConsumeStamina(int amount) 
     {
         stamina -= amount;

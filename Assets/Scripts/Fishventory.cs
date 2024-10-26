@@ -39,4 +39,11 @@ public class Fishventory
     {
         fishies.Remove(fish);
     }
+     public void RestoreHealthAllFish()
+    {
+        foreach (var fish in fishies)
+        {
+            fish.RestoreAllHealth();
+        }
+    }
 }
