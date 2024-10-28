@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -13,11 +15,79 @@ public class GameManager : MonoBehaviour
     public Fishventory playerFishventory { get; private set; } = new Fishventory(7);
 
     List<FishMonster> fishesToFight;
-
+    float dayTime;
+    int day;
+    [SerializeField]
+    [Min(1)]
+    float secondsPerHour=1;
+    GameObject sun;
     [SerializeField]
     FishMonsterType testfisth;
     bool rewardFish;
     EventSystem mainEventSystem;
+    [SerializeField]
+    TextMeshProUGUI tempTimeOfDayText;
+    public enum TimeOfDay
+    { 
+        EarlyMorning,
+        Dawn,
+        Morning,
+        Noon,
+        Afternoon,
+        Evening,
+        Dusk,
+        Night,
+        LateNight,
+        Midnight
+
+        
+    }
+    public TimeOfDay timeOfDay 
+    { 
+        get 
+        {
+            if(dayTime >= 3 && dayTime < 6)
+            {
+                return TimeOfDay.EarlyMorning;
+            }else if (dayTime >= 6 && dayTime < 9)
+            {
+                return TimeOfDay.Dawn;
+            }
+            else if (dayTime >= 9 && dayTime < 12)
+            {
+                return TimeOfDay.Morning;
+            }
+            else if (dayTime >= 9 && dayTime < 12)
+            {
+                return TimeOfDay.Morning;
+            }
+            else if (dayTime >= 12 && dayTime < 13)
+            {
+                return TimeOfDay.Noon;
+            }
+            else if (dayTime >= 13 && dayTime < 15)
+            {
+                return TimeOfDay.Afternoon;
+            }
+            else if (dayTime >= 15 && dayTime < 18)
+            {
+                return TimeOfDay.Evening;
+            }
+            else if (dayTime >= 18 && dayTime < 21)
+            {
+                return TimeOfDay.Dusk;
+            }
+            else if (dayTime >=21 && dayTime < 24)
+            {
+                return TimeOfDay.LateNight;
+            }
+            else if (dayTime >= 0 && dayTime < 3)
+            {
+                return TimeOfDay.Midnight;
+            }
+            return TimeOfDay.Night;
+        }
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -35,9 +105,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         CapturedFish(testfisth);
         playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
         mainEventSystem=EventSystem.current;
+        sun = FindObjectOfType<Light>().gameObject;
+        
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
 
@@ -45,9 +118,19 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-
+        DayNightCycle();
     }
-
+    void DayNightCycle()
+    {
+        tempTimeOfDayText.text = Regex.Replace(timeOfDay.ToString(), "([A-Z0-9]+)", " $1").Trim();  
+        sun.transform.eulerAngles = Vector3.right * ((dayTime * (360 / 24)) - 90);
+        dayTime += Time.deltaTime / secondsPerHour;
+        if (dayTime >= 24)
+        {
+            day++;
+            dayTime %= 24;
+        }
+    }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
         playerFishventory.AddFish(fishMonsterType.GenerateMonster());

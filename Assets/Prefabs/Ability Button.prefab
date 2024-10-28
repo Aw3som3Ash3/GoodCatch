@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6dadfb6960f2441ae1f6689532d478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 3885275277387073348}
   textMesh: {fileID: 1171848072368974664}
   index: 0
   button: {fileID: 3639516188500164806}

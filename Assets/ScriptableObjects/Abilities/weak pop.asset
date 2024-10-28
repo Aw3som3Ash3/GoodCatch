@@ -15,10 +15,11 @@ MonoBehaviour:
   abilityType: 0
   availableDepths: -1
   targetableDepths: -1
-  targetTeam: 0
+  targetTeam: 1
   targetingType: 0
   staminaUsage: 5
   baseDamage: 15
+  accuracy: 1
   damageMultiplier: 0
   statusEffect: {fileID: 0}
   element: {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
