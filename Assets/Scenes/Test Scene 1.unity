@@ -785,6 +785,7 @@ MonoBehaviour:
   secondsPerHour: 1
   testfisth: {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
   testItem: {fileID: 11400000, guid: 34160b880143d944f988b3d6818b4405, type: 2}
+  testItem2: {fileID: 11400000, guid: 31e1de33e92912a4bbadfeeb4fbc1db1, type: 2}
   tempTimeOfDayText: {fileID: 0}
 --- !u!4 &1123940511
 Transform:

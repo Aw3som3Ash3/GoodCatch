@@ -13,6 +13,7 @@ public class InventoryUI : ToggleableUIMenus
     GameObject inventoryItemPrefab;
     [SerializeField]
     Transform contentZone;
+    VerticalLayoutGroup layoutGroup;
 
     public enum OrderBy
     {
@@ -27,6 +28,7 @@ public class InventoryUI : ToggleableUIMenus
     // Start is called before the first frame update
     void Start()
     {
+        layoutGroup = contentZone.GetComponent<VerticalLayoutGroup>();
         nameButton.onClick.AddListener(()=>OrderList(OrderBy.Name));
         typeButton.onClick.AddListener(()=>OrderList(OrderBy.Type));
         //amountButton.onClick.AddListener(()=>OrderList(OrderBy.Amount));
@@ -40,17 +42,20 @@ public class InventoryUI : ToggleableUIMenus
         if (this.orderBy == orderBy)
         {
             descending = !descending;
+
         }
         else
         {
             this.orderBy = orderBy;
             descending = false;
+            PopulateList();
         }
-        PopulateList();
+        layoutGroup.reverseArrangement = descending;
+       
     }
     void PopulateList()
     {
-        var list = OrderedList(GameManager.Instance.playerInventory.items.Keys.ToList(),orderBy,descending);
+        var list = OrderedList(GameManager.Instance.playerInventory.items.Keys.ToList(),orderBy);
         
         for (int i = 0; i < (list.Count>contentZone.childCount? list.Count:contentZone.childCount); i++)
         {
@@ -75,16 +80,16 @@ public class InventoryUI : ToggleableUIMenus
         //    obj.GetComponent<InventoryUIItem>().SetValues(item.Key.name, item.Key.Type, item.Value);
         //}
     }
-    List<Item> OrderedList(List<Item> list,OrderBy orderBy, bool descending)
+    List<Item> OrderedList(List<Item> list,OrderBy orderBy)
     {
         
         if (orderBy == OrderBy.Name)
         {
-            return descending ? list.OrderByDescending(x => x.name).ToList() : list.OrderBy(x => x.name).ToList();
+            return list.OrderBy(x => x.name).ToList();
         }
         else if (orderBy == OrderBy.Type)
         {
-            return descending ? list.OrderByDescending(x => x.GetType().Name).ThenByDescending(x => x.name).ToList() : list.OrderBy(x => x.GetType().Name).ThenBy(x => x.name).ToList();
+            return list.OrderBy(x => x.GetType().Name).ThenBy(x => x.name).ToList();
         }
         return list;
     }
