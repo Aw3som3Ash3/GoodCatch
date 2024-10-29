@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Bait", menuName = "Fish Monster/Bait", order = 3)]
-public class Bait : ScriptableObject
+[CreateAssetMenu(fileName = "Bait", menuName = "Items/Bait", order = 3)]
+public class Bait : Item
 {
    enum Quality
     {

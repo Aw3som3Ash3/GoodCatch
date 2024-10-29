@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Fishventory playerFishventory { get; private set; } = new Fishventory(7);
+    public ItemInventory playerInventory { get; private set; } = new ItemInventory();
 
     List<FishMonster> fishesToFight;
     float dayTime;
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     GameObject sun;
     [SerializeField]
     FishMonsterType testfisth;
+    [SerializeField]
+    Item testItem,testItem2;
     bool rewardFish;
     EventSystem mainEventSystem;
     [SerializeField]
@@ -111,6 +114,10 @@ public class GameManager : MonoBehaviour
         
         CapturedFish(testfisth);
         playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
+        playerInventory.AddItem(testItem);
+        playerInventory.AddItem(testItem);
+        playerInventory.AddItem(testItem);
+        playerInventory.AddItem(testItem2);
         mainEventSystem=EventSystem.current;
         sun = FindObjectOfType<Light>().gameObject;
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
@@ -125,7 +132,11 @@ public class GameManager : MonoBehaviour
 
     void DayNightCycle()
     {
-        tempTimeOfDayText.text = Regex.Replace(timeOfDay.ToString(), "([A-Z0-9]+)", " $1").Trim();
+        if (tempTimeOfDayText != null)
+        {
+            tempTimeOfDayText.text = Regex.Replace(timeOfDay.ToString(), "([A-Z0-9]+)", " $1").Trim();
+        }
+       
         
         sun.transform.eulerAngles = new Vector3(((dayTime * (360 / 24)) - 90),-90,0);
         dayTime += Time.deltaTime / secondsPerHour;

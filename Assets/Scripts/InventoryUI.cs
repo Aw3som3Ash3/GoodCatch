@@ -1,0 +1,101 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+public class InventoryUI : ToggleableUIMenus
+{
+    [SerializeField]
+    Button nameButton, typeButton, amountButton;
+    [SerializeField]
+    GameObject inventoryItemPrefab;
+    [SerializeField]
+    Transform contentZone;
+
+    public enum OrderBy
+    {
+        Name,
+        Type,
+        Amount
+    }
+    OrderBy orderBy;
+    bool descending;
+    protected override InputAction input => InputManager.Input.UI.Inventory;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        nameButton.onClick.AddListener(()=>OrderList(OrderBy.Name));
+        typeButton.onClick.AddListener(()=>OrderList(OrderBy.Type));
+        //amountButton.onClick.AddListener(()=>OrderList(OrderBy.Amount));
+    }
+    private void OnEnable()
+    {
+        
+    }
+    void OrderList(OrderBy orderBy)
+    {
+        if (this.orderBy == orderBy)
+        {
+            descending = !descending;
+        }
+        else
+        {
+            this.orderBy = orderBy;
+            descending = false;
+        }
+        PopulateList();
+    }
+    void PopulateList()
+    {
+        var list = OrderedList(GameManager.Instance.playerInventory.items.Keys.ToList(),orderBy,descending);
+        
+        for (int i = 0; i < (list.Count>contentZone.childCount? list.Count:contentZone.childCount); i++)
+        {
+            if (i<contentZone.childCount)
+            {
+                contentZone.GetChild(i).GetComponent<InventoryUIItem>().SetValues(list[i].name, list[i].Type, GameManager.Instance.playerInventory.items[list[i]]);
+                if (i > list.Count)
+                {
+                    Destroy(contentZone.GetChild(i));
+                }
+            }
+            else
+            {
+                var obj = Instantiate(inventoryItemPrefab, contentZone);
+                obj.GetComponent<InventoryUIItem>().SetValues(list[i].name, list[i].Type, GameManager.Instance.playerInventory.items[list[i]]);
+            }
+
+        }
+        //foreach (var item in GameManager.Instance.playerInventory.items)
+        //{
+        //    var obj = Instantiate(inventoryItemPrefab, contentZone);
+        //    obj.GetComponent<InventoryUIItem>().SetValues(item.Key.name, item.Key.Type, item.Value);
+        //}
+    }
+    List<Item> OrderedList(List<Item> list,OrderBy orderBy, bool descending)
+    {
+        
+        if (orderBy == OrderBy.Name)
+        {
+            return descending ? list.OrderByDescending(x => x.name).ToList() : list.OrderBy(x => x.name).ToList();
+        }
+        else if (orderBy == OrderBy.Type)
+        {
+            return descending ? list.OrderByDescending(x => x.GetType().Name).ThenByDescending(x => x.name).ToList() : list.OrderBy(x => x.GetType().Name).ThenBy(x => x.name).ToList();
+        }
+        return list;
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    protected override void UpdateUI()
+    {
+        PopulateList();
+    }
+}
