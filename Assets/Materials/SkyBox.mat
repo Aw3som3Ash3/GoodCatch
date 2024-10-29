@@ -137,7 +137,7 @@ Material:
     - _ReceiveShadows: 1
     - _Rotation: 0
     - _SkyExponent1: 1
-    - _SkyExponent2: 0
+    - _SkyExponent2: 0.5
     - _SkyIntensity: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0

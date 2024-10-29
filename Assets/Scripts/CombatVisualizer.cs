@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static CombatManager;
 
 public class CombatVisualizer : MonoBehaviour
 {
     // Dictionary<FishMonster, Vector3> fishToDestination;
-    public Dictionary<FishMonster, FishObject> fishToObject { get; private set; } = new Dictionary<FishMonster, FishObject>();
+    public Dictionary<CombatManager.Turn, FishObject> turnToObject { get; private set; } = new Dictionary<CombatManager.Turn, FishObject>();
     Dictionary<FishObject,FishUI> FishUI = new Dictionary<FishObject, FishUI>();
     List<FishObject> fishObjects = new List<FishObject>();
     [SerializeField]
@@ -29,33 +30,33 @@ public class CombatVisualizer : MonoBehaviour
     {
         
     }
-    public void RemoveFish(FishMonster fish)
+    public void RemoveFish(CombatManager.Turn turn)
     {
-        Destroy(fishToObject[fish].gameObject);
+        Destroy(turnToObject[turn].gameObject);
     }
-    public void AddFish(FishMonster fish,Vector3 startingLocation,CombatManager.Team team)
+    public void AddFish(CombatManager.Turn turn,Vector3 startingLocation,CombatManager.Team team)
     {
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
         fishObject.transform.localEulerAngles = new Vector3(0, team== CombatManager.Team.player? 90:-90, 0);
-        fishObject.SetFish(fish);
+        fishObject.SetFish(turn.fish);
         FishUI[fishObject] = Instantiate(fishUIPrefab, canvas.transform).GetComponent<FishUI>();
-        FishUI[fishObject].SetFish(fish,fishObject.transform);
+        FishUI[fishObject].SetFish(turn,fishObject.transform);
         fishObjects.Add(fishObject);
-        fishToObject[fish] = fishObject;
+        turnToObject[turn] = fishObject;
         fishObject.transform.position = startingLocation;
 
     }
 
-    public void MoveFish(FishMonster fish, Vector3 destination,Action CompletedMove=null)
+    public void MoveFish(CombatManager.Turn turn, Vector3 destination,Action CompletedMove=null)
     {
-        fishToObject[fish].SetDestination(destination);
-        fishToObject[fish].ReachedDestination += CompletedMove;
-        CompletedMove += ()=> fishToObject[fish].ReachedDestination-=CompletedMove;
+        turnToObject[turn].SetDestination(destination);
+        turnToObject[turn].ReachedDestination += CompletedMove;
+        CompletedMove += ()=> turnToObject[turn].ReachedDestination-=CompletedMove;
     }
 
-    public void AnimateAttack(FishMonster fish, FishMonster target, Action CompletedMove = null)
+    public void AnimateAttack(CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
-        StartCoroutine(TempAttackAnim(fishToObject[fish].transform.position, fishToObject[target].transform.position,CompletedMove));
+        StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position,CompletedMove));
         //throw new NotImplementedException();
     }
 

@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   availableDepths: -1
-  targetableDepths: 6
-  targetTeam: 1
+  targetableDepths: -1
+  targetTeam: 0
   targetingType: 0
+  piercing: 0
   staminaUsage: 20
-  baseDamage: 25
+  baseDamage: 0
   accuracy: 1
   damageMultiplier: 0.5
-  statusEffect: {fileID: 0}
   element: {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 76e994a3c77040a4e885ea6b8203ee4f, type: 2}
+    effectChance: 1
+  forcedMovement: 0
   icon: {fileID: 0}

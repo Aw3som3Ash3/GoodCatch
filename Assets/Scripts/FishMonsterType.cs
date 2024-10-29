@@ -104,7 +104,6 @@ public class FishMonster
     FishMonsterType type;
     string name;
     public int agility { get; private set; }
-    public int dodge { get { return agility / 2; } }
     public int accuracy { get; private set; }
     public int attack { get; private set; }
     public int special { get; private set; }
@@ -219,7 +218,12 @@ public class FishMonster
         }
         ValueChanged?.Invoke();
     }
-
+    public void Restore(int health=0,int stamina = 0)
+    {
+        this.health += health;
+        this.stamina += stamina;
+        ValueChanged?.Invoke();
+    }
     float DamageModifier(Element elementType)
     {
         if (elementType == null)

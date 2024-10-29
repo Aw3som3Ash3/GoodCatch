@@ -94,33 +94,43 @@ public class Ability:ScriptableObject
     {
         return availableDepths.HasFlag(depth);
     }
-    public bool UseAbility(FishMonster user,CombatManager.Turn target, out bool hit)
+    public bool UseAbility(CombatManager.Turn user,CombatManager.Turn target, out bool hit)
     {
         if (target == null)
         {
             hit = false;
             return false;
         }
-        if (UnityEngine.Random.Range(0, 1)+ ((user.accuracy - target.fish.dodge)* 0.01)< accuracy)
+        if (baseDamage<0)
         {
-            Debug.Log("attacking: " + target);
-            float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
-            target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
-           
-           
-            ProctEffect(user,target);
+            target.fish.Restore(health: -baseDamage);
             hit = true;
         }
         else
         {
-            Debug.Log("missed: " + target);
-            hit = false;
+            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - target.dodge) * 0.01) < accuracy)
+            {
+                Debug.Log("attacking: " + target);
+
+                float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+                target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+
+
+                ProctEffect(user, target);
+                hit = true;
+            }
+            else
+            {
+                Debug.Log("missed: " + target);
+                hit = false;
+            }
         }
+        
         
         return true;
     }
 
-    void ProctEffect(FishMonster user,CombatManager.Turn target)
+    void ProctEffect(CombatManager.Turn user,CombatManager.Turn target)
     {
         foreach(var effect in effects)
         {

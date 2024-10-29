@@ -125,8 +125,9 @@ public class GameManager : MonoBehaviour
 
     void DayNightCycle()
     {
-        tempTimeOfDayText.text = Regex.Replace(timeOfDay.ToString(), "([A-Z0-9]+)", " $1").Trim();  
-        sun.transform.eulerAngles = Vector3.right * ((dayTime * (360 / 24)) - 90);
+        tempTimeOfDayText.text = Regex.Replace(timeOfDay.ToString(), "([A-Z0-9]+)", " $1").Trim();
+        
+        sun.transform.eulerAngles = new Vector3(((dayTime * (360 / 24)) - 90),-90,0);
         dayTime += Time.deltaTime / secondsPerHour;
         if (dayTime >= 24)
         {

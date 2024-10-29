@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,6 +9,11 @@ public abstract class StatusEffect : ScriptableObject
 {
     [SerializeField]
     int duration;
+   
+    [SerializeField]
+    Sprite icon;
+    public Sprite Icon { get { return icon; } }
+
     
 
    
@@ -19,8 +25,9 @@ public abstract class StatusEffect : ScriptableObject
 
     public class StatusEffectInstance
     {
-        int remainingDuration;
-        StatusEffect effect;
+        public int remainingDuration { get; private set; }
+        public StatusEffect effect { get; private set; }
+        public Action<int> DurationChanged;
         public StatusEffectInstance(StatusEffect effect)
         {
             remainingDuration = effect.duration;
@@ -30,6 +37,7 @@ public abstract class StatusEffect : ScriptableObject
         public bool DoEffect(CombatManager.Turn turn)
         {
             remainingDuration--;
+            DurationChanged?.Invoke(remainingDuration);
             effect.DoEffect(turn);
             return remainingDuration > 0;
         }
