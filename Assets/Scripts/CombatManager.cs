@@ -426,105 +426,69 @@ public class CombatManager : MonoBehaviour
         public Action<StatusEffect.StatusEffectInstance> NewEffect;
         public Action<StatusEffect.StatusEffectInstance> EffectRemoved;
         public int agility 
-        { 
-            get 
+        {
+            get
             {
-                int val= fish.agility;
-                foreach (StatusEffect effect in effects.Select(x => x.effect))
-                {
-                    if (effect is StatModifierStatusEffect)
-                    {
-                        val += (effect as StatModifierStatusEffect).Agility;
-                    }
-
-                }
-                return val;
-            } 
+                return fish.agility + GetAttributeMod("agility");
+            }
         }
         public int dodge { get { return agility / 2; } }
         public int accuracy 
         {
             get
             {
-                int val = fish.accuracy;
-                //List<StatusEffect>collection = effects.Select(x => x.effect).ToList();
-                foreach (StatusEffect effect in effects.Select(x => x.effect))
-                {
-                    if(effect is StatModifierStatusEffect)
-                    {
-                        val += (effect as StatModifierStatusEffect).Accuracy;
-                    }
-                    
-                }
-                print("Accuracy: "+val);
-                return val;
+                return fish.accuracy + GetAttributeMod("accuracy");
             }
         }
         public int attack 
         {
             get
             {
-                int val = fish.attack;
-                foreach (StatusEffect effect in effects.Select(x => x.effect))
-                {
-                    if (effect is StatModifierStatusEffect)
-                    {
-                        val += (effect as StatModifierStatusEffect).Attack;
-                    }
-
-                }
-                return val;
+                return fish.attack + GetAttributeMod("attack");
             }
         }
         public int special 
         {
             get
             {
-                int val = fish.special;
-                foreach (StatusEffect effect in effects.Select(x => x.effect))
-                {
-                    if (effect is StatModifierStatusEffect)
-                    {
-                        val += (effect as StatModifierStatusEffect).Special;
-                    }
-
-                }
-                return val;
+                return fish.special + GetAttributeMod("special");
             }
         }
         public int fortitude 
         {
             get
             {
-                int val = fish.fortitude;
-                foreach (StatusEffect effect in effects.Select(x => x.effect))
-                {
-                    if (effect is StatModifierStatusEffect)
-                    {
-                        val += (effect as StatModifierStatusEffect).Fortitude;
-                    }
-
-                }
-                return val;
+                return fish.fortitude + GetAttributeMod("fortitude");
             }
         }
         public int specialFort 
         {
             get
             {
-                int val = fish.specialFort;
-                foreach (StatusEffect effect in effects.Select(x => x.effect))
-                {
-                    if (effect is StatModifierStatusEffect)
-                    {
-                        val += (effect as StatModifierStatusEffect).SpecialFort;
-                    }
-
-                }
-                return val;
+                return fish.specialFort+GetAttributeMod("specialFort");
             }
         }
+        int GetAttributeMod(string name)
+        {
+            int val=0;
+            foreach (StatusEffect effect in effects.Select(x => x.effect))
+            {
+                if (effect is StatModifierStatusEffect)
+                {
+                    val += (effect as StatModifierStatusEffect).Attribute[name];
+                }else if (effect is CompoundEffect)
+                {
+                    CompoundEffect compoundEffect = (CompoundEffect)effect;
+                    foreach (var e in compoundEffect.Effects)
+                    {
+                        val += (e as StatModifierStatusEffect).Attribute[name];
+                    }
+                }
 
+
+            }
+            return val;
+        }
         public Turn(CombatManager combatManager, FishMonster fish,CombatDepth startingDepth ,int actionsPerTurn=2)
         {
             //this.team = team;

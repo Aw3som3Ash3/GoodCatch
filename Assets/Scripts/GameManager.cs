@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour
     GameObject sun;
     [SerializeField]
     FishMonsterType testfisth;
-    [SerializeField]
-    Item testItem,testItem2;
     bool rewardFish;
     EventSystem mainEventSystem;
     [SerializeField]
@@ -114,10 +112,7 @@ public class GameManager : MonoBehaviour
         
         CapturedFish(testfisth);
         playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
-        playerInventory.AddItem(testItem);
-        playerInventory.AddItem(testItem);
-        playerInventory.AddItem(testItem);
-        playerInventory.AddItem(testItem2);
+
         mainEventSystem=EventSystem.current;
         sun = FindObjectOfType<Light>().gameObject;
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);

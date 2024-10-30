@@ -21,7 +21,7 @@ public abstract class StatusEffect : ScriptableObject
     {
         return new StatusEffectInstance(this);
     }
-    protected abstract void DoEffect(CombatManager.Turn turn);
+    public abstract void DoEffect(CombatManager.Turn turn);
 
     public class StatusEffectInstance
     {
