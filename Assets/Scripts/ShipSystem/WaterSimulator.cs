@@ -33,7 +33,7 @@ public class WaterSimulator : MonoBehaviour
         meshRenderer.material.SetFloat("_frequencyZ", waveFrequencyZ);
         meshRenderer.material.SetFloat("_amplitudeZ", waveHeightZ);
         meshRenderer.material.SetFloat("_time", timer);
-        meshRenderer.material.SetVector("_Offset", this.transform.position + originOffset);
+        meshRenderer.material.SetVector("_Offset", originOffset);
 
 
     }
