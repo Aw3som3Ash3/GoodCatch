@@ -178,24 +178,19 @@ public class CombatManager : MonoBehaviour
     void ActionsCompleted()
     {
         actionsCompleted = true;
-        int amountDead = 0;
-        for (int i = 0; i < enemyFishes.Count; i++)
+        if (enemyFishes.Count <= 0)
         {
-            if (enemyFishes[i].isDead)
-            {
-                amountDead++;
-            }
-
-
+            EndFight(Team.player);
         }
-        if (amountDead == enemyFishes.Count)
+        else if (playerFishes.Count <= 0)
         {
-            EndFight();
+            EndFight(Team.enemy);
         }
+
         CompletedAllActions?.Invoke();
     }
 
-    void EndFight()
+    void EndFight(Team winningTeam)
     {
         prevCam.gameObject.SetActive(true);
         Camera.SetupCurrent(prevCam);
@@ -317,6 +312,8 @@ public class CombatManager : MonoBehaviour
     {
         turnList.Remove(turn);
         turnListUI.RemoveTurn(turn);
+        enemyFishes.Remove(turn.fish);
+        playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
             depth.RemoveFish(turn);
