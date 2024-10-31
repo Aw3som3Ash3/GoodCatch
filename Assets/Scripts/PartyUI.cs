@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,18 +13,19 @@ public class PartyUI : ToggleableUIMenus
     // Start is called before the first frame update
     void Start()
     {
-        fishventory = GameManager.Instance.playerFishventory;
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     protected override void UpdateUI()
     {
+        fishventory = GameManager.Instance.playerFishventory;
         for (int i = 0; i < fishventory.Fishies.Count; i++)
         {
             partyIcon[i].SetIcon(fishventory.Fishies[i].Icon, Color.cyan);
@@ -34,5 +33,5 @@ public class PartyUI : ToggleableUIMenus
         }
     }
 
-  
+
 }

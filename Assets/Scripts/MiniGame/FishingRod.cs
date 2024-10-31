@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class FishingRod : MonoBehaviour
 {
     [SerializeField]
-    Transform reel,lineStart;
+    Transform reel, lineStart;
     [SerializeField]
     GameObject floaterPrefab;
     Floater floater;
@@ -18,16 +16,16 @@ public class FishingRod : MonoBehaviour
     FishingMiniGame gamePrefab;
     private void Awake()
     {
-        fishingLine=GetComponent<LineRenderer>();
+        fishingLine = GetComponent<LineRenderer>();
         fishingLine.positionCount = 2;
         fishingLine.SetPosition(0, reel.localPosition);
         fishingLine.SetPosition(1, lineStart.localPosition);
-        
+
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -49,10 +47,10 @@ public class FishingRod : MonoBehaviour
         {
             Destroy(floater.gameObject);
         }
-      
-        floater=Instantiate(floaterPrefab,lineStart.transform.position,floaterPrefab.transform.rotation).GetComponent<Floater>();
+
+        floater = Instantiate(floaterPrefab, lineStart.transform.position, floaterPrefab.transform.rotation).GetComponent<Floater>();
         floater.HitWater += StartMiniGame;
-        floater.GetComponent<Rigidbody>().AddForce((lookDir+Vector3.up) * castForce,ForceMode.Impulse);
+        floater.GetComponent<Rigidbody>().AddForce((lookDir + Vector3.up) * castForce, ForceMode.Impulse);
         fishingLine.positionCount = 3;
     }
 

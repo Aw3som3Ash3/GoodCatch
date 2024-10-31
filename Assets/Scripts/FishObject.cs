@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FishObject : MonoBehaviour
 {
-    FishMonster fish;
+    CombatManager.Turn turn;
     GameObject model;
     Vector3 destination;
     bool shouldMove;
@@ -13,39 +14,109 @@ public class FishObject : MonoBehaviour
     float moveSpeed;
 
     public Action ReachedDestination;
-   
 
+    public Action<Vector2> Navigate { get; private set; }
+    public Action<CombatManager.Turn> selectedFish;
+
+    public Action ObjectDestroyed;
+
+    bool isSelectable;
     //public FishObject(FishMonster fish)
     //{
     //    this.fish = fish;
     //}
+    private void Awake()
+    {
+        EventTrigger eventTrigger= this.AddComponent<EventTrigger>();
+        EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
+        hoverEvent.eventID = EventTriggerType.PointerEnter;
+        hoverEvent.callback.AddListener((eventData) => { OnHover(true); });
+        eventTrigger.triggers.Add(hoverEvent);
+
+        EventTrigger.Entry hoverExitEvent = new EventTrigger.Entry();
+        hoverExitEvent.eventID = EventTriggerType.PointerExit;
+        hoverExitEvent.callback.AddListener((eventData) => { OnHover(false); });
+        eventTrigger.triggers.Add(hoverExitEvent);
+
+        EventTrigger.Entry selectedEvent = new EventTrigger.Entry();
+        selectedEvent.eventID = EventTriggerType.Select;
+        selectedEvent.callback.AddListener((eventData) => { OnHover(true); });
+        eventTrigger.triggers.Add(selectedEvent);
+
+        EventTrigger.Entry deselectedEvent = new EventTrigger.Entry();
+        deselectedEvent.eventID = EventTriggerType.Deselect;
+        deselectedEvent.callback.AddListener((eventData) => { OnHover(false); });
+        eventTrigger.triggers.Add(deselectedEvent);
+
+        EventTrigger.Entry clickEvent = new EventTrigger.Entry();
+        clickEvent.eventID = EventTriggerType.PointerClick;
+        clickEvent.callback.AddListener((eventData) => { Select(); });
+        eventTrigger.triggers.Add(clickEvent);
+
+        EventTrigger.Entry submitEvent = new EventTrigger.Entry();
+        submitEvent.eventID = EventTriggerType.Submit;
+        submitEvent.callback.AddListener((eventData) => { Select(); EventSystem.current.SetSelectedGameObject(EventSystem.current.firstSelectedGameObject); });
+        eventTrigger.triggers.Add(submitEvent);
+
+
+        EventTrigger.Entry moveEvent = new EventTrigger.Entry();
+        moveEvent.eventID = EventTriggerType.Move;
+        moveEvent.callback.AddListener((eventData) => { Navigate?.Invoke(-InputManager.Input.UI.Navigate.ReadValue<Vector2>()); });
+        eventTrigger.triggers.Add(moveEvent);
+    }
+
+    private void Select()
+    {
+        if (!isSelectable) return;
+        selectedFish?.Invoke(turn);
+        //throw new NotImplementedException();
+    }
+
+    private void OnHover(bool v)
+    {
+        if (!isSelectable) return;
+        throw new NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {
-        
-        
+
+
     }
-    public void SetFish(FishMonster fish)
+    private void OnDestroy()
     {
-        model =Instantiate(fish.Model,this.transform);
+        ObjectDestroyed?.Invoke();
+    }
+    public void EnableSelection()
+    {
+        isSelectable = true;
+    }
+    public void DisableSelection()
+    {
+        isSelectable = false;
+    }
+    public void SetFish(CombatManager.Turn turn)
+    {
+        this.turn = turn;
+        model = Instantiate(turn.fish.Model, this.transform);
         model.transform.localPosition = Vector3.zero;
     }
     public void SetDestination(Vector3 destination)
     {
-       this.destination = destination;
+        this.destination = destination;
         shouldMove = true;
         StartCoroutine(MoveToDestination());
     }
 
     IEnumerator MoveToDestination()
     {
-        while(shouldMove && Vector3.Distance(this.transform.position, destination) > 0.01f)
+        while (shouldMove && Vector3.Distance(this.transform.position, destination) > 0.01f)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, destination, moveSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
@@ -53,6 +124,6 @@ public class FishObject : MonoBehaviour
 
         shouldMove = false;
         ReachedDestination?.Invoke();
-        
+
     }
 }

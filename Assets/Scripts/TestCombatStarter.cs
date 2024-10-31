@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,12 +17,12 @@ public class TestCombatStarter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void StartFight()
     {
 
-        GameManager.Instance.LoadCombatScene(fishMonsters,true);
+        GameManager.Instance.LoadCombatScene(fishMonsters, true);
     }
 }

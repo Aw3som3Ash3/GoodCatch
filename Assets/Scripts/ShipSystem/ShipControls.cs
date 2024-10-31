@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class ShipControls : Station
 {
@@ -27,12 +24,12 @@ public class ShipControls : Station
     public override void Use()
     {
     }
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     public override bool Interact()
     {
@@ -54,13 +51,13 @@ public class ShipControls : Station
     {
         InputManager.Input.Ship.Disable();
         base.LeaveSation();
-        
+
     }
     // Update is called once per frame
     void Update()
     {
-       
-        wheel.eulerAngles = new Vector3(wheel.eulerAngles.x,wheel.eulerAngles.y, -ship.turnRatio * 360);
+
+        wheel.eulerAngles = new Vector3(wheel.eulerAngles.x, wheel.eulerAngles.y, -ship.turnRatio * 360);
 
     }
 }

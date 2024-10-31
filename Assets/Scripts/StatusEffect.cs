@@ -1,22 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
-public abstract class StatusEffect : ScriptableObject 
+public abstract class StatusEffect : ScriptableObject
 {
     [SerializeField]
     int duration;
-   
+
     [SerializeField]
     Sprite icon;
     public Sprite Icon { get { return icon; } }
 
-    
 
-   
+
+
     public StatusEffectInstance NewInstance()
     {
         return new StatusEffectInstance(this);
@@ -45,7 +42,7 @@ public abstract class StatusEffect : ScriptableObject
         {
             return this.effect == effect;
         }
-        public void ResetEffect() 
+        public void ResetEffect()
         {
             remainingDuration = effect.duration;
         }

@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 //using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Fish Monster", menuName = "Fish Monster/Fish Monster", order = 1)]
 public class FishMonsterType : ScriptableObject
@@ -25,7 +22,7 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     Element[] elements;
     public Element[] Elements { get { return elements; } }
-    
+
     [SerializeField]
     [Header("Agility")]
     int minAgility;
@@ -58,12 +55,12 @@ public class FishMonsterType : ScriptableObject
     int minAccuracy;
     [SerializeField]
     int maxAccuracy;
-    
+
 
     [Header("Health")]
     [SerializeField]
     int healthPerLevel;
-    public int HealthPerLevel { get {  return healthPerLevel; }  }
+    public int HealthPerLevel { get { return healthPerLevel; } }
     [Header("Stamina")]
     [SerializeField]
     int staminaPerLevel;
@@ -75,15 +72,15 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     int difficulty;
 
-   
-  
+
+
 
 
     public Ability[] BaseAbilities { get { return baseAbilities; } }
 
     public FishMonster GenerateMonster()
     {
-        float value= Mathf.Clamp01(minAgility);
+        float value = Mathf.Clamp01(minAgility);
         int speed = UnityEngine.Random.Range(minAgility, maxAgility);
         int attack = UnityEngine.Random.Range(minAttack, maxAttack);
         int special = UnityEngine.Random.Range(minSpecial, maxSpecial);
@@ -91,7 +88,7 @@ public class FishMonsterType : ScriptableObject
         int specialFort = UnityEngine.Random.Range(minSpecialFort, maxSpecialFort);
         int accuracy = UnityEngine.Random.Range(minAccuracy, maxAccuracy);
 
-        return new FishMonster(this,speed, attack, special, fortitude, specialFort,accuracy);
+        return new FishMonster(this, speed, attack, special, fortitude, specialFort, accuracy);
     }
 
 }
@@ -124,11 +121,11 @@ public class FishMonster
     public Action ValueChanged;
     public Action HasFeinted;
     public bool isDead { get; set; } = false;
-  
-    public FishMonster(FishMonsterType monsterType, int agility,int attack,int special,int fortitude, int specialFort,int accuracy)
+
+    public FishMonster(FishMonsterType monsterType, int agility, int attack, int special, int fortitude, int specialFort, int accuracy)
     {
         this.type = monsterType;
-        name=monsterType.name;
+        name = monsterType.name;
         this.agility = agility;
         this.attack = attack;
         this.special = special;
@@ -147,10 +144,10 @@ public class FishMonster
     }
     public void ReplaceAbility(Ability newAbility, int index)
     {
-        abilities[index]=newAbility;
+        abilities[index] = newAbility;
 
     }
-    public void ConsumeStamina(int amount) 
+    public void ConsumeStamina(int amount)
     {
         stamina -= amount;
         ValueChanged?.Invoke();
@@ -166,7 +163,7 @@ public class FishMonster
     }
     public void ChangeName(string newName)
     {
-        name=newName;
+        name = newName;
     }
 
     public void AddXp(float xp)
@@ -182,7 +179,7 @@ public class FishMonster
     {
         level++;
         xp = 0;
-        maxHealth=HealthFormula();
+        maxHealth = HealthFormula();
         health = maxHealth;
         maxStamina = StaminaFormula();
         stamina = maxStamina;
@@ -197,28 +194,28 @@ public class FishMonster
     }
     public void RecoverStamina()
     {
-        stamina += maxStamina/4;
+        stamina += maxStamina / 4;
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
         ValueChanged?.Invoke();
     }
-    public void TakeDamage(float damage, Element elementType,Ability.AbilityType abilityType)
+    public void TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType)
     {
-        if (damage<=0)
+        if (damage <= 0)
         {
             Debug.Log("took no damage");
             return;
         }
-        float defenseMod =1-(abilityType == Ability.AbilityType.attack ? fortitude : specialFort)*0.01f;
+        float defenseMod = 1 - (abilityType == Ability.AbilityType.attack ? fortitude : specialFort) * 0.01f;
         float damageTaken = damage * DamageModifier(elementType) * defenseMod;
         health -= damageTaken;
-        Debug.Log("took " + damageTaken + " damage \n current health: "+ health);
-        if (health < 0)
+        Debug.Log("took " + damageTaken + " damage \n current health: " + health);
+        if (health <= 0)
         {
             Feint();
         }
         ValueChanged?.Invoke();
     }
-    public void Restore(int health=0,int stamina = 0)
+    public void Restore(int health = 0, int stamina = 0)
     {
         this.health += health;
         this.stamina += stamina;
@@ -243,14 +240,14 @@ public class FishMonster
     {
         return name;
     }
-    
+
 }
 
 [Flags]
 public enum Depth
 {
-    shallow=1<<0,
-    middle=1<<1,
-    abyss=1<<2
+    shallow = 1 << 0,
+    middle = 1 << 1,
+    abyss = 1 << 2
 
 }
