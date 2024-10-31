@@ -25,11 +25,11 @@ public class FishMovement : MonoBehaviour
     void Update()
     {
         //Move the fish icon
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(targetPosition, transform.localPosition.y, transform.localPosition.z), moveSpeed * Time.deltaTime);
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, new Vector3(transform.localPosition.x, targetPosition, transform.localPosition.z), moveSpeed * Time.deltaTime);
 
 
         //Confirm if fish reaches target
-        if(Mathf.Approximately(transform.localPosition.x, targetPosition))
+        if(Mathf.Approximately(transform.localPosition.y, targetPosition))
         {
             //Create a new target position
             targetPosition = Random.Range(maxDown, maxUp); 

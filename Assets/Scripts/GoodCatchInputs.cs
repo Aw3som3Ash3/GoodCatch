@@ -1150,6 +1150,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FishMover"",
+                    ""type"": ""Value"",
+                    ""id"": ""a6527992-e9b1-442a-8093-867bf11e8c6f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1207,6 +1216,39 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Hook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""3874ff6c-318d-4ad4-a5b0-45c3e55a4bb4"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FishMover"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""97c7d8a7-ba3c-4bca-a383-4b419106729a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FishMover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""57c4fa5c-6ca3-4348-900a-aa53fdd0c779"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FishMover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1304,6 +1346,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_Fishing = asset.FindActionMap("Fishing", throwIfNotFound: true);
         m_Fishing_Exit = m_Fishing.FindAction("Exit", throwIfNotFound: true);
         m_Fishing_Hook = m_Fishing.FindAction("Hook", throwIfNotFound: true);
+        m_Fishing_FishMover = m_Fishing.FindAction("FishMover", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1641,12 +1684,14 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private List<IFishingActions> m_FishingActionsCallbackInterfaces = new List<IFishingActions>();
     private readonly InputAction m_Fishing_Exit;
     private readonly InputAction m_Fishing_Hook;
+    private readonly InputAction m_Fishing_FishMover;
     public struct FishingActions
     {
         private @GoodCatchInputs m_Wrapper;
         public FishingActions(@GoodCatchInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Exit => m_Wrapper.m_Fishing_Exit;
         public InputAction @Hook => m_Wrapper.m_Fishing_Hook;
+        public InputAction @FishMover => m_Wrapper.m_Fishing_FishMover;
         public InputActionMap Get() { return m_Wrapper.m_Fishing; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1662,6 +1707,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Hook.started += instance.OnHook;
             @Hook.performed += instance.OnHook;
             @Hook.canceled += instance.OnHook;
+            @FishMover.started += instance.OnFishMover;
+            @FishMover.performed += instance.OnFishMover;
+            @FishMover.canceled += instance.OnFishMover;
         }
 
         private void UnregisterCallbacks(IFishingActions instance)
@@ -1672,6 +1720,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Hook.started -= instance.OnHook;
             @Hook.performed -= instance.OnHook;
             @Hook.canceled -= instance.OnHook;
+            @FishMover.started -= instance.OnFishMover;
+            @FishMover.performed -= instance.OnFishMover;
+            @FishMover.canceled -= instance.OnFishMover;
         }
 
         public void RemoveCallbacks(IFishingActions instance)
@@ -1767,5 +1818,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     {
         void OnExit(InputAction.CallbackContext context);
         void OnHook(InputAction.CallbackContext context);
+        void OnFishMover(InputAction.CallbackContext context);
     }
 }
