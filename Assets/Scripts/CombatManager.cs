@@ -146,7 +146,10 @@ public class CombatManager : MonoBehaviour
         OrderTurn();
 
     }
-
+    private void OnDisable()
+    {
+        Turn.TurnEnded -= NextTurn;
+    }
     void AddFish(Turn turn, CombatDepth destination, Team team)
     {
 

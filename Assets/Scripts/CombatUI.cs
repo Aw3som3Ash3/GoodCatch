@@ -39,9 +39,20 @@ public class CombatUI : MonoBehaviour
     {
         
         actionTokens.Clear();
-        CombatManager.Turn.NewTurn = (turn, b) => { if (b && turn is PlayerTurn) { UpdateVisuals(turn as PlayerTurn); EnableButtons(); } else { DisableButtons(); } };
+        CombatManager.Turn.NewTurn += NewTurn;
         
         
+    }
+    void NewTurn(CombatManager.Turn turn,bool isPlayer)
+    {
+        if (isPlayer && turn is PlayerTurn) 
+        { 
+            UpdateVisuals(turn as PlayerTurn); 
+            EnableButtons(); 
+        } else 
+        { 
+            DisableButtons(); 
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -74,7 +85,7 @@ public class CombatUI : MonoBehaviour
     }
     private void OnDestroy()
     {
-        CombatManager.Turn.NewTurn=null;
+        CombatManager.Turn.NewTurn-=NewTurn;
     }
     void OnNaviagte(float i)
     {
