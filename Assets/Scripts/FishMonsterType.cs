@@ -104,7 +104,6 @@ public class FishMonster
     FishMonsterType type;
     string name;
     public int agility { get; private set; }
-    public int dodge { get { return agility / 2; } }
     public int accuracy { get; private set; }
     public int attack { get; private set; }
     public int special { get; private set; }
@@ -151,42 +150,6 @@ public class FishMonster
         abilities[index]=newAbility;
 
     }
-    //public bool UseAbility(int index, FishMonster target)
-    //{
-    //    if (stamina > 0)
-    //    {
-    //        bool hit;
-    //        abilities[index].UseAbility(this,target,out hit);
-    //        stamina -= abilities[index].StaminaUsage;
-
-    //        ValueChanged?.Invoke();
-    //        return true;
-    //    }else
-    //    {
-    //        return false;
-    //    }
-
-    //}
-    //public bool UseAbility(int index,FishMonster[] targets)
-    //{
-
-    //    if (stamina > 0)
-    //    {
-    //        foreach (FishMonster target in targets)
-    //        {
-    //            bool hit;
-    //            abilities[index].UseAbility(this, target, out hit);
-    //        }
-    //        stamina -= abilities[index].StaminaUsage;
-    //        ValueChanged?.Invoke();
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-
-    //}
     public void ConsumeStamina(int amount) 
     {
         stamina -= amount;
@@ -255,7 +218,12 @@ public class FishMonster
         }
         ValueChanged?.Invoke();
     }
-
+    public void Restore(int health=0,int stamina = 0)
+    {
+        this.health += health;
+        this.stamina += stamina;
+        ValueChanged?.Invoke();
+    }
     float DamageModifier(Element elementType)
     {
         if (elementType == null)

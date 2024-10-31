@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,7 +38,7 @@ public class CombatManager : MonoBehaviour
     List<FishMonster> playerFishes=new List<FishMonster>(), enemyFishes = new List<FishMonster>();
 
     [SerializeField]
-    CombatDepth[] depths=new CombatDepth[3];
+    public CombatDepth[] depths { get; private set; } = new CombatDepth[3];
     Dictionary<Depth, CombatDepth> depth=new Dictionary<Depth, CombatDepth>();
     //Dictionary<FishMonster,CombatDepth> fishCurrentDepth=new Dictionary<FishMonster,CombatDepth>();
     Dictionary<CombatDepth, int> depthIndex=new Dictionary<CombatDepth, int>();
@@ -46,15 +47,8 @@ public class CombatManager : MonoBehaviour
     Transform shallowsLocation, middleLocation, abyssLocation;
     List<Turn> turnList=new List<Turn>();
     Dictionary<FishMonster, Turn> getFishesTurn=new Dictionary<FishMonster, Turn>();
-    
-    
-    //public Action IsTargeting;
-    //Action hasTargeted;
-
-
-   // bool hasActionLeft;
     bool actionsCompleted;
-    Action CompletedAllActions;
+    public Action CompletedAllActions;
     [SerializeField]
     CinemachineVirtualCamera virtualCamera;
     [SerializeField]
@@ -62,6 +56,8 @@ public class CombatManager : MonoBehaviour
 
     Camera prevCam;
     bool rewardFish;
+
+    public CombatAI combatAI { get; private set; }
     private void Awake()
     {
         depths[0] = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -73,6 +69,8 @@ public class CombatManager : MonoBehaviour
         depths[2] = new CombatDepth(Depth.abyss, abyssLocation.GetChild(0), abyssLocation.GetChild(1));
         depth[Depth.abyss] = depths[2];
         depthIndex[depths[2]] = 2;
+        combatAI = this.AddComponent<CombatAI>();
+        combatAI.SetCombatManager(this);
 
     }
     private void Start()
@@ -131,8 +129,8 @@ public class CombatManager : MonoBehaviour
     {
         
         destination.AddFish(turn, team);
-        combatVisualizer.AddFish(turn.fish, destination.GetSideTransform(team).position,team);
-        combatVisualizer.MoveFish(turn.fish, destination.GetPositionOfFish(turn));
+        combatVisualizer.AddFish(turn, destination.GetSideTransform(team).position,team);
+        combatVisualizer.MoveFish(turn, destination.GetPositionOfFish(turn));
         turn.HasFeinted += () => RemoveFishFromBattle(turn);
 
     }
@@ -189,8 +187,13 @@ public class CombatManager : MonoBehaviour
     }
     void StartTurn()
     {
-        ui.SetTurnMarker(combatVisualizer.fishToObject[turnList[currentTurn].fish].transform);
+        ui.SetTurnMarker(combatVisualizer.turnToObject[turnList[currentTurn]].transform);
         turnList[currentTurn].StartTurn();
+        if (turnList[currentTurn] is EnemyTurn)
+        {
+            
+        }
+        //Invoke("turnList[currentTurn].StartTurn",1);
 
     }
  void NextTurn() 
@@ -213,16 +216,16 @@ public class CombatManager : MonoBehaviour
     void DepthChanged(Turn turn,CombatDepth previous,CombatDepth destination)
     {
       
-        combatVisualizer.MoveFish(turn.fish, destination.GetPositionOfFish(turn),ActionsCompleted);
+        combatVisualizer.MoveFish(turn, destination.GetPositionOfFish(turn),ActionsCompleted);
         if (previous != null)
         {
             foreach (Turn t in previous.player)
             {
-                combatVisualizer.MoveFish(t.fish, previous.GetPositionOfFish(t));
+                combatVisualizer.MoveFish(t, previous.GetPositionOfFish(t));
             }
             foreach (Turn t in previous.enemy)
             {
-                combatVisualizer.MoveFish(t.fish, previous.GetPositionOfFish(t));
+                combatVisualizer.MoveFish(t, previous.GetPositionOfFish(t));
             }
         }
         
@@ -260,8 +263,8 @@ public class CombatManager : MonoBehaviour
                 if (target != null)
                 {
                     bool hit;
-                    ability.UseAbility(turn.fish, target, out hit);
-                    combatVisualizer.AnimateAttack(turn.fish, target.fish,()=> {  ActionsCompleted(); } );
+                    ability.UseAbility(turn, target, out hit);
+                    combatVisualizer.AnimateAttack(turn, target,()=> { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } } );
                 }
             }
         }
@@ -277,8 +280,8 @@ public class CombatManager : MonoBehaviour
             //ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
             // var attackingFish = turn.fish;
             bool hit;
-            ability.UseAbility(turn.fish, targetedFish, out hit);
-            combatVisualizer.AnimateAttack(turn.fish, targetedFish.fish, () => {  ActionsCompleted(); });
+            ability.UseAbility(turn, targetedFish, out hit);
+            combatVisualizer.AnimateAttack(turn, targetedFish, () => {  ActionsCompleted(); if (ability.ForcedMovement != 0) { targetedFish.ForcedMove(ability.ForcedMovement); } });
         }
     }
     void RemoveFishFromBattle(Turn turn)
@@ -288,7 +291,7 @@ public class CombatManager : MonoBehaviour
         {
             depth.RemoveFish(turn);
         }
-        combatVisualizer.RemoveFish(turn.fish);
+        combatVisualizer.RemoveFish(turn);
     }
    
     private void Update()
@@ -414,11 +417,78 @@ public class CombatManager : MonoBehaviour
         public Action HasFeinted;
         bool actionsCompleted=true;
         HashSet<StatusEffect.StatusEffectInstance> effects = new HashSet<StatusEffect.StatusEffectInstance>();
+
         public float Health { get { return fish.health; } }
         public float MaxHealth { get { return fish.maxHealth; } }
 
-        public float maxStamina { get { return fish.maxStamina; }}
-        public float stamina { get { return fish.stamina; } }
+        public float MaxStamina { get { return fish.maxStamina; }}
+        public float Stamina { get { return fish.stamina; } }
+        public Action<StatusEffect.StatusEffectInstance> NewEffect;
+        public Action<StatusEffect.StatusEffectInstance> EffectRemoved;
+        public int agility 
+        {
+            get
+            {
+                return fish.agility + GetAttributeMod("agility");
+            }
+        }
+        public int dodge { get { return agility / 2; } }
+        public int accuracy 
+        {
+            get
+            {
+                return fish.accuracy + GetAttributeMod("accuracy");
+            }
+        }
+        public int attack 
+        {
+            get
+            {
+                return fish.attack + GetAttributeMod("attack");
+            }
+        }
+        public int special 
+        {
+            get
+            {
+                return fish.special + GetAttributeMod("special");
+            }
+        }
+        public int fortitude 
+        {
+            get
+            {
+                return fish.fortitude + GetAttributeMod("fortitude");
+            }
+        }
+        public int specialFort 
+        {
+            get
+            {
+                return fish.specialFort+GetAttributeMod("specialFort");
+            }
+        }
+        int GetAttributeMod(string name)
+        {
+            int val=0;
+            foreach (StatusEffect effect in effects.Select(x => x.effect))
+            {
+                if (effect is StatModifierStatusEffect)
+                {
+                    val += (effect as StatModifierStatusEffect).Attribute[name];
+                }else if (effect is CompoundEffect)
+                {
+                    CompoundEffect compoundEffect = (CompoundEffect)effect;
+                    foreach (var e in compoundEffect.Effects)
+                    {
+                        val += (e as StatModifierStatusEffect).Attribute[name];
+                    }
+                }
+
+
+            }
+            return val;
+        }
         public Turn(CombatManager combatManager, FishMonster fish,CombatDepth startingDepth ,int actionsPerTurn=2)
         {
             //this.team = team;
@@ -474,7 +544,7 @@ public class CombatManager : MonoBehaviour
         {
             Ability ability = fish.GetAbility(abilityIndex);
            
-            return stamina>=ability.StaminaUsage && ability.AvailableDepths.HasFlag(currentDepth.depth);
+            return Stamina>=ability.StaminaUsage && ability.AvailableDepths.HasFlag(currentDepth.depth);
         }
         public bool DepthTargetable(int abilityIndex,Depth depth)
         {
@@ -511,12 +581,13 @@ public class CombatManager : MonoBehaviour
             {
                 if (e.IsEffect(effect))
                 {
-
                     return;
                 }
 
             }
-            effects.Add(effect.NewInstance());
+            var instance = effect.NewInstance();
+            effects.Add(instance);
+            NewEffect?.Invoke(instance);
         }
         public void TickEffects()
         {
@@ -534,6 +605,7 @@ public class CombatManager : MonoBehaviour
             {
                 Debug.Log(effect+" removed");
                 effects.Remove(effect);
+                EffectRemoved?.Invoke(effect);
             }
         }
         
@@ -562,14 +634,14 @@ public class EnemyTurn : Turn
     public override void StartTurn()
     {
         base.StartTurn();
-        if (actionsLeft>0)
-        {
-            Debug.Log(actionsLeft);
-            UseAbility(0, 0);
-            
-        }
-        
-        EndTurn();
+        combatManager.combatAI.StartTurn(this);
+        //if (actionsLeft>0)
+        //{
+        //    Debug.Log(actionsLeft);
+        //    //UseAbility(0, 0);
+        //}
+
+        //EndTurn();
 
 
     }

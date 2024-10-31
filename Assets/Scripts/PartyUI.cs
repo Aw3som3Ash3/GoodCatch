@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PartyUI : MonoBehaviour
+public class PartyUI : ToggleableUIMenus
 {
     Fishventory fishventory;
     [SerializeField]
     PartyIcon[] partyIcon;
-
-    GoodCatchInputs input;
     public GameObject partyPanel;
+
+    protected override InputAction input => InputManager.Input.UI.Party;
 
     // Start is called before the first frame update
     void Start()
     {
         fishventory = GameManager.Instance.playerFishventory;
 
-        input = new GoodCatchInputs();
-        input.UI.Party.Enable();
-        input.UI.Party.performed += Party;
-
-        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,7 +25,7 @@ public class PartyUI : MonoBehaviour
         
     }
 
-    public void UpdateUI()
+    protected override void UpdateUI()
     {
         for (int i = 0; i < fishventory.Fishies.Count; i++)
         {
@@ -39,23 +34,5 @@ public class PartyUI : MonoBehaviour
         }
     }
 
-    private void Party(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            partyPanel.SetActive(!partyPanel.activeSelf);
-            Cursor.lockState = partyPanel.activeSelf? CursorLockMode.Confined:CursorLockMode.Locked;
-            Cursor.visible = partyPanel.activeSelf;
-            if (partyPanel.activeSelf)
-            {
-                InputManager.DisablePlayer();
-            }
-            else
-            {
-                InputManager.EnablePlayer();
-            }
-            UpdateUI();
-
-        }
-    }
+  
 }

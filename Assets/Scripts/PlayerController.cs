@@ -125,7 +125,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            InteractionUI.text = "";
+            if (InteractionUI != null)
+            {
+                InteractionUI.text = "";
+
+            }
+           
         }
 
     }
