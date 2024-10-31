@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static CombatManager;
 
 public class CombatAI : MonoBehaviour
 {
@@ -18,13 +15,13 @@ public class CombatAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StartTurn(EnemyTurn turn)
@@ -37,13 +34,13 @@ public class CombatAI : MonoBehaviour
     public void Logic()
     {
         combatManager.CompletedAllActions -= Logic;
-        if (currentTurn.actionsLeft>0)
+        if (currentTurn.actionsLeft > 0)
         {
             CombatManager.Turn weakestTarget = combatManager.depths[0].TargetFirst(CombatManager.Team.player);
             int depthIndex = 0;
             for (int i = 1; i < combatManager.depths.Length; i++)
             {
-                if (combatManager.depths[i].TargetFirst(CombatManager.Team.player)?.Health < weakestTarget?.Health|| weakestTarget==null)
+                if (combatManager.depths[i].TargetFirst(CombatManager.Team.player)?.Health < weakestTarget?.Health || weakestTarget == null)
                 {
                     weakestTarget = combatManager.depths[i].TargetFirst(CombatManager.Team.player);
                     depthIndex = i;
@@ -57,6 +54,6 @@ public class CombatAI : MonoBehaviour
             currentTurn.EndTurn();
         }
 
-        
+
     }
 }

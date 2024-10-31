@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Floater : MonoBehaviour
@@ -10,24 +8,24 @@ public class Floater : MonoBehaviour
     float depth;
 
     public Action HitWater;
-   
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void InitiateFishingMiniGame()
     {
         HitWater?.Invoke();
-        
+
     }
     private void OnCollisionEnter(Collision collision)
     {

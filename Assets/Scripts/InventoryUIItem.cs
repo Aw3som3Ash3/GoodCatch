@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +8,7 @@ public class InventoryUIItem : MonoBehaviour
 
 
 
-    public void SetValues(string name,string type, int amount)
+    public void SetValues(string name, string type, int amount)
     {
         nameText.text = name;
         typeText.text = type;

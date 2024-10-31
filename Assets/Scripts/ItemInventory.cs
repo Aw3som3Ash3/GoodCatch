@@ -1,20 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ItemInventory 
+public class ItemInventory
 {
-    public Dictionary<Item, int> items { get; private set; }= new Dictionary<Item, int>();
+    public Dictionary<Item, int> items { get; private set; } = new Dictionary<Item, int>();
 
     IReadOnlyList<Item> cachedItemList;
-    
 
-    public void AddItem(Item item,int amount=1)
+
+    public void AddItem(Item item, int amount = 1)
     {
         if (items.ContainsKey(item))
         {
-            items[item]+=1;
+            items[item] += 1;
         }
         else
         {
@@ -22,12 +21,12 @@ public class ItemInventory
         }
     }
 
-    public void RemoveItem(Item item,int amount=1)
+    public void RemoveItem(Item item, int amount = 1)
     {
-        if(items.ContainsKey(item))
+        if (items.ContainsKey(item))
         {
             items[item] -= Mathf.Clamp(amount, 0, items[item]);
-            if (items[item]==0)
+            if (items[item] == 0)
             {
                 items.Remove(item);
             }
@@ -36,13 +35,13 @@ public class ItemInventory
 
     public IReadOnlyList<Item> GetListOfItems()
     {
-        if (cachedItemList != null|| cachedItemList.Count!=items.Count)
+        if (cachedItemList != null || cachedItemList.Count != items.Count)
         {
-            cachedItemList=items.Keys.ToList();
+            cachedItemList = items.Keys.ToList();
         }
         return cachedItemList;
     }
-    
+
     //int Sort(Item x, Item y)
     //{
     //    if (orderBy == OrderBy.Name)

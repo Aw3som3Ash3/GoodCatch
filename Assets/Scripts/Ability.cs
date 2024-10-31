@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ability", menuName = "Fish Monster/Ability", order = 1)]
-public class Ability:ScriptableObject
+public class Ability : ScriptableObject
 {
     //enum TargetingType
     //{
@@ -39,14 +37,14 @@ public class Ability:ScriptableObject
         StatusEffect statusEffect;
         public StatusEffect Effect { get { return statusEffect; } }
         [SerializeField]
-        [Range(0,1)]
+        [Range(0, 1)]
         float effectChance;
         public float Chance { get { return effectChance; } }
     }
     [SerializeField]
     AbilityType abilityType;
     [SerializeField]
-    Depth availableDepths,targetableDepths;
+    Depth availableDepths, targetableDepths;
     public Depth AvailableDepths { get { return availableDepths; } }
 
     public Depth TargetableDepths { get { return targetableDepths; } }
@@ -66,18 +64,18 @@ public class Ability:ScriptableObject
     int baseDamage;
 
     [SerializeField]
-    [Range(0,1)]
+    [Range(0, 1)]
     float accuracy;
     [SerializeField]
     float damageMultiplier;
-    
+
     [SerializeField]
     Element element;
     [SerializeField]
     EffectChance[] effects;
     [SerializeField]
-    [Range(-2,2)]
-    int forcedMovement=0;
+    [Range(-2, 2)]
+    int forcedMovement = 0;
     public int ForcedMovement { get { return forcedMovement; } }
 
     [SerializeField]
@@ -85,7 +83,7 @@ public class Ability:ScriptableObject
     public Sprite Icon { get; private set; }
     //List<FishMonster> targets;
 
-    
+
     public bool DepthTargetable(Depth depth)
     {
         return targetableDepths.HasFlag(depth);
@@ -94,14 +92,14 @@ public class Ability:ScriptableObject
     {
         return availableDepths.HasFlag(depth);
     }
-    public bool UseAbility(CombatManager.Turn user,CombatManager.Turn target, out bool hit)
+    public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit)
     {
         if (target == null)
         {
             hit = false;
             return false;
         }
-        if (baseDamage<0)
+        if (baseDamage < 0)
         {
             target.fish.Restore(health: -baseDamage);
             hit = true;
@@ -125,22 +123,22 @@ public class Ability:ScriptableObject
                 hit = false;
             }
         }
-        
-        
+
+
         return true;
     }
 
-    void ProctEffect(CombatManager.Turn user,CombatManager.Turn target)
+    void ProctEffect(CombatManager.Turn user, CombatManager.Turn target)
     {
-        foreach(var effect in effects)
+        foreach (var effect in effects)
         {
-            float proctBonus= (user.special / 5)*0.01f;
-            if (UnityEngine.Random.Range(0, 1)+ proctBonus < (effect.Chance))
+            float proctBonus = (user.special / 5) * 0.01f;
+            if (UnityEngine.Random.Range(0, 1) + proctBonus < (effect.Chance))
             {
                 target.AddEffects(effect.Effect);
             }
         }
-        
+
     }
 }
 

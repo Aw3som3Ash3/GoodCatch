@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Cinemachine;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class FishingMiniGame : MonoBehaviour
@@ -21,7 +20,7 @@ public class FishingMiniGame : MonoBehaviour
     [SerializeField]
     GameObject fishToCatchPrefab;
     FishToCatch fishToCatch;
-    
+
 
     public void Initiate(Floater floater)
     {
@@ -32,7 +31,7 @@ public class FishingMiniGame : MonoBehaviour
         InputManager.Input.Fishing.Hook.performed += OnHook;
         InputManager.Input.Fishing.Exit.performed += OnExit;
         print(fishMonster);
-        Invoke("SpawnFish", UnityEngine.Random.Range(0,2f));
+        Invoke("SpawnFish", UnityEngine.Random.Range(0, 2f));
     }
 
     void OnExit(InputAction.CallbackContext context)
@@ -62,22 +61,22 @@ public class FishingMiniGame : MonoBehaviour
 
     void OnHook(InputAction.CallbackContext context)
     {
-        if (fishToCatch.CatchFish()) 
+        if (fishToCatch.CatchFish())
         {
             FishingSuccess();
-            
+
         }
     }
 
     void FishingSuccess()
     {
-        List<FishMonster> fishMonsters= new List<FishMonster>();
-        int num = UnityEngine.Random.Range(1, 4);
-        for(int i = 0; i < num; i++) 
+        List<FishMonster> fishMonsters = new List<FishMonster>();
+        int num = UnityEngine.Random.Range(1, 2);
+        for (int i = 0; i < num; i++)
         {
             fishMonsters.Add(fishMonster.GenerateMonster());
         }
-        GameManager.Instance.LoadCombatScene(fishMonsters,true);
+        GameManager.Instance.LoadCombatScene(fishMonsters, true);
         SuccesfulFishing?.Invoke();
         ExitFishing();
     }

@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FishToCatch : MonoBehaviour
 {
-    
+
     GameObject model;
 
     Transform hook;
@@ -20,14 +19,14 @@ public class FishToCatch : MonoBehaviour
         biting,
         reeled
     }
-    FishBehaviour behaviour= FishBehaviour.none;
+    FishBehaviour behaviour = FishBehaviour.none;
     float timer;
     Vector3 destination;
-    public void SetFish(FishMonsterType fishMonster,Transform hook)
+    public void SetFish(FishMonsterType fishMonster, Transform hook)
     {
         this.fishMonster = fishMonster;
         model = Instantiate(fishMonster.Model, this.transform);
-        model.transform.localPosition= new Vector3 (0,-2,0);
+        model.transform.localPosition = new Vector3(0, -2, 0);
         this.hook = hook;
         behaviour = FishBehaviour.curious;
         ChangDestination();
@@ -36,14 +35,14 @@ public class FishToCatch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (behaviour == FishBehaviour.curious) 
+        if (behaviour == FishBehaviour.curious)
         {
 
 
@@ -54,26 +53,26 @@ public class FishToCatch : MonoBehaviour
                 ChangDestination();
             }
         }
-        else if(behaviour == FishBehaviour.goingToBite)
+        else if (behaviour == FishBehaviour.goingToBite)
         {
 
             MoveToDestination(transform.parent.InverseTransformPoint(hook.transform.position));
-            if(this.transform.localPosition == transform.parent.InverseTransformPoint(hook.transform.position))
+            if (this.transform.localPosition == transform.parent.InverseTransformPoint(hook.transform.position))
             {
                 behaviour = FishBehaviour.biting;
                 StartCoroutine(AnimatedHook());
                 Invoke("ResetBehaviour", 0.5f);
             }
         }
-        
+
     }
     public bool CatchFish()
     {
-        if(behaviour== FishBehaviour.biting)
+        if (behaviour == FishBehaviour.biting)
         {
             CancelInvoke();
             print("caught " + this);
-           
+
             return true;
         }
         else
@@ -103,7 +102,7 @@ public class FishToCatch : MonoBehaviour
         behaviour = FishBehaviour.curious;
         StartCoroutine(StateChanger());
     }
-    
+
     void MoveToDestination(Vector3 destination)
     {
         this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, destination, speed * Time.deltaTime);
@@ -117,7 +116,7 @@ public class FishToCatch : MonoBehaviour
     IEnumerator StateChanger()
     {
         int numOfTries = 0;
-        while (behaviour == FishBehaviour.curious) 
+        while (behaviour == FishBehaviour.curious)
         {
 
 
@@ -125,7 +124,7 @@ public class FishToCatch : MonoBehaviour
             {
                 yield return new WaitForSeconds(3);
 
-                if (Random.Range(0, 1f) > .95f - (.1*numOfTries))
+                if (Random.Range(0, 1f) > .95f - (.1 * numOfTries))
                 {
                     behaviour = FishBehaviour.goingToBite;
                     break;
@@ -134,9 +133,9 @@ public class FishToCatch : MonoBehaviour
                 {
                     numOfTries++;
                 }
-                
+
             }
-           
+
 
         }
 

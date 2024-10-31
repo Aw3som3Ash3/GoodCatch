@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,9 +16,9 @@ public class AbilityButton : MonoBehaviour
     [SerializeField]
     Button button;
 
-    public Action<int> OnHover,OnHoverExit;
+    public Action<int> OnHover, OnHoverExit;
 
-// Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
         EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
@@ -29,24 +27,24 @@ public class AbilityButton : MonoBehaviour
 
         EventTrigger.Entry exitEvent = new EventTrigger.Entry();
         exitEvent.eventID = EventTriggerType.PointerExit;
-        exitEvent.callback.AddListener((eventData) => { if (isActiveAndEnabled) { OnHoverExit?.Invoke(index);} });
+        exitEvent.callback.AddListener((eventData) => { if (isActiveAndEnabled) { OnHoverExit?.Invoke(index); } });
 
         button.AddComponent<EventTrigger>().triggers.Add(hoverEvent);
         button.GetComponent<EventTrigger>().triggers.Add(exitEvent);
-        
+
 
     }
-    
+
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void SetIndex(int index)
     {
         this.index = index;
     }
-    public void UpdateVisuals(string name,Sprite sprite)
+    public void UpdateVisuals(string name, Sprite sprite)
     {
         //this.icon.sprite = sprite;
         textMesh.text = name;
@@ -60,7 +58,7 @@ public class AbilityButton : MonoBehaviour
     private void OnEnable()
     {
         button.enabled = true;
-        icon.color= Color.white;
+        icon.color = Color.white;
     }
     private void OnDisable()
     {

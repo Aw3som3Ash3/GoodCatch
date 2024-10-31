@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +16,7 @@ public abstract class ToggleableUIMenus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OpenUi(InputAction.CallbackContext context)

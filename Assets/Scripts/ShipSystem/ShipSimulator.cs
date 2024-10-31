@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipSimulator : MonoBehaviour
@@ -14,14 +12,14 @@ public class ShipSimulator : MonoBehaviour
     float maxSpeed, turningSpeed;
     public float sailRatio { get; private set; }
     public float turnRatio { get; private set; }
-   
+
 
     public Vector3 Velocity { get { return physicSim.velocity; } }
 
     // Start is called before the first frame update
     void Start()
     {
-      
+
         //sailRatio = 1;
         sail.SetrWindStrength(1);
         sail.SetSailsAmount(sailRatio);
@@ -30,13 +28,13 @@ public class ShipSimulator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
     }
     private void FixedUpdate()
     {
 
-        physicSim.AddRelativeForce(Vector3.forward*(maxSpeed*sailRatio), ForceMode.Acceleration);
-        physicSim.AddRelativeTorque(Vector3.up*turningSpeed*turnRatio, ForceMode.Acceleration);
+        physicSim.AddRelativeForce(Vector3.forward * (maxSpeed * sailRatio), ForceMode.Acceleration);
+        physicSim.AddRelativeTorque(Vector3.up * turningSpeed * turnRatio, ForceMode.Acceleration);
         this.transform.position = physicSim.transform.position;
         this.transform.rotation = physicSim.transform.rotation;
         physicSim.transform.localPosition = Vector3.zero;
@@ -44,9 +42,9 @@ public class ShipSimulator : MonoBehaviour
     }
     public void AdjustSails(float adjustment)
     {
-        
+
         //sailRatio = Mathf.Clamp(sailRatio + adjustment , 0, 1);
-        sailRatio =  adjustment ;
+        sailRatio = adjustment;
         sail.SetSailsAmount(sailRatio);
 
 
@@ -54,11 +52,11 @@ public class ShipSimulator : MonoBehaviour
     public void AdjustTurn(float adjustment)
     {
         // turnRatio= Mathf.Clamp(turnRatio + adjustment, -1, 1);
-        turnRatio= adjustment;
+        turnRatio = adjustment;
     }
     private void LateUpdate()
     {
-       
+
     }
     public void AddObject(Transform obj)
     {

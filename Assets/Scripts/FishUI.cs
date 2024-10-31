@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FishUI : MonoBehaviour
 {
     CombatManager.Turn turn;
-
     [SerializeField]
     Image healthBar, staminaBar;
     [SerializeField]
@@ -18,15 +14,16 @@ public class FishUI : MonoBehaviour
     GameObject statusIconPrefab;
 
     Transform target;
-    Dictionary<StatusEffect.StatusEffectInstance, StatusIcon> statusIcon=new Dictionary<StatusEffect.StatusEffectInstance, StatusIcon>();
+    Dictionary<StatusEffect.StatusEffectInstance, StatusIcon> statusIcon = new Dictionary<StatusEffect.StatusEffectInstance, StatusIcon>();
     // Start is called before the first frame update
     void Start()
     {
         //this.transform.rotation=Camera.main.transform.rotation;
+         
     }
     private void OnEnable()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -34,13 +31,13 @@ public class FishUI : MonoBehaviour
     {
         if (transform != null)
         {
-            this.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(target.position-Vector3.up*1.25f);
+            this.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(target.position - Vector3.up * 1.25f);
         }
-        
+
     }
-    public void SetFish(CombatManager.Turn turn,Transform target)
+    public void SetFish(CombatManager.Turn turn, Transform target)
     {
-        
+
         //this.fish.ValueChanged -= UpdateUI;
         this.turn = turn;
         this.turn.fish.ValueChanged += UpdateUI;
@@ -52,7 +49,7 @@ public class FishUI : MonoBehaviour
 
     private void EffectRemoved(StatusEffect.StatusEffectInstance instance)
     {
-        
+
         Destroy(statusIcon[instance].gameObject);
         statusIcon.Remove(instance);
 

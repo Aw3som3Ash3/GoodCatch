@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -20,7 +19,7 @@ public class GameManager : MonoBehaviour
     int day;
     [SerializeField]
     [Min(1)]
-    float secondsPerHour=1;
+    float secondsPerHour = 1;
     GameObject sun;
     [SerializeField]
     FishMonsterType testfisth;
@@ -30,30 +29,31 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI tempTimeOfDayText;
     [Flags]
     public enum TimeOfDay
-    { 
-        Day=1,
-        Night=2,
-        EarlyMorning=6,
-        Dawn=9,
-        Morning=17,
-        Noon=33,
-        Afternoon=65,
-        Evening=129,
-        Dusk=258,
-        LateNight=514,
-        Midnight=1026,
-       
+    {
+        Day = 1,
+        Night = 2,
+        EarlyMorning = 6,
+        Dawn = 9,
+        Morning = 17,
+        Noon = 33,
+        Afternoon = 65,
+        Evening = 129,
+        Dusk = 258,
+        LateNight = 514,
+        Midnight = 1026,
 
-        
+
+
     }
-    public TimeOfDay timeOfDay 
-    { 
-        get 
+    public TimeOfDay timeOfDay
+    {
+        get
         {
-            if(dayTime >= 3 && dayTime < 6)
+            if (dayTime >= 3 && dayTime < 6)
             {
                 return TimeOfDay.EarlyMorning;
-            }else if (dayTime >= 6 && dayTime < 9)
+            }
+            else if (dayTime >= 6 && dayTime < 9)
             {
                 return TimeOfDay.Dawn;
             }
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             {
                 return TimeOfDay.Dusk;
             }
-            else if (dayTime >=21 && dayTime < 24)
+            else if (dayTime >= 21 && dayTime < 24)
             {
                 return TimeOfDay.LateNight;
             }
@@ -109,11 +109,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         CapturedFish(testfisth);
         playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
 
-        mainEventSystem=EventSystem.current;
+        mainEventSystem = EventSystem.current;
         sun = FindObjectOfType<Light>().gameObject;
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
@@ -127,13 +127,21 @@ public class GameManager : MonoBehaviour
 
     void DayNightCycle()
     {
+        if (sun ==null)
+        {
+            sun = FindObjectOfType<Light>()?.gameObject;
+            if (sun == null)
+            {
+                return;
+            }
+        }
         if (tempTimeOfDayText != null)
         {
             tempTimeOfDayText.text = Regex.Replace(timeOfDay.ToString(), "([A-Z0-9]+)", " $1").Trim();
         }
-       
-        
-        sun.transform.eulerAngles = new Vector3(((dayTime * (360 / 24)) - 90),-90,0);
+
+
+        sun.transform.eulerAngles = new Vector3(((dayTime * (360 / 24)) - 90), -90, 0);
         dayTime += Time.deltaTime / secondsPerHour;
         if (dayTime >= 24)
         {
@@ -150,7 +158,7 @@ public class GameManager : MonoBehaviour
         dayTime += time;
         if (dayTime >= 24)
         {
-            day+= Mathf.FloorToInt((dayTime / 24F));
+            day += Mathf.FloorToInt((dayTime / 24F));
             dayTime %= 24;
         }
     }
@@ -162,17 +170,18 @@ public class GameManager : MonoBehaviour
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
         playerFishventory.AddFish(fishMonsterType.GenerateMonster());
-        
+
     }
     public void CapturedFish(FishMonster fishMonster)
     {
         playerFishventory.AddFish(fishMonster);
 
     }
-    public void LoadCombatScene(List<FishMonster> enemyFishes,bool rewardFish=false)
+    public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
         mainEventSystem.enabled = false;
-        SceneManager.LoadScene("BattleScene",LoadSceneMode.Additive);
+        SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
+        
         fishesToFight = enemyFishes;
         SceneManager.sceneLoaded += SetUpCombat;
         this.rewardFish = rewardFish;
@@ -182,12 +191,12 @@ public class GameManager : MonoBehaviour
     {
         if (arg0.name == "BattleScene")
         {
-     
-            GameObject.FindObjectOfType<CombatManager>().NewCombat(playerFishventory.Fishies.ToList(), fishesToFight,rewardFish);
+
+            GameObject.FindObjectOfType<CombatManager>().NewCombat(playerFishventory.Fishies.ToList(), fishesToFight, rewardFish);
         }
         SceneManager.sceneLoaded -= SetUpCombat;
         //throw new NotImplementedException();
     }
 
-    
+
 }
