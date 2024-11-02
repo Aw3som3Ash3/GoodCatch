@@ -12,11 +12,11 @@ public class FishingGameUI : MonoBehaviour
 
     public bool isFishOn;
 
-    public Slider slider;
-    float successIncrement = 15f;
-    float failDecrement = 25f;
-    float successThreshold = 100f;
-    float failThreshold = -100f;
+    public Slider lineDistance;
+    float successIncrement = 35f;
+    float failDecrement = 30f;
+    float successThreshold = -100f;
+    float failThreshold = 100f;
     float successCounter = 0f;
 
     Action<bool> onEnd;
@@ -24,6 +24,12 @@ public class FishingGameUI : MonoBehaviour
     private void Awake()
     {
         this.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        successCounter = 70f;
+        lineDistance.value = 70;
     }
 
     private void Update()
@@ -44,21 +50,21 @@ public class FishingGameUI : MonoBehaviour
     {
         if (isFishOn)
         {
-            successCounter += successIncrement * Time.deltaTime;
+            successCounter -= successIncrement * Time.deltaTime;
         }
         else
         {
-            successCounter -= failDecrement * Time.deltaTime;
+            successCounter += failDecrement * Time.deltaTime;
         }
 
         // Clamp counter
-        successCounter = Mathf.Clamp(successCounter, failThreshold, successThreshold);
+        successCounter = Mathf.Clamp(successCounter, successThreshold, failThreshold);
 
         // Update slider value
-        slider.value = successCounter;
+        lineDistance.value = successCounter;
 
         // Checker
-        if (successCounter >= successThreshold)
+        if (successCounter <= successThreshold)
         {
             Debug.Log("Success");
             onEnd?.Invoke(true);
@@ -67,7 +73,7 @@ public class FishingGameUI : MonoBehaviour
             //successCounter = 0;
             //slider.value = 0;
         }
-        else if (successCounter <= failThreshold)
+        else if (successCounter >= failThreshold)
         {
             Debug.Log("Failed");
             onEnd?.Invoke(false);
@@ -80,8 +86,8 @@ public class FishingGameUI : MonoBehaviour
 
     private bool CheckOverlapping(RectTransform rect1, RectTransform rect2)
     {
-        Rect r1 = rect1.rect;
-        Rect r2 = rect2.rect;
+        Rect r1 = new Rect(rect1.position.x, rect1.position.y, rect1.rect.width, rect1.rect.height);
+        Rect r2 = new Rect(rect2.position.x, rect2.position.y, rect2.rect.width, rect2.rect.height);
         return r1.Overlaps(r2);
     }
 
