@@ -1776,10 +1776,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 248148819934035266, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
-      propertyPath: dampenForce
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4036825144464445255, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 319

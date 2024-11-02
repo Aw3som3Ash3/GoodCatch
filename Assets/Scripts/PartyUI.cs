@@ -25,7 +25,7 @@ public class PartyUI : ToggleableUIMenus
 
     protected override void UpdateUI()
     {
-        fishventory = GameManager.Instance.playerFishventory;
+        fishventory = GameManager.Instance.PlayerFishventory;
         for (int i = 0; i < fishventory.Fishies.Count; i++)
         {
             partyIcon[i].SetIcon(fishventory.Fishies[i].Icon, Color.cyan);

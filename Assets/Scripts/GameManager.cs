@@ -14,12 +14,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public Fishventory playerFishventory { get; private set; } = new Fishventory(7);
-    public ItemInventory playerInventory { get; private set; } = new ItemInventory();
+    public Fishventory PlayerFishventory { get; private set; } = new Fishventory(7);
+    public ItemInventory PlayerInventory { get; private set; } = new ItemInventory();
 
     List<FishMonster> fishesToFight;
     float dayTime;
-    int day;
+    public int Day { get; private set; }
     [SerializeField]
     [Min(1)]
     float secondsPerHour = 1;
@@ -52,54 +52,53 @@ public class GameManager : MonoBehaviour
 
 
     }
-    public TimeOfDay timeOfDay
+    public TimeOfDay CurrentTimeOfDay => GetTimeOfDay(dayTime);
+    public TimeOfDay GetTimeOfDay(float time)
     {
-        get
+        if (dayTime >= 3 && dayTime < 6)
         {
-            if (dayTime >= 3 && dayTime < 6)
-            {
-                return TimeOfDay.EarlyMorning;
-            }
-            else if (dayTime >= 6 && dayTime < 9)
-            {
-                return TimeOfDay.Dawn;
-            }
-            else if (dayTime >= 9 && dayTime < 12)
-            {
-                return TimeOfDay.Morning;
-            }
-            else if (dayTime >= 9 && dayTime < 12)
-            {
-                return TimeOfDay.Morning;
-            }
-            else if (dayTime >= 12 && dayTime < 13)
-            {
-                return TimeOfDay.Noon;
-            }
-            else if (dayTime >= 13 && dayTime < 15)
-            {
-                return TimeOfDay.Afternoon;
-            }
-            else if (dayTime >= 15 && dayTime < 18)
-            {
-                return TimeOfDay.Evening;
-            }
-            else if (dayTime >= 18 && dayTime < 21)
-            {
-                return TimeOfDay.Dusk;
-            }
-            else if (dayTime >= 21 && dayTime < 24)
-            {
-                return TimeOfDay.LateNight;
-            }
-            else if (dayTime >= 0 && dayTime < 3)
-            {
-                return TimeOfDay.Midnight;
-            }
-            return TimeOfDay.Night;
+            return TimeOfDay.EarlyMorning;
         }
+        else if (dayTime >= 6 && dayTime < 9)
+        {
+            return TimeOfDay.Dawn;
+        }
+        else if (dayTime >= 9 && dayTime < 12)
+        {
+            return TimeOfDay.Morning;
+        }
+        else if (dayTime >= 9 && dayTime < 12)
+        {
+            return TimeOfDay.Morning;
+        }
+        else if (dayTime >= 12 && dayTime < 13)
+        {
+            return TimeOfDay.Noon;
+        }
+        else if (dayTime >= 13 && dayTime < 15)
+        {
+            return TimeOfDay.Afternoon;
+        }
+        else if (dayTime >= 15 && dayTime < 18)
+        {
+            return TimeOfDay.Evening;
+        }
+        else if (dayTime >= 18 && dayTime < 21)
+        {
+            return TimeOfDay.Dusk;
+        }
+        else if (dayTime >= 21 && dayTime < 24)
+        {
+            return TimeOfDay.LateNight;
+        }
+        else if (dayTime >= 0 && dayTime < 3)
+        {
+            return TimeOfDay.Midnight;
+        }
+        return 0;
     }
-    Dictionary<TimeOfDay, float> timeOfDayStart = new Dictionary<TimeOfDay, float>
+
+    readonly Dictionary<TimeOfDay, float> timeOfDayStart = new Dictionary<TimeOfDay, float>
     {
         {TimeOfDay.EarlyMorning,3 },
         {TimeOfDay.Dawn,6},
@@ -130,7 +129,7 @@ public class GameManager : MonoBehaviour
     {
 
         CapturedFish(testfisth);
-        playerFishventory.Fishies[0].ChangeName("SteveO starter fish");
+        PlayerFishventory.Fishies[0].ChangeName("SteveO starter fish");
 
         mainEventSystem = EventSystem.current;
         sun = FindObjectOfType<Light>().gameObject;
@@ -156,7 +155,7 @@ public class GameManager : MonoBehaviour
         }
         if (tempTimeOfDayText != null)
         {
-            tempTimeOfDayText.text = Regex.Replace(timeOfDay.ToString(), "([A-Z0-9]+)", " $1").Trim();
+            tempTimeOfDayText.text = Regex.Replace(CurrentTimeOfDay.ToString(), "([A-Z0-9]+)", " $1").Trim();
         }
 
 
@@ -164,7 +163,7 @@ public class GameManager : MonoBehaviour
         dayTime += Time.deltaTime / secondsPerHour;
         if (dayTime >= 24)
         {
-            day++;
+            Day++;
             dayTime %= 24;
         }
     }
@@ -179,7 +178,7 @@ public class GameManager : MonoBehaviour
         {
             if (dayTime >= 24)
             {
-                day += Mathf.FloorToInt((dayTime / 24F));
+                Day += Mathf.FloorToInt((dayTime / 24F));
                 dayTime %= 24;
             }
         }));
@@ -190,7 +189,7 @@ public class GameManager : MonoBehaviour
     {
 
         float targetTime = timeOfDayStart[timeOfDay];
-        if (this.timeOfDay == timeOfDay)
+        if (this.CurrentTimeOfDay == timeOfDay)
         {
             return;
         }
@@ -198,7 +197,7 @@ public class GameManager : MonoBehaviour
         {
             if (dayTime > targetTime)
             {
-                day++;
+                Day++;
             }
             dayTime = targetTime;
         }));
@@ -235,16 +234,16 @@ public class GameManager : MonoBehaviour
 
     public void RestoreFish()
     {
-        playerFishventory.RestoreHealthAllFish();
+        PlayerFishventory.RestoreHealthAllFish();
     }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
-        playerFishventory.AddFish(fishMonsterType.GenerateMonster());
+        PlayerFishventory.AddFish(fishMonsterType.GenerateMonster());
 
     }
     public void CapturedFish(FishMonster fishMonster)
     {
-        playerFishventory.AddFish(fishMonster);
+        PlayerFishventory.AddFish(fishMonster);
 
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
@@ -262,7 +261,7 @@ public class GameManager : MonoBehaviour
         if (arg0.name == "BattleScene")
         {
 
-            GameObject.FindObjectOfType<CombatManager>().NewCombat(playerFishventory.Fishies.ToList(), fishesToFight, rewardFish);
+            GameObject.FindObjectOfType<CombatManager>().NewCombat(PlayerFishventory.Fishies.ToList(), fishesToFight, rewardFish);
         }
         SceneManager.sceneLoaded -= SetUpCombat;
         //throw new NotImplementedException();

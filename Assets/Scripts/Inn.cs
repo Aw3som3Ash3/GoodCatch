@@ -8,7 +8,7 @@ public class Inn : MonoBehaviour, IInteractable
 
     public bool Interact()
     {
-        if (GameManager.Instance.timeOfDay.HasFlag(GameManager.TimeOfDay.Night))
+        if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Night))
         {
             print("should sleep");
             GameManager.Instance.AdvanceTime(GameManager.TimeOfDay.Dawn);

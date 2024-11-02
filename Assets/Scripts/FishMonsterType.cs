@@ -115,8 +115,8 @@ public class FishMonster
     public Sprite Icon { get { return type.Icon; } }
     public GameObject Model { get { return type.Model; } }
     public int level { get; private set; } = 1;
-    float xp;
-    const int xpToLevelUp = 1000;
+    public float xp { get; private set; }
+    public const int xpToLevelUp = 1000;
     Ability[] abilities;
     public Action ValueChanged;
     public Action HasFeinted;

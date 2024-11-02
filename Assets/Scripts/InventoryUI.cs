@@ -14,6 +14,8 @@ public class InventoryUI : ToggleableUIMenus
     Transform contentZone;
     VerticalLayoutGroup layoutGroup;
 
+
+
     public enum OrderBy
     {
         Name,
@@ -54,7 +56,7 @@ public class InventoryUI : ToggleableUIMenus
     }
     void PopulateList()
     {
-        var dictionary = GameManager.Instance.playerInventory.GetDictionaryOfItems<Item>();
+        var dictionary = GameManager.Instance.PlayerInventory.GetDictionaryOfItems<Item>();
         var list = OrderedList(dictionary.Keys.ToList(), orderBy);
 
         for (int i = 0; i < (list.Count > contentZone.childCount ? list.Count : contentZone.childCount); i++)
