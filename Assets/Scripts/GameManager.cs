@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -27,6 +30,10 @@ public class GameManager : MonoBehaviour
     EventSystem mainEventSystem;
     [SerializeField]
     TextMeshProUGUI tempTimeOfDayText;
+
+    [SerializeField]
+    VolumeProfile postProcessing;
+
     [Flags]
     public enum TimeOfDay
     {
@@ -168,25 +175,63 @@ public class GameManager : MonoBehaviour
     public void AdvanceTime(float time)
     {
         dayTime += time;
-        if (dayTime >= 24)
+        StartCoroutine(FadeToBlack(() =>
         {
-            day += Mathf.FloorToInt((dayTime / 24F));
-            dayTime %= 24;
-        }
+            if (dayTime >= 24)
+            {
+                day += Mathf.FloorToInt((dayTime / 24F));
+                dayTime %= 24;
+            }
+        }));
+       
+       
     }
     public void AdvanceTime(TimeOfDay timeOfDay)
     {
+
         float targetTime = timeOfDayStart[timeOfDay];
         if (this.timeOfDay == timeOfDay)
         {
             return;
         }
-        if (dayTime > targetTime)
+        StartCoroutine(FadeToBlack(() =>
         {
-            day++;
-        }
-        dayTime = targetTime;
+            if (dayTime > targetTime)
+            {
+                day++;
+            }
+            dayTime = targetTime;
+        }));
+       
+        
     }
+    IEnumerator FadeToBlack(Action completed)
+    {
+        ColorAdjustments colorAdjustments;
+        
+        if (postProcessing.TryGet(out colorAdjustments))
+        {
+            InputManager.DisablePlayer();
+            print("start to fade");
+            while (colorAdjustments.postExposure.value>-10)
+            {
+                print("should be fading");
+                colorAdjustments.postExposure.value=Mathf.MoveTowards(colorAdjustments.postExposure.value, -20, 10 * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
+            yield return new WaitForSeconds(1.5f);
+            completed?.Invoke();
+            
+            while (colorAdjustments.postExposure.value < 0)
+            {
+                colorAdjustments.postExposure.value = Mathf.MoveTowards(colorAdjustments.postExposure.value, 0, 5 * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
+            InputManager.EnablePlayer();
+        }
+       
+    }
+
 
     public void RestoreFish()
     {

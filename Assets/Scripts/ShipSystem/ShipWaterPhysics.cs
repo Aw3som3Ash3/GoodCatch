@@ -5,19 +5,15 @@ public class ShipWaterPhysics : WaterPhysics
 {
     [SerializeField]
     Transform waterSimulationSimPointGroup;
-    List<Transform> waterSimulationPoints;
-    Dictionary<Transform, float> waterForceAtPoint;
+    List<Transform> waterSimulationPoints= new List<Transform>();
+    Dictionary<Transform, float> lastHitDistance=new Dictionary<Transform, float>();
     // Start is called before the first frame update
     void Start()
     {
-        waterForceAtPoint = new Dictionary<Transform, float>();
-        //waterSimulationPoints=new Transform[waterSimulationSimPointGroup.childCount];\
-        waterSimulationPoints = new List<Transform>();
-
         foreach (Transform child in waterSimulationSimPointGroup)
         {
             waterSimulationPoints.Add(child);
-            waterForceAtPoint[child] = 0;
+            lastHitDistance[child] = 0;
         }
     }
 
@@ -34,11 +30,12 @@ public class ShipWaterPhysics : WaterPhysics
         {
             float targetHeight = waterHeight + waterSimulator.WaterWave(t.position);
             float distance = targetHeight - t.position.y;
-            waterForceAtPoint[t] = -Physics.gravity.y * Mathf.Clamp(bouyancy * distance, 0, float.MaxValue);
-            Debug.DrawLine(t.position, t.position + waterForceAtPoint[t] * Vector3.up, waterForceAtPoint[t] >= 0 ? Color.cyan : Color.magenta);
+            float waterForce = WaterForce(distance) + dampenForce * lastHitDistance[t];
+            lastHitDistance[t] = distance;
+            Debug.DrawLine(t.position, t.position + waterForce * Vector3.up, waterForce >= 0 ? Color.cyan : Color.magenta);
             Debug.DrawLine(t.position, new Vector3(t.position.x, targetHeight, t.position.z), distance > 0 ? Color.blue : Color.red);
 
-            rb.AddForceAtPosition(waterForceAtPoint[t] * Vector3.up, t.position, ForceMode.Acceleration);
+            rb.AddForceAtPosition(waterForce * Vector3.up, t.position, ForceMode.Acceleration);
 
         }
 
