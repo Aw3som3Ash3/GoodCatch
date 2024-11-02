@@ -50,9 +50,6 @@ public abstract class Station : MonoBehaviour, IInteractable
 
     }
 
-    public string StationName()
-    {
-        return "E-" + stationName;
-    }
+    public string StationName => stationName;
     public abstract void Use();
 }

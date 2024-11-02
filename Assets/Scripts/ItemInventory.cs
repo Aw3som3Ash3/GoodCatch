@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class ItemInventory
 {
-    public Dictionary<Item, int> items { get; private set; } = new Dictionary<Item, int>();
+    Dictionary<Item, int> items  = new Dictionary<Item, int>();
 
     IReadOnlyList<Item> cachedItemList;
 
@@ -40,6 +41,10 @@ public class ItemInventory
             cachedItemList = items.Keys.ToList();
         }
         return cachedItemList;
+    }
+    public Dictionary<Item,int> GetDictionaryOfItems<T>() where T : Item
+    {
+         return items.Where(t=>t.Key is T).ToDictionary(t=>t.Key,t=>t.Value);
     }
 
     //int Sort(Item x, Item y)

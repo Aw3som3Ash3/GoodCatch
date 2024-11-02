@@ -178,11 +178,25 @@ public class CombatManager : MonoBehaviour
     void ActionsCompleted()
     {
         actionsCompleted = true;
-        if (enemyFishes.Count <= 0)
+        int numOfFriendly = 0;
+        int numOfEnemy = 0;
+        foreach(Turn turn in turnList)
+        {
+            if (turn.team == Team.player)
+            {
+                numOfFriendly++;
+            }
+            else if(turn.team == Team.enemy)
+            {
+                numOfEnemy++;
+            }
+        }
+
+        if (numOfEnemy <= 0)
         {
             EndFight(Team.player);
         }
-        else if (playerFishes.Count <= 0)
+        else if (numOfFriendly <= 0)
         {
             EndFight(Team.enemy);
         }
@@ -192,20 +206,27 @@ public class CombatManager : MonoBehaviour
 
     void EndFight(Team winningTeam)
     {
+
+        if (winningTeam == Team.player)
+        {
+            RewardXP();
+        }
         prevCam.gameObject.SetActive(true);
         Camera.SetupCurrent(prevCam);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene"));
-
-        //if (rewardFish)
-        //{
-        //    foreach (var fish in enemyFishes)
-        //    {
-        //        fish.RestoreAllHealth();
-        //        GameManager.Instance.CapturedFish(fish);
-        //    }
-        //}
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+    void RewardXP()
+    {
+        foreach(FishMonster fish in playerFishes)
+        {
+            foreach(FishMonster enemy in enemyFishes)
+            {
+                fish.AddXp((enemy.level / fish.level)*100);
+            }
+            
+        }
     }
     void StartTurn()
     {
@@ -312,7 +333,7 @@ public class CombatManager : MonoBehaviour
     {
         turnList.Remove(turn);
         turnListUI.RemoveTurn(turn);
-        enemyFishes.Remove(turn.fish);
+        //enemyFishes.Remove(turn.fish);
         playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {

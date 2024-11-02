@@ -92,6 +92,18 @@ public class GameManager : MonoBehaviour
             return TimeOfDay.Night;
         }
     }
+    Dictionary<TimeOfDay, float> timeOfDayStart = new Dictionary<TimeOfDay, float>
+    {
+        {TimeOfDay.EarlyMorning,3 },
+        {TimeOfDay.Dawn,6},
+        {TimeOfDay.Morning,9},
+        {TimeOfDay.Noon,12},
+        {TimeOfDay.Afternoon,13},
+        {TimeOfDay.Evening,15},
+        {TimeOfDay.Dusk,18},
+        {TimeOfDay.LateNight,21},
+        {TimeOfDay.Midnight,0}
+    };
     private void Awake()
     {
         if (Instance == null)
@@ -161,6 +173,19 @@ public class GameManager : MonoBehaviour
             day += Mathf.FloorToInt((dayTime / 24F));
             dayTime %= 24;
         }
+    }
+    public void AdvanceTime(TimeOfDay timeOfDay)
+    {
+        float targetTime = timeOfDayStart[timeOfDay];
+        if (this.timeOfDay == timeOfDay)
+        {
+            return;
+        }
+        if (dayTime > targetTime)
+        {
+            day++;
+        }
+        dayTime = targetTime;
     }
 
     public void RestoreFish()
