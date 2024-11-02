@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,11 +13,18 @@ public class FishingGameUI : MonoBehaviour
     public bool isFishOn;
 
     public Slider slider;
-    float successIncrement = 15;
-    float failDecrement = 12;
-    float successThreshold = 100;
-    float failThreshold = -100;
-    float successCounter = 0;
+    float successIncrement = 15f;
+    float failDecrement = 25f;
+    float successThreshold = 100f;
+    float failThreshold = -100f;
+    float successCounter = 0f;
+
+    Action<bool> onEnd;
+
+    private void Awake()
+    {
+        this.gameObject.SetActive(false);
+    }
 
     private void Update()
     {
@@ -52,24 +61,34 @@ public class FishingGameUI : MonoBehaviour
         if (successCounter >= successThreshold)
         {
             Debug.Log("Success");
+            onEnd?.Invoke(true);
+            Destroy(gameObject);
 
-            successCounter = 0;
-            slider.value = 0;
+            //successCounter = 0;
+            //slider.value = 0;
         }
         else if (successCounter <= failThreshold)
         {
             Debug.Log("Failed");
+            onEnd?.Invoke(false);
+            Destroy(gameObject);
 
-            successCounter = 0;
-            slider.value = 0;
+            //successCounter = 0;
+            //slider.value = 0;
         }
     }
 
     private bool CheckOverlapping(RectTransform rect1, RectTransform rect2)
     {
-        Rect r1 = new Rect(rect1.position.x, rect1.position.y, rect1.rect.width, rect1.rect.height);
-        Rect r2 = new Rect(rect2.position.x, rect2.position.y, rect2.rect.width, rect2.rect.height);
+        Rect r1 = rect1.rect;
+        Rect r2 = rect2.rect;
         return r1.Overlaps(r2);
+    }
+
+    public void StartMinigame(int difficulty, Action<bool> onEnd)
+    {
+        this.gameObject.SetActive(true);
+        this.onEnd = onEnd;
     }
 
     // Place these code bits when ready to fully implement to the current (10/27) minigame system
