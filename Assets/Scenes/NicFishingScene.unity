@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 494427264}
   - component: {fileID: 494427263}
   - component: {fileID: 494427262}
+  - component: {fileID: 494427265}
   m_Layer: 5
   m_Name: FishingMinigame
   m_TagString: Untagged
@@ -307,6 +308,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494427260}
   m_CullTransparentMesh: 1
+--- !u!114 &494427265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494427260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df7140b48535bfd4486dfe8092fdfc75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishTransform: {fileID: 1699873515}
+  catcherTransform: {fileID: 170955724}
+  isFishOn: 0
+  slider: {fileID: 551814531}
 --- !u!1 &551814529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
