@@ -13,6 +13,6 @@ public class WaterAligner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(target.position.x, 0, target.position.z);
+        this.transform.position = new Vector3(target.position.x, this.transform.position.y, target.position.z);
     }
 }

@@ -230,8 +230,6 @@ public class GameManager : MonoBehaviour
         }
        
     }
-
-
     public void RestoreFish()
     {
         PlayerFishventory.RestoreHealthAllFish();

@@ -76,11 +76,6 @@ public class InventoryUI : ToggleableUIMenus
             }
 
         }
-        //foreach (var item in GameManager.Instance.playerInventory.items)
-        //{
-        //    var obj = Instantiate(inventoryItemPrefab, contentZone);
-        //    obj.GetComponent<InventoryUIItem>().SetValues(item.Key.name, item.Key.Type, item.Value);
-        //}
     }
     List<Item> OrderedList(IEnumerable<Item> list, OrderBy orderBy)
     {
