@@ -10,6 +10,12 @@ public class CombatUI : MonoBehaviour
     Button move, goFirst, endTurn,catchButton;
     [SerializeField]
     AbilityButton[] abilityButtons;
+    [SerializeField]
+    Image healthBar,staminaBar;
+    [SerializeField]
+    Transform effectsBar;
+    [SerializeField]
+    StatusIcon statusIconPrefab;
     //public Action GoFirstAction,EndTurn;
     Action<int> DepthSelection;
     public Action<int, int> AbilityAction;
@@ -257,6 +263,8 @@ public class CombatUI : MonoBehaviour
     }
     public void UpdateVisuals(PlayerTurn currentTurn)
     {
+        currentTurn.NewEffect -= AddEffect;
+        currentTurn.fish.ValueChanged -= UpdateHealth;
         print(currentTurn);
         this.currentTurn = currentTurn as PlayerTurn;
         if (actionTokens != null)
@@ -281,15 +289,62 @@ public class CombatUI : MonoBehaviour
             abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i)?.name, currentTurn.fish.GetAbility(i)?.Icon);
 
         }
-
-
+        ResetEffects();
+        SetEffects();
+        currentTurn.NewEffect += AddEffect;
+        currentTurn.fish.ValueChanged += UpdateHealth;
     }
     public void UpdateActionsLeft()
     {
+      
+        //ResetEffects();
+        //SetEffects();
         for (int i = currentTurn.actionsLeft; i < actionTokens.Count; i++)
         {
             actionTokens[i].Use();
         }
+    }
+    void UpdateHealth()
+    {
+        healthBar.fillAmount = currentTurn.Health / currentTurn.MaxHealth;
+        staminaBar.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
+    }
+    private void ResetEffects()
+    {
+
+        foreach(RectTransform child in effectsBar)
+        {
+            Destroy(child.gameObject);
+        }
+
+    }
+
+    private void SetEffects()
+    {
+        foreach(var effect in currentTurn.effects)
+        {
+            if (effect.remainingDuration > 0)
+            {
+                var icon = Instantiate(statusIconPrefab, effectsBar).GetComponent<StatusIcon>();
+                Debug.Log(effect);
+                Debug.Log(icon);
+                icon.SetEffect(effect);
+                Debug.Log("setting effcts");
+                
+            }
+           
+        }
+        
+
+    }
+
+    void AddEffect(StatusEffect.StatusEffectInstance effect)
+    {
+        var icon = Instantiate(statusIconPrefab, effectsBar).GetComponent<StatusIcon>();
+        Debug.Log(effect);
+        Debug.Log(icon);
+        icon.SetEffect(effect);
+        Debug.Log("setting effcts");
     }
 
 }

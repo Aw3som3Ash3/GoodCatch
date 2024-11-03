@@ -465,7 +465,7 @@ public class CombatManager : MonoBehaviour
         public static Action TurnEnded;
         public Action HasFeinted;
         bool actionsCompleted = true;
-        HashSet<StatusEffect.StatusEffectInstance> effects = new HashSet<StatusEffect.StatusEffectInstance>();
+        public HashSet<StatusEffect.StatusEffectInstance> effects { get; private set; } = new HashSet<StatusEffect.StatusEffectInstance>();
 
         public float Health { get { return fish.health; } }
         public float MaxHealth { get { return fish.maxHealth; } }
@@ -553,8 +553,10 @@ public class CombatManager : MonoBehaviour
         public virtual void StartTurn()
         {
             actionsLeft = actionsPerTurn;
-            NewTurn?.Invoke(this, team == Team.player);
             TickEffects();
+            NewTurn?.Invoke(this, team == Team.player);
+
+            
         }
         void ActionsCompleted()
         {

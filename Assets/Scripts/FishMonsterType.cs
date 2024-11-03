@@ -215,7 +215,7 @@ public class FishMonster
         }
         ValueChanged?.Invoke();
     }
-    public void Restore(int health = 0, int stamina = 0)
+    public void Restore(float health = 0, float stamina = 0)
     {
         this.health += health;
         this.stamina += stamina;
