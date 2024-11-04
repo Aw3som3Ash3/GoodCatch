@@ -21,6 +21,9 @@ public class FishingMiniGame : MonoBehaviour
     GameObject fishToCatchPrefab;
     FishToCatch fishToCatch;
 
+    [SerializeField] GameObject minigame;
+    private FishingGameUI minigameUI;
+
 
     public void Initiate(Floater floater)
     {
@@ -63,7 +66,7 @@ public class FishingMiniGame : MonoBehaviour
     {
         if (fishToCatch.CatchFish())
         {
-            FishingSuccess();
+            StartMinigame();
 
         }
     }
@@ -79,7 +82,20 @@ public class FishingMiniGame : MonoBehaviour
         GameManager.Instance.LoadCombatScene(fishMonsters, true);
         SuccesfulFishing?.Invoke();
         ExitFishing();
+
     }
+
+
+    void StartMinigame()
+    {
+        if (minigameUI == null)
+        {
+            minigameUI = Instantiate(minigame, FindObjectOfType<Canvas>().transform).GetComponent<FishingGameUI>();
+        }
+
+        minigameUI.StartMinigame(1, (b) => { if(b) { FishingSuccess(); } });
+    }
+
     //Start Mini Game
     //Detect Win/Loss
     //Output Fish
