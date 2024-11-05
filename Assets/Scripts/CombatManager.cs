@@ -608,7 +608,7 @@ public class CombatManager : MonoBehaviour
         public bool DepthTargetable(int abilityIndex, Depth depth)
         {
 
-            return combatManager.depth[depth].SideHasFish(oppositeTeam) && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth);
+            return combatManager.depth[depth].SideHasFish(fish.GetAbility(abilityIndex).TargetedTeam ==Ability.TargetTeam.enemy? oppositeTeam:team) && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth);
         }
         public void UseAbility(int abilityIndex, int target)
         {

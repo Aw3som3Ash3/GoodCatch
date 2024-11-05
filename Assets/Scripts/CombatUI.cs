@@ -294,7 +294,7 @@ public class CombatUI : MonoBehaviour
         }
         for (int i = 0; i < abilityButtons.Length; i++)
         {
-            abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i)?.name, currentTurn.fish.GetAbility(i)?.Icon);
+            abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i));
 
         }
         ResetEffects();
