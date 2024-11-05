@@ -118,6 +118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarterFish
       objectReference: {fileID: 0}
+    - target: {fileID: 2349082656026839355, guid: 007d6611b34028e4b8f5cd24ec5b5862, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3157672696338355073, guid: 007d6611b34028e4b8f5cd24ec5b5862, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
