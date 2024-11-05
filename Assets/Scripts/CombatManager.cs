@@ -212,6 +212,9 @@ public class CombatManager : MonoBehaviour
         if (winningTeam == Team.player)
         {
             RewardXP();
+        }else if (winningTeam == Team.enemy)
+        {
+            GameManager.Instance.PlayerLost();
         }
         prevCam.gameObject.SetActive(true);
         Camera.SetupCurrent(prevCam);

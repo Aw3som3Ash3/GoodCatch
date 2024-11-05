@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,12 @@ using UnityEngine;
 public class Inn : MonoBehaviour, IInteractable
 {
     public string StationName => "Inn";
-
+    [SerializeField]
+    Transform respawnPoint;
+    public static Action<Inn> InnVisited;
     public bool Interact()
     {
+        InnVisited?.Invoke(this);
         if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Night))
         {
             print("should sleep");
@@ -18,7 +22,10 @@ public class Inn : MonoBehaviour, IInteractable
        print("it is not night time could not sleep");
        return false;
     }
-
+    public Vector3 GetRepsawnPoint()
+    {
+        return respawnPoint.position;
+    }
     public void SleepThroughNight()
     {
 
