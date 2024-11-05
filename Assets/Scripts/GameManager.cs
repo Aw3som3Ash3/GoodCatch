@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     float dayTime;
     public int Day { get; private set; }
     [SerializeField]
+    [Range(0,24)]
+    float startingTime;
+    [SerializeField]
     [Min(1)]
     float secondsPerHour = 1;
     GameObject sun;
@@ -127,7 +130,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        dayTime = startingTime;
+        CapturedFish(testfisth);
         CapturedFish(testfisth);
         PlayerFishventory.Fishies[0].ChangeName("SteveO starter fish");
 

@@ -178,20 +178,25 @@ public class CombatManager : MonoBehaviour
     void ActionsCompleted()
     {
         actionsCompleted = true;
+
+        CanFightEnd();
+        CompletedAllActions?.Invoke();
+    }
+    void CanFightEnd()
+    {
         int numOfFriendly = 0;
         int numOfEnemy = 0;
-        foreach(Turn turn in turnList)
+        foreach (Turn turn in turnList)
         {
             if (turn.team == Team.player)
             {
                 numOfFriendly++;
             }
-            else if(turn.team == Team.enemy)
+            else if (turn.team == Team.enemy)
             {
                 numOfEnemy++;
             }
         }
-
         if (numOfEnemy <= 0)
         {
             EndFight(Team.player);
@@ -200,10 +205,7 @@ public class CombatManager : MonoBehaviour
         {
             EndFight(Team.enemy);
         }
-
-        CompletedAllActions?.Invoke();
     }
-
     void EndFight(Team winningTeam)
     {
 
@@ -232,6 +234,7 @@ public class CombatManager : MonoBehaviour
     {
         ui.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
         currentTurn.Value.StartTurn();
+        CanFightEnd();
         if (currentTurn.Value is EnemyTurn)
         {
             
@@ -478,7 +481,7 @@ public class CombatManager : MonoBehaviour
         {
             get
             {
-                return fish.agility + GetAttributeMod("agility");
+                return fish.Agility.value + GetAttributeMod("agility");
             }
         }
         public int dodge { get { return agility / 2; } }
@@ -486,35 +489,36 @@ public class CombatManager : MonoBehaviour
         {
             get
             {
-                return fish.accuracy + GetAttributeMod("accuracy");
+                return fish.Accuracy.value + GetAttributeMod("accuracy");
             }
         }
         public int attack
         {
             get
             {
-                return fish.attack + GetAttributeMod("attack");
+                
+                return fish.Attack.value + GetAttributeMod("attack");
             }
         }
         public int special
         {
             get
             {
-                return fish.special + GetAttributeMod("special");
+                return fish.Special.value + GetAttributeMod("special");
             }
         }
         public int fortitude
         {
             get
             {
-                return fish.fortitude + GetAttributeMod("fortitude");
+                return fish.Fortitude.value + GetAttributeMod("fortitude");
             }
         }
         public int specialFort
         {
             get
             {
-                return fish.specialFort + GetAttributeMod("specialFort");
+                return fish.SpecialFort.value + GetAttributeMod("specialFort");
             }
         }
         int GetAttributeMod(string name)
@@ -569,7 +573,7 @@ public class CombatManager : MonoBehaviour
         }
         public void RollInitiative()
         {
-            initiative = UnityEngine.Random.Range(0, 20) + fish.agility;
+            initiative = UnityEngine.Random.Range(0, 20) + fish.Agility.value;
         }
         public void EndTurn()
         {

@@ -11,7 +11,7 @@ public class CombatUI : MonoBehaviour
     [SerializeField]
     AbilityButton[] abilityButtons;
     [SerializeField]
-    Image healthBar,staminaBar;
+    Image healthBar,staminaBar,staminaBarBack;
     [SerializeField]
     Transform effectsBar;
     [SerializeField]
@@ -120,7 +120,9 @@ public class CombatUI : MonoBehaviour
         if (!currentTurn.ActionLeft || !currentTurn.AbilityUsable(index))
         {
             return;
+
         }
+        staminaBar.fillAmount = (currentTurn.Stamina - currentTurn.fish.GetAbility(index).StaminaUsage)/ currentTurn.MaxStamina;
         foreach (DepthSelectors selector in depthSelectors)
         {
             if (currentTurn.DepthTargetable(index, selector.CurrentDepth))
@@ -173,6 +175,11 @@ public class CombatUI : MonoBehaviour
         {
             selector.PreviewSelection(false);
         }
+        if (DepthSelection == null)
+        {
+            staminaBar.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
+        }
+        
     }
     public void EnableButtons()
     {
@@ -259,6 +266,7 @@ public class CombatUI : MonoBehaviour
             selector.PreviewSelection(false);
         }
         DepthSelection = null;
+        staminaBar.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
         //isActive = true;
     }
     public void UpdateVisuals(PlayerTurn currentTurn)
@@ -293,6 +301,7 @@ public class CombatUI : MonoBehaviour
         SetEffects();
         currentTurn.NewEffect += AddEffect;
         currentTurn.fish.ValueChanged += UpdateHealth;
+        UpdateHealth();
     }
     public void UpdateActionsLeft()
     {
@@ -308,6 +317,7 @@ public class CombatUI : MonoBehaviour
     {
         healthBar.fillAmount = currentTurn.Health / currentTurn.MaxHealth;
         staminaBar.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
+        staminaBarBack.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
     }
     private void ResetEffects()
     {
