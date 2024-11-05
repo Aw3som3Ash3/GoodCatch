@@ -109,9 +109,18 @@ public class Ability : ScriptableObject
             if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - target.dodge) * 0.01) < accuracy)
             {
                 Debug.Log("attacking: " + target);
-
                 float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
-                target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+                if (baseDamage > 0)
+                {
+                   
+                    target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+                }
+                else if(baseDamage<0)
+                {
+                    target.fish.Restore(-baseDamage + damageMod);
+                }
+                
+              
 
 
                 ProctEffect(user, target);

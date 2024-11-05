@@ -14,6 +14,8 @@ public class InventoryUI : ToggleableUIMenus
     Transform contentZone;
     VerticalLayoutGroup layoutGroup;
 
+
+
     public enum OrderBy
     {
         Name,
@@ -54,13 +56,14 @@ public class InventoryUI : ToggleableUIMenus
     }
     void PopulateList()
     {
-        var list = OrderedList(GameManager.Instance.playerInventory.items.Keys.ToList(), orderBy);
+        var dictionary = GameManager.Instance.PlayerInventory.GetDictionaryOfItems<Item>();
+        var list = OrderedList(dictionary.Keys.ToList(), orderBy);
 
         for (int i = 0; i < (list.Count > contentZone.childCount ? list.Count : contentZone.childCount); i++)
         {
             if (i < contentZone.childCount)
             {
-                contentZone.GetChild(i).GetComponent<InventoryUIItem>().SetValues(list[i].name, list[i].Type, GameManager.Instance.playerInventory.items[list[i]]);
+                contentZone.GetChild(i).GetComponent<InventoryUIItem>().SetValues(list[i].name, list[i].Type,dictionary[list[i]]);
                 if (i > list.Count)
                 {
                     Destroy(contentZone.GetChild(i));
@@ -69,17 +72,12 @@ public class InventoryUI : ToggleableUIMenus
             else
             {
                 var obj = Instantiate(inventoryItemPrefab, contentZone);
-                obj.GetComponent<InventoryUIItem>().SetValues(list[i].name, list[i].Type, GameManager.Instance.playerInventory.items[list[i]]);
+                obj.GetComponent<InventoryUIItem>().SetValues(list[i].name, list[i].Type, dictionary[list[i]]);
             }
 
         }
-        //foreach (var item in GameManager.Instance.playerInventory.items)
-        //{
-        //    var obj = Instantiate(inventoryItemPrefab, contentZone);
-        //    obj.GetComponent<InventoryUIItem>().SetValues(item.Key.name, item.Key.Type, item.Value);
-        //}
     }
-    List<Item> OrderedList(List<Item> list, OrderBy orderBy)
+    List<Item> OrderedList(IEnumerable<Item> list, OrderBy orderBy)
     {
 
         if (orderBy == OrderBy.Name)
@@ -90,7 +88,7 @@ public class InventoryUI : ToggleableUIMenus
         {
             return list.OrderBy(x => x.GetType().Name).ThenBy(x => x.name).ToList();
         }
-        return list;
+        return list.ToList();
     }
     // Update is called once per frame
     void Update()

@@ -7,4 +7,5 @@ public abstract class Item : ScriptableObject
     [SerializeField]
     [TextArea]
     string description;
+    public string Description { get { return description; } }
 }

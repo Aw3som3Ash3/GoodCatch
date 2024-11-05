@@ -7,5 +7,5 @@ public interface IInteractable
     }
     public bool Interact();
 
-    public string StationName();
+    public string StationName { get; }
 }

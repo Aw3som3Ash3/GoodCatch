@@ -77,9 +77,12 @@ public class PlayerController : MonoBehaviour
         if (InteractionCheck(out interactable))
         {
             interactable.Interact();
-
-            InputManager.DisablePlayer();
-            inStation = true;
+            if(interactable is Station)
+            {
+                InputManager.DisablePlayer();
+                inStation = true;
+            }
+           
         }
 
     }
@@ -117,7 +120,7 @@ public class PlayerController : MonoBehaviour
         IInteractable interactible;
         if (InteractionCheck(out interactible))
         {
-            InteractionUI.text = interactible.StationName();
+            InteractionUI.text = interactible.StationName;
         }
         else
         {

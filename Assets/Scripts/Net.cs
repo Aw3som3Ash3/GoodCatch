@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Net", menuName = "Items/Net", order = 3)]
-public class Net : Item
+public class Net : CombatItem
 {
     [SerializeField]
     float catchBonus;

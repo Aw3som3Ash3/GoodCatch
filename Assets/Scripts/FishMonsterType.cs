@@ -114,9 +114,9 @@ public class FishMonster
 
     public Sprite Icon { get { return type.Icon; } }
     public GameObject Model { get { return type.Model; } }
-    int level = 1;
-    float xp;
-    const int xpToLevelUp = 1000;
+    public int level { get; private set; } = 1;
+    public float xp { get; private set; }
+    public const int xpToLevelUp = 1000;
     Ability[] abilities;
     public Action ValueChanged;
     public Action HasFeinted;
@@ -215,7 +215,7 @@ public class FishMonster
         }
         ValueChanged?.Invoke();
     }
-    public void Restore(int health = 0, int stamina = 0)
+    public void Restore(float health = 0, float stamina = 0)
     {
         this.health += health;
         this.stamina += stamina;
