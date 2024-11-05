@@ -26321,7 +26321,7 @@ GameObject:
   - component: {fileID: 3473545076874632016}
   - component: {fileID: 5416892160705218863}
   m_Layer: 5
-  m_Name: FishventoryUI
+  m_Name: OLDFishventoryUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
