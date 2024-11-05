@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Goldy
   m_EditorClassIdentifier: 
-  model: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
+  model: {fileID: 2349082656026839355, guid: 007d6611b34028e4b8f5cd24ec5b5862, type: 3}
   fishId: 1
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: 0
+  preferredBait: []
   elements:
   - {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
-  minSpeed: 5
-  maxSpeed: 10
+  minAgility: 0
+  maxAgility: 0
   minAttack: 4
   maxAttack: 7
   minSpecial: 2
@@ -28,6 +29,8 @@ MonoBehaviour:
   maxFortitude: 12
   minSpecialFort: 4
   maxSpecialFort: 6
+  minAccuracy: 0
+  maxAccuracy: 0
   healthPerLevel: 100
   staminaPerLevel: 50
   baseAbilities:
