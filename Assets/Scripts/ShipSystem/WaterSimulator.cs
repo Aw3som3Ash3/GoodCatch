@@ -10,12 +10,15 @@ public class WaterSimulator : MonoBehaviour
     float timer;
     Vector3 originOffset;
     Mesh mesh;
+    WaterSimulator parent;
     // Start is called before the first frame update
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         FloatingOrigin.OriginShift += OnOriginShift;
         mesh = GetComponent<MeshFilter>().mesh;
+        parent= this.transform.parent?.GetComponent<WaterSimulator>();
+        
     }
 
     // Update is called once per frame
@@ -23,8 +26,23 @@ public class WaterSimulator : MonoBehaviour
     {
         //print(SineWave(Vector3.zero));
         //timer += Time.deltaTime;
-        timer = Time.time;
+        
         //timer %= 200*Mathf.PI;
+        if (parent != null)
+        {
+            waveSpeedX = parent.waveSpeedX;
+            waveHeightX = parent.waveHeightX;
+            waveHeightZ = parent.waveHeightZ;
+            waveSpeedZ = parent.waveSpeedZ;
+            waveFrequencyZ = parent.waveFrequencyZ;
+            waveFrequencyX=parent.waveFrequencyX;
+            timer = parent.timer;
+
+        }
+        else
+        {
+            timer = Time.time;
+        }
 
         meshRenderer.material.SetFloat("_speedX", waveSpeedX);
         meshRenderer.material.SetFloat("_frequencyX", waveFrequencyX);
@@ -34,9 +52,10 @@ public class WaterSimulator : MonoBehaviour
         meshRenderer.material.SetFloat("_amplitudeZ", waveHeightZ);
         meshRenderer.material.SetFloat("_time", timer);
         meshRenderer.material.SetVector("_Offset", originOffset);
-
+        
 
     }
+    
     private void OnTriggerStay(Collider other)
     {
         //other.GetComponentInParent<WaterPhysics>()?.ApplyWaterForce(this.transform.position.y+SineWave(other.transform.position));

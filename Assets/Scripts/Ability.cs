@@ -92,6 +92,20 @@ public class Ability : ScriptableObject
     {
         return availableDepths.HasFlag(depth);
     }
+    public float GetDamage(CombatManager.Turn user)
+    {
+        float damage=0;
+        if (baseDamage>0)
+        {
+            damage= baseDamage+ damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+        }
+        else if(baseDamage<0)
+        {
+            damage = -baseDamage + damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+        }
+
+        return damage;
+    }
     public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit)
     {
         if (target == null)

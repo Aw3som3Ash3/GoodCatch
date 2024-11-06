@@ -228,7 +228,7 @@ MonoBehaviour:
   - {fileID: 8619393218799556598}
   toolTip: {fileID: 874313287524988048}
   toolTipAbilityName: {fileID: 5801758178567559428}
-  textArea: {fileID: 0}
+  textArea: {fileID: 6237558851500909513}
 --- !u!1 &1641962670670828104
 GameObject:
   m_ObjectHideFlags: 0

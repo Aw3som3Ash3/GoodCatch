@@ -81,8 +81,14 @@ public class AbilityButton : MonoBehaviour
         string text="";
         if (modifiedDamage > 0)
         {
-            text += "<color=red> DAMAGE</color>";
+            text += "<color=red> DAMAGE:</color> \n"+modifiedDamage;
         }
+        else if(modifiedDamage<0)
+        {
+            text += "<color=green> HEAL:</color> \n" + modifiedDamage;
+        }
+
+        textArea.text = text;
         //var checkTypeValues = Enum.GetValues(typeof(Depth));
         for (int i = 0; i< 3; i++)
         {

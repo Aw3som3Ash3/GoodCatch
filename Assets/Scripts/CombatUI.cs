@@ -79,7 +79,7 @@ public class CombatUI : MonoBehaviour
             abilityButtons[i].OnHoverExit += OnHoverExit;
             abilityButtons[i].Subscribe(Attack);
         }
-        endTurn.onClick.AddListener(() => currentTurn.EndTurn());
+        endTurn.onClick.AddListener(() =>currentTurn.EndTurn());
         for (int i = 0; i < depthSelectors.Count; i++)
         {
             depthSelectors[i].SetIndex(i);
@@ -271,8 +271,12 @@ public class CombatUI : MonoBehaviour
     }
     public void UpdateVisuals(PlayerTurn currentTurn)
     {
-        currentTurn.NewEffect -= AddEffect;
-        currentTurn.fish.ValueChanged -= UpdateHealth;
+        if (this.currentTurn != null)
+        {
+            this.currentTurn.NewEffect -= AddEffect;
+            this.currentTurn.fish.ValueChanged -= UpdateHealth;
+        }
+       
         print(currentTurn);
         this.currentTurn = currentTurn as PlayerTurn;
         if (actionTokens != null)
@@ -294,7 +298,8 @@ public class CombatUI : MonoBehaviour
         }
         for (int i = 0; i < abilityButtons.Length; i++)
         {
-            abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i));
+            float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
+            abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i), damage);
 
         }
         ResetEffects();

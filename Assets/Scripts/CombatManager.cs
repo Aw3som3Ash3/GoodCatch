@@ -546,7 +546,7 @@ public class CombatManager : MonoBehaviour
             }
             return val;
         }
-        public Turn(CombatManager combatManager, FishMonster fish, CombatDepth startingDepth, int actionsPerTurn = 2)
+        public Turn(CombatManager combatManager, FishMonster fish, CombatDepth startingDepth, int actionsPerTurn = 1)
         {
             //this.team = team;
             this.fish = fish;
@@ -560,7 +560,7 @@ public class CombatManager : MonoBehaviour
         public virtual void StartTurn()
         {
             actionsLeft = actionsPerTurn;
-            TickEffects();
+            TickEffects(StatusEffect.EffectUsage.preTurn);
             NewTurn?.Invoke(this, team == Team.player);
 
             
@@ -581,6 +581,7 @@ public class CombatManager : MonoBehaviour
         public void EndTurn()
         {
             fish.RecoverStamina();
+            TickEffects(StatusEffect.EffectUsage.postTurn);
             TurnEnded?.Invoke();
         }
         public void Move(int depthIndex)
@@ -648,16 +649,20 @@ public class CombatManager : MonoBehaviour
             effects.Add(instance);
             NewEffect?.Invoke(instance);
         }
-        public void TickEffects()
+        public void TickEffects(StatusEffect.EffectUsage usage)
         {
             HashSet<StatusEffect.StatusEffectInstance> effectsToRemove = new HashSet<StatusEffect.StatusEffectInstance>();
             foreach (StatusEffect.StatusEffectInstance effect in effects)
             {
                 Debug.Log(effect);
-                if (!effect.DoEffect(this))
+                if(usage == effect.effectUsage)
                 {
-                    effectsToRemove.Add(effect);
+                    if (!effect.DoEffect(this))
+                    {
+                        effectsToRemove.Add(effect);
+                    }
                 }
+                    
 
             }
             foreach (var effect in effectsToRemove)
@@ -676,7 +681,7 @@ public class CombatManager : MonoBehaviour
 
 public class PlayerTurn : Turn
 {
-    public PlayerTurn(CombatManager combatManager, FishMonster fish, CombatDepth startingDepth, int actionsPerTurn = 2) : base(combatManager, fish, startingDepth, actionsPerTurn)
+    public PlayerTurn(CombatManager combatManager, FishMonster fish, CombatDepth startingDepth, int actionsPerTurn = 1) : base(combatManager, fish, startingDepth, actionsPerTurn)
     {
         this.team = Team.player;
     }
@@ -685,7 +690,7 @@ public class PlayerTurn : Turn
 
 public class EnemyTurn : Turn
 {
-    public EnemyTurn(CombatManager combatManager, FishMonster fish, CombatDepth startingDepth, int actionsPerTurn = 2) : base(combatManager, fish, startingDepth, actionsPerTurn)
+    public EnemyTurn(CombatManager combatManager, FishMonster fish, CombatDepth startingDepth, int actionsPerTurn =1 ) : base(combatManager, fish, startingDepth, actionsPerTurn)
     {
         this.team = Team.enemy;
     }

@@ -10,8 +10,13 @@ public abstract class StatusEffect : ScriptableObject
     [SerializeField]
     Sprite icon;
     public Sprite Icon { get { return icon; } }
-
-
+    public enum EffectUsage
+    {
+        preTurn,
+        postTurn
+    }
+    [SerializeField]
+    EffectUsage effectUsage;
 
 
     public StatusEffectInstance NewInstance()
@@ -25,6 +30,7 @@ public abstract class StatusEffect : ScriptableObject
         public int remainingDuration { get; private set; }
         public StatusEffect effect { get; private set; }
         public Action<int> DurationChanged;
+        public EffectUsage effectUsage { get { return effect.effectUsage; } }
         public StatusEffectInstance(StatusEffect effect)
         {
             remainingDuration = effect.duration;
