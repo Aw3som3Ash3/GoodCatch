@@ -54,9 +54,6 @@ public class WaterSimulator : MonoBehaviour
             }
         }
         
-        
-        
-
         meshRenderer.material.SetFloat("_speedX", waveSpeedX);
         meshRenderer.material.SetFloat("_frequencyX", waveFrequencyX);
         meshRenderer.material.SetFloat("_amplitudeX", waveHeightX);
