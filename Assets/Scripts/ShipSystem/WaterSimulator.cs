@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WaterSimulator : MonoBehaviour
@@ -7,10 +8,15 @@ public class WaterSimulator : MonoBehaviour
     float waveHeightX, waveFrequencyX, waveSpeedX;
     [SerializeField]
     float waveHeightZ, waveFrequencyZ, waveSpeedZ;
+    [SerializeField]
+    bool useTide;
+    [SerializeField]
+    float tideMultiplier;
     float timer;
     Vector3 originOffset;
     Mesh mesh;
     WaterSimulator parent;
+    float tideLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +43,19 @@ public class WaterSimulator : MonoBehaviour
             waveFrequencyZ = parent.waveFrequencyZ;
             waveFrequencyX=parent.waveFrequencyX;
             timer = parent.timer;
-
+            useTide = parent.useTide;
         }
         else
         {
             timer = Time.time;
+            if (useTide)
+            {
+                tideLevel = Mathf.Sin(GameManager.Instance.dayTime * (2 * Mathf.PI / 12))*tideMultiplier;
+            }
         }
+        
+        
+        
 
         meshRenderer.material.SetFloat("_speedX", waveSpeedX);
         meshRenderer.material.SetFloat("_frequencyX", waveFrequencyX);
@@ -51,9 +64,7 @@ public class WaterSimulator : MonoBehaviour
         meshRenderer.material.SetFloat("_frequencyZ", waveFrequencyZ);
         meshRenderer.material.SetFloat("_amplitudeZ", waveHeightZ);
         meshRenderer.material.SetFloat("_time", timer);
-        meshRenderer.material.SetVector("_Offset", originOffset);
-        
-
+        meshRenderer.material.SetVector("_Offset", originOffset+Vector3.up*tideLevel);
     }
     
     private void OnTriggerStay(Collider other)
@@ -74,7 +85,7 @@ public class WaterSimulator : MonoBehaviour
     }
     float SineWave(float position, float waveFrequency, float speed, float waveHeight)
     {
-        return Mathf.Sin((position * waveFrequency) - timer * speed) * waveHeight;
+        return (Mathf.Sin((position * waveFrequency) - timer * speed) * waveHeight)+tideLevel;
     }
     void OnOriginShift(Vector3 position)
     {

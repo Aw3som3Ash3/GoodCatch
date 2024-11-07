@@ -1800,7 +1800,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 248148819934035266, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: dampenForce
-      value: -9
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 484186587528020595, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1856,7 +1856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8515819698615606438, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: m_Drag
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public ItemInventory PlayerInventory { get; private set; } = new ItemInventory();
 
     List<FishMonster> fishesToFight;
-    float dayTime;
+    public float dayTime { get; private set; }
     public int Day { get; private set; }
     [SerializeField]
     [Range(0,24)]
