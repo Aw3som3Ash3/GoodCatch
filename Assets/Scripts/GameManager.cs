@@ -39,8 +39,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     Inn lastInnVisited;
-    [SerializeField]
-    LevelSetup sceneSetup;
 
     [Flags]
     public enum TimeOfDay

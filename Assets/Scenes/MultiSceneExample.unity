@@ -379,7 +379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1070035449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,9 +950,8 @@ MonoBehaviour:
   secondsPerHour: 10
   testfisth: {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
   tempTimeOfDayText: {fileID: 0}
-  postProcessing: {fileID: 0}
+  postProcessing: {fileID: 11400000, guid: 16f67f79273697442a16e80ef00755a8, type: 2}
   lastInnVisited: {fileID: 0}
-  sceneSetup: {fileID: 0}
 --- !u!4 &1670078517
 Transform:
   m_ObjectHideFlags: 0
