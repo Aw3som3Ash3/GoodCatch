@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     Inn lastInnVisited;
+    [SerializeField]
+    LevelSetup sceneSetup;
 
     [Flags]
     public enum TimeOfDay
@@ -116,8 +118,12 @@ public class GameManager : MonoBehaviour
         {TimeOfDay.LateNight,21},
         {TimeOfDay.Midnight,0}
     };
+
+    
+
     private void Awake()
     {
+       
         if (Instance == null)
         {
             Instance = this;
