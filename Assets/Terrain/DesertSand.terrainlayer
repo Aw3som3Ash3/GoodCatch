@@ -7,8 +7,8 @@ TerrainLayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DesertSand
-  m_DiffuseTexture: {fileID: 2800000, guid: e024c4e5a9c07144986d82fc26b8e1d3, type: 3}
-  m_NormalMapTexture: {fileID: 0}
+  m_DiffuseTexture: {fileID: 2800000, guid: 4cd8be514d734374a8c3d0d33d430d92, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: 31c19fb374a698142968ac3adb2c412a, type: 3}
   m_MaskMapTexture: {fileID: 0}
   m_TileSize: {x: 10, y: 10}
   m_TileOffset: {x: 149, y: 0}
