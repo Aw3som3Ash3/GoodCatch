@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a516e27e265dec84e9e154d843516bbf, type: 3}
   m_Name: SceneLayout
   m_EditorClassIdentifier: 
-  sceneSetup: []
+  sceneSetup:
+  - m_Path: Assets/Scenes/MultiSceneExample.unity
+    m_IsLoaded: 1
+    m_IsActive: 1
+    m_IsSubScene: 0
+  - m_Path: Assets/Scenes/Islands/Desert Island.unity
+    m_IsLoaded: 1
+    m_IsActive: 0
+    m_IsSubScene: 0
+  - m_Path: Assets/Scenes/Islands/JungleScene.unity
+    m_IsLoaded: 1
+    m_IsActive: 0
+    m_IsSubScene: 0

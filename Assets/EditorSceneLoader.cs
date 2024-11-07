@@ -18,7 +18,7 @@ public class EditorSceneLoader : MonoBehaviour
         {
             EditorSceneManager.sceneOpened -= EditorLoadScene;
             EditorSceneManager.sceneClosing -= SceneClosed;
-            sceneSetup.sceneSetup = EditorSceneManager.GetSceneManagerSetup();
+            //sceneSetup.sceneSetup = EditorSceneManager.GetSceneManagerSetup();
 
         }
     }
