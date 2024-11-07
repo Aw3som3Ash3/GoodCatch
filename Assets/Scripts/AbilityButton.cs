@@ -16,6 +16,10 @@ public class AbilityButton : MonoBehaviour
     int index;
     [SerializeField]
     Button button;
+    [SerializeField]
+    Image[] useDepthsIcons;
+    [SerializeField]
+    Image[] attackDepthsIcons;
 
     [Header("Tooltip")]
     [SerializeField]
@@ -23,6 +27,7 @@ public class AbilityButton : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI toolTipAbilityName,textArea;
     public Action<int> OnHover, OnHoverExit;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,17 +73,44 @@ public class AbilityButton : MonoBehaviour
     {
         this.index = index;
     }
-    public void UpdateVisuals(string name, Sprite sprite,float hitChance=0,float damage=1,List<Ability.EffectChance> effects=null,int forcedMovement=0)
+    public void UpdateVisuals(Ability ability,float modifiedDamage=0)
     {
         //this.icon.sprite = sprite;
-        textMesh.text = name;
-        toolTipAbilityName.text = name;
+        textMesh.text = ability.name;
+        toolTipAbilityName.text = ability.name;
         string text="";
-        if (damage > 0)
+        if (modifiedDamage > 0)
         {
-            text += "<color=red> DAMAGE</color>";
+            text += "<color=red> DAMAGE:</color> \n"+modifiedDamage;
+        }
+        else if(modifiedDamage<0)
+        {
+            text += "<color=green> HEAL:</color> \n" + modifiedDamage;
         }
 
+        textArea.text = text;
+        //var checkTypeValues = Enum.GetValues(typeof(Depth));
+        for (int i = 0; i< 3; i++)
+        {
+            
+            if(ability.AvailableDepths.HasFlag((Depth)(1 << i)))
+            {
+                useDepthsIcons[i].color = Color.yellow;
+            }
+            else
+            {
+                useDepthsIcons[i].color = Color.gray;
+            }
+            if (ability.TargetableDepths.HasFlag((Depth)(1 << i)))
+            {
+                attackDepthsIcons[i].color = ability.TargetedTeam == Ability.TargetTeam.enemy? Color.red:Color.green;
+            }
+            else
+            {
+                attackDepthsIcons[i].color = Color.gray;
+            }
+        }
+       
     }
 
     public void Subscribe(Action<int> action)

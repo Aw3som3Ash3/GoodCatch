@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7772733546576553254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3462820021772500793}
+  m_Layer: 0
+  m_Name: Respawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3462820021772500793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772733546576553254}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.736, y: -0.473, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4859641630665399952}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4970376594536249723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,7 +101,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ff5b4509f6910104f8d7f2f97e477dbc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1451e8f7267f94140a8a7d0d5656771c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3462820021772500793}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1451e8f7267f94140a8a7d0d5656771c, type: 3}
       insertIndex: -1
@@ -79,6 +113,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3358859170724465239}
   m_SourcePrefab: {fileID: 100100000, guid: 1451e8f7267f94140a8a7d0d5656771c, type: 3}
+--- !u!4 &4859641630665399952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1451e8f7267f94140a8a7d0d5656771c, type: 3}
+  m_PrefabInstance: {fileID: 4970376594536249723}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5204818649725174826 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1451e8f7267f94140a8a7d0d5656771c, type: 3}
@@ -96,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27ed046e071cfb46a9026157a72d990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 3462820021772500793}
 --- !u!136 &3358859170724465239
 CapsuleCollider:
   m_ObjectHideFlags: 0

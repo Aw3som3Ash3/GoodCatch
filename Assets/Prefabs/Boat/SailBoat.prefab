@@ -1788,7 +1788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bouyancy: 1
-  dampenForce: 0
+  dampenForce: -5
   waterHeight: 0
   smoothTime: 0.02
   waterSimulationSimPointGroup: {fileID: 484186587528020595}

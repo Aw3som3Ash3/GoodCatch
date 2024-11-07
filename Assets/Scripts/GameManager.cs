@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public ItemInventory PlayerInventory { get; private set; } = new ItemInventory();
 
     List<FishMonster> fishesToFight;
-    float dayTime;
+    public float dayTime { get; private set; }
     public int Day { get; private set; }
     [SerializeField]
     [Range(0,24)]
@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     VolumeProfile postProcessing;
+
+    [SerializeField]
+    Inn lastInnVisited;
 
     [Flags]
     public enum TimeOfDay
@@ -124,8 +127,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
+        Inn.InnVisited += (inn) => lastInnVisited = inn;
         FishingMiniGame.SuccesfulFishing += () => { mainEventSystem.enabled = true; };
+    }
+    public void PlayerLost()
+    {
+        FindObjectOfType<PlayerController>().transform.position=lastInnVisited.GetRepsawnPoint();
+        AdvanceTime(3);
+        RestoreFish();
     }
     // Start is called before the first frame update
     void Start()

@@ -39,6 +39,7 @@ public class CombatVisualizer : MonoBehaviour
         fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90, 0);
         fishObject.SetFish(turn);
         GameObject uiObj= Instantiate(fishUIPrefab, canvas.transform);
+        uiObj.transform.SetSiblingIndex(0);
         FishUI[fishObject] = uiObj.GetComponent<FishUI>();
         FishUI[fishObject].SetFish(turn, fishObject.transform);
         fishObject.ObjectDestroyed = () => { Destroy(FishUI[fishObject].gameObject); FishUI.Remove(fishObject); };

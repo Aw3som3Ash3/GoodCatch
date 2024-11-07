@@ -122,6 +122,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &33721059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 41092281630482985, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+  m_PrefabInstance: {fileID: 2698531086630711969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &33721060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33721059}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b635a2c90ec1154c93290288868be6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishType: {fileID: 11400000, guid: 83b76f7996fb49142a3e9d1b11213e7d, type: 2}
 --- !u!1 &287359335 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
@@ -728,7 +746,7 @@ Transform:
   m_GameObject: {fileID: 975675059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.27688605, z: 0, w: 0.96090275}
-  m_LocalPosition: {x: 356.1473, y: 2.5470002, z: 405.4188}
+  m_LocalPosition: {x: 356.1473, y: 2.047, z: 405.4188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -926,6 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27ed046e071cfb46a9026157a72d990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}
 --- !u!65 &1270819249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1589,15 +1608,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0000019
+      value: 1.0000261
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6100001
+      value: 1.1099999
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.999992
+      value: -4.9999957
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1673,7 +1692,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 41092281630482985, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 33721060}
   m_SourcePrefab: {fileID: 100100000, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
 --- !u!1 &5256609871902326083
 GameObject:
@@ -1776,6 +1798,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 248148819934035266, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
+      propertyPath: dampenForce
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 484186587528020595, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 484186587528020595, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 4036825144464445255, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 319
@@ -1819,6 +1853,10 @@ PrefabInstance:
     - target: {fileID: 5060849524069524017, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: m_Name
       value: SailBoat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8515819698615606438, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
+      propertyPath: m_Drag
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

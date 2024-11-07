@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f39fd4c2835cb94cad2e89c37922c49, type: 3}
   m_Name: Accuracy
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 1
   icon: {fileID: 0}
+  effectUsage: 1
   agility: 0
   accuracy: 100
   attack: 0
