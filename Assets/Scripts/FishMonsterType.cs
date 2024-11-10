@@ -28,8 +28,8 @@ public class FishMonsterType : ScriptableObject
     public int fishId;
 
     [SerializeField]
-    Sprite icon;
-    public Sprite Icon { get { return icon; } }
+    Texture2D icon;
+    public Texture2D Icon { get { return icon; } }
     [SerializeField]
     Depth homeDepth;
     [SerializeField]
@@ -192,7 +192,7 @@ public class FishMonster
     public float stamina { get; private set; }
     public float maxStamina { get; private set; }
 
-    public Sprite Icon { get { return type.Icon; } }
+    public Texture2D Icon { get { return type.Icon; } }
     public GameObject Model { get { return type.Model; } }
     public int level { get; private set; } = 1;
     public float xp { get; private set; }

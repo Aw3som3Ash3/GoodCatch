@@ -5,7 +5,9 @@ public abstract class Item : ScriptableObject
 {
     public string Type { get { return this.GetType().ToString(); } }
     [SerializeField]
-    Sprite icon;
+    Texture2D icon;
+    public Texture2D Icon { get { return icon; } }
+
     [SerializeField]
     [TextArea]
     string description;

@@ -28,7 +28,7 @@ public class PartyUI : ToggleableUIMenus
         fishventory = GameManager.Instance.PlayerFishventory;
         for (int i = 0; i < fishventory.Fishies.Count; i++)
         {
-            partyIcon[i].SetIcon(fishventory.Fishies[i].Icon, Color.cyan);
+            //partyIcon[i].SetIcon(fishventory.Fishies[i].Icon, Color.cyan);
             Debug.Log(partyIcon[i]);
         }
     }

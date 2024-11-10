@@ -263,7 +263,6 @@ GameObject:
   - component: {fileID: 5019000861340696945}
   - component: {fileID: 2791276364610433129}
   - component: {fileID: 7729244121904730755}
-  - component: {fileID: 2183742266230968989}
   m_Layer: 5
   m_Name: FishUI
   m_TagString: Untagged
@@ -331,19 +330,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 5
---- !u!114 &2183742266230968989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8857152815139288913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 090f3e1d00584354fb05224de24a8a53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 7499861613257501235}
-  staminaBar: {fileID: 8859675157158557759}
-  statusBar: {fileID: 2394918348862707392}
-  statusIconPrefab: {fileID: 8982980438767600967, guid: ab365409513eea0478cce8339eae301a, type: 3}

@@ -28,7 +28,7 @@ public class TurnListUI : MonoBehaviour
         foreach (CombatManager.Turn turn in turns)
         {
             FishIcon turnIcon = Instantiate(turnPreviewPrefab, turnBar).GetComponent<FishIcon>();
-            turnIcon.SetIcon(turn.fish.Icon, turn.team == CombatManager.Team.player ? Color.green : Color.red);
+            //turnIcon.SetIcon(turn.fish.Icon, turn.team == CombatManager.Team.player ? Color.green : Color.red);
             turnToIcon[turn] = turnIcon;
             turnIcons.Add(turnIcon);
 

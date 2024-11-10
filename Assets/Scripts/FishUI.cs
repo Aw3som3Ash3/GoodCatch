@@ -1,41 +1,67 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
-public class FishUI : MonoBehaviour
+public class FishUI : VisualElement
 {
     CombatManager.Turn turn;
     [SerializeField]
-    Image healthBar, staminaBar;
+    ProgressBar healthBar, staminaBar;
     [SerializeField]
-    Transform statusBar;
+    VisualElement statusBar;
 
-    [SerializeField]
-    GameObject statusIconPrefab;
+
 
     Transform target;
     Dictionary<StatusEffect.StatusEffectInstance, StatusIcon> statusIcon = new Dictionary<StatusEffect.StatusEffectInstance, StatusIcon>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        //this.transform.rotation=Camera.main.transform.rotation;
-         
-    }
-    private void OnEnable()
+
+    public new class UxmlFactory : UxmlFactory<FishUI, FishUI.UxmlTraits>
     {
 
     }
+    public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
+    {
 
+    }
+    public FishUI()
+    {
+        VisualElement root = this;
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/FishConditionBar.uxml");
+        
+        visualTreeAsset.CloneTree(root);
+        this.style.position = Position.Absolute;
+    }
+
+    public FishUI(CombatManager.Turn turn, Transform target)
+    {
+        
+        VisualElement root = this;
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/FishConditionBar.uxml");
+        visualTreeAsset.CloneTree(root);
+        this.style.position = Position.Absolute;
+        var origin = this.style.transformOrigin.value;
+        //origin.x = 500f;
+        this.style.transformOrigin = origin;
+        healthBar = this.Q<ProgressBar>("HealthBar");
+        staminaBar = this.Q<ProgressBar>("StaminaBar");
+        SetFish(turn, target);
+    }
     // Update is called once per frame
-    void Update()
+    public void UpdatePosition()
     {
-        if (transform != null)
+        if (target != null)
         {
-            this.GetComponent<RectTransform>().position = Camera.main.WorldToScreenPoint(target.position - Vector3.up * 1.25f);
+            
+            Vector2 pos = Camera.main.WorldToViewportPoint(target.transform.position+Vector3.down);
+            Debug.Log(pos);
+            this.transform.position = new Vector2(pos.x * this.parent.worldBound.width, (1-pos.y) * this.parent.worldBound.height);
         }
-
     }
-    public void SetFish(CombatManager.Turn turn, Transform target)
+
+    void SetFish(CombatManager.Turn turn, Transform target)
     {
 
         //this.fish.ValueChanged -= UpdateUI;
@@ -45,30 +71,31 @@ public class FishUI : MonoBehaviour
         UpdateUI();
         this.turn.NewEffect += NewEffect;
         this.turn.EffectRemoved += EffectRemoved;
+        
     }
 
     private void EffectRemoved(StatusEffect.StatusEffectInstance instance)
     {
 
-        Destroy(statusIcon[instance].gameObject);
+        //Destroy(statusIcon[instance].gameObject);
         statusIcon.Remove(instance);
 
     }
 
     private void NewEffect(StatusEffect.StatusEffectInstance instance)
     {
-        var icon = Instantiate(statusIconPrefab, statusBar).GetComponent<StatusIcon>();
+        //var icon = Instantiate(statusIconPrefab, statusBar).GetComponent<StatusIcon>();
         Debug.Log(instance);
-        Debug.Log(icon);
-        icon.SetEffect(instance);
-        statusIcon.Add(instance, icon);
+        //Debug.Log(icon);
+        //icon.SetEffect(instance);
+        //statusIcon.Add(instance, icon);
 
     }
 
     void UpdateUI()
     {
-        healthBar.fillAmount = turn.Health / turn.MaxHealth;
-        staminaBar.fillAmount = turn.Stamina / turn.MaxStamina;
+        healthBar.value = turn.Health / turn.MaxHealth;
+        staminaBar.value = turn.Stamina / turn.MaxStamina;
     }
 
     private void OnDestroy()

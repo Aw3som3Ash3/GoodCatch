@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     GameObject sun;
     [SerializeField]
     FishMonsterType testfisth;
+    [SerializeField]
+    Item[] startingItems;
     bool rewardFish;
     EventSystem mainEventSystem;
     [SerializeField]
@@ -150,6 +152,10 @@ public class GameManager : MonoBehaviour
 
         mainEventSystem = EventSystem.current;
         sun = FindObjectOfType<Light>().gameObject;
+        for(int i=0;i<startingItems.Length;i++)
+        {
+            PlayerInventory.AddItem(startingItems[i]);
+        }
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
 
@@ -264,7 +270,7 @@ public class GameManager : MonoBehaviour
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
         mainEventSystem.enabled = false;
-        SceneManager.LoadScene("BattleScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("BattleScene 1", LoadSceneMode.Additive);
         
         fishesToFight = enemyFishes;
         SceneManager.sceneLoaded += SetUpCombat;
@@ -273,7 +279,7 @@ public class GameManager : MonoBehaviour
 
     private void SetUpCombat(Scene arg0, LoadSceneMode arg1)
     {
-        if (arg0.name == "BattleScene")
+        if (arg0.name == "BattleScene 1")
         {
 
             GameObject.FindObjectOfType<CombatManager>().NewCombat(PlayerFishventory.Fishies.ToList(), fishesToFight, rewardFish);

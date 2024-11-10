@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="height: 75px; width: 75px; align-self: auto; align-items: auto; justify-content: flex-end; flex-direction: column; flex-basis: auto;">
+        <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Amount" style="height: 14px; width: 9px; align-self: flex-end; left: auto; right: -11px; transform-origin: right bottom; flex-direction: column; top: 10px; margin-top: 2px; white-space: nowrap;" />
+    </ui:Button>
+</ui:UXML>

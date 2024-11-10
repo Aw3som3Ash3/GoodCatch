@@ -1,274 +1,134 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class CombatUI : MonoBehaviour
+public class CombatUI : VisualElement
 {
-    [SerializeField]
-    Button move, goFirst, endTurn,catchButton;
-    [SerializeField]
-    AbilityButton[] abilityButtons;
-    [SerializeField]
-    Image healthBar,staminaBar,staminaBarBack;
-    [SerializeField]
-    Transform effectsBar;
-    [SerializeField]
-    StatusIcon statusIconPrefab;
-    //public Action GoFirstAction,EndTurn;
-    Action<int> DepthSelection;
-    public Action<int, int> AbilityAction;
-    public Action<FishMonster, int> MoveAction;
-    public Action UseNet;
-    bool isActive;
-    [SerializeField]
-    RectTransform turnMarker;
-    [SerializeField]
-    GameObject depthSelectorMark;
-    [SerializeField]
-    List<DepthSelectors> depthSelectors;
-    Transform turnTarget;
 
-    //FishMonster currentFish;
+    TabbedView tabbedView;
     PlayerTurn currentTurn;
-
-    [SerializeField]
-    RectTransform actionsLeftBar;
-    [SerializeField]
-    GameObject actionTokenPrefab;
-    List<ActionToken> actionTokens = new List<ActionToken>();
-
-    EventSystem eventSystem;
-    int selected;
-    private void Awake()
+    Button moveButton,endTurnButton;
+    Button[] abilityButtons=new Button[4];
+    ProgressBar healthBar, staminaBar;
+    VisualElement turnMarker;
+    VisualElement turnList;
+    VisualElement itemBar;
+    ItemInventory inventory;
+    //public Action MoveAction,EndTurnAction;
+    //public Action<int> AbilityAction;
+    public new class UxmlFactory : UxmlFactory<CombatUI, CombatUI.UxmlTraits>
     {
-        
-        actionTokens.Clear();
-        CombatManager.Turn.NewTurn += NewTurn;
-        
-        
+
     }
-    void NewTurn(CombatManager.Turn turn,bool isPlayer)
+    public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
     {
-        if (isPlayer && turn is PlayerTurn) 
-        { 
-            UpdateVisuals(turn as PlayerTurn); 
-            EnableButtons(); 
-        } else 
-        { 
-            DisableButtons(); 
-        }
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        eventSystem = EventSystem.current;
-        InputManager.Input.UI.Enable();
-        InputManager.Input.UI.RightClick.performed += (x) => StopTargeting();
-        move.onClick.AddListener(() => Move());
-        catchButton.onClick.AddListener(() => UseNet?.Invoke());
-        //goFirst.onClick.AddListener(() => GoFirstAction());
 
-       
+    }
+    public CombatUI() 
+    {
+        Initial();
+    }
+    public void Initial()
+    {
+        VisualElement root = this;
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatUI.uxml");
+        visualTreeAsset.CloneTree(root);
+
+        this.StretchToParentSize();
+        this.pickingMode = PickingMode.Ignore;
+        this.pickingMode = PickingMode.Ignore;
+        tabbedView = this.Q<CombatTabs>("CombatTabs");
+        moveButton = tabbedView.Q<Button>("Move");
+        moveButton.clicked +=Move;
         for (int i = 0; i < abilityButtons.Length; i++)
         {
-
-            abilityButtons[i].SetIndex(i);
-            abilityButtons[i].OnHover += OnHover;
-            abilityButtons[i].OnHoverExit += OnHoverExit;
-            abilityButtons[i].Subscribe(Attack);
+            abilityButtons[i] = tabbedView.Q<Button>("ability" + i);
+            int index = i;
+            abilityButtons[i].clicked += () => UseAbility(index);
         }
-        endTurn.onClick.AddListener(() =>currentTurn.EndTurn());
-        for (int i = 0; i < depthSelectors.Count; i++)
-        {
-            depthSelectors[i].SetIndex(i);
-            depthSelectors[i].Selected = (i) => { DepthSelection?.Invoke(i); StopTargeting(); };
-            depthSelectors[i].Navigate += OnNaviagte;
-
-        }
-
+        endTurnButton = this.Q<Button>("EndTurn");
+        endTurnButton.clicked += EndTurn;
+        staminaBar = this.Q<ProgressBar>("StaminaBar");
+        healthBar = this.Q<ProgressBar>("HealthBar");
+        turnMarker = this.Q("TurnMarker");
+        turnList = this.Q("TurnList");
+        itemBar = this.Q("Items");
+        //this.parent.pickingMode = PickingMode.Ignore;
+        //CombatManager.Turn.NewTurn += NewTurn;
     }
-    private void OnDestroy()
+    public void SetTurnUI(List<CombatManager.Turn> turns)
     {
-        CombatManager.Turn.NewTurn-=NewTurn;
+        turnList.Clear();
+        for (int i = 0; i < turns.Count; i++)
+        {
+            turnList.Add(new TurnListIcon(turns[i].fish.Icon, turns[i].team));
+        }
     }
-    void OnNaviagte(float i)
+    public void NextTurn()
     {
-        float value = i;
-
-        if (value > 0)
-        {
-            selected++;
-
-        }
-        else if (value < 0)
-        {
-            selected--;
-
-        }
-        selected = Mathf.Clamp(selected, 0, depthSelectors.Count - 1);
-        print(selected);
-
-        eventSystem.SetSelectedGameObject(depthSelectors[selected].gameObject);
+        var turn = turnList.ElementAt(0);
+        turnList.Remove(turn);
+        turnList.Add(turn);
 
     }
-    void OnHover(int index)
+    void EndTurn()
     {
-        print("hovered: " + index);
-        print(currentTurn);
-        if (!currentTurn.ActionLeft || !currentTurn.AbilityUsable(index))
-        {
-            return;
-
-        }
-        staminaBar.fillAmount = (currentTurn.Stamina - currentTurn.fish.GetAbility(index).StaminaUsage)/ currentTurn.MaxStamina;
-        foreach (DepthSelectors selector in depthSelectors)
-        {
-            if (currentTurn.DepthTargetable(index, selector.CurrentDepth))
-            {
-                selector.PreviewSelection(true);
-
-            }
-            else
-            {
-                selector.PreviewSelection(false);
-            }
-
-        }
+        currentTurn.EndTurn();
     }
-
     void Move()
     {
-        if (!currentTurn.ActionLeft)
-        {
-            return;
-        }
-        //DepthSelection = (i) => MoveAction?.Invoke(this.currentTurn.fish, i);
-        DepthSelection = (i) => { currentTurn.Move(i); EnableButtons(); UpdateActionsLeft(); };
-        StartTargeting();
+        currentTurn.Move();
     }
-    void Attack(int abilityIndex)
+    public void NewTurn(CombatManager.Turn turn, bool isPlayer)
     {
-        if (!currentTurn.ActionLeft || !currentTurn.AbilityUsable(abilityIndex))
+        if (isPlayer && turn is PlayerTurn)
         {
-            return;
-        }
-        if (currentTurn.fish.GetAbility(abilityIndex).Targeting == Ability.TargetingType.all)
-        {
-            currentTurn.UseAbility(abilityIndex, -1);
+            UpdateVisuals(turn as PlayerTurn);
             EnableButtons();
-            UpdateActionsLeft();
-
         }
         else
         {
-            DepthSelection = (i) => { currentTurn.UseAbility(abilityIndex, i); EnableButtons(); UpdateActionsLeft(); };
-            StartTargeting(abilityIndex, currentTurn.fish.GetAbility(abilityIndex).TargetableDepths);
+            DisableButtons();
         }
-
-
     }
-    void OnHoverExit(int index)
+    void UseAbility(int index)
     {
-        foreach (DepthSelectors selector in depthSelectors)
-        {
-            selector.PreviewSelection(false);
-        }
-        if (DepthSelection == null)
-        {
-            staminaBar.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
-        }
-        
+        currentTurn.UseAbility(index);
+       // AbilityAction?.Invoke(index);
     }
     public void EnableButtons()
     {
 
-        move.enabled = true;
-        goFirst.enabled = true;
+        moveButton.SetEnabled(true);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
             if (currentTurn.AbilityUsable(i))
             {
-                abilityButtons[i].enabled = true;
+                abilityButtons[i].SetEnabled(true);
             }
             else
             {
-                abilityButtons[i].enabled = false;
+                abilityButtons[i].SetEnabled(false);
             }
 
         }
-        endTurn.enabled = true;
-        isActive = true;
+        endTurnButton.SetEnabled(true);
+        
 
     }
     public void DisableButtons()
     {
-        move.enabled = false;
-        goFirst.enabled = false;
-        foreach (AbilityButton button in abilityButtons)
+        moveButton.SetEnabled(false);
+        foreach (Button button in abilityButtons)
         {
-            button.enabled = false;
+            button.SetEnabled(false);
         }
-        endTurn.enabled = false;
-        isActive = false;
-    }
-    public void SetTurnMarker(Transform target)
-    {
-        turnTarget = target;
-
+        endTurnButton.SetEnabled(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (turnTarget == null)
-        {
-            return;
-        }
-        turnMarker.position = Camera.main.WorldToScreenPoint(turnTarget.position + Vector3.up * 1.5f);
-
-    }
-    void StartTargeting(int index, Depth targetableDepths)
-    {
-        foreach (DepthSelectors selector in depthSelectors)
-        {
-            if (currentTurn.DepthTargetable(index, selector.CurrentDepth))
-            {
-                eventSystem.SetSelectedGameObject(selector.gameObject);
-                selected = depthSelectors.IndexOf(selector);
-                selector.SetSelection(true);
-            }
-            else
-            {
-                selector.SetSelection(false);
-            }
-
-        }
-
-
-    }
-    void StartTargeting()
-    {
-        eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
-        foreach (DepthSelectors selector in depthSelectors)
-        {
-
-            selector.SetSelection(true);
-        }
-
-    }
-    void StopTargeting()
-    {
-        foreach (DepthSelectors selector in depthSelectors)
-        {
-            selector.SetSelection(false);
-            selector.PreviewSelection(false);
-        }
-        DepthSelection = null;
-        staminaBar.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
-        //isActive = true;
-    }
     public void UpdateVisuals(PlayerTurn currentTurn)
     {
         if (this.currentTurn != null)
@@ -276,90 +136,102 @@ public class CombatUI : MonoBehaviour
             this.currentTurn.NewEffect -= AddEffect;
             this.currentTurn.fish.ValueChanged -= UpdateHealth;
         }
-       
-        print(currentTurn);
-        this.currentTurn = currentTurn as PlayerTurn;
-        if (actionTokens != null)
-        {
-            foreach (var token in actionTokens)
-            {
-                if (token != null)
-                {
-                    Destroy(token.gameObject);
-                }
-                
-            }
-            actionTokens.Clear();
-        }
 
-        for (int i = 0; i < currentTurn.actionsPerTurn; i++)
-        {
-            actionTokens.Add(Instantiate(actionTokenPrefab, actionsLeftBar).GetComponent<ActionToken>());
-        }
+        Debug.Log(currentTurn);
+        this.currentTurn = currentTurn as PlayerTurn;
+
+
         for (int i = 0; i < abilityButtons.Length; i++)
         {
             float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
-            abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i), damage);
-
+            //abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i), damage);
+            abilityButtons[i].text = currentTurn.fish.GetAbility(i).name;
         }
-        ResetEffects();
-        SetEffects();
-        currentTurn.NewEffect += AddEffect;
-        currentTurn.fish.ValueChanged += UpdateHealth;
-        UpdateHealth();
-    }
-    public void UpdateActionsLeft()
-    {
-      
+        //if (actionTokens != null)
+        //{
+        //    foreach (var token in actionTokens)
+        //    {
+        //        if (token != null)
+        //        {
+        //            Destroy(token.gameObject);
+        //        }
+
+        //    }
+        //    actionTokens.Clear();
+        //}
+
+        //for (int i = 0; i < currentTurn.actionsPerTurn; i++)
+        //{
+        //    actionTokens.Add(Instantiate(actionTokenPrefab, actionsLeftBar).GetComponent<ActionToken>());
+        //}
+
         //ResetEffects();
         //SetEffects();
-        for (int i = currentTurn.actionsLeft; i < actionTokens.Count; i++)
+        //currentTurn.NewEffect += AddEffect;
+        //currentTurn.fish.ValueChanged += UpdateHealth;
+        UpdateHealth();
+    }
+
+    private void UpdateHealth()
+    {
+        healthBar.value = currentTurn.Health/currentTurn.MaxHealth;
+        staminaBar.value = currentTurn.Stamina/currentTurn.MaxStamina;
+        
+    }
+    public void SetInventory(ItemInventory inv)
+    {
+        this.inventory = inv;
+        var combatItems = inv.GetDictionaryOfItems<CombatItem>();
+        foreach (var combatItem in combatItems)
         {
-            actionTokens[i].Use();
+            var itemUI = new CombatItemUI(combatItem.Key, combatItem.Value);
+            itemBar.Add(itemUI);
+            itemUI.Clicked+=UseItem;
+
         }
     }
-    void UpdateHealth()
+    
+    public void UpdateInventory()
     {
-        healthBar.fillAmount = currentTurn.Health / currentTurn.MaxHealth;
-        staminaBar.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
-        staminaBarBack.fillAmount = currentTurn.Stamina / currentTurn.MaxStamina;
-    }
-    private void ResetEffects()
-    {
-
-        foreach(RectTransform child in effectsBar)
+        var combatItems = inventory.GetDictionaryOfItems<CombatItem>();
+        foreach(CombatItemUI uiItem in itemBar.Children())
         {
-            Destroy(child.gameObject);
-        }
-
-    }
-
-    private void SetEffects()
-    {
-        foreach(var effect in currentTurn.effects)
-        {
-            if (effect.remainingDuration > 0)
+            if (combatItems.ContainsKey(uiItem.item))
             {
-                var icon = Instantiate(statusIconPrefab, effectsBar).GetComponent<StatusIcon>();
-                Debug.Log(effect);
-                Debug.Log(icon);
-                icon.SetEffect(effect);
-                Debug.Log("setting effcts");
-                
+                uiItem.SetAmount(combatItems[uiItem.item]);
+            }
+            else
+            {
+                itemBar.Remove(uiItem);
             }
            
         }
-        
+        //foreach (var combatItem in combatItems)
+        //{
+        //    var itemUI = new CombatItemUI(combatItem.Key, combatItem.Value);
+        //    itemBar.Add(itemUI);
+        //    itemUI.Clicked += UseItem;
 
+        //}
     }
-
-    void AddEffect(StatusEffect.StatusEffectInstance effect)
+    void UseItem(Item item)
     {
-        var icon = Instantiate(statusIconPrefab, effectsBar).GetComponent<StatusIcon>();
-        Debug.Log(effect);
-        Debug.Log(icon);
-        icon.SetEffect(effect);
-        Debug.Log("setting effcts");
+        currentTurn.UseItem(item);
     }
-
+    private void AddEffect(StatusEffect.StatusEffectInstance instance)
+    {
+        throw new NotImplementedException();
+    }
+    public void SetTurnMarker(Transform target)
+    {
+        Vector2 pos= Camera.main.WorldToViewportPoint( target.transform.position + Vector3.up * 1.5f);
+        turnMarker.transform.position = new Vector2(pos.x * worldBound.width,(1 - pos.y)* worldBound.height);
+        Debug.Log("turn marker position: "+ pos);
+    }
+    public FishUI AddFishUI(CombatManager.Turn turn, Transform target)
+    {
+        var fishUI = new FishUI(turn, target);
+        Add(fishUI);
+        return fishUI;
+    }
 }

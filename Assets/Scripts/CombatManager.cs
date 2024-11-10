@@ -6,6 +6,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using static CombatManager;
 
 public class CombatManager : MonoBehaviour
@@ -16,13 +17,15 @@ public class CombatManager : MonoBehaviour
         enemy
     }
     //Turn currentTurn;
-    
+   
     int roundNmber;
 
     [SerializeField]
-    CombatUI ui;
-    [SerializeField]
-    TurnListUI turnListUI;
+    UIDocument ui;
+    CombatUI combatUI;
+    //CombatUI combatUI;
+    //[SerializeField]
+    //TurnListUI turnListUI;
     [SerializeField]
     CombatVisualizer combatVisualizer;
 
@@ -72,7 +75,9 @@ public class CombatManager : MonoBehaviour
         depthIndex[depths[2]] = 2;
         combatAI = this.AddComponent<CombatAI>();
         combatAI.SetCombatManager(this);
-        ui.UseNet += UseNet;
+        combatUI=ui.rootVisualElement.Q<CombatUI>();
+        
+        //combatUI.UseNet += UseNet;
 
     }
     private void Start()
@@ -94,9 +99,27 @@ public class CombatManager : MonoBehaviour
         SetUp();
         StartTurn();
     }
-    void UseNet()
+    void UseItem(Item item)
     {
-        combatVisualizer.SelectFish((t)=> { TryCatching(t); ActionsCompleted(); });
+        if(item is Net)
+        {
+            combatVisualizer.SelectFish(Team.enemy,(t) => 
+            { TryCatching(t); 
+                ActionsCompleted(); 
+                combatUI.UpdateInventory();
+            });
+        }
+        else if (item is HealingItem)
+        {
+            combatVisualizer.SelectFish(Team.player, (t) => 
+            { 
+                HealFish(t); 
+                ActionsCompleted();
+                combatUI.UpdateInventory();
+            });
+        }
+        GameManager.Instance.PlayerInventory.RemoveItem(item);
+
     }
     void TryCatching(Turn target)
     {
@@ -115,17 +138,21 @@ public class CombatManager : MonoBehaviour
         }
         currentTurn.Value.UseAction();
     }
+    void HealFish(Turn target)
+    {
+
+    }
     //sets up the combat
     void SetUp()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        UnityEngine.Cursor.visible = true;
         prevCam = Camera.main;
         prevCam.gameObject.SetActive(false);
         cam.enabled = true;
         Camera.SetupCurrent(cam);
         Turn.TurnEnded += NextTurn;
-
+        combatUI.SetInventory(GameManager.Instance.PlayerInventory);
         for (int i = 0; i < playerFishes.Count; i++)
         {
             Turn turn = new PlayerTurn(this, playerFishes[i], depths[i % 3]);
@@ -167,13 +194,11 @@ public class CombatManager : MonoBehaviour
             turn.RollInitiative();
         }
         turnList.Clear();
-        turnList.AddRange(currentCombatents);
+        turnList.AddRange(currentCombatents.OrderBy((x)=>x.initiative));
         currentTurn = turnList.First;
-        turnListUI.SetTurnBar(turnList.ToList());
-    }
-    int SortBySpeed(Turn x, Turn y)
-    {
-        return x.initiative - y.initiative;
+        combatUI.SetTurnUI(turnList.ToList());
+        
+        //turnListUI.SetTurnBar(turnList.ToList());
     }
     void ActionsCompleted()
     {
@@ -218,9 +243,9 @@ public class CombatManager : MonoBehaviour
         }
         prevCam.gameObject.SetActive(true);
         Camera.SetupCurrent(prevCam);
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene"));
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene 1"));
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
     }
     void RewardXP()
     {
@@ -235,7 +260,7 @@ public class CombatManager : MonoBehaviour
     }
     void StartTurn()
     {
-        ui.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
+        
         currentTurn.Value.StartTurn();
         CanFightEnd();
         if (currentTurn.Value is EnemyTurn)
@@ -259,7 +284,7 @@ public class CombatManager : MonoBehaviour
             currentTurn = turnList.First;
             roundNmber++;
         }
-        turnListUI.NextTurn();
+        combatUI.NextTurn();
         //selectedFish.RecoverStamina();
         StartTurn();
     }
@@ -281,11 +306,15 @@ public class CombatManager : MonoBehaviour
         }
 
     }
-
-
-    void UseAbility(Turn turn, int index, int depthIndex)
+    void UseAbility(Turn turn, Ability ability)
     {
-        Ability ability = turn.fish.GetAbility(index);
+        combatVisualizer.StartTargeting(ability,(i)=>UseAbility(turn,ability,i));
+    }
+
+
+    void UseAbility(Turn turn, Ability ability, int depthIndex)
+    {
+        //Ability ability = turn.fish.GetAbility(index);
         if (!ability.CanUse(turn.currentDepth.depth))
         {
             print("cannot use ability in this depth");
@@ -303,7 +332,7 @@ public class CombatManager : MonoBehaviour
 
         actionsCompleted = false;
         Turn[] targets = new Turn[3];
-        if (turn.fish.GetAbility(index).Targeting == Ability.TargetingType.all)
+        if (ability.Targeting == Ability.TargetingType.all)
         {
             targets[0] = depth[Depth.shallow].TargetFirst(targetedTeam);
             targets[1] = depth[Depth.middle].TargetFirst(targetedTeam);
@@ -338,7 +367,7 @@ public class CombatManager : MonoBehaviour
     void RemoveFishFromBattle(Turn turn)
     {
         turnList.Remove(turn);
-        turnListUI.RemoveTurn(turn);
+        //turnListUI.RemoveTurn(turn);
         //enemyFishes.Remove(turn.fish);
         playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
@@ -350,7 +379,7 @@ public class CombatManager : MonoBehaviour
 
     private void Update()
     {
-
+        combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
     }
 
     [Serializable]
@@ -561,7 +590,8 @@ public class CombatManager : MonoBehaviour
         {
             actionsLeft = actionsPerTurn;
             TickEffects(StatusEffect.EffectUsage.preTurn);
-            NewTurn?.Invoke(this, team == Team.player);
+            combatManager.combatUI.NewTurn(this, team == Team.player);
+            //NewTurn?.Invoke(this, team == Team.player);
 
             
         }
@@ -584,10 +614,13 @@ public class CombatManager : MonoBehaviour
             TickEffects(StatusEffect.EffectUsage.postTurn);
             TurnEnded?.Invoke();
         }
-        public void Move(int depthIndex)
+        public void Move()
+        {
+            combatManager.combatVisualizer.StartTargeting((i) => Move(i));
+        }
+        void Move(int depthIndex)
         {
             actionsCompleted = false;
-
             CombatDepth prevDepth = currentDepth;
             CombatDepth targetDepth = combatManager.depths[depthIndex];
             if (prevDepth != null)
@@ -611,7 +644,12 @@ public class CombatManager : MonoBehaviour
 
             return combatManager.depth[depth].SideHasFish(fish.GetAbility(abilityIndex).TargetedTeam ==Ability.TargetTeam.enemy? oppositeTeam:team) && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth);
         }
-        public void UseAbility(int abilityIndex, int target)
+        public void UseItem(Item item)
+        {
+            combatManager.UseItem(item);
+            UseAction();
+        }
+        public void UseAbility(int abilityIndex)
         {
             if (AbilityUsable(abilityIndex))
             {
@@ -621,10 +659,24 @@ public class CombatManager : MonoBehaviour
                 actionsCompleted = false;
                 //CombatDepth targetDepth = combatManager.depths[target];
 
-                combatManager.UseAbility(this, abilityIndex, target);
+                combatManager.UseAbility(this, ability);
                 UseAction();
             }
 
+        }
+        public void UseAbility(int abilityIndex, int depthIndex)
+        {
+            if (AbilityUsable(abilityIndex))
+            {
+
+                Ability ability = fish.GetAbility(abilityIndex);
+                fish.ConsumeStamina(ability.StaminaUsage);
+                actionsCompleted = false;
+                //CombatDepth targetDepth = combatManager.depths[target];
+
+                combatManager.UseAbility(this, ability, depthIndex);
+                UseAction();
+            }
         }
         public void ForcedMove(int direction)
         {
@@ -688,7 +740,7 @@ public class PlayerTurn : Turn
 }
 
 
-public class EnemyTurn : Turn
+public class EnemyTurn : CombatManager.Turn
 {
     public EnemyTurn(CombatManager combatManager, FishMonster fish, CombatDepth startingDepth, int actionsPerTurn =1 ) : base(combatManager, fish, startingDepth, actionsPerTurn)
     {
@@ -709,6 +761,7 @@ public class EnemyTurn : Turn
 
 
     }
+    
 
 
 }
