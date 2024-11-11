@@ -8,9 +8,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class FishUI : VisualElement
 {
     CombatManager.Turn turn;
-    [SerializeField]
     ProgressBar healthBar, staminaBar;
-    [SerializeField]
+   
     VisualElement statusBar;
 
 
@@ -48,6 +47,7 @@ public class FishUI : VisualElement
         healthBar = this.Q<ProgressBar>("HealthBar");
         staminaBar = this.Q<ProgressBar>("StaminaBar");
         SetFish(turn, target);
+        statusBar = this.Q("StatusBar");
     }
     // Update is called once per frame
     public void UpdatePosition()
@@ -72,23 +72,24 @@ public class FishUI : VisualElement
         this.turn.NewEffect += NewEffect;
         this.turn.EffectRemoved += EffectRemoved;
         
+        
     }
 
     private void EffectRemoved(StatusEffect.StatusEffectInstance instance)
     {
 
-        //Destroy(statusIcon[instance].gameObject);
+        statusBar.Remove(statusIcon[instance]);
         statusIcon.Remove(instance);
 
     }
 
     private void NewEffect(StatusEffect.StatusEffectInstance instance)
     {
-        //var icon = Instantiate(statusIconPrefab, statusBar).GetComponent<StatusIcon>();
+        var status = new StatusIcon(instance);
+        statusIcon[instance]=status;
+        statusBar.Add(status);
         Debug.Log(instance);
-        //Debug.Log(icon);
-        //icon.SetEffect(instance);
-        //statusIcon.Add(instance, icon);
+
 
     }
 
@@ -97,7 +98,7 @@ public class FishUI : VisualElement
         healthBar.value = turn.Health / turn.MaxHealth;
         staminaBar.value = turn.Stamina / turn.MaxStamina;
     }
-
+    
     private void OnDestroy()
     {
         this.turn.fish.ValueChanged -= UpdateUI;

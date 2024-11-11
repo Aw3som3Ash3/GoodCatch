@@ -17,6 +17,7 @@ public class CombatUI : VisualElement
     VisualElement turnList;
     VisualElement itemBar;
     ItemInventory inventory;
+    VisualElement statusBar;
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
     public new class UxmlFactory : UxmlFactory<CombatUI, CombatUI.UxmlTraits>
@@ -56,6 +57,7 @@ public class CombatUI : VisualElement
         turnMarker = this.Q("TurnMarker");
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
+        statusBar = this.Q("StatusBar");
         //this.parent.pickingMode = PickingMode.Ignore;
         //CombatManager.Turn.NewTurn += NewTurn;
     }
@@ -102,7 +104,7 @@ public class CombatUI : VisualElement
     public void EnableButtons()
     {
 
-        moveButton.SetEnabled(true);
+        moveButton.SetEnabled(currentTurn.ActionLeft);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
             if (currentTurn.AbilityUsable(i))
@@ -165,11 +167,34 @@ public class CombatUI : VisualElement
         //    actionTokens.Add(Instantiate(actionTokenPrefab, actionsLeftBar).GetComponent<ActionToken>());
         //}
 
-        //ResetEffects();
-        //SetEffects();
-        //currentTurn.NewEffect += AddEffect;
-        //currentTurn.fish.ValueChanged += UpdateHealth;
+        ResetEffects();
+        SetEffects();
+        currentTurn.NewEffect += AddEffect;
+        currentTurn.fish.ValueChanged += UpdateHealth;
         UpdateHealth();
+    }
+
+    private void SetEffects()
+    {
+
+        foreach (var effect in currentTurn.effects)
+        {
+            if (effect.remainingDuration > 0)
+            {
+                var icon = new StatusIcon(effect);
+                statusBar.Add(icon);
+
+                Debug.Log("setting effcts");
+
+            }
+        }
+    }
+    private void ResetEffects()
+    {
+        foreach (var child in statusBar.Children())
+        {
+            statusBar.Remove(child);
+        }
     }
 
     private void UpdateHealth()

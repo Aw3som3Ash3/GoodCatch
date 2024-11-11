@@ -1,35 +1,42 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class StatusIcon : MonoBehaviour
+public class StatusIcon : VisualElement
 {
+
+    VisualElement imageObj;
     [SerializeField]
-    Image imageObj;
-    [SerializeField]
-    TextMeshProUGUI turnsLeftText;
+    Label turnsLeftText;
     StatusEffect.StatusEffectInstance statusEffect;
-
-    // Start is called before the first frame update
-    void Start()
+    public new class UxmlFactory : UxmlFactory<StatusIcon, StatusIcon.UxmlTraits>
     {
 
     }
-
-    // Update is called once per frame
-    void Update()
+    public StatusIcon()
     {
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/StatusIcon.uxml");
+
+        visualTreeAsset.CloneTree(this);
 
     }
-    public void SetEffect(StatusEffect.StatusEffectInstance statusEffect)
+    public StatusIcon(StatusEffect.StatusEffectInstance statusEffect)
     {
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/StatusIcon.uxml");
+
+        visualTreeAsset.CloneTree(this);
+        imageObj=this.Q("Icon");
+        turnsLeftText = this.Q<Label>("Duration");
         this.statusEffect = statusEffect;
         if (statusEffect.effect.Icon != null)
         {
-            imageObj.sprite = this.statusEffect.effect.Icon;
+            imageObj.style.backgroundImage = this.statusEffect.effect.Icon;
         }
         UpdateIcon(statusEffect.remainingDuration);
         this.statusEffect.DurationChanged += UpdateIcon;
+
     }
     public void UpdateIcon(int duration)
     {

@@ -306,12 +306,6 @@ public class CombatManager : MonoBehaviour
         }
 
     }
-    void UseAbility(Turn turn, Ability ability)
-    {
-        combatVisualizer.StartTargeting(ability,(i)=>UseAbility(turn,ability,i));
-    }
-
-
     void UseAbility(Turn turn, Ability ability, int depthIndex)
     {
         //Ability ability = turn.fish.GetAbility(index);
@@ -616,7 +610,11 @@ public class CombatManager : MonoBehaviour
         }
         public void Move()
         {
-            combatManager.combatVisualizer.StartTargeting((i) => Move(i));
+            if (ActionLeft)
+            {
+                combatManager.combatVisualizer.StartTargeting((i) => { Move(i); combatManager.combatUI.EnableButtons(); });
+            }
+           
         }
         void Move(int depthIndex)
         {
@@ -637,7 +635,7 @@ public class CombatManager : MonoBehaviour
         {
             Ability ability = fish.GetAbility(abilityIndex);
 
-            return Stamina >= ability.StaminaUsage && ability.AvailableDepths.HasFlag(currentDepth.depth);
+            return Stamina >= ability.StaminaUsage && ability.AvailableDepths.HasFlag(currentDepth.depth)&&ActionLeft;
         }
         public bool DepthTargetable(int abilityIndex, Depth depth)
         {
@@ -653,14 +651,9 @@ public class CombatManager : MonoBehaviour
         {
             if (AbilityUsable(abilityIndex))
             {
+                //Ability ability = fish.GetAbility(abilityIndex);
 
-                Ability ability = fish.GetAbility(abilityIndex);
-                fish.ConsumeStamina(ability.StaminaUsage);
-                actionsCompleted = false;
-                //CombatDepth targetDepth = combatManager.depths[target];
-
-                combatManager.UseAbility(this, ability);
-                UseAction();
+                combatManager.combatVisualizer.StartTargeting(DepthTargetable,abilityIndex ,(i) => { UseAbility(abilityIndex,i); combatManager.combatUI.EnableButtons();});
             }
 
         }
@@ -672,7 +665,6 @@ public class CombatManager : MonoBehaviour
                 Ability ability = fish.GetAbility(abilityIndex);
                 fish.ConsumeStamina(ability.StaminaUsage);
                 actionsCompleted = false;
-                //CombatDepth targetDepth = combatManager.depths[target];
 
                 combatManager.UseAbility(this, ability, depthIndex);
                 UseAction();

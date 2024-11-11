@@ -8,8 +8,8 @@ public abstract class StatusEffect : ScriptableObject
     int duration;
 
     [SerializeField]
-    Sprite icon;
-    public Sprite Icon { get { return icon; } }
+    Texture2D icon;
+    public Texture2D Icon { get { return icon; } }
     public enum EffectUsage
     {
         preTurn,

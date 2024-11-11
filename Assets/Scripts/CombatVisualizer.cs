@@ -147,12 +147,12 @@ public class CombatVisualizer : MonoBehaviour
         eventSystem.SetSelectedGameObject(depthSelectors[selected].gameObject);
 
     }
-    public void StartTargeting(Ability ability,Action<int> targeted)
+    public void StartTargeting(Func<int,Depth,bool> targetable,int ablityIndex ,Action<int> targeted)
     {
         DepthSelection += targeted;
         foreach (DepthSelectors selector in depthSelectors)
         {
-            if (ability.DepthTargetable(selector.CurrentDepth))
+            if (targetable(ablityIndex,selector.CurrentDepth))
             {
                 eventSystem.SetSelectedGameObject(selector.gameObject);
                 selected = depthSelectors.IndexOf(selector);
