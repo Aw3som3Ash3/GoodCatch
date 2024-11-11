@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -191,7 +193,9 @@ public class CombatUI : VisualElement
     }
     private void ResetEffects()
     {
-        foreach (var child in statusBar.Children())
+       
+        var list = statusBar.Children().ToArray();
+        foreach (var child in list )
         {
             statusBar.Remove(child);
         }
@@ -245,7 +249,7 @@ public class CombatUI : VisualElement
     }
     private void AddEffect(StatusEffect.StatusEffectInstance instance)
     {
-        throw new NotImplementedException();
+        statusBar.Add(new StatusIcon(instance));
     }
     public void SetTurnMarker(Transform target)
     {
