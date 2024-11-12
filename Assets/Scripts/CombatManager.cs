@@ -104,7 +104,8 @@ public class CombatManager : MonoBehaviour
         if(item is Net)
         {
             combatVisualizer.SelectFish(Team.enemy,(t) => 
-            { TryCatching(t); 
+            { 
+                TryCatching((Net)item,t); 
                 ActionsCompleted(); 
                 combatUI.UpdateInventory();
             });
@@ -121,9 +122,9 @@ public class CombatManager : MonoBehaviour
         GameManager.Instance.PlayerInventory.RemoveItem(item);
 
     }
-    void TryCatching(Turn target)
+    void TryCatching(Net net,Turn target)
     {
-        if (UnityEngine.Random.Range(0, 1f) <= .5f - (target.Health / target.MaxHealth))
+        if (UnityEngine.Random.Range(0, 1f) <= (1 - (target.Health / target.MaxHealth))*net.CatchBonus)
         {
 
             target.fish.RestoreAllHealth();

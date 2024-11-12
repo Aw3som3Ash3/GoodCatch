@@ -34,3 +34,7 @@
     flex-direction: row;
     flex-grow: 1;
 }
+
+.Actions:hover {
+    flex-grow: 1;
+}

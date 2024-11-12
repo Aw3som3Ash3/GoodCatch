@@ -223,7 +223,8 @@ public class CombatUI : VisualElement
     public void UpdateInventory()
     {
         var combatItems = inventory.GetDictionaryOfItems<CombatItem>();
-        foreach(CombatItemUI uiItem in itemBar.Children())
+        var  uiItems = itemBar.Children().ToArray();
+        foreach (CombatItemUI uiItem in  uiItems)
         {
             if (combatItems.ContainsKey(uiItem.item))
             {
@@ -232,6 +233,7 @@ public class CombatUI : VisualElement
             else
             {
                 itemBar.Remove(uiItem);
+                
             }
            
         }

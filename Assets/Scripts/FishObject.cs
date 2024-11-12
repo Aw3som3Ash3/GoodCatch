@@ -8,10 +8,13 @@ public class FishObject : MonoBehaviour
 {
     CombatManager.Turn turn;
     GameObject model;
+    GameObject outline;
     Vector3 destination;
     bool shouldMove;
     [SerializeField]
     float moveSpeed;
+    [SerializeField]
+    Material outlineMat;
 
     public Action ReachedDestination;
 
@@ -75,7 +78,8 @@ public class FishObject : MonoBehaviour
     private void OnHover(bool v)
     {
         if (!isSelectable) return;
-        throw new NotImplementedException();
+        outline.GetComponentInChildren<Renderer>().enabled = v;
+        //throw new NotImplementedException();
     }
 
     // Start is called before the first frame update
@@ -100,12 +104,18 @@ public class FishObject : MonoBehaviour
     public void DisableSelection()
     {
         isSelectable = false;
+        OnHover(false);
     }
     public void SetFish(CombatManager.Turn turn)
     {
         this.turn = turn;
         model = Instantiate(turn.fish.Model, this.transform);
         model.transform.localPosition = Vector3.zero;
+        outline= Instantiate(model, this.transform);
+        //outline.transform.localScale = Vector3.one*1.25f;
+        var rend = outline.GetComponentInChildren<Renderer>();
+        rend.enabled = false;
+        rend.material = outlineMat;
     }
     public void SetDestination(Vector3 destination)
     {
