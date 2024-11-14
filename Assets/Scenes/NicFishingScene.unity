@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 379993069100820644, guid: e3372f1cca755924b970acbb4641ada6, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 625763167989743631, guid: e3372f1cca755924b970acbb4641ada6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -552,6 +556,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4355443732975581820, guid: e3372f1cca755924b970acbb4641ada6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751943438575090301, guid: e3372f1cca755924b970acbb4641ada6, type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6443151447100177677, guid: e3372f1cca755924b970acbb4641ada6, type: 3}

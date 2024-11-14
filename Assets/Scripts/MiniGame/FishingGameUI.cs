@@ -14,7 +14,7 @@ public class FishingGameUI : MonoBehaviour
 
     [Header("Line Distance Slider Parameters")]
     public Slider lineDistance;
-    float successIncrement = 35f;
+    float successIncrement = 15f;
     float failDecrement = 30f;
     float successThreshold = -100f;
     float failThreshold = 100f;
@@ -22,23 +22,24 @@ public class FishingGameUI : MonoBehaviour
 
     [Header("Good Catch Slider Parameters")]
     public Slider goodCatchSlider;
-    float successIncrement2 = 25f;
-    float failDecrement2 = 20f;
+    float goodCatchIncrement = 25f;
+    float badCatchDecrement = 20f;
     float successThreshold2 = 100;
-    float failThreshold2 = -100f;
-    float successCounter2 = 0f;
+    float badCatchThreshold = -100f;
+    float goodCatchCounter = 0f;
+    [HideInInspector] public int advantageOdds; 
 
     Action<bool> onEnd;
 
     private void Awake()
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     private void Start()
     {
-        successCounter = 70f;
-        lineDistance.value = 70;
+        successCounter = 100f;
+        lineDistance.value = 100;
     }
 
     private void Update()
@@ -61,22 +62,20 @@ public class FishingGameUI : MonoBehaviour
         {
             successCounter -= successIncrement * Time.deltaTime;
 
-            successCounter2 += successIncrement2 * Time.deltaTime;
+            goodCatchCounter += goodCatchIncrement * Time.deltaTime;
         }
         else
         {
-            successCounter += failDecrement * Time.deltaTime;
-
-            successCounter2 -= failDecrement2 * Time.deltaTime;
+            goodCatchCounter -= badCatchDecrement * Time.deltaTime;
         }
 
         // Clamp counter
         successCounter = Mathf.Clamp(successCounter, successThreshold, failThreshold);
-        successCounter2 = Mathf.Clamp(successCounter2, failThreshold2, successCounter2);
+        goodCatchCounter = Mathf.Clamp(goodCatchCounter, badCatchThreshold, goodCatchCounter);
 
         // Update slider value
         lineDistance.value = successCounter;
-        goodCatchSlider.value = successCounter2;
+        goodCatchSlider.value = goodCatchCounter;
 
         // Checker
         if (successCounter <= successThreshold)
@@ -84,18 +83,12 @@ public class FishingGameUI : MonoBehaviour
             Debug.Log("Success");
             onEnd?.Invoke(true);
             Destroy(gameObject);
-
-            //successCounter = 0;
-            //slider.value = 0;
         }
-        else if (successCounter >= failThreshold)
+        else if (goodCatchCounter <= badCatchThreshold)
         {
             Debug.Log("Failed");
             onEnd?.Invoke(false);
             Destroy(gameObject);
-
-            //successCounter = 0;
-            //slider.value = 0;
         }
     }
 
@@ -119,7 +112,7 @@ public class FishingGameUI : MonoBehaviour
         this.onEnd = onEnd;
     }
 
-    // Place these code bits when ready to fully implement to the current (10/27) minigame system
+    // Place these code bits when ready to fully implement to the current minigame system
     /*
      * public GameObject minigame
      * 
@@ -128,6 +121,12 @@ public class FishingGameUI : MonoBehaviour
      * {
      *      minigame.SetActive(true);
      * }
+     * 
+     * //successCounter += failDecrement * Time.deltaTime;
+     * 
+     * 
+     *      //successCounter = 0;
+     *      //slider.value = 0;
      */
 }
 
