@@ -98,8 +98,8 @@ public class FishUI : VisualElement
         healthBar.value = turn.Health / turn.MaxHealth;
         staminaBar.value = turn.Stamina / turn.MaxStamina;
     }
-    
-    private void OnDestroy()
+
+    ~FishUI()
     {
         this.turn.fish.ValueChanged -= UpdateUI;
     }
