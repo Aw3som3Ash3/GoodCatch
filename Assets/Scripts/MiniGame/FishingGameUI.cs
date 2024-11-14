@@ -14,7 +14,7 @@ public class FishingGameUI : MonoBehaviour
 
     [Header("Line Distance Slider Parameters")]
     public Slider lineDistance;
-    float successIncrement = 15f;
+    float successIncrement = 30f;
     float failDecrement = 30f;
     float successThreshold = -100f;
     float failThreshold = 100f;
@@ -23,7 +23,7 @@ public class FishingGameUI : MonoBehaviour
     [Header("Good Catch Slider Parameters")]
     public Slider goodCatchSlider;
     float goodCatchIncrement = 25f;
-    float badCatchDecrement = 20f;
+    float badCatchDecrement = 30f;
     float successThreshold2 = 100;
     float badCatchThreshold = -100f;
     float goodCatchCounter = 0f;
