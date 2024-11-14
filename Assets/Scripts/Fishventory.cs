@@ -1,18 +1,17 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Fishventory 
+public class Fishventory
 {
     [SerializeField]
     [SerializeReference]
-    List<FishMonster> fishies=new List<FishMonster>();
+    List<FishMonster> fishies = new List<FishMonster>();
     [SerializeField]
     int maxSize;
     public IReadOnlyList<FishMonster> Fishies { get { return fishies; } }
-    public Fishventory(int maxSize) 
+    public Fishventory(int maxSize)
     {
         this.maxSize = maxSize;
     }
@@ -22,7 +21,7 @@ public class Fishventory
         {
             return false;
         }
-       
+
         if (!fishies.Contains(fish))
         {
             fishies.Add(fish);
@@ -32,11 +31,18 @@ public class Fishventory
         {
             return false;
         }
-        
+
     }
 
     public void RemoveFish(FishMonster fish)
     {
         fishies.Remove(fish);
+    }
+    public void RestoreHealthAllFish()
+    {
+        foreach (var fish in fishies)
+        {
+            fish.RestoreAllHealth();
+        }
     }
 }

@@ -20,7 +20,7 @@ MonoBehaviour:
   piercing: 0
   staminaUsage: 15
   baseDamage: 25
-  accuracy: 0.71
+  accuracy: 0.8
   damageMultiplier: 0.5
   element: {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
   effects:

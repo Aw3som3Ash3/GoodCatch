@@ -6,8 +6,8 @@ using UnityEngine;
 public class CombatVisualizer : MonoBehaviour
 {
     // Dictionary<FishMonster, Vector3> fishToDestination;
-    public Dictionary<FishMonster, FishObject> fishToObject { get; private set; } = new Dictionary<FishMonster, FishObject>();
-    Dictionary<FishObject,FishUI> FishUI = new Dictionary<FishObject, FishUI>();
+    public Dictionary<CombatManager.Turn, FishObject> turnToObject { get; private set; } = new Dictionary<CombatManager.Turn, FishObject>();
+    Dictionary<FishObject, FishUI> FishUI = new Dictionary<FishObject, FishUI>();
     List<FishObject> fishObjects = new List<FishObject>();
     [SerializeField]
     GameObject fishObjectPrefab;
@@ -21,51 +21,73 @@ public class CombatVisualizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public void RemoveFish(FishMonster fish)
+    public void RemoveFish(CombatManager.Turn turn)
     {
-        Destroy(fishToObject[fish].gameObject);
+        Destroy(turnToObject[turn].gameObject);
     }
-    public void AddFish(FishMonster fish,Vector3 startingLocation,CombatManager.Team team)
+    public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
     {
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
-        fishObject.transform.localEulerAngles = new Vector3(0, team== CombatManager.Team.player? 90:-90, 0);
-        fishObject.SetFish(fish);
-        FishUI[fishObject] = Instantiate(fishUIPrefab, canvas.transform).GetComponent<FishUI>();
-        FishUI[fishObject].SetFish(fish,fishObject.transform);
+        fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90, 0);
+        fishObject.SetFish(turn);
+        GameObject uiObj= Instantiate(fishUIPrefab, canvas.transform);
+        uiObj.transform.SetSiblingIndex(0);
+        FishUI[fishObject] = uiObj.GetComponent<FishUI>();
+        FishUI[fishObject].SetFish(turn, fishObject.transform);
+        fishObject.ObjectDestroyed = () => { Destroy(FishUI[fishObject].gameObject); FishUI.Remove(fishObject); };
         fishObjects.Add(fishObject);
-        fishToObject[fish] = fishObject;
+        turnToObject[turn] = fishObject;
         fishObject.transform.position = startingLocation;
 
     }
 
-    public void MoveFish(FishMonster fish, Vector3 destination,Action CompletedMove=null)
+    public void MoveFish(CombatManager.Turn turn, Vector3 destination, Action CompletedMove = null)
     {
-        fishToObject[fish].SetDestination(destination);
-        fishToObject[fish].ReachedDestination += CompletedMove;
-        CompletedMove += ()=> fishToObject[fish].ReachedDestination-=CompletedMove;
+        turnToObject[turn].SetDestination(destination);
+        turnToObject[turn].ReachedDestination += CompletedMove;
+        CompletedMove += () => turnToObject[turn].ReachedDestination -= CompletedMove;
     }
 
-    public void AnimateAttack(FishMonster fish, FishMonster target, Action CompletedMove = null)
+    public void AnimateAttack(CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
-        StartCoroutine(TempAttackAnim(fishToObject[fish].transform.position, fishToObject[target].transform.position,CompletedMove));
+        StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
         //throw new NotImplementedException();
+    }
+
+    public void SelectFish(Action<CombatManager.Turn> action)
+    {
+        foreach(var fish in turnToObject)
+        {
+            fish.Value.EnableSelection();
+            fish.Value.selectedFish = (a)=> {action?.Invoke(a); FinishedSelecting();};
+        }
+    }
+
+    void FinishedSelecting()
+    {
+        foreach(var fish in turnToObject)
+        {
+            fish.Value.DisableSelection();
+            fish.Value.selectedFish = null;
+
+        }
     }
 
     IEnumerator TempAttackAnim(Vector3 start, Vector3 destination, Action CompletedMove)
     {
 
-        GameObject projectile= Instantiate(projectilPrefab, start, projectilPrefab.transform.rotation);
-        while(Vector3.Distance(projectile.transform.position,destination)>0.01f)
+        GameObject projectile = Instantiate(projectilPrefab, start, projectilPrefab.transform.rotation);
+        while (Vector3.Distance(projectile.transform.position, destination) > 0.01f)
         {
-            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position,destination,Time.deltaTime*15);
+            projectile.transform.position = Vector3.MoveTowards(projectile.transform.position, destination, Time.deltaTime * 15);
             yield return new WaitForEndOfFrame();
         }
         Destroy(projectile.gameObject);

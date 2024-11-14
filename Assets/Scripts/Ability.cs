@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Ability", menuName = "Fish Monster/Ability", order = 1)]
-public class Ability:ScriptableObject
+public class Ability : ScriptableObject
 {
     //enum TargetingType
     //{
@@ -39,14 +37,14 @@ public class Ability:ScriptableObject
         StatusEffect statusEffect;
         public StatusEffect Effect { get { return statusEffect; } }
         [SerializeField]
-        [Range(0,1)]
+        [Range(0, 1)]
         float effectChance;
         public float Chance { get { return effectChance; } }
     }
     [SerializeField]
     AbilityType abilityType;
     [SerializeField]
-    Depth availableDepths,targetableDepths;
+    Depth availableDepths, targetableDepths;
     public Depth AvailableDepths { get { return availableDepths; } }
 
     public Depth TargetableDepths { get { return targetableDepths; } }
@@ -66,25 +64,26 @@ public class Ability:ScriptableObject
     int baseDamage;
 
     [SerializeField]
-    [Range(0,1)]
+    [Range(0, 1)]
     float accuracy;
     [SerializeField]
     float damageMultiplier;
-    
+
     [SerializeField]
     Element element;
     [SerializeField]
     EffectChance[] effects;
     [SerializeField]
-    [Range(-2,2)]
-    int forcedMovement=0;
+    [Range(-2, 2)]
+    int forcedMovement = 0;
+    public int ForcedMovement { get { return forcedMovement; } }
 
     [SerializeField]
     Sprite icon;
     public Sprite Icon { get; private set; }
     //List<FishMonster> targets;
 
-    
+
     public bool DepthTargetable(Depth depth)
     {
         return targetableDepths.HasFlag(depth);
@@ -93,42 +92,76 @@ public class Ability:ScriptableObject
     {
         return availableDepths.HasFlag(depth);
     }
-    public bool UseAbility(FishMonster user,CombatManager.Turn target, out bool hit)
+    public float GetDamage(CombatManager.Turn user)
+    {
+        float damage=0;
+        if (baseDamage>0)
+        {
+            damage= baseDamage+ damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+        }
+        else if(baseDamage<0)
+        {
+            damage = -baseDamage + damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+        }
+
+        return damage;
+    }
+    public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit)
     {
         if (target == null)
         {
             hit = false;
             return false;
         }
-        if (UnityEngine.Random.Range(0, 1)+ ((user.accuracy - target.fish.dodge)* 0.01)< accuracy)
+        if (baseDamage < 0)
         {
-            Debug.Log("attacking: " + target);
-            float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
-            target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
-            target.ForcedMove(forcedMovement);
-            ProctEffect(user,target);
+            target.fish.Restore(health: -baseDamage);
             hit = true;
         }
         else
         {
-            Debug.Log("missed: " + target);
-            hit = false;
+            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - target.dodge) * 0.01) < accuracy)
+            {
+                Debug.Log("attacking: " + target);
+                float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+                if (baseDamage > 0)
+                {
+                   
+                    target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+                }
+                else if(baseDamage<0)
+                {
+                    target.fish.Restore(-baseDamage + damageMod);
+                }
+                
+              
+
+
+                ProctEffect(user, target);
+                hit = true;
+            }
+            else
+            {
+                Debug.Log("missed: " + target);
+                hit = false;
+            }
         }
-        
+
+
         return true;
     }
 
-    void ProctEffect(FishMonster user,CombatManager.Turn target)
+    void ProctEffect(CombatManager.Turn user, CombatManager.Turn target)
     {
-        foreach(var effect in effects)
+        foreach (var effect in effects)
         {
-            float proctBonus= (user.special / 5)*0.01f;
-            if (UnityEngine.Random.Range(0, 1)+ proctBonus < (effect.Chance))
+            float proctBonus = (user.special / 5) * 0.01f;
+            if (UnityEngine.Random.Range(0, 1) + proctBonus < (effect.Chance))
             {
                 target.AddEffects(effect.Effect);
             }
         }
-        
+
     }
 }
 

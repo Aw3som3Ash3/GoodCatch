@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 #if UNITY_EDITOR
 [FilePath("Assets/Database/FishDatabase", FilePathAttribute.Location.ProjectFolder)]
 #endif
@@ -12,7 +11,7 @@ public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
     public List<FishMonsterType> fishMonsters;
     //public IReadOnlyList<FishMonsterType> FishMonsters { get { return fishMonsters; } }
     public Dictionary<int, FishMonsterType> GetFish = new Dictionary<int, FishMonsterType>();
-    public Dictionary<FishMonsterType,int> GetId = new Dictionary<FishMonsterType,int>();
+    public Dictionary<FishMonsterType, int> GetId = new Dictionary<FishMonsterType, int>();
     public void OnAfterDeserialize()
     {
         GetId = new Dictionary<FishMonsterType, int>();
@@ -24,7 +23,7 @@ public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
             fishMonsters[i].fishId = i;
             GetFish.Add(i, fishMonsters[i]);
         }
-        
+
     }
     public void SetList(List<FishMonsterType> fishMonsters)
     {

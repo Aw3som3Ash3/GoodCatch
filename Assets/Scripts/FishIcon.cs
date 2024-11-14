@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,18 +11,18 @@ public class FishIcon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void SetIcon(Sprite sprite,Color color)
+    public void SetIcon(Sprite sprite, Color color)
     {
-        icon.sprite=sprite;
-        border.color=color;
+        icon.sprite = sprite;
+        border.color = color;
     }
 }

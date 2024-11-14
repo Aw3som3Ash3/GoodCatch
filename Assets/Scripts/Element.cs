@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -21,17 +19,21 @@ public class Element : ScriptableObject
         if (strong.Contains(element))
         {
             return 2;
-        }else if (veryStrong.Contains(element)) 
+        }
+        else if (veryStrong.Contains(element))
         {
             return 4;
-        }else if (weak.Contains(element))
+        }
+        else if (weak.Contains(element))
         {
             return 1;
 
-        }else if (veryWeak.Contains(element))
+        }
+        else if (veryWeak.Contains(element))
         {
             return 3;
-        }else
+        }
+        else
         {
             return 0;
         }

@@ -484,6 +484,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""3cf24700-bfc2-488e-9d41-d5504b6591df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -926,6 +935,17 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Party"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d67fb256-44d2-4567-b909-d590cc11d47a"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1130,6 +1150,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FishMover"",
+                    ""type"": ""Value"",
+                    ""id"": ""a6527992-e9b1-442a-8093-867bf11e8c6f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1187,6 +1216,39 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Hook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""3874ff6c-318d-4ad4-a5b0-45c3e55a4bb4"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FishMover"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""97c7d8a7-ba3c-4bca-a383-4b419106729a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FishMover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""57c4fa5c-6ca3-4348-900a-aa53fdd0c779"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FishMover"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1275,6 +1337,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_Party = m_UI.FindAction("Party", throwIfNotFound: true);
+        m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
@@ -1283,6 +1346,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_Fishing = asset.FindActionMap("Fishing", throwIfNotFound: true);
         m_Fishing_Exit = m_Fishing.FindAction("Exit", throwIfNotFound: true);
         m_Fishing_Hook = m_Fishing.FindAction("Hook", throwIfNotFound: true);
+        m_Fishing_FishMover = m_Fishing.FindAction("FishMover", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1441,6 +1505,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_Party;
+    private readonly InputAction m_UI_Inventory;
     public struct UIActions
     {
         private @GoodCatchInputs m_Wrapper;
@@ -1456,6 +1521,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @Party => m_Wrapper.m_UI_Party;
+        public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1498,6 +1564,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Party.started += instance.OnParty;
             @Party.performed += instance.OnParty;
             @Party.canceled += instance.OnParty;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1535,6 +1604,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Party.started -= instance.OnParty;
             @Party.performed -= instance.OnParty;
             @Party.canceled -= instance.OnParty;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1612,12 +1684,14 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private List<IFishingActions> m_FishingActionsCallbackInterfaces = new List<IFishingActions>();
     private readonly InputAction m_Fishing_Exit;
     private readonly InputAction m_Fishing_Hook;
+    private readonly InputAction m_Fishing_FishMover;
     public struct FishingActions
     {
         private @GoodCatchInputs m_Wrapper;
         public FishingActions(@GoodCatchInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Exit => m_Wrapper.m_Fishing_Exit;
         public InputAction @Hook => m_Wrapper.m_Fishing_Hook;
+        public InputAction @FishMover => m_Wrapper.m_Fishing_FishMover;
         public InputActionMap Get() { return m_Wrapper.m_Fishing; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1633,6 +1707,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Hook.started += instance.OnHook;
             @Hook.performed += instance.OnHook;
             @Hook.canceled += instance.OnHook;
+            @FishMover.started += instance.OnFishMover;
+            @FishMover.performed += instance.OnFishMover;
+            @FishMover.canceled += instance.OnFishMover;
         }
 
         private void UnregisterCallbacks(IFishingActions instance)
@@ -1643,6 +1720,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Hook.started -= instance.OnHook;
             @Hook.performed -= instance.OnHook;
             @Hook.canceled -= instance.OnHook;
+            @FishMover.started -= instance.OnFishMover;
+            @FishMover.performed -= instance.OnFishMover;
+            @FishMover.canceled -= instance.OnFishMover;
         }
 
         public void RemoveCallbacks(IFishingActions instance)
@@ -1727,6 +1807,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnParty(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
     }
     public interface IShipActions
     {
@@ -1737,5 +1818,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     {
         void OnExit(InputAction.CallbackContext context);
         void OnHook(InputAction.CallbackContext context);
+        void OnFishMover(InputAction.CallbackContext context);
     }
 }

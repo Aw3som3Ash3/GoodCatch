@@ -1,12 +1,10 @@
 using Cinemachine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Station : MonoBehaviour, IInteractable
 {
-    static public Action<Station,Transform> StationInteracted;
+    static public Action<Station, Transform> StationInteracted;
     static public Action<Station> LeftStation;
     //static public Action<Station,Transform> StationInteracted;
     bool beingUsed = false;
@@ -26,11 +24,11 @@ public abstract class Station : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public abstract void MoveInput(Vector2 input);
-    virtual public void LeaveSation() 
+    virtual public void LeaveSation()
     {
         LeftStation?.Invoke(this);
         virtualCamera.Priority = 0;
@@ -45,16 +43,13 @@ public abstract class Station : MonoBehaviour, IInteractable
         {
             return false;
         }
-       StationInteracted?.Invoke(this,stationZone);
+        StationInteracted?.Invoke(this, stationZone);
         virtualCamera.Priority = 11;
         return true;
 
 
     }
 
-    public string StationName()
-    {
-        return "E-" + stationName;
-    }
+    public string StationName => stationName;
     public abstract void Use();
 }

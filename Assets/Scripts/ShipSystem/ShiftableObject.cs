@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShiftableObject : MonoBehaviour
@@ -15,11 +13,11 @@ public class ShiftableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     void ShiftPosition(Vector3 position)
     {
-        this.transform.position-=position;
+        this.transform.position -= position;
         offsetPosition += position;
     }
 }

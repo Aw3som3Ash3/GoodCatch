@@ -1,14 +1,26 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 //using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Fish Monster", menuName = "Fish Monster/Fish Monster", order = 1)]
 public class FishMonsterType : ScriptableObject
 {
+    
+    [Serializable]
+    struct Attribute
+    {
+        [SerializeField]
+        int min, max;
+        public int Min { get { return min; } }
+        public int Max { get { return max; } }
+        [SerializeField]
+        TalentScale minTalent, maxTalent;
+
+        public TalentScale MinTalent { get { return minTalent; } }
+        public TalentScale MaxTalent { get { return maxTalent; } }
+
+    }
     [SerializeField]
     GameObject model;
     public GameObject Model { get { return model; } }
@@ -25,49 +37,40 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     Element[] elements;
     public Element[] Elements { get { return elements; } }
-    
+
     [SerializeField]
     [Header("Agility")]
-    int minAgility;
-    [SerializeField]
-    int maxAgility;
+    Attribute agility;
+
     [SerializeField]
     [Header("Attack")]
-    int minAttack;
-    [SerializeField]
-    int maxAttack;
+    Attribute attack;
+
     [SerializeField]
     [Header("Special")]
-    int minSpecial;
-    [SerializeField]
-    int maxSpecial;
+    Attribute special;
+
     [SerializeField]
     [Header("Fortitude")]
-    int minFortitude;
-    [SerializeField]
-    int maxFortitude;
+    Attribute fortitude;
 
     [SerializeField]
     [Header("SpecialFort")]
-    int minSpecialFort;
-    [SerializeField]
-    int maxSpecialFort;
+    Attribute SpecialFortitude;
 
     [SerializeField]
     [Header("Accuracy")]
-    int minAccuracy;
-    [SerializeField]
-    int maxAccuracy;
-    
+    Attribute accuracy;
+
 
     [Header("Health")]
     [SerializeField]
-    int healthPerLevel;
-    public int HealthPerLevel { get {  return healthPerLevel; }  }
+    int baseHealth;
+    public int BaseHealth { get { return baseHealth; } }
     [Header("Stamina")]
     [SerializeField]
-    int staminaPerLevel;
-    public int StaminaPerLevel { get { return staminaPerLevel; } }
+    int baseStamina;
+    public int BaseStamina { get { return baseStamina; } }
     [SerializeField]
     Ability[] baseAbilities;
 
@@ -75,41 +78,114 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     int difficulty;
 
-   
-  
+
+
 
 
     public Ability[] BaseAbilities { get { return baseAbilities; } }
 
+    int RandomAttributeValue(Attribute attribute)
+    {
+        return UnityEngine.Random.Range(attribute.Min, attribute.Max);
+    }
+    TalentScale CalculateTalent(Attribute attribute)
+    {
+        TalentScale talent;
+        int x = UnityEngine.Random.Range((int)attribute.MinTalent*10, (int)attribute.MaxTalent * 10) + UnityEngine.Random.Range((int)attribute.MinTalent * 10, (int)attribute.MaxTalent * 10);
+        if (x >= 95)
+        {
+            talent = TalentScale.S;
+        }
+        else if (x > 80)
+        {
+            talent = TalentScale.A;
+        }
+        else if (x > 60)
+        {
+            talent = TalentScale.B;
+        }
+        else if (x > 40)
+        {
+            talent = TalentScale.C;
+        }
+        else if (x > 20)
+        {
+            talent = TalentScale.D;
+        }
+        else
+        {
+            talent = TalentScale.F;
+        }
+
+        return talent;
+    }
     public FishMonster GenerateMonster()
     {
-        float value= Mathf.Clamp01(minAgility);
-        int speed = UnityEngine.Random.Range(minAgility, maxAgility);
-        int attack = UnityEngine.Random.Range(minAttack, maxAttack);
-        int special = UnityEngine.Random.Range(minSpecial, maxSpecial);
-        int fortitude = UnityEngine.Random.Range(minFortitude, maxFortitude);
-        int specialFort = UnityEngine.Random.Range(minSpecialFort, maxSpecialFort);
-        int accuracy = UnityEngine.Random.Range(minAccuracy, maxAccuracy);
 
-        return new FishMonster(this,speed, attack, special, fortitude, specialFort,accuracy);
+        int speed = RandomAttributeValue(agility);
+        TalentScale agilityTalent= CalculateTalent(agility);
+
+        int attack = RandomAttributeValue(this.attack);
+        TalentScale attackTalent = CalculateTalent(this.attack);
+
+        int special = RandomAttributeValue(this.special);
+        TalentScale specialTalent = CalculateTalent(this.special);
+
+        int fortitude = RandomAttributeValue(this.fortitude);
+        TalentScale fortitudeTalent = CalculateTalent(this.fortitude);
+
+        int specialFort = RandomAttributeValue(this.SpecialFortitude);
+        TalentScale specialFortTalent = CalculateTalent(this.SpecialFortitude);
+
+        int accuracy = RandomAttributeValue(this.accuracy);
+        TalentScale accuracyTalent = CalculateTalent(this.accuracy);
+
+        return new FishMonster(this, speed,agilityTalent ,attack,attackTalent ,special,specialTalent, fortitude, fortitudeTalent, specialFort, specialFortTalent,accuracy, accuracyTalent);
     }
 
 }
+public enum TalentScale
+{
+    F,
+    D,
+    C,
+    B,
+    A,
+    S
 
-
+}
 [Serializable]
 public class FishMonster
 {
+    
 
     FishMonsterType type;
     string name;
-    public int agility { get; private set; }
-    public int dodge { get { return agility / 2; } }
-    public int accuracy { get; private set; }
-    public int attack { get; private set; }
-    public int special { get; private set; }
-    public int fortitude { get; private set; }
-    public int specialFort { get; private set; }
+
+    [Serializable]
+    public struct Attribute
+    {
+        public int value;
+        public TalentScale talent;
+    }
+
+    Attribute agility;
+    public Attribute Agility { get { return agility; } }
+
+    Attribute accuracy;
+    public Attribute Accuracy { get;}
+
+    Attribute attack;
+    public Attribute Attack { get { return attack; } }
+
+    Attribute special;
+    public Attribute Special { get { return special; } }
+
+    Attribute fortitude;
+    public Attribute Fortitude { get { return fortitude; } }
+
+    Attribute specialFort;
+    public Attribute SpecialFort{ get { return specialFort; } }
 
     public float health { get; private set; }
     public float maxHealth { get; private set; }
@@ -118,24 +194,32 @@ public class FishMonster
 
     public Sprite Icon { get { return type.Icon; } }
     public GameObject Model { get { return type.Model; } }
-    int level = 1;
-    float xp;
-    const int xpToLevelUp = 1000;
+    public int level { get; private set; } = 1;
+    public float xp { get; private set; }
+    public const int xpToLevelUp = 1000;
     Ability[] abilities;
     public Action ValueChanged;
     public Action HasFeinted;
     public bool isDead { get; set; } = false;
-  
-    public FishMonster(FishMonsterType monsterType, int agility,int attack,int special,int fortitude, int specialFort,int accuracy)
+
+    public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent)
     {
+
         this.type = monsterType;
-        name=monsterType.name;
-        this.agility = agility;
-        this.attack = attack;
-        this.special = special;
-        this.fortitude = fortitude;
-        this.specialFort = specialFort;
-        this.accuracy = accuracy;
+        name = monsterType.name;
+        
+        this.agility.value = agility;
+        this.agility.talent = agilityTalent;
+        this.attack.value = attack;
+        this.attack.talent= attackTalent;
+        this.special.value = special;
+        this.special.talent= specialTalent;
+        this.fortitude.value = fortitude;
+        this.fortitude.talent = fortitudeTalent;
+        this.specialFort.value = specialFort;
+        this.specialFort.talent = specialFortTalent;
+        this.accuracy.value = accuracy;
+        this.accuracy.talent = accuracyTalent;
         maxStamina = StaminaFormula();
         stamina = maxStamina;
         maxHealth = HealthFormula();
@@ -148,46 +232,10 @@ public class FishMonster
     }
     public void ReplaceAbility(Ability newAbility, int index)
     {
-        abilities[index]=newAbility;
+        abilities[index] = newAbility;
 
     }
-    //public bool UseAbility(int index, FishMonster target)
-    //{
-    //    if (stamina > 0)
-    //    {
-    //        bool hit;
-    //        abilities[index].UseAbility(this,target,out hit);
-    //        stamina -= abilities[index].StaminaUsage;
-
-    //        ValueChanged?.Invoke();
-    //        return true;
-    //    }else
-    //    {
-    //        return false;
-    //    }
-
-    //}
-    //public bool UseAbility(int index,FishMonster[] targets)
-    //{
-
-    //    if (stamina > 0)
-    //    {
-    //        foreach (FishMonster target in targets)
-    //        {
-    //            bool hit;
-    //            abilities[index].UseAbility(this, target, out hit);
-    //        }
-    //        stamina -= abilities[index].StaminaUsage;
-    //        ValueChanged?.Invoke();
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-
-    //}
-    public void ConsumeStamina(int amount) 
+    public void ConsumeStamina(int amount)
     {
         stamina -= amount;
         ValueChanged?.Invoke();
@@ -203,7 +251,7 @@ public class FishMonster
     }
     public void ChangeName(string newName)
     {
-        name=newName;
+        name = newName;
     }
 
     public void AddXp(float xp)
@@ -219,43 +267,60 @@ public class FishMonster
     {
         level++;
         xp = 0;
-        maxHealth=HealthFormula();
+        maxHealth = HealthFormula();
         health = maxHealth;
         maxStamina = StaminaFormula();
         stamina = maxStamina;
+        LevelAttribute(agility);
+        LevelAttribute(attack);
+        LevelAttribute(fortitude);
+        LevelAttribute(special);
+        LevelAttribute(specialFort);
+        LevelAttribute(accuracy);
+
+
+    }
+    void LevelAttribute(Attribute attribute)
+    {
+        attribute.value += (int)attribute.talent+1;
     }
     int HealthFormula()
     {
-        return level * type.HealthPerLevel;
+        return type.BaseHealth + (level - 1) * type.BaseHealth/10;
     }
     int StaminaFormula()
     {
-        return level * type.StaminaPerLevel;
+        return type.BaseStamina + (level - 1) * type.BaseStamina/10;
     }
     public void RecoverStamina()
     {
-        stamina += maxStamina/4;
+        stamina += maxStamina / 4;
         stamina = Mathf.Clamp(stamina, 0, maxStamina);
         ValueChanged?.Invoke();
     }
-    public void TakeDamage(float damage, Element elementType,Ability.AbilityType abilityType)
+    public void TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType)
     {
-        if (damage<=0)
+        if (damage <= 0)
         {
             Debug.Log("took no damage");
             return;
         }
-        float defenseMod =1-(abilityType == Ability.AbilityType.attack ? fortitude : specialFort)*0.01f;
+        float defenseMod = 1 - (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value) * 0.01f;
         float damageTaken = damage * DamageModifier(elementType) * defenseMod;
         health -= damageTaken;
-        Debug.Log("took " + damageTaken + " damage \n current health: "+ health);
-        if (health < 0)
+        Debug.Log("took " + damageTaken + " damage \n current health: " + health);
+        if (health <= 0)
         {
             Feint();
         }
         ValueChanged?.Invoke();
     }
-
+    public void Restore(float health = 0, float stamina = 0)
+    {
+        this.health += health;
+        this.stamina += stamina;
+        ValueChanged?.Invoke();
+    }
     float DamageModifier(Element elementType)
     {
         if (elementType == null)
@@ -275,14 +340,14 @@ public class FishMonster
     {
         return name;
     }
-    
+
 }
 
 [Flags]
 public enum Depth
 {
-    shallow=1<<0,
-    middle=1<<1,
-    abyss=1<<2
+    shallow = 1 << 0,
+    middle = 1 << 1,
+    abyss = 1 << 2
 
 }

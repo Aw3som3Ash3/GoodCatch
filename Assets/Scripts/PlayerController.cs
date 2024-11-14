@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 public class PlayerController : MonoBehaviour
 {
     GoodCatchInputs.PlayerActions inputs;
@@ -14,13 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform cameraRig;
     [SerializeField]
-    float moveSpeed, accel,jumpStrength;
+    float moveSpeed, accel, jumpStrength;
     [SerializeField]
     float maxPitch, minPitch;
     Vector3 velocity;
     float fallSpeed;
     const float Gravity = -9.8f;
-    const float rotSensitivity=10;
+    const float rotSensitivity = 10;
     [SerializeField]
     float mouseSensitiviy;
     Vector2 rotVelocity;
@@ -43,7 +39,7 @@ public class PlayerController : MonoBehaviour
         lookAction = inputs.Look;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
-        characterController=this.GetComponent<CharacterController>();
+        characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
     }
     private void OnEnable()
@@ -61,11 +57,11 @@ public class PlayerController : MonoBehaviour
 
     bool InteractionCheck(out IInteractable interactable)
     {
-        var colliders = Physics.OverlapSphere(this.transform.position, 2,interactionLayer);
-        foreach(var collider in colliders)
+        var colliders = Physics.OverlapSphere(this.transform.position, 2, interactionLayer);
+        foreach (var collider in colliders)
         {
-            interactable=collider.GetComponentInParent<IInteractable>();
-           
+            interactable = collider.GetComponentInParent<IInteractable>();
+
             if (interactable != null)
             {
                 return true;
@@ -73,17 +69,20 @@ public class PlayerController : MonoBehaviour
         }
         interactable = null;
         return false;
-       // return interactable != null? true: false;
+        // return interactable != null? true: false;
     }
     void OnInteract(InputAction.CallbackContext context)
     {
         IInteractable interactable;
-        if(InteractionCheck(out interactable))
+        if (InteractionCheck(out interactable))
         {
             interactable.Interact();
-
-            InputManager.DisablePlayer();
-            inStation = true;
+            if(interactable is Station)
+            {
+                InputManager.DisablePlayer();
+                inStation = true;
+            }
+           
         }
 
     }
@@ -91,14 +90,14 @@ public class PlayerController : MonoBehaviour
     private void StationInteracted(Station station, Transform transform)
     {
         inStation = true;
-       this.transform.position = transform.position;
-       this.transform.rotation = transform.rotation;
+        this.transform.position = transform.position;
+        this.transform.rotation = transform.rotation;
     }
     void StationLeft(Station station)
     {
         inStation = false;
         InputManager.EnablePlayer();
-        
+
 
     }
     // Update is called once per frame
@@ -110,7 +109,7 @@ public class PlayerController : MonoBehaviour
             InteractionUI.text = "";
             return;
         }
-        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>()* mouseSensitiviy, 0.5f);
+        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * mouseSensitiviy, 0.5f);
         cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
         var angles = cameraRig.localEulerAngles;
         angles.z = 0;
@@ -119,13 +118,18 @@ public class PlayerController : MonoBehaviour
         //print(angles.x);
         cameraRig.localEulerAngles = angles;
         IInteractable interactible;
-        if(InteractionCheck(out interactible))
+        if (InteractionCheck(out interactible))
         {
-           InteractionUI.text = interactible.StationName();
+            InteractionUI.text = interactible.StationName;
         }
         else
         {
-            InteractionUI.text = "";
+            if (InteractionUI != null)
+            {
+                InteractionUI.text = "";
+
+            }
+
         }
 
     }
@@ -137,7 +141,7 @@ public class PlayerController : MonoBehaviour
         }
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
-        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * moveSpeed,(characterController.isGrounded ? accel:accel/4));
+        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * moveSpeed, (characterController.isGrounded ? accel : accel / 4));
         if (moveAction.IsPressed())
         {
             var angles = cameraRig.localEulerAngles;
@@ -166,7 +170,7 @@ public class PlayerController : MonoBehaviour
         minAngle += 360;
         if (angle > 180 && angle < minAngle % 360)
         {
-           
+
             angle = minAngle % 360;
         }
         else if (angle < 180 && angle > maxAngle)
@@ -177,7 +181,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnMove(InputAction.CallbackContext context)
     {
-       
+
     }
     void OnJump(InputAction.CallbackContext context)
     {

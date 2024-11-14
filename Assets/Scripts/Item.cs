@@ -1,0 +1,13 @@
+using UnityEngine;
+
+
+public abstract class Item : ScriptableObject
+{
+    public string Type { get { return this.GetType().ToString(); } }
+    [SerializeField]
+    Sprite icon;
+    [SerializeField]
+    [TextArea]
+    string description;
+    public string Description { get { return description; } }
+}
