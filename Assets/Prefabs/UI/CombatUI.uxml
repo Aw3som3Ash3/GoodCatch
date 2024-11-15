@@ -6,11 +6,18 @@
         <ui:VisualElement name="Profile" style="flex-grow: 0; justify-content: space-around; align-items: flex-start; height: auto; min-width: 25%; align-self: stretch;">
             <ui:ProgressBar value="1" name="HealthBar" high-value="1" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; width: 100%; background-color: rgba(0, 0, 0, 0); flex-grow: 0; flex-shrink: 1;" />
             <ui:ProgressBar value="1" name="StaminaBar" high-value="1" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; width: 100%; justify-content: flex-end; align-items: stretch; align-self: stretch;" />
-            <ui:VisualElement name="ProfilePic" style="flex-grow: 0; min-height: 165px; justify-content: flex-start; align-items: auto; min-width: 165px; background-color: rgb(255, 255, 255); align-self: flex-start;" />
+            <ui:VisualElement name="ProfileInfo" style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="ProfilePic" style="flex-grow: 0; min-height: 165px; justify-content: flex-start; align-items: auto; min-width: 165px; background-color: rgb(255, 255, 255); align-self: flex-start;" />
+                <ui:VisualElement name="ProfileText" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" style="font-size: 30px; padding-bottom: 13px;" />
+                    <ui:Label tabindex="-1" text="Level" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level" style="font-size: 30px; padding-bottom: 13px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
-        <CombatTabs name="CombatTabs" style="flex-grow: 1; margin-top: 10px; margin-bottom: 10px; max-width: 50%; margin-right: 10px; margin-left: 10px;" />
+        <CombatTabs name="CombatTabs" style="flex-grow: 1; margin-top: -9px; margin-bottom: 0; max-width: 50%; margin-right: 0; margin-left: 0;" />
         <ui:VisualElement name="EndTurnArea" style="flex-grow: 0.25;">
-            <ui:Button text="End Turn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndTurn" style="height: 149px;" />
+            <ui:Button text="End Turn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndTurn" style="height: 70%;" />
+            <ui:Button text="Run" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RunButton" style="height: 23%;" />
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="TurnMarker" style="flex-grow: 1; position: absolute; height: 50px; width: 50px; top: auto; left: auto; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/ArrowDown.png?fileID=2800000&amp;guid=a56ccffe4084f61419176ce191269138&amp;type=3#ArrowDown&quot;); -unity-background-scale-mode: stretch-to-fill; -unity-background-image-tint-color: rgb(255, 0, 0); transform-origin: bottom;" />
