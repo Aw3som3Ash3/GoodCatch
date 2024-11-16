@@ -284,8 +284,8 @@ public class CombatManager : MonoBehaviour
             currentTurn = currentTurn.Next;
         }else
         {
-            OrderTurn();
-            //currentTurn = turnList.First;
+            //OrderTurn();
+            currentTurn = turnList.First;
             roundNmber++;
         }
         combatUI.NextTurn();
@@ -364,6 +364,7 @@ public class CombatManager : MonoBehaviour
     }
     void RemoveFishFromBattle(Turn turn)
     {
+        combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
         //turnListUI.RemoveTurn(turn);
         //enemyFishes.Remove(turn.fish);
@@ -616,6 +617,7 @@ public class CombatManager : MonoBehaviour
         {
             if (ActionLeft)
             {
+               
                 combatManager.combatVisualizer.StartTargeting((i) => { Move(i); combatManager.combatUI.EnableButtons(); });
             }
            
