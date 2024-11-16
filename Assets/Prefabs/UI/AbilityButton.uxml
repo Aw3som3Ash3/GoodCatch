@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement style="flex-grow: 0;">
-        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="max-width: none; min-width: auto; align-self: auto; align-items: center;" />
+        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="max-width: none; min-width: auto; align-self: auto; align-items: center; flex-grow: 1; flex-shrink: 1; height: 100%;" />
         <ui:VisualElement name="tooltip" tabindex="0" focusable="false" style="flex-grow: 1; position: absolute; height: auto; top: auto; width: auto; bottom: 100px; transform-origin: bottom; translate: 0 0; max-height: none; left: auto; right: auto; min-width: 300px; max-width: 450px; align-self: center; background-color: rgba(90, 90, 90, 0.91); flex-wrap: wrap; flex-direction: column; justify-content: space-between; align-items: center;">
             <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="tooltipAbilityName" text="ABILITY NAME" style="align-items: center; border-bottom-color: rgb(0, 0, 0); border-bottom-width: 3px; flex-grow: 1; -unity-text-align: upper-center; align-self: stretch; margin-right: 0; margin-left: 0;" />
         </ui:VisualElement>
