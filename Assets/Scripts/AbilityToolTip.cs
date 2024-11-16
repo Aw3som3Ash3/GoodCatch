@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class AbilityToolTip : VisualElement
 {
     public VisualElement content { get; private set; }
+    
     public new class UxmlFactory : UxmlFactory<AbilityToolTip, AbilityToolTip.UxmlTraits>
     {
 
@@ -23,5 +24,6 @@ public class AbilityToolTip : VisualElement
         content = this.Q("content");
         this.visible = false;
         this.style.position = Position.Absolute;
+        
     }
 }

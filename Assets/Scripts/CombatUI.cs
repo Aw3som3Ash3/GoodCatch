@@ -54,9 +54,9 @@ public class CombatUI : VisualElement
             abilityButtons[i] = tabbedView.Q<AbilityButton>("ability" + i);
             int index = i;
             abilityButtons[i].clicked += () => UseAbility(index);
-            
-            //abilityButtons[i].mouseOver += () => ToolTip(index);
-            //abilityButtons[i].mouseExit += () => toolTip.visible = false;
+
+            abilityButtons[i].mouseEnter += (action) => { ToolTip(index);action(toolTip);};
+            abilityButtons[i].mouseExit += () => toolTip.visible = false;
         }
         endTurnButton = this.Q<Button>("EndTurn");
         endTurnButton.clicked += EndTurn;
@@ -69,16 +69,14 @@ public class CombatUI : VisualElement
         
         
     }
+    void ToolTip(int index)
+    {
+        toolTip.visible = true;
 
+        var pos = abilityButtons[index].style.transformOrigin.value.x;
+        toolTip.transform.position = this.WorldToLocal(abilityButtons[index].LocalToWorld(Vector2.zero))+(abilityButtons[index].contentRect.xMax * 0.5f)*Vector2.right;
 
-    //void ToolTip(int index)
-    //{
-    //    toolTip.visible = true;
-    //    Vector2 buttonOffset = new Vector2(abilityButtons[index].style.transformOrigin.value.x.value, abilityButtons[index].style.transformOrigin.value.y.value);
-    //    Vector2 tooltipOffset = new Vector2(toolTip.content.style.transformOrigin.value.x.value,toolTip.content.style.transformOrigin.value.y.value);
-    //    toolTip.transform.position = this.WorldToLocal(abilityButtons[index].LocalToWorld(buttonOffset));
-
-    //}
+    }
     public void SetTurnUI(List<CombatManager.Turn> turns)
     {
         turnList.Clear();
@@ -165,7 +163,7 @@ public class CombatUI : VisualElement
         {
             float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
             //abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i), damage);
-            abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i));
+            abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i),damage);
         }
         //if (actionTokens != null)
         //{

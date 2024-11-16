@@ -8,11 +8,13 @@
     visibility: visible;
     display: flex;
     background-color: rgba(0, 0, 0, 0);
+    transform-origin: center;
 }
 
 .Actions {
     flex-grow: 1;
     height: 97%;
+    transform-origin: top;
 }
 
 #unity-tabs-container {

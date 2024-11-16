@@ -5,12 +5,15 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AbilityButton : VisualElement
+public class AbilityButton : Button
 {
-    public Action mouseOver, mouseExit,clicked;
-    VisualElement tooltipElement;
+    public Action<Action<AbilityToolTip>> mouseEnter;
+    public Action mouseExit;
+
     Button button;
     string abilityName;
+
+    Label title,damage;
     public new class UxmlFactory : UxmlFactory<AbilityButton, AbilityButton.UxmlTraits>
     {
 
@@ -22,25 +25,39 @@ public class AbilityButton : VisualElement
     // Start is called before the first frame update
     public AbilityButton()
     {
-        VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/AbilityButton.uxml");
-        visualTreeAsset.CloneTree(root);
-        tooltipElement = this.Q("tooltip");
+        //VisualElement root = this;
+        //VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/AbilityButton.uxml");
+        //visualTreeAsset.CloneTree(root);
+        //tooltipElement = this.Q("tooltip");
         button = this.Q<Button>();
-        tooltipElement.visible = false;
+        //tooltipElement.visible = false;
         
-        button.RegisterCallback<MouseOverEvent>((x) => {  tooltipElement.visible = true; tooltipElement.Focus(); mouseOver?.Invoke(); });
-        button.RegisterCallback<MouseOutEvent>((x) => { tooltipElement.visible = false; mouseExit?.Invoke(); });
-
-        button.clicked+=()=> clicked?.Invoke();
+        this.RegisterCallback<MouseEnterEvent>((x) => {  mouseEnter?.Invoke(PopulateToolTip); });
+        this.RegisterCallback<MouseOutEvent>((x) => { mouseExit?.Invoke(); });
+        title=new Label();
+        damage=new Label();
+        //button.clicked+=()=> clicked?.Invoke();
         
     }
-    public void SetAbility(Ability ability) 
+
+    private void PopulateToolTip(AbilityToolTip element)
+    {
+        
+        element.content.Clear();
+        element.content.Add(title);
+        element.content.Add(damage);
+    }
+
+    public void SetAbility(Ability ability,float damage) 
     {
         abilityName = ability.name;
-        button.text = ability.name;
+        text = ability.name;
+        title.text = abilityName;
+        this.damage.text = damage.ToString();
 
     }
+
+    
 
 
 
