@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform cameraRig;
     [SerializeField]
+    Transform model;
+    [SerializeField]
     float moveSpeed, accel, jumpStrength;
     [SerializeField]
     float maxPitch, minPitch;
@@ -148,6 +150,8 @@ public class PlayerController : MonoBehaviour
             this.transform.Rotate(0, angles.y, 0);
             angles.y = 0;
             cameraRig.localEulerAngles = angles;
+            var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir));
+            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720*Time.deltaTime);
         }
         characterController.Move((velocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
 

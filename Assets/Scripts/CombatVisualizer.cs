@@ -57,6 +57,7 @@ public class CombatVisualizer : MonoBehaviour
     public void RemoveFish(CombatManager.Turn turn)
     {
         Destroy(turnToObject[turn].gameObject);
+        FishUI[turnToObject[turn]].parent.Remove(FishUI[turnToObject[turn]]);
     }
     public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
     {
@@ -66,10 +67,6 @@ public class CombatVisualizer : MonoBehaviour
 
         //GameObject uiObj= Instantiate(fishUIPrefab, canvas.transform);
         //uiObj.transform.SetSiblingIndex(0);
-        if (combatUI == null)
-        {
-
-        }
         FishUI[fishObject] = combatUI.AddFishUI(turn, fishObject.transform);
         //FishUI[fishObject].SetFish(turn, fishObject.transform);
         //fishObject.ObjectDestroyed = () => { Destroy(FishUI[fishObject].gameObject); FishUI.Remove(fishObject); };
