@@ -66,8 +66,8 @@ public class FishingMiniGame : MonoBehaviour
     {
         if (fishToCatch.CatchFish())
         {
-            StartMinigame();
-
+            //StartMinigame();
+            FishingSuccess();
         }
     }
 

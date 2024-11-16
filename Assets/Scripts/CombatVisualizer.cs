@@ -15,9 +15,8 @@ public class CombatVisualizer : MonoBehaviour
     GameObject fishObjectPrefab;
     [SerializeField]
     GameObject projectilPrefab;
-    [SerializeField]
-    UIDocument ui;
-    CombatUI combatUI;
+    CombatManager combatManager;
+    CombatUI combatUI { get { return combatManager.combatUI; } }
     [SerializeField]
     GameObject fishUIPrefab;
 
@@ -31,7 +30,7 @@ public class CombatVisualizer : MonoBehaviour
     Action<int> DepthSelection;
     private void Awake()
     {
-        combatUI = ui.rootVisualElement.Q<CombatUI>();
+        combatManager = FindObjectOfType<CombatManager>();
     }
     void Start()
     {
@@ -64,9 +63,13 @@ public class CombatVisualizer : MonoBehaviour
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
         fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90, 0);
         fishObject.SetFish(turn);
-        
+
         //GameObject uiObj= Instantiate(fishUIPrefab, canvas.transform);
         //uiObj.transform.SetSiblingIndex(0);
+        if (combatUI == null)
+        {
+
+        }
         FishUI[fishObject] = combatUI.AddFishUI(turn, fishObject.transform);
         //FishUI[fishObject].SetFish(turn, fishObject.transform);
         //fishObject.ObjectDestroyed = () => { Destroy(FishUI[fishObject].gameObject); FishUI.Remove(fishObject); };

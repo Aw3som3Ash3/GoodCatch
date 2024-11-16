@@ -46,6 +46,7 @@ public class AbilityButton : Button
         element.content.Clear();
         element.content.Add(title);
         element.content.Add(damage);
+        element.EnableToolTip(this);
     }
 
     public void SetAbility(Ability ability,float damage) 
