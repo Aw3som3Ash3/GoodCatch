@@ -15,22 +15,43 @@
     flex-grow: 1;
     height: 97%;
     transform-origin: top;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.Actions:hover {
 }
 
 #HealthBar .unity-progress-bar__progress {
     background-color: rgb(0, 255, 30);
 }
 
+#HealthBar #unity-progress-bar {
+    flex-grow: 1;
+    min-height: 100%;
+}
+
 #StaminaBar .unity-progress-bar__progress {
     background-color: rgb(255, 254, 49);
+}
+
+#StaminaBar #unity-progress-bar {
+    min-height: 100%;
 }
 
 #Items {
     flex-direction: row;
     flex-grow: 1;
-}
-
-.Actions:hover {
 }
 
 #unity-tabs-container {
@@ -40,6 +61,7 @@
     align-items: flex-start;
     align-self: flex-start;
     height: 35%;
+    width: 904px;
 }
 
 #CombatTabs .unity-tab-button__content {
@@ -53,23 +75,35 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background-image: url("project://database/Assets/Art/2D/UI/tab_other.png?fileID=21300000&guid=2d610eadbdfa6ae41b9f5e1337b4f5ce&type=3#tab_other");
-    -unity-background-image-tint-color: rgb(58, 97, 117);
+    -unity-background-image-tint-color: rgba(58, 97, 117, 0);
     background-color: rgba(255, 0, 0, 0);
     padding-bottom: 0;
     padding-right: 118px;
 }
 
 #CombatTabs .unity-tab-button {
-    height: 101%;
+    height: 121%;
     margin-top: 1%;
     width: 100%;
+    background-image: url("project://database/Assets/Art/2D/UI/tab_other.png?fileID=21300000&guid=2d610eadbdfa6ae41b9f5e1337b4f5ce&type=3#tab_other");
+    -unity-background-image-tint-color: rgba(58, 97, 117, 0.59);
+}
+
+#CombatTabs .unity-tab-button--active {
+    height: 121%;
+    margin-top: 1%;
+    width: 100%;
+    background-image: url("project://database/Assets/Art/2D/UI/tab_other.png?fileID=21300000&guid=2d610eadbdfa6ae41b9f5e1337b4f5ce&type=3#tab_other");
+    -unity-background-image-tint-color: rgb(58, 97, 117);
 }
 
 #CombatTabs .unity-tab-button:hover {
-    height: 101%;
+    height: 121%;
     margin-top: 1%;
     width: 100%;
     transition-duration: 0.1s;
+    -unity-background-image-tint-color: rgb(57, 82, 255);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #CombatTabs .unity-tab-button__top-bar {
@@ -86,9 +120,30 @@
     top: -5px;
 }
 
+#FightTab {
+}
+
+#FightTab.unity-tab-button {
+    background-image: url("project://database/Assets/Art/2D/UI/tab_fight.png?fileID=21300000&guid=258d1ccbfc066ba4abdf4cddd956a9e6&type=3#tab_fight");
+    -unity-background-image-tint-color: rgba(58, 97, 117, 0.59);
+    height: 121%;
+}
+
+#FightTab.unity-tab-button--active {
+    background-image: url("project://database/Assets/Art/2D/UI/tab_fight.png?fileID=21300000&guid=258d1ccbfc066ba4abdf4cddd956a9e6&type=3#tab_fight");
+    -unity-background-image-tint-color: rgb(58, 97, 117);
+    height: 121%;
+}
+
+#FightTab .unity-tab-button__content {
+    background-image: url("project://database/Assets/Art/2D/UI/tab_fight.png?fileID=21300000&guid=258d1ccbfc066ba4abdf4cddd956a9e6&type=3#tab_fight");
+}
+
 #unity-content-container {
     align-items: center;
     background-color: rgb(58, 97, 117);
+    max-height: 56%;
+    top: 9%;
 }
 
 #Move {
@@ -114,7 +169,7 @@
     height: 83%;
     margin-left: 11px;
     margin-right: 7px;
-    margin-top: 20px;
+    margin-top: 11px;
     max-height: 88px;
 }
 
@@ -141,17 +196,10 @@
     height: 83%;
     margin-left: 11px;
     margin-right: 7px;
-    margin-top: 20px;
+    margin-top: 11px;
     max-height: 88px;
     transition-duration: 0.1s;
     scale: 1.1 1.1;
-}
-
-#FightTab {
-}
-
-#FightTab .unity-tab-button__content {
-    background-image: url("project://database/Assets/Art/2D/UI/tab_fight.png?fileID=21300000&guid=258d1ccbfc066ba4abdf4cddd956a9e6&type=3#tab_fight");
 }
 
 #Profile #unity-progress-bar {
