@@ -17,15 +17,6 @@
     transform-origin: top;
 }
 
-#unity-tabs-container {
-    background-color: rgba(75, 75, 75, 0);
-    min-height: auto;
-    justify-content: space-around;
-    align-items: flex-start;
-    align-self: flex-start;
-    height: 35%;
-}
-
 #HealthBar .unity-progress-bar__progress {
     background-color: rgb(0, 255, 30);
 }
@@ -40,6 +31,15 @@
 }
 
 .Actions:hover {
+}
+
+#unity-tabs-container {
+    background-color: rgba(75, 75, 75, 0);
+    min-height: auto;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-self: flex-start;
+    height: 35%;
 }
 
 #CombatTabs .unity-tab-button__content {
@@ -65,12 +65,25 @@
     width: 100%;
 }
 
+#CombatTabs .unity-tab-button:hover {
+    height: 101%;
+    margin-top: 1%;
+    width: 100%;
+    transition-duration: 0.1s;
+}
+
+#CombatTabs .unity-tab-button__top-bar {
+    height: 8%;
+}
+
 #CombatTabs #Label {
     font-size: 281%;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
     -unity-text-align: middle-center;
-    right: -48%;
+    right: -47%;
+    -unity-font-style: bold;
+    top: -5px;
 }
 
 #unity-content-container {
@@ -105,10 +118,6 @@
     max-height: 88px;
 }
 
-#CombatTabs .unity-tab-button__top-bar {
-    height: 8%;
-}
-
 #Move:hover {
     border-top-left-radius: 90px;
     border-top-right-radius: 90px;
@@ -116,7 +125,7 @@
     border-bottom-left-radius: 90px;
     min-width: auto;
     width: auto;
-    max-width: 10%;
+    max-width: 9%;
     background-image: url("project://database/Assets/Art/2D/UI/anchor3.png?fileID=2800000&guid=506f619b546a7d6428f92b94ccabd738&type=3#anchor3");
     -unity-background-scale-mode: scale-to-fit;
     border-left-color: rgb(0, 0, 0);
@@ -124,11 +133,18 @@
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
     -unity-background-image-tint-color: rgb(255, 255, 255);
-    background-color: rgb(54, 231, 255);
+    background-color: rgb(255, 255, 255);
     border-top-width: 3px;
     border-right-width: 3px;
     border-bottom-width: 3px;
     border-left-width: 3px;
+    height: 83%;
+    margin-left: 11px;
+    margin-right: 7px;
+    margin-top: 20px;
+    max-height: 88px;
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
 }
 
 #FightTab {
@@ -141,4 +157,14 @@
 #Profile #unity-progress-bar {
     max-height: 32px;
     max-width: 469px;
+}
+
+#EndTurnArea .unity-button:hover {
+    scale: 1.05 1.05;
+    transition-duration: 0.1s;
+    background-color: rgb(85, 255, 213);
+}
+
+#TurnList .unity-button {
+    margin-right: 7%;
 }
