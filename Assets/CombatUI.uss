@@ -38,7 +38,7 @@
 }
 
 .Actions:hover {
-    flex-grow: 1;
+    flex-grow: 0;
 }
 
 #CombatTabs .unity-tab-button__content {

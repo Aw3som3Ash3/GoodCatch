@@ -11,6 +11,8 @@ public class TestCombatStarter : MonoBehaviour
     void Start()
     {
         fishMonsters.Add(fishType.GenerateMonster());
+        fishMonsters.Add(fishType.GenerateMonster());
+        fishMonsters.Add(fishType.GenerateMonster());
         Invoke("StartFight", 5);
     }
 

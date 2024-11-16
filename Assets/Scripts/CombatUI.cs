@@ -13,13 +13,14 @@ public class CombatUI : VisualElement
     TabbedView tabbedView;
     PlayerTurn currentTurn;
     Button moveButton,endTurnButton;
-    Button[] abilityButtons=new Button[4];
+    AbilityButton[] abilityButtons=new AbilityButton[4];
     ProgressBar healthBar, staminaBar;
     VisualElement turnMarker;
     VisualElement turnList;
     VisualElement itemBar;
     ItemInventory inventory;
     VisualElement statusBar;
+    AbilityToolTip toolTip;
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
     public new class UxmlFactory : UxmlFactory<CombatUI, CombatUI.UxmlTraits>
@@ -42,15 +43,20 @@ public class CombatUI : VisualElement
 
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
-        this.pickingMode = PickingMode.Ignore;
+        toolTip = new AbilityToolTip();
+        this.Add(toolTip);
         tabbedView = this.Q<CombatTabs>("CombatTabs");
+        
         moveButton = tabbedView.Q<Button>("Move");
         moveButton.clicked +=Move;
         for (int i = 0; i < abilityButtons.Length; i++)
         {
-            abilityButtons[i] = tabbedView.Q<Button>("ability" + i);
+            abilityButtons[i] = tabbedView.Q<AbilityButton>("ability" + i);
             int index = i;
             abilityButtons[i].clicked += () => UseAbility(index);
+            
+            //abilityButtons[i].mouseOver += () => ToolTip(index);
+            //abilityButtons[i].mouseExit += () => toolTip.visible = false;
         }
         endTurnButton = this.Q<Button>("EndTurn");
         endTurnButton.clicked += EndTurn;
@@ -60,9 +66,19 @@ public class CombatUI : VisualElement
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
-        //this.parent.pickingMode = PickingMode.Ignore;
-        //CombatManager.Turn.NewTurn += NewTurn;
+        
+        
     }
+
+
+    //void ToolTip(int index)
+    //{
+    //    toolTip.visible = true;
+    //    Vector2 buttonOffset = new Vector2(abilityButtons[index].style.transformOrigin.value.x.value, abilityButtons[index].style.transformOrigin.value.y.value);
+    //    Vector2 tooltipOffset = new Vector2(toolTip.content.style.transformOrigin.value.x.value,toolTip.content.style.transformOrigin.value.y.value);
+    //    toolTip.transform.position = this.WorldToLocal(abilityButtons[index].LocalToWorld(buttonOffset));
+
+    //}
     public void SetTurnUI(List<CombatManager.Turn> turns)
     {
         turnList.Clear();
@@ -126,7 +142,7 @@ public class CombatUI : VisualElement
     public void DisableButtons()
     {
         moveButton.SetEnabled(false);
-        foreach (Button button in abilityButtons)
+        foreach (AbilityButton button in abilityButtons)
         {
             button.SetEnabled(false);
         }
@@ -149,7 +165,7 @@ public class CombatUI : VisualElement
         {
             float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
             //abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i), damage);
-            abilityButtons[i].text = currentTurn.fish.GetAbility(i).name;
+            abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i));
         }
         //if (actionTokens != null)
         //{

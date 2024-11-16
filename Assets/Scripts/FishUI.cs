@@ -12,8 +12,6 @@ public class FishUI : VisualElement
    
     VisualElement statusBar;
 
-
-
     Transform target;
     Dictionary<StatusEffect.StatusEffectInstance, StatusIcon> statusIcon = new Dictionary<StatusEffect.StatusEffectInstance, StatusIcon>();
 
@@ -32,6 +30,7 @@ public class FishUI : VisualElement
         
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
+        
     }
 
     public FishUI(CombatManager.Turn turn, Transform target)
@@ -41,9 +40,8 @@ public class FishUI : VisualElement
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/FishConditionBar.uxml");
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
-        var origin = this.style.transformOrigin.value;
-        //origin.x = 500f;
-        this.style.transformOrigin = origin;
+        this.transform.position = new Vector3(-55, 0);
+        
         healthBar = this.Q<ProgressBar>("HealthBar");
         staminaBar = this.Q<ProgressBar>("StaminaBar");
         SetFish(turn, target);
@@ -57,7 +55,8 @@ public class FishUI : VisualElement
             
             Vector2 pos = Camera.main.WorldToViewportPoint(target.transform.position+Vector3.down);
             Debug.Log(pos);
-            this.transform.position = new Vector2(pos.x * this.parent.worldBound.width, (1-pos.y) * this.parent.worldBound.height);
+            this.style.left = pos.x * this.parent.worldBound.width;
+            this.style.top = (1 - pos.y) * this.parent.worldBound.height;
         }
     }
 
