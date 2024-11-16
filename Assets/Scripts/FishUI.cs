@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class FishUI : VisualElement
     Transform target;
     Dictionary<StatusEffect.StatusEffectInstance, StatusIcon> statusIcon = new Dictionary<StatusEffect.StatusEffectInstance, StatusIcon>();
 
+    public Action<Action<AbilityToolTip>> onHoverStatus;
+    public Action onHoverExit;
     public new class UxmlFactory : UxmlFactory<FishUI, FishUI.UxmlTraits>
     {
 
@@ -76,8 +79,10 @@ public class FishUI : VisualElement
 
     private void EffectRemoved(StatusEffect.StatusEffectInstance instance)
     {
-
-        statusBar.Remove(statusIcon[instance]);
+        var status = statusIcon[instance];
+        statusBar.Remove(status);
+        status.mouseEnter -= onHoverStatus;
+        status.mouseOut -= onHoverExit;
         statusIcon.Remove(instance);
 
     }
@@ -85,6 +90,8 @@ public class FishUI : VisualElement
     private void NewEffect(StatusEffect.StatusEffectInstance instance)
     {
         var status = new StatusIcon(instance);
+        status.mouseEnter += onHoverStatus;
+        status.mouseOut += onHoverExit;
         statusIcon[instance]=status;
         statusBar.Add(status);
         Debug.Log(instance);

@@ -26,4 +26,14 @@ public class AbilityToolTip : VisualElement
         this.style.position = Position.Absolute;
         
     }
+
+    public void EnableToolTip(VisualElement target)
+    {
+        this.visible = true;
+
+        var pos = target.style.transformOrigin.value.x;
+        this.transform.position = this.parent.WorldToLocal(target.LocalToWorld(Vector2.zero)) + (target.contentRect.xMax * 0.5f) * Vector2.right;
+        this.BringToFront();
+
+    }
 }

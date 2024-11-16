@@ -55,7 +55,7 @@ public class CombatUI : VisualElement
             int index = i;
             abilityButtons[i].clicked += () => UseAbility(index);
 
-            abilityButtons[i].mouseEnter += (action) => { ToolTip(index);action(toolTip);};
+            abilityButtons[i].mouseEnter += (action) => {action(toolTip);};
             abilityButtons[i].mouseExit += () => toolTip.visible = false;
         }
         endTurnButton = this.Q<Button>("EndTurn");
@@ -69,14 +69,7 @@ public class CombatUI : VisualElement
         
         
     }
-    void ToolTip(int index)
-    {
-        toolTip.visible = true;
-
-        var pos = abilityButtons[index].style.transformOrigin.value.x;
-        toolTip.transform.position = this.WorldToLocal(abilityButtons[index].LocalToWorld(Vector2.zero))+(abilityButtons[index].contentRect.xMax * 0.5f)*Vector2.right;
-
-    }
+    
     public void SetTurnUI(List<CombatManager.Turn> turns)
     {
         turnList.Clear();
@@ -198,6 +191,8 @@ public class CombatUI : VisualElement
             if (effect.remainingDuration > 0)
             {
                 var icon = new StatusIcon(effect);
+                icon.mouseEnter += (action) => action(toolTip);
+                icon.mouseOut +=()=>toolTip.visible=false;
                 statusBar.Add(icon);
 
                 Debug.Log("setting effcts");
@@ -265,7 +260,10 @@ public class CombatUI : VisualElement
     }
     private void AddEffect(StatusEffect.StatusEffectInstance instance)
     {
-        statusBar.Add(new StatusIcon(instance));
+        var status = new StatusIcon(instance);
+        status.mouseEnter += (action) => action(toolTip);
+        status.mouseOut += () => toolTip.visible = false;
+        statusBar.Add(status);
     }
     public void SetTurnMarker(Transform target)
     {
@@ -276,6 +274,8 @@ public class CombatUI : VisualElement
     public FishUI AddFishUI(CombatManager.Turn turn, Transform target)
     {
         var fishUI = new FishUI(turn, target);
+        fishUI.onHoverStatus += (action) => action(toolTip);
+        fishUI.onHoverExit += () => toolTip.visible = false;
         Add(fishUI);
         return fishUI;
     }
