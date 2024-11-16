@@ -40,6 +40,7 @@ public class CombatUI : VisualElement
         VisualElement root = this;
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatUI.uxml");
         visualTreeAsset.CloneTree(root);
+        this.style.flexGrow = 1;
 
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;

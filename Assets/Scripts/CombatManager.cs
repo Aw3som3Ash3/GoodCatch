@@ -20,9 +20,9 @@ public class CombatManager : MonoBehaviour
    
     int roundNmber;
 
-    [SerializeField]
+    //[SerializeField]
     UIDocument ui;
-    CombatUI combatUI;
+    public CombatUI combatUI { get; private set; }
     //CombatUI combatUI;
     //[SerializeField]
     //TurnListUI turnListUI;
@@ -75,8 +75,9 @@ public class CombatManager : MonoBehaviour
         depthIndex[depths[2]] = 2;
         combatAI = this.AddComponent<CombatAI>();
         combatAI.SetCombatManager(this);
-        combatUI=ui.rootVisualElement.Q<CombatUI>();
-        
+        ui = FindObjectOfType<UIDocument>();
+        combatUI = new CombatUI();
+        ui.rootVisualElement.Add(combatUI);
         //combatUI.UseNet += UseNet;
 
     }
@@ -244,6 +245,7 @@ public class CombatManager : MonoBehaviour
         }
         prevCam.gameObject.SetActive(true);
         Camera.SetupCurrent(prevCam);
+        ui.rootVisualElement.Remove(combatUI);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene 1"));
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
