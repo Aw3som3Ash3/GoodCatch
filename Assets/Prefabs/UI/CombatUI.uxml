@@ -7,7 +7,7 @@
             <ui:ProgressBar value="1" name="HealthBar" high-value="1" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; width: 100%; background-color: rgba(0, 0, 0, 0); flex-grow: 0; flex-shrink: 1;" />
             <ui:ProgressBar value="1" name="StaminaBar" high-value="1" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; width: 100%; justify-content: flex-end; align-items: stretch; align-self: stretch;" />
             <ui:VisualElement name="ProfileInfo" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="ProfilePic" style="flex-grow: 0; min-height: 150px; justify-content: flex-start; align-items: auto; min-width: 150px; background-color: rgb(255, 255, 255); align-self: flex-start; max-width: 150px; max-height: 150px;" />
+                <ui:VisualElement name="ProfilePic" style="flex-grow: 0; min-height: 130px; justify-content: flex-start; align-items: auto; min-width: 130px; background-color: rgb(255, 255, 255); align-self: flex-start; max-width: 130px; max-height: 130px;" />
                 <ui:VisualElement name="ProfileText" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" style="font-size: 30px; padding-bottom: 13px;" />
                     <ui:Label tabindex="-1" text="Level" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level" style="font-size: 30px; padding-bottom: 13px;" />

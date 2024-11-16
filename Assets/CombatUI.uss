@@ -23,15 +23,15 @@
     justify-content: space-around;
     align-items: flex-start;
     align-self: flex-start;
-    height: 52%;
+    height: 35%;
 }
 
 #HealthBar .unity-progress-bar__progress {
-    background-color: rgb(255, 20, 0);
+    background-color: rgb(0, 255, 30);
 }
 
 #StaminaBar .unity-progress-bar__progress {
-    background-color: rgb(0, 255, 30);
+    background-color: rgb(255, 254, 49);
 }
 
 #Items {
@@ -56,17 +56,21 @@
     -unity-background-image-tint-color: rgb(58, 97, 117);
     background-color: rgba(255, 0, 0, 0);
     padding-bottom: 0;
+    padding-right: 118px;
 }
 
 #CombatTabs .unity-tab-button {
     height: 101%;
+    margin-top: 1%;
+    width: 100%;
 }
 
 #CombatTabs #Label {
-    font-size: 63px;
+    font-size: 281%;
     color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0);
     -unity-text-align: middle-center;
+    right: -48%;
 }
 
 #unity-content-container {
@@ -97,6 +101,8 @@
     height: 83%;
     margin-left: 11px;
     margin-right: 7px;
+    margin-top: 20px;
+    max-height: 88px;
 }
 
 #CombatTabs .unity-tab-button__top-bar {
@@ -130,4 +136,9 @@
 
 #FightTab .unity-tab-button__content {
     background-image: url("project://database/Assets/Art/2D/UI/tab_fight.png?fileID=21300000&guid=258d1ccbfc066ba4abdf4cddd956a9e6&type=3#tab_fight");
+}
+
+#Profile #unity-progress-bar {
+    max-height: 32px;
+    max-width: 469px;
 }
