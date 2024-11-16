@@ -284,7 +284,8 @@ public class CombatManager : MonoBehaviour
             currentTurn = currentTurn.Next;
         }else
         {
-            currentTurn = turnList.First;
+            OrderTurn();
+            //currentTurn = turnList.First;
             roundNmber++;
         }
         combatUI.NextTurn();
@@ -470,11 +471,11 @@ public class CombatManager : MonoBehaviour
             if (player.Contains(turn))
             {
                 print(player.IndexOf(turn));
-                return (player.IndexOf(turn) * Vector3.left * 1.5f) + playerSide.position;
+                return (player.IndexOf(turn) * Vector3.left * 3f) + playerSide.position;
             }
             else if (enemy.Contains(turn))
             {
-                return (enemy.IndexOf(turn) * Vector3.right * 1.5f) + enemySide.position;
+                return (enemy.IndexOf(turn) * Vector3.right * 3f) + enemySide.position;
             }
             return Vector3.zero;
         }
