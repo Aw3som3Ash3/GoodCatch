@@ -79,6 +79,7 @@ public class FishObject : MonoBehaviour
     {
         if (!isSelectable) return;
         outline.GetComponentInChildren<Renderer>().enabled = v;
+        print("hovering over fish");
         //throw new NotImplementedException();
     }
 
@@ -111,11 +112,19 @@ public class FishObject : MonoBehaviour
         this.turn = turn;
         model = Instantiate(turn.fish.Model, this.transform);
         model.transform.localPosition = Vector3.zero;
-        outline= Instantiate(model, this.transform);
+        model.layer = this.gameObject.layer;
+        foreach (Transform child in model.transform)
+        {
+            child.gameObject.layer = this.gameObject.layer;
+        }
+        outline = Instantiate(model, this.transform);
         //outline.transform.localScale = Vector3.one*1.25f;
         var rend = outline.GetComponentInChildren<Renderer>();
         rend.enabled = false;
         rend.material = outlineMat;
+       
+        
+        
     }
     public void SetDestination(Vector3 destination)
     {

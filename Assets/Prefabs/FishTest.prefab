@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8162800466277267344}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: FishTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2349082656026839355, guid: 007d6611b34028e4b8f5cd24ec5b5862, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3157672696338355073, guid: 007d6611b34028e4b8f5cd24ec5b5862, type: 3}
       propertyPath: m_LocalPosition.x
