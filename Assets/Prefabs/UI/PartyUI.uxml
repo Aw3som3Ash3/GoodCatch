@@ -1,0 +1,85 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/PartyUI.uss?fileID=7433441132597879392&amp;guid=f895f876d660f2c49a6df02c1decc556&amp;type=3#PartyUI" />
+    <ui:VisualElement name="Background" class="mainbg" style="flex-grow: 1; left: 0; width: auto; flex-direction: row;">
+        <ui:VisualElement name="PartyPanel" style="flex-grow: 1; flex-direction: row; width: 25%;">
+            <ui:VisualElement name="PartyContainer" style="flex-grow: 1; scale: 0.8 0.8; flex-direction: row;">
+                <ui:VisualElement name="PartyL" style="flex-grow: 1;">
+                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="PartyR" style="flex-grow: 1; padding-top: 25%;">
+                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1; margin-top: 0;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="InfoPanel" class="infopanel" style="flex-grow: 1; flex-direction: column; align-items: flex-start; height: auto; width: 75%; top: 0; bottom: 0; overflow: visible; visibility: visible; margin-top: 50px;">
+            <ui:Label tabindex="-1" text="Lorem Ipsum" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="title" style="height: 225px; left: 0; right: 0; top: 0; margin-left: 20px; margin-right: 20px; max-width: none; width: auto;" />
+            <ui:VisualElement name="Body" style="flex-grow: 1; height: 100%; width: 100%; flex-direction: row; margin-top: 20px;">
+                <ui:VisualElement name="InfoLeft" style="flex-grow: 1; width: auto; max-width: 325px; margin-left: 20px;">
+                    <ui:VisualElement name="Preview" style="flex-grow: 1; max-height: 300px; min-height: 300px;">
+                        <ui:VisualElement name="PreviewBorder" style="flex-grow: 1; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/Portrait_Border.png?fileID=2800000&amp;guid=41a233f6407095b43a0c5a5a939e4f5b&amp;type=3#Portrait_Border&quot;);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="DividerL" style="flex-grow: 1; margin-top: 20px; max-height: 60px; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/info_border.png?fileID=2800000&amp;guid=3d39a661c2480c64e87184fedb4b9439&amp;type=3#info_border&quot;);" />
+                    <ui:VisualElement name="SpeciesInfo" style="flex-grow: 1; margin-top: 20px; height: auto;">
+                        <ui:Label tabindex="-1" text="Weight - XX kg" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Weight" class="specweight" />
+                        <ui:Label tabindex="-1" text="Size - XX cm" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Size" class="specweight" />
+                        <ui:Label tabindex="-1" text="Lorem ipsum dolor sit amet, consecteteur adipiscing elit, sed do eismod tempor incididunt ut labore et dolore magna aliqua." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" class="specdesc" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="InfoRight" style="flex-grow: 1; margin-left: 25px; padding-right: 25px;">
+                    <ui:VisualElement name="StatsHeader" style="flex-grow: 1; max-height: 70px; min-height: auto;">
+                        <ui:VisualElement name="StatBorder" style="flex-grow: 1; width: 25%; left: 37.25%; right: 0; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/Skills_line.png?fileID=2800000&amp;guid=511d35d40fba95549b014313aef11d24&amp;type=3#Skills_line&quot;);">
+                            <ui:Label tabindex="-1" text="Stats" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatsTitle" class="statstitle" style="-unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Stats" style="flex-grow: 1; max-height: 230px; margin-top: 0;" />
+                    <ui:VisualElement name="DividerR" style="flex-grow: 1; max-height: 60px; margin-top: 20px; flex-direction: column;">
+                        <ui:VisualElement name="DividerRLine" style="flex-grow: 1; width: 100%; height: 40%; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/moves_border.png?fileID=2800000&amp;guid=4594dd976e149694a9ca7dbbc06fa259&amp;type=3#moves_border&quot;); min-height: auto; max-height: 40%; margin-top: 0; top: 100%;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="AbilityPanel" style="flex-grow: 1; flex-direction: row; margin-left: 0; padding-right: 100px; padding-left: 100px;">
+                        <ui:VisualElement name="AbilityColL" style="flex-grow: 1;">
+                            <ui:VisualElement name="Ability1" class="abilitybox" style="flex-grow: 1;" />
+                            <ui:VisualElement name="Ability2" class="abilitybox" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="AbilityColR" style="flex-grow: 1;">
+                            <ui:VisualElement name="Ability3" class="abilitybox" style="flex-grow: 1;" />
+                            <ui:VisualElement name="Ability4" class="abilitybox" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
