@@ -21,6 +21,7 @@ public class CombatUI : VisualElement
     ItemInventory inventory;
     VisualElement statusBar;
     AbilityToolTip toolTip;
+    Dictionary<CombatManager.Turn, TurnListIcon> turnIcon=new Dictionary<CombatManager.Turn, TurnListIcon>();
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
     public new class UxmlFactory : UxmlFactory<CombatUI, CombatUI.UxmlTraits>
@@ -76,8 +77,16 @@ public class CombatUI : VisualElement
         turnList.Clear();
         for (int i = 0; i < turns.Count; i++)
         {
-            turnList.Add(new TurnListIcon(turns[i].fish.Icon, turns[i].team));
+            var icon = new TurnListIcon(turns[i].fish.Icon, turns[i].team);
+            turnList.Add(icon);
+            turnIcon[turns[i]]=icon;
         }
+        
+    }
+    public void RemoveTurn(CombatManager.Turn turn)
+    {
+        turnList.Remove(turnIcon[turn]);
+        turnIcon.Remove(turn);
     }
     public void NextTurn()
     {

@@ -40,7 +40,8 @@ public class CombatVisualizer : MonoBehaviour
             depthSelectors[i].SetIndex(i);
             depthSelectors[i].Selected = (i) => { DepthSelection?.Invoke(i); StopTargeting(); };
             depthSelectors[i].Navigate += OnNaviagte;
-
+            InputManager.Input.UI.RightClick.Enable();
+           InputManager.Input.UI.RightClick.performed+=(x)=>StopTargeting();
         }
        
     }
@@ -56,8 +57,9 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void RemoveFish(CombatManager.Turn turn)
     {
+        var ui = FishUI[turnToObject[turn]];
         Destroy(turnToObject[turn].gameObject);
-        FishUI[turnToObject[turn]].parent.Remove(FishUI[turnToObject[turn]]);
+        ui.parent.Remove(ui);
     }
     public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
     {
@@ -170,16 +172,18 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void StartTargeting(Action<int> targeted)
     {
+        DepthSelection = null;
         eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(true);
         }
-        DepthSelection +=targeted;
+        DepthSelection =targeted;
 
     }
     void StopTargeting()
     {
+        DepthSelection = null;
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(false);
