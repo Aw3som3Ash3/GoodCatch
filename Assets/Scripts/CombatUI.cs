@@ -92,7 +92,7 @@ public class CombatUI : VisualElement
     {
         var turn = turnList.ElementAt(0);
         turnList.Remove(turn);
-        //turnList.Add(turn);
+        turnList.Add(turn);
 
     }
     void EndTurn()
