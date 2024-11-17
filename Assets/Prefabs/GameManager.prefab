@@ -45,12 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321bd3d01048fdf40840bcf4046246b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTime: 0
-  secondsPerHour: 1
-  testfisth: {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
-  startingItems: []
+  startingTime: 12.2
+  secondsPerHour: 10
+  testfisth:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  startingItems:
+  - {fileID: 11400000, guid: 3f1412ff6633e1249b954c2915c0cdc8, type: 2}
+  - {fileID: 11400000, guid: 3f1412ff6633e1249b954c2915c0cdc8, type: 2}
+  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
   tempTimeOfDayText: {fileID: 0}
-  postProcessing: {fileID: 0}
+  postProcessing: {fileID: 11400000, guid: 16f67f79273697442a16e80ef00755a8, type: 2}
   lastInnVisited: {fileID: 0}
 --- !u!114 &2603739909373533567
 MonoBehaviour:
