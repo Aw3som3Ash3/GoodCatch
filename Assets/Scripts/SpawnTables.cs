@@ -36,6 +36,7 @@ public class SpawnTables : ScriptableObject
             {
                 fishMonster = monsters[i].monster;
             }
+            cumalativeWeight += monsters[i].weight;
         }
         return fishMonster;
     }
