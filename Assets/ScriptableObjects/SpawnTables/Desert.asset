@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Desert
   m_EditorClassIdentifier: 
   monsters:
-  - monster: {fileID: 0}
-    weight: 0
-  - monster: {fileID: 0}
-    weight: 0
-  - monster: {fileID: 0}
-    weight: 0
+  - monster: {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
+    weight: 10
+  - monster: {fileID: 11400000, guid: 83b76f7996fb49142a3e9d1b11213e7d, type: 2}
+    weight: 10
+  - monster: {fileID: 11400000, guid: 4c4d1a2ba2dc3944a88c93c6f5c1c85e, type: 2}
+    weight: 5
