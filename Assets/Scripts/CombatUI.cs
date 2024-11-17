@@ -164,8 +164,11 @@ public class CombatUI : VisualElement
 
         for (int i = 0; i < abilityButtons.Length; i++)
         {
+            if (currentTurn.fish.GetAbility(i) == null)
+            {
+                continue;
+            }
             float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
-            //abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i), damage);
             abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i),damage);
         }
         //if (actionTokens != null)
