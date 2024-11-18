@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     FishingRod fishingRod;
     [SerializeField] TextMeshProUGUI InteractionUI;
-
+    Animator anim;
 
     bool inStation;
     private void Awake()
@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
         inputs.Fish.performed += StartFishing;
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
+        anim = GetComponentInChildren<Animator>();
     }
     private void OnEnable()
     {
@@ -153,6 +154,7 @@ public class PlayerController : MonoBehaviour
             var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir));
             model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720*Time.deltaTime);
         }
+        anim.SetFloat("speed",velocity.magnitude);
         characterController.Move((velocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
 
         if (!characterController.isGrounded)

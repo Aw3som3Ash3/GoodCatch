@@ -7,13 +7,15 @@ using UnityEngine.UIElements;
 
 public class AbilityButton : Button
 {
-    public Action<Action<AbilityToolTip>> mouseEnter;
-    public Action mouseExit;
 
     Button button;
     string abilityName;
 
     Label title,damage;
+
+    public event Action<Action<AbilityToolTip>> MouseEnter;
+    public event Action MouseExit;
+
     public new class UxmlFactory : UxmlFactory<AbilityButton, AbilityButton.UxmlTraits>
     {
 
@@ -25,28 +27,25 @@ public class AbilityButton : Button
     // Start is called before the first frame update
     public AbilityButton()
     {
-        //VisualElement root = this;
-        //VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/AbilityButton.uxml");
-        //visualTreeAsset.CloneTree(root);
-        //tooltipElement = this.Q("tooltip");
         button = this.Q<Button>();
-        //tooltipElement.visible = false;
         
-        this.RegisterCallback<MouseEnterEvent>((x) => {  mouseEnter?.Invoke(PopulateToolTip); });
-        this.RegisterCallback<MouseOutEvent>((x) => { mouseExit?.Invoke(); });
+        this.RegisterCallback<MouseEnterEvent>((x) => {MouseEnter?.Invoke(PopulateToolTip); });
+        this.RegisterCallback<MouseOutEvent>((x) => {MouseExit?.Invoke(); });
         title=new Label();
         damage=new Label();
-        //button.clicked+=()=> clicked?.Invoke();
         
     }
 
-    private void PopulateToolTip(AbilityToolTip element)
+    void PopulateToolTip(AbilityToolTip element)
     {
-        
-        element.content.Clear();
-        element.content.Add(title);
-        element.content.Add(damage);
-        element.EnableToolTip(this);
+        if (element.EnableToolTip(this))
+        {
+            element.content.Clear();
+            element.content.Add(title);
+            element.content.Add(damage);
+            
+        }
+       
     }
 
     public void SetAbility(Ability ability,float damage) 
@@ -57,9 +56,4 @@ public class AbilityButton : Button
         this.damage.text = damage.ToString();
 
     }
-
-    
-
-
-
 }
