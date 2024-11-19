@@ -154,6 +154,7 @@ public class CombatVisualizer : MonoBehaviour
     public void StartTargeting(Func<int,Depth,bool> targetable,int ablityIndex ,Action<int> targeted)
     {
         DepthSelection += targeted;
+        DepthSelection +=(x)=>StopTargeting();
         foreach (DepthSelectors selector in depthSelectors)
         {
             if (targetable(ablityIndex,selector.CurrentDepth))
