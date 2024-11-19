@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using static CombatManager;
 
 public class CombatVisualizer : MonoBehaviour
 {
@@ -41,7 +43,7 @@ public class CombatVisualizer : MonoBehaviour
             depthSelectors[i].Selected = (i) => { DepthSelection?.Invoke(i); StopTargeting(); };
             depthSelectors[i].Navigate += OnNaviagte;
             InputManager.Input.UI.RightClick.Enable();
-           InputManager.Input.UI.RightClick.performed+=(x)=>StopTargeting();
+            InputManager.Input.UI.RightClick.performed+=(x)=>StopTargeting();
         }
        
     }
@@ -190,7 +192,12 @@ public class CombatVisualizer : MonoBehaviour
             selector.PreviewSelection(false);
         }
         DepthSelection = null;
-        
+        foreach (var fish in turnToObject)
+        {
+            fish.Value.DisableSelection();
+
+        }
+
         //isActive = true;
     }
 }
