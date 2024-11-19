@@ -7,8 +7,8 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; width: 150px; height: auto; -unity-text-align: upper-left; justify-content: space-around; max-width: 150px;">
-                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Yes" />
-                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="No" />
+                <ui:Button text="Yes" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Yes" />
+                <ui:Button text="No" parse-escape-sequences="true" display-tooltip-when-elided="true" name="No" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -20,6 +20,7 @@ public class Inn : MonoBehaviour, IInteractable
         InnVisited?.Invoke(this);
         if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Night))
         {
+            dialogue.DisplayFirstOption();
             //dialogue.ShowUI();
             print("should sleep");
             GameManager.Instance.AdvanceTime(GameManager.TimeOfDay.Dawn);

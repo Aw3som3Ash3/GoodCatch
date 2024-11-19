@@ -10,8 +10,6 @@ public class InnDialogue : MonoBehaviour
     private Button option2;
 
     GameObject UIElement;
-    
-
 
     private void OnEnable()
     {
@@ -46,6 +44,7 @@ public class InnDialogue : MonoBehaviour
     {
         ShowUI();
         dialogue.text = "Welcome to the inn, would you like to stay?";
+        option2.RegisterCallback<ClickEvent>(ev => DisableUI());
 
         //option1.RegisterCallback<ClickEvent>(ev => DisableUI());
     }
