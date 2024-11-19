@@ -20,9 +20,9 @@ public class CombatManager : MonoBehaviour
    
     int roundNmber;
 
-    [SerializeField]
+    //[SerializeField]
     UIDocument ui;
-    CombatUI combatUI;
+    public CombatUI combatUI { get; private set; }
     //CombatUI combatUI;
     //[SerializeField]
     //TurnListUI turnListUI;
@@ -75,8 +75,9 @@ public class CombatManager : MonoBehaviour
         depthIndex[depths[2]] = 2;
         combatAI = this.AddComponent<CombatAI>();
         combatAI.SetCombatManager(this);
-        combatUI=ui.rootVisualElement.Q<CombatUI>();
-        
+        ui = FindObjectOfType<UIDocument>();
+        combatUI = new CombatUI();
+        ui.rootVisualElement.Add(combatUI);
         //combatUI.UseNet += UseNet;
 
     }
@@ -244,6 +245,7 @@ public class CombatManager : MonoBehaviour
         }
         prevCam.gameObject.SetActive(true);
         Camera.SetupCurrent(prevCam);
+        ui.rootVisualElement.Remove(combatUI);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene 1"));
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
@@ -282,6 +284,7 @@ public class CombatManager : MonoBehaviour
             currentTurn = currentTurn.Next;
         }else
         {
+            //OrderTurn();
             currentTurn = turnList.First;
             roundNmber++;
         }
@@ -361,6 +364,7 @@ public class CombatManager : MonoBehaviour
     }
     void RemoveFishFromBattle(Turn turn)
     {
+        combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
         //turnListUI.RemoveTurn(turn);
         //enemyFishes.Remove(turn.fish);
@@ -468,11 +472,11 @@ public class CombatManager : MonoBehaviour
             if (player.Contains(turn))
             {
                 print(player.IndexOf(turn));
-                return (player.IndexOf(turn) * Vector3.left * 1.5f) + playerSide.position;
+                return (player.IndexOf(turn) * Vector3.left * 3f) + playerSide.position;
             }
             else if (enemy.Contains(turn))
             {
-                return (enemy.IndexOf(turn) * Vector3.right * 1.5f) + enemySide.position;
+                return (enemy.IndexOf(turn) * Vector3.right * 3f) + enemySide.position;
             }
             return Vector3.zero;
         }
@@ -613,6 +617,7 @@ public class CombatManager : MonoBehaviour
         {
             if (ActionLeft)
             {
+               
                 combatManager.combatVisualizer.StartTargeting((i) => { Move(i); combatManager.combatUI.EnableButtons(); });
             }
            

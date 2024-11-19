@@ -7,7 +7,7 @@ public class CombatTabs : TabbedView
 {
     // Start is called before the first frame update
     Button move=new Button();
-    Button[] buttons= new Button[4];
+    AbilityButton[] buttons= new AbilityButton[4];
     public new class UxmlFactory : UxmlFactory<CombatTabs, UxmlTraits> { }
     public CombatTabs(): base()
     {
@@ -21,27 +21,33 @@ public class CombatTabs : TabbedView
         //move.bindingPath = "ActionButtons";
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i]=new Button();
+            var button = new AbilityButton();
+            buttons[i] = button;
             buttons[i].name = "ability"+i;
-            buttons[i].text = "ability"+i;
+            //buttons[i]. = "ability"+i;
             buttons[i].AddToClassList("Actions");
             //buttons[i].bindingPath = "ActionButtons";
-            abilities.Add(buttons[i]);
+            abilities.Add(button);
         }
         
         content.Add(abilities);
-        
-        this.AddTab(new TabButton("Fight", abilities), true);
+        TabButton fightTab = new TabButton("Fight", abilities);
+        fightTab.name = "FightTab";
+        this.AddTab(fightTab, true);
 
         VisualElement items = new VisualElement();
         items.name = "Items";
         content.Add(items);
-        this.AddTab(new TabButton("Items", this.Q("Items")), false);
+        TabButton itemsTab = new TabButton("Items", items);
+        itemsTab.name = "ItemsTab";
+        this.AddTab(itemsTab, false);
 
         VisualElement swap = new VisualElement();
         swap.name = "Swap";
         content.Add(swap);
-        this.AddTab(new TabButton("Swap", this.Q("Swap")), false);
+        TabButton swapTab = new TabButton("Swap", swap);
+        swapTab.name = "SwapTab";
+        this.AddTab(swapTab, false);
         
         
     }

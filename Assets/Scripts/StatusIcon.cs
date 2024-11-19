@@ -1,4 +1,4 @@
-using TMPro;
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,11 +6,15 @@ using UnityEngine.UIElements;
 
 public class StatusIcon : VisualElement
 {
-
     VisualElement imageObj;
     [SerializeField]
     Label turnsLeftText;
     StatusEffect.StatusEffectInstance statusEffect;
+    Label effectDescription= new Label();
+
+    public event Action<Action<AbilityToolTip>> MouseEnter;
+    public event Action MouseExit;
+
     public new class UxmlFactory : UxmlFactory<StatusIcon, StatusIcon.UxmlTraits>
     {
 
@@ -36,10 +40,25 @@ public class StatusIcon : VisualElement
         }
         UpdateIcon(statusEffect.remainingDuration);
         this.statusEffect.DurationChanged += UpdateIcon;
+        this.RegisterCallback<MouseOverEvent>((x) => MouseEnter?.Invoke(PopulateToolTip));
+        this.RegisterCallback<MouseOutEvent>((x) => MouseExit?.Invoke());
+        
+        effectDescription.text = "nothing for now";
 
+    }
+    void PopulateToolTip(AbilityToolTip element)
+    {
+        if (element.EnableToolTip(this))
+        {
+            element.content.Clear();
+            element.content.Add(effectDescription);
+            element.EnableToolTip(this);
+        }
+           
     }
     public void UpdateIcon(int duration)
     {
         turnsLeftText.text = duration.ToString();
     }
+
 }

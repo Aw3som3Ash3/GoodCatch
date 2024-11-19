@@ -13,13 +13,15 @@ public class CombatUI : VisualElement
     TabbedView tabbedView;
     PlayerTurn currentTurn;
     Button moveButton,endTurnButton;
-    Button[] abilityButtons=new Button[4];
+    AbilityButton[] abilityButtons=new AbilityButton[4];
     ProgressBar healthBar, staminaBar;
     VisualElement turnMarker;
     VisualElement turnList;
     VisualElement itemBar;
     ItemInventory inventory;
     VisualElement statusBar;
+    AbilityToolTip toolTip;
+    Dictionary<CombatManager.Turn, TurnListIcon> turnIcon=new Dictionary<CombatManager.Turn, TurnListIcon>();
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
     public new class UxmlFactory : UxmlFactory<CombatUI, CombatUI.UxmlTraits>
@@ -39,18 +41,24 @@ public class CombatUI : VisualElement
         VisualElement root = this;
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatUI.uxml");
         visualTreeAsset.CloneTree(root);
+        this.style.flexGrow = 1;
 
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
-        this.pickingMode = PickingMode.Ignore;
+        toolTip = new AbilityToolTip();
+        this.Add(toolTip);
         tabbedView = this.Q<CombatTabs>("CombatTabs");
+        
         moveButton = tabbedView.Q<Button>("Move");
         moveButton.clicked +=Move;
         for (int i = 0; i < abilityButtons.Length; i++)
         {
-            abilityButtons[i] = tabbedView.Q<Button>("ability" + i);
+            abilityButtons[i] = tabbedView.Q<AbilityButton>("ability" + i);
             int index = i;
             abilityButtons[i].clicked += () => UseAbility(index);
+
+            abilityButtons[i].MouseEnter += (action) => {action(toolTip);};
+            abilityButtons[i].MouseExit += () => toolTip.visible = false;
         }
         endTurnButton = this.Q<Button>("EndTurn");
         endTurnButton.clicked += EndTurn;
@@ -60,16 +68,25 @@ public class CombatUI : VisualElement
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
-        //this.parent.pickingMode = PickingMode.Ignore;
-        //CombatManager.Turn.NewTurn += NewTurn;
+        
+        
     }
+    
     public void SetTurnUI(List<CombatManager.Turn> turns)
     {
         turnList.Clear();
         for (int i = 0; i < turns.Count; i++)
         {
-            turnList.Add(new TurnListIcon(turns[i].fish.Icon, turns[i].team));
+            var icon = new TurnListIcon(turns[i].fish.Icon, turns[i].team);
+            turnList.Add(icon);
+            turnIcon[turns[i]]=icon;
         }
+        
+    }
+    public void RemoveTurn(CombatManager.Turn turn)
+    {
+        turnList.Remove(turnIcon[turn]);
+        turnIcon.Remove(turn);
     }
     public void NextTurn()
     {
@@ -126,7 +143,7 @@ public class CombatUI : VisualElement
     public void DisableButtons()
     {
         moveButton.SetEnabled(false);
-        foreach (Button button in abilityButtons)
+        foreach (AbilityButton button in abilityButtons)
         {
             button.SetEnabled(false);
         }
@@ -147,9 +164,12 @@ public class CombatUI : VisualElement
 
         for (int i = 0; i < abilityButtons.Length; i++)
         {
+            if (currentTurn.fish.GetAbility(i) == null)
+            {
+                continue;
+            }
             float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
-            //abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i), damage);
-            abilityButtons[i].text = currentTurn.fish.GetAbility(i).name;
+            abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i),damage);
         }
         //if (actionTokens != null)
         //{
@@ -184,6 +204,8 @@ public class CombatUI : VisualElement
             if (effect.remainingDuration > 0)
             {
                 var icon = new StatusIcon(effect);
+                icon.MouseEnter += (action) => action(toolTip);
+                icon.MouseExit +=()=>toolTip.visible=false;
                 statusBar.Add(icon);
 
                 Debug.Log("setting effcts");
@@ -214,6 +236,8 @@ public class CombatUI : VisualElement
         foreach (var combatItem in combatItems)
         {
             var itemUI = new CombatItemUI(combatItem.Key, combatItem.Value);
+            itemUI.MouseEnter += (action) => action(toolTip);
+            itemUI.MouseExit+=() => toolTip.visible = false;
             itemBar.Add(itemUI);
             itemUI.Clicked+=UseItem;
 
@@ -251,7 +275,10 @@ public class CombatUI : VisualElement
     }
     private void AddEffect(StatusEffect.StatusEffectInstance instance)
     {
-        statusBar.Add(new StatusIcon(instance));
+        var status = new StatusIcon(instance);
+        status.MouseEnter += (action) => action(toolTip);
+        status.MouseExit += () => toolTip.visible = false;
+        statusBar.Add(status);
     }
     public void SetTurnMarker(Transform target)
     {
@@ -262,6 +289,8 @@ public class CombatUI : VisualElement
     public FishUI AddFishUI(CombatManager.Turn turn, Transform target)
     {
         var fishUI = new FishUI(turn, target);
+        fishUI.onHoverStatus += (action) => action(toolTip);
+        fishUI.onHoverExit += () => toolTip.visible = false;
         Add(fishUI);
         return fishUI;
     }

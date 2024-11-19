@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270705409364b044a78748b29b502ed, type: 3}
   m_Name: physical
   m_EditorClassIdentifier: 
-  strong:
-  - {fileID: 11400000}
+  strong: []
   veryStrong: []
   weak: []
   veryWeak: []
