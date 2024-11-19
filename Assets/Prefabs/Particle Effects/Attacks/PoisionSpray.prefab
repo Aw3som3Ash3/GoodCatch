@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1022412782922895463}
   - component: {fileID: 9012675707327831721}
   m_Layer: 0
-  m_Name: Fire Attack
+  m_Name: PoisionSpray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1487,10 +1487,8 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 253200004, guid: 12672226dbc47f24d9b57e79b38f6a6e, type: 3}
-    - sprite: {fileID: -1566472508, guid: 12672226dbc47f24d9b57e79b38f6a6e, type: 3}
-    - sprite: {fileID: -1431488906, guid: 12672226dbc47f24d9b57e79b38f6a6e, type: 3}
-    - sprite: {fileID: -1247278429, guid: 12672226dbc47f24d9b57e79b38f6a6e, type: 3}
+    - sprite: {fileID: -1045676502, guid: f566c13afe6e85547802618bb6141dd6, type: 3}
+    - sprite: {fileID: -1296053505, guid: f566c13afe6e85547802618bb6141dd6, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

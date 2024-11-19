@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     float secondsPerHour = 1;
     GameObject sun;
     [SerializeField]
-    FishMonsterType testfisth;
+    FishMonsterType[] testfisth;
     [SerializeField]
     Item[] startingItems;
     bool rewardFish;
@@ -146,8 +146,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         dayTime = startingTime;
-        CapturedFish(testfisth);
-        CapturedFish(testfisth);
+        foreach(var fish in testfisth)
+        {
+            CapturedFish(fish);
+        }
         PlayerFishventory.Fishies[0].ChangeName("SteveO starter fish");
 
         mainEventSystem = EventSystem.current;

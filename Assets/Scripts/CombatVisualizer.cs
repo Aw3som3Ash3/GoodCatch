@@ -15,9 +15,8 @@ public class CombatVisualizer : MonoBehaviour
     GameObject fishObjectPrefab;
     [SerializeField]
     GameObject projectilPrefab;
-    [SerializeField]
-    UIDocument ui;
-    CombatUI combatUI;
+    CombatManager combatManager;
+    CombatUI combatUI { get { return combatManager.combatUI; } }
     [SerializeField]
     GameObject fishUIPrefab;
 
@@ -31,7 +30,7 @@ public class CombatVisualizer : MonoBehaviour
     Action<int> DepthSelection;
     private void Awake()
     {
-        combatUI = ui.rootVisualElement.Q<CombatUI>();
+        combatManager = FindObjectOfType<CombatManager>();
     }
     void Start()
     {
@@ -41,7 +40,8 @@ public class CombatVisualizer : MonoBehaviour
             depthSelectors[i].SetIndex(i);
             depthSelectors[i].Selected = (i) => { DepthSelection?.Invoke(i); StopTargeting(); };
             depthSelectors[i].Navigate += OnNaviagte;
-
+            InputManager.Input.UI.RightClick.Enable();
+           InputManager.Input.UI.RightClick.performed+=(x)=>StopTargeting();
         }
        
     }
@@ -57,14 +57,16 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void RemoveFish(CombatManager.Turn turn)
     {
+        var ui = FishUI[turnToObject[turn]];
         Destroy(turnToObject[turn].gameObject);
+        ui.parent.Remove(ui);
     }
     public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
     {
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
         fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90, 0);
         fishObject.SetFish(turn);
-        
+
         //GameObject uiObj= Instantiate(fishUIPrefab, canvas.transform);
         //uiObj.transform.SetSiblingIndex(0);
         FishUI[fishObject] = combatUI.AddFishUI(turn, fishObject.transform);
@@ -170,16 +172,18 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void StartTargeting(Action<int> targeted)
     {
+        DepthSelection = null;
         eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(true);
         }
-        DepthSelection +=targeted;
+        DepthSelection =targeted;
 
     }
     void StopTargeting()
     {
+        DepthSelection = null;
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(false);

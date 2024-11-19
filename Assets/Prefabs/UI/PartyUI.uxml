@@ -45,7 +45,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="InfoPanel" class="infopanel" style="flex-grow: 1; flex-direction: column; align-items: flex-start; height: auto; width: 75%; top: 0; bottom: 0; overflow: visible; visibility: visible; margin-top: 50px;">
-            <ui:Label tabindex="-1" text="Lorem Ipsum" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="title" style="height: 225px; left: 0; right: 0; top: 0; margin-left: 20px; margin-right: 20px; max-width: none; width: auto;" />
+            <ui:Label tabindex="-1" text="Party View" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="title" style="height: 225px; left: 0; right: 0; top: 0; margin-left: 20px; margin-right: 20px; max-width: none; width: auto;" />
             <ui:VisualElement name="Body" style="flex-grow: 1; height: 100%; width: 100%; flex-direction: row; margin-top: 20px;">
                 <ui:VisualElement name="InfoLeft" style="flex-grow: 1; width: auto; max-width: 325px; margin-left: 20px;">
                     <ui:VisualElement name="Preview" style="flex-grow: 1; max-height: 300px; min-height: 300px;">

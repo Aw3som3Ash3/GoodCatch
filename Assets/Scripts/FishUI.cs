@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -12,11 +13,11 @@ public class FishUI : VisualElement
    
     VisualElement statusBar;
 
-
-
     Transform target;
     Dictionary<StatusEffect.StatusEffectInstance, StatusIcon> statusIcon = new Dictionary<StatusEffect.StatusEffectInstance, StatusIcon>();
 
+    public Action<Action<AbilityToolTip>> onHoverStatus;
+    public Action onHoverExit;
     public new class UxmlFactory : UxmlFactory<FishUI, FishUI.UxmlTraits>
     {
 
@@ -32,6 +33,7 @@ public class FishUI : VisualElement
         
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
+        
     }
 
     public FishUI(CombatManager.Turn turn, Transform target)
@@ -41,9 +43,8 @@ public class FishUI : VisualElement
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/FishConditionBar.uxml");
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
-        var origin = this.style.transformOrigin.value;
-        //origin.x = 500f;
-        this.style.transformOrigin = origin;
+        this.transform.position = new Vector3(-55, 0);
+        
         healthBar = this.Q<ProgressBar>("HealthBar");
         staminaBar = this.Q<ProgressBar>("StaminaBar");
         SetFish(turn, target);
@@ -57,7 +58,8 @@ public class FishUI : VisualElement
             
             Vector2 pos = Camera.main.WorldToViewportPoint(target.transform.position+Vector3.down);
             Debug.Log(pos);
-            this.transform.position = new Vector2(pos.x * this.parent.worldBound.width, (1-pos.y) * this.parent.worldBound.height);
+            this.style.left = pos.x * this.parent.worldBound.width;
+            this.style.top = (1 - pos.y) * this.parent.worldBound.height;
         }
     }
 
@@ -77,8 +79,10 @@ public class FishUI : VisualElement
 
     private void EffectRemoved(StatusEffect.StatusEffectInstance instance)
     {
-
-        statusBar.Remove(statusIcon[instance]);
+        var status = statusIcon[instance];
+        statusBar.Remove(status);
+        status.mouseEnter -= onHoverStatus;
+        status.mouseOut -= onHoverExit;
         statusIcon.Remove(instance);
 
     }
@@ -86,6 +90,8 @@ public class FishUI : VisualElement
     private void NewEffect(StatusEffect.StatusEffectInstance instance)
     {
         var status = new StatusIcon(instance);
+        status.mouseEnter += onHoverStatus;
+        status.mouseOut += onHoverExit;
         statusIcon[instance]=status;
         statusBar.Add(status);
         Debug.Log(instance);

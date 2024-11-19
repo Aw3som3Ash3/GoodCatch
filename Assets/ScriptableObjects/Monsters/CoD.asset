@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
   fishId: 0
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 1e88d5f9e045a4d4ba82cffede2b1d81, type: 3}
   homeDepth: 0
   preferredBait:
   - {fileID: 11400000, guid: 34160b880143d944f988b3d6818b4405, type: 2}

@@ -12,45 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Toxpion
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
+  model: {fileID: 1620201024361121505, guid: 702da80f18247764e88236675367c1da, type: 3}
   fishId: 0
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  icon: {fileID: 0}
   homeDepth: 0
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
   - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
   agility:
-    min: 0
-    max: 0
+    min: 30
+    max: 45
     minTalent: 0
     maxTalent: 0
   attack:
-    min: 0
-    max: 0
+    min: 55
+    max: 100
     minTalent: 0
     maxTalent: 0
   special:
-    min: 0
-    max: 0
+    min: 55
+    max: 60
     minTalent: 0
     maxTalent: 0
   fortitude:
-    min: 0
-    max: 0
+    min: 30
+    max: 75
     minTalent: 0
     maxTalent: 0
   SpecialFortitude:
-    min: 0
-    max: 0
+    min: 35
+    max: 40
     minTalent: 0
     maxTalent: 0
   accuracy:
-    min: 0
-    max: 0
+    min: 80
+    max: 80
     minTalent: 0
     maxTalent: 0
-  baseHealth: 0
-  baseStamina: 0
-  baseAbilities: []
+  baseHealth: 100
+  baseStamina: 100
+  baseAbilities:
+  - {fileID: 11400000, guid: 6fab145c45eb942489e4925e441658d5, type: 2}
+  - {fileID: 11400000, guid: f5e161f5f7750b6468c04d356a177b7c, type: 2}
+  - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}
+  - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}
   difficulty: 0
