@@ -68,12 +68,7 @@ public class CombatVisualizer : MonoBehaviour
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
         fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90, 0);
         fishObject.SetFish(turn);
-
-        //GameObject uiObj= Instantiate(fishUIPrefab, canvas.transform);
-        //uiObj.transform.SetSiblingIndex(0);
         FishUI[fishObject] = combatUI.AddFishUI(turn, fishObject.transform);
-        //FishUI[fishObject].SetFish(turn, fishObject.transform);
-        //fishObject.ObjectDestroyed = () => { Destroy(FishUI[fishObject].gameObject); FishUI.Remove(fishObject); };
         fishObjects.Add(fishObject);
         turnToObject[turn] = fishObject;
         fishObject.transform.position = startingLocation;
@@ -88,9 +83,10 @@ public class CombatVisualizer : MonoBehaviour
         CompletedMove += () => turnToObject[turn].ReachedDestination -= CompletedMove;
     }
 
-    public void AnimateAttack(CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
+    public void AnimateAttack(Ability ability,CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
-        StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
+        //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
+        StartCoroutine(ParticleAttackAnim(ability, turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
         //throw new NotImplementedException();
     }
 
@@ -117,7 +113,26 @@ public class CombatVisualizer : MonoBehaviour
 
         }
     }
+    IEnumerator ParticleAttackAnim(Ability ability,Vector3 start, Vector3 destination, Action CompletedMove)
+    {
 
+        Vector3 targetDir = destination- start;
+        if (ability.AbilityVFX!=null)
+        {
+            var beam = Instantiate(ability.AbilityVFX, start, Quaternion.LookRotation(targetDir));
+            beam.startLifetime = targetDir.magnitude / beam.main.startSpeed.constant;
+            //beam.SetParticles(beam,)
+            //lifetime.constant = 0;
+            float dist = beam.main.startSpeed.constant * beam.main.startLifetime.constant;
+            beam.Play();
+            yield return new WaitForSeconds(beam.main.duration + beam.main.startLifetime.constant);
+        }
+        if(ability.TargetVFX != null)
+        {
+
+        }
+        CompletedMove?.Invoke();
+    }
     IEnumerator TempAttackAnim(Vector3 start, Vector3 destination, Action CompletedMove)
     {
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4310443588592343185}
   - component: {fileID: 7579806966704569852}
   - component: {fileID: 7042512664194066370}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Normal Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

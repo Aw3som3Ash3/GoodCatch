@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3824675843863737061}
   - component: {fileID: 4386650785047343137}
   - component: {fileID: 7963774181369237891}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FireHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

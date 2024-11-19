@@ -81,6 +81,10 @@ public class Ability : ScriptableObject
     [SerializeField]
     Sprite icon;
     public Sprite Icon { get; private set; }
+    [SerializeField]
+    ParticleSystem abilityVFX, targetVFX;
+    public ParticleSystem AbilityVFX { get {  return abilityVFX; } }
+    public ParticleSystem TargetVFX { get { return targetVFX; } }
     //List<FishMonster> targets;
 
 

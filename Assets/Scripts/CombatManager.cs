@@ -342,7 +342,7 @@ public class CombatManager : MonoBehaviour
                 {
                     bool hit;
                     ability.UseAbility(turn, target, out hit);
-                    combatVisualizer.AnimateAttack(turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } });
+                    combatVisualizer.AnimateAttack(ability,turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } });
                 }
             }
         }
@@ -359,7 +359,7 @@ public class CombatManager : MonoBehaviour
             // var attackingFish = turn.fish;
             bool hit;
             ability.UseAbility(turn, targetedFish, out hit);
-            combatVisualizer.AnimateAttack(turn, targetedFish, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { targetedFish.ForcedMove(ability.ForcedMovement); } });
+            combatVisualizer.AnimateAttack(ability,turn, targetedFish, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { targetedFish.ForcedMove(ability.ForcedMovement); } });
         }
     }
     void RemoveFishFromBattle(Turn turn)

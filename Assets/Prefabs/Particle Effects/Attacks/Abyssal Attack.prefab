@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2167950472740051303}
   - component: {fileID: 1022412782922895463}
   - component: {fileID: 9012675707327831721}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Abyssal Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
