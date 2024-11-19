@@ -11,6 +11,10 @@ public class CombatItemUI : VisualElement
     public Item item { get; private set; }
     Button button;
     public Action<Item> Clicked;
+
+    public event Action<Action<AbilityToolTip>> MouseEnter;
+    public event Action MouseExit;
+
     public new class UxmlFactory : UxmlFactory<CombatItemUI, CombatItemUI.UxmlTraits>
     {
 
@@ -40,6 +44,8 @@ public class CombatItemUI : VisualElement
         {
             button.style.backgroundImage = item.Icon;
         }
+        this.RegisterCallback<MouseOverEvent>((X) => MouseEnter?.Invoke(PopulateToolTip));
+        this.RegisterCallback<MouseOutEvent>((X) => MouseExit?.Invoke());
         button.text = item.name;
         button.Q<Label>("Amount").text = amount.ToString();
         button.clicked +=()=> Clicked(this.item);
@@ -49,5 +55,14 @@ public class CombatItemUI : VisualElement
     {
         this.amount = amount;
         button.Q<Label>("Amount").text = amount.ToString();
+    }
+
+    protected void PopulateToolTip(AbilityToolTip element)
+    {
+        if (element.EnableToolTip(this))
+        {
+            element.content.Clear();
+        }
+       
     }
 }

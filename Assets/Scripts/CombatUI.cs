@@ -57,8 +57,8 @@ public class CombatUI : VisualElement
             int index = i;
             abilityButtons[i].clicked += () => UseAbility(index);
 
-            abilityButtons[i].mouseEnter += (action) => {action(toolTip);};
-            abilityButtons[i].mouseExit += () => toolTip.visible = false;
+            abilityButtons[i].MouseEnter += (action) => {action(toolTip);};
+            abilityButtons[i].MouseExit += () => toolTip.visible = false;
         }
         endTurnButton = this.Q<Button>("EndTurn");
         endTurnButton.clicked += EndTurn;
@@ -92,7 +92,7 @@ public class CombatUI : VisualElement
     {
         var turn = turnList.ElementAt(0);
         turnList.Remove(turn);
-        //turnList.Add(turn);
+        turnList.Add(turn);
 
     }
     void EndTurn()
@@ -164,8 +164,11 @@ public class CombatUI : VisualElement
 
         for (int i = 0; i < abilityButtons.Length; i++)
         {
+            if (currentTurn.fish.GetAbility(i) == null)
+            {
+                continue;
+            }
             float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
-            //abilityButtons[i].UpdateVisuals(currentTurn.fish.GetAbility(i), damage);
             abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i),damage);
         }
         //if (actionTokens != null)
@@ -201,8 +204,8 @@ public class CombatUI : VisualElement
             if (effect.remainingDuration > 0)
             {
                 var icon = new StatusIcon(effect);
-                icon.mouseEnter += (action) => action(toolTip);
-                icon.mouseOut +=()=>toolTip.visible=false;
+                icon.MouseEnter += (action) => action(toolTip);
+                icon.MouseExit +=()=>toolTip.visible=false;
                 statusBar.Add(icon);
 
                 Debug.Log("setting effcts");
@@ -233,6 +236,8 @@ public class CombatUI : VisualElement
         foreach (var combatItem in combatItems)
         {
             var itemUI = new CombatItemUI(combatItem.Key, combatItem.Value);
+            itemUI.MouseEnter += (action) => action(toolTip);
+            itemUI.MouseExit+=() => toolTip.visible = false;
             itemBar.Add(itemUI);
             itemUI.Clicked+=UseItem;
 
@@ -271,8 +276,8 @@ public class CombatUI : VisualElement
     private void AddEffect(StatusEffect.StatusEffectInstance instance)
     {
         var status = new StatusIcon(instance);
-        status.mouseEnter += (action) => action(toolTip);
-        status.mouseOut += () => toolTip.visible = false;
+        status.MouseEnter += (action) => action(toolTip);
+        status.MouseExit += () => toolTip.visible = false;
         statusBar.Add(status);
     }
     public void SetTurnMarker(Transform target)

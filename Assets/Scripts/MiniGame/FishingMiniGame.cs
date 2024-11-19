@@ -15,7 +15,7 @@ public class FishingMiniGame : MonoBehaviour
     float score;
 
     int difficulty;
-    [SerializeField]
+    //[SerializeField]
     FishMonsterType fishMonster;
     [SerializeField]
     GameObject fishToCatchPrefab;
@@ -23,6 +23,8 @@ public class FishingMiniGame : MonoBehaviour
 
     [SerializeField] GameObject minigame;
     private FishingGameUI minigameUI;
+    [SerializeField]
+    LayerMask fishZones;
 
 
     public void Initiate(Floater floater)
@@ -34,7 +36,13 @@ public class FishingMiniGame : MonoBehaviour
         InputManager.Input.Fishing.Hook.performed += OnHook;
         InputManager.Input.Fishing.Exit.performed += OnExit;
         print(fishMonster);
-        Invoke("SpawnFish", UnityEngine.Random.Range(0, 2f));
+        RaycastHit hit;
+        if(Physics.Raycast(this.transform.position,Vector3.down,out hit,100, fishZones))
+        {
+            fishMonster=hit.collider.GetComponent<FishZone>().GetRandomFish();
+            Invoke("SpawnFish", UnityEngine.Random.Range(0, 25f));
+        }
+        
     }
 
     void OnExit(InputAction.CallbackContext context)

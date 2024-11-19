@@ -57,7 +57,7 @@ public class FishUI : VisualElement
         {
             
             Vector2 pos = Camera.main.WorldToViewportPoint(target.transform.position+Vector3.down);
-            Debug.Log(pos);
+            //Debug.Log(pos);
             this.style.left = pos.x * this.parent.worldBound.width;
             this.style.top = (1 - pos.y) * this.parent.worldBound.height;
         }
@@ -81,8 +81,8 @@ public class FishUI : VisualElement
     {
         var status = statusIcon[instance];
         statusBar.Remove(status);
-        status.mouseEnter -= onHoverStatus;
-        status.mouseOut -= onHoverExit;
+        status.MouseEnter -= onHoverStatus;
+        status.MouseExit -= onHoverExit;
         statusIcon.Remove(instance);
 
     }
@@ -90,8 +90,8 @@ public class FishUI : VisualElement
     private void NewEffect(StatusEffect.StatusEffectInstance instance)
     {
         var status = new StatusIcon(instance);
-        status.mouseEnter += onHoverStatus;
-        status.mouseOut += onHoverExit;
+        status.MouseEnter += onHoverStatus;
+        status.MouseExit += onHoverExit;
         statusIcon[instance]=status;
         statusBar.Add(status);
         Debug.Log(instance);

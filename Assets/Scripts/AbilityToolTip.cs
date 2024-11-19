@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 public class AbilityToolTip : VisualElement
 {
     public VisualElement content { get; private set; }
+
+    VisualElement currentTarget;
     
     public new class UxmlFactory : UxmlFactory<AbilityToolTip, AbilityToolTip.UxmlTraits>
     {
@@ -27,13 +29,18 @@ public class AbilityToolTip : VisualElement
         
     }
 
-    public void EnableToolTip(VisualElement target)
+    public bool EnableToolTip(VisualElement target)
     {
         this.visible = true;
-
+        if (currentTarget == target)
+        {
+            return false;
+        }
+        currentTarget = target;
         var pos = target.style.transformOrigin.value.x;
         this.transform.position = this.parent.WorldToLocal(target.LocalToWorld(Vector2.zero)) + (target.contentRect.xMax * 0.5f) * Vector2.right;
         this.BringToFront();
-
+        return true;
+        
     }
 }

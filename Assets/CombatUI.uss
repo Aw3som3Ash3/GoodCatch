@@ -92,6 +92,7 @@
 #Items {
     flex-direction: row;
     flex-grow: 1;
+    align-self: stretch;
 }
 
 #unity-tabs-container {
