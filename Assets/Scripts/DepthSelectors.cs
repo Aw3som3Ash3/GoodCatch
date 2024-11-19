@@ -84,6 +84,10 @@ public class DepthSelectors : MonoBehaviour
     {
         selectorEnabled = b;
         visualizer.SetActive(b);
+        if (!b)
+        {
+            targetingMarker.SetActive(false);
+        }
 
     }
     public void PreviewSelection(bool b)
@@ -104,14 +108,7 @@ public class DepthSelectors : MonoBehaviour
     }
     public void OnHover(bool b)
     {
-       
-        if (selectorEnabled)
-        {
-
-            targetingMarker.SetActive(b);
-
-        }
-
+        targetingMarker.SetActive(b&& selectorEnabled);
         visualizer.GetComponent<Renderer>().material.color = b ? hoverColor : color;
 
     }
