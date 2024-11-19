@@ -44,7 +44,8 @@ public class InnDialogue : MonoBehaviour
     {
         ShowUI();
         dialogue.text = "Welcome to the inn, would you like to stay?";
-        option2.RegisterCallback<ClickEvent>(ev => DisableUI());
+        option2.clicked += DisableUI;
+
 
         //option1.RegisterCallback<ClickEvent>(ev => DisableUI());
     }

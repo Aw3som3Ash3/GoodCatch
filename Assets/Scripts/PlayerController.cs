@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
         //print(angles.x);
         cameraRig.localEulerAngles = angles;
         IInteractable interactible;
-        if (InteractionCheck(out interactible))
+        /*if (InteractionCheck(out interactible))
         {
             InteractionUI.text = interactible.StationName;
         }
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
             }
 
-        }
+        }*/
 
     }
     private void FixedUpdate()
