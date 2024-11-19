@@ -14,17 +14,17 @@ public class Inn : MonoBehaviour, IInteractable
 
     public InnDialogue dialogue;
 
+    void Awake()
+    {
+        
+    }
+
     public bool Interact()
     {
-        //dialogue.DisplayFirstOption();
         InnVisited?.Invoke(this);
         if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Night))
         {
-            dialogue.DisplayFirstOption();
-            //dialogue.ShowUI();
-            print("should sleep");
-            GameManager.Instance.AdvanceTime(GameManager.TimeOfDay.Dawn);
-            GameManager.Instance.RestoreFish();
+            dialogue.DisplayFirstOption(SleepThroughNight);
             return true;
         }
        print("it is not night time could not sleep");
@@ -38,8 +38,11 @@ public class Inn : MonoBehaviour, IInteractable
 
     public void SleepThroughNight()
     {
-
+        print("should sleep");
+        GameManager.Instance.AdvanceTime(GameManager.TimeOfDay.Dawn);
+        GameManager.Instance.RestoreFish();
     }
+
 
     // Update is called once per frame
     void Update()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,10 +20,6 @@ public class InnDialogue : MonoBehaviour
         dialogue = rootVisualElement.Q<Label>("InnSpeak");
         option1 = rootVisualElement.Q<Button>("Yes");
         option2 = rootVisualElement.Q<Button>("No");
-
-        //dialogue.text = "Welcome to the inn, would you like to stay?";
-
-        //option2.RegisterCallback<ClickEvent>(ev => DisableUI());
     }
 
     private void Start()
@@ -33,21 +30,35 @@ public class InnDialogue : MonoBehaviour
     private void DisableUI()
     {
         UIElement.SetActive(false);
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+        Time.timeScale = 1.0f;
     }
     private void ShowUI()
     {
         Debug.Log("ShowUI function has been called.");
         UIElement.SetActive(true);
+        option1.visible = false;
+        option2.visible = false;
     }
 
-    public void DisplayFirstOption()
+    private void ShowUISelectable()
     {
-        ShowUI();
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        UnityEngine.Cursor.visible = true;
+        Time.timeScale = 0;
+        Debug.Log("ShowUISelectable function has been called.");
+        UIElement.SetActive(true);
+        option1.visible = true;
+        option2.visible = true;
+    }
+
+    public void DisplayFirstOption(Action onClick)
+    {
+        ShowUISelectable();
         dialogue.text = "Welcome to the inn, would you like to stay?";
+        option1.clicked += onClick;
         option2.clicked += DisableUI;
-
-
-        //option1.RegisterCallback<ClickEvent>(ev => DisableUI());
     }
 
     public void CantSleepMessage()
