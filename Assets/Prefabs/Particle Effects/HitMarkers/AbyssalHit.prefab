@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8330961534386134673}
   - component: {fileID: 2086096860026821414}
   - component: {fileID: 4277852700912799345}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AbyssalHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
