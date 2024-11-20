@@ -21,3 +21,7 @@ MonoBehaviour:
     weight: 10
   - monster: {fileID: 11400000, guid: fae40b4b59b39264d9c7a3a5bc46e2b4, type: 2}
     weight: 10
+  - monster: {fileID: 11400000, guid: fae40b4b59b39264d9c7a3a5bc46e2b4, type: 2}
+    weight: 10
+  - monster: {fileID: 11400000, guid: fae40b4b59b39264d9c7a3a5bc46e2b4, type: 2}
+    weight: 10
