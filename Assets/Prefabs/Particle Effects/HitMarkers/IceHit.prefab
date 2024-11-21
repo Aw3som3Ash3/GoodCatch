@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6655299728318034022}
   - component: {fileID: 2118178088902959246}
   - component: {fileID: 7966867451603126091}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IceHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

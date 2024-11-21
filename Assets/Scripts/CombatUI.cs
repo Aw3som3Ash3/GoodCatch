@@ -20,7 +20,7 @@ public class CombatUI : VisualElement
     VisualElement itemBar;
     ItemInventory inventory;
     VisualElement statusBar;
-    AbilityToolTip toolTip;
+    ToolTipBox toolTip;
     Dictionary<CombatManager.Turn, TurnListIcon> turnIcon=new Dictionary<CombatManager.Turn, TurnListIcon>();
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
@@ -45,7 +45,7 @@ public class CombatUI : VisualElement
 
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
-        toolTip = new AbilityToolTip();
+        toolTip = new ToolTipBox();
         this.Add(toolTip);
         tabbedView = this.Q<CombatTabs>("CombatTabs");
         

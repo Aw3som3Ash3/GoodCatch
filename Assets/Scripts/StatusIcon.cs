@@ -12,7 +12,7 @@ public class StatusIcon : VisualElement
     StatusEffect.StatusEffectInstance statusEffect;
     Label effectDescription= new Label();
 
-    public event Action<Action<AbilityToolTip>> MouseEnter;
+    public event Action<Action<ToolTipBox>> MouseEnter;
     public event Action MouseExit;
 
     public new class UxmlFactory : UxmlFactory<StatusIcon, StatusIcon.UxmlTraits>
@@ -46,7 +46,7 @@ public class StatusIcon : VisualElement
         effectDescription.text = "nothing for now";
 
     }
-    void PopulateToolTip(AbilityToolTip element)
+    void PopulateToolTip(ToolTipBox element)
     {
         if (element.EnableToolTip(this))
         {

@@ -104,8 +104,9 @@ public class FishObject : MonoBehaviour
     }
     public void DisableSelection()
     {
-        isSelectable = false;
         OnHover(false);
+        isSelectable = false;
+        
     }
     public void SetFish(CombatManager.Turn turn)
     {

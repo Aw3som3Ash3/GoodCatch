@@ -10,10 +10,10 @@ public class AbilityButton : Button
 
     Button button;
     string abilityName;
+    AbilityToolTipTitle title;
+    Label damageLabel;
 
-    Label title,damage;
-
-    public event Action<Action<AbilityToolTip>> MouseEnter;
+    public event Action<Action<ToolTipBox>> MouseEnter;
     public event Action MouseExit;
 
     public new class UxmlFactory : UxmlFactory<AbilityButton, AbilityButton.UxmlTraits>
@@ -31,29 +31,29 @@ public class AbilityButton : Button
         
         this.RegisterCallback<MouseEnterEvent>((x) => {MouseEnter?.Invoke(PopulateToolTip); });
         this.RegisterCallback<MouseOutEvent>((x) => {MouseExit?.Invoke(); });
-        title=new Label();
-        damage=new Label();
+        title=new AbilityToolTipTitle();
+        damageLabel=new Label();
         
     }
 
-    void PopulateToolTip(AbilityToolTip element)
+    void PopulateToolTip(ToolTipBox element)
     {
         if (element.EnableToolTip(this))
         {
             element.content.Clear();
             element.content.Add(title);
-            element.content.Add(damage);
+            element.content.Add(damageLabel);
             
         }
        
     }
-
     public void SetAbility(Ability ability,float damage) 
     {
+       
         abilityName = ability.name;
+        title.SetToolTip(abilityName,"",ability.AvailableDepths,ability.TargetableDepths);
         text = ability.name;
-        title.text = abilityName;
-        this.damage.text = damage.ToString();
+        this.damageLabel.text = damage.ToString();
 
     }
 }
