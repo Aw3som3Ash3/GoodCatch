@@ -16,7 +16,7 @@ public class FishUI : VisualElement
     Transform target;
     Dictionary<StatusEffect.StatusEffectInstance, StatusIcon> statusIcon = new Dictionary<StatusEffect.StatusEffectInstance, StatusIcon>();
 
-    public Action<Action<AbilityToolTip>> onHoverStatus;
+    public Action<Action<ToolTipBox>> onHoverStatus;
     public Action onHoverExit;
     public new class UxmlFactory : UxmlFactory<FishUI, FishUI.UxmlTraits>
     {

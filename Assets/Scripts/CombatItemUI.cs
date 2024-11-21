@@ -12,7 +12,7 @@ public class CombatItemUI : VisualElement
     Button button;
     public Action<Item> Clicked;
 
-    public event Action<Action<AbilityToolTip>> MouseEnter;
+    public event Action<Action<ToolTipBox>> MouseEnter;
     public event Action MouseExit;
 
     public new class UxmlFactory : UxmlFactory<CombatItemUI, CombatItemUI.UxmlTraits>
@@ -57,7 +57,7 @@ public class CombatItemUI : VisualElement
         button.Q<Label>("Amount").text = amount.ToString();
     }
 
-    protected void PopulateToolTip(AbilityToolTip element)
+    protected void PopulateToolTip(ToolTipBox element)
     {
         if (element.EnableToolTip(this))
         {
