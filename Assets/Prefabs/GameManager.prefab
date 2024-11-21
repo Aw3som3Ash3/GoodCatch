@@ -48,9 +48,7 @@ MonoBehaviour:
   startingTime: 12.2
   secondsPerHour: 10
   testfisth:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
   startingItems:
   - {fileID: 11400000, guid: 3f1412ff6633e1249b954c2915c0cdc8, type: 2}
   - {fileID: 11400000, guid: 3f1412ff6633e1249b954c2915c0cdc8, type: 2}
