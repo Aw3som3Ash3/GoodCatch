@@ -4,13 +4,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AbilityToolTip : VisualElement
+public class ToolTipBox : VisualElement
 {
     public VisualElement content { get; private set; }
 
     VisualElement currentTarget;
     
-    public new class UxmlFactory : UxmlFactory<AbilityToolTip, AbilityToolTip.UxmlTraits>
+    public new class UxmlFactory : UxmlFactory<ToolTipBox, ToolTipBox.UxmlTraits>
     {
 
     }
@@ -18,7 +18,7 @@ public class AbilityToolTip : VisualElement
     {
 
     }
-    public AbilityToolTip()
+    public ToolTipBox()
     {
         VisualElement root = this;
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/ToolTip.uxml");

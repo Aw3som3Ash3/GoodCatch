@@ -111,11 +111,11 @@ public class CombatManager : MonoBehaviour
                 combatUI.UpdateInventory();
             });
         }
-        else if (item is HealingItem)
+        else if (item is Potion)
         {
             combatVisualizer.SelectFish(Team.player, (t) => 
-            { 
-                HealFish(t); 
+            {
+                UsePotion((Potion)item, t);
                 ActionsCompleted();
                 combatUI.UpdateInventory();
             });
@@ -140,9 +140,9 @@ public class CombatManager : MonoBehaviour
         }
         currentTurn.Value.UseAction();
     }
-    void HealFish(Turn target)
+    void UsePotion(Potion potion,Turn target)
     {
-
+        potion.UsePotion((PlayerTurn)target, (particle) => combatVisualizer.AnimateBasicVFX(target, particle));
     }
     //sets up the combat
     void SetUp()

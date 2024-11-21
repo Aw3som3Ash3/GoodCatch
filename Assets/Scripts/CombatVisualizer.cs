@@ -82,7 +82,13 @@ public class CombatVisualizer : MonoBehaviour
         turnToObject[turn].ReachedDestination += CompletedMove;
         CompletedMove += () => turnToObject[turn].ReachedDestination -= CompletedMove;
     }
-
+    public void AnimateBasicVFX(CombatManager.Turn target, ParticleSystem vfxPrefab)
+    {
+        var vfx = Instantiate(vfxPrefab, turnToObject[target].transform.position, turnToObject[target].transform.rotation);
+        var main = vfx.main;
+        main.stopAction = ParticleSystemStopAction.Destroy;
+        vfx.Play();
+    }
     public void AnimateAttack(Ability ability,CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
         //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
@@ -106,11 +112,11 @@ public class CombatVisualizer : MonoBehaviour
 
     void FinishedSelecting()
     {
+        Debug.Log("should disable selections");
         foreach(var fish in turnToObject)
         {
             fish.Value.DisableSelection();
             fish.Value.selectedFish = null;
-
         }
     }
     IEnumerator ParticleAttackAnim(Ability ability,Vector3 start, Vector3 destination, Action CompletedMove)
@@ -120,11 +126,15 @@ public class CombatVisualizer : MonoBehaviour
         if (ability.AbilityVFX!=null)
         {
             var beam = Instantiate(ability.AbilityVFX, start, Quaternion.LookRotation(targetDir));
-            beam.startLifetime = targetDir.magnitude / beam.main.startSpeed.constant;
+            var main = beam.main;
+            main.stopAction = ParticleSystemStopAction.Destroy;
+            main.startLifetime = targetDir.magnitude / beam.main.startSpeed.constant;
             //beam.SetParticles(beam,)
             //lifetime.constant = 0;
             float dist = beam.main.startSpeed.constant * beam.main.startLifetime.constant;
             beam.Play();
+            
+            
             yield return new WaitForSeconds(beam.main.duration + beam.main.startLifetime.constant);
         }
         if(ability.TargetVFX != null)
