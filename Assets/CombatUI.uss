@@ -29,11 +29,14 @@
     border-bottom-left-radius: 5px;
     top: 7%;
     background-color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    font-size: 25px;
+    width: 20%;
 }
 
 .Actions:hover {
     flex-grow: 1;
-    height: 88%;
+    height: 90%;
     transform-origin: top;
     border-left-color: rgb(0, 0, 0);
     border-right-color: rgb(0, 0, 0);
@@ -146,6 +149,8 @@
     transition-duration: 0.1s;
     -unity-background-image-tint-color: rgb(57, 82, 255);
     background-color: rgba(0, 0, 0, 0);
+    transform-origin: bottom;
+    scale: 1 1.2;
 }
 
 #CombatTabs .unity-tab-button__top-bar {
@@ -216,6 +221,7 @@
     max-height: 88px;
     top: 9px;
     margin-bottom: 0;
+    color: rgba(27, 27, 27, 0);
 }
 
 #Move:hover {
@@ -245,7 +251,7 @@
     max-height: 88px;
     top: 9px;
     margin-bottom: 0;
-    scale: 1.1 1.1;
+    scale: 1.2 1.2;
     transition-duration: 0.1s;
     transform-origin: center;
 }
