@@ -30,7 +30,11 @@ public class AbilityButton : Button
         button = this.Q<Button>();
         
         this.RegisterCallback<MouseEnterEvent>((x) => {MouseEnter?.Invoke(PopulateToolTip); });
+        this.RegisterCallback<FocusInEvent>((x) => {MouseEnter?.Invoke(PopulateToolTip); });
+       
         this.RegisterCallback<MouseOutEvent>((x) => {MouseExit?.Invoke(); });
+        this.RegisterCallback<FocusOutEvent>((x) => {MouseExit?.Invoke(); });
+        tabIndex=1;
         title=new AbilityToolTipTitle();
         damageLabel=new Label();
         

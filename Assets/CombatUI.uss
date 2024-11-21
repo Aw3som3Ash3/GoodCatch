@@ -147,6 +147,15 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
+#CombatTabs .unity-tab-button:focus {
+    height: 121%;
+    margin-top: 1%;
+    width: 100%;
+    transition-duration: 0.1s;
+    -unity-background-image-tint-color: rgb(57, 82, 255);
+    background-color: rgba(0, 0, 0, 0);
+}
+
 #CombatTabs .unity-tab-button__top-bar {
     height: 8%;
 }
@@ -289,4 +298,10 @@
 
 #TurnList .unity-button {
     margin-right: 7%;
+}
+
+#EndTurnArea .unity-button:focus {
+    scale: 1.05 1.05;
+    transition-duration: 0.1s;
+    background-color: rgb(85, 255, 213);
 }

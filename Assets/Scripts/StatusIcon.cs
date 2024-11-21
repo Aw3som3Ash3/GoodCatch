@@ -41,7 +41,9 @@ public class StatusIcon : VisualElement
         UpdateIcon(statusEffect.remainingDuration);
         this.statusEffect.DurationChanged += UpdateIcon;
         this.RegisterCallback<MouseOverEvent>((x) => MouseEnter?.Invoke(PopulateToolTip));
+        this.RegisterCallback<FocusInEvent>((x) => MouseEnter?.Invoke(PopulateToolTip));
         this.RegisterCallback<MouseOutEvent>((x) => MouseExit?.Invoke());
+        this.RegisterCallback<FocusOutEvent>((x) => MouseExit?.Invoke());
         
         effectDescription.text = "nothing for now";
 
