@@ -305,3 +305,54 @@
     transition-duration: 0.1s;
     background-color: rgb(85, 255, 213);
 }
+
+.DraftCollumn {
+}
+
+.DraftSlot {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(0, 0, 255);
+    border-right-color: rgb(0, 0, 255);
+    border-top-color: rgb(0, 0, 255);
+    border-bottom-color: rgb(0, 0, 255);
+}
+
+.DraftSlot:hover {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(2, 0, 255);
+    border-right-color: rgb(2, 0, 255);
+    border-top-color: rgb(2, 0, 255);
+    border-bottom-color: rgb(2, 0, 255);
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}

@@ -63,6 +63,7 @@ public class CombatManager : MonoBehaviour
     bool rewardFish;
 
     public CombatAI combatAI { get; private set; }
+    int draftedCount;
     private void Awake()
     {
         depths[0] = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -98,10 +99,33 @@ public class CombatManager : MonoBehaviour
         this.playerFishes = playerFishes;
         this.enemyFishes = enemyFishes;
         this.rewardFish = rewardFish;
-        SetUp();
-        StartTurn();
+        SetUp();      
         InputManager.DisablePlayer();
         InputManager.Input.UI.Enable();
+        combatUI.Draft(playerFishes,(index,callback)=> 
+        { 
+            combatVisualizer.StartTargeting((target) => 
+            { 
+                DraftFish(index, target);
+                callback.Invoke(); 
+            });
+        });
+        //OrderTurn();
+        //StartTurn();
+    }
+    void DraftFish(int index,int target)
+    {
+        Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);
+        AddFish(turn, depths[target % 3], Team.player);
+        currentCombatents.Add(turn);
+        getFishesTurn[playerFishes[index]] = turn;
+        draftedCount++;
+        if (draftedCount >= 3 || draftedCount >= playerFishes.Count)
+        {
+            combatUI.StopDraft();
+            OrderTurn();
+            StartTurn();
+        }
     }
     void UseItem(Item item)
     {
@@ -112,7 +136,6 @@ public class CombatManager : MonoBehaviour
                 TryCatching((Net)item,t); 
                 ActionsCompleted(); 
                 combatUI.UpdateInventory();
-                //combatUI.EnableButtons();
 
             });
         }
@@ -166,14 +189,6 @@ public class CombatManager : MonoBehaviour
         Camera.SetupCurrent(cam);
         Turn.TurnEnded += NextTurn;
         combatUI.SetInventory(GameManager.Instance.PlayerInventory);
-        for (int i = 0; i < playerFishes.Count; i++)
-        {
-            Turn turn = new PlayerTurn(this, playerFishes[i], depths[i % 3]);
-            AddFish(turn, depths[i % 3], Team.player);
-            currentCombatents.Add(turn);
-            getFishesTurn[playerFishes[i]] = turn;
-
-        }
         for (int i = 0; i < enemyFishes.Count; i++)
         {
             Turn turn = new EnemyTurn(this, enemyFishes[i], depths[i % 3]);
@@ -181,10 +196,6 @@ public class CombatManager : MonoBehaviour
             currentCombatents.Add(turn);
             getFishesTurn[enemyFishes[i]] = turn;
         }
-
-
-        OrderTurn();
-
     }
     private void OnDisable()
     {
@@ -391,7 +402,11 @@ public class CombatManager : MonoBehaviour
 
     private void Update()
     {
-        combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
+        if (currentTurn != null)
+        {
+            combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
+        }
+        
     }
 
     [Serializable]

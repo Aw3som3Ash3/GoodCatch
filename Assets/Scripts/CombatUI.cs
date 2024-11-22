@@ -20,6 +20,7 @@ public class CombatUI : VisualElement
     VisualElement turnList;
     VisualElement itemBar;
     ItemInventory inventory;
+    VisualElement combatDraftUI;
     VisualElement statusBar;
     ToolTipBox toolTip;
     Dictionary<CombatManager.Turn, TurnListIcon> turnIcon=new Dictionary<CombatManager.Turn, TurnListIcon>();
@@ -71,9 +72,35 @@ public class CombatUI : VisualElement
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
-        
+        combatDraftUI = this.Q("CombatDraftUI");
+        combatDraftUI.SetEnabled(false);
+        combatDraftUI.visible = false;
         
     }
+    public void Draft(IList<FishMonster> playerFishes, Action<int,Action> callback)
+    {
+        tabbedView.SetEnabled(false);
+        combatDraftUI.SetEnabled(true);
+        combatDraftUI.visible = true;
+        endTurnButton.SetEnabled(false);
+        for (int i = 0;i < playerFishes.Count;i++)
+        {
+            int index = i;
+            var slot = combatDraftUI.Q<Button>("slot" + (i + 1));
+            slot.style.backgroundImage=playerFishes[i].Icon;
+            slot.clicked +=()=> callback(index,()=> { slot.SetEnabled(false);slot.style.unityBackgroundImageTintColor = Color.gray;});
+
+        }
+    }
+    public void StopDraft()
+    {
+        combatDraftUI.SetEnabled(false); 
+        combatDraftUI.visible = false;
+        tabbedView.SetEnabled(true);
+        endTurnButton.SetEnabled(true);
+
+    }
+    
     void ChangeTab(InputAction.CallbackContext context)
     {
         tabbedView.ChangeTab((int)context.ReadValue<float>());
