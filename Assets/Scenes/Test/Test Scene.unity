@@ -134,7 +134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33721059}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b635a2c90ec1154c93290288868be6b, type: 3}
   m_Name: 
@@ -1227,10 +1227,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3825476760726338017, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
+      propertyPath: m_Lens.ModeOverride
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4514534321718377144, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: fishingRod
       value: 
       objectReference: {fileID: 674446993}
+    - target: {fileID: 4514534321718377144, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
+      propertyPath: sprintSpeed
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4514534321718377144, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: jumpStrength
       value: 4

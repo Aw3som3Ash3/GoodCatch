@@ -116,12 +116,15 @@ public class CombatManager : MonoBehaviour
         }
         else if (item is Potion)
         {
-            combatVisualizer.SelectFish(Team.player, (t) => 
-            {
-                UsePotion((Potion)item, t);
-                ActionsCompleted();
-                combatUI.UpdateInventory();
-            });
+            UsePotion((Potion)item, currentTurn.Value);
+            ActionsCompleted();
+            combatUI.UpdateInventory();
+            //combatVisualizer.SelectFish(Team.player, (t) => 
+            //{
+            //    UsePotion((Potion)item, t);
+            //    ActionsCompleted();
+            //    combatUI.UpdateInventory();
+            //});
         }
         GameManager.Instance.PlayerInventory.RemoveItem(item);
 
