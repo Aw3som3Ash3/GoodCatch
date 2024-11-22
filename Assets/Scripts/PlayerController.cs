@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform model;
     [SerializeField]
-    float moveSpeed, accel, jumpStrength;
+    float moveSpeed, sprintSpeed,accel, jumpStrength;
     [SerializeField]
     float maxPitch, minPitch;
     Vector3 velocity;
@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     Animator anim;
 
     bool inStation;
+
+    bool sprinting;
     private void Awake()
     {
         inputs = InputManager.Input.Player;
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
         lookAction = inputs.Look;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
+        inputs.Sprint.performed +=(x)=>sprinting=!sprinting;
+        sprinting = false;
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
@@ -144,14 +148,14 @@ public class PlayerController : MonoBehaviour
         }
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
-        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * moveSpeed, (characterController.isGrounded ? accel : accel / 4));
+        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
         if (moveAction.IsPressed())
         {
             var angles = cameraRig.localEulerAngles;
             this.transform.Rotate(0, angles.y, 0);
             angles.y = 0;
             cameraRig.localEulerAngles = angles;
-            var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir));
+            var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
             model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720*Time.deltaTime);
         }
         anim.SetFloat("speed",velocity.magnitude);
