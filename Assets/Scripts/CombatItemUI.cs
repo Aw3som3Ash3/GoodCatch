@@ -45,7 +45,9 @@ public class CombatItemUI : VisualElement
             button.style.backgroundImage = item.Icon;
         }
         this.RegisterCallback<MouseOverEvent>((X) => MouseEnter?.Invoke(PopulateToolTip));
+        this.RegisterCallback<FocusInEvent>((X) => MouseEnter?.Invoke(PopulateToolTip));
         this.RegisterCallback<MouseOutEvent>((X) => MouseExit?.Invoke());
+        this.RegisterCallback<FocusOutEvent>((X) => MouseExit?.Invoke());
         button.text = item.name;
         button.Q<Label>("Amount").text = amount.ToString();
         button.clicked +=()=> Clicked(this.item);

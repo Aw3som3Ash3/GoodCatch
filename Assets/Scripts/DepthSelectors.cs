@@ -58,7 +58,7 @@ public class DepthSelectors : MonoBehaviour
 
         EventTrigger.Entry moveEvent = new EventTrigger.Entry();
         moveEvent.eventID = EventTriggerType.Move;
-        moveEvent.callback.AddListener((eventData) => { Navigate?.Invoke(-InputManager.Input.UI.Navigate.ReadValue<Vector2>().y); });
+        moveEvent.callback.AddListener((eventData) => { Navigate?.Invoke(Mathf.RoundToInt(-InputManager.Input.UI.Navigate.ReadValue<Vector2>().y)); });
         GetComponent<EventTrigger>().triggers.Add(moveEvent);
 
         visualizer.SetActive(false);

@@ -5,12 +5,13 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class CombatUI : VisualElement
 {
 
-    TabbedView tabbedView;
+    CombatTabs tabbedView;
     PlayerTurn currentTurn;
     Button moveButton,endTurnButton;
     AbilityButton[] abilityButtons=new AbilityButton[4];
@@ -42,7 +43,8 @@ public class CombatUI : VisualElement
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatUI.uxml");
         visualTreeAsset.CloneTree(root);
         this.style.flexGrow = 1;
-
+      
+        InputManager.Input.UI.ChangeTab.Enable();
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
         toolTip = new ToolTipBox();
@@ -58,6 +60,7 @@ public class CombatUI : VisualElement
             abilityButtons[i].clicked += () => UseAbility(index);
 
             abilityButtons[i].MouseEnter += (action) => {action(toolTip);};
+            
             abilityButtons[i].MouseExit += () => toolTip.visible = false;
         }
         endTurnButton = this.Q<Button>("EndTurn");
@@ -70,6 +73,10 @@ public class CombatUI : VisualElement
         statusBar = this.Q("StatusBar");
         
         
+    }
+    void ChangeTab(InputAction.CallbackContext context)
+    {
+        tabbedView.ChangeTab((int)context.ReadValue<float>());
     }
     
     public void SetTurnUI(List<CombatManager.Turn> turns)
@@ -93,11 +100,13 @@ public class CombatUI : VisualElement
         var turn = turnList.ElementAt(0);
         turnList.Remove(turn);
         turnList.Add(turn);
+        
 
     }
     void EndTurn()
     {
         currentTurn.EndTurn();
+        InputManager.Input.UI.ChangeTab.performed -= ChangeTab;
     }
     void Move()
     {
@@ -109,6 +118,10 @@ public class CombatUI : VisualElement
         {
             UpdateVisuals(turn as PlayerTurn);
             EnableButtons();
+            moveButton.Focus();
+            InputManager.Input.UI.ChangeTab.performed += ChangeTab;
+            tabbedView.ChangeTab(-3);
+            moveButton.Focus();
         }
         else
         {
@@ -137,6 +150,14 @@ public class CombatUI : VisualElement
 
         }
         endTurnButton.SetEnabled(true);
+        if (currentTurn.ActionLeft)
+        {
+            moveButton.Focus();
+        }
+        else
+        {
+            endTurnButton.Focus();
+        }
         
 
     }

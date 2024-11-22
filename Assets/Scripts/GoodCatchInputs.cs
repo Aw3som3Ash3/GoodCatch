@@ -502,6 +502,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeTab"",
+                    ""type"": ""Value"",
+                    ""id"": ""dd3243cf-bfc3-4261-b79f-557c6c406458"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -977,6 +986,39 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""bumpers"",
+                    ""id"": ""b0523d7d-d2f6-4b94-b57e-3bb5801ecf3c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""576a3ac0-ca65-419f-a079-f3c2a1eca084"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Touch"",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""38be5da2-bbfe-49b0-be52-5951834f43ae"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -1370,6 +1412,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_UI_Party = m_UI.FindAction("Party", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        m_UI_ChangeTab = m_UI.FindAction("ChangeTab", throwIfNotFound: true);
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
@@ -1539,6 +1582,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Party;
     private readonly InputAction m_UI_Inventory;
     private readonly InputAction m_UI_Pause;
+    private readonly InputAction m_UI_ChangeTab;
     public struct UIActions
     {
         private @GoodCatchInputs m_Wrapper;
@@ -1556,6 +1600,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         public InputAction @Party => m_Wrapper.m_UI_Party;
         public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
+        public InputAction @ChangeTab => m_Wrapper.m_UI_ChangeTab;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1604,6 +1649,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @ChangeTab.started += instance.OnChangeTab;
+            @ChangeTab.performed += instance.OnChangeTab;
+            @ChangeTab.canceled += instance.OnChangeTab;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1647,6 +1695,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @ChangeTab.started -= instance.OnChangeTab;
+            @ChangeTab.performed -= instance.OnChangeTab;
+            @ChangeTab.canceled -= instance.OnChangeTab;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1849,6 +1900,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         void OnParty(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnChangeTab(InputAction.CallbackContext context);
     }
     public interface IShipActions
     {

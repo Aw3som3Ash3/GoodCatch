@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -99,6 +100,8 @@ public class CombatManager : MonoBehaviour
         this.rewardFish = rewardFish;
         SetUp();
         StartTurn();
+        InputManager.DisablePlayer();
+        InputManager.Input.UI.Enable();
     }
     void UseItem(Item item)
     {
@@ -249,6 +252,8 @@ public class CombatManager : MonoBehaviour
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene 1"));
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+        InputManager.EnablePlayer();
+        InputManager.Input.UI.Disable();
     }
     void RewardXP()
     {
@@ -342,7 +347,7 @@ public class CombatManager : MonoBehaviour
                 {
                     bool hit;
                     ability.UseAbility(turn, target, out hit);
-                    combatVisualizer.AnimateAttack(ability,turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } });
+                    combatVisualizer.AnimateAttack(ability,turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement);  } combatUI.EnableButtons(); });
                 }
             }
         }
@@ -359,7 +364,7 @@ public class CombatManager : MonoBehaviour
             // var attackingFish = turn.fish;
             bool hit;
             ability.UseAbility(turn, targetedFish, out hit);
-            combatVisualizer.AnimateAttack(ability,turn, targetedFish, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { targetedFish.ForcedMove(ability.ForcedMovement); } });
+            combatVisualizer.AnimateAttack(ability,turn, targetedFish, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { targetedFish.ForcedMove(ability.ForcedMovement);  } combatUI.EnableButtons(); });
         }
     }
     void RemoveFishFromBattle(Turn turn)
@@ -489,7 +494,7 @@ public class CombatManager : MonoBehaviour
         public int actionsPerTurn { get; protected set; } = 1;
         public int actionsLeft { get; protected set; }
 
-        public bool ActionLeft { get { return actionsLeft > 0 && actionsCompleted; } }
+        public bool ActionLeft { get { return actionsLeft > 0; } }
         public FishMonster fish { get; protected set; }
         public CombatDepth currentDepth { get; protected set; }
         public int depthIndex { get { return combatManager.depthIndex[currentDepth]; } }
@@ -627,6 +632,10 @@ public class CombatManager : MonoBehaviour
             actionsCompleted = false;
             CombatDepth prevDepth = currentDepth;
             CombatDepth targetDepth = combatManager.depths[depthIndex];
+            if (prevDepth == targetDepth)
+            {
+                return;
+            }
             if (prevDepth != null)
             {
                 prevDepth.RemoveFish(this);
@@ -659,7 +668,7 @@ public class CombatManager : MonoBehaviour
             {
                 //Ability ability = fish.GetAbility(abilityIndex);
 
-                combatManager.combatVisualizer.StartTargeting(DepthTargetable,abilityIndex ,(i) => { UseAbility(abilityIndex,i); combatManager.combatUI.EnableButtons();});
+                combatManager.combatVisualizer.StartTargeting(DepthTargetable,abilityIndex ,(i) => { UseAbility(abilityIndex,i); });
             }
 
         }

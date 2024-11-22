@@ -158,14 +158,13 @@ public class CombatVisualizer : MonoBehaviour
 
     void OnNaviagte(float i)
     {
-        float value = i;
-
-        if (value > 0)
+        print(i);
+        if (i > 0)
         {
             selected++;
 
         }
-        else if (value < 0)
+        else if (i < 0)
         {
             selected--;
 
@@ -178,16 +177,18 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void StartTargeting(Func<int,Depth,bool> targetable,int ablityIndex ,Action<int> targeted)
     {
+        StopTargeting();
         DepthSelection += targeted;
         DepthSelection +=(x)=>StopTargeting();
         foreach (DepthSelectors selector in depthSelectors)
         {
             if (targetable(ablityIndex,selector.CurrentDepth))
             {
-                eventSystem.SetSelectedGameObject(selector.gameObject);
+                
                 selected = depthSelectors.IndexOf(selector);
                 selector.SetSelection(true);
-                
+                eventSystem.SetSelectedGameObject(selector.gameObject);
+
             }
             else
             {
@@ -200,6 +201,7 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void StartTargeting(Action<int> targeted)
     {
+        StopTargeting();
         DepthSelection = null;
         eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
         foreach (DepthSelectors selector in depthSelectors)
