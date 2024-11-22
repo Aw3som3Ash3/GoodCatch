@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3682952915605923240}
   - component: {fileID: 5052207443426827759}
   - component: {fileID: 4402197535515926074}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ToxinHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

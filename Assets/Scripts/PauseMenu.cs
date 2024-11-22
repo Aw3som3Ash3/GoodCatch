@@ -9,6 +9,8 @@ using UnityEngine.UIElements;
 public class PauseMenu : VisualElement
 {
     Button settting, party, beastiary, inventory;
+    CursorLockMode prevMode;
+    bool prevVisability;
     public new class UxmlFactory : UxmlFactory<PauseMenu, CombatUI.UxmlTraits>
     {
 
@@ -42,10 +44,17 @@ public class PauseMenu : VisualElement
     {
         if (context.performed)
         {
+            if (!this.enabledSelf)
+            {
+                prevVisability = UnityEngine.Cursor.visible;
+                prevMode = UnityEngine.Cursor.lockState;
+
+            }
             this.SetEnabled(!this.enabledSelf);
             this.visible = enabledSelf;
-            UnityEngine.Cursor.lockState = this.enabledSelf ? CursorLockMode.Confined : CursorLockMode.Locked;
-            UnityEngine.Cursor.visible = this.enabledSelf;
+            
+            UnityEngine.Cursor.lockState = this.enabledSelf ? CursorLockMode.Confined: prevMode;
+            UnityEngine.Cursor.visible = this.enabledSelf ? true: prevVisability;
             Time.timeScale = this.enabledSelf ? 0: 1;
             if (this.enabledSelf)
             {

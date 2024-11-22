@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1103669125694089725}
   - component: {fileID: 650585324863160108}
   - component: {fileID: 8607325296332805074}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AbyssalBurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}

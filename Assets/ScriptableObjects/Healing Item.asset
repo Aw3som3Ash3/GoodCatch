@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   description: 
-  healingAmount: 0
+  potionVFX: {fileID: 7504169191687348763, guid: 605e85bf51b67a34aa2f597ee4c5ed0a, type: 3}
+  healingAmount: 20
