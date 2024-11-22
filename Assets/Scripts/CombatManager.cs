@@ -112,13 +112,15 @@ public class CombatManager : MonoBehaviour
                 TryCatching((Net)item,t); 
                 ActionsCompleted(); 
                 combatUI.UpdateInventory();
+                //combatUI.EnableButtons();
+
             });
         }
         else if (item is Potion)
         {
             UsePotion((Potion)item, currentTurn.Value);
             ActionsCompleted();
-            combatUI.UpdateInventory();
+            
             //combatVisualizer.SelectFish(Team.player, (t) => 
             //{
             //    UsePotion((Potion)item, t);
@@ -127,7 +129,8 @@ public class CombatManager : MonoBehaviour
             //});
         }
         GameManager.Instance.PlayerInventory.RemoveItem(item);
-
+        combatUI.UpdateInventory();
+        combatUI.EnableButtons();
     }
     void TryCatching(Net net,Turn target)
     {
@@ -149,6 +152,8 @@ public class CombatManager : MonoBehaviour
     void UsePotion(Potion potion,Turn target)
     {
         potion.UsePotion((PlayerTurn)target, (particle) => combatVisualizer.AnimateBasicVFX(target, particle));
+        //currentTurn.Value.UseAction();
+
     }
     //sets up the combat
     void SetUp()
@@ -211,7 +216,7 @@ public class CombatManager : MonoBehaviour
     void ActionsCompleted()
     {
         actionsCompleted = true;
-
+        
         CanFightEnd();
         CompletedAllActions?.Invoke();
     }
@@ -664,6 +669,7 @@ public class CombatManager : MonoBehaviour
         {
             combatManager.UseItem(item);
             UseAction();
+            
         }
         public void UseAbility(int abilityIndex)
         {

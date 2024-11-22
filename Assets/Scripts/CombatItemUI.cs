@@ -14,6 +14,7 @@ public class CombatItemUI : VisualElement
 
     public event Action<Action<ToolTipBox>> MouseEnter;
     public event Action MouseExit;
+    //public event Action OnDestroy;
 
     public new class UxmlFactory : UxmlFactory<CombatItemUI, CombatItemUI.UxmlTraits>
     {
@@ -66,5 +67,9 @@ public class CombatItemUI : VisualElement
             element.content.Clear();
         }
        
+    }
+    ~CombatItemUI()
+    {
+        MouseExit?.Invoke();
     }
 }

@@ -277,6 +277,7 @@ public class CombatUI : VisualElement
             }
             else
             {
+                toolTip.visible = false;
                 itemBar.Remove(uiItem);
                 
             }
