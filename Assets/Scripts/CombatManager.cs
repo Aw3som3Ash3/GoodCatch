@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static CombatManager;
 
+
 public class CombatManager : MonoBehaviour
 {
     public enum Team
@@ -143,7 +144,8 @@ public class CombatManager : MonoBehaviour
         {
             UsePotion((Potion)item, currentTurn.Value);
             ActionsCompleted();
-            
+            combatUI.UpdateInventory();
+            combatUI.EnableButtons();
             //combatVisualizer.SelectFish(Team.player, (t) => 
             //{
             //    UsePotion((Potion)item, t);
@@ -151,9 +153,8 @@ public class CombatManager : MonoBehaviour
             //    combatUI.UpdateInventory();
             //});
         }
-        GameManager.Instance.PlayerInventory.RemoveItem(item);
-        combatUI.UpdateInventory();
-        combatUI.EnableButtons();
+        
+       
     }
     void TryCatching(Net net,Turn target)
     {
@@ -171,10 +172,12 @@ public class CombatManager : MonoBehaviour
             
         }
         currentTurn.Value.UseAction();
+        GameManager.Instance.PlayerInventory.RemoveItem(net);
     }
     void UsePotion(Potion potion,Turn target)
     {
         potion.UsePotion((PlayerTurn)target, (particle) => combatVisualizer.AnimateBasicVFX(target, particle));
+        GameManager.Instance.PlayerInventory.RemoveItem(potion);
         //currentTurn.Value.UseAction();
 
     }
@@ -419,7 +422,10 @@ public class CombatManager : MonoBehaviour
         Dictionary<Turn, GameObject> fishObject;
         Transform playerSide;
         Transform enemySide;
-
+        public bool HasFish(Turn turn)
+        {
+            return player.Contains(turn)||enemy.Contains(turn);
+        }
         public bool SideHasFish(Team team)
         {
             if (team == Team.player)
@@ -518,6 +524,7 @@ public class CombatManager : MonoBehaviour
         public int actionsLeft { get; protected set; }
 
         public bool ActionLeft { get { return actionsLeft > 0; } }
+        public bool IsCurrentTurn { get { return combatManager.currentTurn.Value == this; } }
         public FishMonster fish { get; protected set; }
         public CombatDepth currentDepth { get; protected set; }
         public int depthIndex { get { return combatManager.depthIndex[currentDepth]; } }

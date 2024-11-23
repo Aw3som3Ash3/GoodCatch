@@ -536,12 +536,12 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""ChangeTab"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""dd3243cf-bfc3-4261-b79f-557c6c406458"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
