@@ -32,6 +32,7 @@ public class Floater : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             Destroy(gameObject);
+            InputManager.EnablePlayer();
         }
     }
     private void OnTriggerEnter(Collider other)

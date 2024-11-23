@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Inn lastInnVisited;
 
+    bool inCombat;
     [Flags]
     public enum TimeOfDay
     {
@@ -170,6 +171,10 @@ public class GameManager : MonoBehaviour
 
     void DayNightCycle()
     {
+        if (inCombat)
+        {
+            return;
+        }
         if (sun ==null)
         {
             sun = FindObjectOfType<Light>()?.gameObject;
@@ -276,19 +281,30 @@ public class GameManager : MonoBehaviour
         
         fishesToFight = enemyFishes;
         SceneManager.sceneLoaded += SetUpCombat;
+        SceneManager.sceneUnloaded += CombatUnloaded;
         this.rewardFish = rewardFish;
+    }
+
+    private void CombatUnloaded(Scene arg0)
+    {
+        if (arg0.name == "BattleScene 1")
+        {
+            inCombat = false;
+        }
+       
     }
 
     private void SetUpCombat(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == "BattleScene 1")
         {
-
+            inCombat = true;
             GameObject.FindObjectOfType<CombatManager>().NewCombat(PlayerFishventory.Fishies.ToList(), fishesToFight, rewardFish);
         }
         SceneManager.sceneLoaded -= SetUpCombat;
         //throw new NotImplementedException();
     }
+
 
 
 }
