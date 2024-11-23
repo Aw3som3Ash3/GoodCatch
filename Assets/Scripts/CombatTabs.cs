@@ -37,20 +37,26 @@ public class CombatTabs : TabbedView
         
         content.Add(abilities);
         TabButton fightTab = new TabButton("Fight", abilities);
+        fightTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(fightTab); index = 0; });
         fightTab.name = "FightTab";
         this.AddTab(fightTab, true);
         tabs[0]= fightTab;
+
         VisualElement items = new VisualElement();
         items.name = "Items";
         content.Add(items);
         TabButton itemsTab = new TabButton("Items", items);
+        itemsTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(itemsTab); index = 1; });
         itemsTab.name = "ItemsTab";
         this.AddTab(itemsTab, false);
         tabs[1]= itemsTab;
+
+
         VisualElement swap = new VisualElement();
         swap.name = "Swap";
         content.Add(swap);
         TabButton swapTab = new TabButton("Swap", swap);
+        swapTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(swapTab); index = 2; });
         swapTab.name = "SwapTab";
         this.AddTab(swapTab, false);
         tabs[2]= swapTab;
@@ -65,10 +71,9 @@ public class CombatTabs : TabbedView
         {
             return;
         }
-        tabs[index].Deselect();
         index = targetIndex;
-        tabs[index].Select();
-       
+        Activate(tabs[index]);
+
         if(tabs[index].Target.childCount<=0)
         {
             return;
