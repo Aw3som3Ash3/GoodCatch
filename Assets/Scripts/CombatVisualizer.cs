@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,6 +24,12 @@ public class CombatVisualizer : MonoBehaviour
     GameObject fishUIPrefab;
 
     int selected;
+    CombatManager.Turn selectedFish;
+    CombatDepth currentDepth;
+
+    List<CombatDepth> combatDepths;
+
+
     [SerializeField]
     List<DepthSelectors> depthSelectors;
     EventSystem eventSystem;
@@ -33,6 +40,7 @@ public class CombatVisualizer : MonoBehaviour
     private void Awake()
     {
         combatManager = FindObjectOfType<CombatManager>();
+        combatDepths = combatManager.depths.ToList();
     }
     void Start()
     {
@@ -103,11 +111,25 @@ public class CombatVisualizer : MonoBehaviour
         {
             if (fish.Key.team == team)
             {
+                if (selectedFish == null)
+                {
+                    selectedFish = fish.Key;
+                }
+                
                 fish.Value.EnableSelection();
                 fish.Value.selectedFish = (a) => { action?.Invoke(a); FinishedSelecting(); };
+                fish.Value.Navigate += OnFishNavigate;
             }
            
         }
+        foreach (CombatDepth depth in combatDepths)
+        {
+            if (depth.HasFish(selectedFish))
+            {
+                currentDepth = depth;
+            }
+        }
+        eventSystem.SetSelectedGameObject(turnToObject[selectedFish].gameObject);
     }
 
     void FinishedSelecting()
@@ -117,6 +139,8 @@ public class CombatVisualizer : MonoBehaviour
         {
             fish.Value.DisableSelection();
             fish.Value.selectedFish = null;
+            fish.Value.Navigate -= OnFishNavigate;
+            selectedFish = null;
         }
     }
     IEnumerator ParticleAttackAnim(Ability ability,Vector3 start, Vector3 destination, Action CompletedMove)
@@ -173,6 +197,53 @@ public class CombatVisualizer : MonoBehaviour
         print(selected);
 
         eventSystem.SetSelectedGameObject(depthSelectors[selected].gameObject);
+
+    }
+    void OnFishNavigate(Vector2 input)
+    {
+        print("navigate input:" +input);
+        if (input.y > 0)
+        {
+            int tries=0;
+            CombatDepth targetDepth=null;
+            do
+            {
+                targetDepth = combatDepths[Mathf.Clamp(combatDepths.IndexOf(currentDepth) + (1+tries), 0, combatDepths.Count)];
+               
+                tries++;
+            } while (tries<combatDepths.Count &&targetDepth.enemy[0]==null);
+            selectedFish = targetDepth.enemy[0];
+            currentDepth = targetDepth;
+        }
+        else if(input.y<0)
+        {
+            int tries = 0;
+            CombatDepth targetDepth = null;
+            do
+            {
+                targetDepth = combatDepths[Mathf.Clamp(combatDepths.IndexOf(currentDepth) - (1 + tries), 0, combatDepths.Count)];
+
+                tries++;
+            } while (tries < combatDepths.Count && targetDepth.enemy[0] == null);
+            selectedFish = targetDepth.enemy[0];
+            currentDepth = targetDepth;
+
+        } else if (input.x>0)
+        {
+            int targetIndex = currentDepth.enemy.IndexOf(selectedFish) + 1;
+            if (targetIndex < currentDepth.enemy.Count)
+            {
+                selectedFish = currentDepth.enemy[targetIndex];
+            }
+        }else if (input.x < 0)
+        {
+            int targetIndex = currentDepth.enemy.IndexOf(selectedFish) - 1;
+            if (targetIndex >= 0)
+            {
+                selectedFish = currentDepth.enemy[targetIndex];
+            }
+        }
+        eventSystem.SetSelectedGameObject(turnToObject[selectedFish].gameObject);
 
     }
     public void StartTargeting(Func<int,Depth,bool> targetable,int ablityIndex ,Action<int> targeted)

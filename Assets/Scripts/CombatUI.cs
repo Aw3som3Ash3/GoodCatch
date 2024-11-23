@@ -20,6 +20,7 @@ public class CombatUI : VisualElement
     VisualElement turnList;
     VisualElement itemBar;
     ItemInventory inventory;
+    VisualElement combatDraftUI;
     VisualElement statusBar;
     ToolTipBox toolTip;
     Dictionary<CombatManager.Turn, TurnListIcon> turnIcon=new Dictionary<CombatManager.Turn, TurnListIcon>();
@@ -44,7 +45,7 @@ public class CombatUI : VisualElement
         visualTreeAsset.CloneTree(root);
         this.style.flexGrow = 1;
       
-        InputManager.Input.UI.ChangeTab.Enable();
+        //InputManager.Input.UI.ChangeTab.Enable();
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
         toolTip = new ToolTipBox();
@@ -71,12 +72,70 @@ public class CombatUI : VisualElement
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
+        combatDraftUI = this.Q("CombatDraftUI");
+        combatDraftUI.SetEnabled(false);
+        combatDraftUI.visible = false;
         
-        
+
     }
+    public void Draft(IList<FishMonster> playerFishes, Action<int,Action> callback)
+    {
+
+        tabbedView.SetEnabled(false);
+        combatDraftUI.SetEnabled(true);
+        combatDraftUI.visible = true;
+        endTurnButton.SetEnabled(false);
+        for (int i = 0;i < playerFishes.Count;i++)
+        {
+            
+            int index = i;
+            var slot = combatDraftUI.Q<Button>("slot" + (i + 1));
+            slot.style.backgroundImage=playerFishes[i].Icon;
+            slot.clicked += () =>
+            {
+                slot.AddToClassList("DraftSelected");
+                callback(index, () =>
+                {
+                    slot.SetEnabled(false);
+                    slot.style.unityBackgroundImageTintColor = Color.gray;
+                    slot.RemoveFromClassList("DraftSelected");
+                    int k=0;
+                    Button nextSelectedSlot;
+                    do
+                    {
+                       nextSelectedSlot= combatDraftUI.Q<Button>("slot" + (k + 1));
+                       k++;
+
+                    } while (!nextSelectedSlot.enabledSelf);
+                    nextSelectedSlot.Focus();
+                });
+
+            };
+            if (i == 0)
+            {
+                slot.Focus();
+            }
+
+        }
+    }
+    public void StopDraft()
+    {
+        combatDraftUI.SetEnabled(false); 
+        combatDraftUI.visible = false;
+        tabbedView.SetEnabled(true);
+        endTurnButton.SetEnabled(true);
+
+    }
+    
     void ChangeTab(InputAction.CallbackContext context)
     {
-        tabbedView.ChangeTab((int)context.ReadValue<float>());
+        if (context.performed)
+        {
+            tabbedView.ChangeTab((int)context.ReadValue<float>());
+            Debug.Log("tab change: " + (int)context.ReadValue<float>());
+
+        }
+      
     }
     
     public void SetTurnUI(List<CombatManager.Turn> turns)
@@ -107,6 +166,7 @@ public class CombatUI : VisualElement
     {
         currentTurn.EndTurn();
         InputManager.Input.UI.ChangeTab.performed -= ChangeTab;
+
     }
     void Move()
     {
@@ -149,6 +209,10 @@ public class CombatUI : VisualElement
             }
 
         }
+        foreach (var item in itemBar.Children())
+        {
+            item.SetEnabled(currentTurn.ActionLeft);
+        }
         endTurnButton.SetEnabled(true);
         if (currentTurn.ActionLeft)
         {
@@ -169,6 +233,10 @@ public class CombatUI : VisualElement
             button.SetEnabled(false);
         }
         endTurnButton.SetEnabled(false);
+        foreach (var item in itemBar.Children())
+        {
+            item.SetEnabled(false);
+        }
     }
 
     public void UpdateVisuals(PlayerTurn currentTurn)

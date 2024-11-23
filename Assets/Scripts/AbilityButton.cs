@@ -42,6 +42,10 @@ public class AbilityButton : Button
 
     void PopulateToolTip(ToolTipBox element)
     {
+        if (abilityName == null)
+        {
+            return;
+        }
         if (element.EnableToolTip(this))
         {
             element.content.Clear();

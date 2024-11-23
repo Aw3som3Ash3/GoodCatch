@@ -68,12 +68,13 @@ public class CombatTabs : TabbedView
         tabs[index].Deselect();
         index = targetIndex;
         tabs[index].Select();
-        var children = tabs[index].Target.Children();
-        if(tabs[index].Target.Children() == null)
+       
+        if(tabs[index].Target.childCount<=0)
         {
             return;
         }
-        if(children.First().focusable)
+        var children = tabs[index].Target.Children();
+        if (children.First().focusable)
         {
             children.First().Focus();
         }
