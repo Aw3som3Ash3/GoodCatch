@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270705409364b044a78748b29b502ed, type: 3}
   m_Name: Sonic
   m_EditorClassIdentifier: 
-  strong: []
+  strong:
+  - {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
   veryStrong: []
-  weak: []
+  weak:
+  - {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
+  - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   veryWeak: []
