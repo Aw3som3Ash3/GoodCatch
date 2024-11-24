@@ -165,7 +165,7 @@ public class CombatUI : VisualElement
     void EndTurn()
     {
         currentTurn.EndTurn();
-        InputManager.Input.UI.ChangeTab.performed -= ChangeTab;
+        InputManager.Input.Combat.ChangeTab.performed -= ChangeTab;
 
     }
     void Move()
@@ -178,8 +178,7 @@ public class CombatUI : VisualElement
         {
             UpdateVisuals(turn as PlayerTurn);
             EnableButtons();
-            moveButton.Focus();
-            InputManager.Input.UI.ChangeTab.performed += ChangeTab;
+            InputManager.Input.Combat.ChangeTab.performed += ChangeTab;
             tabbedView.ChangeTab(-3);
             moveButton.Focus();
         }
@@ -216,7 +215,6 @@ public class CombatUI : VisualElement
         endTurnButton.SetEnabled(true);
         if (currentTurn.ActionLeft)
         {
-            moveButton.Focus();
         }
         else
         {

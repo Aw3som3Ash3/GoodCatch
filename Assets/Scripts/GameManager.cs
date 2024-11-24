@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -32,7 +35,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Item[] startingItems;
     bool rewardFish;
-    EventSystem mainEventSystem;
     [SerializeField]
     TextMeshProUGUI tempTimeOfDayText;
 
@@ -120,7 +122,8 @@ public class GameManager : MonoBehaviour
         {TimeOfDay.Midnight,0}
     };
 
-    
+    public InputMethod inputMethod { get; private set; }
+    public Action<InputMethod> OnInputChange;
 
     private void Awake()
     {
@@ -135,8 +138,32 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         Inn.InnVisited += (inn) => lastInnVisited = inn;
-        FishingMiniGame.SuccesfulFishing += () => { mainEventSystem.enabled = true; };
+      
+        InputUser.onChange += OnDeviceChange;
+       
     }
+    private void OnDeviceChange(InputUser user, InputUserChange change, InputDevice device)
+    {
+        
+        Debug.Log(device);
+        if (change != InputUserChange.DevicePaired)
+        {
+            return;
+        }
+        if (device is Gamepad)
+        {
+            Debug.Log("is gamepad");
+            inputMethod = InputMethod.controller;
+        }
+        else if (device is Mouse || device is Keyboard)
+        {
+            inputMethod = InputMethod.mouseAndKeyboard;
+            Debug.Log("is m&k");
+        }
+        OnInputChange?.Invoke(inputMethod);
+    }
+
+
     public void PlayerLost()
     {
         FindObjectOfType<PlayerController>().transform.position=lastInnVisited.GetRepsawnPoint();
@@ -153,7 +180,6 @@ public class GameManager : MonoBehaviour
         }
         PlayerFishventory.Fishies[0].ChangeName("SteveO starter fish");
 
-        mainEventSystem = EventSystem.current;
         sun = FindObjectOfType<Light>().gameObject;
         for(int i=0;i<startingItems.Length;i++)
         {
@@ -276,7 +302,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
-        mainEventSystem.enabled = false;
+        //mainEventSystem.enabled = false;
         SceneManager.LoadScene("BattleScene 1", LoadSceneMode.Additive);
         
         fishesToFight = enemyFishes;

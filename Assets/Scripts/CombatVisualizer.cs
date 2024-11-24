@@ -50,8 +50,7 @@ public class CombatVisualizer : MonoBehaviour
             depthSelectors[i].SetIndex(i);
             depthSelectors[i].Selected = (i) => { DepthSelection?.Invoke(i); StopTargeting(); };
             depthSelectors[i].Navigate += OnNaviagte;
-            InputManager.Input.UI.RightClick.Enable();
-            InputManager.Input.UI.RightClick.performed+=(x)=>StopTargeting();
+            InputManager.Input.Combat.Cancel.performed+=(x)=>StopTargeting();
         }
        
     }
