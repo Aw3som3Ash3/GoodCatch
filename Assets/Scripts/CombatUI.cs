@@ -5,12 +5,13 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class CombatUI : VisualElement
 {
 
-    TabbedView tabbedView;
+    CombatTabs tabbedView;
     PlayerTurn currentTurn;
     Button moveButton,endTurnButton;
     AbilityButton[] abilityButtons=new AbilityButton[4];
@@ -19,6 +20,7 @@ public class CombatUI : VisualElement
     VisualElement turnList;
     VisualElement itemBar;
     ItemInventory inventory;
+    VisualElement combatDraftUI;
     VisualElement statusBar;
     ToolTipBox toolTip;
     Dictionary<CombatManager.Turn, TurnListIcon> turnIcon=new Dictionary<CombatManager.Turn, TurnListIcon>();
@@ -42,7 +44,8 @@ public class CombatUI : VisualElement
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatUI.uxml");
         visualTreeAsset.CloneTree(root);
         this.style.flexGrow = 1;
-
+      
+        //InputManager.Input.UI.ChangeTab.Enable();
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
         toolTip = new ToolTipBox();
@@ -58,6 +61,7 @@ public class CombatUI : VisualElement
             abilityButtons[i].clicked += () => UseAbility(index);
 
             abilityButtons[i].MouseEnter += (action) => {action(toolTip);};
+            
             abilityButtons[i].MouseExit += () => toolTip.visible = false;
         }
         endTurnButton = this.Q<Button>("EndTurn");
@@ -68,8 +72,75 @@ public class CombatUI : VisualElement
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
+        combatDraftUI = this.Q("CombatDraftUI");
+        combatDraftUI.SetEnabled(false);
+        combatDraftUI.visible = false;
         
-        
+
+    }
+    public void Draft(IList<FishMonster> playerFishes, Action<int,Action> callback)
+    {
+
+        tabbedView.SetEnabled(false);
+        combatDraftUI.SetEnabled(true);
+        combatDraftUI.visible = true;
+        endTurnButton.SetEnabled(false);
+        for (int i = 0;i < playerFishes.Count;i++)
+        {
+            
+            int index = i;
+            var slot = combatDraftUI.Q<Button>("slot" + (i + 1));
+            slot.style.backgroundImage=playerFishes[i].Icon;
+            slot.clicked += () =>
+            {
+                slot.AddToClassList("DraftSelected");
+                callback(index, () =>
+                {
+                    slot.SetEnabled(false);
+                    slot.style.unityBackgroundImageTintColor = Color.gray;
+                    slot.RemoveFromClassList("DraftSelected");
+                    if (GameManager.Instance.inputMethod == InputMethod.controller)
+                    {
+                        int k = 0;
+                        Button nextSelectedSlot;
+                        do
+                        {
+                            nextSelectedSlot = combatDraftUI.Q<Button>("slot" + (k + 1));
+                            k++;
+
+                        } while (!nextSelectedSlot.enabledSelf);
+
+                        nextSelectedSlot.Focus();
+                    }
+                   
+                });
+
+            };
+            if (i == 0&& GameManager.Instance.inputMethod == InputMethod.controller)
+            {
+                slot.Focus();
+            }
+
+        }
+    }
+    public void StopDraft()
+    {
+        combatDraftUI.SetEnabled(false); 
+        combatDraftUI.visible = false;
+        tabbedView.SetEnabled(true);
+        endTurnButton.SetEnabled(true);
+
+    }
+    
+    void ChangeTab(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            tabbedView.ChangeTab((int)context.ReadValue<float>());
+            Debug.Log("tab change: " + (int)context.ReadValue<float>());
+
+        }
+      
     }
     
     public void SetTurnUI(List<CombatManager.Turn> turns)
@@ -93,11 +164,14 @@ public class CombatUI : VisualElement
         var turn = turnList.ElementAt(0);
         turnList.Remove(turn);
         turnList.Add(turn);
+        
 
     }
     void EndTurn()
     {
         currentTurn.EndTurn();
+        InputManager.Input.Combat.ChangeTab.performed -= ChangeTab;
+
     }
     void Move()
     {
@@ -109,6 +183,13 @@ public class CombatUI : VisualElement
         {
             UpdateVisuals(turn as PlayerTurn);
             EnableButtons();
+            InputManager.Input.Combat.ChangeTab.performed += ChangeTab;
+            tabbedView.ChangeTab(-3);
+            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            {
+                 moveButton.Focus();
+            }
+           
         }
         else
         {
@@ -126,17 +207,29 @@ public class CombatUI : VisualElement
         moveButton.SetEnabled(currentTurn.ActionLeft);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
+            abilityButtons[i].SetEnabled(true);
             if (currentTurn.AbilityUsable(i))
             {
-                abilityButtons[i].SetEnabled(true);
+                abilityButtons[i].SetUsability(true);
             }
             else
             {
-                abilityButtons[i].SetEnabled(false);
+                abilityButtons[i].SetUsability(false);
             }
 
         }
+        foreach (var item in itemBar.Children())
+        {
+            item.SetEnabled(currentTurn.ActionLeft);
+        }
         endTurnButton.SetEnabled(true);
+        if (currentTurn.ActionLeft)
+        {
+        }
+        else
+        {
+            endTurnButton.Focus();
+        }
         
 
     }
@@ -148,6 +241,10 @@ public class CombatUI : VisualElement
             button.SetEnabled(false);
         }
         endTurnButton.SetEnabled(false);
+        foreach (var item in itemBar.Children())
+        {
+            item.SetEnabled(false);
+        }
     }
 
     public void UpdateVisuals(PlayerTurn currentTurn)
@@ -256,6 +353,7 @@ public class CombatUI : VisualElement
             }
             else
             {
+                toolTip.visible = false;
                 itemBar.Remove(uiItem);
                 
             }

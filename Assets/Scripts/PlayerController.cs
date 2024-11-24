@@ -1,6 +1,7 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+
 public class PlayerController : MonoBehaviour
 {
     GoodCatchInputs.PlayerActions inputs;
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform model;
     [SerializeField]
-    float moveSpeed, accel, jumpStrength;
+    float moveSpeed, sprintSpeed,accel, jumpStrength;
     [SerializeField]
     float maxPitch, minPitch;
     Vector3 velocity;
@@ -28,10 +29,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     FishingRod fishingRod;
-    [SerializeField] TextMeshProUGUI InteractionUI;
+    Label InteractionUI;
     Animator anim;
 
     bool inStation;
+
+    bool sprinting;
     private void Awake()
     {
         inputs = InputManager.Input.Player;
@@ -41,9 +44,12 @@ public class PlayerController : MonoBehaviour
         lookAction = inputs.Look;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
+        inputs.Sprint.performed +=(x)=>sprinting=!sprinting;
+        sprinting = false;
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
+        InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
     }
     private void OnEnable()
     {
@@ -54,8 +60,8 @@ public class PlayerController : MonoBehaviour
     {
         Station.StationInteracted += StationInteracted;
         Station.LeftStation += StationLeft;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
     }
 
     bool InteractionCheck(out IInteractable interactable)
@@ -144,14 +150,14 @@ public class PlayerController : MonoBehaviour
         }
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
-        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * moveSpeed, (characterController.isGrounded ? accel : accel / 4));
+        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
         if (moveAction.IsPressed())
         {
             var angles = cameraRig.localEulerAngles;
             this.transform.Rotate(0, angles.y, 0);
             angles.y = 0;
             cameraRig.localEulerAngles = angles;
-            var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir));
+            var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
             model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720*Time.deltaTime);
         }
         anim.SetFloat("speed",velocity.magnitude);
@@ -201,5 +207,8 @@ public class PlayerController : MonoBehaviour
     void StartFishing(InputAction.CallbackContext context)
     {
         fishingRod.CastLine(cameraRig.forward);
+        var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(cameraRig.forward));
+        model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
+        InputManager.DisablePlayer();
     }
 }

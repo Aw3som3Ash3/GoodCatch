@@ -18,7 +18,7 @@ public class FishObject : MonoBehaviour
 
     public Action ReachedDestination;
 
-    public Action<Vector2> Navigate { get; private set; }
+    public Action<Vector2> Navigate;
     public Action<CombatManager.Turn> selectedFish;
 
     public Action ObjectDestroyed;

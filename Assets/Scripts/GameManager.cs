@@ -6,6 +6,9 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -32,7 +35,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Item[] startingItems;
     bool rewardFish;
-    EventSystem mainEventSystem;
     [SerializeField]
     TextMeshProUGUI tempTimeOfDayText;
 
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Inn lastInnVisited;
 
+    bool inCombat;
     [Flags]
     public enum TimeOfDay
     {
@@ -119,7 +122,9 @@ public class GameManager : MonoBehaviour
         {TimeOfDay.Midnight,0}
     };
 
-    
+    public InputMethod inputMethod { get; private set; }
+    public Action<InputMethod> OnInputChange;
+    InputUser user;
 
     private void Awake()
     {
@@ -134,8 +139,52 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         Inn.InnVisited += (inn) => lastInnVisited = inn;
-        FishingMiniGame.SuccesfulFishing += () => { mainEventSystem.enabled = true; };
+
+        user = InputUser.CreateUserWithoutPairedDevices();
+        InputUser.listenForUnpairedDeviceActivity = 1;
+        InputUser.onUnpairedDeviceUsed += OnDeviceChange;
+        InputUser.onChange += OnDeviceChange;
+        //InputUser.PerformPairingWithDevice()
+
+        
     }
+
+    private void OnDeviceChange(InputControl control, InputEventPtr ptr)
+    {
+        Debug.Log(control.device);
+
+        //user.UnpairDevices();
+        InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+        //throw new NotImplementedException();
+    }
+
+    private void OnDeviceChange(InputUser user, InputUserChange change, InputDevice device)
+    {
+
+        Debug.Log(user);
+        Debug.Log(device);
+        if (change == InputUserChange.DevicePaired)
+        {
+            
+            if (device is Gamepad)
+            {
+                Debug.Log("is gamepad");
+                inputMethod = InputMethod.controller;
+            }
+            else if (device is Mouse || device is Keyboard)
+            {
+                inputMethod = InputMethod.mouseAndKeyboard;
+                Debug.Log("is m&k");
+            }
+            OnInputChange?.Invoke(inputMethod);
+        }else if(change == InputUserChange.Removed)
+        {
+            //user.UnpairDevice(device);
+        }
+        
+    }
+
+
     public void PlayerLost()
     {
         FindObjectOfType<PlayerController>().transform.position=lastInnVisited.GetRepsawnPoint();
@@ -152,7 +201,6 @@ public class GameManager : MonoBehaviour
         }
         PlayerFishventory.Fishies[0].ChangeName("SteveO starter fish");
 
-        mainEventSystem = EventSystem.current;
         sun = FindObjectOfType<Light>().gameObject;
         for(int i=0;i<startingItems.Length;i++)
         {
@@ -170,6 +218,10 @@ public class GameManager : MonoBehaviour
 
     void DayNightCycle()
     {
+        if (inCombat)
+        {
+            return;
+        }
         if (sun ==null)
         {
             sun = FindObjectOfType<Light>()?.gameObject;
@@ -271,24 +323,35 @@ public class GameManager : MonoBehaviour
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
-        mainEventSystem.enabled = false;
+        //mainEventSystem.enabled = false;
         SceneManager.LoadScene("BattleScene 1", LoadSceneMode.Additive);
         
         fishesToFight = enemyFishes;
         SceneManager.sceneLoaded += SetUpCombat;
+        SceneManager.sceneUnloaded += CombatUnloaded;
         this.rewardFish = rewardFish;
+    }
+
+    private void CombatUnloaded(Scene arg0)
+    {
+        if (arg0.name == "BattleScene 1")
+        {
+            inCombat = false;
+        }
+       
     }
 
     private void SetUpCombat(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == "BattleScene 1")
         {
-
+            inCombat = true;
             GameObject.FindObjectOfType<CombatManager>().NewCombat(PlayerFishventory.Fishies.ToList(), fishesToFight, rewardFish);
         }
         SceneManager.sceneLoaded -= SetUpCombat;
         //throw new NotImplementedException();
     }
+
 
 
 }
