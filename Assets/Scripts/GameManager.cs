@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour
 
     public InputMethod inputMethod { get; private set; }
     public Action<InputMethod> OnInputChange;
+    InputUser user;
 
     private void Awake()
     {
@@ -138,29 +139,49 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
         Inn.InnVisited += (inn) => lastInnVisited = inn;
-      
+
+        user = InputUser.CreateUserWithoutPairedDevices();
+        InputUser.listenForUnpairedDeviceActivity = 1;
+        InputUser.onUnpairedDeviceUsed += OnDeviceChange;
         InputUser.onChange += OnDeviceChange;
-       
+        //InputUser.PerformPairingWithDevice()
+
+        
     }
+
+    private void OnDeviceChange(InputControl control, InputEventPtr ptr)
+    {
+        Debug.Log(control.device);
+
+        //user.UnpairDevices();
+        InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+        //throw new NotImplementedException();
+    }
+
     private void OnDeviceChange(InputUser user, InputUserChange change, InputDevice device)
     {
-        
+
+        Debug.Log(user);
         Debug.Log(device);
-        if (change != InputUserChange.DevicePaired)
+        if (change == InputUserChange.DevicePaired)
         {
-            return;
-        }
-        if (device is Gamepad)
+            
+            if (device is Gamepad)
+            {
+                Debug.Log("is gamepad");
+                inputMethod = InputMethod.controller;
+            }
+            else if (device is Mouse || device is Keyboard)
+            {
+                inputMethod = InputMethod.mouseAndKeyboard;
+                Debug.Log("is m&k");
+            }
+            OnInputChange?.Invoke(inputMethod);
+        }else if(change == InputUserChange.Removed)
         {
-            Debug.Log("is gamepad");
-            inputMethod = InputMethod.controller;
+            //user.UnpairDevice(device);
         }
-        else if (device is Mouse || device is Keyboard)
-        {
-            inputMethod = InputMethod.mouseAndKeyboard;
-            Debug.Log("is m&k");
-        }
-        OnInputChange?.Invoke(inputMethod);
+        
     }
 
 

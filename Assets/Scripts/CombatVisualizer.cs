@@ -110,7 +110,7 @@ public class CombatVisualizer : MonoBehaviour
         {
             if (fish.Key.team == team)
             {
-                if (selectedFish == null)
+                if (selectedFish == null&&GameManager.Instance.inputMethod==InputMethod.controller)
                 {
                     selectedFish = fish.Key;
                 }
@@ -250,14 +250,18 @@ public class CombatVisualizer : MonoBehaviour
         StopTargeting();
         DepthSelection += targeted;
         DepthSelection +=(x)=>StopTargeting();
+        selected = -1;
         foreach (DepthSelectors selector in depthSelectors)
         {
             if (targetable(ablityIndex,selector.CurrentDepth))
             {
-                
-                selected = depthSelectors.IndexOf(selector);
+               
                 selector.SetSelection(true);
-                eventSystem.SetSelectedGameObject(selector.gameObject);
+                if (selected < 0 && GameManager.Instance.inputMethod == InputMethod.controller)
+                {
+                    selected = depthSelectors.IndexOf(selector);
+                    eventSystem.SetSelectedGameObject(selector.gameObject);
+                }
 
             }
             else
@@ -273,7 +277,10 @@ public class CombatVisualizer : MonoBehaviour
     {
         StopTargeting();
         DepthSelection = null;
-        eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
+        if(GameManager.Instance.inputMethod == InputMethod.controller)
+        {
+            eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
+        }
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(true);

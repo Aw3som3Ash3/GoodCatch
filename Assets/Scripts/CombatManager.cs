@@ -94,7 +94,11 @@ public class CombatManager : MonoBehaviour
 
         if (method == InputMethod.mouseAndKeyboard)
         {
-            previousSelected = EventSystem.current.currentSelectedGameObject;
+            if (EventSystem.current.currentSelectedGameObject != null)
+            {
+                previousSelected = EventSystem.current.currentSelectedGameObject;
+            }
+           
             UnityEngine.Cursor.lockState = CursorLockMode.Confined;
             UnityEngine.Cursor.visible = true;
         }
@@ -213,6 +217,11 @@ public class CombatManager : MonoBehaviour
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Confined;
             UnityEngine.Cursor.visible = true;
+        }
+        else
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
         }
         
         prevCam = Camera.main;
