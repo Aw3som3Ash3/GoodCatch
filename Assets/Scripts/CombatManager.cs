@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static CombatManager;
@@ -65,6 +66,8 @@ public class CombatManager : MonoBehaviour
 
     public CombatAI combatAI { get; private set; }
     int draftedCount;
+
+    GameObject previousSelected;
     private void Awake()
     {
         depths[0] = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -81,9 +84,34 @@ public class CombatManager : MonoBehaviour
         ui = FindObjectOfType<UIDocument>();
         combatUI = new CombatUI();
         ui.rootVisualElement.Add(combatUI);
+        GameManager.Instance.OnInputChange += InputChanged;
         //combatUI.UseNet += UseNet;
 
     }
+
+    private void InputChanged(InputMethod method)
+    {
+
+        if (method == InputMethod.mouseAndKeyboard)
+        {
+            if (EventSystem.current.currentSelectedGameObject != null)
+            {
+                previousSelected = EventSystem.current.currentSelectedGameObject;
+            }
+           
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
+        }
+        else if(method == InputMethod.controller)
+        {
+            
+            EventSystem.current.SetSelectedGameObject(previousSelected);
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+            
+        }
+    }
+
     private void Start()
     {
 
@@ -102,6 +130,7 @@ public class CombatManager : MonoBehaviour
         this.rewardFish = rewardFish;
         SetUp();      
         InputManager.DisablePlayer();
+        InputManager.EnableCombat();
         InputManager.Input.UI.Enable();
         combatUI.Draft(playerFishes,(index,callback)=> 
         { 
@@ -184,8 +213,17 @@ public class CombatManager : MonoBehaviour
     //sets up the combat
     void SetUp()
     {
-        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-        UnityEngine.Cursor.visible = true;
+        if (GameManager.Instance.inputMethod== InputMethod.mouseAndKeyboard)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
+        }
+        else
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+        }
+        
         prevCam = Camera.main;
         prevCam.gameObject.SetActive(false);
         cam.enabled = true;

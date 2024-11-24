@@ -13,9 +13,10 @@ public class AbilityButton : Button
     AbilityToolTipTitle title;
     Label damageLabel;
 
+    bool usable;
     public event Action<Action<ToolTipBox>> MouseEnter;
     public event Action MouseExit;
-
+    public new event Action clicked;
     public new class UxmlFactory : UxmlFactory<AbilityButton, AbilityButton.UxmlTraits>
     {
 
@@ -37,7 +38,7 @@ public class AbilityButton : Button
         tabIndex=1;
         title=new AbilityToolTipTitle();
         damageLabel=new Label();
-        
+        base.clicked += () => { if (usable) { clicked?.Invoke(); } };
     }
 
     void PopulateToolTip(ToolTipBox element)
@@ -54,6 +55,21 @@ public class AbilityButton : Button
             
         }
        
+    }
+    public void SetUsability(bool b)
+    {
+        usable = b;
+        if(b)
+        {
+            this.RemoveFromClassList("unity-disabled");
+        }
+        else
+        {
+            this.AddToClassList("unity-disabled");
+           
+        }
+        
+        
     }
     public void SetAbility(Ability ability,float damage) 
     {

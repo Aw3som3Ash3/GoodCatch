@@ -99,19 +99,24 @@ public class CombatUI : VisualElement
                     slot.SetEnabled(false);
                     slot.style.unityBackgroundImageTintColor = Color.gray;
                     slot.RemoveFromClassList("DraftSelected");
-                    int k=0;
-                    Button nextSelectedSlot;
-                    do
+                    if (GameManager.Instance.inputMethod == InputMethod.controller)
                     {
-                       nextSelectedSlot= combatDraftUI.Q<Button>("slot" + (k + 1));
-                       k++;
+                        int k = 0;
+                        Button nextSelectedSlot;
+                        do
+                        {
+                            nextSelectedSlot = combatDraftUI.Q<Button>("slot" + (k + 1));
+                            k++;
 
-                    } while (!nextSelectedSlot.enabledSelf);
-                    nextSelectedSlot.Focus();
+                        } while (!nextSelectedSlot.enabledSelf);
+
+                        nextSelectedSlot.Focus();
+                    }
+                   
                 });
 
             };
-            if (i == 0)
+            if (i == 0&& GameManager.Instance.inputMethod == InputMethod.controller)
             {
                 slot.Focus();
             }
@@ -165,7 +170,7 @@ public class CombatUI : VisualElement
     void EndTurn()
     {
         currentTurn.EndTurn();
-        InputManager.Input.UI.ChangeTab.performed -= ChangeTab;
+        InputManager.Input.Combat.ChangeTab.performed -= ChangeTab;
 
     }
     void Move()
@@ -178,10 +183,13 @@ public class CombatUI : VisualElement
         {
             UpdateVisuals(turn as PlayerTurn);
             EnableButtons();
-            moveButton.Focus();
-            InputManager.Input.UI.ChangeTab.performed += ChangeTab;
+            InputManager.Input.Combat.ChangeTab.performed += ChangeTab;
             tabbedView.ChangeTab(-3);
-            moveButton.Focus();
+            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            {
+                 moveButton.Focus();
+            }
+           
         }
         else
         {
@@ -199,13 +207,14 @@ public class CombatUI : VisualElement
         moveButton.SetEnabled(currentTurn.ActionLeft);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
+            abilityButtons[i].SetEnabled(true);
             if (currentTurn.AbilityUsable(i))
             {
-                abilityButtons[i].SetEnabled(true);
+                abilityButtons[i].SetUsability(true);
             }
             else
             {
-                abilityButtons[i].SetEnabled(false);
+                abilityButtons[i].SetUsability(false);
             }
 
         }
@@ -216,7 +225,6 @@ public class CombatUI : VisualElement
         endTurnButton.SetEnabled(true);
         if (currentTurn.ActionLeft)
         {
-            moveButton.Focus();
         }
         else
         {

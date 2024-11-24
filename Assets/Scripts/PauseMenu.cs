@@ -52,7 +52,7 @@ public class PauseMenu : VisualElement
             }
             this.SetEnabled(!this.enabledSelf);
             this.visible = enabledSelf;
-            
+            this.BringToFront();
             UnityEngine.Cursor.lockState = this.enabledSelf ? CursorLockMode.Confined: prevMode;
             UnityEngine.Cursor.visible = this.enabledSelf ? true: prevVisability;
             Time.timeScale = this.enabledSelf ? 0: 1;
