@@ -7,7 +7,9 @@ using UnityEngine;
 
 public static class SavingSystem
 {
-    const string savePath = "/Save.json";
+    const string SAVE_FILE = "Save.json";
+    static string SavePath { get { return Path.Combine(Application.persistentDataPath + SAVE_FILE); } }
+    static GameData data = new GameData();
     [Serializable]
     struct GameData
     {
@@ -31,24 +33,42 @@ public static class SavingSystem
 
     }
   
-    public static void SaveGame()
+    public static void SaveGame(bool writeData=false)
     {
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
-        GameData data=new();
+        //GameData data=new();
         foreach(var saveable in saveables)
         {
             data.AddSaveable(saveable);
             
         }
-        string save = JsonUtility.ToJson(data,true);
-        File.WriteAllText(Application.persistentDataPath + savePath, save);
+        if (true)
+        {
+            WriteSave();
+        }
+       
+    }
+
+    static void WriteSave()
+    {
+        string save = JsonUtility.ToJson(data, true);
+        File.WriteAllText(SavePath, save);
         Debug.Log(save);
+    }
+
+    public static void ReadAndLoadData()
+    {
+        if(File.Exists(SavePath))
+        {
+            string json = File.ReadAllText(SavePath);
+            LoadGame();
+        }
     }
 
     public static void LoadGame()
     {
-        string json = File.ReadAllText(Application.persistentDataPath + savePath);
-        GameData data = JsonUtility.FromJson<GameData>(json);
+       
+        //GameData data = JsonUtility.FromJson<GameData>(json);
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
         foreach (var saveable in saveables)
         {

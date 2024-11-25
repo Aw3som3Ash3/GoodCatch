@@ -63,8 +63,6 @@ public class PlayerController : MonoBehaviour,ISaveable
         lookAction = inputs.Look;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
-        inputs.Sprint.performed +=(x)=>sprinting=!sprinting;
-        sprinting = false;
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();

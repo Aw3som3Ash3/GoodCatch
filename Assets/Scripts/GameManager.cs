@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             PlayerInventory.AddItem(startingItems[i]);
         }
-        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame();
+        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(true);
         InputManager.Input.Player.QuickLoad.performed +=(x)=>SavingSystem.LoadGame();
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
