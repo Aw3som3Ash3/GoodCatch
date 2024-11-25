@@ -21,6 +21,14 @@ public class FishMonsterType : ScriptableObject
         public TalentScale MaxTalent { get { return maxTalent; } }
 
     }
+
+
+    [Header("Description")]
+    [SerializeField]
+    string description;
+    public String Description { get { return description; } }
+
+    [Header("variables")]
     [SerializeField]
     GameObject model;
     public GameObject Model { get { return model; } }
@@ -37,6 +45,8 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     Element[] elements;
     public Element[] Elements { get { return elements; } }
+
+
 
     [SerializeField]
     [Header("Agility")]
@@ -160,7 +170,8 @@ public class FishMonster
     
 
     FishMonsterType type;
-    string name;
+    public string name { get; private set; }
+    public string description { get { return type.Description; } }
 
     [Serializable]
     public struct Attribute

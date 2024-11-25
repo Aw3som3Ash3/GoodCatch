@@ -9,6 +9,9 @@ public class PartyUI : VisualElement
     Fishventory fishventory;
     public GameObject partyPanel;
 
+    VisualElement preview;
+    Label description;
+
     //Dictionary<VisualElement, FishMonster> slotsFish;
     //protected override InputAction input => InputManager.Input.UI.Party;
 
@@ -46,7 +49,8 @@ public class PartyUI : VisualElement
 
         }
 
-
+        preview = this.Q("Preview");
+        description = this.Q<Label>("Description");
     }
     public void UpdateUI()
     {
@@ -66,7 +70,7 @@ public class PartyUI : VisualElement
                 element.style.backgroundImage = null;
                 element.SetEnabled(false);
             }
-            
+
 
         }
     }
@@ -75,7 +79,9 @@ public class PartyUI : VisualElement
     void OnFocus(FishMonster fishMonster)
     {
 
-        this.Q("Preview").style.backgroundImage = fishMonster.Icon;
+        preview.style.backgroundImage = fishMonster.Icon;
+        description.text = fishMonster.description;
+
 
     }
 
