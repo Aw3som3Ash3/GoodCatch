@@ -730,7 +730,7 @@ public class CombatManager : MonoBehaviour
         {
             combatManager.UseItem(item,()=>UseAction());
             
-            
+                    
         }
         public void UseAbility(int abilityIndex)
         {
