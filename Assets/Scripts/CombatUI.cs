@@ -69,6 +69,7 @@ public class CombatUI : VisualElement
         staminaBar = this.Q<ProgressBar>("StaminaBar");
         healthBar = this.Q<ProgressBar>("HealthBar");
         turnMarker = this.Q("TurnMarker");
+        turnMarker.visible = false;
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
@@ -129,7 +130,7 @@ public class CombatUI : VisualElement
         combatDraftUI.visible = false;
         tabbedView.SetEnabled(true);
         endTurnButton.SetEnabled(true);
-
+        turnMarker.visible = true;
     }
     
     void ChangeTab(InputAction.CallbackContext context)

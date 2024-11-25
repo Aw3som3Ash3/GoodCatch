@@ -362,6 +362,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             PlayerLost();
         }
+        SavingSystem.SaveSelf(this);
         SceneManager.LoadScene(mainScene);
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;

@@ -27,12 +27,16 @@ public static class SavingSystem
             {
                 SaveableObject=new SerializableDictionary<string, string>();
             }
-            SaveableObject.Add(saveable.ID, JsonUtility.ToJson(saveable.DataToSave));
+            SaveableObject[saveable.ID]= JsonUtility.ToJson(saveable.DataToSave);
         }
 
 
     }
   
+    public static void SaveSelf(ISaveable saveable,bool writeData = false)
+    {
+        data.AddSaveable(saveable);
+    }
     public static void SaveGame(bool writeData=false)
     {
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
@@ -79,13 +83,20 @@ public static class SavingSystem
             saveable.Load(data.GetSaveable(saveable.ID));
         }
     }
-
+    public static void LoadSelf<T>(T saveable,string ID) where T: ISaveable
+    {
+        if (data == null)
+        {
+            ReadData();
+        }
+        saveable.Load(data.GetSaveable(ID));
+    }
 }
 
 
 
 
-interface ISaveable
+public interface ISaveable
 {
     object DataToSave { get;}
     string ID { get; }
@@ -95,7 +106,7 @@ interface ISaveable
     }
     public void Load(string json);
    
-
+    
 }
 
 
