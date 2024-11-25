@@ -9,9 +9,9 @@ public static class SavingSystem
 {
     const string SAVE_FILE = "Save.json";
     static string SavePath { get { return Path.Combine(Application.persistentDataPath + SAVE_FILE); } }
-    static GameData data = new GameData();
+    static GameData data;
     [Serializable]
-    struct GameData
+    class GameData
     {
         [SerializeField]
         SerializableDictionary<string, string> SaveableObject;
@@ -36,7 +36,7 @@ public static class SavingSystem
     public static void SaveGame(bool writeData=false)
     {
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
-        //GameData data=new();
+         data=new();
         foreach(var saveable in saveables)
         {
             data.AddSaveable(saveable);
@@ -56,19 +56,22 @@ public static class SavingSystem
         Debug.Log(save);
     }
 
-    public static void ReadAndLoadData()
+    public static void ReadData()
     {
         if(File.Exists(SavePath))
         {
             string json = File.ReadAllText(SavePath);
-            LoadGame();
+            data = JsonUtility.FromJson<GameData>(json);
+            //LoadGame();
         }
     }
 
     public static void LoadGame()
     {
-       
-        //GameData data = JsonUtility.FromJson<GameData>(json);
+        if (data == null)
+        {
+            ReadData();
+        }
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
         foreach (var saveable in saveables)
         {
