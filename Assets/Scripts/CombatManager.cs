@@ -36,7 +36,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField]
     FishMonsterType testType;
 
-    List<FishMonster> playerFishes = new List<FishMonster>(), enemyFishes = new List<FishMonster>();
+    static List<FishMonster> playerFishes = new List<FishMonster>(), enemyFishes = new List<FishMonster>();
 
     [SerializeField]
     public CombatDepth[] depths { get; private set; } = new CombatDepth[3];
@@ -56,13 +56,10 @@ public class CombatManager : MonoBehaviour
 
     bool actionsCompleted;
     public Action CompletedAllActions;
-    [SerializeField]
-    CinemachineVirtualCamera virtualCamera;
-    [SerializeField]
-    Camera cam;
+    //[SerializeField]
+    //CinemachineVirtualCamera virtualCamera;
 
-    Camera prevCam;
-    bool rewardFish;
+    static bool rewardFish;
 
     public CombatAI combatAI { get; private set; }
     int draftedCount;
@@ -115,31 +112,33 @@ public class CombatManager : MonoBehaviour
     private void Start()
     {
 
-
-
-    }
-    /// <summary>
-    /// tells the combat manager to setup a new combat with a set of paramaters
-    /// <param name="playerFishes"></param>
-    /// <param name="enemyFishes"></param>
-    /// <param name="rewardFish"></param>
-    public void NewCombat(List<FishMonster> playerFishes, List<FishMonster> enemyFishes, bool rewardFish = false)
-    {
-        this.playerFishes = playerFishes;
-        this.enemyFishes = enemyFishes;
-        this.rewardFish = rewardFish;
-        SetUp();      
+        SetUp();
         InputManager.DisablePlayer();
         InputManager.EnableCombat();
         InputManager.Input.UI.Enable();
-        combatUI.Draft(playerFishes,(index,callback)=> 
-        { 
-            combatVisualizer.StartTargeting((target) => 
-            { 
+        combatUI.Draft(playerFishes, (index, callback) =>
+        {
+            combatVisualizer.StartTargeting((target) =>
+            {
                 DraftFish(index, target);
-                callback.Invoke(); 
+                callback.Invoke();
             });
         });
+
+    }
+
+
+    /// <summary>
+    /// tells the combat manager to setup a new combat with a set of paramaters
+    /// <param name="enemyFishes"></param>
+    /// <param name="rewardFish"></param>
+    public static void NewCombat(List<FishMonster> enemyFishes, bool rewardFish = false)
+    {
+        SceneManager.LoadScene("BattleScene 1");
+        playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
+        CombatManager.enemyFishes = enemyFishes;
+        CombatManager.rewardFish = rewardFish;
+        
         //OrderTurn();
         //StartTurn();
     }
@@ -188,6 +187,10 @@ public class CombatManager : MonoBehaviour
     }
     void TryCatching(Net net,Turn target)
     {
+        if (!rewardFish)
+        {
+            return;
+        }
         if (UnityEngine.Random.Range(0, 1f) <= (1 - (target.Health / target.MaxHealth))*net.CatchBonus)
         {
 
@@ -225,10 +228,6 @@ public class CombatManager : MonoBehaviour
             UnityEngine.Cursor.visible = false;
         }
         
-        prevCam = Camera.main;
-        prevCam.gameObject.SetActive(false);
-        cam.enabled = true;
-        Camera.SetupCurrent(cam);
         Turn.TurnEnded += NextTurn;
         combatUI.SetInventory(GameManager.Instance.PlayerInventory);
         for (int i = 0; i < enemyFishes.Count; i++)
@@ -299,22 +298,16 @@ public class CombatManager : MonoBehaviour
     }
     void EndFight(Team winningTeam)
     {
-
+       
         if (winningTeam == Team.player)
         {
             RewardXP();
-        }else if (winningTeam == Team.enemy)
-        {
-            GameManager.Instance.PlayerLost();
         }
-        prevCam.gameObject.SetActive(true);
-        Camera.SetupCurrent(prevCam);
         ui.rootVisualElement.Remove(combatUI);
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene 1"));
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = false;
-        InputManager.EnablePlayer();
-        InputManager.Input.UI.Disable();
+        playerFishes = null;
+        enemyFishes = null;
+        rewardFish = false;
+        GameManager.Instance.CombatEnded(winningTeam);
     }
     void RewardXP()
     {

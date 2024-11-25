@@ -12,6 +12,7 @@ using UnityEngine.InputSystem.Users;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using static CombatManager;
 
 public class GameManager : MonoBehaviour,ISaveable
 {
@@ -33,10 +34,6 @@ public class GameManager : MonoBehaviour,ISaveable
     GameData gameData=new GameData(7);
     public Fishventory PlayerFishventory { get { return gameData.PlayerFishventory; }}
     public ItemInventory PlayerInventory { get { return gameData.PlayerInventory; } }
-
-
-
-    List<FishMonster> fishesToFight;
     public float DayTime { get { return gameData.dayTime; } private set { gameData.dayTime = value; } }
     public int Day { get; private set; }
     [SerializeField]
@@ -50,7 +47,6 @@ public class GameManager : MonoBehaviour,ISaveable
     FishMonsterType[] testfisth;
     [SerializeField]
     Item[] startingItems;
-    bool rewardFish;
     [SerializeField]
     TextMeshProUGUI tempTimeOfDayText;
 
@@ -148,6 +144,8 @@ public class GameManager : MonoBehaviour,ISaveable
     public Action<InputMethod> OnInputChange;
     InputUser user;
 
+    String mainScene;
+
     private void Awake()
     {
        
@@ -167,8 +165,9 @@ public class GameManager : MonoBehaviour,ISaveable
         InputUser.onUnpairedDeviceUsed += OnDeviceChange;
         InputUser.onChange += OnDeviceChange;
         //InputUser.PerformPairingWithDevice()
+       
 
-        
+
     }
 
     private void OnDeviceChange(InputControl control, InputEventPtr ptr)
@@ -216,6 +215,7 @@ public class GameManager : MonoBehaviour,ISaveable
     // Start is called before the first frame update
     void Start()
     {
+        mainScene = SceneManager.GetActiveScene().name;
         DayTime = startingTime;
         foreach(var fish in testfisth)
         {
@@ -347,34 +347,49 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
+        SavingSystem.SaveGame();
         //mainEventSystem.enabled = false;
-        SceneManager.LoadScene("BattleScene 1", LoadSceneMode.Additive);
+        CombatManager.NewCombat(enemyFishes, rewardFish);
+        inCombat = true;
+        SceneManager.sceneLoaded += SceneLoaded;
         
-        fishesToFight = enemyFishes;
-        SceneManager.sceneLoaded += SetUpCombat;
-        SceneManager.sceneUnloaded += CombatUnloaded;
-        this.rewardFish = rewardFish;
-    }
-
-    private void CombatUnloaded(Scene arg0)
-    {
-        if (arg0.name == "BattleScene 1")
-        {
-            inCombat = false;
-        }
        
     }
+    public void CombatEnded(Team winningTeam)
+    {
 
-    private void SetUpCombat(Scene arg0, LoadSceneMode arg1)
+        if (winningTeam == Team.enemy)
+        {
+            PlayerLost();
+        }
+        SceneManager.LoadScene(mainScene);
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+        InputManager.EnablePlayer();
+        InputManager.Input.UI.Disable();
+        InputManager.DisableCombat();
+        inCombat = false;
+       
+    }
+    void SceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == "BattleScene 1")
         {
             inCombat = true;
-            GameObject.FindObjectOfType<CombatManager>().NewCombat(PlayerFishventory.Fishies.ToList(), fishesToFight, rewardFish);
+            
         }
-        SceneManager.sceneLoaded -= SetUpCombat;
-        //throw new NotImplementedException();
+        else if(arg0.name == mainScene)
+        {
+            print("should load");
+            SavingSystem.LoadGame();
+            SceneManager.sceneLoaded -= SceneLoaded;
+        }
+        
     }
+    
+    
+
+   
 
     public void Load(string json)
     {

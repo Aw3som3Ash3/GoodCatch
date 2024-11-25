@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     bool inStation;
 
-    bool sprinting;
+    bool sprinting { get { return inputs.Sprint.IsPressed(); } }
 
     string id="player";
     public string ID => id;
@@ -249,5 +249,12 @@ public class PlayerController : MonoBehaviour,ISaveable
 
 
         characterController.enabled = true;
+    }
+
+    void OnDestroy()
+    {
+        inputs.Jump.performed -= OnJump;
+        inputs.Fish.performed -= StartFishing;
+        inputs.Interact.performed -= OnInteract;
     }
 }
