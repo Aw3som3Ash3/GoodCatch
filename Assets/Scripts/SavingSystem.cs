@@ -8,7 +8,7 @@ using UnityEngine;
 public static class SavingSystem
 {
     const string SAVE_FILE = "Save.json";
-    static string SavePath { get { return Path.Combine(Application.persistentDataPath + SAVE_FILE); } }
+    static string SavePath { get { return Path.Combine(Application.persistentDataPath, SAVE_FILE); } }
     static GameData data;
     [Serializable]
     class GameData
