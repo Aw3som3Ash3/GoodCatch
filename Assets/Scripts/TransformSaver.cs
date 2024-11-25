@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 [ExecuteAlways]
-public class TransformSaver : MonoBehaviour,ISaveable,ISerializationCallbackReceiver
+public class TransformSaver : MonoBehaviour,ISaveable
 {
     public object DataToSave => Matrix4x4.TRS(this.transform.position,this.transform.rotation,this.transform.localScale);
 
@@ -24,20 +24,6 @@ public class TransformSaver : MonoBehaviour,ISaveable,ISerializationCallbackRece
         this.transform.localScale = data.lossyScale;
     }
 
-
-
-    public void OnAfterDeserialize()
-    {
-        //id = null;
-        //throw new System.NotImplementedException();
-    }
-
-    public void OnBeforeSerialize()
-    {
-
-       
-        
-    }
     private void Awake()
     {
 #if UNITY_EDITOR
@@ -71,15 +57,4 @@ public class TransformSaver : MonoBehaviour,ISaveable,ISerializationCallbackRece
         Debug.Log("Current Save ID:" + id);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
