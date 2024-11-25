@@ -12,16 +12,29 @@ using UnityEngine.InputSystem.Users;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using static CombatManager;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour,ISaveable
 {
     public static GameManager Instance;
 
-    public Fishventory PlayerFishventory { get; private set; } = new Fishventory(7);
-    public ItemInventory PlayerInventory { get; private set; } = new ItemInventory();
-
-    List<FishMonster> fishesToFight;
-    public float dayTime { get; private set; }
+    [Serializable]
+    struct GameData
+    {
+        public Fishventory PlayerFishventory;
+        public ItemInventory PlayerInventory;
+        public float dayTime;
+        public GameData(int partySize)
+        {
+            PlayerFishventory = new Fishventory(partySize);
+            PlayerInventory = new ItemInventory();
+            dayTime=0;
+        }
+    }
+    GameData gameData=new GameData(7);
+    public Fishventory PlayerFishventory { get { return gameData.PlayerFishventory; }}
+    public ItemInventory PlayerInventory { get { return gameData.PlayerInventory; } }
+    public float DayTime { get { return gameData.dayTime; } private set { gameData.dayTime = value; } }
     public int Day { get; private set; }
     [SerializeField]
     [Range(0,24)]
@@ -34,7 +47,6 @@ public class GameManager : MonoBehaviour
     FishMonsterType[] testfisth;
     [SerializeField]
     Item[] startingItems;
-    bool rewardFish;
     [SerializeField]
     TextMeshProUGUI tempTimeOfDayText;
 
@@ -63,46 +75,46 @@ public class GameManager : MonoBehaviour
 
 
     }
-    public TimeOfDay CurrentTimeOfDay => GetTimeOfDay(dayTime);
+    public TimeOfDay CurrentTimeOfDay => GetTimeOfDay(DayTime);
     public TimeOfDay GetTimeOfDay(float time)
     {
-        if (dayTime >= 3 && dayTime < 6)
+        if (DayTime >= 3 && DayTime < 6)
         {
             return TimeOfDay.EarlyMorning;
         }
-        else if (dayTime >= 6 && dayTime < 9)
+        else if (DayTime >= 6 && DayTime < 9)
         {
             return TimeOfDay.Dawn;
         }
-        else if (dayTime >= 9 && dayTime < 12)
+        else if (DayTime >= 9 && DayTime < 12)
         {
             return TimeOfDay.Morning;
         }
-        else if (dayTime >= 9 && dayTime < 12)
+        else if (DayTime >= 9 && DayTime < 12)
         {
             return TimeOfDay.Morning;
         }
-        else if (dayTime >= 12 && dayTime < 13)
+        else if (DayTime >= 12 && DayTime < 13)
         {
             return TimeOfDay.Noon;
         }
-        else if (dayTime >= 13 && dayTime < 15)
+        else if (DayTime >= 13 && DayTime < 15)
         {
             return TimeOfDay.Afternoon;
         }
-        else if (dayTime >= 15 && dayTime < 18)
+        else if (DayTime >= 15 && DayTime < 18)
         {
             return TimeOfDay.Evening;
         }
-        else if (dayTime >= 18 && dayTime < 21)
+        else if (DayTime >= 18 && DayTime < 21)
         {
             return TimeOfDay.Dusk;
         }
-        else if (dayTime >= 21 && dayTime < 24)
+        else if (DayTime >= 21 && DayTime < 24)
         {
             return TimeOfDay.LateNight;
         }
-        else if (dayTime >= 0 && dayTime < 3)
+        else if (DayTime >= 0 && DayTime < 3)
         {
             return TimeOfDay.Midnight;
         }
@@ -123,8 +135,16 @@ public class GameManager : MonoBehaviour
     };
 
     public InputMethod inputMethod { get; private set; }
+
+    public object DataToSave { get => gameData;}
+    string id="05f";
+    public string ID => id;
+
+
     public Action<InputMethod> OnInputChange;
     InputUser user;
+
+    String mainScene;
 
     private void Awake()
     {
@@ -145,8 +165,9 @@ public class GameManager : MonoBehaviour
         InputUser.onUnpairedDeviceUsed += OnDeviceChange;
         InputUser.onChange += OnDeviceChange;
         //InputUser.PerformPairingWithDevice()
+       
 
-        
+
     }
 
     private void OnDeviceChange(InputControl control, InputEventPtr ptr)
@@ -194,7 +215,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dayTime = startingTime;
+        mainScene = SceneManager.GetActiveScene().name;
+        DayTime = startingTime;
         foreach(var fish in testfisth)
         {
             CapturedFish(fish);
@@ -206,6 +228,8 @@ public class GameManager : MonoBehaviour
         {
             PlayerInventory.AddItem(startingItems[i]);
         }
+        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(true);
+        InputManager.Input.Player.QuickLoad.performed +=(x)=>SavingSystem.LoadGame();
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
 
@@ -236,12 +260,12 @@ public class GameManager : MonoBehaviour
         }
 
 
-        sun.transform.eulerAngles = new Vector3(((dayTime * (360 / 24)) - 90), -90, 0);
-        dayTime += Time.deltaTime / secondsPerHour;
-        if (dayTime >= 24)
+        sun.transform.eulerAngles = new Vector3(((DayTime * (360 / 24)) - 90), -90, 0);
+        DayTime += Time.deltaTime / secondsPerHour;
+        if (DayTime >= 24)
         {
             Day++;
-            dayTime %= 24;
+            DayTime %= 24;
         }
     }
     /// <summary>
@@ -250,13 +274,13 @@ public class GameManager : MonoBehaviour
     /// <param name="time"></param>
     public void AdvanceTime(float time)
     {
-        dayTime += time;
+        DayTime += time;
         StartCoroutine(FadeToBlack(() =>
         {
-            if (dayTime >= 24)
+            if (DayTime >= 24)
             {
-                Day += Mathf.FloorToInt((dayTime / 24F));
-                dayTime %= 24;
+                Day += Mathf.FloorToInt((DayTime / 24F));
+                DayTime %= 24;
             }
         }));
        
@@ -272,11 +296,11 @@ public class GameManager : MonoBehaviour
         }
         StartCoroutine(FadeToBlack(() =>
         {
-            if (dayTime > targetTime)
+            if (DayTime > targetTime)
             {
                 Day++;
             }
-            dayTime = targetTime;
+            DayTime = targetTime;
         }));
        
         
@@ -323,35 +347,53 @@ public class GameManager : MonoBehaviour
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
+        SavingSystem.SaveGame();
         //mainEventSystem.enabled = false;
-        SceneManager.LoadScene("BattleScene 1", LoadSceneMode.Additive);
+        CombatManager.NewCombat(enemyFishes, rewardFish);
+        inCombat = true;
+        SceneManager.sceneLoaded += SceneLoaded;
         
-        fishesToFight = enemyFishes;
-        SceneManager.sceneLoaded += SetUpCombat;
-        SceneManager.sceneUnloaded += CombatUnloaded;
-        this.rewardFish = rewardFish;
-    }
-
-    private void CombatUnloaded(Scene arg0)
-    {
-        if (arg0.name == "BattleScene 1")
-        {
-            inCombat = false;
-        }
        
     }
+    public void CombatEnded(Team winningTeam)
+    {
 
-    private void SetUpCombat(Scene arg0, LoadSceneMode arg1)
+        if (winningTeam == Team.enemy)
+        {
+            PlayerLost();
+        }
+        SavingSystem.SaveSelf(this);
+        SceneManager.LoadScene(mainScene);
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+        InputManager.EnablePlayer();
+        InputManager.Input.UI.Disable();
+        InputManager.DisableCombat();
+        inCombat = false;
+       
+    }
+    void SceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == "BattleScene 1")
         {
             inCombat = true;
-            GameObject.FindObjectOfType<CombatManager>().NewCombat(PlayerFishventory.Fishies.ToList(), fishesToFight, rewardFish);
+            
         }
-        SceneManager.sceneLoaded -= SetUpCombat;
-        //throw new NotImplementedException();
+        else if(arg0.name == mainScene)
+        {
+            print("should load");
+            SavingSystem.LoadGame();
+            SceneManager.sceneLoaded -= SceneLoaded;
+        }
+        
     }
+    
+    
 
+   
 
-
+    public void Load(string json)
+    {
+        gameData = JsonUtility.FromJson<GameData>(json);
+    }
 }

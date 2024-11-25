@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strong: []
   veryStrong: []
-  weak: []
+  weak:
+  - {fileID: 11400000}
   veryWeak: []

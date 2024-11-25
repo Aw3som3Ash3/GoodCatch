@@ -50,7 +50,7 @@ public class WaterSimulator : MonoBehaviour
             timer = Time.time;
             if (useTide)
             {
-                tideLevel = Mathf.Sin(GameManager.Instance.dayTime * (2 * Mathf.PI / 12))*tideMultiplier;
+                tideLevel = Mathf.Sin(GameManager.Instance.DayTime * (2 * Mathf.PI / 12))*tideMultiplier;
             }
         }
         

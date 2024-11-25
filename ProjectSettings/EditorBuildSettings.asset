@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Archepelago.unity
+    path: Assets/Scenes/Test/Archepelago.unity
     guid: 187a9f579d2ebae49b2545212b914139
   - enabled: 1
     path: Assets/Scenes/BattleScene 1.unity
@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/BattleScene.unity
     guid: 39a7146bbc3e35747a5e957b25998507
   - enabled: 1
-    path: Assets/Scenes/NicFishingScene.unity
+    path: Assets/Scenes/Test/NicFishingScene.unity
     guid: e0a563fbe32726841b079c08bbcf7808
   m_configObjects: {}

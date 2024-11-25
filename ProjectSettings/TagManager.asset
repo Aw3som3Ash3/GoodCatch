@@ -21,8 +21,8 @@ TagManager:
   - Interactables
   - CombatScene
   - FishZone
-  - 
-  - 
+  - CombatSceneSelectors
+  - CombatSceneBackGround
   - 
   - 
   - 

@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour,ISaveable
 {
     GoodCatchInputs.PlayerActions inputs;
     InputAction moveAction;
@@ -34,7 +36,24 @@ public class PlayerController : MonoBehaviour
 
     bool inStation;
 
-    bool sprinting;
+    bool sprinting { get { return inputs.Sprint.IsPressed(); } }
+
+    string id="player";
+    public string ID => id;
+
+    object ISaveable.DataToSave {get{ return new SaveData(Matrix4x4.TRS(this.transform.position, this.transform.rotation, this.transform.localScale), Matrix4x4.TRS(model.transform.position, model.transform.rotation, model.transform.localScale)); } }
+    [Serializable]
+    struct SaveData
+    {
+        [SerializeField]
+        public Matrix4x4 transform,modelTransform;
+        public SaveData(Matrix4x4 transform,Matrix4x4 modelTransform)
+        {
+            this.transform = transform;
+            this.modelTransform = modelTransform;
+        }
+    }
+
     private void Awake()
     {
         inputs = InputManager.Input.Player;
@@ -44,8 +63,6 @@ public class PlayerController : MonoBehaviour
         lookAction = inputs.Look;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
-        inputs.Sprint.performed +=(x)=>sprinting=!sprinting;
-        sprinting = false;
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
@@ -210,5 +227,32 @@ public class PlayerController : MonoBehaviour
         var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(cameraRig.forward));
         model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
         InputManager.DisablePlayer();
+    }
+
+    public void Load(string json)
+    {
+        SaveData data= JsonUtility.FromJson<SaveData>(json);
+        characterController.enabled = false;
+
+        Matrix4x4 matrix = data.transform;
+        this.transform.position = matrix.GetPosition();
+        this.transform.rotation = matrix.rotation;
+        this.transform.localScale = matrix.lossyScale;
+
+        Matrix4x4 modelTransforms = data.modelTransform;
+        characterController.enabled = false;
+        model.transform.position = modelTransforms.GetPosition();
+        model.transform.rotation = modelTransforms.rotation;
+        model.transform.localScale = modelTransforms.lossyScale;
+
+
+        characterController.enabled = true;
+    }
+
+    void OnDestroy()
+    {
+        inputs.Jump.performed -= OnJump;
+        inputs.Fish.performed -= StartFishing;
+        inputs.Interact.performed -= OnInteract;
     }
 }

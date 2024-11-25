@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270705409364b044a78748b29b502ed, type: 3}
   m_Name: Earth
   m_EditorClassIdentifier: 
-  strong: []
+  strong:
+  - {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
   veryStrong: []
-  weak: []
+  weak:
+  - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
+  - {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
+  - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   veryWeak: []

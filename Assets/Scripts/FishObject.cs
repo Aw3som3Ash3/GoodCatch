@@ -15,7 +15,8 @@ public class FishObject : MonoBehaviour
     float moveSpeed;
     [SerializeField]
     Material outlineMat;
-
+    [SerializeField]
+    int outlineLayer;
     public Action ReachedDestination;
 
     public Action<Vector2> Navigate;
@@ -119,6 +120,11 @@ public class FishObject : MonoBehaviour
             child.gameObject.layer = this.gameObject.layer;
         }
         outline = Instantiate(model, this.transform);
+        outline.layer = outlineLayer;
+        foreach (Transform child in outline.transform)
+        {
+            child.gameObject.layer = outlineLayer;
+        }
         //outline.transform.localScale = Vector3.one*1.25f;
         var rend = outline.GetComponentInChildren<Renderer>();
         rend.enabled = false;

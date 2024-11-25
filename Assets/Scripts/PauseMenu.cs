@@ -11,6 +11,7 @@ public class PauseMenu : VisualElement
     Button settting, party, beastiary, inventory;
     CursorLockMode prevMode;
     bool prevVisability;
+    PartyUI partyUI;
     public new class UxmlFactory : UxmlFactory<PauseMenu, CombatUI.UxmlTraits>
     {
 
@@ -27,17 +28,20 @@ public class PauseMenu : VisualElement
         this.SetEnabled(false);
         this.visible = false;
         this.style.flexGrow = 1;
-        beastiary=this.Q<Button>("FishBookButton");
+        this.style.position = Position.Absolute;
+        this.StretchToParentSize();
+
+        beastiary =this.Q<Button>("FishBookButton");
         party = this.Q<Button>("PartyButton");
         settting = this.Q<Button>("OptionsButton");
         inventory = this.Q<Button>("ItemsButton");
-        party.clicked += () =>throw new NotImplementedException();
+        party.clicked +=Party;
         beastiary.clicked += () =>throw new NotImplementedException();
         inventory.clicked += () =>throw new NotImplementedException();
         settting.clicked += () =>throw new NotImplementedException();
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed += OnPause;
-
+        
     }
 
     void OnPause(InputAction.CallbackContext context)
@@ -63,10 +67,24 @@ public class PauseMenu : VisualElement
             else
             {
                 InputManager.EnablePlayer();
+                this.parent.Remove(partyUI);
             }
             
 
         }
        
+    }
+
+    void Party()
+    {
+        if (partyUI == null)
+        {
+            partyUI = new();
+
+        }
+
+        this.parent.Add(partyUI);
+        partyUI.UpdateUI();
+        this.visible = false;
     }
 }

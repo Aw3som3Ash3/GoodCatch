@@ -4,39 +4,39 @@
         <ui:VisualElement name="PartyPanel" style="flex-grow: 1; flex-direction: row; width: 25%;">
             <ui:VisualElement name="PartyContainer" style="flex-grow: 1; scale: 0.8 0.8; flex-direction: row;">
                 <ui:VisualElement name="PartyL" style="flex-grow: 1;">
-                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
-                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                    <ui:VisualElement name="PartyMember1" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
-                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                    <ui:VisualElement name="PartyMember3" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
-                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                    <ui:VisualElement name="PartyMember5" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
-                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                    <ui:VisualElement name="PartyMember7" class="partymember" style="flex-grow: 1;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%; visibility: visible;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="PartyR" style="flex-grow: 1; padding-top: 25%;">
-                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1; margin-top: 0;">
-                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                    <ui:VisualElement name="PartyMember2" class="partymember" style="flex-grow: 1; margin-top: 0;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1; visibility: visible; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
-                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                    <ui:VisualElement name="PartyMember4" class="partymember" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="PartyMember" class="partymember" style="flex-grow: 1;">
+                    <ui:VisualElement name="PartyMember6" class="partymember" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
                         <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
