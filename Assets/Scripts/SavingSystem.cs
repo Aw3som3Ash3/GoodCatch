@@ -9,7 +9,7 @@ public static class SavingSystem
 {
     const string SAVE_FILE = "QuickSave";
     const string FILE_EXTENSION = ".Data";
-    const string FOLDER_NAME = "Saves";
+    public const string FOLDER_NAME = "Saves";
     //static string SavePath { get { return Path.Combine(Application.persistentDataPath,FILE_NAME ,SAVE_FILE); } }
     static GameData data;
     [Serializable]

@@ -8,7 +8,8 @@ using UnityEngine.UIElements;
 public class OptionsPage : VisualElement
 {
     Button settings, save, load, mainMenu;
-    
+    VisualElement settingsBox;
+    SaveAndLoadScreen saveAndLoadScreen;
 
     public new class UxmlFactory : UxmlFactory<OptionsPage, OptionsPage.UxmlTraits>
     {
@@ -33,9 +34,18 @@ public class OptionsPage : VisualElement
         load.clicked += OnLoad;
         mainMenu = this.Q<Button>("MainMenu");
         mainMenu.clicked += OnMenu;
-
+        settingsBox = this.Q("SettingsBox");
+        
     }
+    public void OpenOptions()
+    {
+        if (saveAndLoadScreen != null&& settingsBox==saveAndLoadScreen.parent)
+        {
+            settingsBox.Remove(saveAndLoadScreen);
 
+        }
+        
+    }
     private void OnSettings()
     {
         throw new NotImplementedException();
@@ -43,7 +53,13 @@ public class OptionsPage : VisualElement
 
     private void OnSave()
     {
-        SavingSystem.SaveGame();
+        if (saveAndLoadScreen == null)
+        {
+            saveAndLoadScreen = new SaveAndLoadScreen();
+            
+        }
+        settingsBox.Add(saveAndLoadScreen);
+        saveAndLoadScreen.DisplaySaves();
     }
 
     private void OnLoad()

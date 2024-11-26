@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 0; flex-direction: row; align-self: stretch; align-items: center; justify-content: space-between; background-color: rgba(191, 191, 191, 0.84);">
+        <ui:TextField picking-mode="Ignore" label="Save Name" value="filler text" name="SaveField" style="width: 75%; right: auto; justify-content: center; left: auto;" />
+        <ui:Button text="Save" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="SaveButton" style="flex-grow: 1; flex-shrink: 1;" />
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(29, 29, 29, 0.44);">
+        <ui:ListView name="SaveList" />
+    </ui:VisualElement>
+</ui:UXML>

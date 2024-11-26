@@ -105,6 +105,7 @@ public class PauseMenu : VisualElement
         }
         this.parent.Add(optionsPage);
         this.visible = false;
+        optionsPage.OpenOptions();
         currentPage = optionsPage;
     }
     void Party()

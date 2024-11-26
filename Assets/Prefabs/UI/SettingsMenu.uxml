@@ -7,11 +7,14 @@
                 <ui:VisualElement name="SystemsTitleContainer" style="flex-grow: 0; flex-shrink: 1;">
                     <ui:Label tabindex="-1" text="System" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SystemsText" style="font-size: 125px; -unity-text-align: upper-center; -unity-font-style: bold; color: rgb(211, 226, 245); margin-top: 26px; -unity-background-image-tint-color: rgb(211, 226, 245);" />
                 </ui:VisualElement>
-                <ui:VisualElement name="TextColum" style="flex-grow: 1; align-items: flex-start; justify-content: space-around; padding-left: 5%; padding-bottom: 6%;">
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" text="Settings" class="PauseButton" style="background-color: rgba(200, 200, 200, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; -unity-font-style: bold; width: 500px;" />
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SaveButton" text="Save" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; align-items: auto; -unity-text-align: middle-left;" />
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadButton" text="Load&#10;" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
-                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenu" text="Main Menu" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                    <ui:VisualElement name="TextColum" style="flex-grow: 0; align-items: flex-start; justify-content: space-around; padding-left: 5%; padding-bottom: 6%;">
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" text="Settings" class="PauseButton" style="background-color: rgba(200, 200, 200, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; -unity-font-style: bold; width: 500px;" />
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SaveButton" text="Save" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; align-items: auto; -unity-text-align: middle-left;" />
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadButton" text="Load&#10;" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenu" text="Main Menu" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="SettingsBox" style="flex-grow: 1; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
