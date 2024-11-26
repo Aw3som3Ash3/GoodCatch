@@ -11,14 +11,21 @@ public class FishZone : SaveableObject,ISaveable
     [SerializeField]
     int minAmount, maxAmount;
 
-    int amount;
+    [Serializable]
+    struct Data
+    {
+        [SerializeField]
+        public int amount;
+    }
+    [SerializeField]
+    Data data;
 
-    public override object DataToSave => amount;
+    public override object DataToSave => data;
 
     // Start is called before the first frame update
     void Start()
     {
-        amount = UnityEngine.Random.Range(minAmount, maxAmount + 1);
+        data.amount = UnityEngine.Random.Range(minAmount, maxAmount + 1);
     }
 
     // Update is called once per frame
@@ -29,20 +36,21 @@ public class FishZone : SaveableObject,ISaveable
 
     public FishMonsterType GetRandomFish( Action fishingSucceeded)
     {
-        if (amount < 0)
+        if (data.amount < 0)
         {
             return null;
         }
        
-        fishingSucceeded += () => amount--;
+        fishingSucceeded += () => data.amount--;
         return spawnTable.GetRandomFish();
         
     }
 
     public override void Load(string json)
     {
-        var data = JsonUtility.FromJson<int>(json);
-        amount = data;
+        //JsonUtility.FromJsonOverwrite(json, this);
+        var data = JsonUtility.FromJson<Data>(json);
+        this.data = data;
 
     }
 }

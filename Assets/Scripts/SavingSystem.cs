@@ -115,7 +115,7 @@ public interface ISaveable
         
     }
     public void Load(string json);
-   
+    
     
 }
 
