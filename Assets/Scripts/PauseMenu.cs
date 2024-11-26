@@ -12,6 +12,8 @@ public class PauseMenu : VisualElement
     CursorLockMode prevMode;
     bool prevVisability;
     PartyUI partyUI;
+    OptionsPage optionsPage;
+    VisualElement currentPage;
     public new class UxmlFactory : UxmlFactory<PauseMenu, CombatUI.UxmlTraits>
     {
 
@@ -38,7 +40,7 @@ public class PauseMenu : VisualElement
         party.clicked +=Party;
         beastiary.clicked += () =>throw new NotImplementedException();
         inventory.clicked += () =>throw new NotImplementedException();
-        settting.clicked += () =>throw new NotImplementedException();
+        settting.clicked += Options;
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed += OnPause;
         
@@ -48,6 +50,11 @@ public class PauseMenu : VisualElement
     {
         if (context.performed)
         {
+            if (currentPage!=null)
+            {
+                Back();
+                return;
+            }
             if (!this.enabledSelf)
             {
                 prevVisability = UnityEngine.Cursor.visible;
@@ -57,24 +64,49 @@ public class PauseMenu : VisualElement
             this.SetEnabled(!this.enabledSelf);
             this.visible = enabledSelf;
             this.BringToFront();
-            UnityEngine.Cursor.lockState = this.enabledSelf ? CursorLockMode.Confined: prevMode;
-            UnityEngine.Cursor.visible = this.enabledSelf ? true: prevVisability;
+            UnityEngine.Cursor.lockState = this.enabledSelf ? CursorLockMode.Confined : prevMode;
+            UnityEngine.Cursor.visible = this.enabledSelf ? true : prevVisability;
             Time.timeScale = this.enabledSelf ? 0: 1;
             if (this.enabledSelf)
             {
                 InputManager.DisablePlayer();
+                InputManager.Input.UI.Back.Enable();
+                InputManager.Input.UI.Back.performed+=Back;
+                
             }
             else
             {
                 InputManager.EnablePlayer();
-                this.parent.Remove(partyUI);
+                InputManager.Input.UI.Back.Disable();
+                InputManager.Input.UI.Back.performed -= Back;
             }
             
 
         }
        
     }
+    void Back(InputAction.CallbackContext context=default)
+    {
+        if (currentPage != null)
+        {
+            this.parent.Remove(currentPage);
+            this.SetEnabled(true);
+            this.visible=true;
+            this.BringToFront();
+            currentPage = null;
+        }
+    }
+    void Options()
+    {
+        if (optionsPage == null)
+        {
+            optionsPage = new();
 
+        }
+        this.parent.Add(optionsPage);
+        this.visible = false;
+        currentPage = optionsPage;
+    }
     void Party()
     {
         if (partyUI == null)
@@ -86,5 +118,6 @@ public class PauseMenu : VisualElement
         this.parent.Add(partyUI);
         partyUI.UpdateUI();
         this.visible = false;
+        currentPage=partyUI;
     }
 }

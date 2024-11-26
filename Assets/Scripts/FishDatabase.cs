@@ -2,26 +2,27 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-#if UNITY_EDITOR
-[FilePath("Assets/Database/FishDatabase", FilePathAttribute.Location.ProjectFolder)]
-#endif
+
+[CreateAssetMenu(fileName = "Fish Database", menuName = "Fish Monster/Fish Database", order = 1)]
 public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
 {
     [SerializeField]
     public List<FishMonsterType> fishMonsters;
     //public IReadOnlyList<FishMonsterType> FishMonsters { get { return fishMonsters; } }
-    public Dictionary<int, FishMonsterType> GetFish = new Dictionary<int, FishMonsterType>();
-    public Dictionary<FishMonsterType, int> GetId = new Dictionary<FishMonsterType, int>();
+    //public Dictionary<int, FishMonsterType> GetFish = new Dictionary<int, FishMonsterType>();
+    //public Dictionary<FishMonsterType, int> GetId = new Dictionary<FishMonsterType, int>();
     public void OnAfterDeserialize()
     {
-        GetId = new Dictionary<FishMonsterType, int>();
+        //GetId = new Dictionary<FishMonsterType, int>();
 
         fishMonsters = fishMonsters.GroupBy(x => x).Select(y => y.First()).ToList();
         for (int i = 0; i < fishMonsters.Count; i++)
         {
-            GetId.Add(fishMonsters[i], i);
-            fishMonsters[i].fishId = i;
-            GetFish.Add(i, fishMonsters[i]);
+            var fish= fishMonsters[i];
+            //Debug.Log(fishMonsters[i]);
+            //GetId.Add(fish, i);
+            fish.fishId = i;
+            //GetFish.Add(i, fish);
         }
 
     }
@@ -31,7 +32,7 @@ public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
     }
     public void OnBeforeSerialize()
     {
-        GetFish = new Dictionary<int, FishMonsterType>();
+        //GetFish = new Dictionary<int, FishMonsterType>();
     }
     public FishMonsterType GetRandom()
     {

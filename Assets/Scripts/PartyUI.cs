@@ -11,6 +11,7 @@ public class PartyUI : VisualElement
 
     VisualElement preview;
     Label description;
+    Label hpAmount, attackAmount, defenseAmount, agilityAmount, staminaAmount, mgAttackAmount, mgDefenseAmount, accuracyAmount;
 
     //Dictionary<VisualElement, FishMonster> slotsFish;
     //protected override InputAction input => InputManager.Input.UI.Party;
@@ -48,7 +49,14 @@ public class PartyUI : VisualElement
             element.RegisterCallback<FocusOutEvent>((x) => OnFocusExit());
 
         }
-
+        hpAmount = this.Q<Label>("HpAmount");
+        attackAmount = this.Q<Label>("AttackAmount");
+        defenseAmount = this.Q<Label>("DefenseAmount");
+        agilityAmount = this.Q<Label>("AgilityAmount");
+        staminaAmount = this.Q<Label>("StaminaAmount");
+        mgAttackAmount = this.Q<Label>("MgAttackAmount");
+        mgDefenseAmount = this.Q<Label>("MgDefenseAmount");
+        accuracyAmount = this.Q<Label>("AccuracyAmount");
         preview = this.Q("Preview");
         description = this.Q<Label>("Description");
     }
@@ -73,6 +81,7 @@ public class PartyUI : VisualElement
 
 
         }
+
     }
 
 
@@ -81,7 +90,14 @@ public class PartyUI : VisualElement
 
         preview.style.backgroundImage = fishMonster.Icon;
         description.text = fishMonster.description;
-
+        hpAmount.text = fishMonster.MaxHealth.ToString(); 
+        attackAmount.text = fishMonster.Attack.value.ToString();
+        defenseAmount.text = fishMonster.Fortitude.value.ToString();
+        agilityAmount.text = fishMonster.Agility.value.ToString();
+        staminaAmount.text = fishMonster.MaxStamina.ToString(); 
+        mgAttackAmount.text = fishMonster.Special.value.ToString();
+        mgDefenseAmount.text = fishMonster.SpecialFort.value.ToString();
+        accuracyAmount.text = fishMonster.Accuracy.value.ToString(); 
 
     }
 

@@ -7,8 +7,10 @@ using UnityEngine;
 
 public static class SavingSystem
 {
-    const string SAVE_FILE = "Save.json";
-    static string SavePath { get { return Path.Combine(Application.persistentDataPath, SAVE_FILE); } }
+    const string SAVE_FILE = "QuickSave";
+    const string FILE_EXTENSION = ".Data";
+    const string FOLDER_NAME = "Saves";
+    //static string SavePath { get { return Path.Combine(Application.persistentDataPath,FILE_NAME ,SAVE_FILE); } }
     static GameData data;
     [Serializable]
     class GameData
@@ -37,7 +39,7 @@ public static class SavingSystem
     {
         data.AddSaveable(saveable);
     }
-    public static void SaveGame(bool writeData=false)
+    public static void SaveGame(bool writeData = false,string SaveName= SAVE_FILE)
     {
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
          data=new();
@@ -48,33 +50,36 @@ public static class SavingSystem
         }
         if (true)
         {
-            WriteSave();
+            WriteSave(SaveName);
         }
        
     }
 
-    static void WriteSave()
+    static void WriteSave(string saveName)
     {
+        string path = Path.Combine(Application.persistentDataPath, FOLDER_NAME);
+        Directory.CreateDirectory(path);
         string save = JsonUtility.ToJson(data, true);
-        File.WriteAllText(SavePath, save);
+        File.WriteAllText( Path.Combine(path,saveName + FILE_EXTENSION), save);
         Debug.Log(save);
     }
 
-    public static void ReadData()
+    public static void ReadData(string saveName)
     {
-        if(File.Exists(SavePath))
+        string filePath= Path.Combine(Application.persistentDataPath, FOLDER_NAME, saveName+FILE_EXTENSION);
+        if (File.Exists(filePath))
         {
-            string json = File.ReadAllText(SavePath);
+            string json = File.ReadAllText(filePath);
             data = JsonUtility.FromJson<GameData>(json);
             //LoadGame();
         }
     }
 
-    public static void LoadGame()
+    public static void LoadGame(string saveName=SAVE_FILE)
     {
         if (data == null)
         {
-            ReadData();
+            ReadData(saveName);
         }
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
         foreach (var saveable in saveables)
@@ -87,9 +92,11 @@ public static class SavingSystem
     {
         if (data == null)
         {
-            ReadData();
+            ReadData(SAVE_FILE);
         }
         saveable.Load(data.GetSaveable(ID));
+
+        
     }
 }
 
@@ -98,11 +105,14 @@ public static class SavingSystem
 
 public interface ISaveable
 {
+
     object DataToSave { get;}
     string ID { get; }
     public string Save() 
     {
+        
         return JsonUtility.ToJson(DataToSave);
+        
     }
     public void Load(string json);
    

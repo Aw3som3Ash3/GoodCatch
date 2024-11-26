@@ -17,22 +17,29 @@ using static CombatManager;
 public class GameManager : MonoBehaviour,ISaveable
 {
     public static GameManager Instance;
+    [SerializeField]
+    FishDatabase database;
+    public FishDatabase Database { get { return database; } }
 
     [Serializable]
     struct GameData
     {
         public Fishventory PlayerFishventory;
+        public Fishventory StoredFishventory;
         public ItemInventory PlayerInventory;
         public float dayTime;
+
         public GameData(int partySize)
         {
             PlayerFishventory = new Fishventory(partySize);
             PlayerInventory = new ItemInventory();
-            dayTime=0;
+            StoredFishventory = new Fishventory();
+            dayTime =0;
         }
     }
     GameData gameData=new GameData(7);
     public Fishventory PlayerFishventory { get { return gameData.PlayerFishventory; }}
+    public Fishventory StoredFishventory { get { return gameData.StoredFishventory; }}
     public ItemInventory PlayerInventory { get { return gameData.PlayerInventory; } }
     public float DayTime { get { return gameData.dayTime; } private set { gameData.dayTime = value; } }
     public int Day { get; private set; }
@@ -148,6 +155,7 @@ public class GameManager : MonoBehaviour,ISaveable
 
     private void Awake()
     {
+      
        
         if (Instance == null)
         {
@@ -228,7 +236,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             PlayerInventory.AddItem(startingItems[i]);
         }
-        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(true);
+        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(writeData: true);
         InputManager.Input.Player.QuickLoad.performed +=(x)=>SavingSystem.LoadGame();
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
@@ -342,7 +350,16 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void CapturedFish(FishMonster fishMonster)
     {
-        PlayerFishventory.AddFish(fishMonster);
+
+        switch (PlayerFishventory.AddFish(fishMonster))
+        {
+            case -1:
+                Debug.LogWarning("repeated fish");
+                break;
+            case 0:
+                StoredFishventory.AddFish(fishMonster);
+                break;
+        }
 
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
@@ -363,12 +380,10 @@ public class GameManager : MonoBehaviour,ISaveable
             PlayerLost();
         }
         SavingSystem.SaveSelf(this);
+        //InputManager.Input.UI.Disable();
+        //InputManager.DisableCombat();
         SceneManager.LoadScene(mainScene);
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = false;
-        InputManager.EnablePlayer();
-        InputManager.Input.UI.Disable();
-        InputManager.DisableCombat();
+        
         inCombat = false;
        
     }
@@ -384,6 +399,11 @@ public class GameManager : MonoBehaviour,ISaveable
             print("should load");
             SavingSystem.LoadGame();
             SceneManager.sceneLoaded -= SceneLoaded;
+
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+            //InputManager.EnablePlayer();
+
         }
         
     }

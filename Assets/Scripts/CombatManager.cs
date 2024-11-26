@@ -307,7 +307,9 @@ public class CombatManager : MonoBehaviour
         playerFishes = null;
         enemyFishes = null;
         rewardFish = false;
+        GameManager.Instance.OnInputChange -= InputChanged;
         GameManager.Instance.CombatEnded(winningTeam);
+        
     }
     void RewardXP()
     {
@@ -315,7 +317,7 @@ public class CombatManager : MonoBehaviour
         {
             foreach(FishMonster enemy in enemyFishes)
             {
-                fish.AddXp((enemy.level / fish.level)*100);
+                fish.AddXp((enemy.Level / fish.Level)*100);
             }
             
         }
@@ -568,11 +570,11 @@ public class CombatManager : MonoBehaviour
         bool actionsCompleted = true;
         public HashSet<StatusEffect.StatusEffectInstance> effects { get; private set; } = new HashSet<StatusEffect.StatusEffectInstance>();
 
-        public float Health { get { return fish.health; } }
-        public float MaxHealth { get { return fish.maxHealth; } }
+        public float Health { get { return fish.Health; } }
+        public float MaxHealth { get { return fish.MaxHealth; } }
 
-        public float MaxStamina { get { return fish.maxStamina; } }
-        public float Stamina { get { return fish.stamina; } }
+        public float MaxStamina { get { return fish.MaxStamina; } }
+        public float Stamina { get { return fish.Stamina; } }
         public Action<StatusEffect.StatusEffectInstance> NewEffect;
         public Action<StatusEffect.StatusEffectInstance> EffectRemoved;
         public int agility

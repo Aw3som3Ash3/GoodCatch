@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShipSimulator : MonoBehaviour
+public class ShipSimulator : MonoBehaviour,ISaveable
 {
     [SerializeField]
     Rigidbody physicSim;
@@ -15,6 +15,10 @@ public class ShipSimulator : MonoBehaviour
 
 
     public Vector3 Velocity { get { return physicSim.velocity; } }
+
+    public object DataToSave => Matrix4x4.TRS(this.transform.position,this.transform.rotation,this.transform.localScale);
+
+    public string ID => "ship";
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +65,17 @@ public class ShipSimulator : MonoBehaviour
     public void AddObject(Transform obj)
     {
         obj.SetParent(childrenObject);
+    }
+
+    public void Load(string json)
+    {
+
+        Matrix4x4 data = JsonUtility.FromJson<Matrix4x4>(json);
+
+        this.transform.position = data.GetPosition();
+        this.transform.rotation = data.rotation;
+        this.transform.localScale = data.lossyScale;
+
     }
 
 

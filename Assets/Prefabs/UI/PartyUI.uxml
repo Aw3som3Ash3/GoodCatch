@@ -32,11 +32,7 @@
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="PartyMember4" class="partymember" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
-                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
-                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
+                    <ui:VisualElement name="PartyMember4" class="partymember" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;" />
                     <ui:VisualElement name="PartyMember6" class="partymember" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
                         <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
@@ -47,6 +43,9 @@
         </ui:VisualElement>
         <ui:VisualElement name="InfoPanel" class="infopanel" style="flex-grow: 1; flex-direction: column; align-items: flex-start; height: auto; width: 75%; top: 0; bottom: 0; overflow: visible; visibility: visible; margin-top: 50px;">
             <ui:Label tabindex="-1" text="Party View" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="title" style="height: 225px; left: 0; right: 0; top: 0; margin-left: 20px; margin-right: 20px; max-width: none; width: auto;" />
+            <ui:VisualElement name="PartyIcon" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
+                <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+            </ui:VisualElement>
             <ui:VisualElement name="Body" style="flex-grow: 1; height: 100%; width: 100%; flex-direction: row; margin-top: 20px;">
                 <ui:VisualElement name="InfoLeft" style="flex-grow: 1; width: auto; max-width: 325px; margin-left: 20px;">
                     <ui:VisualElement name="Preview" style="flex-grow: 1; max-height: 300px; min-height: 300px;">
@@ -75,9 +74,9 @@
                                 <ui:Label tabindex="-1" text="Attack:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AttackText" style="font-size: 36px; color: rgb(255, 255, 255);" />
                                 <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AttackAmount" style="font-size: 36px; color: rgb(255, 255, 255);" />
                             </ui:VisualElement>
-                            <ui:VisualElement name="DefenceBox" style="flex-grow: 1; flex-direction: row;">
-                                <ui:Label tabindex="-1" text="Defence:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DefenceText" style="font-size: 36px; color: rgb(255, 255, 255);" />
-                                <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DefenceAmount" style="font-size: 36px; color: rgb(255, 255, 255);" />
+                            <ui:VisualElement name="DefenseBox" style="flex-grow: 1; flex-direction: row;">
+                                <ui:Label tabindex="-1" text="Defense:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DefenseText" style="font-size: 36px; color: rgb(255, 255, 255);" />
+                                <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DefenseAmount" style="font-size: 36px; color: rgb(255, 255, 255);" />
                             </ui:VisualElement>
                             <ui:VisualElement name="AgilityBox" style="flex-grow: 1; flex-direction: row;">
                                 <ui:Label tabindex="-1" text="Agility:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AgilityText" style="font-size: 36px; color: rgb(255, 255, 255);" />
@@ -93,9 +92,9 @@
                                 <ui:Label tabindex="-1" text="MgAttack" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgAttackText" style="font-size: 36px; color: rgb(255, 255, 255);" />
                                 <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgAttackAmount" style="font-size: 36px; color: rgb(255, 255, 255);" />
                             </ui:VisualElement>
-                            <ui:VisualElement name="MgDefenceBox" style="flex-grow: 1; flex-direction: row;">
-                                <ui:Label tabindex="-1" text="MgDefence:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgDefenceText" style="font-size: 36px; color: rgb(255, 255, 255);" />
-                                <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgDefenceAmount" style="font-size: 36px; color: rgb(255, 255, 255);" />
+                            <ui:VisualElement name="MgDefenseBox" style="flex-grow: 1; flex-direction: row;">
+                                <ui:Label tabindex="-1" text="MgDefense:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgDefenseText" style="font-size: 36px; color: rgb(255, 255, 255);" />
+                                <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgDefenseAmount" style="font-size: 36px; color: rgb(255, 255, 255);" />
                             </ui:VisualElement>
                             <ui:VisualElement name="AccuracyBox" style="flex-grow: 1; flex-direction: row;">
                                 <ui:Label tabindex="-1" text="Accuracy:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AccuracyText" style="font-size: 36px; color: rgb(255, 255, 255);" />

@@ -24,5 +24,9 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="TurnMarker" style="flex-grow: 1; position: absolute; height: 50px; width: 50px; top: auto; left: auto; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/ArrowDown.png?fileID=2800000&amp;guid=a56ccffe4084f61419176ce191269138&amp;type=3#ArrowDown&quot;); -unity-background-scale-mode: stretch-to-fill; -unity-background-image-tint-color: rgb(255, 0, 0); transform-origin: bottom;" />
-    <ui:Instance template="CombatDraftUI" name="CombatDraftUI" style="position: absolute; height: 862px; visibility: visible;" />
+    <ui:Instance template="CombatDraftUI" name="CombatDraftUI" style="position: absolute; height: 862px; visibility: visible;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 0; position: absolute; height: 144px; width: 551px; top: 0; left: 600px; background-color: rgba(68, 111, 194, 0.68);">
+            <ui:Label tabindex="-1" text="DRAFT" parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-items: auto; align-self: center; font-size: 100px; flex-grow: 1; -unity-font-style: bold-and-italic; color: rgb(202, 239, 253);" />
+        </ui:VisualElement>
+    </ui:Instance>
 </ui:UXML>

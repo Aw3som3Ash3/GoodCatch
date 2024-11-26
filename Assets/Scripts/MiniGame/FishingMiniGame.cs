@@ -10,7 +10,7 @@ public class FishingMiniGame : MonoBehaviour
     //[SerializeField] Transform circle;
     Floater floater;
 
-    public static Action SuccesfulFishing;
+    public static event Action SuccesfulFishing;
 
     float score;
 
@@ -39,7 +39,7 @@ public class FishingMiniGame : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(this.transform.position,Vector3.down,out hit,100, fishZones))
         {
-            fishMonster=hit.collider.GetComponent<FishZone>().GetRandomFish();
+            fishMonster=hit.collider.GetComponent<FishZone>().GetRandomFish(SuccesfulFishing);
             Invoke("SpawnFish", UnityEngine.Random.Range(0, 25f));
         }
         
@@ -72,10 +72,15 @@ public class FishingMiniGame : MonoBehaviour
 
     void OnHook(InputAction.CallbackContext context)
     {
-        if (fishToCatch.CatchFish())
+        if (fishToCatch!=null&&fishToCatch.CatchFish())
         {
             //StartMinigame();
             FishingSuccess();
+        }
+        else
+        {
+            //should do different fail animation or reeling nothing
+            ExitFishing();
         }
     }
 
@@ -87,8 +92,8 @@ public class FishingMiniGame : MonoBehaviour
         {
             fishMonsters.Add(fishMonster.GenerateMonster());
         }
-        GameManager.Instance.LoadCombatScene(fishMonsters, true);
         SuccesfulFishing?.Invoke();
+        GameManager.Instance.LoadCombatScene(fishMonsters, true);
         ExitFishing();
 
     }

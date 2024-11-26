@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using UnityEditor;
 //using Unity.Mathematics;
 using UnityEngine;
 
@@ -167,11 +168,28 @@ public enum TalentScale
 [Serializable]
 public class FishMonster
 {
-    
 
     FishMonsterType type;
-    public string name { get; private set; }
-    public string description { get { return type.Description; } }
+    FishMonsterType Type 
+    { 
+        get 
+        { 
+            if (type == null) 
+            {
+                type = GameManager.Instance.Database.fishMonsters[id];
+            } 
+            return type;
+        } set 
+        {
+            type = value; 
+        } 
+    }
+    [SerializeField]
+    int id;
+    [SerializeField]
+    string name;
+    public string Name { get { return name; } }
+    public string description { get { return Type.Description; } }
 
     [Serializable]
     public struct Attribute
@@ -179,46 +197,55 @@ public class FishMonster
         public int value;
         public TalentScale talent;
     }
-
+    [SerializeField]
     Attribute agility;
     public Attribute Agility { get { return agility; } }
-
+    [SerializeField]
     Attribute accuracy;
     public Attribute Accuracy { get;}
-
+    [SerializeField]
     Attribute attack;
     public Attribute Attack { get { return attack; } }
-
+    [SerializeField]
     Attribute special;
     public Attribute Special { get { return special; } }
-
+    [SerializeField]
     Attribute fortitude;
     public Attribute Fortitude { get { return fortitude; } }
-
+    [SerializeField]
     Attribute specialFort;
     public Attribute SpecialFort{ get { return specialFort; } }
+    [SerializeField]
+    float health;
+    public float Health { get { return health; } }
+    [SerializeField]
+    float maxHealth;
+    public float MaxHealth { get { return maxHealth; } }
+    [SerializeField]
+    float stamina;
+    public float Stamina { get { return stamina; } }
+    [SerializeField]
+    float maxStamina;
+    public float MaxStamina { get { return maxStamina; } }
 
-    public float health { get; private set; }
-    public float maxHealth { get; private set; }
-    public float stamina { get; private set; }
-    public float maxStamina { get; private set; }
+    public Texture2D Icon { get { return Type.Icon; } }
+    public GameObject Model { get { return Type.Model; } }
 
-    public Texture2D Icon { get { return type.Icon; } }
-    public GameObject Model { get { return type.Model; } }
-    public int level { get; private set; } = 1;
-    public float xp { get; private set; }
+    int level = 1;
+    public int Level { get { return level; } }
+    float xp;
+    public float Xp { get { return xp; } }
     public const int xpToLevelUp = 1000;
     Ability[] abilities;
     public Action ValueChanged;
     public Action HasFeinted;
-    public bool isDead { get; set; } = false;
+    public bool isDead { get { return health <= 0; }  }
 
     public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent)
     {
 
-        this.type = monsterType;
+        this.Type = monsterType;
         name = monsterType.name;
-        
         this.agility.value = agility;
         this.agility.talent = agilityTalent;
         this.attack.value = attack;
@@ -232,19 +259,19 @@ public class FishMonster
         this.accuracy.value = accuracy;
         this.accuracy.talent = accuracyTalent;
         maxStamina = StaminaFormula();
-        stamina = maxStamina;
+        stamina = MaxStamina;
         maxHealth = HealthFormula();
-        health = maxHealth;
+        health = MaxHealth;
         abilities = monsterType.BaseAbilities;
     }
     public void RestoreAllHealth()
     {
-        health = maxHealth;
+        health = MaxHealth;
     }
     public void ReplaceAbility(Ability newAbility, int index)
     {
         abilities[index] = newAbility;
-
+        
     }
     public void ConsumeStamina(int amount)
     {
@@ -269,7 +296,7 @@ public class FishMonster
     {
 
         this.xp += xp;
-        if (this.xp > xpToLevelUp)
+        if (this.Xp > xpToLevelUp)
         {
             LevelUp();
         }
@@ -279,9 +306,9 @@ public class FishMonster
         level++;
         xp = 0;
         maxHealth = HealthFormula();
-        health = maxHealth;
+        health = MaxHealth;
         maxStamina = StaminaFormula();
-        stamina = maxStamina;
+        stamina = MaxStamina;
         LevelAttribute(agility);
         LevelAttribute(attack);
         LevelAttribute(fortitude);
@@ -297,16 +324,16 @@ public class FishMonster
     }
     int HealthFormula()
     {
-        return type.BaseHealth + (level - 1) * type.BaseHealth/10;
+        return Type.BaseHealth + (Level - 1) * Type.BaseHealth/10;
     }
     int StaminaFormula()
     {
-        return type.BaseStamina + (level - 1) * type.BaseStamina/10;
+        return Type.BaseStamina + (Level - 1) * Type.BaseStamina/10;
     }
     public void RecoverStamina()
     {
-        stamina += maxStamina / 4;
-        stamina = Mathf.Clamp(stamina, 0, maxStamina);
+        stamina += MaxStamina / 4;
+        stamina = Mathf.Clamp(Stamina, 0, MaxStamina);
         ValueChanged?.Invoke();
     }
     public void TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType)
@@ -319,8 +346,8 @@ public class FishMonster
         float defenseMod = 1 - (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value) * 0.01f;
         float damageTaken = damage * DamageModifier(elementType) * defenseMod;
         health -= damageTaken;
-        Debug.Log("took " + damageTaken + " damage \n current health: " + health);
-        if (health <= 0)
+        Debug.Log("took " + damageTaken + " damage \n current health: " + Health);
+        if (Health <= 0)
         {
             Feint();
         }
@@ -338,18 +365,20 @@ public class FishMonster
         {
             return 1;
         }
-        return type.Elements.OrderByDescending(e => e.CompareStrength(elementType)).First().DamageModifier(elementType);
+        return Type.Elements.OrderByDescending(e => e.CompareStrength(elementType)).First().DamageModifier(elementType);
     }
     void Feint()
     {
-        isDead = true;
+        //isDead = true;
         HasFeinted?.Invoke();
         Debug.Log("Should Feint or die");
     }
 
     public override string ToString()
     {
-        return name;
+        return Name;
+
+       
     }
 
 }

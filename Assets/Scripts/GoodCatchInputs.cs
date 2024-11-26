@@ -573,6 +573,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""128ba600-da75-4c12-b5b6-ab581a25ebca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1048,6 +1057,17 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5913fba4-410d-4114-8721-f87a96d6d516"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1264,17 +1284,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""d1045382-a15b-4e3f-bce6-28fa6a18b933"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Exit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""26957316-f90f-42ae-8b6f-59e37aec11f5"",
@@ -1578,6 +1587,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_UI_Party = m_UI.FindAction("Party", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
@@ -1776,6 +1786,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Party;
     private readonly InputAction m_UI_Inventory;
     private readonly InputAction m_UI_Pause;
+    private readonly InputAction m_UI_Back;
     public struct UIActions
     {
         private @GoodCatchInputs m_Wrapper;
@@ -1793,6 +1804,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         public InputAction @Party => m_Wrapper.m_UI_Party;
         public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
+        public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1841,6 +1853,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1884,6 +1899,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -2151,6 +2169,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         void OnParty(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
     public interface IShipActions
     {

@@ -170,6 +170,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
         if (moveAction.IsPressed())
         {
+            
             var angles = cameraRig.localEulerAngles;
             this.transform.Rotate(0, angles.y, 0);
             angles.y = 0;
