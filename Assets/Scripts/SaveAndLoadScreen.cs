@@ -12,6 +12,11 @@ public class SaveAndLoadScreen : VisualElement
     TextField saveField;
     ListView fileList;
     FileInfo[] files;
+    Mode currentMode;
+    public enum Mode
+    {
+        save, load
+    }
     public new class UxmlFactory : UxmlFactory<SaveAndLoadScreen, CombatUI.UxmlTraits>
     {
 
@@ -22,6 +27,13 @@ public class SaveAndLoadScreen : VisualElement
     }
     public SaveAndLoadScreen()
     {
+        Init();
+        //
+        SetList();
+
+    }
+    void Init()
+    {
         VisualElement root = this;
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/SaveAndLoadScreen.uxml");
         visualTreeAsset.CloneTree(root);
@@ -29,14 +41,19 @@ public class SaveAndLoadScreen : VisualElement
         saveButton = this.Q<Button>("SaveButton");
         fileList = this.Q<ListView>("SaveList");
         fileList.selectionChanged += FileList_selectionChanged;
-        saveButton.clicked += OnSave;
-        SetList();
-
+        saveButton.clicked += OnSaveOrLoad;
     }
 
-    private void OnSave()
+    private void OnSaveOrLoad()
     {
-        SavingSystem.SaveGame(true, saveField.value);
+        if (currentMode == Mode.save)
+        {
+            SavingSystem.SaveGame(true, saveField.value);
+            
+        }else if (currentMode == Mode.load)
+        {
+            SavingSystem.LoadGame(saveField.value);
+        }
         DisplaySaves();
     }
 
@@ -68,7 +85,7 @@ public class SaveAndLoadScreen : VisualElement
         // For dynamic height, see the virtualizationMethod property.
         fileList.fixedItemHeight = 45;
     }
-    public void DisplaySaves()
+    void DisplaySaves()
     {
         string path = Path.Combine(Application.persistentDataPath, SavingSystem.FOLDER_NAME);
         var directoryInfo= new DirectoryInfo(path);
@@ -78,4 +95,24 @@ public class SaveAndLoadScreen : VisualElement
         fileList.itemsSource = files;
         
     }
+    public void DisplaySaves(Mode mode)
+    {
+        DisplaySaves();
+
+        currentMode=mode;
+        if (mode == Mode.save)
+        {
+            saveButton.text = "SAVE";
+            saveField.SetEnabled(true);
+        }
+        else
+        {
+            saveButton.text = "LOAD";
+            saveField.SetEnabled(false);
+        }
+
+
+    }
+
+
 }

@@ -59,13 +59,18 @@ public class OptionsPage : VisualElement
             
         }
         settingsBox.Add(saveAndLoadScreen);
-        saveAndLoadScreen.DisplaySaves();
+        saveAndLoadScreen.DisplaySaves(SaveAndLoadScreen.Mode.save);
     }
 
     private void OnLoad()
     {
-        SavingSystem.LoadGame();
-        //throw new NotImplementedException();
+        if (saveAndLoadScreen == null)
+        {
+            saveAndLoadScreen = new SaveAndLoadScreen();
+
+        }
+        settingsBox.Add(saveAndLoadScreen);
+        saveAndLoadScreen.DisplaySaves(SaveAndLoadScreen.Mode.load);
     }
 
     private void OnMenu()

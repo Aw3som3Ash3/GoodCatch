@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class SavingSystem
 {
@@ -17,6 +18,8 @@ public static class SavingSystem
     {
         [SerializeField]
         SerializableDictionary<string, string> SaveableObject;
+        [SerializeField]
+        int currentScene;
 
         public string GetSaveable(string id)
         {
@@ -31,7 +34,14 @@ public static class SavingSystem
             }
             SaveableObject[saveable.ID]= JsonUtility.ToJson(saveable.DataToSave);
         }
-
+        public void SetScene()
+        {
+            currentScene=SceneManager.GetActiveScene().buildIndex;
+        }
+        public int GetScene()
+        {
+            return currentScene;
+        }
 
     }
   
@@ -42,7 +52,8 @@ public static class SavingSystem
     public static void SaveGame(bool writeData = false,string SaveName= SAVE_FILE)
     {
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
-         data=new();
+        data=new();
+        data.SetScene();
         foreach(var saveable in saveables)
         {
             data.AddSaveable(saveable);
@@ -81,13 +92,28 @@ public static class SavingSystem
         {
             ReadData(saveName);
         }
+       
+        SceneManager.LoadScene(data.GetScene());
+        SceneManager.sceneLoaded += OnSceneLoad;
+  
+       
+    }
+
+    static void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex != data.GetScene())
+        {
+            return;
+        }
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
         foreach (var saveable in saveables)
         {
 
             saveable.Load(data.GetSaveable(saveable.ID));
         }
+        SceneManager.sceneLoaded -= OnSceneLoad;
     }
+
     public static void LoadSelf<T>(T saveable,string ID) where T: ISaveable
     {
         if (data == null)
