@@ -187,6 +187,7 @@ MonoBehaviour:
   cameraRig: {fileID: 484757505211879692}
   model: {fileID: 7003428529306094763}
   moveSpeed: 5
+  sprintSpeed: 0
   accel: 1
   jumpStrength: 4
   maxPitch: 70
@@ -196,7 +197,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1025
   fishingRod: {fileID: 8452586820765843335}
-  InteractionUI: {fileID: 0}
 --- !u!114 &5494617037479837059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,7 +462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 49cfedf11d5908043bbdb4f4db0003b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 49cfedf11d5908043bbdb4f4db0003b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -500,11 +500,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Emma_Walk
       objectReference: {fileID: 0}
+    - target: {fileID: 2280993037103909346, guid: 49cfedf11d5908043bbdb4f4db0003b9, type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: ba432c92a84e26f4b8c8c64d264c7f10, type: 2}
     - target: {fileID: 5866666021909216657, guid: 49cfedf11d5908043bbdb4f4db0003b9, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b5ca2c32a13cf6749892f2a6d3b192ac, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 49cfedf11d5908043bbdb4f4db0003b9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2826669866445662767, guid: 49cfedf11d5908043bbdb4f4db0003b9, type: 3}
