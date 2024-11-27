@@ -60,6 +60,6 @@ public class FishingRod : MonoBehaviour
         game.Initiate(floater);
         InputManager.DisablePlayer();
         floater.HitWater -= StartMiniGame;
-        FishingMiniGame.SuccesfulFishing = () => { Destroy(floater.gameObject); };
+        FishingMiniGame.SuccesfulFishing += () => { Destroy(floater.gameObject); };
     }
 }

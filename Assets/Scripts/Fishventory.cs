@@ -5,31 +5,37 @@ using UnityEngine;
 [Serializable]
 public class Fishventory
 {
+
     [SerializeField]
-    [SerializeReference]
     List<FishMonster> fishies = new List<FishMonster>();
     [SerializeField]
     int maxSize;
     public IReadOnlyList<FishMonster> Fishies { get { return fishies; } }
-    public Fishventory(int maxSize)
+    public Fishventory(int maxSize=int.MaxValue)
     {
         this.maxSize = maxSize;
     }
-    public bool AddFish(FishMonster fish)
+    /// <summary>
+    /// adds fish to fishventory, returns 0 if full, returns 1 if successful, returns -1 if repeat
+    /// </summary>
+    /// <param name="fish"></param>
+    /// <returns></returns>
+    public int AddFish(FishMonster fish)
     {
+        
         if (fishies.Count >= maxSize)
         {
-            return false;
+            return 0;
         }
 
         if (!fishies.Contains(fish))
         {
             fishies.Add(fish);
-            return true;
+            return 1;
         }
         else
         {
-            return false;
+            return -1;
         }
 
     }

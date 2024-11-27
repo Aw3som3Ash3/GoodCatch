@@ -13,7 +13,7 @@ public class CombatUI : VisualElement
 
     CombatTabs tabbedView;
     PlayerTurn currentTurn;
-    Button moveButton,endTurnButton;
+    Button moveButton,endTurnButton,runButton;
     AbilityButton[] abilityButtons=new AbilityButton[4];
     ProgressBar healthBar, staminaBar;
     VisualElement turnMarker;
@@ -22,6 +22,8 @@ public class CombatUI : VisualElement
     ItemInventory inventory;
     VisualElement combatDraftUI;
     VisualElement statusBar;
+    Label fishName, level;
+    VisualElement fishIcon;
     ToolTipBox toolTip;
     Dictionary<CombatManager.Turn, TurnListIcon> turnIcon=new Dictionary<CombatManager.Turn, TurnListIcon>();
     //public Action MoveAction,EndTurnAction;
@@ -51,7 +53,8 @@ public class CombatUI : VisualElement
         toolTip = new ToolTipBox();
         this.Add(toolTip);
         tabbedView = this.Q<CombatTabs>("CombatTabs");
-        
+        runButton = this.Q<Button>("RunButton");
+        runButton.clicked += OnRun;
         moveButton = tabbedView.Q<Button>("Move");
         moveButton.clicked +=Move;
         for (int i = 0; i < abilityButtons.Length; i++)
@@ -69,15 +72,25 @@ public class CombatUI : VisualElement
         staminaBar = this.Q<ProgressBar>("StaminaBar");
         healthBar = this.Q<ProgressBar>("HealthBar");
         turnMarker = this.Q("TurnMarker");
+        turnMarker.visible = false;
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
         combatDraftUI = this.Q("CombatDraftUI");
         combatDraftUI.SetEnabled(false);
         combatDraftUI.visible = false;
-        
+        fishName = this.Q<Label>("Name");
+        level = this.Q<Label>("Level");
+        fishIcon = this.Q("ProfilePic");
+
 
     }
+
+    private void OnRun()
+    {
+        throw new NotImplementedException();
+    }
+
     public void Draft(IList<FishMonster> playerFishes, Action<int,Action> callback)
     {
 
@@ -129,7 +142,7 @@ public class CombatUI : VisualElement
         combatDraftUI.visible = false;
         tabbedView.SetEnabled(true);
         endTurnButton.SetEnabled(true);
-
+        turnMarker.visible = true;
     }
     
     void ChangeTab(InputAction.CallbackContext context)
@@ -156,6 +169,7 @@ public class CombatUI : VisualElement
     }
     public void RemoveTurn(CombatManager.Turn turn)
     {
+        
         turnList.Remove(turnIcon[turn]);
         turnIcon.Remove(turn);
     }
@@ -268,24 +282,9 @@ public class CombatUI : VisualElement
             float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
             abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i),damage);
         }
-        //if (actionTokens != null)
-        //{
-        //    foreach (var token in actionTokens)
-        //    {
-        //        if (token != null)
-        //        {
-        //            Destroy(token.gameObject);
-        //        }
-
-        //    }
-        //    actionTokens.Clear();
-        //}
-
-        //for (int i = 0; i < currentTurn.actionsPerTurn; i++)
-        //{
-        //    actionTokens.Add(Instantiate(actionTokenPrefab, actionsLeftBar).GetComponent<ActionToken>());
-        //}
-
+        fishName.text = currentTurn.fish.Name;
+        level.text = currentTurn.fish.Level.ToString();
+        fishIcon.style.backgroundImage = currentTurn.fish.Icon;
         ResetEffects();
         SetEffects();
         currentTurn.NewEffect += AddEffect;
@@ -387,6 +386,7 @@ public class CombatUI : VisualElement
     public FishUI AddFishUI(CombatManager.Turn turn, Transform target)
     {
         var fishUI = new FishUI(turn, target);
+        
         fishUI.onHoverStatus += (action) => action(toolTip);
         fishUI.onHoverExit += () => toolTip.visible = false;
         Add(fishUI);

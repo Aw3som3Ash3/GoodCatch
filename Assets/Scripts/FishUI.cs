@@ -53,11 +53,12 @@ public class FishUI : VisualElement
     // Update is called once per frame
     public void UpdatePosition()
     {
-        if (target != null)
+        if (target != null&&parent!=null)
         {
             
             Vector2 pos = Camera.main.WorldToViewportPoint(target.transform.position+Vector3.down);
             //Debug.Log(pos);
+            
             this.style.left = pos.x * this.parent.worldBound.width;
             this.style.top = (1 - pos.y) * this.parent.worldBound.height;
         }

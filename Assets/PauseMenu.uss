@@ -1,7 +1,12 @@
 .PauseButton {
     color: rgb(211, 226, 245);
+    font-size: 100px;
+    -unity-font-style: bold;
+    -unity-text-align: upper-left;
 }
 
 .PauseButton:hover {
     color: rgb(145, 194, 255);
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
 }

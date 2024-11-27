@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd">
+    <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="LeftSide" style="flex-grow: 1;">
+            <ui:VisualElement name="HoveredNameContainer" style="flex-grow: 0; height: 216px; justify-content: flex-end;">
+                <ui:Label tabindex="-1" text="HoveredFishName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HoveredNameAmount" style="font-size: 80px; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="PngBox" style="flex-grow: 1; background-color: rgb(123, 123, 123); padding-left: 200px; padding-right: 200px; padding-bottom: 200px;">
+                <ui:VisualElement name="PngAmount" style="flex-grow: 1; background-color: rgb(144, 76, 76); padding-top: 0; padding-left: 0; padding-bottom: 0; padding-right: 0;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="RightSide" style="flex-grow: 1; min-width: 20%;" />
+    </ui:VisualElement>
+</ui:UXML>

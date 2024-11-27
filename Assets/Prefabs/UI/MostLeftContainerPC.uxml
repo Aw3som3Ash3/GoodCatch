@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="WorkPlaceContainer" style="flex-grow: 0; width: auto; min-width: 552px; min-height: 880px;">
+        <ui:VisualElement name="ContainerAlphaB" style="flex-grow: 1; flex-shrink: 1;">
+            <ui:VisualElement name="PNGContianer" style="flex-grow: 0; height: auto; min-height: 470px; background-color: rgb(255, 255, 255);">
+                <ui:VisualElement name="Png" style="flex-grow: 1;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0;">
+                <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NameAmount" style="font-size: 36px; align-items: stretch; align-self: center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="HPSTContianer" style="flex-grow: 1; justify-content: center;">
+                <ui:VisualElement name="HpContainer" style="flex-grow: 0; flex-direction: row;">
+                    <ui:Label tabindex="-1" text="HP:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HpText" style="font-size: 36px;" />
+                    <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HpAmount" style="font-size: 36px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="StaminaContainer" style="flex-grow: 0; flex-direction: row;">
+                    <ui:Label tabindex="-1" text="Stamina:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StaminaText" style="font-size: 36px;" />
+                    <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StaminaAmount" style="font-size: 36px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; align-items: auto; justify-content: space-between; flex-wrap: nowrap;">
+                <ui:Button text="Add To Party" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AddToPartyButton" style="min-width: 180px; min-height: 80px;" />
+                <ui:Button text="Close" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CloseLeftMenuButton" style="min-width: 180px; min-height: 80px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

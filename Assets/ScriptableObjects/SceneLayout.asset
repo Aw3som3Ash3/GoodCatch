@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: SceneLayout
   m_EditorClassIdentifier: 
   sceneSetup:
-  - m_Path: Assets/Scenes/MultiSceneExample.unity
+  - m_Path: Assets/Scenes/Main Scene.unity
     m_IsLoaded: 1
     m_IsActive: 1
     m_IsSubScene: 0
   - m_Path: Assets/Scenes/Islands/Desert Island.unity
-    m_IsLoaded: 1
-    m_IsActive: 0
-    m_IsSubScene: 0
-  - m_Path: Assets/Scenes/Islands/JungleScene.unity
     m_IsLoaded: 1
     m_IsActive: 0
     m_IsSubScene: 0

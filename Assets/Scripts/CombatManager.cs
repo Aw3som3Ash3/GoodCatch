@@ -36,7 +36,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField]
     FishMonsterType testType;
 
-    List<FishMonster> playerFishes = new List<FishMonster>(), enemyFishes = new List<FishMonster>();
+    static List<FishMonster> playerFishes = new List<FishMonster>(), enemyFishes = new List<FishMonster>();
 
     [SerializeField]
     public CombatDepth[] depths { get; private set; } = new CombatDepth[3];
@@ -56,13 +56,10 @@ public class CombatManager : MonoBehaviour
 
     bool actionsCompleted;
     public Action CompletedAllActions;
-    [SerializeField]
-    CinemachineVirtualCamera virtualCamera;
-    [SerializeField]
-    Camera cam;
+    //[SerializeField]
+    //CinemachineVirtualCamera virtualCamera;
 
-    Camera prevCam;
-    bool rewardFish;
+    static bool rewardFish;
 
     public CombatAI combatAI { get; private set; }
     int draftedCount;
@@ -115,31 +112,33 @@ public class CombatManager : MonoBehaviour
     private void Start()
     {
 
-
-
-    }
-    /// <summary>
-    /// tells the combat manager to setup a new combat with a set of paramaters
-    /// <param name="playerFishes"></param>
-    /// <param name="enemyFishes"></param>
-    /// <param name="rewardFish"></param>
-    public void NewCombat(List<FishMonster> playerFishes, List<FishMonster> enemyFishes, bool rewardFish = false)
-    {
-        this.playerFishes = playerFishes;
-        this.enemyFishes = enemyFishes;
-        this.rewardFish = rewardFish;
-        SetUp();      
+        SetUp();
         InputManager.DisablePlayer();
         InputManager.EnableCombat();
         InputManager.Input.UI.Enable();
-        combatUI.Draft(playerFishes,(index,callback)=> 
-        { 
-            combatVisualizer.StartTargeting((target) => 
-            { 
+        combatUI.Draft(playerFishes, (index, callback) =>
+        {
+            combatVisualizer.StartTargeting((target) =>
+            {
                 DraftFish(index, target);
-                callback.Invoke(); 
+                callback.Invoke();
             });
         });
+
+    }
+
+
+    /// <summary>
+    /// tells the combat manager to setup a new combat with a set of paramaters
+    /// <param name="enemyFishes"></param>
+    /// <param name="rewardFish"></param>
+    public static void NewCombat(List<FishMonster> enemyFishes, bool rewardFish = false)
+    {
+        SceneManager.LoadScene("BattleScene 1");
+        playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
+        CombatManager.enemyFishes = enemyFishes;
+        CombatManager.rewardFish = rewardFish;
+        
         //OrderTurn();
         //StartTurn();
     }
@@ -157,7 +156,7 @@ public class CombatManager : MonoBehaviour
             StartTurn();
         }
     }
-    void UseItem(Item item)
+    void UseItem(Item item,Action completedCallback)
     {
         if(item is Net)
         {
@@ -166,7 +165,7 @@ public class CombatManager : MonoBehaviour
                 TryCatching((Net)item,t); 
                 ActionsCompleted(); 
                 combatUI.UpdateInventory();
-
+                completedCallback?.Invoke();
             });
         }
         else if (item is Potion)
@@ -175,6 +174,7 @@ public class CombatManager : MonoBehaviour
             ActionsCompleted();
             combatUI.UpdateInventory();
             combatUI.EnableButtons();
+            completedCallback?.Invoke();
             //combatVisualizer.SelectFish(Team.player, (t) => 
             //{
             //    UsePotion((Potion)item, t);
@@ -187,6 +187,10 @@ public class CombatManager : MonoBehaviour
     }
     void TryCatching(Net net,Turn target)
     {
+        if (!rewardFish)
+        {
+            return;
+        }
         if (UnityEngine.Random.Range(0, 1f) <= (1 - (target.Health / target.MaxHealth))*net.CatchBonus)
         {
 
@@ -224,10 +228,6 @@ public class CombatManager : MonoBehaviour
             UnityEngine.Cursor.visible = false;
         }
         
-        prevCam = Camera.main;
-        prevCam.gameObject.SetActive(false);
-        cam.enabled = true;
-        Camera.SetupCurrent(cam);
         Turn.TurnEnded += NextTurn;
         combatUI.SetInventory(GameManager.Instance.PlayerInventory);
         for (int i = 0; i < enemyFishes.Count; i++)
@@ -298,22 +298,18 @@ public class CombatManager : MonoBehaviour
     }
     void EndFight(Team winningTeam)
     {
-
+       
         if (winningTeam == Team.player)
         {
             RewardXP();
-        }else if (winningTeam == Team.enemy)
-        {
-            GameManager.Instance.PlayerLost();
         }
-        prevCam.gameObject.SetActive(true);
-        Camera.SetupCurrent(prevCam);
         ui.rootVisualElement.Remove(combatUI);
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("BattleScene 1"));
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        UnityEngine.Cursor.visible = false;
-        InputManager.EnablePlayer();
-        InputManager.Input.UI.Disable();
+        playerFishes = null;
+        enemyFishes = null;
+        rewardFish = false;
+        GameManager.Instance.OnInputChange -= InputChanged;
+        GameManager.Instance.CombatEnded(winningTeam);
+        
     }
     void RewardXP()
     {
@@ -321,7 +317,7 @@ public class CombatManager : MonoBehaviour
         {
             foreach(FishMonster enemy in enemyFishes)
             {
-                fish.AddXp((enemy.level / fish.level)*100);
+                fish.AddXp((enemy.Level / fish.Level)*100);
             }
             
         }
@@ -574,11 +570,11 @@ public class CombatManager : MonoBehaviour
         bool actionsCompleted = true;
         public HashSet<StatusEffect.StatusEffectInstance> effects { get; private set; } = new HashSet<StatusEffect.StatusEffectInstance>();
 
-        public float Health { get { return fish.health; } }
-        public float MaxHealth { get { return fish.maxHealth; } }
+        public float Health { get { return fish.Health; } }
+        public float MaxHealth { get { return fish.MaxHealth; } }
 
-        public float MaxStamina { get { return fish.maxStamina; } }
-        public float Stamina { get { return fish.stamina; } }
+        public float MaxStamina { get { return fish.MaxStamina; } }
+        public float Stamina { get { return fish.Stamina; } }
         public Action<StatusEffect.StatusEffectInstance> NewEffect;
         public Action<StatusEffect.StatusEffectInstance> EffectRemoved;
         public int agility
@@ -727,9 +723,9 @@ public class CombatManager : MonoBehaviour
         }
         public void UseItem(Item item)
         {
-            combatManager.UseItem(item);
-            UseAction();
+            combatManager.UseItem(item,()=>UseAction());
             
+                    
         }
         public void UseAbility(int abilityIndex)
         {

@@ -11,6 +11,9 @@ public class PauseMenu : VisualElement
     Button settting, party, beastiary, inventory;
     CursorLockMode prevMode;
     bool prevVisability;
+    PartyUI partyUI;
+    OptionsPage optionsPage;
+    VisualElement currentPage;
     public new class UxmlFactory : UxmlFactory<PauseMenu, CombatUI.UxmlTraits>
     {
 
@@ -27,23 +30,31 @@ public class PauseMenu : VisualElement
         this.SetEnabled(false);
         this.visible = false;
         this.style.flexGrow = 1;
-        beastiary=this.Q<Button>("FishBookButton");
+        this.style.position = Position.Absolute;
+        this.StretchToParentSize();
+
+        beastiary =this.Q<Button>("FishBookButton");
         party = this.Q<Button>("PartyButton");
         settting = this.Q<Button>("OptionsButton");
         inventory = this.Q<Button>("ItemsButton");
-        party.clicked += () =>throw new NotImplementedException();
+        party.clicked +=Party;
         beastiary.clicked += () =>throw new NotImplementedException();
         inventory.clicked += () =>throw new NotImplementedException();
-        settting.clicked += () =>throw new NotImplementedException();
+        settting.clicked += Options;
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed += OnPause;
-
+        
     }
 
     void OnPause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
+            if (currentPage!=null)
+            {
+                Back();
+                return;
+            }
             if (!this.enabledSelf)
             {
                 prevVisability = UnityEngine.Cursor.visible;
@@ -53,20 +64,61 @@ public class PauseMenu : VisualElement
             this.SetEnabled(!this.enabledSelf);
             this.visible = enabledSelf;
             this.BringToFront();
-            UnityEngine.Cursor.lockState = this.enabledSelf ? CursorLockMode.Confined: prevMode;
-            UnityEngine.Cursor.visible = this.enabledSelf ? true: prevVisability;
+            UnityEngine.Cursor.lockState = this.enabledSelf ? CursorLockMode.Confined : prevMode;
+            UnityEngine.Cursor.visible = this.enabledSelf ? true : prevVisability;
             Time.timeScale = this.enabledSelf ? 0: 1;
             if (this.enabledSelf)
             {
                 InputManager.DisablePlayer();
+                InputManager.Input.UI.Back.Enable();
+                InputManager.Input.UI.Back.performed+=Back;
+                
             }
             else
             {
                 InputManager.EnablePlayer();
+                InputManager.Input.UI.Back.Disable();
+                InputManager.Input.UI.Back.performed -= Back;
             }
             
 
         }
        
+    }
+    void Back(InputAction.CallbackContext context=default)
+    {
+        if (currentPage != null)
+        {
+            this.parent.Remove(currentPage);
+            this.SetEnabled(true);
+            this.visible=true;
+            this.BringToFront();
+            currentPage = null;
+        }
+    }
+    void Options()
+    {
+        if (optionsPage == null)
+        {
+            optionsPage = new();
+
+        }
+        this.parent.Add(optionsPage);
+        this.visible = false;
+        optionsPage.OpenOptions();
+        currentPage = optionsPage;
+    }
+    void Party()
+    {
+        if (partyUI == null)
+        {
+            partyUI = new();
+
+        }
+
+        this.parent.Add(partyUI);
+        partyUI.UpdateUI();
+        this.visible = false;
+        currentPage=partyUI;
     }
 }

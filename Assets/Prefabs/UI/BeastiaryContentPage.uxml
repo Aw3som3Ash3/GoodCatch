@@ -1,0 +1,106 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="ContentWorkSpace" style="flex-grow: 1; flex-direction: row; background-color: rgb(43, 50, 70);">
+        <ui:VisualElement name="AlphaContainer" style="flex-grow: 0; flex-direction: row; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 0; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+            <ui:VisualElement name="LeftContainer" style="flex-grow: 0; background-color: rgb(87, 87, 87); max-width: none; min-width: 280px; width: auto; flex-shrink: 0;">
+                <ui:VisualElement name="ProfilePictureContainer" style="flex-grow: 0; padding-top: 5%; padding-right: 5%; padding-bottom: 5%; padding-left: 5%; background-color: rgb(164, 164, 164); justify-content: center; align-items: stretch; max-height: 39%; flex-shrink: 0; min-height: 39%;">
+                    <ui:VisualElement name="pngImport" style="flex-grow: 1; justify-content: flex-start; background-color: rgb(0, 0, 0); flex-shrink: 1;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="StatDetailContainer" style="flex-grow: 1;">
+                    <ui:VisualElement name="DetailParent" style="flex-grow: 1; padding-top: 26px; padding-right: 26px; padding-bottom: 26px; padding-left: 26px; align-self: auto; justify-content: flex-start; align-items: stretch;">
+                        <ui:VisualElement name="WST_Container" style="flex-grow: 0; background-color: rgb(178, 178, 178); max-height: 50%; margin-bottom: 7%; flex-shrink: 0; align-items: flex-start; justify-content: center; margin-top: 7%;">
+                            <ui:VisualElement name="WeightBox" style="flex-grow: 0; flex-direction: row; align-items: center; align-self: auto; justify-content: flex-start; flex-wrap: wrap; margin-top: 4px; margin-right: 2px; margin-bottom: 4px; margin-left: 2px;">
+                                <ui:Label tabindex="-1" text="Weight:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Weight" style="font-size: 40px; -unity-font-style: bold; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WeigthAmount" style="font-size: 40%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="SizeBox" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                                <ui:Label tabindex="-1" text="Size:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Size" style="font-size: 40%; -unity-font-style: bold; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SizeAmount" style="font-size: 40%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="Types" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                                <ui:Label tabindex="-1" text="Types:" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 40%; -unity-font-style: bold; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 40%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="StatDistibutionContainer" style="flex-grow: 0; max-height: 100%; margin-top: -6px; flex-shrink: 0;">
+                            <ui:VisualElement name="SDTextBox" style="flex-grow: 1; align-self: center; justify-content: flex-start;">
+                                <ui:Label tabindex="-1" text="StatDistibution" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SDText" style="font-size: 40%; -unity-font-style: bold; border-bottom-width: 2px; border-bottom-color: rgb(0, 0, 0);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="HPTextBox" style="flex-grow: 1; flex-direction: row; align-self: center;">
+                                <ui:Label tabindex="-1" text="HP:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HP" style="font-size: 40%; -unity-font-style: bold;" />
+                                <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HPAmount" style="font-size: 40%;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="StatContainer" style="flex-grow: 1; flex-direction: row; max-height: 30%;">
+                            <ui:VisualElement name="StatLeftCotainer" style="flex-grow: 1; justify-content: flex-start; align-self: auto; align-items: center;">
+                                <ui:VisualElement name="StaBox" style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Sta:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Sta" style="font-size: 40%; -unity-font-style: bold; flex-wrap: nowrap;" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StaAmount" style="font-size: 40%;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="AtkBox" style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Atk:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Atk" style="font-size: 40%; -unity-font-style: bold; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AtkAmount" style="-unity-font-style: normal; font-size: 40%;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="FortBox" style="flex-grow: 1; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Def:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Fort" style="font-size: 40%; -unity-font-style: bold;" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FortAmount" style="font-size: 40%;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="StatRightContianer" style="flex-grow: 1; justify-content: flex-start; align-items: flex-start; height: auto;">
+                                <ui:VisualElement name="AgiBox" style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-items: auto;">
+                                    <ui:Label tabindex="-1" text="Agi:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Agi" style="font-size: 40%; -unity-font-style: bold;" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AgiAmount" style="font-size: 40%;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="MgAtkBox" style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="MgAtk:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgAtk" style="font-size: 40%; -unity-font-style: bold;" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgAtkAmount" style="font-size: 40%;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement name="MgForBox" style="flex-grow: 1; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="MgDef:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgFor" style="font-size: 40%; -unity-font-style: bold;" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgForAmount" style="font-size: 40%;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="RightContainer" style="flex-grow: 1; margin-left: 0; max-width: none; min-width: auto; width: auto; flex-shrink: 1;">
+                <ui:VisualElement name="NameBox" style="flex-grow: 0;">
+                    <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NameAmount" style="font-size: 75px; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="LTB" style="flex-grow: 1; flex-direction: row; justify-content: flex-start; align-self: auto; align-items: stretch;">
+                    <ui:VisualElement name="LocationBoxAlpha" style="flex-grow: 1; max-width: 33%; max-height: 100%;">
+                        <ui:VisualElement name="LocationTitleBox" style="flex-grow: 0;">
+                            <ui:Label tabindex="-1" text="Location" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LocationTextTitle" style="font-size: 50px; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Location" style="flex-grow: 1; max-width: 292%;">
+                            <ui:Label tabindex="-1" text="Found in these areas!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FoundInText" style="font-size: 40px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+                            <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LocationAmount" style="font-size: 36px; color: rgb(255, 255, 255); -unity-text-align: upper-center; white-space: normal;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="TODBoxAlpha" style="flex-grow: 1; max-width: 33%;">
+                        <ui:VisualElement name="TODTitleBox" style="flex-grow: 0;">
+                            <ui:Label tabindex="-1" text="TimeOfDay" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TODText" style="font-size: 50px; -unity-text-align: upper-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Appears At These Times!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AppearsAtTheseTimesText" style="font-size: 40px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+                            <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 36px; -unity-text-align: upper-center; color: rgb(255, 255, 255); white-space: normal;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="BaitsBoxAlpha" style="flex-grow: 1; max-width: 33%;">
+                        <ui:VisualElement name="BaitTitleBox" style="flex-grow: 0;">
+                            <ui:Label tabindex="-1" text="Baits" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BaitTitleText" style="font-size: 50px; -unity-text-align: upper-center; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="BaitDetailBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Caught With!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 40px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+                            <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreAmount" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 36px; white-space: normal;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="LoreBox" style="flex-grow: 1; min-height: 33%; max-height: 100%;">
+                    <ui:Label tabindex="-1" text="Lore" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreTitle" style="font-size: 50px; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+                    <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreAmount" style="white-space: normal; font-size: 36px; color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
