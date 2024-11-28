@@ -236,7 +236,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             PlayerInventory.AddItem(startingItems[i]);
         }
-        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(writeData: true);
+        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(SavingSystem.SaveMode.QuickSave);
         InputManager.Input.Player.QuickLoad.performed +=(x)=>SavingSystem.LoadGame();
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
@@ -364,7 +364,7 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
-        SavingSystem.SaveGame();
+        SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
         //mainEventSystem.enabled = false;
         CombatManager.NewCombat(enemyFishes, rewardFish);
         inCombat = true;

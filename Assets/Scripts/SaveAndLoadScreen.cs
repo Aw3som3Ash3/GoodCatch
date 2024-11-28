@@ -48,7 +48,7 @@ public class SaveAndLoadScreen : VisualElement
     {
         if (currentMode == Mode.save)
         {
-            SavingSystem.SaveGame(true, saveField.value);
+            SavingSystem.SaveGame(SavingSystem.SaveMode.ManualSave);
             
         }else if (currentMode == Mode.load)
         {
@@ -87,7 +87,7 @@ public class SaveAndLoadScreen : VisualElement
     }
     void DisplaySaves()
     {
-        string path = Path.Combine(Application.persistentDataPath, SavingSystem.FOLDER_NAME);
+        string path = Path.Combine(Application.persistentDataPath, SavingSystem.SavePath);
         var directoryInfo= new DirectoryInfo(path);
         files = directoryInfo.GetFiles("*.Data");
 

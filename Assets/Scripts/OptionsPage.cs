@@ -54,14 +54,15 @@ public class OptionsPage : VisualElement
 
     private void OnSave()
     {
-        if (saveAndLoadScreen == null)
-        {
-            saveAndLoadScreen = new SaveAndLoadScreen();
+        SavingSystem.SaveGame(SavingSystem.SaveMode.ManualSave);
+        //if (saveAndLoadScreen == null)
+        //{
+        //    saveAndLoadScreen = new SaveAndLoadScreen();
             
-        }
-        settingsBox.Add(saveAndLoadScreen);
-        saveAndLoadScreen.DisplaySaves(SaveAndLoadScreen.Mode.save);
-        saveAndLoadScreen.Q<TextField>("SaveField").Focus();
+        //}
+        //settingsBox.Add(saveAndLoadScreen);
+        //saveAndLoadScreen.DisplaySaves(SaveAndLoadScreen.Mode.save);
+        //saveAndLoadScreen.Q<TextField>("SaveField").Focus();
     }
 
     private void OnLoad()
