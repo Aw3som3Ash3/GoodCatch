@@ -263,6 +263,9 @@
     scale: 1.2 1.2;
     transition-duration: 0.1s;
     transform-origin: center;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-text-outline-width: 1.5px;
 }
 
 #Move:focus {
