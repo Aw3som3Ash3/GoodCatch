@@ -8,14 +8,15 @@ using UnityEngine.UIElements;
 
 public class PauseMenu : VisualElement
 {
-    Button settting, party, beastiary, inventory;
+    Button settting, party, bestiary, inventory;
     CursorLockMode prevMode;
     bool prevVisability;
     PartyUI partyUI;
     OptionsPage optionsPage;
+    Bestiary bestiaryPage;
     VisualElement currentPage;
     VisualElement menu;
-    public new class UxmlFactory : UxmlFactory<PauseMenu, CombatUI.UxmlTraits>
+    public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
 
     }
@@ -33,13 +34,13 @@ public class PauseMenu : VisualElement
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
 
-        beastiary =this.Q<Button>("FishBookButton");
+        bestiary =this.Q<Button>("FishBookButton");
         party = this.Q<Button>("PartyButton");
         settting = this.Q<Button>("OptionsButton");
         inventory = this.Q<Button>("ItemsButton");
         menu = this.Q("PauseMenuWorkSpace");
         party.clicked +=Party;
-        beastiary.clicked += () =>throw new NotImplementedException();
+        bestiary.clicked += () => BestiaryScreen();
         inventory.clicked += () =>throw new NotImplementedException();
         settting.clicked += Options;
         InputManager.Input.UI.Pause.Enable();
@@ -67,7 +68,7 @@ public class PauseMenu : VisualElement
                 inventory.Focus();
                 break;
             case NavigationMoveEvent.Direction.Up:
-                beastiary.Focus();
+                bestiary.Focus();
                 break;
             case NavigationMoveEvent.Direction.Down:
                 settting.Focus();
@@ -125,6 +126,9 @@ public class PauseMenu : VisualElement
         }
         
     }
+
+
+
     void Back(InputAction.CallbackContext context=default)
     {
         if (currentPage != null)
@@ -163,5 +167,19 @@ public class PauseMenu : VisualElement
         menu.visible = false;
         menu.SetEnabled(false);
         currentPage =partyUI;
+    }
+
+
+    void BestiaryScreen()
+    {
+        if (bestiaryPage == null)
+        {
+            bestiaryPage = new();
+        }
+
+        this.Add(bestiaryPage);
+        menu.visible = false;
+        menu.SetEnabled(false);
+        currentPage = bestiaryPage;
     }
 }

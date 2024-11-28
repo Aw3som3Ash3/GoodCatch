@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   model: {fileID: 0}
-  fishId: 0
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  fishId: 26
+  icon: {fileID: 0}
   homeDepth: 0
   preferredBait: []
   elements:

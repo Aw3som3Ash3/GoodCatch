@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="BestiaryButton" src="project://database/Assets/Prefabs/UI/BestiaryButton.uxml?fileID=9197481963319205126&amp;guid=18fcfaff71646414facc5c82176b8b71&amp;type=3#BestiaryButton" />
     <Style src="project://database/Assets/BestiaryListMenu.uss?fileID=7433441132597879392&amp;guid=eeeba0854fec8e1438ce167e19af102d&amp;type=3#BestiaryListMenu" />
     <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="LeftSide" style="flex-grow: 1; max-width: 56%;">
@@ -12,23 +11,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="RightSide" style="flex-grow: 1; min-width: 20%; background-color: rgba(0, 255, 231, 0.18);">
             <ui:Label tabindex="-1" text="Marindex" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" style="-unity-font-style: bold; font-size: 90%; -unity-text-align: upper-center; margin-top: 4%; padding-right: 63px;" />
-            <ui:ScrollView focusable="true" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" style="height: 100%; padding-top: 5%; padding-right: 7%; padding-bottom: 15%; padding-left: 2%; flex-wrap: wrap; flex-direction: row;">
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-                <ui:Instance template="BestiaryButton" name="BestiaryButton" />
-            </ui:ScrollView>
+            <ui:ListView name="FishList" show-alternating-row-backgrounds="ContentOnly" show-border="true" style="height: 100%;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

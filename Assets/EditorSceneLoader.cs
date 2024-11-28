@@ -116,6 +116,6 @@ public class EditorSceneLoader : MonoBehaviour
         playerController.gameObject.SetActive(true);
         //cam.enabled = true;
         mainUI.enabled = true;
-        LoadingUI.enabled = false;
+        Destroy(LoadingUI.gameObject);
     }
 }

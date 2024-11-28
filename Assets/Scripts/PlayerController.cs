@@ -150,6 +150,10 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
         else
         {
+            if (InteractionUI == null)
+            {
+                InteractionUI=FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
+            }
             if (InteractionUI != null)
             {
                 InteractionUI.text = "";
