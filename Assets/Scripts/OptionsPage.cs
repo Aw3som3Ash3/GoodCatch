@@ -61,6 +61,7 @@ public class OptionsPage : VisualElement
         }
         settingsBox.Add(saveAndLoadScreen);
         saveAndLoadScreen.DisplaySaves(SaveAndLoadScreen.Mode.save);
+        saveAndLoadScreen.Q<TextField>("SaveField").Focus();
     }
 
     private void OnLoad()

@@ -11,7 +11,10 @@ public static class SavingSystem
     const string SAVE_FILE = "QuickSave";
     const string FILE_EXTENSION = ".Data";
     public const string FOLDER_NAME = "Saves";
-    //static string SavePath { get { return Path.Combine(Application.persistentDataPath,FILE_NAME ,SAVE_FILE); } }
+    const int SLOT_AMOUNT = 3;
+    const string SLOT_FOLDER_NAME="Slot";
+    static int currentSlot=1;
+    static string SavePath { get { return Path.Combine(Application.persistentDataPath, FOLDER_NAME, SLOT_FOLDER_NAME+" "+ currentSlot); } }
     static GameData data;
     [Serializable]
     class GameData
@@ -68,16 +71,15 @@ public static class SavingSystem
 
     static void WriteSave(string saveName)
     {
-        string path = Path.Combine(Application.persistentDataPath, FOLDER_NAME);
-        Directory.CreateDirectory(path);
+        Directory.CreateDirectory(SavePath);
         string save = JsonUtility.ToJson(data, true);
-        File.WriteAllText( Path.Combine(path,saveName + FILE_EXTENSION), save);
+        File.WriteAllText( Path.Combine(SavePath, saveName + FILE_EXTENSION), save);
         Debug.Log(save);
     }
 
     public static void ReadData(string saveName)
     {
-        string filePath= Path.Combine(Application.persistentDataPath, FOLDER_NAME, saveName+FILE_EXTENSION);
+        string filePath= Path.Combine(SavePath, saveName+FILE_EXTENSION);
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);

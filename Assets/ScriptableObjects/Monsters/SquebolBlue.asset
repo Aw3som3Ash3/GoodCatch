@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: SquebolBlue
   m_EditorClassIdentifier: 
+  description: 
   model: {fileID: 5353307973846749988, guid: a4af63fdfa433444eac7826d96f3eb6a, type: 3}
-  fishId: 0
+  fishId: 18
   icon: {fileID: 0}
   homeDepth: 0
   preferredBait: []
@@ -57,3 +58,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}
   - {fileID: 11400000, guid: f5e161f5f7750b6468c04d356a177b7c, type: 2}
   difficulty: 0
+  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
+  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

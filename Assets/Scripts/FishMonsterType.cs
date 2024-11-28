@@ -88,6 +88,10 @@ public class FishMonsterType : ScriptableObject
     [Header("Misc")]
     [SerializeField]
     int difficulty;
+    [SerializeField]
+    AnimationClip attackAnimation,idleAnimation;
+    public AnimationClip AttackAnimation { get { return attackAnimation; } }
+    public AnimationClip IdleAnimation { get { return idleAnimation; } }
 
 
 
@@ -240,6 +244,8 @@ public class FishMonster
     public Action ValueChanged;
     public Action HasFeinted;
     public bool isDead { get { return health <= 0; }  }
+    public AnimationClip AttackAnimation { get { return type.AttackAnimation; } }
+    public AnimationClip IdleAnimation { get { return type.IdleAnimation; } }
 
     public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent)
     {

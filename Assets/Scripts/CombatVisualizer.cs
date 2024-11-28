@@ -99,6 +99,7 @@ public class CombatVisualizer : MonoBehaviour
     public void AnimateAttack(Ability ability,CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
         //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
+        turnToObject[turn].AttackAnimation();
         StartCoroutine(ParticleAttackAnim(ability, turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
         //throw new NotImplementedException();
     }
@@ -163,7 +164,7 @@ public class CombatVisualizer : MonoBehaviour
     }
     IEnumerator ParticleAttackAnim(Ability ability,Vector3 start, Vector3 destination, Action CompletedMove)
     {
-
+        
         Vector3 targetDir = destination- start;
         if (ability.AbilityVFX!=null)
         {
@@ -197,7 +198,10 @@ public class CombatVisualizer : MonoBehaviour
         Destroy(projectile.gameObject);
         CompletedMove?.Invoke();
     }
+    //IEnumerator TempFishAttackAnim()
+    //{
 
+    //}
     void OnNaviagte(float i)
     {
         print(i);

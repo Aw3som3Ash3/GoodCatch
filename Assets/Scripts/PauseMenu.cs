@@ -130,9 +130,9 @@ public class PauseMenu : VisualElement
         if (currentPage != null)
         {
             this.Remove(currentPage);
-            this.SetEnabled(true);
-            this.visible=true;
-            this.BringToFront();
+            menu.SetEnabled(true);
+            menu.visible=true;
+            //this.BringToFront();
             currentPage = null;
         }
     }
