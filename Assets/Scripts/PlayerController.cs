@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
         velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
-        if (moveAction.IsPressed())
+        if (moveAction.IsInProgress())
         {
             
             var angles = cameraRig.localEulerAngles;

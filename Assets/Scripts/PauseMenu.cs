@@ -14,6 +14,7 @@ public class PauseMenu : VisualElement
     PartyUI partyUI;
     OptionsPage optionsPage;
     VisualElement currentPage;
+    VisualElement menu;
     public new class UxmlFactory : UxmlFactory<PauseMenu, CombatUI.UxmlTraits>
     {
 
@@ -27,8 +28,7 @@ public class PauseMenu : VisualElement
         VisualElement root = this;
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/PauseMenu.uxml");
         visualTreeAsset.CloneTree(root);
-        this.SetEnabled(false);
-        this.visible = false;
+       
         this.style.flexGrow = 1;
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
@@ -37,59 +37,99 @@ public class PauseMenu : VisualElement
         party = this.Q<Button>("PartyButton");
         settting = this.Q<Button>("OptionsButton");
         inventory = this.Q<Button>("ItemsButton");
+        menu = this.Q("PauseMenuWorkSpace");
         party.clicked +=Party;
         beastiary.clicked += () =>throw new NotImplementedException();
         inventory.clicked += () =>throw new NotImplementedException();
         settting.clicked += Options;
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed += OnPause;
-        
+
+
+        menu.focusable = true;
+
+        //this.delegatesFocus = true;
+        menu.SetEnabled(false);
+        menu.visible = false;
+        menu.RegisterCallback<NavigationMoveEvent>(OnNavigate);
     }
 
+    void OnNavigate(NavigationMoveEvent evt)
+    {
+       
+
+        switch (evt.direction)
+        {
+            case NavigationMoveEvent.Direction.Left:
+                party.Focus();
+                break;
+            case NavigationMoveEvent.Direction.Right:
+                inventory.Focus();
+                break;
+            case NavigationMoveEvent.Direction.Up:
+                beastiary.Focus();
+                break;
+            case NavigationMoveEvent.Direction.Down:
+                settting.Focus();
+                break;
+
+        }
+
+        evt.PreventDefault();
+    }
     void OnPause(InputAction.CallbackContext context)
     {
+      
+        //Debug.Log(party.focusController.focusedElement);
         if (context.performed)
         {
-            if (currentPage!=null)
+            if (currentPage != null)
             {
                 Back();
                 return;
             }
-            if (!this.enabledSelf)
+            if (!menu.enabledSelf)
             {
                 prevVisability = UnityEngine.Cursor.visible;
                 prevMode = UnityEngine.Cursor.lockState;
 
             }
-            this.SetEnabled(!this.enabledSelf);
-            this.visible = enabledSelf;
-            this.BringToFront();
-            UnityEngine.Cursor.lockState = this.enabledSelf ? CursorLockMode.Confined : prevMode;
-            UnityEngine.Cursor.visible = this.enabledSelf ? true : prevVisability;
-            Time.timeScale = this.enabledSelf ? 0: 1;
-            if (this.enabledSelf)
+            menu.SetEnabled(!menu.enabledSelf);
+            menu.visible = menu.enabledSelf;
+            //this.BringToFront();
+            UnityEngine.Cursor.lockState = menu.enabledSelf ? CursorLockMode.Confined : prevMode;
+            UnityEngine.Cursor.visible = menu.enabledSelf ? true : prevVisability;
+            Time.timeScale = menu.enabledSelf ? 0 : 1;
+            if (menu.enabledSelf)
             {
+                menu.Focus();
+                //this.Focus();
+                //this.CaptureMouse();
+                //this.pickingMode =;
+
                 InputManager.DisablePlayer();
                 InputManager.Input.UI.Back.Enable();
-                InputManager.Input.UI.Back.performed+=Back;
-                
+                InputManager.Input.UI.Back.performed += Back;
+
             }
             else
             {
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
                 InputManager.EnablePlayer();
                 InputManager.Input.UI.Back.Disable();
                 InputManager.Input.UI.Back.performed -= Back;
             }
-            
+
 
         }
-       
+        
     }
     void Back(InputAction.CallbackContext context=default)
     {
         if (currentPage != null)
         {
-            this.parent.Remove(currentPage);
+            this.Remove(currentPage);
             this.SetEnabled(true);
             this.visible=true;
             this.BringToFront();
@@ -103,8 +143,10 @@ public class PauseMenu : VisualElement
             optionsPage = new();
 
         }
-        this.parent.Add(optionsPage);
-        this.visible = false;
+        this.Add(optionsPage);
+        menu.visible = false;
+        menu.visible = false;
+        menu.SetEnabled(false);
         optionsPage.OpenOptions();
         currentPage = optionsPage;
     }

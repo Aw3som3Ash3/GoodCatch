@@ -39,6 +39,7 @@ public class OptionsPage : VisualElement
     }
     public void OpenOptions()
     {
+       
         if (saveAndLoadScreen != null&& settingsBox==saveAndLoadScreen.parent)
         {
             settingsBox.Remove(saveAndLoadScreen);
