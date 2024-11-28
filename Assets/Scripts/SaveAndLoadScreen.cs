@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -37,11 +38,11 @@ public class SaveAndLoadScreen : VisualElement
         VisualElement root = this;
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/SaveAndLoadScreen.uxml");
         visualTreeAsset.CloneTree(root);
-        saveField = this.Q<TextField>("SaveField");
-        saveButton = this.Q<Button>("SaveButton");
+        //saveField = this.Q<TextField>("SaveField");
+        //saveButton = this.Q<Button>("SaveButton");
         fileList = this.Q<ListView>("SaveList");
         fileList.selectionChanged += FileList_selectionChanged;
-        saveButton.clicked += OnSaveOrLoad;
+        //saveButton.clicked += OnSaveOrLoad;
     }
 
     private void OnSaveOrLoad()
@@ -60,8 +61,8 @@ public class SaveAndLoadScreen : VisualElement
     private void FileList_selectionChanged(IEnumerable<object> obj)
     {
         Debug.Log(fileList.selectedItem);
-        var file= fileList.selectedItem as FileInfo;
-        saveField.value = Path.GetFileNameWithoutExtension(file.Name);
+        var file= fileList.selectedItem as FileInfo;  
+        SavingSystem.LoadGame(Path.GetFileNameWithoutExtension(file.Name));
         
     }
 
@@ -92,7 +93,9 @@ public class SaveAndLoadScreen : VisualElement
         files = directoryInfo.GetFiles("*.Data");
 
         // Set the actual item's source list/array
-        fileList.itemsSource = files;
+        fileList.itemsSource = files.OrderByDescending((x)=>x.LastWriteTime).ToList();
+        
+        //fileList.Rebuild();
         
     }
     public void DisplaySaves(Mode mode)
@@ -100,16 +103,16 @@ public class SaveAndLoadScreen : VisualElement
         DisplaySaves();
 
         currentMode=mode;
-        if (mode == Mode.save)
-        {
-            saveButton.text = "SAVE";
-            saveField.SetEnabled(true);
-        }
-        else
-        {
-            saveButton.text = "LOAD";
-            saveField.SetEnabled(false);
-        }
+        //if (mode == Mode.save)
+        //{
+        //    saveButton.text = "SAVE";
+        //    saveField.SetEnabled(true);
+        //}
+        //else
+        //{
+        //    //saveButton.text = "LOAD";
+        //   // saveField.SetEnabled(false);
+        //}
 
 
     }

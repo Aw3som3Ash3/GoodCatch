@@ -8,11 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SkyBox
-  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 0304570a23c5ac849b41614679430e4c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _SUNDISK_HIGH_QUALITY
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -130,14 +129,16 @@ Material:
     - _Mapping: 1
     - _Metallic: 0
     - _MirrorOnBack: 0
+    - _NightExponent1: 5
+    - _NightExponent2: 0.2
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Rotation: 0
-    - _SkyExponent1: 1
-    - _SkyExponent2: 0.5
+    - _SkyExponent1: 5
+    - _SkyExponent2: 0.2
     - _SkyIntensity: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -159,9 +160,12 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0, g: 0.02177071, b: 0.735849, a: 1}
-    - _SkyColor1: {r: 0.21796995, g: 0.3547337, b: 0.64779866, a: 1}
-    - _SkyColor2: {r: 0, g: 0, b: 0, a: 1}
-    - _SkyColor3: {r: 0, g: 0, b: 0, a: 1}
+    - _SkyColor1: {r: 0.09748411, g: 0.16805126, b: 1, a: 1}
+    - _SkyColor2: {r: 0.0750563, g: 0.17951408, b: 0.4339623, a: 1}
+    - _SkyColor3: {r: 0, g: 0.00031364764, b: 0.031446517, a: 1}
+    - _SkyColorNight1: {r: 0, g: 0.0049851937, b: 0.03773582, a: 1}
+    - _SkyColorNight2: {r: 0, g: 0.0047354964, b: 0.088050246, a: 1}
+    - _SkyColorNight3: {r: 0, g: 0, b: 0, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

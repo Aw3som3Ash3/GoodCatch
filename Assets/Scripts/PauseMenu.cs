@@ -158,9 +158,10 @@ public class PauseMenu : VisualElement
 
         }
 
-        this.parent.Add(partyUI);
+        this.Add(partyUI);
         partyUI.UpdateUI();
-        this.visible = false;
-        currentPage=partyUI;
+        menu.visible = false;
+        menu.SetEnabled(false);
+        currentPage =partyUI;
     }
 }
