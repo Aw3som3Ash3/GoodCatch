@@ -7,8 +7,12 @@ public class Floater : MonoBehaviour
     LayerMask layerMask;
     float depth;
 
-    public Action HitWater;
-    public Action completed;
+    public event Action HitWater;
+    public event Action completed;
+    [SerializeField]
+    Transform lineEnd;
+
+    public Vector3 LineEndPos { get { return lineEnd.position; } }
 
     // Start is called before the first frame update
     void Start()
@@ -27,15 +31,18 @@ public class Floater : MonoBehaviour
         HitWater?.Invoke();
 
     }
-
+    void FailedCast()
+    {
+        completed?.Invoke();
+        Destroy(gameObject);
+        InputManager.EnablePlayer();
+    }
    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            completed?.Invoke();
-            Destroy(gameObject);
-            InputManager.EnablePlayer();
+            FailedCast();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -50,6 +57,10 @@ public class Floater : MonoBehaviour
                 if (depth > 1)
                 {
                     InitiateFishingMiniGame();
+                }
+                else
+                {
+                    FailedCast();
                 }
 
             }

@@ -47,6 +47,7 @@ public class FishingMiniGame : MonoBehaviour
 
     void OnExit(InputAction.CallbackContext context)
     {
+        OnCancel?.Invoke();
         ExitFishing();
     }
     void ExitFishing()

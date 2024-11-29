@@ -584,7 +584,7 @@ public class CombatManager : MonoBehaviour
                 return fish.Agility.value + GetAttributeMod("agility");
             }
         }
-        public int dodge { get { return agility / 2; } }
+        public float dodge { get { return fish.Dodge / 2; } }
         public int accuracy
         {
             get
