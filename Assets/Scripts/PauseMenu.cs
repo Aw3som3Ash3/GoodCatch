@@ -99,8 +99,7 @@ public class PauseMenu : VisualElement
             menu.SetEnabled(!menu.enabledSelf);
             menu.visible = menu.enabledSelf;
             //this.BringToFront();
-            UnityEngine.Cursor.lockState = menu.enabledSelf ? CursorLockMode.Confined : prevMode;
-            UnityEngine.Cursor.visible = menu.enabledSelf ? true : prevVisability;
+          
             Time.timeScale = menu.enabledSelf ? 0 : 1;
             if (menu.enabledSelf)
             {
@@ -108,7 +107,18 @@ public class PauseMenu : VisualElement
                 //this.Focus();
                 //this.CaptureMouse();
                 //this.pickingMode =;
+                if (GameManager.Instance.inputMethod == InputMethod.controller)
+                {
+                    UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                    UnityEngine.Cursor.visible = false;
+                }
+                else
+                {
+                    UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+                    UnityEngine.Cursor.visible = true;
 
+                }
+               
                 InputManager.DisablePlayer();
                 InputManager.Input.UI.Back.Enable();
                 InputManager.Input.UI.Back.performed += Back;
@@ -116,8 +126,8 @@ public class PauseMenu : VisualElement
             }
             else
             {
-                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-                UnityEngine.Cursor.visible = false;
+                UnityEngine.Cursor.lockState = prevMode;
+                UnityEngine.Cursor.visible = prevVisability;
                 InputManager.EnablePlayer();
                 InputManager.Input.UI.Back.Disable();
                 InputManager.Input.UI.Back.performed -= Back;
