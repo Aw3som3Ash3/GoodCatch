@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class OptionsPage : VisualElement
+public class OptionsPage : PausePage
 {
     Button settings, save, load, mainMenu;
     VisualElement settingsBox;

@@ -17,7 +17,7 @@ public class EditorSceneLoader : MonoBehaviour
     PlayerController playerController;
     Camera cam;
     [SerializeField]
-    UIDocument mainUI, LoadingUI;
+    UIDocument mainUI;
     private void SceneClosed(Scene scene, bool removingScene)
     {
         if (this.scene == scene)
@@ -56,8 +56,7 @@ public class EditorSceneLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainUI.enabled = false;
-        LoadingUI.enabled = true;
+        mainUI.rootVisualElement.Q("LoadingScreen").visible = true; 
         //cam.enabled = false;
         LoadWorld();
         //Invoke("LoadWorld", 0.2f);
@@ -115,7 +114,7 @@ public class EditorSceneLoader : MonoBehaviour
     {
         playerController.gameObject.SetActive(true);
         //cam.enabled = true;
-        mainUI.enabled = true;
-        Destroy(LoadingUI.gameObject);
+        mainUI.rootVisualElement.Remove(mainUI.rootVisualElement.Q("LoadingScreen"));
+        
     }
 }

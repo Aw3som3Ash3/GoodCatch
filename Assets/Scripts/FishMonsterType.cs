@@ -9,7 +9,7 @@ public class FishMonsterType : ScriptableObject
 {
     
     [Serializable]
-    struct Attribute
+    public struct Attribute
     {
         [SerializeField]
         int min, max;
@@ -52,26 +52,33 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     [Header("Agility")]
     Attribute agility;
+    public Attribute Agility { get { return agility; } }
 
     [SerializeField]
     [Header("Attack")]
     Attribute attack;
+    public Attribute Attack { get { return attack; } }
 
     [SerializeField]
     [Header("Special")]
     Attribute special;
+    public Attribute Special { get { return special; } }
 
     [SerializeField]
     [Header("Fortitude")]
     Attribute fortitude;
+    public Attribute Fortitude { get {  return fortitude; } }
+
 
     [SerializeField]
     [Header("SpecialFort")]
-    Attribute SpecialFortitude;
+    Attribute specialFortitude;
+    public Attribute SpecialFortitude { get { return specialFortitude; } }
 
     [SerializeField]
     [Header("Accuracy")]
     Attribute accuracy;
+    public Attribute Accuracy { get { return accuracy; } }
 
 
     [Header("Health")]
@@ -149,8 +156,8 @@ public class FishMonsterType : ScriptableObject
         int fortitude = RandomAttributeValue(this.fortitude);
         TalentScale fortitudeTalent = CalculateTalent(this.fortitude);
 
-        int specialFort = RandomAttributeValue(this.SpecialFortitude);
-        TalentScale specialFortTalent = CalculateTalent(this.SpecialFortitude);
+        int specialFort = RandomAttributeValue(this.specialFortitude);
+        TalentScale specialFortTalent = CalculateTalent(this.specialFortitude);
 
         int accuracy = RandomAttributeValue(this.accuracy);
         TalentScale accuracyTalent = CalculateTalent(this.accuracy);

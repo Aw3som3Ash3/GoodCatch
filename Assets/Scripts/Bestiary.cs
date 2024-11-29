@@ -5,12 +5,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Bestiary : VisualElement
+public class Bestiary : PausePage
 {
     ListView fishList;
     List<FishMonsterType> fishMonsters { get { return GameManager.Instance.Database.fishMonsters; } }
     Label fishLabel;
     VisualElement fishPic;
+    BestiaryPage bestiaryPage;
    
     public new class UxmlFactory : UxmlFactory<Bestiary, Bestiary.UxmlTraits>
     {
@@ -32,6 +33,16 @@ public class Bestiary : VisualElement
         fishPic = this.Q("PngAmount");
         SetList();
         fishList.selectionChanged += SelectionChanged;
+        fishList.itemsChosen += ChoseItem;
+        bestiaryPage = new BestiaryPage();
+    }
+
+    private void ChoseItem(IEnumerable<object> enumerable)
+    {
+        FishMonsterType fishMonsterType = fishList.selectedItem as FishMonsterType;
+        bestiaryPage.SetPage(fishMonsterType);
+        this.parent.Add(bestiaryPage);
+        this.visible=false;
     }
 
     private void SelectionChanged(IEnumerable<object> enumerable)
@@ -102,4 +113,56 @@ public class BestiarySlot : VisualElement
         fishName.text = fishMonsterType.name;
         fishId.text = fishMonsterType.fishId.ToString();
     }
+}
+
+
+
+public class BestiaryPage:VisualElement
+{
+    Label fishTitle,location,timeOfDay,baits,stamina,hp,agility,attack,magicAttack,defense,magicDefense;
+    
+    public new class UxmlFactory : UxmlFactory<BestiaryPage, BestiaryPage.UxmlTraits>
+    {
+
+    }
+    public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
+    {
+
+    }
+    public BestiaryPage()
+    {
+        Init();
+
+    }
+    void Init()
+    {
+        VisualElement root = this;
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/BeastiaryContentPage.uxml");
+        visualTreeAsset.CloneTree(root);
+        fishTitle = this.Q<Label>("NameAmount");
+        location = this.Q<Label>("LocationAmount");
+        timeOfDay = this.Q<Label>("TimeOfDayAmount");
+        baits = this.Q<Label>("BaitAmount");
+        stamina = this.Q<Label>("StaAmount");
+        hp = this.Q<Label>("HPAmount");
+        agility = this.Q<Label>("AgiAmount");
+        attack = this.Q<Label>("AtkAmount");
+        magicAttack = this.Q<Label>("MgAtkAmount");
+        defense = this.Q<Label>("FortAmount");
+        magicDefense = this.Q<Label>("MgForAmount");
+        this.style.position = Position.Absolute;
+        this.StretchToParentSize();
+    }
+    public void SetPage(FishMonsterType fishMonsterType)
+    {
+        fishTitle.text = fishMonsterType.name;
+        stamina.text = fishMonsterType.BaseStamina.ToString();
+        hp.text=fishMonsterType.BaseHealth.ToString();
+        agility.text=fishMonsterType.Agility.Min+"-"+fishMonsterType.Agility.Max;
+        attack.text = fishMonsterType.Attack.Min + "-" + fishMonsterType.Attack.Max;
+        magicAttack.text = fishMonsterType.Special.Min + "-" + fishMonsterType.Attack.Max;
+        magicDefense.text = fishMonsterType.SpecialFortitude.Min + "-" + fishMonsterType.SpecialFortitude.Max;
+        defense.text = fishMonsterType.Fortitude.Min + "-" + fishMonsterType.Fortitude.Max;
+    }
+
 }

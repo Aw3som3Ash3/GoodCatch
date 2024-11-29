@@ -14,7 +14,7 @@ public class PauseMenu : VisualElement
     PartyUI partyUI;
     OptionsPage optionsPage;
     Bestiary bestiaryPage;
-    VisualElement currentPage;
+    PausePage currentPage;
     VisualElement menu;
     public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
@@ -45,7 +45,7 @@ public class PauseMenu : VisualElement
         settting.clicked += Options;
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed += OnPause;
-
+        Debug.Log(this);
 
         menu.focusable = true;
 
@@ -84,6 +84,7 @@ public class PauseMenu : VisualElement
         //Debug.Log(party.focusController.focusedElement);
         if (context.performed)
         {
+            Debug.Log("pausing");
             if (currentPage != null)
             {
                 Back();
@@ -127,19 +128,22 @@ public class PauseMenu : VisualElement
         
     }
 
-
-
     void Back(InputAction.CallbackContext context=default)
     {
         if (currentPage != null)
         {
-            this.Remove(currentPage);
-            menu.SetEnabled(true);
-            menu.visible=true;
-            //this.BringToFront();
-            currentPage = null;
+            if (currentPage.Back())
+            {
+                this.Remove(currentPage);
+                menu.SetEnabled(true);
+                menu.visible = true;
+                currentPage = null;
+            }
         }
+
     }
+
+    
     void Options()
     {
         if (optionsPage == null)
@@ -148,7 +152,6 @@ public class PauseMenu : VisualElement
 
         }
         this.Add(optionsPage);
-        menu.visible = false;
         menu.visible = false;
         menu.SetEnabled(false);
         optionsPage.OpenOptions();
@@ -181,5 +184,19 @@ public class PauseMenu : VisualElement
         menu.visible = false;
         menu.SetEnabled(false);
         currentPage = bestiaryPage;
+    }
+    
+}
+
+
+public abstract class PausePage : VisualElement
+{
+    public virtual bool Back()
+    {
+        return true;
+        
+        //this.BringToFront();
+
+
     }
 }
