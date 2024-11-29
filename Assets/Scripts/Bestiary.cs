@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -31,6 +32,7 @@ public class Bestiary : PausePage
         fishList = this.Q<ListView>("FishList");
         fishLabel = this.Q<Label>("HoveredNameAmount");
         fishPic = this.Q("PngAmount");
+        this.Q("unity-slider").Children().First().focusable = false;
         SetList();
         fishList.selectionChanged += SelectionChanged;
         fishList.itemsChosen += ChoseItem;
