@@ -118,6 +118,7 @@ public static class SavingSystem
             ReadData();
         }
         SceneManager.LoadSceneAsync(data.GetScene());
+        
         SceneManager.sceneLoaded += OnSceneLoad;
 
 
@@ -162,18 +163,21 @@ public static class SavingSystem
         {
             return;
         }
-        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
-        foreach (var saveable in saveables)
+        var sceneLoader = GameObject.FindObjectOfType<SceneLoader>(true);
+        sceneLoader.AllScenesLoaded += () =>
         {
+            var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
+            foreach (var saveable in saveables)
+            {
 
-            saveable.Load(data.GetSaveable(saveable.ID));
-        }
-
-        //SceneManager.UnloadSceneAsync("LoadingScreen");
-        SceneManager.SetActiveScene(scene);
-        SceneManager.sceneLoaded -= OnSceneLoad;
+                saveable.Load(data.GetSaveable(saveable.ID));
+            }
+            sceneLoader.AllScenesLoaded = null;
+        };
+        
+        
     }
-
+    
     public static void LoadSelf<T>(T saveable,string ID) where T: ISaveable
     {
         if (data == null)
@@ -181,7 +185,7 @@ public static class SavingSystem
             ReadData(SAVE_FILE);
         }
         saveable.Load(data.GetSaveable(ID));
-
+    
         
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class EditorSceneLoader : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
     [SerializeField]
     LevelSetup sceneSetup;
@@ -18,6 +18,7 @@ public class EditorSceneLoader : MonoBehaviour
     Camera cam;
     [SerializeField]
     UIDocument mainUI;
+    public Action AllScenesLoaded;
     private void SceneClosed(Scene scene, bool removingScene)
     {
         if (this.scene == scene)
@@ -56,9 +57,11 @@ public class EditorSceneLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainUI.rootVisualElement.Q("LoadingScreen").visible = true; 
+        mainUI.rootVisualElement.Q("LoadingScreen").visible = true;
+        playerController.gameObject.SetActive(false);
+
         //cam.enabled = false;
-        LoadWorld();
+        StartCoroutine(LoadWorld());
         //Invoke("LoadWorld", 0.2f);
     }
 
@@ -68,9 +71,9 @@ public class EditorSceneLoader : MonoBehaviour
         
     }
 
-    void LoadWorld()
+    IEnumerator LoadWorld()
     {
-        bool hasScenesToLoad = false;
+        
         for (int i=0;i<sceneSetup.sceneSetup.Length;i++)
         {
             string name = Path.GetFileNameWithoutExtension(sceneSetup.sceneSetup[i].path);
@@ -92,20 +95,10 @@ public class EditorSceneLoader : MonoBehaviour
             {
                 continue;
             }
-           
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
-            if (i == sceneSetup.sceneSetup.Length - 1)
-            {
-                hasScenesToLoad = true;
-                playerController.gameObject.SetActive(false);
-                asyncOperation.completed += (x) => { ScenesLoaded(); };
-            }
+            yield return SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
         }
-        if (!hasScenesToLoad)
-        {
-
-            ScenesLoaded();
-        }
+        yield return new WaitForSeconds(0.5f);
+        ScenesLoaded();
 
         
     }
@@ -115,6 +108,6 @@ public class EditorSceneLoader : MonoBehaviour
         playerController.gameObject.SetActive(true);
         //cam.enabled = true;
         mainUI.rootVisualElement.Remove(mainUI.rootVisualElement.Q("LoadingScreen"));
-        
+        AllScenesLoaded?.Invoke();
     }
 }
