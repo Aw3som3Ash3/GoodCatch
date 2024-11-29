@@ -82,6 +82,20 @@ public class Bestiary : PausePage
 
         fishList.itemsSource =fishMonsters;
     }
+
+    public override bool Back()
+    {
+
+        if (this.parent.Contains(bestiaryPage))
+        {
+            this.parent.Remove(bestiaryPage);
+            this.visible = true;
+
+            return false;
+        }
+        return base.Back();
+
+    }
 }
 
 
