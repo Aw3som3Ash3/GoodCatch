@@ -238,7 +238,7 @@ public class FishMonster
     [SerializeField]
     float maxStamina;
     public float MaxStamina { get { return maxStamina; } }
-
+    public float Dodge { get { return agility.value / 2; } }
     public Texture2D Icon { get { return Type.Icon; } }
     public GameObject Model { get { return Type.Model; } }
 
@@ -356,7 +356,8 @@ public class FishMonster
             Debug.Log("took no damage");
             return;
         }
-        float defenseMod = 1 - (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value) * 0.01f;
+        //float defenseMod = 1 - (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value) * 0.01f;
+        float defenseMod =MathF.Pow(MathF.E,-0.015f* (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value));
         float damageTaken = damage * DamageModifier(elementType) * defenseMod;
         health -= damageTaken;
         Debug.Log("took " + damageTaken + " damage \n current health: " + Health);
