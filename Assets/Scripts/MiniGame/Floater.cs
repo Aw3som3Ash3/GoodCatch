@@ -8,7 +8,7 @@ public class Floater : MonoBehaviour
     float depth;
 
     public Action HitWater;
-
+    public Action completed;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +27,13 @@ public class Floater : MonoBehaviour
         HitWater?.Invoke();
 
     }
+
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Ground"))
         {
+            completed?.Invoke();
             Destroy(gameObject);
             InputManager.EnablePlayer();
         }

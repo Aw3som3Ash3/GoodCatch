@@ -26,7 +26,7 @@ public class FishingMiniGame : MonoBehaviour
     [SerializeField]
     LayerMask fishZones;
 
-
+    public Action OnCancel;
     public void Initiate(Floater floater)
     {
         this.floater = floater;

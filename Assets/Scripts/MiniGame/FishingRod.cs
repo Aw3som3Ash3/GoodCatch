@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -14,6 +15,7 @@ public class FishingRod : MonoBehaviour
 
     [SerializeField]
     FishingMiniGame gamePrefab;
+    Action OnComplete;
     private void Awake()
     {
         fishingLine = GetComponent<LineRenderer>();
@@ -41,14 +43,15 @@ public class FishingRod : MonoBehaviour
         }
     }
 
-    public void CastLine(Vector3 lookDir)
+    public void CastLine(Vector3 lookDir,Action callback)
     {
         if (floater != null)
         {
             Destroy(floater.gameObject);
         }
-
+        OnComplete += callback;
         floater = Instantiate(floaterPrefab, lineStart.transform.position, floaterPrefab.transform.rotation).GetComponent<Floater>();
+        floater.completed += OnComplete;
         floater.HitWater += StartMiniGame;
         floater.GetComponent<Rigidbody>().AddForce((lookDir + Vector3.up) * castForce, ForceMode.Impulse);
         fishingLine.positionCount = 3;
@@ -58,8 +61,9 @@ public class FishingRod : MonoBehaviour
     {
         FishingMiniGame game = Instantiate(gamePrefab, floater.transform.position, this.transform.parent.transform.rotation);
         game.Initiate(floater);
+        game.OnCancel += OnComplete;
         InputManager.DisablePlayer();
         floater.HitWater -= StartMiniGame;
-        FishingMiniGame.SuccesfulFishing += () => { Destroy(floater.gameObject); };
+        FishingMiniGame.SuccesfulFishing += () => { Destroy(floater.gameObject); OnComplete?.Invoke(); };
     }
 }

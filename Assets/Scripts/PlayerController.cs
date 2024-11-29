@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
+        fishingRod.gameObject.SetActive(false);
         //InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
     }
     private void OnEnable()
@@ -228,10 +229,20 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     void StartFishing(InputAction.CallbackContext context)
     {
-        fishingRod.CastLine(cameraRig.forward);
+        fishingRod.gameObject.SetActive(true);
+        anim.SetTrigger("cast");
+        InputManager.DisablePlayer();
+    }
+    void Casted()
+    {
+        fishingRod.CastLine(cameraRig.forward,()=> { anim.SetTrigger("FishingComplete"); Invoke("FishingCompleted",1f); });
         var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(cameraRig.forward));
         model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
-        InputManager.DisablePlayer();
+    }
+
+    void FishingCompleted()
+    {
+        fishingRod.gameObject.SetActive(false);
     }
 
     public void Load(string json)
