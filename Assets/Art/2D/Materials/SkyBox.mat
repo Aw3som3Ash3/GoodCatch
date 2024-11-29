@@ -130,6 +130,9 @@ Material:
     - _Mapping: 1
     - _Metallic: 0
     - _MirrorOnBack: 0
+    - _MoonIntensity: 0.2
+    - _MoonRadiusA: 0.01
+    - _MoonRadiusB: 0.02
     - _NightExponent1: 5
     - _NightExponent2: 0.2
     - _OcclusionStrength: 1
@@ -166,8 +169,8 @@ Material:
     - _SkyColor1: {r: 0.09748411, g: 0.16805126, b: 1, a: 1}
     - _SkyColor2: {r: 0.0750563, g: 0.17951408, b: 0.4339623, a: 1}
     - _SkyColor3: {r: 0, g: 0.00031364764, b: 0.031446517, a: 1}
-    - _SkyColorNight1: {r: 0, g: 0.0049851937, b: 0.03773582, a: 1}
-    - _SkyColorNight2: {r: 0, g: 0.0047354964, b: 0.088050246, a: 1}
+    - _SkyColorNight1: {r: 0, g: 0, b: 0.050314426, a: 1}
+    - _SkyColorNight2: {r: 0, g: 0, b: 0, a: 1}
     - _SkyColorNight3: {r: 0, g: 0, b: 0, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
