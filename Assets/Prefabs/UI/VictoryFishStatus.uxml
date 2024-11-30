@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/VictoryFishStatus.uss?fileID=7433441132597879392&amp;guid=5df3ad42170cefc45a4658ec153e9b3d&amp;type=3#VictoryFishStatus" />
     <ui:VisualElement style="flex-grow: 0; align-self: center; flex-direction: row; height: 100px; width: 400px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);">
-        <ui:VisualElement style="flex-grow: 0; width: 110px; background-color: rgb(255, 255, 255);" />
+        <ui:VisualElement name="ProfilePic" style="flex-grow: 0; width: 110px; background-color: rgb(255, 255, 255); height: 110px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;" />
         <ui:VisualElement style="flex-grow: 1; justify-content: space-around;">
             <ui:ProgressBar value="22" title="my-progress" name="healthBar" />
             <ui:ProgressBar value="22" title="my-progress" name="xpBar" />
