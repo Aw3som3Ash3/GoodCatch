@@ -111,6 +111,11 @@ public static class SavingSystem
         string json = File.ReadAllText(file.FullName);
         data = JsonUtility.FromJson<GameData>(json);
     }
+    public static void LoadGame(int slotNum)
+    {
+        currentSlot= slotNum;
+        LoadGame();
+    }
     public static void LoadGame()
     {
         if (data == null)
