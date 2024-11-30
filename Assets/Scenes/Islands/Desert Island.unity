@@ -1295,15 +1295,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1454.8523
+      value: 1.0789
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1454.8523
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1454.8523
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1311,7 +1311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.72
+      value: 18.57
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1345,6 +1345,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 23f4488768b9d0449a493c0b3bf0e4c7, type: 2}
     - target: {fileID: 919132149155446097, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       propertyPath: m_Name
       value: WaterRound
@@ -1352,7 +1356,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1715798204}
   m_SourcePrefab: {fileID: 100100000, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
 --- !u!4 &189483681 stripped
 Transform:
@@ -8528,6 +8535,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5184259022048548261, guid: ed3a5d4ef91a85848b4ac36f9122a0b6, type: 3}
   m_PrefabInstance: {fileID: 1708484435}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1715798203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
+  m_PrefabInstance: {fileID: 189483680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1715798204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715798203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f5c33a9c5ece148be4f6a22ad8067b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveHeightX: 0.125
+  waveFrequencyX: 0.005
+  waveSpeedX: 0.05
+  waveHeightZ: 0.125
+  waveFrequencyZ: 0.005
+  waveSpeedZ: 0.05
+  useTide: 0
+  tideMultiplier: 0
 --- !u!1 &1721078741 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 707e2ecfde76ba5408e4c4d2162c55a1, type: 3}
