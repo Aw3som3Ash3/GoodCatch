@@ -122,7 +122,7 @@ public static class SavingSystem
         {
             ReadData();
         }
-        SceneManager.LoadSceneAsync(data.GetScene());
+        SceneManager.LoadScene(data.GetScene());
         
         SceneManager.sceneLoaded += OnSceneLoad;
 
@@ -134,7 +134,9 @@ public static class SavingSystem
         ReadData(saveName);
         //SceneManager.LoadScene("LoadingScreen");
        
-        SceneManager.LoadSceneAsync(data.GetScene());
+        
+
+        SceneManager.LoadScene(data.GetScene());
         SceneManager.sceneLoaded += OnSceneLoad;
   
        
@@ -176,8 +178,9 @@ public static class SavingSystem
             {
 
                 saveable.Load(data.GetSaveable(saveable.ID));
+                Time.timeScale= 1;
             }
-            sceneLoader.AllScenesLoaded = null;
+            //sceneLoader.AllScenesLoaded = null;
         };
         
         

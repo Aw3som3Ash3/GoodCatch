@@ -83,21 +83,27 @@ public class SceneLoader : MonoBehaviour
                 continue;
             }
             bool sceneAlreadyLoaded=false;
-            for (int j = i; j < SceneManager.loadedSceneCount; j++) 
+            var scene = SceneManager.GetSceneByPath(sceneSetup.sceneSetup[i].path);
+            if (scene.name==name)
             {
-                if (SceneManager.GetSceneAt(j).name == name)
-                {
-                    sceneAlreadyLoaded = true;
-                    break;
-                }
+                sceneAlreadyLoaded=true;
             }
+           
+            //for (int j = 0; j < SceneManager.loadedSceneCount; j++) 
+            //{
+            //    if (SceneManager.GetSceneAt(j).name == name)
+            //    {
+            //        sceneAlreadyLoaded = true;
+            //        break;
+            //    }
+            //}
             if (sceneAlreadyLoaded|| name == null)
             {
                 continue;
             }
             yield return SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         ScenesLoaded();
 
         
@@ -109,5 +115,7 @@ public class SceneLoader : MonoBehaviour
         //cam.enabled = true;
         mainUI.rootVisualElement.Remove(mainUI.rootVisualElement.Q("LoadingScreen"));
         AllScenesLoaded?.Invoke();
+        Time.timeScale = 1.0f;
+
     }
 }
