@@ -36,15 +36,15 @@ public class FishventoryTab : TabbedView
         Debug.Log(m_NumberOfTabs);
         var content = this.Q("unity-content-container");
         tabs =new TabButton[m_NumberOfTabs];
-        for(int i = 1; i <= m_NumberOfTabs; i++)
+        for(int i = 0; i < m_NumberOfTabs; i++)
         {
             //int index = i;
             VisualElement box = new VisualElement();
-            box.name = "box" + i;
+            box.name = "box" + (i+1);
             content.Add(box);
-            TabButton tab = new TabButton("Tab "+i, box);
+            TabButton tab = new TabButton("Tab "+(i+1), box);
             tab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(tab); index = 0; });
-            tab.name = "Tab"+i;
+            tab.name = "Tab"+(i+1);
             this.AddTab(tab, true);
             tabs[i] = tab;
         }
