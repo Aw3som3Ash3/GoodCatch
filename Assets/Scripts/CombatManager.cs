@@ -1,10 +1,10 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -76,7 +76,7 @@ public class CombatManager : MonoBehaviour
         depths[2] = new CombatDepth(Depth.abyss, abyssLocation.GetChild(0), abyssLocation.GetChild(1));
         depth[Depth.abyss] = depths[2];
         depthIndex[depths[2]] = 2;
-        combatAI = this.AddComponent<CombatAI>();
+        combatAI = this.gameObject.AddComponent<CombatAI>();
         combatAI.SetCombatManager(this);
         ui = FindObjectOfType<UIDocument>();
         combatUI = new CombatUI();
@@ -259,7 +259,10 @@ public class CombatManager : MonoBehaviour
             turn.RollInitiative();
         }
         turnList.Clear();
-        turnList.AddRange(currentCombatents.OrderBy((x)=>x.initiative));
+        foreach(Turn turn in currentCombatents.OrderBy((x) => x.initiative))
+        {
+            turnList.AddLast(turn);
+        }
         currentTurn = turnList.First;
         combatUI.SetTurnUI(turnList.ToList());
         
@@ -298,10 +301,26 @@ public class CombatManager : MonoBehaviour
     }
     void EndFight(Team winningTeam)
     {
-       
-        if (winningTeam == Team.player)
+        StartCoroutine(CombatVictoryScreen(winningTeam));
+ 
+    }
+
+    IEnumerator CombatVictoryScreen(Team winningTeam)
+    {
+        var victoryScreen = new CombatVictory(playerFishes,enemyFishes);
+        ui.rootVisualElement.Add(victoryScreen);
+        combatUI.SetEnabled(false);
+        RewardXP();
+        if (winningTeam==Team.player)
         {
-            RewardXP();
+            for (int i = 0; i < 300; i++)
+            {
+                foreach (var fish in playerFishes)
+                {
+                    victoryScreen.fishXpBar[fish].value = Mathf.Lerp(victoryScreen.fishXpBar[fish].value, fish.Xp, (float)i / 300);
+                }
+                yield return new WaitForFixedUpdate();
+            }
         }
         ui.rootVisualElement.Remove(combatUI);
         playerFishes = null;
@@ -309,7 +328,7 @@ public class CombatManager : MonoBehaviour
         rewardFish = false;
         GameManager.Instance.OnInputChange -= InputChanged;
         GameManager.Instance.CombatEnded(winningTeam);
-        
+
     }
     void RewardXP()
     {
