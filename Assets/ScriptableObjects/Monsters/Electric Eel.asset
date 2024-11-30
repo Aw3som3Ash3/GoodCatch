@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Electric Eel
   m_EditorClassIdentifier: 
+  description: 
   model: {fileID: 0}
   fishId: 0
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
@@ -21,36 +22,36 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
   - {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
   agility:
-    min: 0
-    max: 0
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   attack:
-    min: 0
-    max: 0
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   special:
-    min: 0
-    max: 0
+    min: 25
+    max: 50
     minTalent: 0
     maxTalent: 0
   fortitude:
-    min: 0
-    max: 0
+    min: 5
+    max: 10
     minTalent: 0
     maxTalent: 0
   SpecialFortitude:
-    min: 0
-    max: 0
+    min: 10
+    max: 20
     minTalent: 0
     maxTalent: 0
   accuracy:
-    min: 0
-    max: 0
+    min: 50
+    max: 50
     minTalent: 0
     maxTalent: 0
-  baseHealth: 0
-  baseStamina: 0
+  baseHealth: 90
+  baseStamina: 60
   baseAbilities: []
   difficulty: 0

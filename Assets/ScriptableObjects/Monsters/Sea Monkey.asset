@@ -20,28 +20,28 @@ MonoBehaviour:
   elements:
   - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
   agility:
-    min: 0
-    max: 0
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   attack:
-    min: 0
-    max: 0
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   special:
-    min: 0
-    max: 0
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   fortitude:
-    min: 0
-    max: 0
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   SpecialFortitude:
-    min: 0
-    max: 0
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   accuracy:
@@ -49,7 +49,7 @@ MonoBehaviour:
     max: 0
     minTalent: 0
     maxTalent: 0
-  baseHealth: 0
-  baseStamina: 0
+  baseHealth: 75
+  baseStamina: 75
   baseAbilities: []
   difficulty: 0
