@@ -28,15 +28,18 @@ public class GameManager : MonoBehaviour,ISaveable
         public Fishventory StoredFishventory;
         public ItemInventory PlayerInventory;
         public float dayTime;
-
+        public bool[] hasSeenFish;
         public GameData(int partySize)
         {
             PlayerFishventory = new Fishventory(partySize);
             PlayerInventory = new ItemInventory();
             StoredFishventory = new Fishventory();
             dayTime =0;
+            hasSeenFish = new bool[0];
+            
         }
     }
+    public List<bool> HasSeenFish{ get { return gameData.hasSeenFish.ToList(); } }
     GameData gameData=new GameData(7);
     public Fishventory PlayerFishventory { get { return gameData.PlayerFishventory; }}
     public Fishventory StoredFishventory { get { return gameData.StoredFishventory; }}
@@ -173,7 +176,7 @@ public class GameManager : MonoBehaviour,ISaveable
         InputUser.onUnpairedDeviceUsed += OnDeviceChange;
         InputUser.onChange += OnDeviceChange;
         //InputUser.PerformPairingWithDevice()
-       
+        gameData.hasSeenFish = new bool[database.fishMonsters.Count];
 
 
     }
@@ -346,7 +349,7 @@ public class GameManager : MonoBehaviour,ISaveable
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
         PlayerFishventory.AddFish(fishMonsterType.GenerateMonster());
-
+        gameData.hasSeenFish[fishMonsterType.fishId] = true;
     }
     public void CapturedFish(FishMonster fishMonster)
     {
@@ -360,6 +363,8 @@ public class GameManager : MonoBehaviour,ISaveable
                 StoredFishventory.AddFish(fishMonster);
                 break;
         }
+        gameData.hasSeenFish[fishMonster.ID]= true;
+        Debug.Log("is fish found:"+ gameData.hasSeenFish[fishMonster.ID]);
 
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)

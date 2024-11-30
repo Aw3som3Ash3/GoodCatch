@@ -197,6 +197,7 @@ public class FishMonster
     }
     [SerializeField]
     int id;
+    public int ID { get { return id; } }
     [SerializeField]
     string name;
     public string Name { get { return name; } }

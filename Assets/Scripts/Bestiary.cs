@@ -10,6 +10,8 @@ public class Bestiary : PausePage
 {
     ListView fishList;
     List<FishMonsterType> fishMonsters { get { return GameManager.Instance.Database.fishMonsters; } }
+    List<bool> hasSeenFish { get { return GameManager.Instance.HasSeenFish; } }
+
     Label fishLabel;
     VisualElement fishPic;
     BestiaryPage bestiaryPage;
@@ -42,6 +44,10 @@ public class Bestiary : PausePage
     private void ChoseItem(IEnumerable<object> enumerable)
     {
         FishMonsterType fishMonsterType = fishList.selectedItem as FishMonsterType;
+        if (hasSeenFish[fishMonsterType.fishId] == false)
+        {
+            return;
+        }
         bestiaryPage.SetPage(fishMonsterType);
         this.parent.Add(bestiaryPage);
         this.visible=false;
@@ -51,8 +57,9 @@ public class Bestiary : PausePage
     {
 
         FishMonsterType fishMonsterType = fishList.selectedItem as FishMonsterType;
-        fishLabel.text = fishMonsterType.name;
-        fishPic.style.backgroundImage = fishMonsterType?.Icon;
+
+        fishLabel.text = hasSeenFish[fishMonsterType.fishId]? fishMonsterType.name:"????????????";
+        fishPic.style.backgroundImage = hasSeenFish[fishMonsterType.fishId] ? fishMonsterType?.Icon:null;
        
         //throw new NotImplementedException();
     }
@@ -69,7 +76,7 @@ public class Bestiary : PausePage
         {
 
             //(item as Label).text = Path.GetFileNameWithoutExtension(files[index].Name);
-            (item as BestiarySlot).SetFish(fishMonsters[index]);
+            (item as BestiarySlot).SetFish(fishMonsters[index], hasSeenFish[fishMonsters[index].fishId]);
 
         };
 
@@ -120,10 +127,10 @@ public class BestiarySlot : VisualElement
 
     }
 
-    public void SetFish(FishMonsterType fishMonsterType)
+    public void SetFish(FishMonsterType fishMonsterType,bool wasSeen=true)
     {
         this.fishMonsterType= fishMonsterType;
-        fishName.text = fishMonsterType.name;
+        fishName.text = wasSeen? fishMonsterType.name:"???????????";
         fishId.text = fishMonsterType.fishId.ToString();
     }
 }
