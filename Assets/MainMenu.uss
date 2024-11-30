@@ -1,0 +1,20 @@
+.TitleButton {
+    flex-grow: 1;
+    font-size: 100px;
+    color: rgb(36, 59, 255);
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.SaveSlot {
+    position: relative;
+    font-size: 75px;
+    width: 400px;
+    height: 250px;
+    align-self: auto;
+    justify-content: center;
+    align-items: auto;
+}
