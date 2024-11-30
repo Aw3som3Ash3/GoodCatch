@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: e5973463547cb074d89aabff238625a2, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -7346,10 +7346,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveHeightX: 0.5
   waveFrequencyX: 0.15
-  waveSpeedX: 0.9
+  waveSpeedX: 0
   waveHeightZ: 0.5
   waveFrequencyZ: 0.2
-  waveSpeedZ: 1
+  waveSpeedZ: 0
   useTide: 0
   tideMultiplier: 0
 --- !u!1001 &1569542924
