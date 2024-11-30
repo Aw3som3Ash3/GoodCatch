@@ -193,6 +193,26 @@ public static class SavingSystem
     
         
     }
+
+    public static bool HasSlot(int slot)
+    {
+        DirectoryInfo directoryInfo=new DirectoryInfo(Path.Combine(Application.persistentDataPath, FOLDER_NAME, SLOT_FOLDER_NAME + " " + slot));
+        return directoryInfo.Exists && directoryInfo.GetFiles().Length > 0;
+    }
+    public static void SetSlot(int slot)
+    {
+        currentSlot = slot;
+    }
+
+    public static void ClearSlot(int slot)
+    {
+        DirectoryInfo directoryInfo = new DirectoryInfo(Path.Combine(Application.persistentDataPath, FOLDER_NAME, SLOT_FOLDER_NAME + " " + slot));
+        if (directoryInfo.Exists)
+        {
+            directoryInfo.Delete(true);
+        }
+        directoryInfo.Create();
+    }
 }
 
 
