@@ -43,7 +43,7 @@ public class FishventoryTab : TabbedView
             content.Add(box);
             TabButton tab = new TabButton("Tab "+(i+1), box);
             tab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(tab); index = 0; });
-            tab.name = "FightTab";
+            tab.name = "Tab"+i;
             this.AddTab(tab, true);
             tabs[i] = tab;
         }
