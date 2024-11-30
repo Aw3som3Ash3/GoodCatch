@@ -35,6 +35,7 @@ public class MainMenu : MonoBehaviour
     }
     void NewGame()
     {
+        loadScreen.Q<Label>("LoadTitle").text = "New Game";
         for (int i = 1; i <= 3; i++)
         {
             int index = i;

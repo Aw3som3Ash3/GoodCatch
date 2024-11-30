@@ -243,12 +243,32 @@ public class FishMonster
     public Texture2D Icon { get { return Type.Icon; } }
     public GameObject Model { get { return Type.Model; } }
 
+    [SerializeField]
     int level = 1;
     public int Level { get { return level; } }
+    [SerializeField]
     float xp;
     public float Xp { get { return xp; } }
     public const int xpToLevelUp = 1000;
+    //[SerializeField]
     Ability[] abilities;
+    Ability[] Abilities 
+    { 
+        get 
+        {
+            if (abilities == null)
+            {
+                abilities = new Ability[abilityIds.Length];
+                for (int i = 0;i<abilityIds.Length;i++)
+                {
+                    abilities[i] = Ability.getAbilityById[abilityIds[i]];
+                }
+            }
+            return abilities;
+        } 
+    }
+    [SerializeField]
+    string[] abilityIds;
     public Action ValueChanged;
     public Action HasFeinted;
     public bool isDead { get { return health <= 0; }  }
@@ -277,6 +297,12 @@ public class FishMonster
         maxHealth = HealthFormula();
         health = MaxHealth;
         abilities = monsterType.BaseAbilities;
+        abilityIds = new string[Abilities.Length];
+        for(int i = 0; i < abilityIds.Length; i++)
+        {
+            abilityIds[i] = Abilities[i].AbilityID;
+        }
+        id = type.fishId;
     }
     public void RestoreAllHealth()
     {
@@ -284,7 +310,7 @@ public class FishMonster
     }
     public void ReplaceAbility(Ability newAbility, int index)
     {
-        abilities[index] = newAbility;
+        Abilities[index] = newAbility;
         
     }
     public void ConsumeStamina(int amount)
@@ -295,11 +321,11 @@ public class FishMonster
     }
     public Ability GetAbility(int index)
     {
-        if (index >= abilities.Length)
+        if (index >= Abilities.Length)
         {
             return null;
         }
-        return abilities[index];
+        return Abilities[index];
     }
     public void ChangeName(string newName)
     {

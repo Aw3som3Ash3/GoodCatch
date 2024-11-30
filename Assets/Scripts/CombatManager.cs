@@ -37,6 +37,7 @@ public class CombatManager : MonoBehaviour
     FishMonsterType testType;
 
     static List<FishMonster> playerFishes = new List<FishMonster>(), enemyFishes = new List<FishMonster>();
+    Dictionary<FishMonster,bool> fishCaught=new();
 
     [SerializeField]
     public CombatDepth[] depths { get; private set; } = new CombatDepth[3];
@@ -83,7 +84,6 @@ public class CombatManager : MonoBehaviour
         ui.rootVisualElement.Add(combatUI);
         GameManager.Instance.OnInputChange += InputChanged;
         //combatUI.UseNet += UseNet;
-
     }
 
     private void InputChanged(InputMethod method)
@@ -196,6 +196,7 @@ public class CombatManager : MonoBehaviour
 
             target.fish.RestoreAllHealth();
             GameManager.Instance.CapturedFish(target.fish);
+            fishCaught[target.fish] = true;
             RemoveFishFromBattle(target);
             Debug.Log("caught "+ target.fish);
         }
@@ -236,7 +237,9 @@ public class CombatManager : MonoBehaviour
             AddFish(turn, depths[i % 3], Team.enemy);
             currentCombatents.Add(turn);
             getFishesTurn[enemyFishes[i]] = turn;
+            fishCaught[enemyFishes[i]] = false;
         }
+        
     }
     private void OnDisable()
     {
@@ -307,7 +310,7 @@ public class CombatManager : MonoBehaviour
 
     IEnumerator CombatVictoryScreen(Team winningTeam)
     {
-        var victoryScreen = new CombatVictory(playerFishes,enemyFishes);
+        var victoryScreen = new CombatVictory(playerFishes,enemyFishes,fishCaught);
         ui.rootVisualElement.Add(victoryScreen);
         combatUI.SetEnabled(false);
         RewardXP();

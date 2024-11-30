@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [CreateAssetMenu(fileName = "Ability", menuName = "Fish Monster/Ability", order = 1)]
-public class Ability : ScriptableObject
+public class Ability : ScriptableObject,ISerializationCallbackReceiver
 {
     //enum TargetingType
     //{
@@ -87,6 +90,10 @@ public class Ability : ScriptableObject
     public ParticleSystem TargetVFX { get { return targetVFX; } }
     //List<FishMonster> targets;
 
+    [SerializeField]
+    string abilityID;
+    public string AbilityID { get { return abilityID; } }
+    public static Dictionary<string, Ability> getAbilityById=new();
 
     public bool DepthTargetable(Depth depth)
     {
@@ -165,7 +172,19 @@ public class Ability : ScriptableObject
                 target.AddEffects(effect.Effect);
             }
         }
+    }
+    public void OnBeforeSerialize()
+    {
+        
+    }
 
+    public void OnAfterDeserialize()
+    {
+        if (abilityID == null || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
+        {
+            abilityID = GUID.Generate().ToString();
+        }
+        getAbilityById[abilityID] = this;
     }
 }
 
