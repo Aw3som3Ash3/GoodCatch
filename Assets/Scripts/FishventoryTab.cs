@@ -15,15 +15,15 @@ public class FishventoryTab : TabbedView
 
     public new class UxmlTraits : VisualElement.UxmlTraits
     {
-        UxmlIntAttributeDescription m_NumberOfTabs = new UxmlIntAttributeDescription { name = "NumberOfTabs",defaultValue=3 };
+        //UxmlIntAttributeDescription m_NumberOfTabs = new UxmlIntAttributeDescription { name = "NumberOfTabs",defaultValue=3 };
         
-        public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
-        {
+        //public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
+        //{
             
-            base.Init(ve, bag, cc);
-            ((FishventoryTab)ve).NumberOfTabs = m_NumberOfTabs.GetValueFromBag(bag, cc);
-            Debug.Log(((FishventoryTab)ve).NumberOfTabs);
-        }
+        //    base.Init(ve, bag, cc);
+        //    ((FishventoryTab)ve).NumberOfTabs = m_NumberOfTabs.GetValueFromBag(bag, cc);
+        //    Debug.Log(((FishventoryTab)ve).NumberOfTabs);
+        //}
     }
     public FishventoryTab()
     {
