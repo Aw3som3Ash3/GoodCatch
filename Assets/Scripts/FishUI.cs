@@ -49,6 +49,7 @@ public class FishUI : VisualElement
         staminaBar = this.Q<ProgressBar>("StaminaBar");
         SetFish(turn, target);
         statusBar = this.Q("StatusBar");
+        this.Q<Label>("FishName").text = turn.fish.Name;
     }
     // Update is called once per frame
     public void UpdatePosition()
