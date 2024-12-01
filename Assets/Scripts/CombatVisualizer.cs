@@ -28,11 +28,14 @@ public class CombatVisualizer : MonoBehaviour
     CombatDepth currentDepth;
 
     List<CombatDepth> combatDepths;
-
+    [SerializeField]
+    CombatHooking floaterPrefab;
 
     [SerializeField]
     List<DepthSelectors> depthSelectors;
     EventSystem eventSystem;
+    [SerializeField]
+    Transform floaterStart;
     //public Action CompletedMove;
     // Start is called before the first frame update
 
@@ -327,5 +330,13 @@ public class CombatVisualizer : MonoBehaviour
         //}
         StopSelectingFish();
         //isActive = true;
+    }
+
+    public void CatchFishAnimation(Turn turn,bool catchingCalc,Action completed)
+    {
+        var targetFish = turnToObject[turn];
+        Vector3 startPos = new Vector3(targetFish.hookLocation.position.x,floaterStart.position.y+1, targetFish.hookLocation.position.z);
+        CombatHooking hook = Instantiate(floaterPrefab, startPos, floaterPrefab.transform.rotation);
+        hook.HookingLocation(targetFish, catchingCalc, completed);
     }
 }

@@ -47,7 +47,7 @@ public class CombatManager : MonoBehaviour
 
     [SerializeField]
     Transform shallowsLocation, middleLocation, abyssLocation;
-
+    
 
     HashSet<Turn> currentCombatents = new HashSet<Turn>();
     LinkedList<Turn> turnList = new LinkedList<Turn>();
@@ -124,7 +124,7 @@ public class CombatManager : MonoBehaviour
                 callback.Invoke();
             });
         });
-
+        Time.timeScale = 1;
     }
 
 
@@ -161,11 +161,9 @@ public class CombatManager : MonoBehaviour
         if(item is CombatHook)
         {
             combatVisualizer.SelectFish(Team.enemy,(t) => 
-            { 
-                TryCatching((CombatHook)item,t); 
-                ActionsCompleted(); 
-                combatUI.UpdateInventory();
-                completedCallback?.Invoke();
+            {
+                TryCatching((CombatHook)item, t, completedCallback);
+
             });
         }
         else if (item is Potion)
@@ -185,29 +183,60 @@ public class CombatManager : MonoBehaviour
         
        
     }
-    void TryCatching(CombatHook net,Turn target)
+    void TryCatching(CombatHook hook, Turn target, Action completedCallback)
     {
         if (!rewardFish)
         {
             return;
         }
-        if (UnityEngine.Random.Range(0, 1f) <= (1 - (target.Health / target.MaxHealth))*net.CatchBonus)
+        bool caught = UnityEngine.Random.Range(0, 1f) <= (1 - (target.Health / target.MaxHealth)) * hook.CatchBonus;
+        combatVisualizer.CatchFishAnimation(target, caught, () =>
         {
+            if (caught)
+            {
+                CatchFish(target);
+            }
+            ActionsCompleted();
+            completedCallback?.Invoke();
+            currentTurn.Value.UseAction();
+            GameManager.Instance.PlayerInventory.RemoveItem(hook);
+            combatUI.UpdateInventory();
+        });
 
-            target.fish.RestoreAllHealth();
-            GameManager.Instance.CapturedFish(target.fish);
-            fishCaught[target.fish] = true;
-            RemoveFishFromBattle(target);
-            Debug.Log("caught "+ target.fish);
-        }
-        else
-        {
-            Debug.Log("failed to catch");
-            
-        }
-        currentTurn.Value.UseAction();
-        GameManager.Instance.PlayerInventory.RemoveItem(net);
+        
     }
+    void CatchFish(Turn target)
+    {
+        target.fish.RestoreAllHealth();
+        GameManager.Instance.CapturedFish(target.fish);
+        fishCaught[target.fish] = true;
+        RemoveFishFromBattle(target);
+        Debug.Log("caught " + target.fish);
+    }
+    //void TryCatching(CombatHook net,Turn target)
+    //{
+    //    if (!rewardFish)
+    //    {
+    //        return;
+    //    }
+    //    if (UnityEngine.Random.Range(0, 1f) <= (1 - (target.Health / target.MaxHealth))*net.CatchBonus)
+    //    {
+
+    //        target.fish.RestoreAllHealth();
+    //        GameManager.Instance.CapturedFish(target.fish);
+    //        fishCaught[target.fish] = true;
+    //        RemoveFishFromBattle(target);
+    //        Debug.Log("caught "+ target.fish);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("failed to catch");
+
+    //    }
+    //    currentTurn.Value.UseAction();
+    //    GameManager.Instance.PlayerInventory.RemoveItem(net);
+    //}
+
     void UsePotion(Potion potion,Turn target)
     {
         potion.UsePotion((PlayerTurn)target, (particle) => combatVisualizer.AnimateBasicVFX(target, particle));

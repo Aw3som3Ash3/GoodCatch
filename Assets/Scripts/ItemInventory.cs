@@ -57,7 +57,7 @@ public class ItemInventory
         var itemSlot=items.Find((slot) => slot.Item == item);
         if (itemSlot != null)
         {
-            itemSlot.amount = amount;
+            itemSlot.amount += amount;
         }
         else
         {

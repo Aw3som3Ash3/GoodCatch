@@ -33,6 +33,8 @@ public class FishObject : MonoBehaviour
     AnimationPlayableOutput playableOutput;
     AnimationClipPlayable attackClipPlayable;
     AnimationMixerPlayable mixerPlayable;
+
+    public Transform hookLocation { get; private set; }
     private void Awake()
     {
         EventTrigger eventTrigger= this.AddComponent<EventTrigger>();
@@ -162,12 +164,8 @@ public class FishObject : MonoBehaviour
         attackClipPlayable.Pause();
         playableGraph.Play();
 
-        //var idlePlayableOutput = AnimationPlayableOutput.Create(idlePlayableGraph, "Animation", anim);
-        //var idleClipPlayable = AnimationClipPlayable.Create(idlePlayableGraph, turn.fish.IdleAnimation);
-        //idlePlayableOutput.SetSourcePlayable(idleClipPlayable);
-        //idlePlayableGraph.Play();
-        //attackPlayableGraph.Connect(idlePlayableGraph)
 
+        hookLocation = model.GetComponent<FishModel>().HookLocation;
 
     }
     public void SetDestination(Vector3 destination)
@@ -185,6 +183,10 @@ public class FishObject : MonoBehaviour
         
         //playableGraph.
 
+    }
+    public void StopMoving() 
+    {
+        shouldMove = false;
     }
     IEnumerator MoveToDestination()
     {
