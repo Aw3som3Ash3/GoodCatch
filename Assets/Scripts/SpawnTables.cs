@@ -16,12 +16,14 @@ public class SpawnTables : ScriptableObject
     }
 
     [SerializeField]
-    Chance[] monsters;
+    Chance[] daySpawn,nightSpawn;
+
 
     
     public FishMonsterType GetRandomFish()
     {
         int totalWeight = 0;
+        var monsters = GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Day) ? daySpawn : nightSpawn;
         foreach (var monster in monsters)
         {
             totalWeight += monster.weight;

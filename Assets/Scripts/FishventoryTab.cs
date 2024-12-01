@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.VolumeComponent;
 
 public class FishventoryTab : TabbedView
 {
-    int m_NumberOfTabs;
-    public int NumberOfTabs { get; set; }
-    public TabButton[] tabs;
-    int index;
+    int numberOfTabs = 3;
+    
+    public  List<TabButton> tabs=new();
+    public List<VisualElement> tabContent = new();
+    //int index;
     // Start is called before the first frame update
     public new class UxmlFactory : UxmlFactory<FishventoryTab, FishventoryTab.UxmlTraits> { }
 
@@ -21,33 +23,39 @@ public class FishventoryTab : TabbedView
         //{
             
         //    base.Init(ve, bag, cc);
+
         //    ((FishventoryTab)ve).NumberOfTabs = m_NumberOfTabs.GetValueFromBag(bag, cc);
         //    Debug.Log(((FishventoryTab)ve).NumberOfTabs);
         //}
     }
     public FishventoryTab()
     {
-        m_NumberOfTabs = 3;
+        //m_NumberOfTabs ;
         Init();
     }
 
     void Init()
     {
-        Debug.Log(m_NumberOfTabs);
+        Debug.Log(numberOfTabs);
         var content = this.Q("unity-content-container");
-        tabs =new TabButton[m_NumberOfTabs];
-        for(int i = 0; i < m_NumberOfTabs; i++)
+        for(int i = 0; i < numberOfTabs; i++)
         {
-            //int index = i;
+           
             VisualElement box = new VisualElement();
-            box.name = "box" + (i+1);
+            box.name = "Box" + (i + 1);
+            box.AddToClassList("Aquarium-Box");
+            tabContent.Add(box);
+            Debug.Log(box);
             content.Add(box);
-            TabButton tab = new TabButton("Tab "+(i+1), box);
-            tab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(tab); index = 0; });
-            tab.name = "Tab"+(i+1);
-            this.AddTab(tab, true);
-            tabs[i] = tab;
+           
+            TabButton tab = new TabButton("Tab "+(i + 1), box);
+            //tab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(tab);});
+            tab.name = "Tab"+(i + 1);
+            this.AddTab(tab,false);
+            
+            tabs.Add(tab);
         }
+       
 
 
     }

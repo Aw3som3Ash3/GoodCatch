@@ -9,7 +9,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="PCContainerAlpha" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-left: 0; -unity-text-outline-color: rgb(243, 65, 65); max-width: 1013px; justify-content: flex-end;">
-                <FishventoryTab style="height: 77%; max-width: 1013px; justify-content: flex-start; align-items: center;" />
+                <FishventoryTab style="height: 77%; max-width: 1013px; justify-content: space-around; align-items: center;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
