@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321bd3d01048fdf40840bcf4046246b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  database: {fileID: 11400000, guid: 701a6dbe99b89334abf5ce85d7d23401, type: 2}
   startingTime: 12.2
   secondsPerHour: 10
   testfisth:
   - {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
-  - {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
+  - {fileID: 11400000, guid: 4c4d1a2ba2dc3944a88c93c6f5c1c85e, type: 2}
   startingItems:
   - {fileID: 11400000, guid: 3f1412ff6633e1249b954c2915c0cdc8, type: 2}
   - {fileID: 11400000, guid: 3f1412ff6633e1249b954c2915c0cdc8, type: 2}

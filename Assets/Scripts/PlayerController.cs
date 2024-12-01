@@ -271,4 +271,9 @@ public class PlayerController : MonoBehaviour,ISaveable
         inputs.Fish.performed -= StartFishing;
         inputs.Interact.performed -= OnInteract;
     }
+
+    void Footstep()
+    {
+        //do audio event
+    }
 }
