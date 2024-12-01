@@ -6,7 +6,7 @@ using UnityEngine;
 public class FishZone : SaveableObject,ISaveable
 {
     [SerializeField]
-    SpawnTables daySpawnTable,nightSpawnTable;
+    SpawnTables spawnTable;
     
 
     [SerializeField]
@@ -41,18 +41,8 @@ public class FishZone : SaveableObject,ISaveable
         {
             return null;
         }
-       
         fishingSucceeded += () => data.amount--;
-        if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Day))
-        {
-            return daySpawnTable.GetRandomFish();
-        }
-        else if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Night))
-        {
-            return nightSpawnTable.GetRandomFish();
-        }
-        return daySpawnTable.GetRandomFish();
-
+        return spawnTable.GetRandomFish();
     }
 
     public override void Load(string json)
