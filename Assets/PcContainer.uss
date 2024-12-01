@@ -21,3 +21,12 @@
     transform-origin: bottom;
     scale: 1.5 1.5;
 }
+
+#unity-content-container {
+    align-self: stretch;
+}
+
+.Aquarium-Box {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
