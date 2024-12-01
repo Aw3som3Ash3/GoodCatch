@@ -177,7 +177,8 @@ public class GameManager : MonoBehaviour,ISaveable
         InputUser.onChange += OnDeviceChange;
         //InputUser.PerformPairingWithDevice()
         gameData.hasSeenFish = new bool[database.fishMonsters.Count];
-
+        InputManager.Input.UI.Pause.Enable();
+        InputManager.Input.UI.Pause.performed +=(x)=> PauseMenu.Pause();
 
     }
 

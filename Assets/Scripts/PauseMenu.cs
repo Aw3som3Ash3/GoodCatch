@@ -16,6 +16,8 @@ public class PauseMenu : VisualElement
     Bestiary bestiaryPage;
     PausePage currentPage;
     VisualElement menu;
+
+    static PauseMenu mainPause;
     public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
 
@@ -43,8 +45,9 @@ public class PauseMenu : VisualElement
         bestiary.clicked += () => BestiaryScreen();
         inventory.clicked += () =>throw new NotImplementedException();
         settting.clicked += Options;
-        InputManager.Input.UI.Pause.Enable();
-        InputManager.Input.UI.Pause.performed += OnPause;
+
+
+        mainPause = this;
         Debug.Log(this);
 
         menu.focusable = true;
@@ -78,64 +81,63 @@ public class PauseMenu : VisualElement
 
         evt.PreventDefault();
     }
-    void OnPause(InputAction.CallbackContext context)
+    static public void Pause()
     {
-      
+        mainPause.OnPause();
+    }
+    void OnPause()
+    {
+
         //Debug.Log(party.focusController.focusedElement);
-        if (context.performed)
+        Debug.Log("pausing");
+        if (currentPage != null)
         {
-            Debug.Log("pausing");
-            if (currentPage != null)
-            {
-                Back();
-                return;
-            }
-            if (!menu.enabledSelf)
-            {
-                prevVisability = UnityEngine.Cursor.visible;
-                prevMode = UnityEngine.Cursor.lockState;
+            Back();
+            return;
+        }
+        if (!menu.enabledSelf)
+        {
+            prevVisability = UnityEngine.Cursor.visible;
+            prevMode = UnityEngine.Cursor.lockState;
 
-            }
-            menu.SetEnabled(!menu.enabledSelf);
-            menu.visible = menu.enabledSelf;
-            //this.BringToFront();
-          
-            Time.timeScale = menu.enabledSelf ? 0 : 1;
-            if (menu.enabledSelf)
+        }
+        menu.SetEnabled(!menu.enabledSelf);
+        menu.visible = menu.enabledSelf;
+        //this.BringToFront();
+
+        Time.timeScale = menu.enabledSelf ? 0 : 1;
+        if (menu.enabledSelf)
+        {
+            menu.Focus();
+            //this.Focus();
+            //this.CaptureMouse();
+            //this.pickingMode =;
+            if (GameManager.Instance.inputMethod == InputMethod.controller)
             {
-                menu.Focus();
-                //this.Focus();
-                //this.CaptureMouse();
-                //this.pickingMode =;
-                if (GameManager.Instance.inputMethod == InputMethod.controller)
-                {
-                    UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-                    UnityEngine.Cursor.visible = false;
-                }
-                else
-                {
-                    UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-                    UnityEngine.Cursor.visible = true;
-
-                }
-               
-                InputManager.DisablePlayer();
-                InputManager.Input.UI.Back.Enable();
-                InputManager.Input.UI.Back.performed += Back;
-
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
             }
             else
             {
-                UnityEngine.Cursor.lockState = prevMode;
-                UnityEngine.Cursor.visible = prevVisability;
-                InputManager.EnablePlayer();
-                InputManager.Input.UI.Back.Disable();
-                InputManager.Input.UI.Back.performed -= Back;
+                UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+                UnityEngine.Cursor.visible = true;
+
             }
 
+            InputManager.DisablePlayer();
+            InputManager.Input.UI.Back.Enable();
+            InputManager.Input.UI.Back.performed += Back;
 
         }
-        
+        else
+        {
+            UnityEngine.Cursor.lockState = prevMode;
+            UnityEngine.Cursor.visible = prevVisability;
+            InputManager.EnablePlayer();
+            InputManager.Input.UI.Back.Disable();
+            InputManager.Input.UI.Back.performed -= Back;
+        }
+
     }
 
     void Back(InputAction.CallbackContext context=default)
@@ -194,6 +196,12 @@ public class PauseMenu : VisualElement
         menu.visible = false;
         menu.SetEnabled(false);
         currentPage = bestiaryPage;
+    }
+
+    
+    ~PauseMenu()
+    {
+        
     }
     
 }

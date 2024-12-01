@@ -158,11 +158,11 @@ public class CombatManager : MonoBehaviour
     }
     void UseItem(Item item,Action completedCallback)
     {
-        if(item is Net)
+        if(item is CombatHook)
         {
             combatVisualizer.SelectFish(Team.enemy,(t) => 
             { 
-                TryCatching((Net)item,t); 
+                TryCatching((CombatHook)item,t); 
                 ActionsCompleted(); 
                 combatUI.UpdateInventory();
                 completedCallback?.Invoke();
@@ -185,7 +185,7 @@ public class CombatManager : MonoBehaviour
         
        
     }
-    void TryCatching(Net net,Turn target)
+    void TryCatching(CombatHook net,Turn target)
     {
         if (!rewardFish)
         {

@@ -173,17 +173,18 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             }
         }
     }
+    
     public void OnBeforeSerialize()
     {
-        if (abilityID == null || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
-        {
-            abilityID = GUID.Generate().ToString();
-        }
-        getAbilityById[abilityID] = this;
+        
     }
 
     public void OnAfterDeserialize()
     {
+        if (abilityID == null || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
+        {
+            abilityID = Guid.NewGuid().ToString();
+        }
         getAbilityById[abilityID] = this;
     }
 }

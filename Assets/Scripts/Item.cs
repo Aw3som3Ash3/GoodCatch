@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -21,18 +22,22 @@ public abstract class Item : ScriptableObject,ISerializationCallbackReceiver
 
     public static Dictionary<string,Item> getItemById=new Dictionary<string,Item>();
 
+    private void OnEnable()
+    {
+     
+    }
     public void OnBeforeSerialize()
     {
-        if (itemId == null || (getItemById.ContainsKey(itemId) && getItemById[itemId] != this))
-        {
-            itemId = GUID.Generate().ToString();
-
-        }
-        getItemById[itemId] = this;
+       
     }
-
+    
     public void OnAfterDeserialize()
     {
+        if (itemId == null || (getItemById.ContainsKey(itemId) && getItemById[itemId] != this) || itemId == "")
+        {
+            itemId = Guid.NewGuid().ToString();
+
+        }
         
         getItemById[itemId] = this;
     }
