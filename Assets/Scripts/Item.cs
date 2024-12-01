@@ -23,17 +23,17 @@ public abstract class Item : ScriptableObject,ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        
-       
-    }
-
-    public void OnAfterDeserialize()
-    {
         if (itemId == null || (getItemById.ContainsKey(itemId) && getItemById[itemId] != this))
         {
             itemId = GUID.Generate().ToString();
 
         }
+        getItemById[itemId] = this;
+    }
+
+    public void OnAfterDeserialize()
+    {
+        
         getItemById[itemId] = this;
     }
 }

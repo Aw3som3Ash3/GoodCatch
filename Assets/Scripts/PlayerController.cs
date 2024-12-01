@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     [SerializeField]
     LayerMask interactionLayer;
 
-
+    AudioController audioController;
     [SerializeField]
     FishingRod fishingRod;
     Label InteractionUI;
@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
         fishingRod.gameObject.SetActive(false);
+        audioController=GetComponent<AudioController>();
         //InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
     }
     private void OnEnable()
@@ -274,6 +275,7 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     void Footstep()
     {
+        audioController?.PlayClipRandom();
         //do audio event
     }
 }

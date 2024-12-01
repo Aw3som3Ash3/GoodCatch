@@ -175,15 +175,15 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     }
     public void OnBeforeSerialize()
     {
-        
-    }
-
-    public void OnAfterDeserialize()
-    {
         if (abilityID == null || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
         {
             abilityID = GUID.Generate().ToString();
         }
+        getAbilityById[abilityID] = this;
+    }
+
+    public void OnAfterDeserialize()
+    {
         getAbilityById[abilityID] = this;
     }
 }
