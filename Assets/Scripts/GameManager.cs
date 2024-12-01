@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour,ISaveable
     private void Awake()
     {
 
-        RenderSettings.skybox = skybox;
+        
         if (Instance == null)
         {
             Instance = this;
