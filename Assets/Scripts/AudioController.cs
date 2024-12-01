@@ -11,7 +11,11 @@ public class AudioController : MonoBehaviour
     // Private variables
     private AudioClip activeClip;
 
-    // To play an audio clip, insert the line "audioController.PlayClipRandom();" into the Input Action of the source object's script. Remember to include a reference to the Audio Source with this script in the former's own code, preferably with a public declaration "public AudioController audioController;".
+    // To play an audio clip, insert the line "audioController.PlayClipRandom();"
+    // into the Input Action of the source object's script. Remember to include a
+    // reference to the Audio Source with this script in the former's own code,
+    // preferably with a public declaration "public AudioController audioController;".
+
     public void PlayClipRandom()
     {
         // Sets random active clip from array.
