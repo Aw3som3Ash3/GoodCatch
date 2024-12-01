@@ -62,4 +62,11 @@ public class FishZone : SaveableObject,ISaveable
         this.data = data;
 
     }
+
+    private void OnDrawGizmos()
+    {
+        var col =this.GetComponent<Collider>();
+        Gizmos.color = new Color(0, 1, 0, 0.5f);
+        Gizmos.DrawCube(col.bounds.center, col.bounds.max);
+    }
 }

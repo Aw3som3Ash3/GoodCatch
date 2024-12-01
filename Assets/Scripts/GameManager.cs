@@ -350,8 +350,8 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
-        PlayerFishventory.AddFish(fishMonsterType.GenerateMonster());
-        gameData.hasSeenFish[fishMonsterType.fishId] = true;
+        CapturedFish(fishMonsterType.GenerateMonster());
+        
     }
     public void CapturedFish(FishMonster fishMonster)
     {
