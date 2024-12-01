@@ -158,8 +158,8 @@ public class GameManager : MonoBehaviour,ISaveable
 
     private void Awake()
     {
-      
-       
+
+        RenderSettings.skybox = skybox;
         if (Instance == null)
         {
             Instance = this;
@@ -279,6 +279,7 @@ public class GameManager : MonoBehaviour,ISaveable
             Day++;
             DayTime %= 24;
         }
+        
     }
     /// <summary>
     /// advances time by in game hours not real time
@@ -405,7 +406,6 @@ public class GameManager : MonoBehaviour,ISaveable
             print("should load");
             SavingSystem.LoadGame();
             SceneManager.sceneLoaded -= SceneLoaded;
-
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
             //InputManager.EnablePlayer();
