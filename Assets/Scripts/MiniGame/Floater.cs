@@ -52,6 +52,7 @@ public class Floater : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(this.transform.position, Vector3.down, out hit, layerMask))
             {
+                this.GetComponentInChildren<Collider>().enabled = false;
                 depth = hit.distance;
                 print(depth);
                 if (depth > 1)
