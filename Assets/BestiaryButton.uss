@@ -1,9 +1,0 @@
-Button:hover {
-    transition-duration: 0.1s;
-    scale: 1.05 1.05;
-}
-
-Button:focus {
-    scale: 0.9 0.9;
-    transition-duration: 0.1s;
-}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Glamvish
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 0}
+  model: {fileID: 903130045763395845, guid: b4df2d84339a66642a31d1531b159912, type: 3}
   fishId: 8
   icon: {fileID: 0}
   homeDepth: 0
@@ -40,9 +40,9 @@ MonoBehaviour:
     max: 15
     minTalent: 0
     maxTalent: 0
-  SpecialFortitude:
-    min: 5
-    max: 10
+  specialFortitude:
+    min: 0
+    max: 0
     minTalent: 0
     maxTalent: 0
   accuracy:

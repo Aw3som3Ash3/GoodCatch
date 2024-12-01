@@ -1,0 +1,144 @@
+.mainbg {
+    background-color: rgba(0, 0, 0, 0.39);
+}
+
+.infopanel {
+    background-image: url("project://database/Assets/Prefabs/UI/UI-Png/Wave_Menu_Opacity_Gradient.png?fileID=2800000&guid=c1acab8330d1f7d46ac22fa593fb166a&type=3#Wave_Menu_Opacity_Gradient");
+}
+
+.title {
+    font-size: 150px;
+    -unity-font: resource('Fonts & Materials/ARLRDBD');
+    color: rgb(255, 255, 255);
+    -unity-text-align: lower-left;
+    -unity-font-definition: initial;
+    width: 100%;
+    left: 20px;
+    right: 20px;
+    top: 25px;
+    bottom: 0;
+    transform-origin: center;
+}
+
+.specweight {
+    -unity-font: resource('Fonts & Materials/ARLRDBD');
+    -unity-font-definition: initial;
+    font-size: 36px;
+    color: rgb(255, 255, 255);
+    margin-top: -5px;
+    -unity-font-style: normal;
+}
+
+.specdesc {
+    font-size: 25px;
+    white-space: normal;
+    -unity-font: resource('Fonts & Materials/ARLRDBD');
+    -unity-font-definition: initial;
+    color: rgb(255, 255, 255);
+}
+
+.abilitybox {
+    border-left-color: rgb(82, 108, 152);
+    border-right-color: rgb(82, 108, 152);
+    border-top-color: rgb(82, 108, 152);
+    border-bottom-color: rgb(82, 108, 152);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.statstitle {
+    -unity-font: resource('Fonts & Materials/ARLRDBD');
+    -unity-font-definition: initial;
+    font-size: 36px;
+    color: rgb(255, 255, 255);
+}
+
+.partymember {
+    width: 270px;
+    height: 270px;
+    max-width: 270px;
+    max-height: 270px;
+    background-image: url("project://database/Assets/Prefabs/UI/UI-Png/icon_bubble_bg.png?fileID=2800000&guid=6c2159c46a43d704784c7268eec19fe1&type=3#icon_bubble_bg");
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    overflow: hidden;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    border-left-color: rgb(1, 0, 255);
+    border-right-color: rgb(1, 0, 168);
+    border-top-color: rgb(1, 0, 255);
+    border-bottom-color: rgb(1, 0, 183);
+}
+
+.partyborder {
+    background-image: url("project://database/Assets/Prefabs/UI/UI-Png/icon_bubble.png?fileID=2800000&guid=c9bb3a6432785e840a8885d90561763e&type=3#icon_bubble");
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    right: auto;
+    bottom: auto;
+    top: auto;
+    left: auto;
+    overflow: visible;
+    display: none;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.partymember:hover {
+    width: 270px;
+    height: 270px;
+    max-width: 270px;
+    max-height: 270px;
+    background-image: url("project://database/Assets/Prefabs/UI/UI-Png/icon_bubble_bg.png?fileID=2800000&guid=6c2159c46a43d704784c7268eec19fe1&type=3#icon_bubble_bg");
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    overflow: hidden;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    border-left-color: rgb(1, 0, 255);
+    border-right-color: rgb(1, 0, 168);
+    border-top-color: rgb(1, 0, 255);
+    border-bottom-color: rgb(1, 0, 183);
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}
+
+.partymember:focus {
+    width: 270px;
+    height: 270px;
+    max-width: 270px;
+    max-height: 270px;
+    background-image: url("project://database/Assets/Prefabs/UI/UI-Png/icon_bubble_bg.png?fileID=2800000&guid=6c2159c46a43d704784c7268eec19fe1&type=3#icon_bubble_bg");
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    overflow: hidden;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    border-left-color: rgb(1, 0, 255);
+    border-right-color: rgb(1, 0, 168);
+    border-top-color: rgb(1, 0, 255);
+    border-bottom-color: rgb(1, 0, 183);
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}
