@@ -230,20 +230,57 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     void StartFishing(InputAction.CallbackContext context)
     {
-        fishingRod.gameObject.SetActive(true);
-        anim.SetTrigger("cast");
-        InputManager.DisablePlayer();
+        if (context.action.IsPressed())
+        {
+            Debug.Log("prep to cast");
+            //var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(cameraRig.forward));
+            model.localEulerAngles = new Vector3(model.localEulerAngles.x, cameraRig.transform.localEulerAngles.y, model.localEulerAngles.z); 
+            fishingRod.gameObject.SetActive(true);
+            anim.SetTrigger("cast");
+            moveAction.Disable();
+           
+            CancelInvoke("FishingCompleted");
+        }
+        
+       
     }
     void Casted()
     {
-        fishingRod.CastLine(cameraRig.forward,()=> { anim.SetTrigger("FishingComplete"); Invoke("FishingCompleted",1f); });
-        var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(cameraRig.forward));
-        model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
+        if (inputs.Fish.IsPressed())
+        {
+            anim.speed = 0;
+            inputs.Fish.canceled += Released;
+
+        }
+        else
+        {
+            inputs.Fish.canceled -= Released;
+            anim.SetTrigger("FishingComplete");
+            Invoke("FishingCompleted", 1f);
+        }
+      
+        
+
+    }
+
+    private void Released(InputAction.CallbackContext context)
+    {
+        if (context.duration > 0.5)
+        {
+            anim.speed = 1;
+            fishingRod.CastLine(model.forward,Mathf.Clamp((float)context.duration,0,1.5f), () => { anim.SetTrigger("FishingComplete"); Invoke("FishingCompleted", 1f); });
+        }
+        
+        
+        inputs.Fish.canceled -= Released;
+        //throw new NotImplementedException();
     }
 
     void FishingCompleted()
     {
         fishingRod.gameObject.SetActive(false);
+        moveAction.Enable();
+        
     }
 
     public void Load(string json)

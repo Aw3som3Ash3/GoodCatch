@@ -49,7 +49,7 @@ public class FishingRod : MonoBehaviour
         }
     }
 
-    public void CastLine(Vector3 lookDir,Action callback)
+    public void CastLine(Vector3 lookDir,float force,Action callback)
     {
         if (floater != null)
         {
@@ -59,7 +59,7 @@ public class FishingRod : MonoBehaviour
         floater = Instantiate(floaterPrefab, lineStart.transform.position, floaterPrefab.transform.rotation).GetComponent<Floater>();
         floater.completed += OnComplete;
         floater.HitWater += StartMiniGame;
-        floater.GetComponent<Rigidbody>().AddForce((lookDir + Vector3.up) * castForce, ForceMode.Impulse);
+        floater.GetComponent<Rigidbody>().AddForce( (lookDir+Vector3.up).normalized  * castForce* force, ForceMode.Impulse);
         fishingLine.positionCount = 20;
         
     }
