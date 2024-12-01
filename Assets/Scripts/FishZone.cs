@@ -6,7 +6,8 @@ using UnityEngine;
 public class FishZone : SaveableObject,ISaveable
 {
     [SerializeField]
-    SpawnTables spawnTable;
+    SpawnTables daySpawnTable,nightSpawnTable;
+    
 
     [SerializeField]
     int minAmount, maxAmount;
@@ -42,8 +43,16 @@ public class FishZone : SaveableObject,ISaveable
         }
        
         fishingSucceeded += () => data.amount--;
-        return spawnTable.GetRandomFish();
-        
+        if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Day))
+        {
+            return daySpawnTable.GetRandomFish();
+        }
+        else if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Night))
+        {
+            return nightSpawnTable.GetRandomFish();
+        }
+        return daySpawnTable.GetRandomFish();
+
     }
 
     public override void Load(string json)
@@ -52,5 +61,12 @@ public class FishZone : SaveableObject,ISaveable
         var data = JsonUtility.FromJson<Data>(json);
         this.data = data;
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        var col =this.GetComponent<Collider>();
+        Gizmos.color = new Color(0, 1, 0, 0.5f);
+        Gizmos.DrawCube(col.bounds.center, col.bounds.max);
     }
 }

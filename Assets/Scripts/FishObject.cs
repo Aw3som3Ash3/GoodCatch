@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.EventSystems;
+using UnityEngine.Playables;
 
 public class FishObject : MonoBehaviour
 {
@@ -25,10 +27,14 @@ public class FishObject : MonoBehaviour
     public Action ObjectDestroyed;
 
     bool isSelectable;
-    //public FishObject(FishMonster fish)
-    //{
-    //    this.fish = fish;
-    //}
+    
+    PlayableGraph playableGraph;
+    PlayableGraph idlePlayableGraph;
+    AnimationPlayableOutput playableOutput;
+    AnimationClipPlayable attackClipPlayable;
+    AnimationMixerPlayable mixerPlayable;
+
+    public Transform hookLocation { get; private set; }
     private void Awake()
     {
         EventTrigger eventTrigger= this.AddComponent<EventTrigger>();
@@ -67,6 +73,16 @@ public class FishObject : MonoBehaviour
         moveEvent.eventID = EventTriggerType.Move;
         moveEvent.callback.AddListener((eventData) => { Navigate?.Invoke(-InputManager.Input.UI.Navigate.ReadValue<Vector2>()); });
         eventTrigger.triggers.Add(moveEvent);
+        playableGraph = PlayableGraph.Create();    
+        playableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
+
+       
+
+        idlePlayableGraph = PlayableGraph.Create();
+        idlePlayableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
+       
+
+
     }
 
     private void Select()
@@ -98,6 +114,7 @@ public class FishObject : MonoBehaviour
     private void OnDestroy()
     {
         ObjectDestroyed?.Invoke();
+        playableGraph.Destroy();
     }
     public void EnableSelection()
     {
@@ -129,9 +146,27 @@ public class FishObject : MonoBehaviour
         var rend = outline.GetComponentInChildren<Renderer>();
         rend.enabled = false;
         rend.material = outlineMat;
-       
+        var anim = model.AddComponent<Animator>();
+        playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", anim);
+        mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
+        playableOutput.SetSourcePlayable(mixerPlayable);
+
+
         
-        
+        var idleClipPlayable = AnimationClipPlayable.Create(playableGraph, turn.fish.IdleAnimation);
+
+        attackClipPlayable = AnimationClipPlayable.Create(playableGraph, turn.fish.AttackAnimation);
+
+        playableGraph.Connect(idleClipPlayable, 0, mixerPlayable, 0);
+        playableGraph.Connect(attackClipPlayable, 0, mixerPlayable, 1);
+        mixerPlayable.SetInputWeight(0, 1.0f);
+        mixerPlayable.SetInputWeight(1, 1.0f);
+        attackClipPlayable.Pause();
+        playableGraph.Play();
+
+
+        hookLocation = model.GetComponent<FishModel>().HookLocation;
+
     }
     public void SetDestination(Vector3 destination)
     {
@@ -139,7 +174,20 @@ public class FishObject : MonoBehaviour
         shouldMove = true;
         StartCoroutine(MoveToDestination());
     }
+    public void AttackAnimation()
+    {
+        attackClipPlayable.SetTime(0);
+        playableGraph.Evaluate();
+        //playableOutput.SetSourcePlayable(clipPlayable);
+        attackClipPlayable.Play();
+        
+        //playableGraph.
 
+    }
+    public void StopMoving() 
+    {
+        shouldMove = false;
+    }
     IEnumerator MoveToDestination()
     {
         while (shouldMove && Vector3.Distance(this.transform.position, destination) > 0.01f)
@@ -152,4 +200,6 @@ public class FishObject : MonoBehaviour
         ReachedDestination?.Invoke();
 
     }
+
+    
 }

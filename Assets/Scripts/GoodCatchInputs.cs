@@ -78,7 +78,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""id"": ""14cd763b-1cd7-4213-bd0a-cd44f532b22e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {

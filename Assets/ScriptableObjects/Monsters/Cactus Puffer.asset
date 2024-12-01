@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   model: {fileID: 0}
-  fishId: 0
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  fishId: 3
+  icon: {fileID: 0}
   homeDepth: 0
   preferredBait: []
   elements:
@@ -55,3 +55,5 @@ MonoBehaviour:
   baseStamina: 70
   baseAbilities: []
   difficulty: 0
+  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
+  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

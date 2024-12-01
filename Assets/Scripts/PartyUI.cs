@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class PartyUI : VisualElement
+public class PartyUI : PausePage
 {
     Fishventory fishventory;
     public GameObject partyPanel;

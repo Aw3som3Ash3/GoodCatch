@@ -8,11 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SkyBox
-  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 0304570a23c5ac849b41614679430e4c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _SUNDISK_HIGH_QUALITY
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -72,6 +71,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MoonTexture:
+        m_Texture: {fileID: 2800000, guid: e41bb4a7d67707f4db35291db56a0235, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -87,6 +90,10 @@ Material:
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StarTexture:
+        m_Texture: {fileID: 2800000, guid: 086f6cedf7710c649b6aec6f694d7db1, type: 3}
+        m_Scale: {x: 0.3, y: 0.3}
         m_Offset: {x: 0, y: 0}
     - _UpTex:
         m_Texture: {fileID: 0}
@@ -112,6 +119,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -129,39 +137,51 @@ Material:
     - _Layout: 0
     - _Mapping: 1
     - _Metallic: 0
+    - _MinimumStarIntensity: 0.16
     - _MirrorOnBack: 0
+    - _MoonIntensity: 0.1
+    - _MoonRadiusA: 0.05
+    - _MoonRadiusB: 0.7
+    - _NightExponent1: 5
+    - _NightExponent2: 0.2
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Rotation: 0
-    - _SkyExponent1: 1
-    - _SkyExponent2: 0.5
+    - _SkyExponent1: 5
+    - _SkyExponent2: 0.2
     - _SkyIntensity: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+    - _StarIntensity: 0.5
     - _SunDisk: 2
-    - _SunExponent: 1
-    - _SunIntensity: 1
-    - _SunRadiusA: 0.01
-    - _SunRadiusB: 0.05
+    - _SunExponent: 5.25
+    - _SunIntensity: 1.55
+    - _SunRadiusA: 0.06
+    - _SunRadiusB: 0.03
     - _SunSize: 0.04
     - _SunSizeConvergence: 5
     - _Surface: 0
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0, g: 0.02177071, b: 0.735849, a: 1}
-    - _SkyColor1: {r: 0.21796995, g: 0.3547337, b: 0.64779866, a: 1}
-    - _SkyColor2: {r: 0, g: 0, b: 0, a: 1}
-    - _SkyColor3: {r: 0, g: 0, b: 0, a: 1}
+    - _SkyColor1: {r: 0.09748411, g: 0.16805126, b: 1, a: 1}
+    - _SkyColor2: {r: 0.0750563, g: 0.17951408, b: 0.4339623, a: 1}
+    - _SkyColor3: {r: 0, g: 0.00031364764, b: 0.031446517, a: 1}
+    - _SkyColorNight1: {r: 0, g: 0, b: 0.050314426, a: 1}
+    - _SkyColorNight2: {r: 0, g: 0, b: 0, a: 1}
+    - _SkyColorNight3: {r: 0, g: 0, b: 0, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -14,6 +15,7 @@ public class FishingRod : MonoBehaviour
 
     [SerializeField]
     FishingMiniGame gamePrefab;
+    Action OnComplete;
     private void Awake()
     {
         fishingLine = GetComponent<LineRenderer>();
@@ -33,7 +35,13 @@ public class FishingRod : MonoBehaviour
     {
         if (floater != null)
         {
-            fishingLine.SetPosition(2, this.transform.InverseTransformPoint(floater.transform.position));
+            Vector3 relativeFloaterPos = this.transform.InverseTransformPoint(floater.LineEndPos);
+            for (int i = 2; i < fishingLine.positionCount-1; i++)
+            {
+                Vector3 pos = QuadBezier(lineStart.localPosition,(relativeFloaterPos - lineStart.localPosition)/2 +Vector3.down*2 + Vector3.back * 2 , relativeFloaterPos, (float)(i-2)/ (float)(fishingLine.positionCount - 2));
+                fishingLine.SetPosition(i, pos);
+            }
+            fishingLine.SetPosition(fishingLine.positionCount - 1, relativeFloaterPos);
         }
         else
         {
@@ -41,25 +49,35 @@ public class FishingRod : MonoBehaviour
         }
     }
 
-    public void CastLine(Vector3 lookDir)
+    public void CastLine(Vector3 lookDir,float force,Action callback)
     {
         if (floater != null)
         {
             Destroy(floater.gameObject);
         }
-
+        OnComplete += callback;
         floater = Instantiate(floaterPrefab, lineStart.transform.position, floaterPrefab.transform.rotation).GetComponent<Floater>();
+        floater.completed += OnComplete;
         floater.HitWater += StartMiniGame;
-        floater.GetComponent<Rigidbody>().AddForce((lookDir + Vector3.up) * castForce, ForceMode.Impulse);
-        fishingLine.positionCount = 3;
+        floater.GetComponent<Rigidbody>().AddForce( (lookDir+Vector3.up).normalized  * castForce* force, ForceMode.Impulse);
+        fishingLine.positionCount = 20;
+        
     }
 
     void StartMiniGame()
     {
         FishingMiniGame game = Instantiate(gamePrefab, floater.transform.position, this.transform.parent.transform.rotation);
         game.Initiate(floater);
+        game.OnCancel += OnComplete;
         InputManager.DisablePlayer();
         floater.HitWater -= StartMiniGame;
-        FishingMiniGame.SuccesfulFishing += () => { Destroy(floater.gameObject); };
+        FishingMiniGame.SuccesfulFishing += () => { Destroy(floater.gameObject); OnComplete?.Invoke(); };
+    }
+
+
+    Vector3 QuadBezier(Vector3 start,Vector3 controlPoint, Vector3 end,float t)
+    {
+
+        return (1 - t) * (1 - t) * start + 2 * (1 - t) * t * controlPoint + t * t * end;
     }
 }

@@ -58,3 +58,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}
   - {fileID: 11400000, guid: f5e161f5f7750b6468c04d356a177b7c, type: 2}
   difficulty: 0
+  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
+  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
