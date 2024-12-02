@@ -51,7 +51,6 @@ public class InnDialogue : MonoBehaviour
         Debug.Log("ShowUISelectable function has been called.");
         UIElement.SetActive(true);
         option1.visible = true;
-        option1.Focus();
         option2.visible = true;
     }
 

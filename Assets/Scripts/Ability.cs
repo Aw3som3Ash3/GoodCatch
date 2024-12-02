@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [CreateAssetMenu(fileName = "Ability", menuName = "Fish Monster/Ability", order = 1)]
 public class Ability : ScriptableObject,ISerializationCallbackReceiver
@@ -76,7 +77,6 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     Element element;
     [SerializeField]
     EffectChance[] effects;
-    public EffectChance[] Effects { get { return effects; } }
     [SerializeField]
     [Range(-2, 2)]
     int forcedMovement = 0;

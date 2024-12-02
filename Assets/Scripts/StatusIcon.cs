@@ -10,7 +10,7 @@ public class StatusIcon : VisualElement
     [SerializeField]
     Label turnsLeftText;
     StatusEffect.StatusEffectInstance statusEffect;
-    StatusEffectToolTip effectDescription= new StatusEffectToolTip();
+    Label effectDescription= new Label();
 
     public event Action<Action<ToolTipBox>> MouseEnter;
     public event Action MouseExit;
@@ -21,14 +21,14 @@ public class StatusIcon : VisualElement
     }
     public StatusIcon()
     {
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/StatusIcon");
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/StatusIcon.uxml");
 
         visualTreeAsset.CloneTree(this);
 
     }
     public StatusIcon(StatusEffect.StatusEffectInstance statusEffect)
     {
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/StatusIcon");
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/StatusIcon.uxml");
 
         visualTreeAsset.CloneTree(this);
         imageObj=this.Q("Icon");
@@ -45,7 +45,7 @@ public class StatusIcon : VisualElement
         this.RegisterCallback<MouseOutEvent>((x) => MouseExit?.Invoke());
         this.RegisterCallback<FocusOutEvent>((x) => MouseExit?.Invoke());
         
-        effectDescription.SetSatus(statusEffect);
+        effectDescription.text = "nothing for now";
 
     }
     void PopulateToolTip(ToolTipBox element)

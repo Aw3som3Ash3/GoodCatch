@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-
-using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
+using UnityEngine;
 [CreateAssetMenu(fileName ="SceneLayout",menuName ="SceneLayout")]
 public class LevelSetup : ScriptableObject
 {
@@ -11,4 +9,3 @@ public class LevelSetup : ScriptableObject
     public SceneSetup[] sceneSetup;
     
 }
-#endif

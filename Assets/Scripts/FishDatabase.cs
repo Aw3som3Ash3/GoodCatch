@@ -8,13 +8,22 @@ public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
 {
     [SerializeField]
     public List<FishMonsterType> fishMonsters;
-    public IReadOnlyList<FishMonsterType> FishMonsters { get { return fishMonsters; } }
-    public Dictionary<int, FishMonsterType> GetFish = new Dictionary<int, FishMonsterType>();
-    public Dictionary<FishMonsterType, int> GetId = new Dictionary<FishMonsterType, int>();
+    //public IReadOnlyList<FishMonsterType> FishMonsters { get { return fishMonsters; } }
+    //public Dictionary<int, FishMonsterType> GetFish = new Dictionary<int, FishMonsterType>();
+    //public Dictionary<FishMonsterType, int> GetId = new Dictionary<FishMonsterType, int>();
     public void OnAfterDeserialize()
     {
+        //GetId = new Dictionary<FishMonsterType, int>();
+
         fishMonsters = fishMonsters.GroupBy(x => x).Select(y => y.First()).ToList();
-        RegenerateIDs();
+        for (int i = 0; i < fishMonsters.Count; i++)
+        {
+            var fish= fishMonsters[i];
+            //Debug.Log(fishMonsters[i]);
+            //GetId.Add(fish, i);
+            fish.fishId = i;
+            //GetFish.Add(i, fish);
+        }
 
     }
     public void SetList(List<FishMonsterType> fishMonsters)
@@ -23,7 +32,7 @@ public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
     }
     public void OnBeforeSerialize()
     {
-        GetFish = new Dictionary<int, FishMonsterType>();
+        //GetFish = new Dictionary<int, FishMonsterType>();
     }
     public FishMonsterType GetRandom()
     {
@@ -36,21 +45,6 @@ public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
     //    Debug.Log(GetFilePath());
     //    Save(false);
     //}
-
-    [ContextMenu("RegnerateIDs")]
-    void RegenerateIDs()
-    {
-        GetId = new Dictionary<FishMonsterType, int>();
-        GetFish = new Dictionary<int, FishMonsterType>();
-        for (int i = 0; i < fishMonsters.Count; i++)
-        {
-            var fish = fishMonsters[i];
-            //Debug.Log(fishMonsters[i]);
-            GetId.Add(fish, i);
-            fish.fishId = i;
-            GetFish.Add(i, fish);
-        }
-    }
 }
 //#if UNITY_EDITOR
 //public class WizardFishDataBase : ScriptableWizard

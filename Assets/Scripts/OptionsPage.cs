@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class OptionsPage : PausePage
@@ -23,9 +22,7 @@ public class OptionsPage : PausePage
     public OptionsPage()
     {
         VisualElement root = this;
-
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/SettingsMenu");
-
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/SettingsMenu.uxml");
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
@@ -81,6 +78,6 @@ public class OptionsPage : PausePage
 
     private void OnMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        throw new NotImplementedException();
     }
 }

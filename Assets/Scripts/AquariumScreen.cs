@@ -10,7 +10,7 @@ public class AquariumScreen : PausePage
     //VisualElement[] tabs=new VisualElement[3];
     FishventoryTab fishventoryTab;
     AquariumSlot selectedSlot;
-    Label nameTitle,hp,stamina,level;
+    Label nameTitle,hp,stamina;
     VisualElement picturePreview;
     VisualElement party;
     Button[] partySlots=new Button[7];
@@ -28,8 +28,7 @@ public class AquariumScreen : PausePage
     public AquariumScreen()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/PcContainer");
-
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/PcContainer.uxml");
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
@@ -45,20 +44,13 @@ public class AquariumScreen : PausePage
         mainOptions = this.Q("MostLeftContainerPC");
         mainOptions.visible = true;
         mainOptions.SetEnabled(true);
-        level = this.Q<Label>("LevelAmount");
         for (int i = 0; i < 7; i++)
         {
             int index = i;
             partySlots[i]=party.Q<Button>("slot" + (i + 1));
-            if (i < GameManager.Instance.PlayerFishventory.Fishies.Count)
-            {
-                var value = partySlots[i].style.backgroundImage.value;
-                value.sprite = GameManager.Instance.PlayerFishventory.Fishies[i].Icon;
-                partySlots[i].style.backgroundImage = value;
-                slotToFish[partySlots[i]] = GameManager.Instance.PlayerFishventory.Fishies[i];
-            }
-           
-           
+            var value = partySlots[i].style.backgroundImage.value;
+            value.sprite= GameManager.Instance.PlayerFishventory.Fishies[i].Icon;
+            slotToFish[partySlots[i]] = GameManager.Instance.PlayerFishventory.Fishies[i];
 
             partySlots[i].clicked += () =>
             {
@@ -66,7 +58,6 @@ public class AquariumScreen : PausePage
                 GameManager.Instance.PlayerFishventory.SwapFish(index, temp);
                 var value = partySlots[index].style.backgroundImage.value;
                 value.sprite= GameManager.Instance.PlayerFishventory.Fishies[index].Icon;
-                partySlots[index].style.backgroundImage = value;
                 slotToFish[partySlots[index]] = GameManager.Instance.PlayerFishventory.Fishies[index];
                 mainOptions.visible = true;
                 mainOptions.SetEnabled(true);
@@ -85,7 +76,6 @@ public class AquariumScreen : PausePage
         //    Debug.Log("has box "+i+":  "+ tabs[i]);
         //}
         //contentContainer = this.Q("unity-content-container");
-        fishventoryTab.Focus();
         SetUp();
     }
 
@@ -130,7 +120,6 @@ public class AquariumScreen : PausePage
         }
         var value = picturePreview.style.backgroundImage.value;
         value.sprite= slot.fishMonster.Icon;
-        picturePreview.style.backgroundImage = value;
         nameTitle.text = slot.fishMonster.Name;
         hp.text = slot.fishMonster.MaxHealth.ToString();
         stamina.text = slot.fishMonster.MaxStamina.ToString();
@@ -172,7 +161,6 @@ public class AquariumSlot : VisualElement
         this.fishMonster = fishMonster;
         var value= sprite.style.backgroundImage.value;
         value.sprite= fishMonster.MiniSprite;
-        sprite.style.backgroundImage = value;
         return temp;
     }
     public AquariumSlot()
@@ -186,13 +174,11 @@ public class AquariumSlot : VisualElement
         this.fishMonster = fishMonster;
         var value = sprite.style.backgroundImage.value;
         value.sprite= fishMonster.MiniSprite;
-        sprite.style.backgroundImage = value;
     }
     void Init()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/AquariumSlot");
-
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/AquariumSlot.uxml");
         visualTreeAsset.CloneTree(root);
         slotBox = this.Q("SlotBox");
         sprite = this.Q("Sprite");

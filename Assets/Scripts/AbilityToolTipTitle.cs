@@ -20,7 +20,7 @@ public class AbilityToolTipTitle : TooltipModule
     {
 
     }
-    public AbilityToolTipTitle():base("UXMLs/AbilityTitle")
+    public AbilityToolTipTitle():base("Assets/Prefabs/UI/AbilityTitle.uxml")
     {
 
     }
@@ -82,10 +82,10 @@ public abstract class TooltipModule : VisualElement
     {
 
     }
-    public TooltipModule(string fileName)
+    public TooltipModule(string path)
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>(fileName);
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(path);
         visualTreeAsset.CloneTree(root);
         
         this.style.flexGrow = 1;
@@ -105,7 +105,7 @@ public class AbilityTooltipActions : TooltipModule
     Label damageTitle;
     public float damage { get; private set; }
     //public float accuracy; 
-    public AbilityTooltipActions():base("UXMLs/AbilityAction")
+    public AbilityTooltipActions():base("Assets/Prefabs/UI/AbilityAction.uxml")
     {
 
     }
@@ -124,49 +124,5 @@ public class AbilityTooltipActions : TooltipModule
         damageTitle = this.Q<Label>("DamageHealth");
         accuracyAmount = this.Q<Label>("AccuracyAmount");
 
-    }
-}
-
-
-public class AbilityTooltipStatusChance : TooltipModule
-{
-    Label statusName,chance,effect;
-    public AbilityTooltipStatusChance():base("UXMLs/AbilityStatus")
-    {
-
-    }
-    public void SetStatusEffect(StatusEffect effect,float chance)
-    {
-        statusName.text = effect.name;
-        this.chance.text = (chance * 100).ToString() + "%";
-    }
-    protected override void Init()
-    {
-        statusName = this.Q<Label>("StatusName");
-        chance = this.Q<Label>("StatusChancePercentageAmount");
-
-        //throw new System.NotImplementedException();
-    }
-}
-
-
-
-public class StatusEffectToolTip : TooltipModule
-{
-    Label statusName, roundsRemaining, description;
-    public StatusEffectToolTip():base("UXMLs/ToolTipStatusActive")
-    {
-
-    }
-    public void SetSatus(StatusEffect.StatusEffectInstance effect)
-    {
-        statusName.text = effect.effect.name;
-        roundsRemaining.text = effect.remainingDuration.ToString();
-    }
-    protected override void Init()
-    {
-        statusName = this.Q<Label>("StatusName");
-        roundsRemaining = this.Q<Label>("StatusRoundsAmount");
-        //throw new System.NotImplementedException();
     }
 }

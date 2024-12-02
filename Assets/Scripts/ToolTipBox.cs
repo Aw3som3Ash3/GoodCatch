@@ -21,8 +21,7 @@ public class ToolTipBox : VisualElement
     public ToolTipBox()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/ToolTip");
-
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/ToolTip.uxml");
         visualTreeAsset.CloneTree(root);
         content = this.Q("content");
         this.visible = false;

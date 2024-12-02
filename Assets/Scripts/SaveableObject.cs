@@ -15,10 +15,10 @@ public abstract class SaveableObject : MonoBehaviour,ISaveable
     public string ID => id;
 
     public abstract void Load(string json);
-#if UNITY_EDITOR
+
     private void Awake()
     {
-
+#if UNITY_EDITOR
         if (!Application.isPlaying)
         {
             if (id == null||id=="")
@@ -39,7 +39,7 @@ public abstract class SaveableObject : MonoBehaviour,ISaveable
                 }
             }
         }
-
+#endif
     }
 
     [ContextMenu("Generate GUID")]
@@ -48,5 +48,4 @@ public abstract class SaveableObject : MonoBehaviour,ISaveable
         id = GUID.Generate().ToString();
         Debug.Log("Current Save ID:" + id);
     }
-#endif
 }
