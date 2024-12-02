@@ -16,6 +16,9 @@ public class FishingRod : MonoBehaviour
     [SerializeField]
     FishingMiniGame gamePrefab;
     Action OnComplete;
+
+    public AudioController audioController;
+
     private void Awake()
     {
         fishingLine = GetComponent<LineRenderer>();
@@ -51,6 +54,8 @@ public class FishingRod : MonoBehaviour
 
     public void CastLine(Vector3 lookDir,float force,Action callback)
     {
+        audioController.PlayClipRandom();
+
         if (floater != null)
         {
             Destroy(floater.gameObject);
