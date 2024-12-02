@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Dollfin
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 0}
+  model: {fileID: 919132149155446097, guid: 3fdeb6f4aae1e0e49bec97f52b2710b3, type: 3}
   fishId: 10
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 2dd69fad33b28c745b19d797d64db325, type: 3}
+  miniSprite: {fileID: -619332588, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 0
   preferredBait: []
   elements:

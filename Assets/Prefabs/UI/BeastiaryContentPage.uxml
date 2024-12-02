@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/UnityThemes/GoodCatchStyleSheet.uss?fileID=7433441132597879392&amp;guid=3514bcc995f7ff84c8e081dd8739d774&amp;type=3#GoodCatchStyleSheet" />
+    <Style src="project://database/Assets/BestiaryStyleSheet.uss?fileID=7433441132597879392&amp;guid=7f0f3dde6c098204a9e35430a3f15f81&amp;type=3#BestiaryStyleSheet" />
     <ui:VisualElement name="ContentWorkSpace" style="flex-grow: 1; flex-direction: row; background-color: rgb(43, 50, 70); background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/BackgroundWithlines.png?fileID=21300000&amp;guid=e9d525fd936ad5f4daa5061142c154b5&amp;type=3#BackgroundWithlines&quot;);">
         <ui:VisualElement name="AlphaContainer" style="flex-grow: 0; flex-direction: row; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 0; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
-            <ui:VisualElement name="LeftContainer" style="flex-grow: 0; background-color: rgba(164, 127, 127, 0); max-width: none; min-width: 280px; width: 571px; flex-shrink: 0; margin-left: 16px; margin-top: 13px;">
+            <ui:VisualElement name="LeftContainer" style="flex-grow: 0; background-color: rgba(164, 127, 127, 0); max-width: none; min-width: 280px; width: 571px; flex-shrink: 0; margin-left: 16px; margin-top: 16px; padding-right: 20px; margin-right: -5px;">
                 <ui:VisualElement name="ProfilePictureContainer" style="flex-grow: 0; padding-top: 5%; padding-right: 5%; padding-bottom: 5%; padding-left: 5%; background-color: rgb(164, 164, 164); justify-content: center; align-items: stretch; max-height: 39%; flex-shrink: 0; min-height: 46%;">
                     <ui:VisualElement name="pngImport" style="flex-grow: 1; justify-content: flex-start; background-color: rgb(0, 0, 0); flex-shrink: 1;" />
                 </ui:VisualElement>
@@ -10,54 +11,54 @@
                     <ui:VisualElement name="DetailParent" style="flex-grow: 1; padding-top: 26px; padding-right: 26px; padding-bottom: 26px; padding-left: 26px; align-self: auto; justify-content: flex-start; align-items: stretch; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0);">
                         <ui:VisualElement name="WST_Container" style="flex-grow: 0; background-color: rgba(178, 178, 178, 0); max-height: 50%; margin-bottom: 7%; flex-shrink: 0; align-items: flex-start; justify-content: center; margin-top: 7%;">
                             <ui:VisualElement name="WeightBox" style="flex-grow: 0; flex-direction: row; align-items: center; align-self: auto; justify-content: flex-start; flex-wrap: wrap; margin-top: 4px; margin-right: 2px; margin-bottom: 4px; margin-left: 2px;">
-                                <ui:Label tabindex="-1" text="Weight:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Weight" style="font-size: 36px; -unity-font-style: bold; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
-                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WeigthAmount" style="font-size: 40%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label tabindex="-1" text="Weight:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Weight" style="font-size: 36px; -unity-font-style: normal; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255);" />
+                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WeigthAmount" style="font-size: 36%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-font-style: normal; color: rgb(255, 255, 255);" />
                             </ui:VisualElement>
                             <ui:VisualElement name="SizeBox" style="flex-grow: 0; flex-direction: row; align-items: center;">
-                                <ui:Label tabindex="-1" text="Size:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Size" style="font-size: 40%; -unity-font-style: bold; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
-                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SizeAmount" style="font-size: 40%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label tabindex="-1" text="Size:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Size" style="font-size: 40%; -unity-font-style: normal; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255);" />
+                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SizeAmount" style="font-size: 36%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-font-style: normal; color: rgb(255, 255, 255);" />
                             </ui:VisualElement>
                             <ui:VisualElement name="Types" style="flex-grow: 0; flex-direction: row; align-items: center;">
-                                <ui:Label tabindex="-1" text="Types:" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 40%; -unity-font-style: bold; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
-                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 40%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                                <ui:Label tabindex="-1" text="Types:" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 36%; -unity-font-style: normal; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255);" />
+                                <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 36%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255);" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="StatDistibutionContainer" style="flex-grow: 0; max-height: 100%; margin-top: -6px; flex-shrink: 0;">
                             <ui:VisualElement name="SDTextBox" style="flex-grow: 1; align-self: center; justify-content: flex-start;">
-                                <ui:Label tabindex="-1" text="StatDistibution" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SDText" style="font-size: 40%; -unity-font-style: bold; border-bottom-width: 2px; border-bottom-color: rgb(0, 0, 0);" />
+                                <ui:Label tabindex="-1" text="StatDistibution" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SDText" style="font-size: 36%; -unity-font-style: normal; border-bottom-width: 2px; border-bottom-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0);" />
                             </ui:VisualElement>
                             <ui:VisualElement name="HPTextBox" style="flex-grow: 1; flex-direction: row; align-self: center;">
-                                <ui:Label tabindex="-1" text="HP:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HP" style="font-size: 40%; -unity-font-style: bold;" />
-                                <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HPAmount" style="font-size: 40%;" />
+                                <ui:Label tabindex="-1" text="HP:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HP" style="font-size: 36%; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+                                <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HPAmount" style="font-size: 36%; color: rgb(255, 255, 255);" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="StatContainer" style="flex-grow: 1; flex-direction: row; max-height: 30%;">
                             <ui:VisualElement name="StatLeftCotainer" style="flex-grow: 1; justify-content: flex-start; align-self: auto; align-items: center;">
                                 <ui:VisualElement name="StaBox" style="flex-grow: 0; flex-direction: row;">
-                                    <ui:Label tabindex="-1" text="Sta:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Sta" style="font-size: 40%; -unity-font-style: bold; flex-wrap: nowrap;" />
-                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StaAmount" style="font-size: 40%;" />
+                                    <ui:Label tabindex="-1" text="Sta:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Sta" style="font-size: 36%; -unity-font-style: normal; flex-wrap: nowrap; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StaAmount" style="font-size: 36%; color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="AtkBox" style="flex-grow: 0; flex-direction: row;">
-                                    <ui:Label tabindex="-1" text="Atk:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Atk" style="font-size: 40%; -unity-font-style: bold; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
-                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AtkAmount" style="-unity-font-style: normal; font-size: 40%;" />
+                                    <ui:Label tabindex="-1" text="Atk:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Atk" style="font-size: 36%; -unity-font-style: normal; padding-top: 4px; padding-right: 2px; padding-bottom: 4px; padding-left: 1px; margin-top: 4px; margin-right: 4px; margin-bottom: 2px; margin-left: 2px; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AtkAmount" style="-unity-font-style: normal; font-size: 36%; color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="FortBox" style="flex-grow: 1; flex-direction: row;">
-                                    <ui:Label tabindex="-1" text="Def:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Fort" style="font-size: 40%; -unity-font-style: bold;" />
-                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FortAmount" style="font-size: 40%;" />
+                                    <ui:Label tabindex="-1" text="Def:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Fort" style="font-size: 36%; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FortAmount" style="font-size: 36%; color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement name="StatRightContianer" style="flex-grow: 1; justify-content: flex-start; align-items: flex-start; height: auto;">
                                 <ui:VisualElement name="AgiBox" style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-items: auto;">
-                                    <ui:Label tabindex="-1" text="Agi:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Agi" style="font-size: 40%; -unity-font-style: bold;" />
-                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AgiAmount" style="font-size: 40%;" />
+                                    <ui:Label tabindex="-1" text="Agi:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Agi" style="font-size: 36%; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AgiAmount" style="font-size: 36%; color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="MgAtkBox" style="flex-grow: 0; flex-direction: row;">
-                                    <ui:Label tabindex="-1" text="MgAtk:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgAtk" style="font-size: 40%; -unity-font-style: bold;" />
-                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgAtkAmount" style="font-size: 40%;" />
+                                    <ui:Label tabindex="-1" text="MgAtk:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgAtk" style="font-size: 36%; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgAtkAmount" style="font-size: 36%; color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                                 <ui:VisualElement name="MgForBox" style="flex-grow: 1; flex-direction: row;">
-                                    <ui:Label tabindex="-1" text="MgDef:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgFor" style="font-size: 40%; -unity-font-style: bold;" />
-                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgForAmount" style="font-size: 40%;" />
+                                    <ui:Label tabindex="-1" text="MgDef:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgFor" style="font-size: 36%; -unity-font-style: normal; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="xx" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MgForAmount" style="font-size: 36%; color: rgb(255, 255, 255);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
@@ -94,7 +95,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="LoreBox" style="flex-grow: 1; min-height: 33%; max-height: 100%; flex-direction: row; padding-left: 117px;">
+                <ui:VisualElement name="LoreBox" style="flex-grow: 1; min-height: 33%; max-height: 100%; flex-direction: row; padding-left: 139px;">
                     <ui:Label tabindex="-1" text="Lore:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreTitle" style="font-size: 36px; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
                     <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreAmount" style="white-space: normal; font-size: 36px; color: rgb(255, 255, 255); -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
                 </ui:VisualElement>
