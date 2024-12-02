@@ -145,6 +145,10 @@ public static class SavingSystem
     {
        
         var info = new DirectoryInfo(SavePath);
+        if (!info.Exists)
+        {
+            return 0;
+        }
         if (info.GetFiles().Length <= 0)
         {
             return 0;
