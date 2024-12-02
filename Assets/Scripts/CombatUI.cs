@@ -151,6 +151,7 @@ public class CombatUI : VisualElement
         {
             tabbedView.ChangeTab((int)context.ReadValue<float>());
             Debug.Log("tab change: " + (int)context.ReadValue<float>());
+            toolTip.visible = false;
 
         }
       
@@ -328,10 +329,10 @@ public class CombatUI : VisualElement
     public void SetInventory(ItemInventory inv)
     {
         this.inventory = inv;
-        var combatItems = inv.GetDictionaryOfItems<CombatItem>();
+        var combatItems = inv.GetListOfItems<CombatItem>();
         foreach (var combatItem in combatItems)
         {
-            var itemUI = new CombatItemUI(combatItem.Key, combatItem.Value);
+            var itemUI = new CombatItemUI(combatItem.Item, combatItem.amount);
             itemUI.MouseEnter += (action) => action(toolTip);
             itemUI.MouseExit+=() => toolTip.visible = false;
             itemBar.Add(itemUI);
@@ -342,13 +343,13 @@ public class CombatUI : VisualElement
     
     public void UpdateInventory()
     {
-        var combatItems = inventory.GetDictionaryOfItems<CombatItem>();
+        var combatItems = inventory.GetListOfItems<CombatItem>();
         var  uiItems = itemBar.Children().ToArray();
         foreach (CombatItemUI uiItem in  uiItems)
         {
-            if (combatItems.ContainsKey(uiItem.item))
+            if (inventory.Contains(uiItem.item))
             {
-                uiItem.SetAmount(combatItems[uiItem.item]);
+                uiItem.SetAmount(inventory.GetAmount(uiItem.item));
             }
             else
             {

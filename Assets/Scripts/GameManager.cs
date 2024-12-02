@@ -28,15 +28,18 @@ public class GameManager : MonoBehaviour,ISaveable
         public Fishventory StoredFishventory;
         public ItemInventory PlayerInventory;
         public float dayTime;
-
+        public bool[] hasSeenFish;
         public GameData(int partySize)
         {
             PlayerFishventory = new Fishventory(partySize);
             PlayerInventory = new ItemInventory();
             StoredFishventory = new Fishventory();
             dayTime =0;
+            hasSeenFish = new bool[0];
+            
         }
     }
+    public List<bool> HasSeenFish{ get { return gameData.hasSeenFish.ToList(); } }
     GameData gameData=new GameData(7);
     public Fishventory PlayerFishventory { get { return gameData.PlayerFishventory; }}
     public Fishventory StoredFishventory { get { return gameData.StoredFishventory; }}
@@ -155,8 +158,8 @@ public class GameManager : MonoBehaviour,ISaveable
 
     private void Awake()
     {
-      
-       
+
+        
         if (Instance == null)
         {
             Instance = this;
@@ -173,8 +176,9 @@ public class GameManager : MonoBehaviour,ISaveable
         InputUser.onUnpairedDeviceUsed += OnDeviceChange;
         InputUser.onChange += OnDeviceChange;
         //InputUser.PerformPairingWithDevice()
-       
-
+        gameData.hasSeenFish = new bool[database.fishMonsters.Count];
+        InputManager.Input.UI.Pause.Enable();
+        InputManager.Input.UI.Pause.performed +=(x)=> PauseMenu.Pause();
 
     }
 
@@ -236,7 +240,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             PlayerInventory.AddItem(startingItems[i]);
         }
-        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(writeData: true);
+        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(SavingSystem.SaveMode.QuickSave);
         InputManager.Input.Player.QuickLoad.performed +=(x)=>SavingSystem.LoadGame();
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
@@ -275,6 +279,7 @@ public class GameManager : MonoBehaviour,ISaveable
             Day++;
             DayTime %= 24;
         }
+        
     }
     /// <summary>
     /// advances time by in game hours not real time
@@ -345,8 +350,8 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
-        PlayerFishventory.AddFish(fishMonsterType.GenerateMonster());
-
+        CapturedFish(fishMonsterType.GenerateMonster());
+        
     }
     public void CapturedFish(FishMonster fishMonster)
     {
@@ -360,11 +365,13 @@ public class GameManager : MonoBehaviour,ISaveable
                 StoredFishventory.AddFish(fishMonster);
                 break;
         }
+        gameData.hasSeenFish[fishMonster.ID]= true;
+        Debug.Log("is fish found:"+ gameData.hasSeenFish[fishMonster.ID]);
 
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
-        SavingSystem.SaveGame();
+        SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
         //mainEventSystem.enabled = false;
         CombatManager.NewCombat(enemyFishes, rewardFish);
         inCombat = true;
@@ -399,7 +406,6 @@ public class GameManager : MonoBehaviour,ISaveable
             print("should load");
             SavingSystem.LoadGame();
             SceneManager.sceneLoaded -= SceneLoaded;
-
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
             //InputManager.EnablePlayer();

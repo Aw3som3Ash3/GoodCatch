@@ -12,14 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b5ed74439fc0e44adbdf372a056455, type: 3}
   m_Name: OceanDesert
   m_EditorClassIdentifier: 
-  monsters:
+  daySpawn:
   - monster: {fileID: 11400000, guid: c5c8534c9be51e843a0840c8e4b4817c, type: 2}
+    weight: 15
+  - monster: {fileID: 11400000, guid: 626f74771430aa44486f2c349ee21c44, type: 2}
     weight: 10
-  - monster: {fileID: 11400000, guid: 36a024bd3a85b75468f479a6850a76ee, type: 2}
+  - monster: {fileID: 11400000, guid: 1e0338ef5cf739c45b80d4f88f911772, type: 2}
     weight: 10
-  - monster: {fileID: 11400000, guid: fae40b4b59b39264d9c7a3a5bc46e2b4, type: 2}
+  - monster: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
     weight: 10
-  - monster: {fileID: 11400000, guid: 4c4d1a2ba2dc3944a88c93c6f5c1c85e, type: 2}
+  nightSpawn:
+  - monster: {fileID: 11400000, guid: 87003e928c2aae646859a2a02e2532bc, type: 2}
+    weight: 0
+  - monster: {fileID: 11400000, guid: 626f74771430aa44486f2c349ee21c44, type: 2}
     weight: 10
-  - monster: {fileID: 11400000, guid: ab01259e73e37534596f8287197a5ae9, type: 2}
+  - monster: {fileID: 11400000, guid: 1e0338ef5cf739c45b80d4f88f911772, type: 2}
     weight: 10
+  - monster: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
+    weight: 10
+  - monster: {fileID: 11400000, guid: 68f5f9f6ff91d7d4da0e9a5975fc5fcd, type: 2}
+    weight: 15

@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class OptionsPage : VisualElement
+public class OptionsPage : PausePage
 {
     Button settings, save, load, mainMenu;
     VisualElement settingsBox;
@@ -39,6 +39,7 @@ public class OptionsPage : VisualElement
     }
     public void OpenOptions()
     {
+       
         if (saveAndLoadScreen != null&& settingsBox==saveAndLoadScreen.parent)
         {
             settingsBox.Remove(saveAndLoadScreen);
@@ -53,13 +54,15 @@ public class OptionsPage : VisualElement
 
     private void OnSave()
     {
-        if (saveAndLoadScreen == null)
-        {
-            saveAndLoadScreen = new SaveAndLoadScreen();
+        SavingSystem.SaveGame(SavingSystem.SaveMode.ManualSave);
+        //if (saveAndLoadScreen == null)
+        //{
+        //    saveAndLoadScreen = new SaveAndLoadScreen();
             
-        }
-        settingsBox.Add(saveAndLoadScreen);
-        saveAndLoadScreen.DisplaySaves(SaveAndLoadScreen.Mode.save);
+        //}
+        //settingsBox.Add(saveAndLoadScreen);
+        //saveAndLoadScreen.DisplaySaves(SaveAndLoadScreen.Mode.save);
+        //saveAndLoadScreen.Q<TextField>("SaveField").Focus();
     }
 
     private void OnLoad()

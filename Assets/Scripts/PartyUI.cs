@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class PartyUI : VisualElement
+public class PartyUI : PausePage
 {
     Fishventory fishventory;
     public GameObject partyPanel;
@@ -70,7 +70,10 @@ public class PartyUI : VisualElement
             if (i < fishventory.Fishies.Count)
             {
                 int index = i;
-                element.Q("PartyIcon").style.backgroundImage = fishventory.Fishies[i].Icon;
+                var fish = fishventory.Fishies[i];
+                Debug.Log(fish);
+                Debug.Log(element);
+                element.Q("PartyIcon").style.backgroundImage =fish?.Icon;
                 element.SetEnabled(true);
             }
             else

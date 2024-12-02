@@ -1,9 +1,15 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 0; align-self: center; flex-direction: row; height: 100px; width: 400px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);">
-        <ui:VisualElement style="flex-grow: 0; width: 110px; background-color: rgb(255, 255, 255);" />
-        <ui:VisualElement style="flex-grow: 1; justify-content: space-around;">
-            <ui:ProgressBar value="22" title="my-progress" name="healthBar" />
-            <ui:ProgressBar value="22" title="my-progress" name="xpBar" />
+    <Style src="project://database/Assets/VictoryFishStatus.uss?fileID=7433441132597879392&amp;guid=5df3ad42170cefc45a4658ec153e9b3d&amp;type=3#VictoryFishStatus" />
+    <ui:VisualElement style="flex-grow: 0; align-self: center; flex-direction: row; height: 111px; width: 400px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement name="ProfilePic" style="flex-grow: 0; width: 110px; background-color: rgb(255, 255, 255); height: 110px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;" />
+        <ui:VisualElement name="ContentBox" style="flex-grow: 1; justify-content: space-around;">
+            <ui:VisualElement name="PlayerContent" style="flex-grow: 1; align-self: stretch; justify-content: center;">
+                <ui:ProgressBar value="22" title="HP" name="healthBar" style="-unity-text-align: upper-left;" />
+                <ui:ProgressBar value="22" title="XP" name="xpBar" high-value="1000" />
+            </ui:VisualElement>
+            <ui:VisualElement name="EnemyContent" style="flex-grow: 0; position: absolute; bottom: 0; left: 0; top: 0; right: 0; align-self: center; justify-content: center; visibility: hidden; display: flex;">
+                <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HasBeenCaught" style="align-self: center; justify-content: flex-start; align-items: auto; font-size: 50px; color: rgb(255, 0, 0);" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

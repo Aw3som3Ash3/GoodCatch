@@ -56,14 +56,14 @@ public class InventoryUI : ToggleableUIMenus
     }
     void PopulateList()
     {
-        var dictionary = GameManager.Instance.PlayerInventory.GetDictionaryOfItems<Item>();
-        var list = OrderedList(dictionary.Keys.ToList(), orderBy);
+        var itemList = GameManager.Instance.PlayerInventory.GetListOfItems<Item>();
+        var list = OrderedList(itemList.ToList(), orderBy);
 
         for (int i = 0; i < (list.Count > contentZone.childCount ? list.Count : contentZone.childCount); i++)
         {
             if (i < contentZone.childCount)
             {
-                contentZone.GetChild(i).GetComponent<InventoryUIItem>().SetValues(list[i].name, list[i].Type,dictionary[list[i]]);
+                contentZone.GetChild(i).GetComponent<InventoryUIItem>().SetValues(list[i].Item.name, list[i].Item.Type, list[i].amount);
                 if (i > list.Count)
                 {
                     Destroy(contentZone.GetChild(i));
@@ -72,21 +72,21 @@ public class InventoryUI : ToggleableUIMenus
             else
             {
                 var obj = Instantiate(inventoryItemPrefab, contentZone);
-                obj.GetComponent<InventoryUIItem>().SetValues(list[i].name, list[i].Type, dictionary[list[i]]);
+                obj.GetComponent<InventoryUIItem>().SetValues(list[i].Item.name, list[i].Item.Type, list[i].amount);
             }
 
         }
     }
-    List<Item> OrderedList(IEnumerable<Item> list, OrderBy orderBy)
+    List<ItemInventory.ItemSlot> OrderedList(IList<ItemInventory.ItemSlot> list, OrderBy orderBy)
     {
 
         if (orderBy == OrderBy.Name)
         {
-            return list.OrderBy(x => x.name).ToList();
+            return list.OrderBy(x => x.Item.name).ToList();
         }
         else if (orderBy == OrderBy.Type)
         {
-            return list.OrderBy(x => x.GetType().Name).ThenBy(x => x.name).ToList();
+            return list.OrderBy(x => x.Item.GetType().Name).ThenBy(x => x.Item.name).ToList();
         }
         return list.ToList();
     }

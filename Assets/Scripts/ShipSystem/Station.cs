@@ -19,6 +19,7 @@ public abstract class Station : MonoBehaviour, IInteractable
     void Start()
     {
         virtualCamera.Priority = 0;
+        virtualCamera.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public abstract class Station : MonoBehaviour, IInteractable
     virtual public void LeaveSation()
     {
         LeftStation?.Invoke(this);
+        virtualCamera.gameObject.SetActive(false);
         virtualCamera.Priority = 0;
 
 
@@ -44,6 +46,7 @@ public abstract class Station : MonoBehaviour, IInteractable
             return false;
         }
         StationInteracted?.Invoke(this, stationZone);
+        virtualCamera.gameObject.SetActive(true);
         virtualCamera.Priority = 11;
         return true;
 

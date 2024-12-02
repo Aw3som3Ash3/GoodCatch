@@ -7,6 +7,7 @@ public class FishZone : SaveableObject,ISaveable
 {
     [SerializeField]
     SpawnTables spawnTable;
+    
 
     [SerializeField]
     int minAmount, maxAmount;
@@ -40,10 +41,8 @@ public class FishZone : SaveableObject,ISaveable
         {
             return null;
         }
-       
         fishingSucceeded += () => data.amount--;
         return spawnTable.GetRandomFish();
-        
     }
 
     public override void Load(string json)
@@ -52,5 +51,14 @@ public class FishZone : SaveableObject,ISaveable
         var data = JsonUtility.FromJson<Data>(json);
         this.data = data;
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        var col =this.GetComponent<Collider>();
+        Gizmos.color = new Color(0, 1, 0, 0.5f);
+        
+        
+        Gizmos.DrawCube(col.bounds.center,new Vector3(col.bounds.size.x, col.bounds.size.y, col.bounds.size.z));
     }
 }

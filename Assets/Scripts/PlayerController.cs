@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     [SerializeField]
     LayerMask interactionLayer;
 
-
+    AudioController audioController;
     [SerializeField]
     FishingRod fishingRod;
     Label InteractionUI;
@@ -66,7 +66,9 @@ public class PlayerController : MonoBehaviour,ISaveable
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
-        InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
+        fishingRod.gameObject.SetActive(false);
+        audioController=GetComponent<AudioController>();
+        //InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
     }
     private void OnEnable()
     {
@@ -150,6 +152,10 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
         else
         {
+            if (InteractionUI == null)
+            {
+                InteractionUI=FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
+            }
             if (InteractionUI != null)
             {
                 InteractionUI.text = "";
@@ -168,7 +174,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
         velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
-        if (moveAction.IsPressed())
+        if (moveAction.IsInProgress())
         {
             
             var angles = cameraRig.localEulerAngles;
@@ -224,10 +230,57 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     void StartFishing(InputAction.CallbackContext context)
     {
-        fishingRod.CastLine(cameraRig.forward);
-        var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(cameraRig.forward));
-        model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
-        InputManager.DisablePlayer();
+        if (context.action.IsPressed())
+        {
+            Debug.Log("prep to cast");
+            //var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(cameraRig.forward));
+            model.localEulerAngles = new Vector3(model.localEulerAngles.x, cameraRig.transform.localEulerAngles.y, model.localEulerAngles.z); 
+            fishingRod.gameObject.SetActive(true);
+            anim.SetTrigger("cast");
+            moveAction.Disable();
+           
+            CancelInvoke("FishingCompleted");
+        }
+        
+       
+    }
+    void Casted()
+    {
+        if (inputs.Fish.IsPressed())
+        {
+            anim.speed = 0;
+            inputs.Fish.canceled += Released;
+
+        }
+        else
+        {
+            inputs.Fish.canceled -= Released;
+            anim.SetTrigger("FishingComplete");
+            Invoke("FishingCompleted", 1f);
+        }
+      
+        
+
+    }
+
+    private void Released(InputAction.CallbackContext context)
+    {
+        if (context.duration > 0.5)
+        {
+            anim.speed = 1;
+            fishingRod.CastLine(model.forward,Mathf.Clamp((float)context.duration,0,1.5f), () => { anim.SetTrigger("FishingComplete"); Invoke("FishingCompleted", 1f); });
+        }
+        
+        
+        inputs.Fish.canceled -= Released;
+        //throw new NotImplementedException();
+    }
+
+    void FishingCompleted()
+    {
+        fishingRod.gameObject.SetActive(false);
+        moveAction.Enable();
+        
     }
 
     public void Load(string json)
@@ -255,5 +308,11 @@ public class PlayerController : MonoBehaviour,ISaveable
         inputs.Jump.performed -= OnJump;
         inputs.Fish.performed -= StartFishing;
         inputs.Interact.performed -= OnInteract;
+    }
+
+    void Footstep()
+    {
+        audioController?.PlayClipRandom();
+        //do audio event
     }
 }

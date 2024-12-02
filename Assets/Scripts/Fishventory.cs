@@ -51,4 +51,12 @@ public class Fishventory
             fish.RestoreAllHealth();
         }
     }
+
+    public FishMonster SwapFish(int index,FishMonster fishMonster)
+    {
+        var temp = fishies[index];
+        fishies[index] = fishMonster;
+        return temp;
+
+    }
 }

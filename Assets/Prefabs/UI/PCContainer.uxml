@@ -1,24 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="PCWorkSpace" style="flex-grow: 1; white-space: normal; -unity-text-align: upper-left; flex-direction: row; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px;">
-        <ui:VisualElement name="FillWithViewContent" style="flex-grow: 0; min-width: 552px;" />
-        <ui:VisualElement name="TabsContianerAlpha" style="flex-grow: 0; min-width: 275px;">
-            <ui:VisualElement name="TabsButtonContainer" style="flex-grow: 1; min-width: auto; flex-shrink: 1; width: 100%;">
-                <ui:Button text="Tab 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tab1" style="padding-right: 15px; padding-left: 15px; height: 75px; margin-bottom: 32px;" />
-                <ui:Button text="Tab 2" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tab2" style="padding-right: 15px; padding-left: 15px; height: 75px; margin-bottom: 32px;" />
-                <ui:Button text="Tab 3" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tab3" style="padding-right: 15px; padding-left: 15px; height: 75px; margin-bottom: 32px;" />
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="PCContainerAlpha" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-left: 0; -unity-text-outline-color: rgb(243, 65, 65);">
-            <ui:VisualElement name="BoxContainer" style="flex-grow: 0; flex-wrap: wrap; flex-direction: row; flex-shrink: 0; height: 100%; align-items: flex-start; margin-bottom: -104px; justify-content: flex-start; align-self: auto; -unity-text-outline-color: rgba(255, 255, 255, 0); background-color: rgb(125, 125, 125);">
-                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" class="selectionBox" style="align-items: auto; align-self: flex-start; width: 169px; flex-grow: 0; padding-left: 12px; padding-right: 12px; height: 169px; margin-top: 16px; margin-right: 16px; margin-bottom: 16px; margin-left: 16px;" />
-            </ui:VisualElement>
-            <ui:VisualElement name="WordsContainer" style="flex-grow: 0; flex-direction: row; align-self: auto; align-items: stretch;">
-                <ui:VisualElement name="AssistPlayerA" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="To Select&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ToSelect" style="flex-direction: row;" />
+    <ui:Template name="CombatDraftUI" src="project://database/Assets/Prefabs/UI/CombatDraftUI.uxml?fileID=9197481963319205126&amp;guid=c9f3f371f0f564e4da7b341113edc46d&amp;type=3#CombatDraftUI" />
+    <ui:Template name="MostLeftContainerPC" src="project://database/Assets/Prefabs/UI/MostLeftContainerPC.uxml?fileID=9197481963319205126&amp;guid=f152e1acab934a8448622719ed794884&amp;type=3#MostLeftContainerPC" />
+    <Style src="project://database/Assets/PcContainer.uss?fileID=7433441132597879392&amp;guid=5a6c8eda080156e43ba9c9a9bc4aec6a&amp;type=3#PcContainer" />
+    <Style src="project://database/Assets/UI%20Toolkit/UnityThemes/GoodCatchStyleSheet.uss?fileID=7433441132597879392&amp;guid=3514bcc995f7ff84c8e081dd8739d774&amp;type=3#GoodCatchStyleSheet" />
+    <ui:VisualElement name="PCWorkSpace" style="flex-grow: 1; white-space: normal; -unity-text-align: upper-left; flex-direction: row; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; background-color: rgba(134, 186, 196, 0.69);">
+        <ui:VisualElement name="Container" style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+            <ui:VisualElement name="LeftViewAlpha" style="flex-grow: 0; min-width: auto; width: 615px;">
+                <ui:VisualElement name="FillAmount" style="flex-grow: 1; width: 552px; height: 955px; align-self: auto; justify-content: flex-end;">
+                    <ui:Instance template="CombatDraftUI" name="CombatDraftUI" style="position: absolute; visibility: hidden; top: 0; bottom: 0; right: 0; left: 0;" />
+                    <ui:Instance template="MostLeftContainerPC" name="MostLeftContainerPC" style="position: absolute; visibility: visible; justify-content: flex-start; align-self: auto; align-items: auto;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="AssistPlaterB" style="flex-grow: 1; align-self: auto; align-items: flex-end;">
-                    <ui:Label tabindex="-1" text="To Close" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ToClose" style="height: 32px; align-items: flex-end; flex-direction: row; align-self: auto; justify-content: flex-start;" />
-                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="PCContainerAlpha" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-left: 0; -unity-text-outline-color: rgb(243, 65, 65); max-width: 1013px; justify-content: flex-end;">
+                <FishventoryTab style="height: 77%; max-width: 1013px; justify-content: space-around; align-items: center;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

@@ -10,9 +10,22 @@ public static class SavingSystem
 {
     const string SAVE_FILE = "QuickSave";
     const string FILE_EXTENSION = ".Data";
-    public const string FOLDER_NAME = "Saves";
-    //static string SavePath { get { return Path.Combine(Application.persistentDataPath,FILE_NAME ,SAVE_FILE); } }
+    const string FOLDER_NAME = "Saves";
+    const int SLOT_AMOUNT = 3;
+    const int MAX_SAVES_PER_CATEGORY = 3;
+    //static int currentSaveNum = 1;
+    const string SLOT_FOLDER_NAME="Slot";
+    static int currentSlot=1;
+    static public string SavePath { get { return Path.Combine(Application.persistentDataPath, FOLDER_NAME, SLOT_FOLDER_NAME+" "+ currentSlot); } }
     static GameData data;
+   
+    public enum SaveMode
+    {
+        QuickSave,
+        AutoSave,
+        ManualSave
+    }
+
     [Serializable]
     class GameData
     {
@@ -49,8 +62,9 @@ public static class SavingSystem
     {
         data.AddSaveable(saveable);
     }
-    public static void SaveGame(bool writeData = false,string SaveName= SAVE_FILE)
+    public static void SaveGame(SaveMode saveMode)
     {
+
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
         data=new();
         data.SetScene();
@@ -59,25 +73,30 @@ public static class SavingSystem
             data.AddSaveable(saveable);
             
         }
-        if (true)
+        if (saveMode == SaveMode.ManualSave)
         {
-            WriteSave(SaveName);
+            WriteSave(DateTime.Now.ToLocalTime().ToString("yyyyMMdd_hhmmss"));
         }
+        else
+        {
+            int saveNumber = (GetLatestFileNumber(saveMode)% MAX_SAVES_PER_CATEGORY) + 1;
+            WriteSave(saveMode.ToString()+ saveNumber);
+        }
+       
        
     }
 
     static void WriteSave(string saveName)
     {
-        string path = Path.Combine(Application.persistentDataPath, FOLDER_NAME);
-        Directory.CreateDirectory(path);
+        Directory.CreateDirectory(SavePath);
         string save = JsonUtility.ToJson(data, true);
-        File.WriteAllText( Path.Combine(path,saveName + FILE_EXTENSION), save);
+        File.WriteAllText( Path.Combine(SavePath, saveName + FILE_EXTENSION), save);
         Debug.Log(save);
     }
 
     public static void ReadData(string saveName)
     {
-        string filePath= Path.Combine(Application.persistentDataPath, FOLDER_NAME, saveName+FILE_EXTENSION);
+        string filePath= Path.Combine(SavePath, saveName+FILE_EXTENSION);
         if (File.Exists(filePath))
         {
             string json = File.ReadAllText(filePath);
@@ -85,39 +104,88 @@ public static class SavingSystem
             //LoadGame();
         }
     }
-
-    public static void LoadGame(string saveName=SAVE_FILE)
+    public static void ReadData()
+    {
+        var info = new DirectoryInfo(SavePath);
+        var file = info.GetFiles().OrderByDescending((x) => x.LastWriteTime).First();
+        string json = File.ReadAllText(file.FullName);
+        data = JsonUtility.FromJson<GameData>(json);
+    }
+    public static void LoadGame(int slotNum)
+    {
+        currentSlot= slotNum;
+        LoadGame();
+    }
+    public static void LoadGame()
     {
         if (data == null)
         {
-            ReadData(saveName);
+            ReadData();
         }
+        SceneManager.LoadScene(data.GetScene());
+        
+        SceneManager.sceneLoaded += OnSceneLoad;
+
+
+    }
+    public static void LoadGame(string saveName=SAVE_FILE)
+    {
+
+        ReadData(saveName);
         //SceneManager.LoadScene("LoadingScreen");
        
-        SceneManager.LoadSceneAsync(data.GetScene());
+        
+
+        SceneManager.LoadScene(data.GetScene());
         SceneManager.sceneLoaded += OnSceneLoad;
   
        
     }
-
+    static int GetLatestFileNumber(SaveMode saveMode)
+    {
+       
+        var info = new DirectoryInfo(SavePath);
+        if (info.GetFiles().Length <= 0)
+        {
+            return 0;
+        }
+        var files = info.GetFiles().Where((x) =>
+        {
+            string fileName = Path.GetFileNameWithoutExtension(x.Name);
+            return fileName.Remove(fileName.Length - 1) == saveMode.ToString();
+        });
+        if (files.Count() <= 0)
+        {
+            return 0;
+        }
+        var file= files.OrderByDescending((x) => x.LastWriteTime).First();
+        string fileName = Path.GetFileNameWithoutExtension(file.Name);
+        string fileNum =fileName.Substring(fileName.Length-1);
+        int intValue = int.Parse(fileNum);
+        return intValue;
+    }
     static void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex != data.GetScene())
         {
             return;
         }
-        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
-        foreach (var saveable in saveables)
+        var sceneLoader = GameObject.FindObjectOfType<SceneLoader>(true);
+        sceneLoader.AllScenesLoaded += () =>
         {
+            var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
+            foreach (var saveable in saveables)
+            {
 
-            saveable.Load(data.GetSaveable(saveable.ID));
-        }
-
-        //SceneManager.UnloadSceneAsync("LoadingScreen");
-        SceneManager.SetActiveScene(scene);
-        SceneManager.sceneLoaded -= OnSceneLoad;
+                saveable.Load(data.GetSaveable(saveable.ID));
+                Time.timeScale= 1;
+            }
+            //sceneLoader.AllScenesLoaded = null;
+        };
+        
+        
     }
-
+    
     public static void LoadSelf<T>(T saveable,string ID) where T: ISaveable
     {
         if (data == null)
@@ -125,8 +193,28 @@ public static class SavingSystem
             ReadData(SAVE_FILE);
         }
         saveable.Load(data.GetSaveable(ID));
-
+    
         
+    }
+
+    public static bool HasSlot(int slot)
+    {
+        DirectoryInfo directoryInfo=new DirectoryInfo(Path.Combine(Application.persistentDataPath, FOLDER_NAME, SLOT_FOLDER_NAME + " " + slot));
+        return directoryInfo.Exists && directoryInfo.GetFiles().Length > 0;
+    }
+    public static void SetSlot(int slot)
+    {
+        currentSlot = slot;
+    }
+
+    public static void ClearSlot(int slot)
+    {
+        DirectoryInfo directoryInfo = new DirectoryInfo(Path.Combine(Application.persistentDataPath, FOLDER_NAME, SLOT_FOLDER_NAME + " " + slot));
+        if (directoryInfo.Exists)
+        {
+            directoryInfo.Delete(true);
+        }
+        directoryInfo.Create();
     }
 }
 

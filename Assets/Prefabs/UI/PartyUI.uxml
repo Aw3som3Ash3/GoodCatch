@@ -32,7 +32,11 @@
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
-                    <ui:VisualElement name="PartyMember4" class="partymember" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;" />
+                    <ui:VisualElement name="PartyMember4" class="partymember" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
+                        <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
+                            <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                     <ui:VisualElement name="PartyMember6" class="partymember" style="flex-grow: 1; border-top-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;">
                         <ui:VisualElement name="PartyIcon" style="flex-grow: 1;">
                             <ui:VisualElement name="PartyBorder" class="partyborder" style="flex-grow: 1;" />
