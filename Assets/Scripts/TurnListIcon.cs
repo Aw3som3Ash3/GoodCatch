@@ -15,15 +15,15 @@ public class TurnListIcon : VisualElement
     }
     public TurnListIcon()
     {
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>($"UXMLs/TurnListIcon");
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/TurnListIcon.uxml");
+
         TemplateContainer ui = visualTreeAsset.Instantiate();
 
         Add(ui);
     }
     public TurnListIcon(Sprite image,CombatManager.Team team)
     {
-  
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>($"UXMLs/TurnListIcon");
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/TurnListIcon.uxml");
         visualTreeAsset.CloneTree(this);
         icon = this.Q("Icon");
         if (image != null)

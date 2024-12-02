@@ -19,15 +19,14 @@ public class CombatVictory : VisualElement
     public CombatVictory()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatVictory");
-
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatVictory.uxml");
         visualTreeAsset.CloneTree(root);
     }
 
     public CombatVictory(List<FishMonster> playerFishes,List<FishMonster>enemyFishes,Dictionary<FishMonster,bool> fishesCaught)
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatVictory");
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatVictory.uxml");
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();

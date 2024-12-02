@@ -28,8 +28,7 @@ public class AquariumScreen : PausePage
     public AquariumScreen()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/PcContainer");
-
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/PcContainer.uxml");
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
@@ -191,8 +190,7 @@ public class AquariumSlot : VisualElement
     void Init()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/AquariumSlot");
-
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/AquariumSlot.uxml");
         visualTreeAsset.CloneTree(root);
         slotBox = this.Q("SlotBox");
         sprite = this.Q("Sprite");
