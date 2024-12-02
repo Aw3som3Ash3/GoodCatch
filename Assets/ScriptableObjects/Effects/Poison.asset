@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cb4bb970a7b69409216eef7bbf1f88, type: 3}
   m_Name: Poison
   m_EditorClassIdentifier: 
-  duration: 0
-  icon: {fileID: 0}
+  duration: 5
+  icon: {fileID: 2800000, guid: 490ed2525dd803c4f8e2c7e06fdc3867, type: 3}
   effectUsage: 0
-  damage: 0
-  element: {fileID: 0}
+  damage: 25
+  element: {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
