@@ -31,16 +31,15 @@ public class FishingMiniGame : MonoBehaviour
     {
         this.floater = floater;
         virtualCamera.Priority = 15;
-        //fishMonster = FishDatabase.instance.GetRandom();
         InputManager.Input.Fishing.Enable();
         InputManager.Input.Fishing.Hook.performed += OnHook;
         InputManager.Input.Fishing.Exit.performed += OnExit;
-        print(fishMonster);
+        
         RaycastHit hit;
         if(Physics.Raycast(this.transform.position,Vector3.down,out hit,100, fishZones))
         {
             fishMonster=hit.collider.GetComponent<FishZone>().GetRandomFish(SuccesfulFishing);
-            Invoke("SpawnFish", UnityEngine.Random.Range(0, 25f));
+            Invoke("SpawnFish", UnityEngine.Random.Range(0, 10f));
         }
         
     }
@@ -81,6 +80,7 @@ public class FishingMiniGame : MonoBehaviour
         else
         {
             //should do different fail animation or reeling nothing
+            OnCancel?.Invoke();
             ExitFishing();
         }
     }

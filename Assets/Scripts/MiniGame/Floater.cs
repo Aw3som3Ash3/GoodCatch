@@ -40,7 +40,7 @@ public class Floater : MonoBehaviour
    
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (!collision.collider.CompareTag("Water"))
         {
             FailedCast();
         }
