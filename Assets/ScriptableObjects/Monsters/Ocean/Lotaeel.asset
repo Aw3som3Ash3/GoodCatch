@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Lotaeel
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 0}
-  fishId: 7
+  model: {fileID: 4971115903728978154, guid: 43411f4c1e67f94419f1d88d2b8e5e01, type: 3}
+  fishId: 8
   icon: {fileID: 0}
   miniSprite: {fileID: 901536447, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 0
