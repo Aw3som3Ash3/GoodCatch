@@ -77,6 +77,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     Element element;
     [SerializeField]
     EffectChance[] effects;
+    public EffectChance[] Effects { get { return effects; } }
     [SerializeField]
     [Range(-2, 2)]
     int forcedMovement = 0;

@@ -186,8 +186,11 @@ public class FishObject : MonoBehaviour
         playableGraph.Evaluate();
         //playableOutput.SetSourcePlayable(clipPlayable);
         attackClipPlayable.Play();
-        source.clip = audioController.clip[UnityEngine.Random.Range(0, audioController.clip.Length)];
-        source.Play();
+        if (defaultClip != null)
+        {
+            source.PlayOneShot(defaultClip);
+        }
+       
         //playableGraph.
 
     }
