@@ -49,6 +49,7 @@ public class CombatVictory : VisualElement
                 fishXpBar[playerFishes[i]] = fishSlot.Q<ProgressBar>("xpBar");
                 var value = fishSlot.Q("ProfilePic").style.backgroundImage.value;
                 value.sprite = playerFishes[i].Icon;
+                fishSlot.Q("ProfilePic").style.backgroundImage=value;
             }
             else
             {
@@ -70,7 +71,6 @@ public class CombatVictory : VisualElement
 
                enemySlot.Q<ProgressBar>("healthBar").visible = false;
                 enemySlot.Q<ProgressBar>("xpBar").visible = false;
-                fishXpBar[playerFishes[i]] = enemySlot.Q<ProgressBar>("xpBar");
                 var value=enemySlot.Q("ProfilePic").style.backgroundImage.value;
                 value.sprite= playerFishes[i].Icon;
                 enemySlot.Q("ProfilePic").style.backgroundImage = value;

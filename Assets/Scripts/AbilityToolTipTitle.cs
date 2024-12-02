@@ -148,3 +148,25 @@ public class AbilityTooltipStatusChance : TooltipModule
         //throw new System.NotImplementedException();
     }
 }
+
+
+
+public class StatusEffectToolTip : TooltipModule
+{
+    Label statusName, roundsRemaining, description;
+    public StatusEffectToolTip():base("Assets/Prefabs/UI/ToolTipStatusActive.uxml")
+    {
+
+    }
+    public void SetSatus(StatusEffect.StatusEffectInstance effect)
+    {
+        statusName.text = effect.effect.name;
+        roundsRemaining.text = effect.remainingDuration.ToString();
+    }
+    protected override void Init()
+    {
+        statusName = this.Q<Label>("StatusName");
+        roundsRemaining = this.Q<Label>("StatusRoundsAmount");
+        //throw new System.NotImplementedException();
+    }
+}

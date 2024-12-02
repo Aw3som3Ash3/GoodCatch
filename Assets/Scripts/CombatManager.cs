@@ -319,12 +319,17 @@ public class CombatManager : MonoBehaviour
         {
             for (int i = 0; i < 300; i++)
             {
+
                 foreach (var fish in playerFishes)
                 {
                     victoryScreen.fishXpBar[fish].value = Mathf.Lerp(victoryScreen.fishXpBar[fish].value, fish.Xp, (float)i / 300);
+                   
+
+
                 }
                 yield return new WaitForFixedUpdate();
             }
+           
         }
         ui.rootVisualElement.Remove(combatUI);
         playerFishes = null;

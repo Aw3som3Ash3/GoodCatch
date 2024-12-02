@@ -30,7 +30,10 @@ public class MainMenu : MonoBehaviour
             loadScreen.visible = true;
             NewGame();
         };
-
+        mainScreen.Q<Button>("Quit").clicked += () =>
+        {
+            Application.Quit();
+        };
 
     }
     void NewGame()
