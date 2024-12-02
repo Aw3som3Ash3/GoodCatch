@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   model: {fileID: 2349082656026839355, guid: 007d6611b34028e4b8f5cd24ec5b5862, type: 3}
-  fishId: 21
-  icon: {fileID: 0}
+  fishId: 0
+  icon: {fileID: 21300000, guid: c241e728dd65ba44b80f5bc3a7491b34, type: 3}
+  miniSprite: {fileID: 1569861162, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 0
   preferredBait: []
   elements:
@@ -40,9 +41,9 @@ MonoBehaviour:
     max: 15
     minTalent: 0
     maxTalent: 0
-  SpecialFortitude:
-    min: 8
-    max: 15
+  specialFortitude:
+    min: 0
+    max: 0
     minTalent: 0
     maxTalent: 0
   accuracy:
