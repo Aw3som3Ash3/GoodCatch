@@ -49,7 +49,7 @@ MonoBehaviour:
   moveSpeed: 5
   outlineMat: {fileID: 2100000, guid: 4ee29e7064846b34caec1d4916e1cc8a, type: 2}
   outlineLayer: 13
-  defaultClip: {fileID: 0}
+  defaultClip: {fileID: 8300000, guid: 60ffbb15dbf2d3c4d9ef74d1349ffbdd, type: 3}
 --- !u!65 &6505524237921334165
 BoxCollider:
   m_ObjectHideFlags: 0

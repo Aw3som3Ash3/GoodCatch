@@ -48,9 +48,14 @@ public class AquariumScreen : PausePage
         {
             int index = i;
             partySlots[i]=party.Q<Button>("slot" + (i + 1));
-            var value = partySlots[i].style.backgroundImage.value;
-            value.sprite= GameManager.Instance.PlayerFishventory.Fishies[i].Icon;
-            slotToFish[partySlots[i]] = GameManager.Instance.PlayerFishventory.Fishies[i];
+            if (i < GameManager.Instance.PlayerFishventory.Fishies.Count)
+            {
+                var value = partySlots[i].style.backgroundImage.value;
+                value.sprite = GameManager.Instance.PlayerFishventory.Fishies[i].Icon;
+                slotToFish[partySlots[i]] = GameManager.Instance.PlayerFishventory.Fishies[i];
+            }
+           
+           
 
             partySlots[i].clicked += () =>
             {

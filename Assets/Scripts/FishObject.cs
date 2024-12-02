@@ -38,6 +38,7 @@ public class FishObject : MonoBehaviour
     [SerializeField]
     AudioClip defaultClip;
     AudioSource source;
+    
     public Transform hookLocation { get; private set; }
     private void Awake()
     {
