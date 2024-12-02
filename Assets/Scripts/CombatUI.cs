@@ -43,7 +43,7 @@ public class CombatUI : VisualElement
     public void Initial()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatUI.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatUI");
         visualTreeAsset.CloneTree(root);
         this.style.flexGrow = 1;
       

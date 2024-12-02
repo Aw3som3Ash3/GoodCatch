@@ -20,7 +20,7 @@ public class AbilityToolTipTitle : TooltipModule
     {
 
     }
-    public AbilityToolTipTitle():base("Assets/Prefabs/UI/AbilityTitle.uxml")
+    public AbilityToolTipTitle():base("UXMLs/AbilityTitle")
     {
 
     }
@@ -82,10 +82,10 @@ public abstract class TooltipModule : VisualElement
     {
 
     }
-    public TooltipModule(string path)
+    public TooltipModule(string fileName)
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(path);
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>(fileName);
         visualTreeAsset.CloneTree(root);
         
         this.style.flexGrow = 1;
@@ -105,7 +105,7 @@ public class AbilityTooltipActions : TooltipModule
     Label damageTitle;
     public float damage { get; private set; }
     //public float accuracy; 
-    public AbilityTooltipActions():base("Assets/Prefabs/UI/AbilityAction.uxml")
+    public AbilityTooltipActions():base("UXMLs/AbilityAction")
     {
 
     }
@@ -131,7 +131,7 @@ public class AbilityTooltipActions : TooltipModule
 public class AbilityTooltipStatusChance : TooltipModule
 {
     Label statusName,chance,effect;
-    public AbilityTooltipStatusChance():base("Assets/Prefabs/UI/AbilityStatus.uxml")
+    public AbilityTooltipStatusChance():base("UXMLs/AbilityStatus")
     {
 
     }
@@ -154,7 +154,7 @@ public class AbilityTooltipStatusChance : TooltipModule
 public class StatusEffectToolTip : TooltipModule
 {
     Label statusName, roundsRemaining, description;
-    public StatusEffectToolTip():base("Assets/Prefabs/UI/ToolTipStatusActive.uxml")
+    public StatusEffectToolTip():base("UXMLs/ToolTipStatusActive")
     {
 
     }

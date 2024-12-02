@@ -30,7 +30,7 @@ public class PauseMenu : VisualElement
     public PauseMenu()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/PauseMenu.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/PauseMenu");
         visualTreeAsset.CloneTree(root);
        
         this.style.flexGrow = 1;
