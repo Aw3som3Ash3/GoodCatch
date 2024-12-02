@@ -47,7 +47,8 @@ public class CombatVictory : VisualElement
                 fishSlot.Q<ProgressBar>("healthBar").highValue = playerFishes[i].MaxHealth;
                 fishSlot.Q<ProgressBar>("xpBar").value = playerFishes[i].Xp;
                 fishXpBar[playerFishes[i]] = fishSlot.Q<ProgressBar>("xpBar");
-                fishSlot.Q("ProfilePic").style.backgroundImage = playerFishes[i].Icon;
+                var value = fishSlot.Q("ProfilePic").style.backgroundImage.value;
+                value.sprite = playerFishes[i].Icon;
             }
             else
             {
@@ -70,7 +71,9 @@ public class CombatVictory : VisualElement
                enemySlot.Q<ProgressBar>("healthBar").visible = false;
                 enemySlot.Q<ProgressBar>("xpBar").visible = false;
                 fishXpBar[playerFishes[i]] = enemySlot.Q<ProgressBar>("xpBar");
-                enemySlot.Q("ProfilePic").style.backgroundImage = playerFishes[i].Icon;
+                var value=enemySlot.Q("ProfilePic").style.backgroundImage.value;
+                value.sprite= playerFishes[i].Icon;
+                enemySlot.Q("ProfilePic").style.backgroundImage = value;
             }
             else if(i<3)
             {
