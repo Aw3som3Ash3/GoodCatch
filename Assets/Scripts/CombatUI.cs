@@ -281,7 +281,7 @@ public class CombatUI : VisualElement
                 continue;
             }
             float damage = currentTurn.fish.GetAbility(i).GetDamage(currentTurn);
-            abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i),damage);
+            abilityButtons[i].SetAbility(currentTurn.fish.GetAbility(i),damage,currentTurn.accuracy);
         }
         fishName.text = currentTurn.fish.Name;
         level.text = currentTurn.fish.Level.ToString();

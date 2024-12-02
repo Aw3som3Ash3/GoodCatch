@@ -11,7 +11,7 @@ public class AbilityButton : Button
     Button button;
     string abilityName;
     AbilityToolTipTitle title;
-    Label damageLabel;
+    AbilityTooltipActions damageLabel;
 
     bool usable;
     public event Action<Action<ToolTipBox>> MouseEnter;
@@ -37,7 +37,7 @@ public class AbilityButton : Button
         this.RegisterCallback<FocusOutEvent>((x) => {MouseExit?.Invoke(); });
         tabIndex=1;
         title=new AbilityToolTipTitle();
-        damageLabel=new Label();
+        damageLabel=new AbilityTooltipActions();
         base.clicked += () => { if (usable) { clicked?.Invoke(); } };
     }
 
@@ -51,7 +51,11 @@ public class AbilityButton : Button
         {
             element.content.Clear();
             element.content.Add(title);
-            element.content.Add(damageLabel);
+            if (damageLabel.damage != 0)
+            {
+                element.content.Add(damageLabel);
+            }
+           
             
         }
        
@@ -71,13 +75,14 @@ public class AbilityButton : Button
         
         
     }
-    public void SetAbility(Ability ability,float damage) 
+    public void SetAbility(Ability ability,float damage,float baseAccuracy) 
     {
        
         abilityName = ability.name;
         title.SetToolTip(abilityName,"",ability.AvailableDepths,ability.TargetableDepths);
         text = ability.name;
-        this.damageLabel.text = damage.ToString();
+        this.damageLabel.SetDamage(damage, ability.Accuracy + baseAccuracy);
+
 
     }
 }

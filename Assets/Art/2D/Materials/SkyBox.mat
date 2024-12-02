@@ -150,8 +150,8 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Rotation: 0
-    - _SkyExponent1: 5
-    - _SkyExponent2: 0.2
+    - _SkyExponent1: 1
+    - _SkyExponent2: 2
     - _SkyIntensity: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -162,8 +162,8 @@ Material:
     - _SunDisk: 2
     - _SunExponent: 5.25
     - _SunIntensity: 1.55
-    - _SunRadiusA: 0.06
-    - _SunRadiusB: 0.03
+    - _SunRadiusA: 0.03
+    - _SunRadiusB: 0.1
     - _SunSize: 0.04
     - _SunSizeConvergence: 5
     - _Surface: 0
@@ -176,8 +176,8 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0, g: 0.02177071, b: 0.735849, a: 1}
-    - _SkyColor1: {r: 0.09748411, g: 0.16805126, b: 1, a: 1}
-    - _SkyColor2: {r: 0.0750563, g: 0.17951408, b: 0.4339623, a: 1}
+    - _SkyColor1: {r: 0, g: 0.1758198, b: 0.7433963, a: 1}
+    - _SkyColor2: {r: 0.10196078, g: 0.44069636, b: 1, a: 1}
     - _SkyColor3: {r: 0, g: 0.00031364764, b: 0.031446517, a: 1}
     - _SkyColorNight1: {r: 0, g: 0, b: 0.050314426, a: 1}
     - _SkyColorNight2: {r: 0, g: 0, b: 0, a: 1}

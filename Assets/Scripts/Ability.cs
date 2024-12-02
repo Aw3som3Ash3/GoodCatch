@@ -69,6 +69,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     [SerializeField]
     [Range(0, 1)]
     float accuracy;
+    public float Accuracy { get { return accuracy; } }
     [SerializeField]
     float damageMultiplier;
 

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AbilityToolTipTitle : VisualElement
+public class AbilityToolTipTitle : TooltipModule
 {
     public Label Title { get; private set; }
     public Label Description { get; private set; }
@@ -19,23 +20,20 @@ public class AbilityToolTipTitle : VisualElement
     {
 
     }
-    public AbilityToolTipTitle()
+    public AbilityToolTipTitle():base("Assets/Prefabs/UI/AbilityTitle.uxml")
     {
-        VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/AbilityTitle.uxml");
-        visualTreeAsset.CloneTree(root);
+
+    }
+    protected override void Init()
+    {
         Title = this.Q<Label>("Title");
         Description = this.Q<Label>("Description");
-        this.style.flexGrow = 1;
-        var widthVal = this.style.width.value;
-        widthVal=Length.Percent(100);
-        this.style.width = widthVal;
         for (int i = 0; i < 3; i++)
         {
             usageDepths[i] = this.Q("UsableDepths").Q("dot" + (i + 1));
-            targetableDepths[i] = this.Q("TargetableDepths").Q("dot" + (i+1));
+            targetableDepths[i] = this.Q("TargetableDepths").Q("dot" + (i + 1));
         }
-
+        
     }
     public void SetToolTip(string name, string desctiption, Depth usableDepth, Depth targetableDepth)
     {
@@ -67,5 +65,64 @@ public class AbilityToolTipTitle : VisualElement
             }
 
         }
+    }
+
+    
+}
+
+public abstract class TooltipModule : VisualElement
+{
+
+    
+    public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
+    {
+
+    }
+    public TooltipModule()
+    {
+
+    }
+    public TooltipModule(string path)
+    {
+        VisualElement root = this;
+        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(path);
+        visualTreeAsset.CloneTree(root);
+        
+        this.style.flexGrow = 1;
+        var widthVal = this.style.width.value;
+        widthVal = Length.Percent(100);
+        this.style.width = widthVal;
+        Init();
+    }
+    abstract protected void Init();
+
+
+}
+
+public class AbilityTooltipActions : TooltipModule
+{
+    Label damageAmount, accuracyAmount;
+    Label damageTitle;
+    public float damage { get; private set; }
+    //public float accuracy; 
+    public AbilityTooltipActions():base("Assets/Prefabs/UI/AbilityAction.uxml")
+    {
+
+    }
+
+    public void SetDamage(float damage,float accuracy)
+    {
+        damageTitle.text = damage > 0 ? "<color=red> Damage: </color>" : "<color=green> Healing: </color>";
+        damageAmount.text=Mathf.Abs(damage).ToString();
+        accuracyAmount.text = ((int)(accuracy *100)).ToString()+"%";
+        this.damage = damage;
+    }
+    protected override void Init()
+    {
+
+        damageAmount = this.Q<Label>("DamageHealthAmount");
+        damageTitle = this.Q<Label>("DamageHealth");
+        accuracyAmount = this.Q<Label>("AccuracyAmount");
+
     }
 }
