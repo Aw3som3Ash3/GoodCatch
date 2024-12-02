@@ -173,12 +173,6 @@ public class CombatManager : MonoBehaviour
             combatUI.UpdateInventory();
             combatUI.EnableButtons();
             completedCallback?.Invoke();
-            //combatVisualizer.SelectFish(Team.player, (t) => 
-            //{
-            //    UsePotion((Potion)item, t);
-            //    ActionsCompleted();
-            //    combatUI.UpdateInventory();
-            //});
         }
         
        
@@ -213,29 +207,7 @@ public class CombatManager : MonoBehaviour
         RemoveFishFromBattle(target);
         Debug.Log("caught " + target.fish);
     }
-    //void TryCatching(CombatHook net,Turn target)
-    //{
-    //    if (!rewardFish)
-    //    {
-    //        return;
-    //    }
-    //    if (UnityEngine.Random.Range(0, 1f) <= (1 - (target.Health / target.MaxHealth))*net.CatchBonus)
-    //    {
 
-    //        target.fish.RestoreAllHealth();
-    //        GameManager.Instance.CapturedFish(target.fish);
-    //        fishCaught[target.fish] = true;
-    //        RemoveFishFromBattle(target);
-    //        Debug.Log("caught "+ target.fish);
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("failed to catch");
-
-    //    }
-    //    currentTurn.Value.UseAction();
-    //    GameManager.Instance.PlayerInventory.RemoveItem(net);
-    //}
 
     void UsePotion(Potion potion,Turn target)
     {
@@ -478,8 +450,6 @@ public class CombatManager : MonoBehaviour
     {
         combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
-        //turnListUI.RemoveTurn(turn);
-        //enemyFishes.Remove(turn.fish);
         playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
