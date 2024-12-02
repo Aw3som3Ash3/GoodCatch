@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Groggler
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 0}
+  model: {fileID: 919132149155446097, guid: 2a0792f3e01811345b4418c848855b90, type: 3}
   fishId: 18
   icon: {fileID: 21300000, guid: c0d9793fba118294cb480b1743212496, type: 3}
   miniSprite: {fileID: 361366141, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
