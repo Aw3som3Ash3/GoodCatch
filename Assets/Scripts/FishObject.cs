@@ -185,7 +185,11 @@ public class FishObject : MonoBehaviour
         playableGraph.Evaluate();
         //playableOutput.SetSourcePlayable(clipPlayable);
         attackClipPlayable.Play();
-        source.PlayOneShot(defaultClip);
+        if (defaultClip != null)
+        {
+            source.PlayOneShot(defaultClip);
+        }
+       
         //playableGraph.
 
     }
