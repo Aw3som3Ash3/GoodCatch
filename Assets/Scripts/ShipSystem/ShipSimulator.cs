@@ -13,6 +13,10 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     public float sailRatio { get; private set; }
     public float turnRatio { get; private set; }
 
+    public AudioController audioController;
+    public AudioSource audioSource;
+    private AudioClip activeClip;
+
     [SerializeField]
     Transform wheelRight, wheelLeft;
     public Vector3 Velocity { get { return physicSim.velocity; } }
@@ -44,6 +48,7 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         this.transform.rotation = physicSim.transform.rotation;
         physicSim.transform.localPosition = Vector3.zero;
         physicSim.transform.localRotation = Quaternion.Euler(Vector3.zero);
+
     }
     public void AdjustSails(float adjustment)
     {
@@ -52,7 +57,19 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         sailRatio = adjustment;
        
 
-
+        if (sailRatio > 0)
+        {
+            audioSource.volume = sailRatio;
+            audioSource.clip = audioController.clip[0];
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.volume = 0.3f;
+            audioSource.clip = audioController.clip[1];
+            audioSource.Play();
+        }
+        
     }
     public void AdjustTurn(float adjustment)
     {
