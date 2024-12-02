@@ -47,6 +47,7 @@ public class InnDialogue : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Confined;
         UnityEngine.Cursor.visible = true;
         Time.timeScale = 0;
+        InputManager.DisablePlayer();
         Debug.Log("ShowUISelectable function has been called.");
         UIElement.SetActive(true);
         option1.visible = true;
@@ -57,7 +58,7 @@ public class InnDialogue : MonoBehaviour
     {
         ShowUISelectable();
         dialogue.text = "Welcome to the inn, would you like to stay?";
-        option1.clicked += onClick;
+        option1.clicked +=()=> { onClick?.Invoke(); DisableUI(); } ;
         option2.clicked += DisableUI;
     }
 

@@ -73,7 +73,8 @@ public class PartyUI : PausePage
                 var fish = fishventory.Fishies[i];
                 Debug.Log(fish);
                 Debug.Log(element);
-                element.Q("PartyIcon").style.backgroundImage =fish?.Icon;
+                var value = element.Q("PartyIcon").style.backgroundImage.value;
+                value.sprite=fish?.Icon;
                 element.SetEnabled(true);
             }
             else
@@ -91,7 +92,8 @@ public class PartyUI : PausePage
     void OnFocus(FishMonster fishMonster)
     {
 
-        preview.style.backgroundImage = fishMonster.Icon;
+        var value = preview.style.backgroundImage.value;
+        value.sprite = fishMonster.Icon;
         description.text = fishMonster.description;
         hpAmount.text = fishMonster.MaxHealth.ToString(); 
         attackAmount.text = fishMonster.Attack.value.ToString();
