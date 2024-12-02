@@ -12,6 +12,7 @@ public class AbilityButton : Button
     string abilityName;
     AbilityToolTipTitle title;
     AbilityTooltipActions damageLabel;
+    List<AbilityTooltipStatusChance> effectLabels;
 
     bool usable;
     public event Action<Action<ToolTipBox>> MouseEnter;
@@ -38,6 +39,7 @@ public class AbilityButton : Button
         tabIndex=1;
         title=new AbilityToolTipTitle();
         damageLabel=new AbilityTooltipActions();
+        effectLabels = new();
         base.clicked += () => { if (usable) { clicked?.Invoke(); } };
     }
 
@@ -55,6 +57,11 @@ public class AbilityButton : Button
             {
                 element.content.Add(damageLabel);
             }
+            for (int i = 0; i < effectLabels.Count; i++)
+            {
+                element.content.Add(effectLabels[i]);
+            }
+           
            
             
         }
@@ -82,7 +89,13 @@ public class AbilityButton : Button
         title.SetToolTip(abilityName,"",ability.AvailableDepths,ability.TargetableDepths);
         text = ability.name;
         this.damageLabel.SetDamage(damage, ability.Accuracy + baseAccuracy);
-
-
+        effectLabels.Clear();
+        for (int i = 0;i<effectLabels.Count;i++) 
+        {
+            var label = new AbilityTooltipStatusChance();
+            effectLabels.Add(label);
+            label.SetStatusEffect(ability.Effects[i].Effect, ability.Effects[i].Chance);
+        }
+        
     }
 }

@@ -126,3 +126,25 @@ public class AbilityTooltipActions : TooltipModule
 
     }
 }
+
+
+public class AbilityTooltipStatusChance : TooltipModule
+{
+    Label statusName,chance,effect;
+    public AbilityTooltipStatusChance():base("Assets/Prefabs/UI/AbilityStatus.uxml")
+    {
+
+    }
+    public void SetStatusEffect(StatusEffect effect,float chance)
+    {
+        statusName.text = effect.name;
+        this.chance.text = (chance * 100).ToString() + "%";
+    }
+    protected override void Init()
+    {
+        statusName = this.Q<Label>("StatusName");
+        chance = this.Q<Label>("StatusChancePercentageAmount");
+
+        //throw new System.NotImplementedException();
+    }
+}

@@ -7,7 +7,7 @@
                     <ui:Label tabindex="-1" text="StatusChance:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusChanceText" style="-unity-text-align: upper-center; align-self: center; -unity-font-style: bold; font-size: 20px; padding-right: 0; margin-right: 0;" />
                     <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusChancePercentageAmount" style="font-size: 20px; -unity-font-style: bold; margin-left: 0;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="StatusEffectContainer" style="flex-grow: 1; flex-direction: row; align-self: center;">
+                <ui:VisualElement name="StatusEffectContainer" style="flex-grow: 1; flex-direction: row; align-self: center; visibility: hidden;">
                     <ui:Label tabindex="-1" text="StatusEffect:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusEffectChanceText" style="-unity-text-align: upper-center; font-size: 20px; -unity-font-style: bold; margin-right: 0; padding-right: 0;" />
                     <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusEffectChanceAmount" style="font-size: 20px; -unity-font-style: bold; margin-left: 0;" />
                 </ui:VisualElement>
