@@ -15,7 +15,8 @@ MonoBehaviour:
   description: 
   model: {fileID: 9069672138228565780, guid: ed27f89321989fc49b020da5047a3f51, type: 3}
   fishId: 20
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1e88d5f9e045a4d4ba82cffede2b1d81, type: 3}
+  miniSprite: {fileID: 0}
   homeDepth: 0
   preferredBait: []
   elements:
@@ -40,9 +41,9 @@ MonoBehaviour:
     max: 15
     minTalent: 0
     maxTalent: 0
-  SpecialFortitude:
-    min: 5
-    max: 10
+  specialFortitude:
+    min: 0
+    max: 0
     minTalent: 0
     maxTalent: 0
   accuracy:

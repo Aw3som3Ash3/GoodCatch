@@ -28,7 +28,7 @@ public class PartyUI : PausePage
     {
 
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/PartyUI.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/PartyUI");
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
@@ -75,6 +75,7 @@ public class PartyUI : PausePage
                 Debug.Log(element);
                 var value = element.Q("PartyIcon").style.backgroundImage.value;
                 value.sprite=fish?.Icon;
+                element.Q("PartyIcon").style.backgroundImage = value;
                 element.SetEnabled(true);
             }
             else

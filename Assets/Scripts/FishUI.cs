@@ -29,8 +29,9 @@ public class FishUI : VisualElement
     public FishUI()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/FishConditionBar.uxml");
-        
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/FishConditionBar");
+
+
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         
@@ -40,7 +41,8 @@ public class FishUI : VisualElement
     {
         
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/FishConditionBar.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/FishConditionBar");
+
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.transform.position = new Vector3(-55, 0);

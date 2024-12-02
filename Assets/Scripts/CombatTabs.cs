@@ -4,12 +4,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CombatTabs : TabbedView
+public class CombatTabs : TabbedMenu
 {
     // Start is called before the first frame update
     Button move=new Button();
     AbilityButton[] buttons= new AbilityButton[4];
-    TabButton[] tabs= new TabButton[3];
+    TabMenuButton[] tabs= new TabMenuButton[3];
 
     int index;
     public new class UxmlFactory : UxmlFactory<CombatTabs, UxmlTraits> { }
@@ -36,7 +36,7 @@ public class CombatTabs : TabbedView
         }
         
         content.Add(abilities);
-        TabButton fightTab = new TabButton("Fight", abilities);
+        TabMenuButton fightTab = new    ("Fight", abilities);
         fightTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(fightTab); index = 0; });
         fightTab.name = "FightTab";
         this.AddTab(fightTab, true);
@@ -45,7 +45,7 @@ public class CombatTabs : TabbedView
         VisualElement items = new VisualElement();
         items.name = "Items";
         content.Add(items);
-        TabButton itemsTab = new TabButton("Items", items);
+        TabMenuButton itemsTab = new TabMenuButton("Items", items);
         itemsTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(itemsTab); index = 1; });
         itemsTab.name = "ItemsTab";
         this.AddTab(itemsTab, false);
@@ -55,7 +55,7 @@ public class CombatTabs : TabbedView
         VisualElement swap = new VisualElement();
         swap.name = "Swap";
         content.Add(swap);
-        TabButton swapTab = new TabButton("Swap", swap);
+            TabMenuButton swapTab = new TabMenuButton("Swap", swap);
         swapTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(swapTab); index = 2; });
         swapTab.name = "SwapTab";
         this.AddTab(swapTab, false);

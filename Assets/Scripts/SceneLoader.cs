@@ -2,23 +2,34 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.SceneManagement;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using System.Linq;
 
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+#endif
 public class SceneLoader : MonoBehaviour
 {
+#if UNITY_EDITOR
     [SerializeField]
-    LevelSetup sceneSetup;
+    LevelSetup editorSceneSetup;
+#endif
     Scene scene;
-    Scene allScenes;
+
+    [SerializeField]
+   List<string> allScenes;
+
     [SerializeField]
     PlayerController playerController;
     Camera cam;
     [SerializeField]
     UIDocument mainUI;
     public Action AllScenesLoaded;
+
+#if UNITY_EDITOR
     private void SceneClosed(Scene scene, bool removingScene)
     {
         if (this.scene == scene)
@@ -33,10 +44,11 @@ public class SceneLoader : MonoBehaviour
 
     private void EditorLoadScene(Scene scene, OpenSceneMode mode)
     {
-        scene = EditorSceneManager.GetActiveScene();
-        if (sceneSetup.sceneSetup.Length > 0 && scene.path == sceneSetup.sceneSetup[0].path)
+       
+        this.scene = EditorSceneManager.GetActiveScene();
+        if (editorSceneSetup.sceneSetup.Length > 0 && scene.path == editorSceneSetup.sceneSetup[0].path)
         {
-            EditorSceneManager.RestoreSceneManagerSetup(sceneSetup.sceneSetup);
+            EditorSceneManager.RestoreSceneManagerSetup(editorSceneSetup.sceneSetup);
         }
 
 
@@ -46,9 +58,13 @@ public class SceneLoader : MonoBehaviour
         scene=EditorSceneManager.GetActiveScene();
         EditorSceneManager.sceneOpened += EditorLoadScene;
         EditorSceneManager.sceneClosing += SceneClosed;
+        foreach(var scene in editorSceneSetup.sceneSetup)
+        {
+            allScenes.Add(scene.path);
+        }
     }
 
-
+#endif
 
     private void Awake()
     {
@@ -74,29 +90,20 @@ public class SceneLoader : MonoBehaviour
     IEnumerator LoadWorld()
     {
         
-        for (int i=0;i<sceneSetup.sceneSetup.Length;i++)
+        for (int i=0;i<allScenes.Count;i++)
         {
-            string name = Path.GetFileNameWithoutExtension(sceneSetup.sceneSetup[i].path);
+            string name = Path.GetFileNameWithoutExtension(allScenes[i]);
             
             if (name == SceneManager.GetActiveScene().name)
             {
                 continue;
             }
             bool sceneAlreadyLoaded=false;
-            var scene = SceneManager.GetSceneByPath(sceneSetup.sceneSetup[i].path);
+            var scene = SceneManager.GetSceneByPath(allScenes[i]);
             if (scene.name==name)
             {
                 sceneAlreadyLoaded=true;
             }
-           
-            //for (int j = 0; j < SceneManager.loadedSceneCount; j++) 
-            //{
-            //    if (SceneManager.GetSceneAt(j).name == name)
-            //    {
-            //        sceneAlreadyLoaded = true;
-            //        break;
-            //    }
-            //}
             if (sceneAlreadyLoaded|| name == null)
             {
                 continue;

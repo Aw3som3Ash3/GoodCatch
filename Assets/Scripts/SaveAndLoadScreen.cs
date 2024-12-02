@@ -36,7 +36,7 @@ public class SaveAndLoadScreen : VisualElement
     void Init()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/SaveAndLoadScreen.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/SaveAndLoadScreen");
         visualTreeAsset.CloneTree(root);
         //saveField = this.Q<TextField>("SaveField");
         //saveButton = this.Q<Button>("SaveButton");

@@ -15,7 +15,8 @@ MonoBehaviour:
   description: 
   model: {fileID: 6331407285963942175, guid: e953725306d8ac24da13d34689fabb05, type: 3}
   fishId: 0
-  icon: {fileID: 2800000, guid: 1e88d5f9e045a4d4ba82cffede2b1d81, type: 3}
+  icon: {fileID: 21300000, guid: 1e88d5f9e045a4d4ba82cffede2b1d81, type: 3}
+  miniSprite: {fileID: 0}
   homeDepth: 0
   preferredBait:
   - {fileID: 11400000, guid: 34160b880143d944f988b3d6818b4405, type: 2}
@@ -41,11 +42,11 @@ MonoBehaviour:
     max: 24
     minTalent: 1
     maxTalent: 3
-  SpecialFortitude:
-    min: 20
-    max: 25
-    minTalent: 3
-    maxTalent: 4
+  specialFortitude:
+    min: 0
+    max: 0
+    minTalent: 0
+    maxTalent: 0
   accuracy:
     min: 15
     max: 30
@@ -56,7 +57,7 @@ MonoBehaviour:
   baseAbilities:
   - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}
   - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}
-  - {fileID: 11400000, guid: a43937895c7355440b407090bb640eb5, type: 2}
+  - {fileID: 11400000, guid: d91d835999b3c03468f55c3f346e42d7, type: 2}
   - {fileID: 11400000, guid: f5e161f5f7750b6468c04d356a177b7c, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
