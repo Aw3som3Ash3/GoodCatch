@@ -54,7 +54,9 @@ MonoBehaviour:
     maxTalent: 0
   baseHealth: 100
   baseStamina: 60
-  baseAbilities: []
+  baseAbilities:
+  - {fileID: 11400000, guid: b62a2c97a6f97654381061ae2909ec01, type: 2}
+  - {fileID: 11400000, guid: 778c662a5ae3940428ea47e3d4862cb5, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
