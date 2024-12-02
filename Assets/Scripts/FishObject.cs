@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.EventSystems;
 using UnityEngine.Playables;
+using static Unity.VisualScripting.Member;
 
 public class FishObject : MonoBehaviour
 {
@@ -34,9 +35,13 @@ public class FishObject : MonoBehaviour
     AnimationClipPlayable attackClipPlayable;
     AnimationMixerPlayable mixerPlayable;
 
+    [SerializeField]
+    AudioClip defaultClip;
+    AudioSource source;
     public Transform hookLocation { get; private set; }
     private void Awake()
     {
+        source= GetComponent<AudioSource>();
         EventTrigger eventTrigger= this.AddComponent<EventTrigger>();
         EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
         hoverEvent.eventID = EventTriggerType.PointerEnter;
@@ -150,7 +155,7 @@ public class FishObject : MonoBehaviour
         playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", anim);
         mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
         playableOutput.SetSourcePlayable(mixerPlayable);
-
+        
 
         
         var idleClipPlayable = AnimationClipPlayable.Create(playableGraph, turn.fish.IdleAnimation);
@@ -180,7 +185,7 @@ public class FishObject : MonoBehaviour
         playableGraph.Evaluate();
         //playableOutput.SetSourcePlayable(clipPlayable);
         attackClipPlayable.Play();
-        
+        source.Play();
         //playableGraph.
 
     }
