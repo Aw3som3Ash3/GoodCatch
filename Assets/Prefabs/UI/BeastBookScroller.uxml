@@ -1,17 +1,19 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/BestiaryListMenu.uss?fileID=7433441132597879392&amp;guid=eeeba0854fec8e1438ce167e19af102d&amp;type=3#BestiaryListMenu" />
-    <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 1; flex-direction: row;">
-        <ui:VisualElement name="LeftSide" style="flex-grow: 1; max-width: 56%;">
-            <ui:VisualElement name="PngBox" style="flex-grow: 1; background-color: rgb(123, 123, 123); padding-left: 200px; padding-right: 200px; padding-bottom: 200px;">
-                <ui:VisualElement name="HoveredNameContainer" style="flex-grow: 0; height: 216px; justify-content: flex-end;">
-                    <ui:Label tabindex="-1" text="HoveredFishName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HoveredNameAmount" style="font-size: 75px; -unity-text-align: upper-center; -unity-font: initial; -unity-font-style: bold;" />
+    <Style src="project://database/Assets/UI%20Assets/BestiaryListMenu.uss?fileID=7433441132597879392&amp;guid=eeeba0854fec8e1438ce167e19af102d&amp;type=3#BestiaryListMenu" />
+    <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 1; flex-direction: row; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/BackgroundBlue.png?fileID=21300000&amp;guid=105d2de50369d544ba3b58bc33bf2630&amp;type=3#BackgroundBlue&quot;);">
+        <ui:VisualElement name="BookBG" style="flex-grow: 1; flex-direction: row; background-image: url(&quot;project://database/Assets/Art/2D/UI/beastiary%20concept%20flat.png?fileID=21300000&amp;guid=daac4e34f89e0d440b7635f2543f170f&amp;type=3#beastiary concept flat&quot;);">
+            <ui:VisualElement name="LeftSide" style="flex-grow: 1; max-width: 56%;">
+                <ui:VisualElement name="PngBox" style="flex-grow: 1; background-color: rgba(123, 123, 123, 0); padding-left: 200px; padding-right: 235px; padding-bottom: 200px; padding-top: 49px;">
+                    <ui:VisualElement name="HoveredNameContainer" style="flex-grow: 0; height: 216px; justify-content: flex-end;">
+                        <ui:Label tabindex="-1" text="HoveredFishName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HoveredNameAmount" style="font-size: 75px; -unity-text-align: upper-center; -unity-font: initial; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="PngAmount" style="flex-grow: 1; background-color: rgb(144, 76, 76); padding-top: 0; padding-left: 0; padding-bottom: 0; padding-right: 0; align-items: stretch;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="PngAmount" style="flex-grow: 1; background-color: rgb(144, 76, 76); padding-top: 0; padding-left: 0; padding-bottom: 0; padding-right: 0;" />
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="RightSide" style="flex-grow: 1; min-width: 20%; background-color: rgba(0, 255, 231, 0.18);">
-            <ui:Label tabindex="-1" text="Marindex" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" style="-unity-font-style: bold; font-size: 90%; -unity-text-align: upper-center; margin-top: 4%; padding-right: 63px;" />
-            <ui:ListView name="FishList" show-alternating-row-backgrounds="ContentOnly" show-border="true" style="height: 100%;" />
+            <ui:VisualElement name="RightSide" style="flex-grow: 1; min-width: 20%; background-color: rgba(0, 255, 231, 0);">
+                <ui:Label tabindex="-1" text="Marindex" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" style="-unity-font-style: bold; font-size: 90%; -unity-text-align: upper-center; margin-top: 4%; padding-right: 63px;" />
+                <ui:ListView name="FishList" show-alternating-row-backgrounds="ContentOnly" show-border="true" style="height: 100%;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
