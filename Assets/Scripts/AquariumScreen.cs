@@ -52,6 +52,7 @@ public class AquariumScreen : PausePage
             {
                 var value = partySlots[i].style.backgroundImage.value;
                 value.sprite = GameManager.Instance.PlayerFishventory.Fishies[i].Icon;
+                partySlots[i].style.backgroundImage = value;
                 slotToFish[partySlots[i]] = GameManager.Instance.PlayerFishventory.Fishies[i];
             }
            
@@ -63,6 +64,7 @@ public class AquariumScreen : PausePage
                 GameManager.Instance.PlayerFishventory.SwapFish(index, temp);
                 var value = partySlots[index].style.backgroundImage.value;
                 value.sprite= GameManager.Instance.PlayerFishventory.Fishies[index].Icon;
+                partySlots[index].style.backgroundImage = value;
                 slotToFish[partySlots[index]] = GameManager.Instance.PlayerFishventory.Fishies[index];
                 mainOptions.visible = true;
                 mainOptions.SetEnabled(true);
@@ -125,6 +127,7 @@ public class AquariumScreen : PausePage
         }
         var value = picturePreview.style.backgroundImage.value;
         value.sprite= slot.fishMonster.Icon;
+        picturePreview.style.backgroundImage = value;
         nameTitle.text = slot.fishMonster.Name;
         hp.text = slot.fishMonster.MaxHealth.ToString();
         stamina.text = slot.fishMonster.MaxStamina.ToString();
@@ -166,6 +169,7 @@ public class AquariumSlot : VisualElement
         this.fishMonster = fishMonster;
         var value= sprite.style.backgroundImage.value;
         value.sprite= fishMonster.MiniSprite;
+        sprite.style.backgroundImage = value;
         return temp;
     }
     public AquariumSlot()
@@ -179,6 +183,7 @@ public class AquariumSlot : VisualElement
         this.fishMonster = fishMonster;
         var value = sprite.style.backgroundImage.value;
         value.sprite= fishMonster.MiniSprite;
+        sprite.style.backgroundImage = value;
     }
     void Init()
     {
