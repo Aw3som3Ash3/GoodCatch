@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         //print(angles.x);
         cameraRig.localEulerAngles = angles;
         IInteractable interactible;
-        /*if (InteractionCheck(out interactible))
+        if (InteractionCheck(out interactible))
         {
             InteractionUI.text = interactible.StationName;
         }
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         {
             if (InteractionUI == null)
             {
-                InteractionUI=FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
+                InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
             }
             if (InteractionUI != null)
             {
@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour,ISaveable
 
             }
 
-        }*/
+        }
 
     }
     private void FixedUpdate()

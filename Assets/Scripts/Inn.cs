@@ -16,7 +16,7 @@ public class Inn : MonoBehaviour, IInteractable
 
     void Awake()
     {
-        
+        dialogue=FindObjectOfType<InnDialogue>(); 
     }
 
     public bool Interact()

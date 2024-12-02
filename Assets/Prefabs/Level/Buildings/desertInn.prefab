@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 5635896496539704519}
+  dialogue: {fileID: 0}
 --- !u!136 &8216724604879502233
 CapsuleCollider:
   m_ObjectHideFlags: 0
