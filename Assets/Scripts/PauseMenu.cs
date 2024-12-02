@@ -17,6 +17,7 @@ public class PauseMenu : VisualElement
     PausePage currentPage;
     VisualElement menu;
 
+    bool exitCompletely = false;
     static PauseMenu mainPause;
     public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
@@ -81,9 +82,20 @@ public class PauseMenu : VisualElement
 
         evt.PreventDefault();
     }
-    static public void Pause()
+    static public PauseMenu Pause()
     {
         mainPause.OnPause();
+        return mainPause;
+    }
+    public void AddPage(PausePage pausePage, bool exitCompletely = true)
+    {
+       
+        this.Add(pausePage);
+        currentPage = pausePage;
+        menu.visible = false;
+        menu.SetEnabled(false);
+        this.exitCompletely = exitCompletely;
+
     }
     void OnPause()
     {
@@ -93,8 +105,14 @@ public class PauseMenu : VisualElement
         if (currentPage != null)
         {
             Back();
+            if (exitCompletely == true)
+            {
+                OnPause();
+            }
             return;
         }
+        
+        exitCompletely = false;
         if (!menu.enabledSelf)
         {
             prevVisability = UnityEngine.Cursor.visible;
@@ -152,6 +170,8 @@ public class PauseMenu : VisualElement
                 currentPage = null;
             }
         }
+        
+
 
     }
 
