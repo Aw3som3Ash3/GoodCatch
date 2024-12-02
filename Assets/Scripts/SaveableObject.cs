@@ -41,11 +41,12 @@ public abstract class SaveableObject : MonoBehaviour,ISaveable
         }
 #endif
     }
-
+#if UNITY_EDITOR
     [ContextMenu("Generate GUID")]
     void GenerateNewId()
     {
         id = GUID.Generate().ToString();
         Debug.Log("Current Save ID:" + id);
     }
+#endif
 }

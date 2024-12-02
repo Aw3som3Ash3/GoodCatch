@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEngine.Rendering.VolumeComponent;
 
-public class FishventoryTab : TabbedView
+
+public class FishventoryTab : TabbedMenu
 {
     int numberOfTabs = 3;
     
-    public  List<TabButton> tabs=new();
+    public  List<TabMenuButton> tabs=new();
     public List<VisualElement> tabContent = new();
     //int index;
     // Start is called before the first frame update
@@ -47,8 +47,8 @@ public class FishventoryTab : TabbedView
             tabContent.Add(box);
             Debug.Log(box);
             content.Add(box);
-            
-            TabButton tab = new TabButton("Tab "+(i + 1), box);
+
+            TabMenuButton tab = new TabMenuButton("Tab "+(i + 1), box);
             //tab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(tab);});
             tab.name = "Tab"+(i + 1);
             this.AddTab(tab,false);

@@ -21,14 +21,17 @@ public class StatusIcon : VisualElement
     }
     public StatusIcon()
     {
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/StatusIcon.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/StatusIcon");
+
 
         visualTreeAsset.CloneTree(this);
 
     }
     public StatusIcon(StatusEffect.StatusEffectInstance statusEffect)
     {
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/StatusIcon.uxml");
+       
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/StatusIcon");
+
 
         visualTreeAsset.CloneTree(this);
         imageObj=this.Q("Icon");
