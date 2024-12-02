@@ -38,6 +38,7 @@ public class FishObject : MonoBehaviour
     [SerializeField]
     AudioClip defaultClip;
     AudioSource source;
+    public AudioController audioController;
     public Transform hookLocation { get; private set; }
     private void Awake()
     {
@@ -185,6 +186,7 @@ public class FishObject : MonoBehaviour
         playableGraph.Evaluate();
         //playableOutput.SetSourcePlayable(clipPlayable);
         attackClipPlayable.Play();
+        source.clip = audioController.clip[UnityEngine.Random.Range(0, audioController.clip.Length)];
         source.Play();
         //playableGraph.
 

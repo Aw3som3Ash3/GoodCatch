@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8255857342917544395}
   - component: {fileID: 6505524237921334165}
   - component: {fileID: 3923619353170728889}
+  - component: {fileID: 2965054473678648344}
   m_Layer: 11
   m_Name: CombatFish
   m_TagString: Untagged
@@ -167,3 +168,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2965054473678648344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9069000482066618501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe068da1ce4e1649a5065c6df550334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  src: {fileID: 3923619353170728889}
+  clip:
+  - {fileID: 8300000, guid: 1770400e114f3404fa4195e534f9b868, type: 3}
+  - {fileID: 8300000, guid: a4654ac942a24df44b7e3328dd7d86fd, type: 3}
+  - {fileID: 8300000, guid: 0c83e02b56e26e44483fe05922ba3215, type: 3}
+  - {fileID: 8300000, guid: 12b262bc00aff96439237bbd202a3217, type: 3}
+  - {fileID: 8300000, guid: 840ddbddb87f38445a5e1ebc4e8fc08b, type: 3}
+  - {fileID: 8300000, guid: 17fe86b85c1902d428896bc52e60344c, type: 3}
+  - {fileID: 8300000, guid: 5143ee80d72ab254db336e4986a4fb91, type: 3}
+  - {fileID: 8300000, guid: fede46e0d13f0a44c965bc0c28c49fd5, type: 3}
+  - {fileID: 8300000, guid: 73c07625ff167f941ac95f33968c6b2e, type: 3}
+  - {fileID: 8300000, guid: 97c28b9a4b362564ba6399f518a87888, type: 3}
+  - {fileID: 8300000, guid: 6c10775f5219df440a305fad0cb49a94, type: 3}
+  - {fileID: 8300000, guid: ec325cf1f02897c4880aed507a8f8e2c, type: 3}
+  - {fileID: 8300000, guid: 397eee3c76c22644592a97c09f4909f9, type: 3}
+  - {fileID: 8300000, guid: d302fae26ad912e4ab9de2f5935ea609, type: 3}
+  - {fileID: 8300000, guid: 380779b7176b7564da70a97ca3184364, type: 3}
+  - {fileID: 8300000, guid: 60ffbb15dbf2d3c4d9ef74d1349ffbdd, type: 3}
