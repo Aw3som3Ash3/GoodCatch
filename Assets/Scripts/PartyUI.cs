@@ -75,6 +75,7 @@ public class PartyUI : PausePage
                 Debug.Log(element);
                 var value = element.Q("PartyIcon").style.backgroundImage.value;
                 value.sprite=fish?.Icon;
+                element.Q("PartyIcon").style.backgroundImage = value;
                 element.SetEnabled(true);
             }
             else
