@@ -12,6 +12,8 @@ public class Floater : MonoBehaviour
     [SerializeField]
     Transform lineEnd;
 
+    public AudioController audioController;
+
     public Vector3 LineEndPos { get { return lineEnd.position; } }
 
     // Start is called before the first frame update
@@ -58,6 +60,7 @@ public class Floater : MonoBehaviour
                 if (depth > 1)
                 {
                     InitiateFishingMiniGame();
+                    audioController.PlayClipRandom();
                 }
                 else
                 {
