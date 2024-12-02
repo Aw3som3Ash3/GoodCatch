@@ -6,6 +6,10 @@
             </ui:VisualElement>
             <ui:VisualElement name="VisualElement" style="flex-grow: 0;">
                 <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NameAmount" style="font-size: 55px; align-items: stretch; align-self: center; color: rgb(255, 255, 255);" />
+                <ui:VisualElement name="LevelContainer" style="flex-grow: 1; flex-direction: row; justify-content: center;">
+                    <ui:Label tabindex="-1" text="Level:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelText" style="font-size: 36px; color: rgb(255, 255, 255); padding-right: 0; margin-right: 0;" />
+                    <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelTextAmount" style="font-size: 36px; color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="HPSTContianer" style="flex-grow: 1; justify-content: center; align-self: center;">
                 <ui:VisualElement name="HpContainer" style="flex-grow: 0; flex-direction: row; -unity-text-align: upper-left; align-self: center;">
@@ -18,7 +22,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; align-items: auto; justify-content: center; flex-wrap: nowrap;">
-                <ui:Button text="Add To Party" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AddToPartyButton" style="min-width: auto; min-height: 80px; width: 472px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 6%; padding-bottom: 0; padding-left: 6%; font-size: 36px; background-color: rgb(80, 118, 188); color: rgb(255, 255, 255);" />
+                <ui:Button text="Add To Party" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AddToPartyButton" tabindex="1" style="min-width: auto; min-height: 80px; width: 472px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 6%; padding-bottom: 0; padding-left: 6%; font-size: 36px; background-color: rgb(80, 118, 188); color: rgb(255, 255, 255);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

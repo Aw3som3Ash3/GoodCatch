@@ -214,3 +214,11 @@
     border-top-color: rgba(255, 95, 95, 0);
     border-bottom-color: rgba(255, 95, 95, 0);
 }
+
+#AddToPartyButton {
+}
+
+#AddToPartyButton:hover {
+    transform-origin: center;
+    scale: 1.1 1.1;
+}
