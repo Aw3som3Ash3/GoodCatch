@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Inn : MonoBehaviour, IInteractable
 {
@@ -9,32 +11,38 @@ public class Inn : MonoBehaviour, IInteractable
     [SerializeField]
     Transform respawnPoint;
     public static Action<Inn> InnVisited;
+
+    public InnDialogue dialogue;
+
+    void Awake()
+    {
+        
+    }
+
     public bool Interact()
     {
         InnVisited?.Invoke(this);
         if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Night))
         {
-            print("should sleep");
-            GameManager.Instance.AdvanceTime(GameManager.TimeOfDay.Dawn);
-            GameManager.Instance.RestoreFish();
+            dialogue.DisplayFirstOption(SleepThroughNight);
             return true;
         }
        print("it is not night time could not sleep");
+       dialogue.CantSleepMessage();
        return false;
     }
     public Vector3 GetRepsawnPoint()
     {
         return respawnPoint.position;
     }
+
     public void SleepThroughNight()
     {
+        print("should sleep");
+        GameManager.Instance.AdvanceTime(GameManager.TimeOfDay.Dawn);
+        GameManager.Instance.RestoreFish();
+    }
 
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
