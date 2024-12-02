@@ -37,12 +37,12 @@ public class FishMonsterType : ScriptableObject
     public int fishId;
 
     [SerializeField]
-    Texture2D icon;
-    public Texture2D Icon { get { return icon; } }
+    Sprite icon;
+    public Sprite Icon { get { return icon; } }
 
     [SerializeField]
-    Texture2D miniSprite;
-    public Texture2D MiniSprite { get { return miniSprite; } }
+    Sprite miniSprite;
+    public Sprite MiniSprite { get { return miniSprite; } }
     [SerializeField]
     Depth homeDepth;
     [SerializeField]
@@ -244,8 +244,8 @@ public class FishMonster
     float maxStamina;
     public float MaxStamina { get { return maxStamina; } }
     public float Dodge { get { return agility.value / 2; } }
-    public Texture2D Icon { get { return Type.Icon; } }
-    public Texture2D MiniSprite { get { return Type.MiniSprite; } }
+    public Sprite Icon { get { return Type.Icon; } }
+    public Sprite MiniSprite { get { return Type.MiniSprite; } }
     public GameObject Model { get { return Type.Model; } }
 
     [SerializeField]

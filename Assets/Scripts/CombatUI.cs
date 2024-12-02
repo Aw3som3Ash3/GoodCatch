@@ -103,7 +103,8 @@ public class CombatUI : VisualElement
             
             int index = i;
             var slot = combatDraftUI.Q<Button>("slot" + (i + 1));
-            slot.style.backgroundImage=playerFishes[i].Icon;
+            var value = slot.style.backgroundImage.value;
+            value.sprite=playerFishes[i].Icon;
             slot.clicked += () =>
             {
                 slot.AddToClassList("DraftSelected");
@@ -285,7 +286,8 @@ public class CombatUI : VisualElement
         }
         fishName.text = currentTurn.fish.Name;
         level.text = currentTurn.fish.Level.ToString();
-        fishIcon.style.backgroundImage = currentTurn.fish.Icon;
+        var value = fishIcon.style.backgroundImage.value;
+        value.sprite= currentTurn.fish.Icon;
         ResetEffects();
         SetEffects();
         currentTurn.NewEffect += AddEffect;

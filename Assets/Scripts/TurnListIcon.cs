@@ -21,14 +21,16 @@ public class TurnListIcon : VisualElement
 
         Add(ui);
     }
-    public TurnListIcon(Texture2D image,CombatManager.Team team)
+    public TurnListIcon(Sprite image,CombatManager.Team team)
     {
         VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/TurnListIcon.uxml");
         visualTreeAsset.CloneTree(this);
         icon = this.Q("Icon");
         if (image != null)
         {
-            icon.style.backgroundImage = image;
+            var value = icon.style.backgroundImage.value; 
+            value.sprite = image;
+            icon.style.backgroundImage = value;
         }
         var color=team==CombatManager.Team.player? Color.green: Color.red;
         icon.style.borderRightColor=color;

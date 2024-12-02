@@ -48,14 +48,16 @@ public class AquariumScreen : PausePage
         {
             int index = i;
             partySlots[i]=party.Q<Button>("slot" + (i + 1));
-            partySlots[i].style.backgroundImage = GameManager.Instance.PlayerFishventory.Fishies[i].Icon;
+            var value = partySlots[i].style.backgroundImage.value;
+            value.sprite= GameManager.Instance.PlayerFishventory.Fishies[i].Icon;
             slotToFish[partySlots[i]] = GameManager.Instance.PlayerFishventory.Fishies[i];
 
             partySlots[i].clicked += () =>
             {
                 var temp = selectedSlot.Swap(slotToFish[partySlots[index]]);
                 GameManager.Instance.PlayerFishventory.SwapFish(index, temp);
-                partySlots[index].style.backgroundImage = GameManager.Instance.PlayerFishventory.Fishies[index].Icon;
+                var value = partySlots[index].style.backgroundImage.value;
+                value.sprite= GameManager.Instance.PlayerFishventory.Fishies[index].Icon;
                 slotToFish[partySlots[index]] = GameManager.Instance.PlayerFishventory.Fishies[index];
                 mainOptions.visible = true;
                 mainOptions.SetEnabled(true);
@@ -116,7 +118,8 @@ public class AquariumScreen : PausePage
         {
             return;
         }
-        picturePreview.style.backgroundImage = slot.fishMonster.Icon;
+        var value = picturePreview.style.backgroundImage.value;
+        value.sprite= slot.fishMonster.Icon;
         nameTitle.text = slot.fishMonster.Name;
         hp.text = slot.fishMonster.MaxHealth.ToString();
         stamina.text = slot.fishMonster.MaxStamina.ToString();
@@ -156,7 +159,8 @@ public class AquariumSlot : VisualElement
     {
         var temp = this.fishMonster;
         this.fishMonster = fishMonster;
-        sprite.style.backgroundImage = fishMonster.MiniSprite;
+        var value= sprite.style.backgroundImage.value;
+        value.sprite= fishMonster.MiniSprite;
         return temp;
     }
     public AquariumSlot()
@@ -168,7 +172,8 @@ public class AquariumSlot : VisualElement
     {
         Init();
         this.fishMonster = fishMonster;
-        sprite.style.backgroundImage = fishMonster.MiniSprite;
+        var value = sprite.style.backgroundImage.value;
+        value.sprite= fishMonster.MiniSprite;
     }
     void Init()
     {

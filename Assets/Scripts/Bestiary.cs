@@ -59,7 +59,8 @@ public class Bestiary : PausePage
         FishMonsterType fishMonsterType = fishList.selectedItem as FishMonsterType;
 
         fishLabel.text = hasSeenFish[fishMonsterType.fishId]? fishMonsterType.name:"????????????";
-        fishPic.style.backgroundImage = hasSeenFish[fishMonsterType.fishId] ? fishMonsterType?.Icon:null;
+        var value = fishPic.style.backgroundImage.value;
+        value.sprite= hasSeenFish[fishMonsterType.fishId] ? fishMonsterType?.Icon:null;
        
         //throw new NotImplementedException();
     }
