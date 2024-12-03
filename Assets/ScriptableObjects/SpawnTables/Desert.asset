@@ -18,13 +18,13 @@ MonoBehaviour:
   - monster: {fileID: 11400000, guid: 626f74771430aa44486f2c349ee21c44, type: 2}
     weight: 10
   - monster: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}
-    weight: 0
+    weight: 10
   - monster: {fileID: 11400000, guid: 4c4d1a2ba2dc3944a88c93c6f5c1c85e, type: 2}
     weight: 5
   nightSpawn:
   - monster: {fileID: 11400000, guid: 626f74771430aa44486f2c349ee21c44, type: 2}
     weight: 10
   - monster: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}
-    weight: 0
+    weight: 15
   - monster: {fileID: 11400000, guid: 4c4d1a2ba2dc3944a88c93c6f5c1c85e, type: 2}
     weight: 15

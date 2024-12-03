@@ -74,7 +74,7 @@ public class CombatVictory : VisualElement
                enemySlot.Q<ProgressBar>("healthBar").visible = false;
                 enemySlot.Q<ProgressBar>("xpBar").visible = false;
                 var value=enemySlot.Q("ProfilePic").style.backgroundImage.value;
-                value.sprite= playerFishes[i].Icon;
+                value.sprite= enemyFishes[i].Icon;
                 enemySlot.Q("ProfilePic").style.backgroundImage = value;
             }
             else if(i<3)

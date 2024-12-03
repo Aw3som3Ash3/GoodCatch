@@ -305,6 +305,7 @@ public class CombatManager : MonoBehaviour
     }
     void EndFight(Team winningTeam)
     {
+       
         StartCoroutine(CombatVictoryScreen(winningTeam));
  
     }
@@ -331,7 +332,7 @@ public class CombatManager : MonoBehaviour
             }
            
         }
-        ui.rootVisualElement.Remove(combatUI);
+        //ui.rootVisualElement.Remove(combatUI);
         playerFishes = null;
         enemyFishes = null;
         rewardFish = false;
