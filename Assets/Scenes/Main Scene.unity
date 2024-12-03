@@ -697,6 +697,7 @@ GameObject:
   - component: {fileID: 590297232}
   - component: {fileID: 590297233}
   - component: {fileID: 590297234}
+  - component: {fileID: 590297235}
   m_Layer: 0
   m_Name: Boss Piranarch
   m_TagString: Untagged
@@ -760,6 +761,19 @@ MonoBehaviour:
   fishMonster1: {fileID: 11400000, guid: be86766beb7a3a24ea242a56cd406d0d, type: 2}
   fishMonster2: {fileID: 11400000, guid: 107131bcbcacb3546a47124b68635eb5, type: 2}
   fishMonster3: {fileID: 11400000, guid: be86766beb7a3a24ea242a56cd406d0d, type: 2}
+--- !u!114 &590297235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590297231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b41a2a4ed4035448d09a63ea738ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: e2264e650ba6cff4ba09214892985cb7
 --- !u!1 &660186767
 GameObject:
   m_ObjectHideFlags: 0

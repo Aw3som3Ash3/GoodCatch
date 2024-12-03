@@ -23,6 +23,7 @@ public class BossFightStart : MonoBehaviour
         {
             GameManager.Instance.LoadCombatScene(fishMonsters);
             this.gameObject.SetActive(false);
+            Debug.Log("Boss destroyed.");
         }
     }
 
