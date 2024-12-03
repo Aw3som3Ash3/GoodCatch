@@ -25,7 +25,7 @@ public class TabbedMenu : VisualElement
     public TabbedMenu()
     {
         AddToClassList(s_UssClassName);
-        //styleSheets.Add(Resources.Load<StyleSheet>($"Styles/{k_styleName}"));
+        styleSheets.Add(Resources.Load<StyleSheet>("UXMLs/TabbedView"));
 
         m_TabContent = new VisualElement();
         m_TabContent.name = "unity-tabs-container";
@@ -220,7 +220,7 @@ public class TabMenuButton : VisualElement
     private void Init()
     {
         AddToClassList(s_UssClassName);
-        styleSheets.Add(Resources.Load<StyleSheet>($"Styles/{styleName}"));
+        styleSheets.Add(Resources.Load<StyleSheet>("UXMLs/TabbedButton"));
 
         VisualTreeAsset visualTree = Resources.Load<VisualTreeAsset>($"UXML/{UxmlName}");
         visualTree.CloneTree(this);
