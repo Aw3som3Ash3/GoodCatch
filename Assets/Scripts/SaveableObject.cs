@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,6 @@ public abstract class SaveableObject : MonoBehaviour,ISaveable
     public abstract object DataToSave { get; }
 
     [SerializeField]
-    [HideInInspector]
     string id;
     public string ID => id;
 
@@ -47,7 +47,7 @@ public abstract class SaveableObject : MonoBehaviour,ISaveable
     [ContextMenu("Generate GUID")]
     void GenerateNewId()
     {
-        id = GUID.Generate().ToString();
+        id = Guid.NewGuid().ToString();
         Debug.Log("Current Save ID:" + id);
     }
 #endif

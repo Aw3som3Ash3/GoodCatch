@@ -182,13 +182,12 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-#if UNITY_EDITOR
         if (abilityID == null || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
         {
             abilityID = Guid.NewGuid().ToString();
-            getAbilityById[abilityID] = this;
+            
         }
-#endif
+        getAbilityById[abilityID] = this;
     }
 
 }

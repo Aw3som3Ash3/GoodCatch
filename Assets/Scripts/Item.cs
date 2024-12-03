@@ -34,14 +34,13 @@ public abstract class Item : ScriptableObject,ISerializationCallbackReceiver
     
     public void OnAfterDeserialize()
     {
-#if UNITY_EDITOR
         if (itemId == null || (getItemById.ContainsKey(itemId) && getItemById[itemId] != this) || itemId == "")
         {
             itemId = Guid.NewGuid().ToString();
-            getItemById[itemId] = this;
+            
         }
+        getItemById[itemId] = this;
 
-#endif
     }
 
 }
