@@ -22,7 +22,6 @@ public class BossFightStart : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             GameManager.Instance.LoadCombatScene(fishMonsters);
-
             this.gameObject.SetActive(false);
         }
     }
