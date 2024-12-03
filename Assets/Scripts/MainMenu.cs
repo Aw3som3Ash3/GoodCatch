@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainScreen.Q<Button>("NewGame").Focus();
         mainScreen.Q<Button>("LoadGame").clicked += () =>
         {
             mainScreen.visible=false;
