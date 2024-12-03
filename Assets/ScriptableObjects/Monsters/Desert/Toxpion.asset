@@ -43,8 +43,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   specialFortitude:
-    min: 0
-    max: 0
+    min: 5
+    max: 10
     minTalent: 0
     maxTalent: 0
   accuracy:
@@ -52,8 +52,8 @@ MonoBehaviour:
     max: 50
     minTalent: 0
     maxTalent: 0
-  baseHealth: 100
-  baseStamina: 70
+  baseHealth: 90
+  baseStamina: 60
   baseAbilities:
   - {fileID: 11400000, guid: 6fab145c45eb942489e4925e441658d5, type: 2}
   - {fileID: 11400000, guid: 881d90653e342b54ba84698fcfa88d79, type: 2}
