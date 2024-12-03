@@ -222,7 +222,7 @@ public class TabMenuButton : VisualElement
         AddToClassList(s_UssClassName);
         styleSheets.Add(Resources.Load<StyleSheet>("UXMLs/TabbedButtons"));
 
-        VisualTreeAsset visualTree = Resources.Load<VisualTreeAsset>($"UXML/{UxmlName}");
+        VisualTreeAsset visualTree = Resources.Load<VisualTreeAsset>("UXMLs/TabButton");
         visualTree.CloneTree(this);
 
         m_Label = this.Q<Label>("Label");
