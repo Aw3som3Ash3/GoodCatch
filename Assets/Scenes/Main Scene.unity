@@ -2238,7 +2238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14d65787143aec4592a4a6382eebc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneSetup: {fileID: 11400000, guid: 45cc948814ab9f14ab65aedb603d4400, type: 2}
+  allScenes:
+  - DesertIsland
   playerController: {fileID: 202057787}
   mainUI: {fileID: 900925920}
 --- !u!1001 &1772234276

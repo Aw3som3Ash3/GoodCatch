@@ -22,41 +22,41 @@ public class SceneLoader : MonoBehaviour
     UIDocument mainUI;
     public Action AllScenesLoaded;
 #if UNITY_EDITOR
-    [SerializeField]
-    LevelSetup sceneSetup;
-    private void SceneClosed(Scene scene, bool removingScene)
-    {
-        if (this.scene == scene)
-        {
+    //[SerializeField]
+    //LevelSetup sceneSetup;
+    //private void SceneClosed(Scene scene, bool removingScene)
+    //{
+    //    if (this.scene == scene)
+    //    {
             
-            EditorSceneManager.sceneOpened -= EditorLoadScene;
-            EditorSceneManager.sceneClosing -= SceneClosed;
-            //sceneSetup.sceneSetup = EditorSceneManager.GetSceneManagerSetup();
+    //        EditorSceneManager.sceneOpened -= EditorLoadScene;
+    //        EditorSceneManager.sceneClosing -= SceneClosed;
+    //        //sceneSetup.sceneSetup = EditorSceneManager.GetSceneManagerSetup();
 
-        }
-    }
+    //    }
+    //}
 
-    private void EditorLoadScene(Scene scene, OpenSceneMode mode)
-    {
-        scene = EditorSceneManager.GetActiveScene();
-        if (sceneSetup.sceneSetup.Length > 0 && scene.path == sceneSetup.sceneSetup[0].path)
-        {
-            EditorSceneManager.RestoreSceneManagerSetup(sceneSetup.sceneSetup);
-        }
+    //private void EditorLoadScene(Scene scene, OpenSceneMode mode)
+    //{
+    //    scene = EditorSceneManager.GetActiveScene();
+    //    if (sceneSetup.sceneSetup.Length > 0 && scene.path == sceneSetup.sceneSetup[0].path)
+    //    {
+    //        EditorSceneManager.RestoreSceneManagerSetup(sceneSetup.sceneSetup);
+    //    }
 
 
-    }
-    private void OnValidate()
-    {
-        scene=EditorSceneManager.GetActiveScene();
-        EditorSceneManager.sceneOpened += EditorLoadScene;
-        EditorSceneManager.sceneClosing += SceneClosed;
-        allScenes.Clear();
-        foreach(var scene in sceneSetup.sceneSetup)
-        {
-            allScenes.Add(scene.path);
-        }
-    }
+    //}
+    //private void OnValidate()
+    //{
+    //    scene=EditorSceneManager.GetActiveScene();
+    //    EditorSceneManager.sceneOpened += EditorLoadScene;
+    //    EditorSceneManager.sceneClosing += SceneClosed;
+    //    allScenes.Clear();
+    //    foreach(var scene in sceneSetup.sceneSetup)
+    //    {
+    //        allScenes.Add(scene.path);
+    //    }
+    //}
 
 #endif
 
@@ -83,35 +83,9 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator LoadWorld()
     {
-        
-        for (int i=0;i<allScenes.Count;i++)
+        for(int i = 0; i < allScenes.Count; i++)
         {
-            string name = Path.GetFileNameWithoutExtension(allScenes[i]);
-            
-            if (name == SceneManager.GetActiveScene().name)
-            {
-                continue;
-            }
-            bool sceneAlreadyLoaded=false;
-            var scene = SceneManager.GetSceneByPath(allScenes[i]);
-            if (scene.name==name)
-            {
-                sceneAlreadyLoaded=true;
-            }
-           
-            //for (int j = 0; j < SceneManager.loadedSceneCount; j++) 
-            //{
-            //    if (SceneManager.GetSceneAt(j).name == name)
-            //    {
-            //        sceneAlreadyLoaded = true;
-            //        break;
-            //    }
-            //}
-            if (sceneAlreadyLoaded|| name == null)
-            {
-                continue;
-            }
-            yield return SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+            yield return SceneManager.LoadSceneAsync(allScenes[i], LoadSceneMode.Additive);
         }
         yield return new WaitForSecondsRealtime(0.5f);
         ScenesLoaded();
