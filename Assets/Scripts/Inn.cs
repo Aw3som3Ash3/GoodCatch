@@ -21,7 +21,7 @@ public class Inn : MonoBehaviour, IInteractable
         dialogue=FindObjectOfType<InnDialogue>();
         if (isStartInn)
         {
-            starterInn = this;
+            StarterInn = this;
         }
     }
 
