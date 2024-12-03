@@ -7,6 +7,8 @@ using UnityEngine;
 [ExecuteAlways]
 public abstract class SaveableObject : MonoBehaviour,ISaveable
 {
+
+    
     public abstract object DataToSave { get; }
 
     [SerializeField]
