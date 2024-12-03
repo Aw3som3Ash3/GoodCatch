@@ -11,12 +11,18 @@ public class Inn : MonoBehaviour, IInteractable
     [SerializeField]
     Transform respawnPoint;
     public static Action<Inn> InnVisited;
-
+    public static Inn StarterInn;
     public InnDialogue dialogue;
+
+    bool isStartInn;
 
     void Awake()
     {
-        dialogue=FindObjectOfType<InnDialogue>(); 
+        dialogue=FindObjectOfType<InnDialogue>();
+        if (isStartInn)
+        {
+            starterInn = this;
+        }
     }
 
     public bool Interact()

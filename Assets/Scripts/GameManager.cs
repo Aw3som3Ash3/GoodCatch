@@ -220,6 +220,10 @@ public class GameManager : MonoBehaviour,ISaveable
 
     public void PlayerLost()
     {
+        if(lastInnVisited == null)
+        {
+            lastInnVisited = Inn.StarterInn;
+        }
         FindObjectOfType<PlayerController>().transform.position=lastInnVisited.GetRepsawnPoint();
         AdvanceTime(3);
         RestoreFish();
@@ -233,7 +237,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             CapturedFish(fish);
         }
-        PlayerFishventory.Fishies[0].ChangeName("SteveO starter fish");
+        PlayerFishventory.Fishies[0].ChangeName("SteveO");
 
         sun = FindObjectOfType<Light>().gameObject;
         for(int i=0;i<startingItems.Length;i++)
