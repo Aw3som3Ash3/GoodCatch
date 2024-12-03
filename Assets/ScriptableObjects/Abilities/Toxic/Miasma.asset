@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Miasma
   m_EditorClassIdentifier: 
   abilityType: 1
-  availableDepths: 0
-  targetableDepths: 0
+  availableDepths: -1
+  targetableDepths: -1
   targetTeam: 1
   targetingType: 1
   piercing: 1
-  staminaUsage: 60
+  staminaUsage: 55
   baseDamage: 15
   accuracy: 1
-  damageMultiplier: 0
+  damageMultiplier: 0.3
   element: {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
   effects:
   - statusEffect: {fileID: 11400000, guid: 8ecf4a05ab726db4aab122a3981a99ff, type: 2}
