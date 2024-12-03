@@ -42,8 +42,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   specialFortitude:
-    min: 0
-    max: 0
+    min: 10
+    max: 20
     minTalent: 0
     maxTalent: 0
   accuracy:
