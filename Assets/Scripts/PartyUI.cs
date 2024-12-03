@@ -28,7 +28,7 @@ public class PartyUI : PausePage
     {
 
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/PartyUI.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/PartyUI");
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();

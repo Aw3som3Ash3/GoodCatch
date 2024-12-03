@@ -27,7 +27,8 @@ public class Bestiary : PausePage
     public Bestiary()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/BeastBookScroller.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/BeastBookScroller");
+
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
@@ -122,7 +123,8 @@ public class BestiarySlot : VisualElement
     public BestiarySlot()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/BestiaryButton.uxml");
+
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/BestiaryButton");
         visualTreeAsset.CloneTree(root);
         fishName = this.Q<Label>("Name");
         fishId = this.Q<Label>("EntryNumber");
@@ -159,7 +161,8 @@ public class BestiaryPage:VisualElement
     void Init()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/BeastiaryContentPage.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/BeastiaryContentPage");
+
         visualTreeAsset.CloneTree(root);
         fishTitle = this.Q<Label>("NameAmount");
         location = this.Q<Label>("LocationAmount");
