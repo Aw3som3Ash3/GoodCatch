@@ -456,7 +456,7 @@ public class CombatManager : MonoBehaviour
     {
         combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
-        playerFishes.Remove(turn.fish);
+        //playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
             depth.RemoveFish(turn);
