@@ -384,15 +384,21 @@ public class GameManager : MonoBehaviour,ISaveable
 
         if (winningTeam == Team.enemy)
         {
-            PlayerLost();
+            SceneManager.sceneLoaded += SceneLoadedLost;
         }
         SavingSystem.SaveSelf(this);
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
         SceneManager.LoadScene(mainScene);
         
+        
         inCombat = false;
        
+    }
+    void SceneLoadedLost(Scene arg0, LoadSceneMode arg1)
+    {
+        PlayerLost();
+        SceneManager.sceneLoaded -= SceneLoadedLost;
     }
     void SceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
