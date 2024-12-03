@@ -28,6 +28,6 @@ MonoBehaviour:
     effectChance: 0.7
   forcedMovement: 0
   icon: {fileID: 21300000, guid: fccc4537797dec14c98f37b875b46932, type: 3}
-  abilityVFX: {fileID: 0}
+  abilityVFX: {fileID: 1022412782922895463, guid: 43d3f94fb63eb6943b8dd3bcce78034b, type: 3}
   targetVFX: {fileID: 0}
   abilityID: 4372b2bc-a47b-4d8d-a1a9-005820a72b12
