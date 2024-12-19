@@ -122,7 +122,7 @@ public static class SavingSystem
         {
             ReadData();
         }
-        SceneManager.LoadScene(data.GetScene());
+        SceneManager.LoadSceneAsync(data.GetScene());
         
         SceneManager.sceneLoaded += OnSceneLoad;
 
@@ -136,7 +136,7 @@ public static class SavingSystem
        
         
 
-        SceneManager.LoadScene(data.GetScene());
+        SceneManager.LoadSceneAsync(data.GetScene());
         SceneManager.sceneLoaded += OnSceneLoad;
   
        
