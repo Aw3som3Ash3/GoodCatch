@@ -171,11 +171,11 @@ public static class SavingSystem
     static void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         SceneManager.sceneLoaded -= OnSceneLoad;
-        Debug.LogError("scene loaded");
         if (scene.buildIndex != data.GetScene())
         {
             return;
         }
+        Debug.LogError("scene loaded");
         var sceneLoader = GameObject.FindObjectOfType<SceneLoader>(true);
         sceneLoader.AllScenesLoaded += () =>
         {
