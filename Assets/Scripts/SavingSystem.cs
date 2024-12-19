@@ -170,6 +170,7 @@ public static class SavingSystem
     }
     static void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        Debug.LogError("scene loaded");
         if (scene.buildIndex != data.GetScene())
         {
             return;
