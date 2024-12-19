@@ -76,9 +76,15 @@ public class FishingRod : MonoBehaviour
         game.OnCancel += OnComplete;
         InputManager.DisablePlayer();
         floater.HitWater -= StartMiniGame;
-        FishingMiniGame.SuccesfulFishing += () => { Destroy(floater.gameObject); OnComplete?.Invoke(); };
+        FishingMiniGame.SuccesfulFishing += FishingCompleted;
     }
 
+    void FishingCompleted()
+    {
+        Destroy(floater.gameObject); 
+        OnComplete?.Invoke();
+        FishingMiniGame.SuccesfulFishing -= FishingCompleted;
+    }
 
     Vector3 QuadBezier(Vector3 start,Vector3 controlPoint, Vector3 end,float t)
     {
