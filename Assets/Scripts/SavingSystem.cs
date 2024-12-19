@@ -170,6 +170,7 @@ public static class SavingSystem
     }
     static void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        SceneManager.sceneLoaded -= OnSceneLoad;
         Debug.LogError("scene loaded");
         if (scene.buildIndex != data.GetScene())
         {
@@ -187,8 +188,9 @@ public static class SavingSystem
             }
             //sceneLoader.AllScenesLoaded = null;
         };
-        
-        
+       
+
+
     }
     
     public static void LoadSelf<T>(T saveable,string ID) where T: ISaveable
