@@ -175,7 +175,7 @@ public static class SavingSystem
         {
             return;
         }
-        Debug.LogError("scene loaded");
+        //Debug.LogError("scene loaded");
         var sceneLoader = GameObject.FindObjectOfType<SceneLoader>(true);
         sceneLoader.AllScenesLoaded += () =>
         {
@@ -186,12 +186,17 @@ public static class SavingSystem
                 saveable.Load(data.GetSaveable(saveable.ID));
                 Time.timeScale= 1;
             }
-            //sceneLoader.AllScenesLoaded = null;
+            sceneLoader.AllScenesLoaded = null;
         };
        
 
 
     }
+
+    //static void LoadObjectData()
+    //{
+
+    //}
     
     public static void LoadSelf<T>(T saveable,string ID) where T: ISaveable
     {
