@@ -50,6 +50,7 @@ public static class SavingSystem
         public void SetScene()
         {
             currentScene=SceneManager.GetActiveScene().buildIndex;
+            Debug.Log("current scene index: " + SceneManager.GetActiveScene().buildIndex);
         }
         public int GetScene()
         {
@@ -121,7 +122,7 @@ public static class SavingSystem
         ReadData();
         //if (data == null)
         //{
-            
+             
         //}
         SceneManager.LoadSceneAsync(data.GetScene());
         
@@ -178,13 +179,14 @@ public static class SavingSystem
         }
         //Debug.LogError("scene loaded");
         var sceneLoader = GameObject.FindObjectOfType<SceneLoader>(true);
+        Debug.Log("current slot: " +currentSlot);
         sceneLoader.AllScenesLoaded += () =>
         {
-            Debug.LogError("scene loaded");
+           
             var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
             foreach (var saveable in saveables)
             {
-                Debug.LogError(saveable);
+               
                 saveable.Load(data.GetSaveable(saveable.ID));
                 Time.timeScale= 1;
             }
