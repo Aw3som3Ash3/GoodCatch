@@ -183,7 +183,7 @@ public static class SavingSystem
             var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
             foreach (var saveable in saveables)
             {
-
+                Debug.LogError(saveable);
                 saveable.Load(data.GetSaveable(saveable.ID));
                 Time.timeScale= 1;
             }
