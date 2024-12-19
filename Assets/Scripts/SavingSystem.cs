@@ -179,6 +179,7 @@ public static class SavingSystem
         var sceneLoader = GameObject.FindObjectOfType<SceneLoader>(true);
         sceneLoader.AllScenesLoaded += () =>
         {
+            Debug.LogError("scene loaded");
             var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
             foreach (var saveable in saveables)
             {
