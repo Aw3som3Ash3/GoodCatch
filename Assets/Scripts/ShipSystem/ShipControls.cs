@@ -39,9 +39,14 @@ public class ShipControls : Station
         }
         InputManager.Input.Ship.Enable();
         InputManager.Input.Ship.Move.performed += OnMove;
-        InputManager.Input.Ship.Exit.performed += (InputAction.CallbackContext context) => LeaveSation();
+        InputManager.Input.Ship.Exit.performed += OnLeaveStation;
         return true;
 
+    }
+    void OnLeaveStation(InputAction.CallbackContext context)
+    {
+        InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
+        LeaveSation();
     }
     void OnMove(InputAction.CallbackContext context)
     {

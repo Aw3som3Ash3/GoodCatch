@@ -308,6 +308,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         inputs.Jump.performed -= OnJump;
         inputs.Fish.performed -= StartFishing;
         inputs.Interact.performed -= OnInteract;
+        Station.StationInteracted -= StationInteracted;
     }
 
     void Footstep()
