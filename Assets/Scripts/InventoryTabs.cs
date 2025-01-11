@@ -14,13 +14,21 @@ public class InventoryTabs : TabbedMenu
 
         for(int i = 0; i < menus.Length; i++)
         {
-            if (GameManager.Instance == null)
+            MultiColumnListView listView = new();
+            if (GameManager.Instance != null)
             {
-                continue;
+                SetList(listView, GameManager.Instance.PlayerInventory.GetListOfItems<Item>().ToList());
+
             }
-            MultiColumnListView List = new();
-            SetList(List, GameManager.Instance.PlayerInventory.GetListOfItems<Item>().ToList());
-            TabMenuButton menu = new TabMenuButton(menus[i], List);
+            else
+            {
+                var dummyList = new List<ItemInventory.ItemSlot>();
+     
+                SetList(listView, dummyList);
+            }
+            
+            
+            TabMenuButton menu = new TabMenuButton(menus[i], listView);
             AddTab(menu,i==0? true:false);
         }
         
