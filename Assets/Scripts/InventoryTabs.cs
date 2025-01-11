@@ -17,7 +17,7 @@ public class InventoryTabs : TabbedMenu
             MultiColumnListView listView = new();
             if (GameManager.Instance != null)
             {
-                SetList(listView, GameManager.Instance.PlayerInventory.GetListOfItems<Item>().ToList());
+                SetList(listView, GetListOfItemType(i));
 
             }
             else
@@ -35,6 +35,23 @@ public class InventoryTabs : TabbedMenu
 
 
         
+    }
+
+    List<ItemInventory.ItemSlot> GetListOfItemType(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return GameManager.Instance.PlayerInventory.GetListOfItems<CombatItem>().ToList();
+            case 1:
+                return GameManager.Instance.PlayerInventory.GetListOfItems<AbilityTrainerItem>().ToList();
+            case 2:
+            default:
+                return GameManager.Instance.PlayerInventory.GetListOfItems<Item>().ToList();
+
+
+        }
+       
     }
     void SetList(MultiColumnListView listView,List<ItemInventory.ItemSlot> playerInventory)
     {
