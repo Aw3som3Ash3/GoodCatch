@@ -20,7 +20,7 @@ public class AbilityToolTipTitle : TooltipModule
     {
 
     }
-    public AbilityToolTipTitle():base("Assets/Prefabs/UI/AbilityTitle.uxml")
+    public AbilityToolTipTitle():base("AbilityTitle")
     {
 
     }
@@ -82,10 +82,11 @@ public abstract class TooltipModule : VisualElement
     {
 
     }
-    public TooltipModule(string path)
+    public TooltipModule(string name)
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(path);
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>($"UXMLs/{name}");
+
         visualTreeAsset.CloneTree(root);
         
         this.style.flexGrow = 1;
@@ -105,7 +106,7 @@ public class AbilityTooltipActions : TooltipModule
     Label damageTitle;
     public float damage { get; private set; }
     //public float accuracy; 
-    public AbilityTooltipActions():base("Assets/Prefabs/UI/AbilityAction.uxml")
+    public AbilityTooltipActions():base("AbilityAction")
     {
 
     }
@@ -131,7 +132,7 @@ public class AbilityTooltipActions : TooltipModule
 public class AbilityTooltipStatusChance : TooltipModule
 {
     Label statusName,chance,effect;
-    public AbilityTooltipStatusChance():base("Assets/Prefabs/UI/AbilityStatus.uxml")
+    public AbilityTooltipStatusChance() : base("AbilityStatus")
     {
 
     }
@@ -145,6 +146,28 @@ public class AbilityTooltipStatusChance : TooltipModule
         statusName = this.Q<Label>("StatusName");
         chance = this.Q<Label>("StatusChancePercentageAmount");
 
+        //throw new System.NotImplementedException();
+    }
+}
+
+
+
+public class StatusEffectToolTip : TooltipModule
+{
+    Label statusName, roundsRemaining, description;
+    public StatusEffectToolTip():base("ToolTipStatusActive")
+    {
+
+    }
+    public void SetSatus(StatusEffect.StatusEffectInstance effect)
+    {
+        statusName.text = effect.effect.name;
+        roundsRemaining.text = effect.remainingDuration.ToString();
+    }
+    protected override void Init()
+    {
+        statusName = this.Q<Label>("StatusName");
+        roundsRemaining = this.Q<Label>("StatusRoundsAmount");
         //throw new System.NotImplementedException();
     }
 }

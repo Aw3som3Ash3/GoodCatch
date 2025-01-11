@@ -1,0 +1,8 @@
+.unity-tabbed-view__tabs-container {
+    flex-direction: row;
+}
+
+.unity-tabbed-view__content-container {
+    flex-grow: 1;
+    height: 100px;
+}

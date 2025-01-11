@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   model: {fileID: 8411331747693932238, guid: a115ee5914b549d4d8efaf0aa420f74d, type: 3}
-  fishId: 19
+  fishId: 4
   icon: {fileID: 21300000, guid: 26447eecb64ed1a4690ff5b89fd9bbf1, type: 3}
   miniSprite: {fileID: 1714699419, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 0
@@ -42,8 +42,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   specialFortitude:
-    min: 0
-    max: 0
+    min: 5
+    max: 10
     minTalent: 0
     maxTalent: 0
   accuracy:
@@ -51,13 +51,13 @@ MonoBehaviour:
     max: 50
     minTalent: 0
     maxTalent: 0
-  baseHealth: 80
+  baseHealth: 90
   baseStamina: 70
   baseAbilities:
-  - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}
-  - {fileID: 11400000, guid: f5e161f5f7750b6468c04d356a177b7c, type: 2}
-  - {fileID: 11400000, guid: d91d835999b3c03468f55c3f346e42d7, type: 2}
-  - {fileID: 11400000, guid: 8b3518f18a0bc4a46bccad460b5b9c2c, type: 2}
+  - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
+  - {fileID: 11400000, guid: dd40a3087b6a7e94cbd8e47ebfce50f4, type: 2}
+  - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
+  - {fileID: 11400000, guid: dd40a3087b6a7e94cbd8e47ebfce50f4, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

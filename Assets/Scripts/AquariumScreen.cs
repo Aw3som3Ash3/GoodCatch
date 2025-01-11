@@ -10,7 +10,7 @@ public class AquariumScreen : PausePage
     //VisualElement[] tabs=new VisualElement[3];
     FishventoryTab fishventoryTab;
     AquariumSlot selectedSlot;
-    Label nameTitle,hp,stamina;
+    Label nameTitle,hp,stamina,level;
     VisualElement picturePreview;
     VisualElement party;
     Button[] partySlots=new Button[7];
@@ -28,7 +28,8 @@ public class AquariumScreen : PausePage
     public AquariumScreen()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/PcContainer.uxml");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/PcContainer");
+
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
@@ -44,6 +45,7 @@ public class AquariumScreen : PausePage
         mainOptions = this.Q("MostLeftContainerPC");
         mainOptions.visible = true;
         mainOptions.SetEnabled(true);
+        level = this.Q<Label>("LevelAmount");
         for (int i = 0; i < 7; i++)
         {
             int index = i;
@@ -83,6 +85,7 @@ public class AquariumScreen : PausePage
         //    Debug.Log("has box "+i+":  "+ tabs[i]);
         //}
         //contentContainer = this.Q("unity-content-container");
+        fishventoryTab.Focus();
         SetUp();
     }
 
@@ -188,7 +191,9 @@ public class AquariumSlot : VisualElement
     void Init()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/AquariumSlot.uxml");
+
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/AquariumSlot");
+
         visualTreeAsset.CloneTree(root);
         slotBox = this.Q("SlotBox");
         sprite = this.Q("Sprite");

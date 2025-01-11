@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UI%20Assets/MainMenu.uss?fileID=7433441132597879392&amp;guid=09fc53896fdf4764a8347e414b461456&amp;type=3#MainMenu" />
+    <ui:VisualElement name="BackGround" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/MainMenu.png?fileID=2800000&amp;guid=1f0f8bb5054b94942ac88fab97b5e7b0&amp;type=3#MainMenu&quot;); -unity-background-scale-mode: scale-and-crop;">
+        <ui:VisualElement name="MainScreen" style="height: 1070px; position: absolute; bottom: 0; right: 0; top: 0; left: 0; background-color: rgba(0, 0, 0, 0);">
+            <ui:Label tabindex="-1" text="GOOD CATCH!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="position: absolute; font-size: 150px; top: 100px; left: auto; -unity-font-style: bold; align-self: center; color: rgb(209, 187, 133); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);" />
+            <ui:VisualElement name="Buttons" style="flex-grow: 1; position: absolute; top: 336px; left: auto; height: 610px; width: 1115px; align-self: center; align-items: stretch; justify-content: space-around;">
+                <ui:Button text="New Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NewGame" class="TitleButton" style="align-self: stretch; align-items: auto; justify-content: flex-start; width: auto; color: rgb(255, 255, 255); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);" />
+                <ui:Button text="Load Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadGame" class="TitleButton" style="width: auto; color: rgb(255, 255, 255); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);" />
+                <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Options" class="TitleButton" style="width: auto; color: rgb(255, 255, 255); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0);" />
+                <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit" class="TitleButton" style="width: auto; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 2px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="LoadGameScreen" style="flex-grow: 1; visibility: hidden; flex-direction: column; background-image: none; background-color: rgba(0, 0, 0, 0);">
+            <ui:Label tabindex="-1" text="Load Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadTitle" style="position: absolute; height: 159px; width: 493px; top: 151px; left: auto; -unity-text-align: upper-center; font-size: 125px; align-items: auto; align-self: center;" />
+            <ui:VisualElement style="flex-grow: 1; position: absolute; height: 700px; width: 1600px; top: 192px; left: auto; align-self: center; justify-content: space-between; flex-direction: row; align-items: center;">
+                <ui:Button text="SLOT 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Slot1" class="SaveSlot" />
+                <ui:Button text="SLOT 2" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Slot2" class="SaveSlot" />
+                <ui:Button text="SLOT 3" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Slot3" class="SaveSlot" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

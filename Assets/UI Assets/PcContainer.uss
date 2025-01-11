@@ -21,6 +21,20 @@
     background-color: rgb(255, 0, 0);
 }
 
+.unity-tab-button:hover {
+    color: rgb(0, 0, 0);
+    margin-top: -19px;
+    scale: 1.6 1.6;
+    transform-origin: bottom;
+}
+
+.unity-tab-button:focus {
+    color: rgb(0, 0, 0);
+    margin-top: -19px;
+    scale: 1.6 1.6;
+    transform-origin: bottom;
+}
+
 .unity-tab-button--active {
     bottom: 0;
     transform-origin: bottom;
@@ -181,4 +195,30 @@
 #Label {
     margin-left: 27px;
     font-size: 24px;
+}
+
+.unity-tab-button__content:focus {
+    background-image: url("project://database/Assets/Prefabs/UI/UI-Png/Smeb.png?fileID=2800000&guid=d4b26366d79863e479e2919ca6c5ecce&type=3#Smeb");
+    -unity-background-image-tint-color: rgb(255, 0, 0);
+}
+
+.unity-tab-button__top-bar {
+    background-color: rgba(0, 0, 0, 0);
+    width: 0;
+}
+
+.unity-tab-button--active.unity-tab-button__top-bar {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(255, 95, 95, 0);
+    border-right-color: rgba(255, 95, 95, 0);
+    border-top-color: rgba(255, 95, 95, 0);
+    border-bottom-color: rgba(255, 95, 95, 0);
+}
+
+#AddToPartyButton {
+}
+
+#AddToPartyButton:hover {
+    transform-origin: center;
+    scale: 1.1 1.1;
 }

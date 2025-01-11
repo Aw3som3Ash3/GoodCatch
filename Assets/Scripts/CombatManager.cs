@@ -305,6 +305,7 @@ public class CombatManager : MonoBehaviour
     }
     void EndFight(Team winningTeam)
     {
+       
         StartCoroutine(CombatVictoryScreen(winningTeam));
  
     }
@@ -319,14 +320,19 @@ public class CombatManager : MonoBehaviour
         {
             for (int i = 0; i < 300; i++)
             {
+
                 foreach (var fish in playerFishes)
                 {
                     victoryScreen.fishXpBar[fish].value = Mathf.Lerp(victoryScreen.fishXpBar[fish].value, fish.Xp, (float)i / 300);
+                   
+
+
                 }
                 yield return new WaitForFixedUpdate();
             }
+           
         }
-        ui.rootVisualElement.Remove(combatUI);
+        //ui.rootVisualElement.Remove(combatUI);
         playerFishes = null;
         enemyFishes = null;
         rewardFish = false;
@@ -450,7 +456,7 @@ public class CombatManager : MonoBehaviour
     {
         combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
-        playerFishes.Remove(turn.fish);
+        //playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
             depth.RemoveFish(turn);

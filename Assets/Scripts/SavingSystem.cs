@@ -50,6 +50,7 @@ public static class SavingSystem
         public void SetScene()
         {
             currentScene=SceneManager.GetActiveScene().buildIndex;
+            Debug.Log("current scene index: " + SceneManager.GetActiveScene().buildIndex);
         }
         public int GetScene()
         {
@@ -65,7 +66,7 @@ public static class SavingSystem
     public static void SaveGame(SaveMode saveMode)
     {
 
-        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
+        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
         data=new();
         data.SetScene();
         foreach(var saveable in saveables)
@@ -118,11 +119,12 @@ public static class SavingSystem
     }
     public static void LoadGame()
     {
-        if (data == null)
-        {
-            ReadData();
-        }
-        SceneManager.LoadScene(data.GetScene());
+        ReadData();
+        //if (data == null)
+        //{
+             
+        //}
+        SceneManager.LoadSceneAsync(data.GetScene());
         
         SceneManager.sceneLoaded += OnSceneLoad;
 
@@ -136,7 +138,7 @@ public static class SavingSystem
        
         
 
-        SceneManager.LoadScene(data.GetScene());
+        SceneManager.LoadSceneAsync(data.GetScene());
         SceneManager.sceneLoaded += OnSceneLoad;
   
        
@@ -170,25 +172,35 @@ public static class SavingSystem
     }
     static void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
+        SceneManager.sceneLoaded -= OnSceneLoad;
         if (scene.buildIndex != data.GetScene())
         {
             return;
         }
+        //Debug.LogError("scene loaded");
         var sceneLoader = GameObject.FindObjectOfType<SceneLoader>(true);
+        Debug.Log("current slot: " +currentSlot);
         sceneLoader.AllScenesLoaded += () =>
         {
+           
             var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
             foreach (var saveable in saveables)
             {
-
+               
                 saveable.Load(data.GetSaveable(saveable.ID));
                 Time.timeScale= 1;
             }
-            //sceneLoader.AllScenesLoaded = null;
+            sceneLoader.AllScenesLoaded = null;
         };
-        
-        
+       
+
+
     }
+
+    //static void LoadObjectData()
+    //{
+
+    //}
     
     public static void LoadSelf<T>(T saveable,string ID) where T: ISaveable
     {

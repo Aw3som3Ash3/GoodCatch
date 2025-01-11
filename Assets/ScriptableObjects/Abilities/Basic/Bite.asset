@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
+  m_Name: Bite
+  m_EditorClassIdentifier: 
+  abilityType: 0
+  availableDepths: -1
+  targetableDepths: -1
+  targetTeam: 1
+  targetingType: 0
+  piercing: 0
+  staminaUsage: 30
+  baseDamage: 35
+  accuracy: 0.8
+  damageMultiplier: 0
+  element: {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
+  effects: []
+  forcedMovement: 0
+  icon: {fileID: 0}
+  abilityVFX: {fileID: 7579806966704569852, guid: 66b248630fe299d4495b86d60f9552bf, type: 3}
+  targetVFX: {fileID: 0}
+  abilityID: 02c96821-b83b-4516-9d0d-717191717250

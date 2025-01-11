@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Lotaeel
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 0}
-  fishId: 7
+  model: {fileID: 4971115903728978154, guid: 43411f4c1e67f94419f1d88d2b8e5e01, type: 3}
+  fishId: 8
   icon: {fileID: 0}
   miniSprite: {fileID: 901536447, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 0
@@ -43,8 +43,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   specialFortitude:
-    min: 0
-    max: 0
+    min: 10
+    max: 20
     minTalent: 0
     maxTalent: 0
   accuracy:
@@ -54,7 +54,11 @@ MonoBehaviour:
     maxTalent: 0
   baseHealth: 90
   baseStamina: 60
-  baseAbilities: []
+  baseAbilities:
+  - {fileID: 11400000, guid: f894117255974f54ca983c9014b30f00, type: 2}
+  - {fileID: 11400000, guid: 9870c6867313ff042b2af302d92f3d57, type: 2}
+  - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

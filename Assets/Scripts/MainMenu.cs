@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -18,6 +19,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainScreen.Q<Button>("NewGame").Focus();
         mainScreen.Q<Button>("LoadGame").clicked += () =>
         {
             mainScreen.visible=false;
@@ -30,7 +32,10 @@ public class MainMenu : MonoBehaviour
             loadScreen.visible = true;
             NewGame();
         };
-
+        mainScreen.Q<Button>("Quit").clicked += () =>
+        {
+            Application.Quit();
+        };
 
     }
     void NewGame()
@@ -47,19 +52,23 @@ public class MainMenu : MonoBehaviour
                 SavingSystem.SetSlot(index); 
                 SavingSystem.ClearSlot(index); 
                 SceneManager.LoadScene("Main Scene");
-                SceneManager.sceneLoaded += (scene, mode) =>
-                {
-                    if(scene.name=="Main Scene")
-                    {
-                        FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
-                    }
-                   
-                };
+                SceneManager.sceneLoaded += OnSceneLoaded;
             };
             
             
         }
     }
+
+
+    void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    {
+        if (scene.name == "Main Scene")
+        {
+            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+        }
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     void LoadGame()
     {
         for (int i = 1; i <= 3; i++)

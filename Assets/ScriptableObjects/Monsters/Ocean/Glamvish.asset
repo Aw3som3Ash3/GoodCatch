@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   model: {fileID: 903130045763395845, guid: b4df2d84339a66642a31d1531b159912, type: 3}
-  fishId: 8
+  fishId: 1
   icon: {fileID: 21300000, guid: ad5ba009034cecc498bc5b013d987947, type: 3}
   miniSprite: {fileID: 2146591605, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 0
@@ -42,8 +42,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   specialFortitude:
-    min: 0
-    max: 0
+    min: 5
+    max: 10
     minTalent: 0
     maxTalent: 0
   accuracy:
@@ -53,7 +53,11 @@ MonoBehaviour:
     maxTalent: 0
   baseHealth: 100
   baseStamina: 50
-  baseAbilities: []
+  baseAbilities:
+  - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
+  - {fileID: 11400000, guid: 9870c6867313ff042b2af302d92f3d57, type: 2}
+  - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
+  - {fileID: 11400000, guid: 9870c6867313ff042b2af302d92f3d57, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

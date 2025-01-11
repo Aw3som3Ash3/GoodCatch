@@ -26,6 +26,7 @@ public abstract class Item : ScriptableObject,ISerializationCallbackReceiver
     {
      
     }
+
     public void OnBeforeSerialize()
     {
        
@@ -36,9 +37,10 @@ public abstract class Item : ScriptableObject,ISerializationCallbackReceiver
         if (itemId == null || (getItemById.ContainsKey(itemId) && getItemById[itemId] != this) || itemId == "")
         {
             itemId = Guid.NewGuid().ToString();
-
+            
         }
-        
         getItemById[itemId] = this;
+
     }
+
 }

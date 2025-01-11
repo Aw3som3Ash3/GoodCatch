@@ -1,9 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/CombatUI.uss?fileID=7433441132597879392&amp;guid=7db26f9e833698344bed4cc0f9a8dc9e&amp;type=3#CombatUI" />
-    <ui:VisualElement name="ConditionBar" style="flex-grow: 0; position: relative; height: 86px; width: 111px; top: auto; left: auto; transform-origin: top; translate: 0 0; scale: 1 1;">
-        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FishName" style="align-items: stretch; align-self: stretch; -unity-text-align: upper-center; height: 14px; font-size: 10px; -unity-font-style: bold; margin-top: 3px; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
-        <ui:ProgressBar value="1" name="HealthBar" high-value="1" style="margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 1px;" />
-        <ui:ProgressBar value="1" name="StaminaBar" high-value="1" style="margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 1px;" />
-        <ui:VisualElement name="StatusBar" style="flex-grow: 1;" />
-    </ui:VisualElement>
-</ui:UXML>

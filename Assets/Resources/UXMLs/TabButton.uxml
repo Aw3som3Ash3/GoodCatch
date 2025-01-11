@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Resources/UXMLs/TabbedButtons.uss?fileID=7433441132597879392&amp;guid=a04874ac607c8fb4fa75243863db8955&amp;type=3#TabbedButtons" />
+    <ui:VisualElement class="unity-tab-button__top-bar" style="flex-grow: 1;" />
+    <ui:VisualElement class="unity-tab-button__content" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="unity-tab-button__content-label" />
+    </ui:VisualElement>
+</ui:UXML>

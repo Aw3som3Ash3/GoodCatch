@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
     }
-
+    
     bool InteractionCheck(out IInteractable interactable)
     {
         var colliders = Physics.OverlapSphere(this.transform.position, 2, interactionLayer);
@@ -308,6 +308,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         inputs.Jump.performed -= OnJump;
         inputs.Fish.performed -= StartFishing;
         inputs.Interact.performed -= OnInteract;
+        Station.StationInteracted -= StationInteracted;
     }
 
     void Footstep()

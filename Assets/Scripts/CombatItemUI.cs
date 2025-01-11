@@ -27,7 +27,9 @@ public class CombatItemUI : VisualElement
     public CombatItemUI()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatItem.uxml");
+
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatItem");
+
 
         visualTreeAsset.CloneTree(root);
         
@@ -35,7 +37,9 @@ public class CombatItemUI : VisualElement
     public CombatItemUI(Item item,int amount)
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Prefabs/UI/CombatItem.uxml");
+
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatItem");
+
 
         visualTreeAsset.CloneTree(root);
         this.amount = amount;

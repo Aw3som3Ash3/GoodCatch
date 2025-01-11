@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [CreateAssetMenu(fileName = "Ability", menuName = "Fish Monster/Ability", order = 1)]
 public class Ability : ScriptableObject,ISerializationCallbackReceiver
@@ -175,7 +174,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             }
         }
     }
-    
+
     public void OnBeforeSerialize()
     {
         
@@ -186,9 +185,11 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         if (abilityID == null || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
         {
             abilityID = Guid.NewGuid().ToString();
+            
         }
         getAbilityById[abilityID] = this;
     }
+
 }
 
 
