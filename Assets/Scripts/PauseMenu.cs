@@ -15,7 +15,9 @@ public class PauseMenu : VisualElement
     OptionsPage optionsPage;
     Bestiary bestiaryPage;
     PausePage currentPage;
+    InventoryUI inventoryUI;
     VisualElement menu;
+    
 
     bool exitCompletely = false;
     static PauseMenu mainPause;
@@ -45,7 +47,7 @@ public class PauseMenu : VisualElement
         menu = this.Q("PauseMenuWorkSpace");
         party.clicked +=Party;
         bestiary.clicked += () => BestiaryScreen();
-        inventory.clicked += () =>throw new NotImplementedException();
+        inventory.clicked += () =>InventoryMenu();
         settting.clicked += Options;
 
 
@@ -175,7 +177,20 @@ public class PauseMenu : VisualElement
 
 
     }
+    void InventoryMenu()
+    {
+        if (inventoryUI == null)
+        {
+            inventoryUI = new();
 
+        }
+
+        this.Add(inventoryUI);
+        //partyUI.UpdateUI();
+        menu.visible = false;
+        menu.SetEnabled(false);
+        currentPage = inventoryUI;
+    }
     
     void Options()
     {

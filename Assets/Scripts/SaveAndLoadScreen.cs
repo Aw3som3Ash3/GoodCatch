@@ -18,7 +18,7 @@ public class SaveAndLoadScreen : VisualElement
     {
         save, load
     }
-    public new class UxmlFactory : UxmlFactory<SaveAndLoadScreen, CombatUI.UxmlTraits>
+    public new class UxmlFactory : UxmlFactory<SaveAndLoadScreen, SaveAndLoadScreen.UxmlTraits>
     {
 
     }

@@ -1,0 +1,29 @@
+.unity-tab-button {
+    background-color: rgba(217, 217, 217, 0.93);
+}
+
+.unity-tab-button__top-bar {
+}
+
+.unity-tab-button__content {
+}
+
+.unity-tab-button__content-label {
+}
+
+.unity-tabbed-view__tabs-container {
+    flex-direction: row;
+}
+
+.unity-tabbed-view__content-container {
+    flex-grow: 1;
+    height: 100px;
+}
+
+.unity-tab-button:hover {
+    background-color: rgba(51, 51, 51, 0.93);
+}
+
+.unity-tab-button__selected {
+    background-color: rgba(51, 51, 51, 0.93);
+}
