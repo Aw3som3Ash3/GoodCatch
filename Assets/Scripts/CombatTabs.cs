@@ -39,6 +39,7 @@ public class CombatTabs : TabbedMenu
         TabMenuButton fightTab = new TabMenuButton("Fight", abilities);
         fightTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(fightTab); index = 0; });
         fightTab.name = "FightTab";
+        fightTab.focusable = false;
         this.AddTab(fightTab, true);
         tabs[0]= fightTab;
 
@@ -48,6 +49,7 @@ public class CombatTabs : TabbedMenu
         TabMenuButton itemsTab = new TabMenuButton("Items", items);
         itemsTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(itemsTab); index = 1; });
         itemsTab.name = "ItemsTab";
+        itemsTab.focusable = false;
         this.AddTab(itemsTab, false);
         tabs[1]= itemsTab;
 
@@ -58,6 +60,7 @@ public class CombatTabs : TabbedMenu
         TabMenuButton swapTab = new TabMenuButton("Swap", swap);
         swapTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(swapTab); index = 2; });
         swapTab.name = "SwapTab";
+        swapTab.focusable = false;
         this.AddTab(swapTab, false);
         tabs[2]= swapTab;
         
