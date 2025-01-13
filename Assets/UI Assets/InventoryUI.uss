@@ -1,18 +1,32 @@
 .unity-tab-button {
-    background-color: rgba(217, 217, 217, 0.93);
+    background-color: rgba(89, 95, 180, 0.93);
+    align-items: stretch;
+    justify-content: flex-start;
+    align-self: auto;
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
+    color: rgb(255, 255, 255);
 }
 
 .unity-tab-button__top-bar {
 }
 
 .unity-tab-button__content {
+    align-items: stretch;
+    justify-content: flex-start;
+    align-self: auto;
+    margin-top: 0;
 }
 
 .unity-tab-button__content-label {
+    font-size: 37px;
 }
 
 .unity-tabbed-view__tabs-container {
     flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 505px;
 }
 
 .unity-tabbed-view__content-container {
