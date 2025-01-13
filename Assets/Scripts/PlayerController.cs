@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         moveAction = inputs.Move;
         //moveAction.performed += OnMove;
         lookAction = inputs.Look;
+        lookAction.performed += OnLook;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
         characterController = this.GetComponent<CharacterController>();
@@ -137,14 +138,7 @@ public class PlayerController : MonoBehaviour,ISaveable
             InteractionUI.text = "";
             return;
         }
-        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * mouseSensitiviy, 0.5f);
-        cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
-        var angles = cameraRig.localEulerAngles;
-        angles.z = 0;
-        var angle = cameraRig.localEulerAngles.x;
-        angles.x = ClampRotation(angle, minPitch, maxPitch);
-        //print(angles.x);
-        cameraRig.localEulerAngles = angles;
+      
         IInteractable interactible;
         if (InteractionCheck(out interactible))
         {
@@ -164,6 +158,17 @@ public class PlayerController : MonoBehaviour,ISaveable
 
         }
 
+    }
+    void OnLook(InputAction.CallbackContext context)
+    {
+        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * (GameManager.Instance.inputMethod==InputMethod.mouseAndKeyboard? mouseSensitiviy:1), 0.5f);
+        cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
+        var angles = cameraRig.localEulerAngles;
+        angles.z = 0;
+        var angle = cameraRig.localEulerAngles.x;
+        angles.x = ClampRotation(angle, minPitch, maxPitch);
+        //print(angles.x);
+        cameraRig.localEulerAngles = angles;
     }
     private void FixedUpdate()
     {
