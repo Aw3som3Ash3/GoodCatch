@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     }
     void OnLook()
     {
-        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * (GameManager.Instance.inputMethod==InputMethod.mouseAndKeyboard? mouseSensitiviy:1*Time.deltaTime), 0.5f);
+        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * (GameManager.Instance.inputMethod==InputMethod.mouseAndKeyboard? mouseSensitiviy:1), 0.5f);
         cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
         var angles = cameraRig.localEulerAngles;
         angles.z = 0;
