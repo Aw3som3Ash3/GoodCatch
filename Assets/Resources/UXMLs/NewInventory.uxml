@@ -1,13 +1,23 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/InventoryUI.uss?fileID=7433441132597879392&amp;guid=32cabb651731c924183377df5562b83e&amp;type=3#InventoryUI" />
     <ui:VisualElement name="WorkSpace" style="flex-grow: 1;">
-        <ui:VisualElement name="BGMainContainer" style="flex-grow: 1; margin-top: 2%; margin-right: 2%; margin-bottom: 5%; margin-left: 2%; background-color: rgb(255, 255, 255);">
-            <ui:VisualElement name="MainContainer" style="flex-grow: 1; margin-top: 2%; margin-right: 1%; margin-bottom: 2%; margin-left: 1%; flex-direction: column; align-items: stretch; background-color: rgb(159, 159, 159);">
+        <ui:VisualElement name="BGMainContainer" style="flex-grow: 1; margin-top: 2%; margin-right: 2%; margin-bottom: 3%; margin-left: 2%; background-color: rgb(255, 255, 255);">
+            <ui:VisualElement name="MainContainer" style="flex-grow: 1; margin-top: 3.8%; margin-right: 1%; margin-bottom: 2%; margin-left: 1%; flex-direction: column; align-items: stretch; background-color: rgb(159, 159, 159);">
                 <ui:VisualElement name="SubContainer1" style="flex-grow: 1; flex-direction: row; background-color: rgb(255, 255, 255); align-items: center; justify-content: space-between;">
                     <ui:VisualElement name="LeftContainer" style="flex-grow: 0; margin-right: 0; width: 50%; height: 100%; background-color: rgba(25, 61, 214, 0.45);">
-                        <InventoryTabs style="height: 873px;" />
+                        <InventoryTabs style="height: 873px; margin-top: -56px;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="RightContainer" style="flex-grow: 0; width: 49%; height: 100%; background-color: rgba(36, 227, 162, 0.67);" />
+                    <ui:VisualElement name="RightContainer" style="flex-grow: 0; width: 49%; height: 100%; background-color: rgba(36, 227, 162, 0.67);">
+                        <ui:VisualElement name="TextContainer" style="flex-grow: 1; justify-content: flex-start; align-items: auto; align-self: auto; height: auto; min-height: auto; max-height: none;">
+                            <ui:Label tabindex="-1" text="Item Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ItemName" style="align-items: auto; align-self: center; justify-content: flex-start; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 37px;" />
+                            <ui:Label tabindex="-1" text="Details" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Detail" style="-unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); justify-content: flex-start; align-self: center; font-size: 37px; border-top-width: 15px;" />
+                            <ui:Label tabindex="-1" text="Worth: $" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Worth" style="justify-content: flex-start; align-items: stretch; align-self: center; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); font-size: 37px; border-top-width: 15px;" />
+                            <ui:Label tabindex="-1" text="Effects:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Effects" style="font-size: 37px; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); align-self: center; border-top-width: 15px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 0; min-height: 20%; align-items: center; justify-content: center;">
+                            <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-items: auto; align-self: auto; justify-content: flex-start; width: 258px; height: 73px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
