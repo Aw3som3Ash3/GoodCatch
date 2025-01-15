@@ -108,10 +108,7 @@ public class PauseMenu : VisualElement
         if (currentPage != null)
         {
             Back();
-            if (exitCompletely == true)
-            {
-                OnPause();
-            }
+            
             return;
         }
         
@@ -171,6 +168,10 @@ public class PauseMenu : VisualElement
                 menu.SetEnabled(true);
                 menu.visible = true;
                 currentPage = null;
+            }
+            if (exitCompletely)
+            {
+                OnPause();
             }
         }
         
