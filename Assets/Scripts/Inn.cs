@@ -18,7 +18,7 @@ public class Inn : MonoBehaviour, IInteractable
 
     void Awake()
     {
-        dialogue=FindObjectOfType<InnDialogue>();
+        dialogue=FindObjectOfType<InnDialogue>(true);
         if (isStartInn)
         {
             StarterInn = this;
