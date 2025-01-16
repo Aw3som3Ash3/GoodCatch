@@ -27,6 +27,7 @@
     justify-content: space-between;
     align-items: stretch;
     width: 505px;
+    margin-left: 117px;
 }
 
 .unity-tabbed-view__content-container {
