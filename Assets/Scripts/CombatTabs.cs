@@ -81,6 +81,11 @@ public class CombatTabs : TabbedMenu
         {
             return;
         }
+        FocusFirst();
+    }
+
+    public void FocusFirst()
+    {
         var children = tabs[index].Target.Children();
         if (children.First().focusable)
         {
@@ -90,6 +95,21 @@ public class CombatTabs : TabbedMenu
         {
             children.First().Children().First().Focus();
         }
-       
+    }
+    public void FocusOn(int childIndex)
+    {
+        var children = tabs[index].Target.Children();
+        if (children.First().focusable)
+        {
+            children.ToArray()[childIndex].Focus();
+            Debug.Log("refocuses on " + children.ToArray()[childIndex].name);
+        }
+        else
+        {
+            children.First().Children().ToArray()[childIndex].Focus();
+        }
+           
+        
+
     }
 }

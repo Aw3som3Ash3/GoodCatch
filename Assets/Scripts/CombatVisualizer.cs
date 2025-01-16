@@ -37,14 +37,16 @@ public class CombatVisualizer : MonoBehaviour
     [SerializeField]
     Transform floaterStart;
     //public Action CompletedMove;
-    // Start is called before the first frame update
 
+
+    Action canceled;
     Action<int> DepthSelection;
     private void Awake()
     {
         combatManager = FindObjectOfType<CombatManager>();
         combatDepths = combatManager.depths.ToList();
     }
+    // Start is called before the first frame update
     void Start()
     {
         eventSystem = EventSystem.current;
@@ -53,7 +55,7 @@ public class CombatVisualizer : MonoBehaviour
             depthSelectors[i].SetIndex(i);
             depthSelectors[i].Selected = (i) => { DepthSelection?.Invoke(i); StopTargeting(); };
             depthSelectors[i].Navigate += OnNaviagte;
-            InputManager.Input.Combat.Cancel.performed+=(x)=>StopTargeting();
+            InputManager.Input.Combat.Cancel.performed+=(x)=>CancelMove();
         }
        
     }
@@ -107,10 +109,11 @@ public class CombatVisualizer : MonoBehaviour
         //throw new NotImplementedException();
     }
 
-    public void SelectFish(CombatManager.Team team,Action<CombatManager.Turn> action)
+    public void SelectFish(CombatManager.Team team,Action<CombatManager.Turn> action,Action canceledCallback)
     {
         StopTargeting();
-        foreach(var fish in turnToObject)
+        canceled += canceledCallback;
+        foreach (var fish in turnToObject)
         {
             if (fish.Key.team == team)
             {
@@ -274,6 +277,8 @@ public class CombatVisualizer : MonoBehaviour
     public void StartTargeting(Func<int,Depth,bool> targetable,int ablityIndex ,Action<int> targeted)
     {
         StopTargeting();
+       
+        DepthSelection = null;
         DepthSelection += targeted;
         DepthSelection +=(x)=>StopTargeting();
         selected = -1;
@@ -302,7 +307,9 @@ public class CombatVisualizer : MonoBehaviour
     public void StartTargeting(Action<int> targeted)
     {
         StopTargeting();
+       
         DepthSelection = null;
+
         if(GameManager.Instance.inputMethod == InputMethod.controller)
         {
             eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
@@ -316,6 +323,7 @@ public class CombatVisualizer : MonoBehaviour
     }
     void StopTargeting()
     {
+        //DepthSelection?.Invoke(-1);
         DepthSelection = null;
         foreach (DepthSelectors selector in depthSelectors)
         {
@@ -330,6 +338,18 @@ public class CombatVisualizer : MonoBehaviour
         //}
         StopSelectingFish();
         //isActive = true;
+       
+    }
+
+    void CancelMove()
+    {
+
+        DepthSelection?.Invoke(-1);
+       
+        StopTargeting();
+        canceled?.Invoke();
+        canceled = null;
+
     }
 
     public void CatchFishAnimation(Turn turn,bool catchingCalc,Action completed)

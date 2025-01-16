@@ -83,10 +83,32 @@ public class CombatUI : VisualElement
         fishName = this.Q<Label>("Name");
         level = this.Q<Label>("Level");
         fishIcon = this.Q("ProfilePic");
-
+        GameManager.Instance.OnInputChange += OnInputChange;
 
     }
 
+    private void OnInputChange(InputMethod method)
+    {
+        if (method == InputMethod.controller)
+        {
+            FocusOn();
+        }
+        
+    }
+
+    void FocusOn(int index=0)
+    {
+
+        if (combatDraftUI.enabledSelf)
+        {
+            combatDraftUI.Q<Button>("slot" + (1)).Focus();
+        }
+        else
+        {
+            tabbedView.FocusOn(index);
+            
+        }
+    }
     private void OnRun()
     {
         throw new NotImplementedException();
@@ -139,6 +161,7 @@ public class CombatUI : VisualElement
 
         }
     }
+
     public void StopDraft()
     {
         combatDraftUI.SetEnabled(false); 
@@ -152,9 +175,10 @@ public class CombatUI : VisualElement
     {
         if (context.performed)
         {
+            toolTip.visible = false;
             tabbedView.ChangeTab((int)context.ReadValue<float>());
             Debug.Log("tab change: " + (int)context.ReadValue<float>());
-            toolTip.visible = false;
+            
 
         }
       
@@ -193,7 +217,12 @@ public class CombatUI : VisualElement
     }
     void Move()
     {
-        currentTurn.Move();
+        currentTurn.Move(() => { 
+            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            {
+            FocusOn(0);
+            }
+        });
     }
     public void NewTurn(CombatManager.Turn turn, bool isPlayer)
     {
@@ -216,7 +245,13 @@ public class CombatUI : VisualElement
     }
     void UseAbility(int index)
     {
-        currentTurn.UseAbility(index);
+        currentTurn.UseAbility(index, () => 
+        {
+            if (GameManager.Instance.inputMethod==InputMethod.controller)
+            {
+                FocusOn(index+1);
+            }
+        });
        // AbilityAction?.Invoke(index);
     }
     public void EnableButtons()
@@ -374,7 +409,7 @@ public class CombatUI : VisualElement
     }
     void UseItem(Item item)
     {
-        currentTurn.UseItem(item);
+        currentTurn.UseItem(item,()=>FocusOn());
     }
     private void AddEffect(StatusEffect.StatusEffectInstance instance)
     {
