@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Assets/InventoryUI.uss?fileID=7433441132597879392&amp;guid=32cabb651731c924183377df5562b83e&amp;type=3#InventoryUI" />
     <ui:VisualElement name="WorkSpace" style="flex-grow: 1;">
         <ui:VisualElement name="BGMainContainer" style="flex-grow: 1; margin-top: 2%; margin-right: 2%; margin-bottom: 3%; margin-left: 2%; background-color: rgb(255, 255, 255);">
-            <ui:VisualElement name="MainContainer" style="flex-grow: 1; margin-top: 3.8%; margin-right: 1%; margin-bottom: 2%; margin-left: 1%; flex-direction: column; align-items: stretch; background-color: rgb(159, 159, 159);">
+            <ui:VisualElement name="MainContainer" style="flex-grow: 1; margin-top: 3.8%; margin-right: 1%; margin-bottom: 0; margin-left: 1%; flex-direction: column; align-items: stretch; background-color: rgb(159, 159, 159);">
                 <ui:VisualElement name="SubContainer1" style="flex-grow: 1; flex-direction: row; background-color: rgb(255, 255, 255); align-items: center; justify-content: space-between;">
                     <ui:VisualElement name="LeftContainer" style="flex-grow: 0; margin-right: 0; width: 50%; height: 100%; background-color: rgba(25, 61, 214, 0.45);">
                         <InventoryTabs style="height: 873px; margin-top: -56px;" />
@@ -20,6 +20,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
