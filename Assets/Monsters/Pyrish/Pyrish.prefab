@@ -95,6 +95,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: eca62ca19dd65ae459d0a429a6a05fa8, type: 2}
+    - target: {fileID: -5754084199372789682, guid: aacbf0a3617eecb40b9eca0644f29516, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2881999585906592909, guid: 0496371d116311a469f4487d04b75a59, type: 3}
     - target: {fileID: 919132149155446097, guid: aacbf0a3617eecb40b9eca0644f29516, type: 3}
       propertyPath: m_Name
       value: Pyrish
