@@ -36,7 +36,7 @@ public class InventoryTabs : TabbedMenu
 
         
     }
-
+    
     List<ItemInventory.ItemSlot> GetListOfItemType(int index)
     {
         switch (index)
