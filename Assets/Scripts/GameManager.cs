@@ -185,9 +185,21 @@ public class GameManager : MonoBehaviour,ISaveable
     private void OnDeviceChange(InputControl control, InputEventPtr ptr)
     {
         Debug.Log(control.device);
-
+        
         //user.UnpairDevices();
-        InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+        
+        
+        if((control.device is Mouse|| control.device is Keyboard) &&(user.pairedDevices.FirstOrDefault((x) => x is Mouse || x is Keyboard) != null))
+        {
+
+            InputUser.PerformPairingWithDevice(control.device, user);
+        }
+        else
+        {
+            InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+
+        }
+
         //throw new NotImplementedException();
     }
 

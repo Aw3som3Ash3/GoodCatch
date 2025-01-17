@@ -21,7 +21,7 @@ public class TabbedMenu : VisualElement
     private TabMenuButton m_ActiveTab;
 
     public override VisualElement contentContainer => m_Content;
-
+    int index;
     public TabbedMenu()
     {
         AddToClassList(s_UssClassName);
@@ -147,6 +147,22 @@ public class TabbedMenu : VisualElement
 
         m_ActiveTab = button;
         SelectTab(m_ActiveTab);
+    }
+    public virtual void ChangeTab(int delta)
+    {
+        int targetIndex = Mathf.Clamp(index + delta, 0, 2);
+        if (index == targetIndex)
+        {
+            return;
+        }
+        index = targetIndex;
+        Activate(m_Tabs[index]);
+
+        if (m_Tabs[index].Target.childCount <= 0)
+        {
+            return;
+        }
+        
     }
 }
 

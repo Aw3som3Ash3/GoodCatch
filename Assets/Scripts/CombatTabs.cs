@@ -67,20 +67,9 @@ public class CombatTabs : TabbedMenu
         
     }
 
-    public void ChangeTab(int delta)
+    public override void ChangeTab(int delta)
     {
-        int targetIndex= Mathf.Clamp(index+delta, 0, 2);
-        if (index == targetIndex)
-        {
-            return;
-        }
-        index = targetIndex;
-        Activate(tabs[index]);
-
-        if(tabs[index].Target.childCount<=0)
-        {
-            return;
-        }
+        base.ChangeTab(delta);
         FocusFirst();
     }
 
