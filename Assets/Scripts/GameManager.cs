@@ -12,6 +12,7 @@ using UnityEngine.InputSystem.Users;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using static CombatManager;
 
 public class GameManager : MonoBehaviour,ISaveable
@@ -156,6 +157,8 @@ public class GameManager : MonoBehaviour,ISaveable
 
     String mainScene;
 
+    [SerializeField]
+    UIDocument mainUI;
     private void Awake()
     {
 
@@ -179,7 +182,8 @@ public class GameManager : MonoBehaviour,ISaveable
         gameData.hasSeenFish = new bool[database.fishMonsters.Count];
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed +=(x)=> PauseMenu.Pause();
-
+        mainUI.gameObject.SetActive(true);
+        
     }
 
     private void OnDeviceChange(InputControl control, InputEventPtr ptr)
