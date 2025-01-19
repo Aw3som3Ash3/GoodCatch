@@ -67,20 +67,14 @@ public class CombatTabs : TabbedMenu
         
     }
 
-    public void ChangeTab(int delta)
+    public override void ChangeTab(int delta)
     {
-        int targetIndex= Mathf.Clamp(index+delta, 0, 2);
-        if (index == targetIndex)
-        {
-            return;
-        }
-        index = targetIndex;
-        Activate(tabs[index]);
+        base.ChangeTab(delta);
+        FocusFirst();
+    }
 
-        if(tabs[index].Target.childCount<=0)
-        {
-            return;
-        }
+    public void FocusFirst()
+    {
         var children = tabs[index].Target.Children();
         if (children.First().focusable)
         {
@@ -90,6 +84,21 @@ public class CombatTabs : TabbedMenu
         {
             children.First().Children().First().Focus();
         }
-       
+    }
+    public void FocusOn(int childIndex)
+    {
+        var children = tabs[index].Target.Children();
+        if (children.First().focusable)
+        {
+            children.ToArray()[childIndex].Focus();
+            Debug.Log("refocuses on " + children.ToArray()[childIndex].name);
+        }
+        else
+        {
+            children.First().Children().ToArray()[childIndex].Focus();
+        }
+           
+        
+
     }
 }

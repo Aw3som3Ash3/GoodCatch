@@ -12,6 +12,7 @@ using UnityEngine.InputSystem.Users;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using static CombatManager;
 
 public class GameManager : MonoBehaviour,ISaveable
@@ -156,6 +157,8 @@ public class GameManager : MonoBehaviour,ISaveable
 
     String mainScene;
 
+    [SerializeField]
+    UIDocument mainUI;
     private void Awake()
     {
 
@@ -179,15 +182,28 @@ public class GameManager : MonoBehaviour,ISaveable
         gameData.hasSeenFish = new bool[database.fishMonsters.Count];
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed +=(x)=> PauseMenu.Pause();
-
+        mainUI.gameObject.SetActive(true);
+        
     }
 
     private void OnDeviceChange(InputControl control, InputEventPtr ptr)
     {
         Debug.Log(control.device);
-
+        
         //user.UnpairDevices();
-        InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+        
+        
+        if((control.device is Mouse|| control.device is Keyboard) &&(user.pairedDevices.FirstOrDefault((x) => x is Mouse || x is Keyboard) != null))
+        {
+
+            InputUser.PerformPairingWithDevice(control.device, user);
+        }
+        else
+        {
+            InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+
+        }
+
         //throw new NotImplementedException();
     }
 

@@ -146,6 +146,7 @@ public class CombatManager : MonoBehaviour
     {
         Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);
         AddFish(turn, depths[target % 3], Team.player);
+        turn.fish.RecoverStamina();
         currentCombatents.Add(turn);
         getFishesTurn[playerFishes[index]] = turn;
         draftedCount++;
@@ -156,7 +157,7 @@ public class CombatManager : MonoBehaviour
             StartTurn();
         }
     }
-    void UseItem(Item item,Action completedCallback)
+    void UseItem(Item item,Action completedCallback,Action canceledCallback)
     {
         if(item is CombatHook)
         {
@@ -164,7 +165,7 @@ public class CombatManager : MonoBehaviour
             {
                 TryCatching((CombatHook)item, t, completedCallback);
 
-            });
+            },canceledCallback);
         }
         else if (item is Potion)
         {
@@ -709,17 +710,21 @@ public class CombatManager : MonoBehaviour
             TickEffects(StatusEffect.EffectUsage.postTurn);
             TurnEnded?.Invoke();
         }
-        public void Move()
+        public void Move(Action callback)
         {
             if (ActionLeft)
             {
                
-                combatManager.combatVisualizer.StartTargeting((i) => { Move(i); combatManager.combatUI.EnableButtons(); });
+                combatManager.combatVisualizer.StartTargeting((i) => { if (i >= 0) { Move(i); combatManager.combatUI.EnableButtons(); } callback.Invoke(); });
             }
            
         }
         void Move(int depthIndex)
         {
+            if(depthIndex < 0)
+            {
+                return;
+            }
             actionsCompleted = false;
             CombatDepth prevDepth = currentDepth;
             CombatDepth targetDepth = combatManager.depths[depthIndex];
@@ -748,19 +753,19 @@ public class CombatManager : MonoBehaviour
 
             return combatManager.depth[depth].SideHasFish(fish.GetAbility(abilityIndex).TargetedTeam ==Ability.TargetTeam.enemy? oppositeTeam:team) && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth);
         }
-        public void UseItem(Item item)
+        public void UseItem(Item item,Action callback)
         {
-            combatManager.UseItem(item,()=>UseAction());
+            combatManager.UseItem(item, () => UseAction(), () => callback?.Invoke()); ;
             
                     
         }
-        public void UseAbility(int abilityIndex)
+        public void UseAbility(int abilityIndex,Action callback=null)
         {
             if (AbilityUsable(abilityIndex))
             {
                 //Ability ability = fish.GetAbility(abilityIndex);
 
-                combatManager.combatVisualizer.StartTargeting(DepthTargetable,abilityIndex ,(i) => { UseAbility(abilityIndex,i); });
+                combatManager.combatVisualizer.StartTargeting(DepthTargetable,abilityIndex ,(i) => { if (i >= 0) { UseAbility(abilityIndex, i); } callback.Invoke(); });
             }
 
         }

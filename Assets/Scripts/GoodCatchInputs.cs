@@ -332,22 +332,11 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""23d2f6ef-b165-4239-85a5-a62986e4291a"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""3b11ca0b-8d39-48b5-81ef-81d54348aaec"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -369,7 +358,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -380,7 +369,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -391,7 +380,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Fish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -424,7 +413,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -578,6 +567,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""name"": ""Back"",
                     ""type"": ""Button"",
                     ""id"": ""128ba600-da75-4c12-b5b6-ab581a25ebca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeTab"",
+                    ""type"": ""Button"",
+                    ""id"": ""2097a976-ccf9-4206-b9b6-94db11a1bce0"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1042,7 +1040,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1053,7 +1051,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1068,6 +1066,72 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""bumpers"",
+                    ""id"": ""4593ec23-5e23-4e83-8e0b-8e86226665a0"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""108efa5c-40ae-4541-b3e1-2e0dac26020e"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a637f351-399c-413c-bcb9-c3f645965961"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""QE"",
+                    ""id"": ""0059699a-29db-4093-9154-8d309161ffa5"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c90d3ac6-0ba6-44fc-9d37-812813b1e11a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""93a9d448-e91e-4934-afa5-2c5ba59e55f4"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ChangeTab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -1588,6 +1652,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
+        m_UI_ChangeTab = m_UI.FindAction("ChangeTab", throwIfNotFound: true);
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
@@ -1787,6 +1852,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Inventory;
     private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_Back;
+    private readonly InputAction m_UI_ChangeTab;
     public struct UIActions
     {
         private @GoodCatchInputs m_Wrapper;
@@ -1805,6 +1871,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @Back => m_Wrapper.m_UI_Back;
+        public InputAction @ChangeTab => m_Wrapper.m_UI_ChangeTab;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1856,6 +1923,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Back.started += instance.OnBack;
             @Back.performed += instance.OnBack;
             @Back.canceled += instance.OnBack;
+            @ChangeTab.started += instance.OnChangeTab;
+            @ChangeTab.performed += instance.OnChangeTab;
+            @ChangeTab.canceled += instance.OnChangeTab;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1902,6 +1972,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Back.started -= instance.OnBack;
             @Back.performed -= instance.OnBack;
             @Back.canceled -= instance.OnBack;
+            @ChangeTab.started -= instance.OnChangeTab;
+            @ChangeTab.performed -= instance.OnChangeTab;
+            @ChangeTab.canceled -= instance.OnChangeTab;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -2170,6 +2243,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         void OnInventory(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
+        void OnChangeTab(InputAction.CallbackContext context);
     }
     public interface IShipActions
     {

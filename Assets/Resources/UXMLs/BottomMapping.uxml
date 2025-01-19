@@ -2,19 +2,19 @@
     <ui:VisualElement name="Workspace" style="flex-grow: 1; align-items: flex-start; justify-content: flex-end; flex-direction: column;">
         <ui:VisualElement name="BottomUIMapping" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; width: 822px; margin-bottom: 10px; margin-left: 5px;">
             <ui:VisualElement name="SprintVisuals" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="SprintImage" style="flex-grow: 0; width: 60px; flex-shrink: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_stick_l_press.png?fileID=2800000&amp;guid=b3cec85e2c344ee44a176bbf0a1561ce&amp;type=3#xbox_stick_l_press&quot;);" />
+                <InputHudTip name="SprintImage" inputName="Sprint" style="width: 60px;" />
                 <ui:Label tabindex="-1" text="Sprint" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Sprint" style="font-size: 38px; flex-direction: column; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
             </ui:VisualElement>
             <ui:VisualElement name="PauseVisuals" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="PauseImage" style="flex-grow: 0; width: 60px; flex-shrink: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_button_menu.png?fileID=2800000&amp;guid=cf5c6da8e3f32b142823022a5672bc71&amp;type=3#xbox_button_menu&quot;);" />
+                <InputHudTip name="PauseImage" inputName="Pause" style="width: 60px;" />
                 <ui:Label tabindex="-1" text="Pause" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pause" style="font-size: 38px; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;);" />
             </ui:VisualElement>
             <ui:VisualElement name="InteractVisuals" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="InteractImage" style="flex-grow: 0; width: 60px; flex-shrink: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_button_color_a.png?fileID=2800000&amp;guid=1424fd0a99b2fe047ad86c836264f848&amp;type=3#xbox_button_color_a&quot;);" />
+                <InputHudTip name="InteractImage" inputName="Interact" style="width: 60px;" />
                 <ui:Label tabindex="-1" text="Interact" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-direction: row;" />
             </ui:VisualElement>
             <ui:VisualElement name="CastVisuals" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="CastImage" style="flex-grow: 0; width: 60px; flex-shrink: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_button_color_y.png?fileID=2800000&amp;guid=61e09ca523c85bd4fa9321a7edfe6ec0&amp;type=3#xbox_button_color_y&quot;);" />
+                <InputHudTip name="CastImage" inputName="Fish" style="width: 60px;" />
                 <ui:Label tabindex="-1" text="Cast" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Cast" style="font-size: 38px; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;);" />
             </ui:VisualElement>
         </ui:VisualElement>
