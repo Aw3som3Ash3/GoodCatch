@@ -68,46 +68,23 @@ public class InventoryUI : PausePage
 
     void ChangeIcons(InputMethod inputMethod)
     {
-        if (inputMethod == InputMethod.mouseAndKeyboard)
+        foreach (var binding in InputManager.Input.UI.ChangeTab.bindings.Where((x)=>x.groups== (inputMethod== InputMethod.mouseAndKeyboard?"Keyboard&Mouse":"Gamepad")))
         {
-            
-            
-            
-            
-            
-            
-        }
-        foreach (var binding in InputManager.Input.UI.ChangeTab.bindings)
-        {
-            if (binding.isPartOfComposite && binding.groups == "Keyboard&Mouse" && inputMethod == InputMethod.mouseAndKeyboard)
+            if (binding.isPartOfComposite)
             {
                 if (binding.name == "positive")
                 {
-                    rightTab.style.backgroundImage = Resources.Load<Texture2D>("ControlIcons/Keyboard & Mouse/Default/keyboard_" + binding.path.Replace("<Keyboard>/", ""));
+                    rightTab.style.backgroundImage = InputDisplayer.GetInputIcon(binding, inputMethod);
 
                     Debug.Log("has binding " + binding.effectivePath);
 
                 }
                 else if (binding.name == "negative")
                 {
-                    leftTab.style.backgroundImage = Resources.Load<Texture2D>("ControlIcons/Keyboard & Mouse/Default/keyboard_" + binding.path.Replace("<Keyboard>/", ""));
+                    leftTab.style.backgroundImage = InputDisplayer.GetInputIcon(binding, inputMethod);
                 }
             }
-            else if (binding.isPartOfComposite && binding.groups == "Gamepad" && inputMethod == InputMethod.controller)
-            {
-                if (binding.name == "positive")
-                {
-                    rightTab.style.backgroundImage = Resources.Load<Texture2D>("ControlIcons/Xbox Series/Default/xbox_" + binding.path.Replace("<Gamepad>/", ""));
-
-                    Debug.Log("has binding " + binding.effectivePath);
-
-                }
-                else if (binding.name == "negative")
-                {
-
-                    leftTab.style.backgroundImage = Resources.Load<Texture2D>("ControlIcons/Xbox Series/Default/xbox_" + binding.path.Replace("<Gamepad>/", ""));
-                }
-            }
+            
 
 
 

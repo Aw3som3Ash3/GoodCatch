@@ -563,6 +563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: mainUI
+      value: 
+      objectReference: {fileID: 900925920}
     - target: {fileID: 6632416249239343018, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: m_LocalPosition.x
       value: 363.66382
@@ -3555,9 +3559,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 504907397506364804, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2203429022613468250, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
       propertyPath: m_Name
       value: UiDocument
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203429022613468250, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7369113170823249538, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
       propertyPath: m_LocalPosition.x
