@@ -1464,7 +1464,7 @@
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Touch",
+                    "groups": "Gamepad",
                     "action": "ChangeTab",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1567,6 +1567,39 @@
                     "action": "MoreInfo",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "QE",
+                    "id": "b5a84013-a00d-411e-b2c1-75cc3e559d6c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeTab",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "583cdfdc-dfdb-4936-b9e3-fff0586a8184",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChangeTab",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "8b8cca03-08b4-4f3e-99e3-f659cfd34ed2",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ChangeTab",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
