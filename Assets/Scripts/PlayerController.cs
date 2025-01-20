@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     bool inStation;
 
-    bool sprinting { get { return inputs.Sprint.IsPressed(); } }
+    bool sprinting;
 
     string id="player";
     public string ID => id;
@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         //lookAction.performed += OnLook;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
+        inputs.Sprint.performed += OnSprint;
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
@@ -71,6 +72,25 @@ public class PlayerController : MonoBehaviour,ISaveable
         audioController=GetComponent<AudioController>();
         //InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
     }
+
+    private void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.control.device is Gamepad)
+        {
+            if (context.action.IsPressed())
+            {
+                Debug.Log(" toggle sprint");
+                sprinting = !sprinting;
+            }
+            
+        }
+        else
+        {
+            sprinting = context.action.IsPressed();
+        }
+        
+    }
+
     private void OnEnable()
     {
         //inputs.Player.Enable();
@@ -178,6 +198,10 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
+        if (moveDir.sqrMagnitude.Equals(0))
+        {
+            sprinting = inputs.Sprint.IsPressed();
+        }
         velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
         if (moveAction.IsInProgress())
         {
