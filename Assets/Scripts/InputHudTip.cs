@@ -36,7 +36,15 @@ public class InputHudTip : VisualElement
 
     public void Init()
     {
-        ChangeIcon();
+        if (GameManager.Instance!= null)
+        {
+            ChangeIcon(GameManager.Instance.inputMethod);
+        }
+        else
+        {
+            ChangeIcon();
+        }
+       
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnInputChange += ChangeIcon;
