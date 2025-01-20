@@ -176,6 +176,8 @@ public class PauseMenu : VisualElement
             InputManager.Input.UI.Back.performed -= Back;
             GameManager.Instance.OnInputChange -= OnInputChanged;
         }
+        var bottomMapping = panel.visualTree.Q("BottomMapping");
+        bottomMapping.visible = !PauseActive;
 
     }
 

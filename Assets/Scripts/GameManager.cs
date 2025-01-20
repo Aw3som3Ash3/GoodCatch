@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour,ISaveable
             if(mainUI != null)
             {
                 PauseMenu.Pause();
-                mainUI.rootVisualElement.Q("BottomMapping").visible = !PauseMenu.PauseActive;
+               
             }
            
         };
