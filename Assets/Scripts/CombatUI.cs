@@ -226,7 +226,7 @@ public class CombatUI : VisualElement
         currentTurn.Move(() => { 
             if (GameManager.Instance.inputMethod == InputMethod.controller)
             {
-            FocusOn(0);
+                //FocusOn(0);
             }
         });
     }
@@ -335,6 +335,7 @@ public class CombatUI : VisualElement
         endTurnButton.SetEnabled(true);
         if (currentTurn.ActionLeft)
         {
+
         }
         else
         {
