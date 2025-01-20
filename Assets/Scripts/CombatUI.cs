@@ -116,7 +116,7 @@ public class CombatUI : VisualElement
 
     public void Draft(IList<FishMonster> playerFishes, Action<int,Action> callback)
     {
-
+        //ResetDisplayAbilities();
         tabbedView.SetEnabled(false);
         combatDraftUI.SetEnabled(true);
         combatDraftUI.visible = true;
@@ -132,8 +132,13 @@ public class CombatUI : VisualElement
             slot.clicked += () =>
             {
                 slot.AddToClassList("DraftSelected");
+                PreivewFish(playerFishes[index]);
                 callback(index, () =>
                 {
+                    if(index == -1)
+                    {
+                        return;
+                    }
                     slot.SetEnabled(false);
                     slot.style.unityBackgroundImageTintColor = Color.gray;
                     slot.RemoveFromClassList("DraftSelected");
@@ -169,6 +174,7 @@ public class CombatUI : VisualElement
         tabbedView.SetEnabled(true);
         endTurnButton.SetEnabled(true);
         turnMarker.visible = true;
+        InputManager.Input.Combat.ChangeTab.performed += ChangeTab;
     }
     
     void ChangeTab(InputAction.CallbackContext context)
@@ -212,7 +218,7 @@ public class CombatUI : VisualElement
     void EndTurn()
     {
         currentTurn.EndTurn();
-        InputManager.Input.Combat.ChangeTab.performed -= ChangeTab;
+        //InputManager.Input.Combat.ChangeTab.performed -= ChangeTab;
 
     }
     void Move()
@@ -230,7 +236,7 @@ public class CombatUI : VisualElement
         {
             UpdateVisuals(turn as PlayerTurn);
             EnableButtons();
-            InputManager.Input.Combat.ChangeTab.performed += ChangeTab;
+           
             tabbedView.ChangeTab(-3);
             if (GameManager.Instance.inputMethod == InputMethod.controller)
             {
@@ -253,6 +259,57 @@ public class CombatUI : VisualElement
             }
         });
        // AbilityAction?.Invoke(index);
+    }
+    void PreivewFish(FishMonster fish)
+    {
+        fishName.text = fish.Name;
+        level.text = fish.Level.ToString();
+        var value = fishIcon.style.backgroundImage.value;
+        value.sprite = fish.Icon;
+        fishIcon.style.backgroundImage = value;
+        tabbedView.SetEnabled(true);
+        UpdateHealthDisplayer(fish);
+        for (int i = 0; i < abilityButtons.Length; i++)
+        {
+            float damage = fish.GetAbility(i).GetDamage(fish);
+            abilityButtons[i].SetAbility(fish.GetAbility(i), damage, fish.Accuracy.value);
+            abilityButtons[i].SetEnabled(true);
+            abilityButtons[i].SetPreview(true);
+            //if (currentTurn.AbilityUsable(i))
+            //{
+            //    abilityButtons[i].SetUsability(true);
+            //}
+            //else
+            //{
+            //    abilityButtons[i].SetUsability(false);
+            //}
+
+        }
+    }
+    public void ResetFishPreview()
+    {
+        fishName.text = "";
+        level.text ="";
+        var value = fishIcon.style.backgroundImage.value;
+        value.sprite = null;
+        fishIcon.style.backgroundImage = value;
+        ResetHealthDisplay();
+        //tabbedView.SetEnabled(true);
+        for (int i = 0; i < abilityButtons.Length; i++)
+        {
+
+            abilityButtons[i].SetEnabled(false);
+            abilityButtons[i].SetPreview(false);
+            //if (currentTurn.AbilityUsable(i))
+            //{
+            //    abilityButtons[i].SetUsability(true);
+            //}
+            //else
+            //{
+            //    abilityButtons[i].SetUsability(false);
+            //}
+
+        }
     }
     public void EnableButtons()
     {
@@ -305,7 +362,7 @@ public class CombatUI : VisualElement
         if (this.currentTurn != null)
         {
             this.currentTurn.NewEffect -= AddEffect;
-            this.currentTurn.fish.ValueChanged -= UpdateHealth;
+            this.currentTurn.fish.ValueChanged -= UpdateHealthDisplay;
         }
 
         Debug.Log(currentTurn);
@@ -329,8 +386,8 @@ public class CombatUI : VisualElement
         ResetEffects();
         SetEffects();
         currentTurn.NewEffect += AddEffect;
-        currentTurn.fish.ValueChanged += UpdateHealth;
-        UpdateHealth();
+        currentTurn.fish.ValueChanged += UpdateHealthDisplay;
+        UpdateHealthDisplay();
     }
 
     private void SetEffects()
@@ -359,12 +416,22 @@ public class CombatUI : VisualElement
             statusBar.Remove(child);
         }
     }
-
-    private void UpdateHealth()
+    private void ResetHealthDisplay()
+    {
+        healthBar.value = 0;
+        staminaBar.value = 0;
+    }
+    private void UpdateHealthDisplay()
     {
         healthBar.value = currentTurn.Health/currentTurn.MaxHealth;
         staminaBar.value = currentTurn.Stamina/currentTurn.MaxStamina;
         
+    }
+    private void UpdateHealthDisplayer(FishMonster fish)
+    {
+        healthBar.value = fish.Health / fish.MaxHealth;
+        staminaBar.value = fish.Stamina / fish.MaxStamina;
+
     }
     public void SetInventory(ItemInventory inv)
     {

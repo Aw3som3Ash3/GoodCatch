@@ -82,6 +82,20 @@ public class AbilityButton : Button
         
         
     }
+    public void SetPreview(bool b)
+    {
+        if (b)
+        {
+            this.RemoveFromClassList("unity-disabled");
+        }
+        else
+        {
+            this.AddToClassList("unity-disabled");
+
+        }
+
+
+    }
     public void SetAbility(Ability ability,float damage,float baseAccuracy) 
     {
        

@@ -118,6 +118,20 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
         return damage;
     }
+    public float GetDamage(FishMonster fish)
+    {
+        float damage = 0;
+        if (baseDamage > 0)
+        {
+            damage = baseDamage + damageMultiplier * (abilityType == AbilityType.attack ? fish.Attack.value : fish.Special.value);
+        }
+        else if (baseDamage < 0)
+        {
+            damage = -baseDamage + damageMultiplier * (abilityType == AbilityType.attack ? fish.Attack.value : fish.Special.value);
+        }
+
+        return damage;
+    }
     public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit)
     {
         if (target == null)

@@ -118,8 +118,14 @@ public class CombatManager : MonoBehaviour
         InputManager.Input.UI.Enable();
         combatUI.Draft(playerFishes, (index, callback) =>
         {
+
             combatVisualizer.StartTargeting((target) =>
             {
+                if (target < 0)
+                {
+                    combatUI.ResetFishPreview();
+                    return;
+                }
                 DraftFish(index, target);
                 callback.Invoke();
             });
