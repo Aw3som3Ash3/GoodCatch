@@ -83,7 +83,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Sprint"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""47dac975-3ea8-4e9e-9cc5-93e7a74c86dd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
