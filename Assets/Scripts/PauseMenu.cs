@@ -124,7 +124,7 @@ public class PauseMenu : VisualElement
         
         //Debug.Log(party.focusController.focusedElement);
         Debug.Log("pausing");
-        if (currentPage != null&& !exitCompletely)
+        if (currentPage != null)
         {
             Back();
             
@@ -188,7 +188,7 @@ public class PauseMenu : VisualElement
             if (currentPage.Back())
             {
                 this.Remove(currentPage);
-                //menu.SetEnabled(true);
+                menu.SetEnabled(true);
                 menu.visible = true;
                 currentPage = null;
                 lastSelected?.Focus();
