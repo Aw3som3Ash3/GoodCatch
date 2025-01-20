@@ -22,6 +22,7 @@ public class PauseMenu : VisualElement
 
     bool exitCompletely = false;
     static PauseMenu mainPause;
+    public static bool PauseActive { get { return mainPause.menu.visible; } }
     public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
 
@@ -104,6 +105,7 @@ public class PauseMenu : VisualElement
     }
     static public PauseMenu Pause()
     {
+        
         mainPause.OnPause();
         return mainPause;
     }

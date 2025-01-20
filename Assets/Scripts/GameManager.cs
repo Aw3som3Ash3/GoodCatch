@@ -181,7 +181,19 @@ public class GameManager : MonoBehaviour,ISaveable
         //InputUser.PerformPairingWithDevice()
         gameData.hasSeenFish = new bool[database.fishMonsters.Count];
         InputManager.Input.UI.Pause.Enable();
-        InputManager.Input.UI.Pause.performed +=(x)=> PauseMenu.Pause();
+        InputManager.Input.UI.Pause.performed +=(x)=> 
+        {
+            if (mainUI == null)
+            {
+                mainUI = GameObject.Find("MainHud").GetComponent<UIDocument>();
+            }
+            if(mainUI != null)
+            {
+                PauseMenu.Pause();
+                mainUI.rootVisualElement.Q("BottomMapping").visible = !PauseMenu.PauseActive;
+            }
+           
+        };
         mainUI.gameObject.SetActive(true);
         
     }
