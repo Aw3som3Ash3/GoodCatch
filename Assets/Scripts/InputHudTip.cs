@@ -22,7 +22,14 @@ public class InputHudTip : VisualElement
             base.Init(ve, bag, cc);
             var ate = ve as InputHudTip;
             ate.inputName = m_inputName.GetValueFromBag(bag, cc);
-            ate.ChangeIcon();
+            if (GameManager.Instance != null)
+            {
+                ate.ChangeIcon(GameManager.Instance.inputMethod);
+            }
+            else
+            {
+                ate.ChangeIcon();
+            }
             //ate.SubscribeToInputChange();
         }
     }
