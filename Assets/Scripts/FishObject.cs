@@ -101,7 +101,16 @@ public class FishObject : MonoBehaviour
     private void OnHover(bool v)
     {
         if (!isSelectable) return;
-        outline.GetComponentInChildren<Renderer>().enabled = v;
+        var rend = model.GetComponentInChildren<Renderer>();
+        if (v)
+        {
+            rend.materials = new Material[2] { rend.material, outlineMat };
+        }
+        else
+        {
+            rend.materials= new Material[1]{ rend.material};
+        }
+       
         print("hovering over fish");
         //throw new NotImplementedException();
     }
@@ -137,21 +146,21 @@ public class FishObject : MonoBehaviour
         this.turn = turn;
         model = Instantiate(turn.fish.Model, this.transform);
         model.transform.localPosition = Vector3.zero;
-        model.layer = this.gameObject.layer;
+        model.layer = outlineLayer;
         foreach (Transform child in model.transform)
-        {
-            child.gameObject.layer = this.gameObject.layer;
-        }
-        outline = Instantiate(model, this.transform);
-        outline.layer = outlineLayer;
-        foreach (Transform child in outline.transform)
         {
             child.gameObject.layer = outlineLayer;
         }
-        //outline.transform.localScale = Vector3.one*1.25f;
-        var rend = outline.GetComponentInChildren<Renderer>();
-        rend.enabled = false;
-        rend.material = outlineMat;
+        //outline = Instantiate(model, this.transform);
+        //outline.layer = outlineLayer;
+        //foreach (Transform child in outline.transform)
+        //{
+        //    child.gameObject.layer = outlineLayer;
+        //}
+        ////outline.transform.localScale = Vector3.one*1.25f;
+        //var rend = outline.GetComponentInChildren<Renderer>();
+        //rend.material = outlineMat;
+        //outline.SetActive(false);
         var anim = model.AddComponent<Animator>();
         playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", anim);
         mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);

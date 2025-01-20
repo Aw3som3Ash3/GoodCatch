@@ -240,7 +240,7 @@ public class CombatUI : VisualElement
             tabbedView.ChangeTab(-3);
             if (GameManager.Instance.inputMethod == InputMethod.controller)
             {
-                 moveButton.Focus();
+                abilityButtons[0].Focus();
             }
            
         }

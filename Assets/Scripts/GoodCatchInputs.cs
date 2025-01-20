@@ -1457,6 +1457,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoreInfo"",
+                    ""type"": ""Button"",
+                    ""id"": ""d9f78388-ca47-4375-94e8-5eca5a1dc588"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1556,6 +1565,28 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c09263e-ef7a-4aa0-9777-c15bed23df29"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoreInfo"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9a9f89e-a198-47d3-83c5-646797190a9a"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoreInfo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1667,6 +1698,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_Combat_ChangeTab = m_Combat.FindAction("ChangeTab", throwIfNotFound: true);
         m_Combat_Click = m_Combat.FindAction("Click", throwIfNotFound: true);
         m_Combat_Cancel = m_Combat.FindAction("Cancel", throwIfNotFound: true);
+        m_Combat_MoreInfo = m_Combat.FindAction("MoreInfo", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -2115,6 +2147,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Combat_ChangeTab;
     private readonly InputAction m_Combat_Click;
     private readonly InputAction m_Combat_Cancel;
+    private readonly InputAction m_Combat_MoreInfo;
     public struct CombatActions
     {
         private @GoodCatchInputs m_Wrapper;
@@ -2122,6 +2155,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         public InputAction @ChangeTab => m_Wrapper.m_Combat_ChangeTab;
         public InputAction @Click => m_Wrapper.m_Combat_Click;
         public InputAction @Cancel => m_Wrapper.m_Combat_Cancel;
+        public InputAction @MoreInfo => m_Wrapper.m_Combat_MoreInfo;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2140,6 +2174,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Cancel.started += instance.OnCancel;
             @Cancel.performed += instance.OnCancel;
             @Cancel.canceled += instance.OnCancel;
+            @MoreInfo.started += instance.OnMoreInfo;
+            @MoreInfo.performed += instance.OnMoreInfo;
+            @MoreInfo.canceled += instance.OnMoreInfo;
         }
 
         private void UnregisterCallbacks(ICombatActions instance)
@@ -2153,6 +2190,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @Cancel.started -= instance.OnCancel;
             @Cancel.performed -= instance.OnCancel;
             @Cancel.canceled -= instance.OnCancel;
+            @MoreInfo.started -= instance.OnMoreInfo;
+            @MoreInfo.performed -= instance.OnMoreInfo;
+            @MoreInfo.canceled -= instance.OnMoreInfo;
         }
 
         public void RemoveCallbacks(ICombatActions instance)
@@ -2261,5 +2301,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         void OnChangeTab(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnMoreInfo(InputAction.CallbackContext context);
     }
 }
