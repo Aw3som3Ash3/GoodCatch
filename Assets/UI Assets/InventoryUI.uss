@@ -14,6 +14,12 @@
     transform-origin: bottom;
 }
 
+.unity-tab-button:focus {
+    background-color: rgba(113, 170, 229, 0.93);
+    scale: 1 1.2;
+    transform-origin: bottom;
+}
+
 .unity-tab-button--active {
     transform-origin: bottom;
     scale: 1 1.2;
