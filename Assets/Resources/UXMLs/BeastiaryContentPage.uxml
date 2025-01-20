@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/UnityThemes/GoodCatchStyleSheet.uss?fileID=7433441132597879392&amp;guid=3514bcc995f7ff84c8e081dd8739d774&amp;type=3#GoodCatchStyleSheet" />
-    <Style src="project://database/Assets/BestiaryStyleSheet.uss?fileID=7433441132597879392&amp;guid=7f0f3dde6c098204a9e35430a3f15f81&amp;type=3#BestiaryStyleSheet" />
+    <Style src="project://database/Assets/UI%20Assets/BestiaryStyleSheet.uss?fileID=7433441132597879392&amp;guid=7f0f3dde6c098204a9e35430a3f15f81&amp;type=3#BestiaryStyleSheet" />
     <ui:VisualElement name="ContentWorkSpace" style="flex-grow: 1; flex-direction: row; background-color: rgb(43, 50, 70); background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/BackgroundWithlines.png?fileID=21300000&amp;guid=e9d525fd936ad5f4daa5061142c154b5&amp;type=3#BackgroundWithlines&quot;);">
         <ui:VisualElement name="AlphaContainer" style="flex-grow: 0; flex-direction: row; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 0; width: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
             <ui:VisualElement name="LeftContainer" style="flex-grow: 0; background-color: rgba(164, 127, 127, 0); max-width: none; min-width: 280px; width: 571px; flex-shrink: 0; margin-left: 16px; margin-top: 16px; padding-right: 20px; margin-right: -5px;">
@@ -98,6 +98,10 @@
                 <ui:VisualElement name="LoreBox" style="flex-grow: 1; min-height: 33%; max-height: 100%; flex-direction: row; padding-left: 139px;">
                     <ui:Label tabindex="-1" text="Lore:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreTitle" style="font-size: 36px; color: rgb(255, 255, 255); -unity-text-align: upper-center; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
                     <ui:Label tabindex="-1" text="XX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreAmount" style="white-space: normal; font-size: 36px; color: rgb(255, 255, 255); -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="ControlsContentBox" style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-self: flex-end; padding-bottom: 19px;">
+                    <ui:VisualElement name="ControlImage" style="flex-grow: 0; width: 60px; flex-shrink: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_button_color_b_outline.png?fileID=2800000&amp;guid=637e0fc31c1349144b1d004d249497f7&amp;type=3#xbox_button_color_b_outline&quot;); height: 60px; align-self: flex-end;" />
+                    <ui:Label tabindex="-1" text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackText" style="font-size: 39px; justify-content: flex-end; align-self: flex-end;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

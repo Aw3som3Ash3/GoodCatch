@@ -182,7 +182,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        if (abilityID == null || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
+        if (abilityID == null ||abilityID=="" || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
         {
             abilityID = Guid.NewGuid().ToString();
             
