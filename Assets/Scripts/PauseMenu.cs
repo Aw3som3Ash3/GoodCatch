@@ -191,7 +191,7 @@ public class PauseMenu : VisualElement
                 //menu.SetEnabled(true);
                 menu.visible = true;
                 currentPage = null;
-                lastSelected.Focus();
+                lastSelected?.Focus();
                 Debug.Log("last selected: " + lastSelected);
 
             }
