@@ -57,7 +57,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="IndicatorImageBox" style="flex-grow: 1; position: absolute; width: 60px; height: 60px; top: 0; left: -60px; background-color: rgba(0, 0, 0, 0.6);">
-            <ui:VisualElement name="IndicatorImage" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_button_menu_outline.png?fileID=2800000&amp;guid=e3f75e7162529024790886fc54de7a76&amp;type=3#xbox_button_menu_outline&quot;);" />
+            <InputHudTip inputName="MoreInfo" style="width: 60px; height: 60px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
