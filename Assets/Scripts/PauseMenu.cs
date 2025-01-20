@@ -41,7 +41,7 @@ public class PauseMenu : VisualElement
         this.style.flexGrow = 1;
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
-
+        this.pickingMode = PickingMode.Ignore;
         bestiary =this.Q<Button>("FishBookButton");
         party = this.Q<Button>("PartyButton");
         settting = this.Q<Button>("OptionsButton");
@@ -59,8 +59,10 @@ public class PauseMenu : VisualElement
         menu.focusable = true;
 
         //this.delegatesFocus = true;
+
         menu.SetEnabled(false);
         menu.visible = false;
+        mainPause.SetEnabled(false);
         menu.RegisterCallback<NavigationMoveEvent>(OnNavigate);
         
     }
@@ -138,7 +140,8 @@ public class PauseMenu : VisualElement
             prevMode = UnityEngine.Cursor.lockState;
 
         }
-        menu.SetEnabled(!menu.enabledSelf);
+        mainPause.SetEnabled(!mainPause.enabledSelf);
+        menu.SetEnabled(mainPause.enabledSelf);
         menu.visible = menu.enabledSelf;
         //this.BringToFront();
 
@@ -177,7 +180,11 @@ public class PauseMenu : VisualElement
             GameManager.Instance.OnInputChange -= OnInputChanged;
         }
         var bottomMapping = panel.visualTree.Q("BottomMapping");
-        bottomMapping.visible = !PauseActive;
+        if (bottomMapping != null)
+        {
+            bottomMapping.visible = !PauseActive;
+        }
+       
 
     }
 

@@ -1571,7 +1571,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9c09263e-ef7a-4aa0-9777-c15bed23df29"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
