@@ -1068,6 +1068,17 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""08dffd7b-491a-4309-9b63-f1c05b1683c1"",
+                    ""path"": ""*/{Back}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""bumpers"",
                     ""id"": ""4593ec23-5e23-4e83-8e0b-8e86226665a0"",
                     ""path"": ""1DAxis"",
