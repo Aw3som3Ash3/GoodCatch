@@ -74,14 +74,15 @@ public class InventoryUI : PausePage
             {
                 if (binding.name == "positive")
                 {
-                    rightTab.style.backgroundImage = InputDisplayer.GetInputIcon(binding, inputMethod);
+                    InputDisplayer.GetInputIcon(binding, inputMethod).Completed+=(x) => rightTab.style.backgroundImage = x.Result;
+
 
                     Debug.Log("has binding " + binding.effectivePath);
 
                 }
                 else if (binding.name == "negative")
                 {
-                    leftTab.style.backgroundImage = InputDisplayer.GetInputIcon(binding, inputMethod);
+                    InputDisplayer.GetInputIcon(binding, inputMethod).Completed += (x) => leftTab.style.backgroundImage = x.Result;
                 }
             }
             

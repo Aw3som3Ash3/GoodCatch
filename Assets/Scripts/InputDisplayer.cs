@@ -4,11 +4,20 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 public static class InputDisplayer 
 {
+    static List<IResourceLocation>location;
+    static InputDisplayer()
+    {
+        var loadResourceLocationsHandle =Addressables.LoadResourceLocationsAsync("ControlIcons", typeof(Texture2D));
+        //loadResourceLocationsHandle.Completed += (x) => { location = x.Result.ToList(); };
+    }
     // Start is called before the first frame update
-    public static Texture2D GetInputIcon(InputAction inputAction,InputMethod method)
+    public static AsyncOperationHandle<Texture2D> GetInputIcon(InputAction inputAction,InputMethod method)
     {
         string folder = method == InputMethod.mouseAndKeyboard ? "Keyboard & Mouse" : "Xbox Series";
         string stringMethod = GetStringMethod(method);
@@ -28,13 +37,25 @@ public static class InputDisplayer
         }).First();
         Debug.Log("binding" + binding.effectivePath);
         Debug.Log("controls" + control.path);
+        if (location != null)
+        {
+            Debug.Log("pirmary key" + location[0].PrimaryKey);
+            
+        }
        
-        return Resources.Load<Texture2D>("ControlIcons/"+folder +"/Default/"+ GetPreffix(method) + control.path.Replace($"/{control.device.name}/", ""));
+        
+        var operation = Addressables.LoadAssetAsync<Texture2D>("ControlIcons/" + folder + "/Default/" + GetPreffix(method) + control.path.Replace($"/{control.device.name}/", "")+".png");
+        //var operation = Addressables.LoadAssetAsync<Texture2D>(location[0].PrimaryKey);
+
+        return operation;
+        
     }
-    public static Texture2D GetInputIcon(InputBinding inputBinding, InputMethod method)
+    public static AsyncOperationHandle<Texture2D> GetInputIcon(InputBinding inputBinding, InputMethod method)
     {
         string folder = method == InputMethod.mouseAndKeyboard ? "Keyboard & Mouse" : "Xbox Series";
-        return Resources.Load<Texture2D>("ControlIcons/" + folder + "/Default/"+ GetPreffix(method) + inputBinding.path.Replace($"<{GetPath(method)}>/", ""));
+        var operation= Addressables.LoadAssetAsync<Texture2D>("ControlIcons/" + folder + "/Default/" + GetPreffix(method) + inputBinding.path.Replace($"<{GetPath(method)}>/", "")+".png");
+        
+        return operation;
     }
 
     static string GetStringMethod(InputMethod method)

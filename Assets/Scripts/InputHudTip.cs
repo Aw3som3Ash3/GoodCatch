@@ -68,7 +68,7 @@ public class InputHudTip : VisualElement
 
         if (inputAction != null)
         {
-            this.style.backgroundImage = InputDisplayer.GetInputIcon(inputAction, inputMethod);
+            InputDisplayer.GetInputIcon(inputAction, inputMethod).Completed+=(x)=> this.style.backgroundImage = x.Result;
             Debug.Log("has changed background");
         }
     }
