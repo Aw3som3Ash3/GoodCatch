@@ -158,10 +158,17 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             {
                 Debug.Log("attacking: " + target);
                 float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+
+
+
                 if (baseDamage > 0)
                 {
-                   
-                    target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+                    float outgoingDamage = baseDamage + damageMod;
+                    foreach( var effectInstance in target.effects.Where((x) => x is GuardEffect.StatusEffectInstance) )
+                    {
+                        outgoingDamage = (effectInstance.effect as GuardEffect).TransferDamage(outgoingDamage, element, abilityType,effectInstance);
+                    }
+                    target.fish.TakeDamage(outgoingDamage, element, abilityType);
                     foreach(var effect in target.effects.Where((x) => x.effect is ThornEffect))
                     {
                         (effect.effect as ThornEffect).ReflectDamage(user.fish);
@@ -197,7 +204,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             float proctBonus = (user.special / 5) * 0.01f;
             if (UnityEngine.Random.Range(0, 1) + proctBonus < (effect.Chance))
             {
-                target.AddEffects(effect.Effect);
+                target.AddEffects(effect.Effect,user.fish);
             }
         }
     }

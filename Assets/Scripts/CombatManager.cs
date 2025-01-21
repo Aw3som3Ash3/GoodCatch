@@ -834,17 +834,18 @@ public class CombatManager : MonoBehaviour
         {
             //fish.TakeDamage()
         }
-        public void AddEffects(StatusEffect effect)
+        public void AddEffects(StatusEffect effect,FishMonster owner)
         {
             foreach (var e in effects)
             {
                 if (e.IsEffect(effect))
                 {
+                    e.ResetEffect(owner);
                     return;
                 }
 
             }
-            var instance = effect.NewInstance();
+            var instance = effect.NewInstance(owner);
             effects.Add(instance);
             NewEffect?.Invoke(instance);
         }
