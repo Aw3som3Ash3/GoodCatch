@@ -132,6 +132,12 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
         return damage;
     }
+    public float GetEffectBonus(FishMonster fish)
+    {
+        float proctBonus = (fish.Special.value / 5) * 0.01f;
+        
+        return proctBonus;
+    }
     public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit)
     {
         if (target == null)
