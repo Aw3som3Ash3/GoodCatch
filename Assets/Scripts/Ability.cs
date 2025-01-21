@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -160,6 +161,11 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                 {
                    
                     target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+                    foreach(var effect in target.effects.Where((x) => x.effect is ThornEffect))
+                    {
+                        (effect.effect as ThornEffect).ReflectDamage(user.fish);
+                    }
+                    
                 }
                 else if(baseDamage<0)
                 {
