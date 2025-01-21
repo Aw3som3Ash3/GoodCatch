@@ -426,10 +426,26 @@ public class CombatManager : MonoBehaviour
         }
 
         actionsCompleted = false;
-        Turn[] targets = new Turn[3];
+
+        
         if (ability.Targeting == Ability.TargetingType.all)
         {
-            targets[0] = depth[Depth.shallow].TargetFirst(targetedTeam);
+            List<Turn> targets = new();
+            if (ability.Piercing)
+            {
+                targets.AddRange(depth[Depth.shallow].TargetSide(targetedTeam));
+                targets.AddRange(depth[Depth.middle].TargetSide(targetedTeam));
+                targets.AddRange(depth[Depth.abyss].TargetSide(targetedTeam));
+                
+            }
+            else
+            {
+                targets.Add(depth[Depth.shallow].TargetFirst(targetedTeam));
+                targets.Add(depth[Depth.middle].TargetFirst(targetedTeam));
+                targets.Add(depth[Depth.abyss].TargetFirst(targetedTeam));
+            }
+            
+           
             targets[1] = depth[Depth.middle].TargetFirst(targetedTeam);
             targets[2] = depth[Depth.abyss].TargetFirst(targetedTeam);
 
@@ -446,7 +462,8 @@ public class CombatManager : MonoBehaviour
         else if (ability.Targeting == Ability.TargetingType.single)
         {
             CombatDepth targetedDepth = depths[depthIndex];
-            Turn targetedFish = targetedDepth.TargetFirst(targetedTeam);
+
+            List<Turn> targetedFish = ability.Piercing? targetedDepth.TargetSide(targetedTeam) : new(){targetedDepth.TargetFirst(targetedTeam)} ;
             if (targetedFish == null)
             {
                 ActionsCompleted();
@@ -455,8 +472,12 @@ public class CombatManager : MonoBehaviour
             //ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
             // var attackingFish = turn.fish;
             bool hit;
-            ability.UseAbility(turn, targetedFish, out hit);
-            combatVisualizer.AnimateAttack(ability,turn, targetedFish, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { targetedFish.ForcedMove(ability.ForcedMovement);  } combatUI.EnableButtons(); });
+            foreach (var target in targetedFish)
+            {
+                ability.UseAbility(turn, target, out hit);
+                combatVisualizer.AnimateAttack(ability, turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } combatUI.EnableButtons(); });
+            }
+           
         }
     }
     void RemoveFishFromBattle(Turn turn)
@@ -546,6 +567,21 @@ public class CombatManager : MonoBehaviour
                 return null;
             }
 
+        }
+        public List<Turn> TargetSide(Team team)
+        {
+            if (team == Team.player && player.Count > 0)
+            {
+                return player.ToList();
+            }
+            else if (team == Team.enemy && enemy.Count > 0)
+            {
+                return enemy.ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
         public void SwapFish(int index, Team team)
         {

@@ -60,6 +60,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     public TargetingType Targeting { get { return targetingType; } }
     [SerializeField]
     bool piercing;
+    public bool Piercing { get; }
     [SerializeField]
     int staminaUsage;
     public int StaminaUsage { get { return staminaUsage; } }
@@ -153,7 +154,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         }
         else
         {
-            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - target.dodge) * 0.01) < accuracy)
+            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy -  (baseDamage >= 0 ? target.dodge:0 ) ) * 0.01) < accuracy)
             {
                 Debug.Log("attacking: " + target);
                 float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
