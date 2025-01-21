@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 public class TabbedMenu : VisualElement
 {
     public new class UxmlFactory : UxmlFactory<TabMenuButton, UxmlTraits> { }
-
+   
     private const string k_styleName = "TabbedView";
     private const string s_UssClassName = "unity-tabbed-view";
     private const string s_ContentContainerClassName = "unity-tabbed-view__content-container";

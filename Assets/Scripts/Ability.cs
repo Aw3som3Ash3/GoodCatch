@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -59,6 +60,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     public TargetingType Targeting { get { return targetingType; } }
     [SerializeField]
     bool piercing;
+    public bool Piercing { get; }
     [SerializeField]
     int staminaUsage;
     public int StaminaUsage { get { return staminaUsage; } }
@@ -132,6 +134,12 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
         return damage;
     }
+    public float GetEffectBonus(FishMonster fish)
+    {
+        float proctBonus = (fish.Special.value / 5) * 0.01f;
+        
+        return proctBonus;
+    }
     public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit)
     {
         if (target == null)
@@ -146,14 +154,26 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         }
         else
         {
-            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - target.dodge) * 0.01) < accuracy)
+            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy -  (baseDamage >= 0 ? target.dodge:0 ) ) * 0.01) < accuracy)
             {
                 Debug.Log("attacking: " + target);
                 float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+
+
+
                 if (baseDamage > 0)
                 {
-                   
-                    target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+                    float outgoingDamage = baseDamage + damageMod;
+                    foreach( var effectInstance in target.effects.Where((x) => x is GuardEffect.StatusEffectInstance) )
+                    {
+                        outgoingDamage = (effectInstance.effect as GuardEffect).TransferDamage(outgoingDamage, element, abilityType,effectInstance);
+                    }
+                    target.fish.TakeDamage(outgoingDamage, element, abilityType);
+                    foreach(var effect in target.effects.Where((x) => x.effect is ThornEffect))
+                    {
+                        (effect.effect as ThornEffect).ReflectDamage(user.fish);
+                    }
+                    
                 }
                 else if(baseDamage<0)
                 {
@@ -184,7 +204,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             float proctBonus = (user.special / 5) * 0.01f;
             if (UnityEngine.Random.Range(0, 1) + proctBonus < (effect.Chance))
             {
-                target.AddEffects(effect.Effect);
+                target.AddEffects(effect.Effect,user.fish);
             }
         }
     }

@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour,ISaveable
 
     [SerializeField]
     UIDocument mainUI;
+    UIDocument MainUI { get { if (mainUI == null) { return GameObject.Find("MainHud")?.GetComponent<UIDocument>(); } else { return mainUI; } } }
     private void Awake()
     {
 
@@ -183,18 +184,9 @@ public class GameManager : MonoBehaviour,ISaveable
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed +=(x)=> 
         {
-            if (mainUI == null)
-            {
-                mainUI = GameObject.Find("MainHud").GetComponent<UIDocument>();
-            }
-            if(mainUI != null)
-            {
-                PauseMenu.Pause();
-               
-            }
-           
+            PauseMenu.Pause();
         };
-        mainUI.gameObject.SetActive(true);
+        MainUI.gameObject.SetActive(true);
         
     }
 
