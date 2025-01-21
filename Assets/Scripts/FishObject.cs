@@ -161,7 +161,11 @@ public class FishObject : MonoBehaviour
         //var rend = outline.GetComponentInChildren<Renderer>();
         //rend.material = outlineMat;
         //outline.SetActive(false);
-        var anim = model.AddComponent<Animator>();
+
+        var anim = model.GetComponent<Animator>();
+        if (anim == null) {
+            model.AddComponent<Animator>();
+        }
         playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", anim);
         mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
         playableOutput.SetSourcePlayable(mixerPlayable);
