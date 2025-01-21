@@ -471,9 +471,10 @@ public class CombatManager : MonoBehaviour
             }
             //ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
             // var attackingFish = turn.fish;
-            bool hit;
+           
             foreach (var target in targetedFish)
             {
+                bool hit;
                 ability.UseAbility(turn, target, out hit);
                 combatVisualizer.AnimateAttack(ability, turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } combatUI.EnableButtons(); });
             }
