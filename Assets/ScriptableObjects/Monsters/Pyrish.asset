@@ -65,5 +65,5 @@ MonoBehaviour:
   - potentialAbilities:
     - {fileID: 11400000, guid: f5e161f5f7750b6468c04d356a177b7c, type: 2}
   difficulty: 0
-  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
-  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  attackAnimation: {fileID: -6041800682480947867, guid: cdcf3c9b8c0f6a643bdb737875dd6491, type: 3}
+  idleAnimation: {fileID: -3100369314251171874, guid: 0160b92afe5b5a74a876363f68994f29, type: 3}
