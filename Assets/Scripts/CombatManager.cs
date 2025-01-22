@@ -118,8 +118,14 @@ public class CombatManager : MonoBehaviour
         InputManager.Input.UI.Enable();
         combatUI.Draft(playerFishes, (index, callback) =>
         {
+
             combatVisualizer.StartTargeting((target) =>
             {
+                if (target < 0)
+                {
+                    combatUI.ResetFishPreview();
+                    return;
+                }
                 DraftFish(index, target);
                 callback.Invoke();
             });
@@ -420,10 +426,26 @@ public class CombatManager : MonoBehaviour
         }
 
         actionsCompleted = false;
-        Turn[] targets = new Turn[3];
+
+        
         if (ability.Targeting == Ability.TargetingType.all)
         {
-            targets[0] = depth[Depth.shallow].TargetFirst(targetedTeam);
+            List<Turn> targets = new();
+            if (ability.Piercing)
+            {
+                targets.AddRange(depth[Depth.shallow].TargetSide(targetedTeam));
+                targets.AddRange(depth[Depth.middle].TargetSide(targetedTeam));
+                targets.AddRange(depth[Depth.abyss].TargetSide(targetedTeam));
+                
+            }
+            else
+            {
+                targets.Add(depth[Depth.shallow].TargetFirst(targetedTeam));
+                targets.Add(depth[Depth.middle].TargetFirst(targetedTeam));
+                targets.Add(depth[Depth.abyss].TargetFirst(targetedTeam));
+            }
+            
+           
             targets[1] = depth[Depth.middle].TargetFirst(targetedTeam);
             targets[2] = depth[Depth.abyss].TargetFirst(targetedTeam);
 
@@ -440,7 +462,8 @@ public class CombatManager : MonoBehaviour
         else if (ability.Targeting == Ability.TargetingType.single)
         {
             CombatDepth targetedDepth = depths[depthIndex];
-            Turn targetedFish = targetedDepth.TargetFirst(targetedTeam);
+
+            List<Turn> targetedFish = ability.Piercing? targetedDepth.TargetSide(targetedTeam) : new(){targetedDepth.TargetFirst(targetedTeam)} ;
             if (targetedFish == null)
             {
                 ActionsCompleted();
@@ -448,9 +471,14 @@ public class CombatManager : MonoBehaviour
             }
             //ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
             // var attackingFish = turn.fish;
-            bool hit;
-            ability.UseAbility(turn, targetedFish, out hit);
-            combatVisualizer.AnimateAttack(ability,turn, targetedFish, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { targetedFish.ForcedMove(ability.ForcedMovement);  } combatUI.EnableButtons(); });
+           
+            foreach (var target in targetedFish)
+            {
+                bool hit;
+                ability.UseAbility(turn, target, out hit);
+                combatVisualizer.AnimateAttack(ability, turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } combatUI.EnableButtons(); });
+            }
+           
         }
     }
     void RemoveFishFromBattle(Turn turn)
@@ -467,7 +495,7 @@ public class CombatManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentTurn != null)
+        if (currentTurn != null&& combatVisualizer.turnToObject[currentTurn.Value]!=null)
         {
             combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
         }
@@ -541,6 +569,21 @@ public class CombatManager : MonoBehaviour
             }
 
         }
+        public List<Turn> TargetSide(Team team)
+        {
+            if (team == Team.player && player.Count > 0)
+            {
+                return player.ToList();
+            }
+            else if (team == Team.enemy && enemy.Count > 0)
+            {
+                return enemy.ToList();
+            }
+            else
+            {
+                return null;
+            }
+        }
         public void SwapFish(int index, Team team)
         {
             if (team == Team.player)
@@ -612,7 +655,7 @@ public class CombatManager : MonoBehaviour
                 return fish.Agility.value + GetAttributeMod("agility");
             }
         }
-        public float dodge { get { return fish.Dodge / 2; } }
+        public float dodge { get { return (fish.Dodge / 2 )+GetAttributeMod("dodge"); } }
         public int accuracy
         {
             get
@@ -791,17 +834,18 @@ public class CombatManager : MonoBehaviour
         {
             //fish.TakeDamage()
         }
-        public void AddEffects(StatusEffect effect)
+        public void AddEffects(StatusEffect effect,FishMonster owner)
         {
             foreach (var e in effects)
             {
                 if (e.IsEffect(effect))
                 {
+                    e.ResetEffect(owner);
                     return;
                 }
 
             }
-            var instance = effect.NewInstance();
+            var instance = effect.NewInstance(owner);
             effects.Add(instance);
             NewEffect?.Invoke(instance);
         }

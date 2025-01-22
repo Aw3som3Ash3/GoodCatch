@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEditor;
 //using Unity.Mathematics;
 using UnityEngine;
@@ -93,8 +94,28 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     int baseStamina;
     public int BaseStamina { get { return baseStamina; } }
+
+    [Serializable]
+    struct AbilityOptions
+    {
+        [SerializeField]
+        Ability[] potentialAbilities;
+
+        public Ability GetAbility()
+        {
+            if (potentialAbilities ==null|| potentialAbilities.Length == 0) 
+            {
+                return null;
+            }
+            int index = potentialAbilities.Length > 1? UnityEngine.Random.Range(0, potentialAbilities.Length):0;
+            
+            return potentialAbilities[index];
+        }
+    }
+
+
     [SerializeField]
-    Ability[] baseAbilities;
+    AbilityOptions[] baseAbilities;
 
     [Header("Misc")]
     [SerializeField]
@@ -108,7 +129,7 @@ public class FishMonsterType : ScriptableObject
 
 
 
-    public Ability[] BaseAbilities { get { return baseAbilities; } }
+    //public Ability[] BaseAbilities { get { return baseAbilities; } }
 
     int RandomAttributeValue(Attribute attribute)
     {
@@ -166,7 +187,17 @@ public class FishMonsterType : ScriptableObject
         int accuracy = RandomAttributeValue(this.accuracy);
         TalentScale accuracyTalent = CalculateTalent(this.accuracy);
 
-        return new FishMonster(this, speed,agilityTalent ,attack,attackTalent ,special,specialTalent, fortitude, fortitudeTalent, specialFort, specialFortTalent,accuracy, accuracyTalent);
+        return new FishMonster(this, speed,agilityTalent ,attack,attackTalent ,special,specialTalent, fortitude, fortitudeTalent, specialFort, specialFortTalent,accuracy, accuracyTalent,GenerateAbilities());
+    }
+
+    Ability[] GenerateAbilities()
+    {
+        Ability[] abilities = new Ability[baseAbilities.Length];
+        for (int i = 0; i < baseAbilities.Length; i++)
+        {
+            abilities[i] = baseAbilities[i].GetAbility();
+        }
+        return abilities;
     }
 
 }
@@ -280,7 +311,7 @@ public class FishMonster
     public AnimationClip AttackAnimation { get { return type.AttackAnimation; } }
     public AnimationClip IdleAnimation { get { return type.IdleAnimation; } }
 
-    public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent)
+    public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent, Ability[] abilities)
     {
 
         this.Type = monsterType;
@@ -301,7 +332,7 @@ public class FishMonster
         stamina = MaxStamina;
         maxHealth = HealthFormula();
         health = MaxHealth;
-        abilities = monsterType.BaseAbilities;
+        this.abilities = abilities;
         abilityIds = new string[Abilities.Length];
         for(int i = 0; i < abilityIds.Length; i++)
         {

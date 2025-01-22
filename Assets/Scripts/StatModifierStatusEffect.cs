@@ -15,6 +15,7 @@ public class StatModifierStatusEffect : StatusEffect
     [SerializeField] int fortitude;
     //public int Fortitude { get { return fortitude; } }
     [SerializeField] int specialFort;
+    [SerializeField] int dodge;
     //public int SpecialFort { get { return specialFort; } }
 
     public Dictionary<string, int> Attribute { get; private set; } = new Dictionary<string, int>();
@@ -29,6 +30,8 @@ public class StatModifierStatusEffect : StatusEffect
         Attribute["special"] = special;
         Attribute["fortitude"] = fortitude;
         Attribute["specialFort"] = specialFort;
+        Attribute["dodge"] = dodge;
+        
     }
     // Start is called before the first frame update
 

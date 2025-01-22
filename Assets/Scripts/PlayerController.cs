@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour,ISaveable
 {
@@ -26,7 +25,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     float mouseSensitiviy;
     Vector2 rotVelocity;
     [SerializeField]
-    LayerMask interactionLayer;
+    LayerMask interactionLayer,waterLayer;
 
     AudioController audioController;
     [SerializeField]
@@ -36,7 +35,7 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     bool inStation;
 
-    bool sprinting { get { return inputs.Sprint.IsPressed(); } }
+    bool sprinting;
 
     string id="player";
     public string ID => id;
@@ -64,6 +63,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         //lookAction.performed += OnLook;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
+        inputs.Sprint.performed += OnSprint;
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
@@ -71,6 +71,25 @@ public class PlayerController : MonoBehaviour,ISaveable
         audioController=GetComponent<AudioController>();
         //InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
     }
+
+    private void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.control.device is Gamepad)
+        {
+            if (context.action.IsPressed())
+            {
+                Debug.Log(" toggle sprint");
+                sprinting = !sprinting;
+            }
+            
+        }
+        else
+        {
+            sprinting = context.action.IsPressed();
+        }
+        
+    }
+
     private void OnEnable()
     {
         //inputs.Player.Enable();
@@ -178,17 +197,40 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
-        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
+        if (moveDir.sqrMagnitude.Equals(0))
+        {
+            sprinting = inputs.Sprint.IsPressed();
+        }
+
         if (moveAction.IsInProgress())
         {
-            
+
             var angles = cameraRig.localEulerAngles;
             this.transform.Rotate(0, angles.y, 0);
             angles.y = 0;
             cameraRig.localEulerAngles = angles;
-            var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
-            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720*Time.deltaTime);
+            var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
+            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
         }
+        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting ? sprintSpeed : moveSpeed), (characterController.isGrounded ? accel : accel / 4));
+        RaycastHit hit;
+        if(Physics.Raycast(this.transform.position+(Vector3.up) + this.transform.TransformDirection(moveDir).normalized, Vector3.down,out hit,50))
+        {
+            var water = hit.collider.GetComponent<WaterSimulator>();
+            if (water != null)
+            {
+                Vector3 adjustedPoint = hit.point;
+                //adjustedPoint.y = water.transform.position.y;
+                if (!Physics.Raycast(adjustedPoint, Vector3.down, out hit, 0.2f,~waterLayer))
+                {
+                    velocity = Vector3.zero;
+                }
+                
+            }
+               
+        }
+      
+        
         anim.SetFloat("speed",velocity.magnitude);
         characterController.Move((velocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
 

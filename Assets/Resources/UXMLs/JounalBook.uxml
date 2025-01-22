@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Workspace" style="flex-grow: 1; justify-content: center;">
+        <ui:VisualElement name="BookBackground" style="flex-grow: 0; flex-shrink: 0; width: 1383px; align-self: center; height: 900px; justify-content: flex-start; align-items: center; background-color: rgb(113, 171, 183);">
+            <ui:VisualElement name="PageDisplay" style="flex-grow: 1; flex-direction: row; flex-shrink: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(0, 0, 0, 0.62); margin-top: 50px; margin-right: 50px; margin-bottom: 50px; margin-left: 50px; align-self: center; justify-content: center;">
+                <ui:VisualElement name="LeftPage" style="flex-grow: 0; flex-shrink: 0; width: 50%; max-width: none; min-width: auto; flex-wrap: wrap; align-self: auto;">
+                    <ui:Label tabindex="-1" text="Main Quest" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainQuestTitle" style="-unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); color: rgb(255, 255, 255); font-size: 80px; -unity-text-align: upper-left; align-self: center;" />
+                    <ui:VisualElement name="TextBoxRight" style="flex-grow: 1; flex-wrap: wrap; flex-shrink: 0; max-width: none; margin-right: 45px; margin-left: 45px;">
+                        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainQuestsAmount" style="-unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); color: rgb(255, 255, 255); font-size: 39px; -unity-text-align: upper-left; align-self: flex-start; white-space: normal; flex-wrap: wrap; flex-shrink: 1; flex-grow: 1;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="RightPage" style="flex-grow: 1; flex-shrink: 0; min-width: 50%; width: 93px;">
+                    <ui:Label tabindex="-1" text="Side Quests" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SideQuestsTitle" style="-unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); color: rgb(255, 255, 255); font-size: 80px; -unity-text-align: upper-left; align-self: center;" />
+                    <ui:VisualElement name="TextBoxRight" style="flex-grow: 1; flex-wrap: wrap; flex-shrink: 1; max-width: none; margin-right: 45px; height: 0; margin-left: 45px;">
+                        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SideQuestsAmount" style="-unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); color: rgb(255, 255, 255); font-size: 39px; -unity-text-align: upper-left; align-self: flex-start; white-space: normal;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

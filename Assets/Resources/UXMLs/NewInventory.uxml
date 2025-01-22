@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/InventoryUI.uss?fileID=7433441132597879392&amp;guid=32cabb651731c924183377df5562b83e&amp;type=3#InventoryUI" />
-    <ui:VisualElement name="WorkSpace" style="flex-grow: 1;">
-        <ui:VisualElement name="BGMainContainer" style="flex-grow: 1; margin-top: 2%; margin-right: 2%; margin-bottom: 3%; margin-left: 2%; background-color: rgb(255, 255, 255);">
-            <ui:VisualElement name="MainContainer" style="flex-grow: 1; margin-top: 3.8%; margin-right: 1%; margin-bottom: 0; margin-left: 1%; flex-direction: column; align-items: stretch; background-color: rgb(159, 159, 159);">
+    <ui:VisualElement name="WorkSpace" style="flex-grow: 1; flex-shrink: 1;">
+        <ui:VisualElement name="BGMainContainer" style="flex-grow: 1; margin-top: 3%; margin-right: 2%; margin-bottom: 0; margin-left: 2%; background-color: rgb(78, 92, 154); color: rgb(27, 27, 27); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+            <ui:VisualElement name="MainContainer" style="flex-grow: 1; margin-top: 3.8%; margin-right: 1%; margin-bottom: 0; margin-left: 1%; flex-direction: column; align-items: stretch; background-color: rgb(55, 54, 54);">
                 <ui:VisualElement name="SubContainer1" style="flex-grow: 1; flex-direction: row; background-color: rgb(255, 255, 255); align-items: center; justify-content: space-between;">
                     <ui:VisualElement name="LeftContainer" style="flex-grow: 0; margin-right: 0; width: 50%; height: 100%; background-color: rgba(25, 61, 214, 0.45);">
                         <InventoryTabs style="height: 873px; margin-top: -56px;" />
@@ -20,7 +20,24 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="VisualElement" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="BottomContextBox" style="flex-grow: 1; flex-direction: row; -unity-text-align: upper-left; align-self: auto; justify-content: space-between; align-items: stretch;">
+            <ui:VisualElement name="BottomContextContainer" style="flex-grow: 0; flex-direction: row; align-self: flex-start; margin-top: 0; margin-right: 2%; margin-bottom: 0; margin-left: 5%; flex-shrink: 0; justify-content: space-between; width: 345px; align-items: auto;">
+                <ui:VisualElement name="BackContainer" style="flex-grow: 1; flex-direction: row; justify-content: flex-start;">
+                    <InputHudTip inputName="Back" style="width: 60px; height: 60px;" />
+                    <ui:Label tabindex="-1" text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonContext" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; -unity-text-outline-color: rgb(21, 26, 70); -unity-text-outline-width: 2px; color: rgb(255, 255, 255); text-shadow: 2px 1px 0 rgb(21, 26, 70); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; align-self: center;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="SelectContainer" style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                    <InputHudTip name="SelectButton" inputName="Submit" style="height: 60px; width: 60px;" />
+                    <ui:Label tabindex="-1" text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SelectButtonContext" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; -unity-text-outline-color: rgb(21, 26, 70); -unity-text-outline-width: 2px; color: rgb(255, 255, 255); text-shadow: 2px 1px 0 rgb(21, 26, 70); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="TopContextBox" style="flex-grow: 0; flex-shrink: 0; flex-direction: row; align-self: auto; align-items: stretch; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 2%; position: absolute;">
+            <ui:VisualElement name="BumperBox" style="flex-grow: 0; flex-direction: row; align-self: center; flex-shrink: 0; bottom: -56px; right: -26px;">
+                <ui:VisualElement name="RightBumper" focusable="false" style="flex-grow: 0; flex-shrink: 0; width: 60px; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_rb.png?fileID=2800000&amp;guid=bfe7e59127dabd045ae59c15f4a76dda&amp;type=3#xbox_rb&quot;); height: 60px; position: absolute; right: -697px; bottom: -84px;" />
+                <ui:VisualElement name="LeftBumper" tabindex="20" style="flex-grow: 0; flex-shrink: 0; width: 60px; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_leftShoulder.png?fileID=2800000&amp;guid=c0a807700215b4849beccddf3b02226a&amp;type=3#xbox_leftShoulder&quot;); height: 60px; position: absolute; left: 43px; bottom: -85px;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

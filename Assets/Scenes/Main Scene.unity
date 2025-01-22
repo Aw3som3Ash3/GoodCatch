@@ -15,8 +15,8 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.51886785, g: 0.8357109, b: 1, a: 1}
-  m_FogMode: 1
+  m_FogColor: {r: 0.32378063, g: 0.5525506, b: 0.67295593, a: 1}
+  m_FogMode: 2
   m_FogDensity: 0.01
   m_LinearFogStart: 350
   m_LinearFogEnd: 1000
@@ -27,7 +27,7 @@ RenderSettings:
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: edaaa580d4bc7254684905e40ad8d827, type: 2}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 0.655
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -563,6 +563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: mainUI
+      value: 
+      objectReference: {fileID: 900925920}
     - target: {fileID: 6632416249239343018, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: m_LocalPosition.x
       value: 363.66382
@@ -2052,10 +2056,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3102742328051875211, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1667036656}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2325254997860280113, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1626487258}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
 --- !u!4 &1233973244 stripped
 Transform:
@@ -2740,32 +2741,6 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
---- !u!1 &1626487251 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2325254997860280113, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
-  m_PrefabInstance: {fileID: 1233973243}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1626487258
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626487251}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 858.79, y: 113.24665, z: 858.79}
-  m_Center: {x: 0, y: -56.123325, z: 0}
 --- !u!1001 &1667036655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3677,9 +3652,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 504907397506364804, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2203429022613468250, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
       propertyPath: m_Name
-      value: UiDocument
+      value: MainHud
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203429022613468250, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2203429022613468250, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
       propertyPath: m_IsActive

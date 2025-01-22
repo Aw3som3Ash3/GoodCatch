@@ -36,7 +36,7 @@ public class InventoryTabs : TabbedMenu
 
         
     }
-
+    
     List<ItemInventory.ItemSlot> GetListOfItemType(int index)
     {
         switch (index)
@@ -71,7 +71,7 @@ public class InventoryTabs : TabbedMenu
         amountColumn.sortable = true;
         amountColumn.stretchable = true;
         listView.columns.Add(amountColumn);
-
+        listView.showBorder = true;
         listView.sortingEnabled = true;
         listView.columnSortingChanged += () =>
         {
@@ -117,6 +117,9 @@ public class InventoryTabs : TabbedMenu
         
 
         listView.itemsSource = playerInventory;
+        //var nameCell= new Label();
+        //var amountCell= new Label();
+        
         listView.columns["name"].makeCell = () => new Label();
         listView.columns["amount"].makeCell = () => new Label();
         listView.showAlternatingRowBackgrounds=AlternatingRowBackground.All;

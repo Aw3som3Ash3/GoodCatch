@@ -30,7 +30,7 @@ public class FishObject : MonoBehaviour
     bool isSelectable;
     
     PlayableGraph playableGraph;
-    PlayableGraph idlePlayableGraph;
+    //PlayableGraph idlePlayableGraph;
     AnimationPlayableOutput playableOutput;
     AnimationClipPlayable attackClipPlayable;
     AnimationMixerPlayable mixerPlayable;
@@ -84,8 +84,7 @@ public class FishObject : MonoBehaviour
 
        
 
-        idlePlayableGraph = PlayableGraph.Create();
-        idlePlayableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
+        
        
 
 
@@ -101,7 +100,16 @@ public class FishObject : MonoBehaviour
     private void OnHover(bool v)
     {
         if (!isSelectable) return;
-        outline.GetComponentInChildren<Renderer>().enabled = v;
+        var rend = model.GetComponentInChildren<Renderer>();
+        if (v)
+        {
+            rend.materials = new Material[2] { rend.material, outlineMat };
+        }
+        else
+        {
+            rend.materials= new Material[1]{ rend.material};
+        }
+       
         print("hovering over fish");
         //throw new NotImplementedException();
     }
@@ -137,22 +145,26 @@ public class FishObject : MonoBehaviour
         this.turn = turn;
         model = Instantiate(turn.fish.Model, this.transform);
         model.transform.localPosition = Vector3.zero;
-        model.layer = this.gameObject.layer;
+        model.layer = outlineLayer;
         foreach (Transform child in model.transform)
-        {
-            child.gameObject.layer = this.gameObject.layer;
-        }
-        outline = Instantiate(model, this.transform);
-        outline.layer = outlineLayer;
-        foreach (Transform child in outline.transform)
         {
             child.gameObject.layer = outlineLayer;
         }
-        //outline.transform.localScale = Vector3.one*1.25f;
-        var rend = outline.GetComponentInChildren<Renderer>();
-        rend.enabled = false;
-        rend.material = outlineMat;
-        var anim = model.AddComponent<Animator>();
+        //outline = Instantiate(model, this.transform);
+        //outline.layer = outlineLayer;
+        //foreach (Transform child in outline.transform)
+        //{
+        //    child.gameObject.layer = outlineLayer;
+        //}
+        ////outline.transform.localScale = Vector3.one*1.25f;
+        //var rend = outline.GetComponentInChildren<Renderer>();
+        //rend.material = outlineMat;
+        //outline.SetActive(false);
+
+        var anim = model.GetComponent<Animator>();
+        if (anim == null) {
+            model.AddComponent<Animator>();
+        }
         playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", anim);
         mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
         playableOutput.SetSourcePlayable(mixerPlayable);
@@ -166,7 +178,7 @@ public class FishObject : MonoBehaviour
         playableGraph.Connect(idleClipPlayable, 0, mixerPlayable, 0);
         playableGraph.Connect(attackClipPlayable, 0, mixerPlayable, 1);
         mixerPlayable.SetInputWeight(0, 1.0f);
-        mixerPlayable.SetInputWeight(1, 1.0f);
+        
         attackClipPlayable.Pause();
         playableGraph.Play();
 
@@ -180,12 +192,9 @@ public class FishObject : MonoBehaviour
         shouldMove = true;
         StartCoroutine(MoveToDestination());
     }
-    public void AttackAnimation()
+    public void AttackAnimation(Action animationCompleted)
     {
-        attackClipPlayable.SetTime(0);
-        playableGraph.Evaluate();
-        //playableOutput.SetSourcePlayable(clipPlayable);
-        attackClipPlayable.Play();
+        StartCoroutine(AnimationTimer(animationCompleted));
         if (defaultClip != null)
         {
             source.PlayOneShot(defaultClip);
@@ -193,6 +202,24 @@ public class FishObject : MonoBehaviour
        
         //playableGraph.
 
+    }
+    IEnumerator AnimationTimer(Action animationCompleted)
+    {
+        mixerPlayable.SetInputWeight(0, 0);
+        mixerPlayable.SetInputWeight(1, 1.0f);
+        
+        attackClipPlayable.SetTime(0);
+        playableGraph.Evaluate();
+        float time = turn.fish.AttackAnimation.length;
+        //playableOutput.SetSourcePlayable(clipPlayable);
+        attackClipPlayable.Play();
+        while (time > 0)
+        {
+            yield return new WaitForEndOfFrame();
+            time-= Time.deltaTime;
+        }
+        mixerPlayable.SetInputWeight(0, 1.0f);
+        mixerPlayable.SetInputWeight(1, 0);
     }
     public void StopMoving() 
     {

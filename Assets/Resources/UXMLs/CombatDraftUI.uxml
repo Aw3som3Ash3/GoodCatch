@@ -6,7 +6,7 @@
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="slot5" class="DraftSlot" style="width: 175px; height: 175px; background-color: rgb(255, 255, 255);" />
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="slot7" class="DraftSlot" style="width: 175px; height: 175px; background-color: rgb(255, 255, 255);" />
         </ui:VisualElement>
-        <ui:VisualElement name="RightCollumn" class="DraftCollumn" style="flex-grow: 0; width: 50%; align-self: stretch; align-items: center; justify-content: space-around; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+        <ui:VisualElement name="RightCollumn" class="DraftCollumn" style="flex-grow: 0; width: 50%; align-self: stretch; align-items: center; justify-content: space-around; padding-top: 120px; padding-right: 20px; padding-bottom: 120px; padding-left: 20px;">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="slot2" class="DraftSlot" style="width: 175px; height: 175px; background-color: rgb(255, 255, 255);" />
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="slot4" class="DraftSlot" style="width: 175px; height: 175px; background-color: rgb(255, 255, 255);" />
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="slot6" class="DraftSlot" style="width: 175px; height: 175px; background-color: rgb(255, 255, 255);" />
