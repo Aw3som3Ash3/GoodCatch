@@ -201,6 +201,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         {
             sprinting = inputs.Sprint.IsPressed();
         }
+
         if (moveAction.IsInProgress())
         {
 
@@ -211,6 +212,7 @@ public class PlayerController : MonoBehaviour,ISaveable
             var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
             model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
         }
+        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting ? sprintSpeed : moveSpeed), (characterController.isGrounded ? accel : accel / 4));
         RaycastHit hit;
         if(Physics.Raycast(this.transform.position+(Vector3.up) + this.transform.TransformDirection(moveDir).normalized, Vector3.down,out hit,50))
         {
@@ -221,13 +223,13 @@ public class PlayerController : MonoBehaviour,ISaveable
                 //adjustedPoint.y = water.transform.position.y;
                 if (!Physics.Raycast(adjustedPoint, Vector3.down, out hit, 0.2f,~waterLayer))
                 {
-                    moveDir = Vector3.zero;
+                    velocity = Vector3.zero;
                 }
                 
             }
                
         }
-        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
+      
         
         anim.SetFloat("speed",velocity.magnitude);
         characterController.Move((velocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
