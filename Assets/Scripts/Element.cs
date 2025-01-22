@@ -5,6 +5,17 @@ using UnityEngine;
 
 public class Element : ScriptableObject
 {
+
+
+    public enum Effectiveness 
+    {
+        none,
+        strong,
+        veryStrong,
+        weak,
+        veryWeak
+    }
+
     [SerializeField]
     Element[] strong;
     [SerializeField]
@@ -39,7 +50,30 @@ public class Element : ScriptableObject
         }
 
     }
+    public Effectiveness GetEffectiveness(Element element)
+    {
+        if (strong.Contains(element))
+        {
+            return Effectiveness.strong;
+        }
+        else if (veryStrong.Contains(element))
+        {
+            return Effectiveness.veryStrong;
+        }
+        else if (weak.Contains(element))
+        {
+            return Effectiveness.weak;
 
+        }
+        else if (veryWeak.Contains(element))
+        {
+            return Effectiveness.veryWeak;
+        }
+        else
+        {
+            return Effectiveness.none;
+        }
+    }
     public float DamageModifier(Element element)
     {
         if (strong.Contains(element))

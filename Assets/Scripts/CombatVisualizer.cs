@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -87,6 +88,55 @@ public class CombatVisualizer : MonoBehaviour
         
 
     }
+   
+    public void AnimateDamageNumbers(Turn turn,float damage,Element.Effectiveness effectiveness, bool healing=false)
+    {
+
+        
+
+        var textObj = new GameObject("damage text", typeof(TextMeshPro));
+        textObj.transform.position = turnToObject[turn].transform.position;
+        textObj.transform.rotation = Camera.main.transform.rotation;
+        textObj.layer = 13;
+        var tmp=textObj.GetComponent<TextMeshPro>();
+        tmp.text = damage.ToString("00");
+        tmp.alignment=TMPro.TextAlignmentOptions.Center;
+        tmp.fontSize = 12;
+        switch (effectiveness)
+        {
+            case Element.Effectiveness.none:
+                tmp.color = Color.white;
+                break;
+            case Element.Effectiveness.strong:
+                tmp.color = Color.gray;
+                break;
+            case Element.Effectiveness.veryStrong:
+                tmp.color = Color.gray;
+                break;
+            case Element.Effectiveness.weak:
+                tmp.color = Color.yellow;
+                break;
+            case Element.Effectiveness.veryWeak:
+                tmp.color = Color.red;
+                break;
+            default:
+                tmp.color = Color.white;
+                break;
+        }
+        StartCoroutine(AnimateDamageNumbers(textObj));
+    }
+    IEnumerator AnimateDamageNumbers(GameObject damageNumber)
+    {
+        float time = 2;
+        while (time>0)
+        {
+            damageNumber.transform.Translate(Vector3.up * 5 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+            time -= Time.deltaTime;
+        }
+        Destroy(damageNumber);
+    }
+
 
     public void MoveFish(CombatManager.Turn turn, Vector3 destination, Action CompletedMove = null)
     {

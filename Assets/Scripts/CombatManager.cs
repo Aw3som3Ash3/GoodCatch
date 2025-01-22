@@ -283,8 +283,9 @@ public class CombatManager : MonoBehaviour
     {
         actionsCompleted = true;
         
-        CanFightEnd();
+        
         CompletedAllActions?.Invoke();
+        CanFightEnd();
     }
     void CanFightEnd()
     {
@@ -454,8 +455,24 @@ public class CombatManager : MonoBehaviour
                 if (target != null)
                 {
                     bool hit;
-                    ability.UseAbility(turn, target, out hit);
-                    combatVisualizer.AnimateAttack(ability,turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement);  } combatUI.EnableButtons(); });
+                    float damageDone;
+                    Element.Effectiveness effectiveness;
+                    ability.UseAbility(turn, target, out hit,out damageDone,out effectiveness);
+                    
+                    combatVisualizer.AnimateAttack(ability,turn, target, () => 
+                    {  
+                        if (hit)
+                        {
+                            combatVisualizer.AnimateDamageNumbers(target, damageDone, effectiveness);
+                            if (ability.ForcedMovement != 0)
+                            {
+                                target.ForcedMove(ability.ForcedMovement);
+                            }
+                            
+                        }
+                        ActionsCompleted();
+                        combatUI.EnableButtons();
+                    });
                 }
             }
         }
@@ -475,8 +492,23 @@ public class CombatManager : MonoBehaviour
             foreach (var target in targetedFish)
             {
                 bool hit;
-                ability.UseAbility(turn, target, out hit);
-                combatVisualizer.AnimateAttack(ability, turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } combatUI.EnableButtons(); });
+                float damageDone;
+                Element.Effectiveness effectiveness;
+                ability.UseAbility(turn, target, out hit, out damageDone, out effectiveness);
+                combatVisualizer.AnimateAttack(ability, turn, target, () => 
+                {
+                    if (hit)
+                    {
+                        combatVisualizer.AnimateDamageNumbers(target, damageDone, effectiveness);
+
+                        if (ability.ForcedMovement != 0)
+                        {
+                            target.ForcedMove(ability.ForcedMovement);
+                        }
+                    }
+                    ActionsCompleted();
+                    combatUI.EnableButtons(); 
+                });
             }
            
         }
@@ -728,11 +760,12 @@ public class CombatManager : MonoBehaviour
         public virtual void StartTurn()
         {
             actionsLeft = actionsPerTurn;
-            TickEffects(StatusEffect.EffectUsage.preTurn);
+            
             combatManager.combatUI.NewTurn(this, team == Team.player);
+            TickEffects(StatusEffect.EffectUsage.preTurn);
             //NewTurn?.Invoke(this, team == Team.player);
 
-            
+
         }
         void ActionsCompleted()
         {

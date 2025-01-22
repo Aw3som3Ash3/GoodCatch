@@ -18,7 +18,8 @@ public class GuardEffect : StatusEffect
     {
 
         float damageToTransfer= damage*damageTransfer;
-        effectInstance.owner.TakeDamage(damage, element, type);
+        Element.Effectiveness effectiveness;
+        effectInstance.owner.TakeDamage(damage, element, type,out effectiveness);
 
         return damage-damageToTransfer;
     }

@@ -17,7 +17,8 @@ public class ThornEffect : StatusEffect
 
     public void ReflectDamage(FishMonster targetFish)
     {
-        targetFish.TakeDamage(damage,element,type);
+        Element.Effectiveness effectiveness;
+        targetFish.TakeDamage(damage,element,type, out effectiveness);
     }
 
     // Start is called before the first frame update

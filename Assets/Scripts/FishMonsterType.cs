@@ -412,23 +412,29 @@ public class FishMonster
         stamina = Mathf.Clamp(Stamina, 0, MaxStamina);
         ValueChanged?.Invoke();
     }
-    public void TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType)
+    public float TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType,out Element.Effectiveness effectiveness)
     {
         if (damage <= 0)
         {
             Debug.Log("took no damage");
-            return;
+            effectiveness = Element.Effectiveness.none;
+            return 0;
         }
         //float defenseMod = 1 - (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value) * 0.01f;
         float defenseMod =MathF.Pow(MathF.E,-0.015f* (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value));
         float damageTaken = damage * DamageModifier(elementType) * defenseMod;
+        effectiveness = GetEffectiveness(elementType);
         health -= damageTaken;
         Debug.Log("took " + damageTaken + " damage \n current health: " + Health);
         if (Health <= 0)
         {
             Feint();
         }
-        ValueChanged?.Invoke();
+        else
+        {
+            ValueChanged?.Invoke();
+        }
+        return damageTaken;
     }
     public void Restore(float health = 0, float stamina = 0)
     {
@@ -443,6 +449,14 @@ public class FishMonster
             return 1;
         }
         return Type.Elements.OrderByDescending(e => e.CompareStrength(elementType)).First().DamageModifier(elementType);
+    }
+    Element.Effectiveness GetEffectiveness(Element elementType)
+    {
+        if (elementType == null)
+        {
+            return Element.Effectiveness.none;
+        }
+        return Type.Elements.OrderByDescending(e => e.CompareStrength(elementType)).First().GetEffectiveness(elementType);
     }
     void Feint()
     {
