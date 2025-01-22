@@ -30,7 +30,7 @@ public class FishObject : MonoBehaviour
     bool isSelectable;
     
     PlayableGraph playableGraph;
-    PlayableGraph idlePlayableGraph;
+    //PlayableGraph idlePlayableGraph;
     AnimationPlayableOutput playableOutput;
     AnimationClipPlayable attackClipPlayable;
     AnimationMixerPlayable mixerPlayable;
@@ -84,8 +84,7 @@ public class FishObject : MonoBehaviour
 
        
 
-        idlePlayableGraph = PlayableGraph.Create();
-        idlePlayableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
+        
        
 
 
@@ -179,7 +178,7 @@ public class FishObject : MonoBehaviour
         playableGraph.Connect(idleClipPlayable, 0, mixerPlayable, 0);
         playableGraph.Connect(attackClipPlayable, 0, mixerPlayable, 1);
         mixerPlayable.SetInputWeight(0, 1.0f);
-        mixerPlayable.SetInputWeight(1, 1.0f);
+        
         attackClipPlayable.Pause();
         playableGraph.Play();
 
@@ -193,12 +192,9 @@ public class FishObject : MonoBehaviour
         shouldMove = true;
         StartCoroutine(MoveToDestination());
     }
-    public void AttackAnimation()
+    public void AttackAnimation(Action animationCompleted)
     {
-        attackClipPlayable.SetTime(0);
-        playableGraph.Evaluate();
-        //playableOutput.SetSourcePlayable(clipPlayable);
-        attackClipPlayable.Play();
+        StartCoroutine(AnimationTimer(animationCompleted));
         if (defaultClip != null)
         {
             source.PlayOneShot(defaultClip);
@@ -206,6 +202,24 @@ public class FishObject : MonoBehaviour
        
         //playableGraph.
 
+    }
+    IEnumerator AnimationTimer(Action animationCompleted)
+    {
+        mixerPlayable.SetInputWeight(0, 0);
+        mixerPlayable.SetInputWeight(1, 1.0f);
+        
+        attackClipPlayable.SetTime(0);
+        playableGraph.Evaluate();
+        float time = turn.fish.AttackAnimation.length;
+        //playableOutput.SetSourcePlayable(clipPlayable);
+        attackClipPlayable.Play();
+        while (time > 0)
+        {
+            yield return new WaitForEndOfFrame();
+            time-= Time.deltaTime;
+        }
+        mixerPlayable.SetInputWeight(0, 1.0f);
+        mixerPlayable.SetInputWeight(1, 0);
     }
     public void StopMoving() 
     {
