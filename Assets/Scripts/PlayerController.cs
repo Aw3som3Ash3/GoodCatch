@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour,ISaveable
 {
@@ -26,7 +25,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     float mouseSensitiviy;
     Vector2 rotVelocity;
     [SerializeField]
-    LayerMask interactionLayer;
+    LayerMask interactionLayer,waterLayer;
 
     AudioController audioController;
     [SerializeField]
@@ -202,17 +201,34 @@ public class PlayerController : MonoBehaviour,ISaveable
         {
             sprinting = inputs.Sprint.IsPressed();
         }
-        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
         if (moveAction.IsInProgress())
         {
-            
+
             var angles = cameraRig.localEulerAngles;
             this.transform.Rotate(0, angles.y, 0);
             angles.y = 0;
             cameraRig.localEulerAngles = angles;
-            var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
-            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720*Time.deltaTime);
+            var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
+            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
         }
+        RaycastHit hit;
+        if(Physics.Raycast(this.transform.position+(Vector3.up) + this.transform.TransformDirection(moveDir).normalized, Vector3.down,out hit,50))
+        {
+            var water = hit.collider.GetComponent<WaterSimulator>();
+            if (water != null)
+            {
+                Vector3 adjustedPoint = hit.point;
+                //adjustedPoint.y = water.transform.position.y;
+                if (!Physics.Raycast(adjustedPoint, Vector3.down, out hit, 0.2f,~waterLayer))
+                {
+                    moveDir = Vector3.zero;
+                }
+                
+            }
+               
+        }
+        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
+        
         anim.SetFloat("speed",velocity.magnitude);
         characterController.Move((velocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
 

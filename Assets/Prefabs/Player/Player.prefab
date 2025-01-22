@@ -198,6 +198,9 @@ MonoBehaviour:
   interactionLayer:
     serializedVersion: 2
     m_Bits: 1025
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
   fishingRod: {fileID: 8452586820765843335}
 --- !u!114 &5494617037479837059
 MonoBehaviour:
