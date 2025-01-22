@@ -6,19 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: efdf58ecf51595f46847b45a2105eea6
+  - enabled: 1
     path: Assets/Scenes/Main Scene.unity
     guid: 1147cb41360aafd419ec77e2f95c424d
   - enabled: 1
     path: Assets/Scenes/Islands/DesertIsland.unity
     guid: 938027212a52ca647a71efbbe2233974
   - enabled: 1
-    path: Assets/Scenes/LoadingScreen.unity
-    guid: 7603ee49e7d941a4ebf4daf4d3725086
-  - enabled: 1
     path: Assets/Scenes/BattleScene 1.unity
     guid: e52b143c6f0b6ac4abedd2a56076e223
-  - enabled: 0
-    path: Assets/Scenes/Test/Test Scene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 13fa4d3710ddafa45aaa2d744a80ee91, type: 2}
