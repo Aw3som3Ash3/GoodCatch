@@ -164,10 +164,14 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                 if (baseDamage > 0)
                 {
                     float outgoingDamage = baseDamage + damageMod;
-                    foreach( var effectInstance in target.effects.Where((x) => x is GuardEffect.StatusEffectInstance) )
+                    if (target.effects.Count>0)
                     {
-                        outgoingDamage = (effectInstance.effect as GuardEffect).TransferDamage(outgoingDamage, element, abilityType,effectInstance);
+                        foreach (var effectInstance in target.effects.Where((x) => x.effect is GuardEffect))
+                        {
+                            outgoingDamage = (effectInstance.effect as GuardEffect).TransferDamage(outgoingDamage, element, abilityType, effectInstance);
+                        }
                     }
+                    
                     target.fish.TakeDamage(outgoingDamage, element, abilityType);
                     foreach(var effect in target.effects.Where((x) => x.effect is ThornEffect))
                     {
