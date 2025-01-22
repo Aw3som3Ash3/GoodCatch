@@ -78,7 +78,7 @@ public class CombatVisualizer : MonoBehaviour
     public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
     {
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
-        fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90, 0);
+        fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90,0);
         fishObject.SetFish(turn);
         FishUI[fishObject] = combatUI.AddFishUI(turn, fishObject.transform);
         fishObjects.Add(fishObject);
