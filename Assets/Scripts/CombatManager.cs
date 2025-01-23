@@ -142,7 +142,7 @@ public class CombatManager : MonoBehaviour
     public static void NewCombat(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
         //SceneManager.sceneLoaded += OnSceneLoad;
-        SceneManager.LoadSceneAsync("IntroScene").completed+= OnSceneLoad;
+        SceneManager.LoadSceneAsync("CombatTransition").completed+= OnSceneLoad;
        
 
         playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
@@ -161,11 +161,6 @@ public class CombatManager : MonoBehaviour
         
     }
 
-    private static void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
-    {
-        
-       
-    }
 
     void DraftFish(int index,int target)
     {
