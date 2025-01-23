@@ -918,6 +918,7 @@ public class CombatManager : MonoBehaviour
                 effects.Remove(effect);
                 EffectRemoved?.Invoke(effect);
             }
+            
         }
 
 
