@@ -74,6 +74,7 @@ public class CombatVisualizer : MonoBehaviour
     {
         var ui = FishUI[turnToObject[turn]];
         Destroy(turnToObject[turn].gameObject);
+        turnToObject.Remove(turn);
         ui.parent.Remove(ui);
     }
     public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
@@ -91,7 +92,7 @@ public class CombatVisualizer : MonoBehaviour
    
     public void AnimateDamageNumbers(Turn turn,float damage,Element.Effectiveness effectiveness, bool healing=false)
     {
-
+        
         var textObj = new GameObject("damage text", typeof(TextMeshPro));
         textObj.transform.position = turnToObject[turn].transform.position;
         textObj.transform.rotation = Camera.main.transform.rotation;
