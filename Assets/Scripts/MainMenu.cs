@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
             { 
                 SavingSystem.SetSlot(index); 
                 SavingSystem.ClearSlot(index);
-                //SceneManager.sceneLoaded += OnSceneLoaded;
+                SceneManager.sceneLoaded += OnSceneLoaded;
                 SceneManager.LoadSceneAsync("IntroScene").completed+=OnSceneLoaded;
                 
                 
@@ -64,12 +64,18 @@ public class MainMenu : MonoBehaviour
             
         }
     }
-
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if (arg0.name == "Main Scene")
+        {
+            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+        }
+    }
     private void OnSceneLoaded(AsyncOperation operation)
     {
         PlayableDirector playableDirector;
         playableDirector = FindObjectOfType<PlayableDirector>();
-        var mainSceneLoading = SceneManager.LoadSceneAsync("Main Scene");
+        var mainSceneLoading = SceneManager.LoadSceneAsync("DreamIsland");
         mainSceneLoading.allowSceneActivation = false;
 
         playableDirector.stopped += (x) =>
@@ -77,7 +83,7 @@ public class MainMenu : MonoBehaviour
             mainSceneLoading.allowSceneActivation = true;
             mainSceneLoading.completed += (x) =>
             {
-                FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+               
 
             };
 
