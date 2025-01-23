@@ -24,6 +24,6 @@ public class MudskipperTutorial : MonoBehaviour, IInteractable
 
     void LoadMainScene()
     {
-        //SceneManager.LoadScene("Main Scene");
+        SceneManager.LoadScene("Main Scene");
     }
 }

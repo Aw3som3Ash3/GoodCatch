@@ -39,7 +39,7 @@ public class MudskipperDialogue : MonoBehaviour
     {
         Debug.Log("ShowUI function has been called.");
         UIElement.SetActive(true);
-        option1.visible = false;
+        option1.visible = true;
         option2.visible = false;
     }
 
