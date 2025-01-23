@@ -92,7 +92,10 @@ public class CombatVisualizer : MonoBehaviour
    
     public void AnimateDamageNumbers(Turn turn,float damage,Element.Effectiveness effectiveness, bool healing=false)
     {
-        
+        if (!turnToObject.ContainsKey(turn))
+        {
+            return;
+        }
         var textObj = new GameObject("damage text", typeof(TextMeshPro));
         textObj.transform.position = turnToObject[turn].transform.position;
         textObj.transform.rotation = Camera.main.transform.rotation;
