@@ -47,7 +47,7 @@ public static class InputDisplayer
         }
        
         
-        var operation = Addressables.LoadAssetAsync<Texture2D>("ControlIcons/" + folder + "/Default/" + control.device.name.ToLower()+"_" + control.path.Replace($"/{control.device.name}/", "")+".png");
+        var operation = Addressables.LoadAssetAsync<Texture2D>("ControlIcons/" + folder + "/Default/" + GetPreffix(control) + control.path.Replace($"/{control.device.name}/", "")+".png");
         //var operation = Addressables.LoadAssetAsync<Texture2D>(location[0].PrimaryKey);
 
         return operation;
@@ -73,5 +73,25 @@ public static class InputDisplayer
     {
         return method == InputMethod.mouseAndKeyboard ? "keyboard_" : "xbox_";
     }
-    
+    static string GetPreffix(InputControl control)
+    {
+        //string s;
+        if (control.device is Gamepad)
+        {
+            return "xbox_";
+        }
+        else if (control.device is Keyboard)
+        {
+            return "keyboard_";
+        }
+        else if (control.device is Mouse)
+        {
+            return "mouse_";
+        }
+        else 
+        {
+            return "keyboard_";
+        }
+       
+    }
 }
