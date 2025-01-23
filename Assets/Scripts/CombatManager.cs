@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static CombatManager;
@@ -140,7 +141,10 @@ public class CombatManager : MonoBehaviour
     /// <param name="rewardFish"></param>
     public static void NewCombat(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
-        SceneManager.LoadScene("BattleScene 1");
+        SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.LoadScene("IntroScene");
+        
+       
         playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
         CombatManager.enemyFishes = enemyFishes;
         CombatManager.rewardFish = rewardFish;
@@ -148,6 +152,17 @@ public class CombatManager : MonoBehaviour
         //OrderTurn();
         //StartTurn();
     }
+
+    private static void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
+    {
+        if (arg0.name == "IntroScene")
+        {
+            FindObjectOfType<PlayableDirector>().stopped += (x)=> SceneManager.LoadSceneAsync("BattleScene 1");
+            SceneManager.sceneLoaded -= OnSceneLoad;
+        }
+       
+    }
+
     void DraftFish(int index,int target)
     {
         Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);

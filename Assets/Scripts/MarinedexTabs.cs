@@ -12,8 +12,7 @@ public class MarinedexTabs : TabbedMenu
     }
     void Init()
     {
-
-        CreateTab("Stats", new VisualElement());
+        CreateTab("Stats", "ModStatCompontent");
         CreateTab("Info", new VisualElement());
         CreateTab("Locale", new VisualElement());
     }
@@ -25,7 +24,7 @@ public class MarinedexTabs : TabbedMenu
     void CreateTab(string tabName, string contentPath)
     {
         VisualElement content = new VisualElement();
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatUI");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/"+contentPath);
 
         visualTreeAsset.CloneTree(content);
         var tab = new TabMenuButton(tabName, content);
