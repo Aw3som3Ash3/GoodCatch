@@ -142,12 +142,20 @@ public class CombatVisualizer : MonoBehaviour
 
     public void MoveFish(CombatManager.Turn turn, Vector3 destination, Action CompletedMove = null)
     {
+        if (!turnToObject.ContainsKey(turn))
+        {
+            return;
+        }
         turnToObject[turn].SetDestination(destination);
         turnToObject[turn].ReachedDestination += CompletedMove;
         CompletedMove += () => turnToObject[turn].ReachedDestination -= CompletedMove;
     }
     public void AnimateBasicVFX(CombatManager.Turn target, ParticleSystem vfxPrefab)
     {
+        if (!turnToObject.ContainsKey(turn))
+        {
+            return;
+        }
         var vfx = Instantiate(vfxPrefab, turnToObject[target].transform.position, turnToObject[target].transform.rotation);
         var main = vfx.main;
         main.stopAction = ParticleSystemStopAction.Destroy;
