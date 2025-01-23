@@ -5,17 +5,35 @@ using UnityEngine.UIElements;
 
 public class MarinedexTabs : TabbedMenu
 {
+    string statComponentName,infoComponentName,localeComponentName;
+
     public new class UxmlFactory : UxmlFactory<MarinedexTabs, UxmlTraits> { }
-    public MarinedexTabs()
+    public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
+    {
+        UxmlStringAttributeDescription m_statComponentName=new UxmlStringAttributeDescription { name = "stat-uxml", defaultValue = "" };
+        UxmlStringAttributeDescription m_infoComponentName= new UxmlStringAttributeDescription { name = "info-uxml", defaultValue = "" };
+        UxmlStringAttributeDescription m_localeComponentName = new UxmlStringAttributeDescription { name = "locale-uxml", defaultValue = "" };
+       
+        public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
+        {
+            base.Init(ve, bag, cc);
+            var dex = (ve as MarinedexTabs);
+            dex.statComponentName = m_statComponentName.GetValueFromBag(bag,cc);
+            dex.infoComponentName = m_infoComponentName.GetValueFromBag(bag, cc); ;
+            dex.localeComponentName = m_localeComponentName.GetValueFromBag(bag, cc); ;
+            dex.CreateTab("Stats", dex.statComponentName);
+            dex.CreateTab("Info", dex.infoComponentName);
+            dex.CreateTab("Locale", dex.localeComponentName);
+        }
+    }
+
+        public MarinedexTabs()
     {
         Init();
     }
     void Init()
     {
-
-        CreateTab("Stats", new VisualElement());
-        CreateTab("Info", new VisualElement());
-        CreateTab("Locale", new VisualElement());
+        
     }
     void CreateTab(string tabName,VisualElement content)
     {
@@ -25,10 +43,19 @@ public class MarinedexTabs : TabbedMenu
     void CreateTab(string tabName, string contentPath)
     {
         VisualElement content = new VisualElement();
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatUI");
-
-        visualTreeAsset.CloneTree(content);
-        var tab = new TabMenuButton(tabName, content);
-        Add(tab);
+      
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/"+contentPath);
+        if (visualTreeAsset!=null)
+        {
+            visualTreeAsset.CloneTree(content);
+            if (content != null)
+            {
+                var tab = new TabMenuButton(tabName, content);
+                Add(tab);
+            }
+        }
+           
+       
+       
     }
 }

@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 //using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -50,24 +53,47 @@ public class MainMenu : MonoBehaviour
             button.clicked += () => 
             { 
                 SavingSystem.SetSlot(index); 
-                SavingSystem.ClearSlot(index); 
-                SceneManager.LoadScene("Main Scene");
-                SceneManager.sceneLoaded += OnSceneLoaded;
+                SavingSystem.ClearSlot(index);
+                //SceneManager.sceneLoaded += OnSceneLoaded;
+                SceneManager.LoadSceneAsync("IntroScene").completed+=OnSceneLoaded;
+                
+                
+
+
             };
             
             
         }
     }
 
-
-    void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    private void OnSceneLoaded(AsyncOperation operation)
     {
-        if (scene.name == "Main Scene")
+        PlayableDirector playableDirector;
+        playableDirector = FindObjectOfType<PlayableDirector>();
+        var mainSceneLoading = SceneManager.LoadSceneAsync("Main Scene");
+        mainSceneLoading.allowSceneActivation = false;
+
+        playableDirector.stopped += (x) =>
         {
-            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
-        }
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+            mainSceneLoading.allowSceneActivation = true;
+            mainSceneLoading.completed += (x) =>
+            {
+                FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+
+            };
+
+        };
+       
+       
     }
+
+    //void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    //{
+        
+       
+        
+    //    SceneManager.sceneLoaded -= OnSceneLoaded;
+    //}
 
     void LoadGame()
     {

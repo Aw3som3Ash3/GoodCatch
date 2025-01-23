@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static CombatManager;
@@ -140,7 +141,10 @@ public class CombatManager : MonoBehaviour
     /// <param name="rewardFish"></param>
     public static void NewCombat(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
-        SceneManager.LoadScene("BattleScene 1");
+        //SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.LoadSceneAsync("CombatTransition").completed+= OnSceneLoad;
+       
+
         playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
         CombatManager.enemyFishes = enemyFishes;
         CombatManager.rewardFish = rewardFish;
@@ -148,6 +152,16 @@ public class CombatManager : MonoBehaviour
         //OrderTurn();
         //StartTurn();
     }
+
+    private static void OnSceneLoad(AsyncOperation operation)
+    {
+        var battleOperation = SceneManager.LoadSceneAsync("BattleScene 1");
+        battleOperation.allowSceneActivation = false;
+        FindObjectOfType<PlayableDirector>().stopped += (x) => { battleOperation.allowSceneActivation=true; };
+        
+    }
+
+
     void DraftFish(int index,int target)
     {
         Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);
@@ -283,8 +297,9 @@ public class CombatManager : MonoBehaviour
     {
         actionsCompleted = true;
         
-        CanFightEnd();
+        
         CompletedAllActions?.Invoke();
+        CanFightEnd();
     }
     void CanFightEnd()
     {
@@ -454,8 +469,24 @@ public class CombatManager : MonoBehaviour
                 if (target != null)
                 {
                     bool hit;
-                    ability.UseAbility(turn, target, out hit);
-                    combatVisualizer.AnimateAttack(ability,turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement);  } combatUI.EnableButtons(); });
+                    float damageDone;
+                    Element.Effectiveness effectiveness;
+                    ability.UseAbility(turn, target, out hit,out damageDone,out effectiveness);
+                    
+                    combatVisualizer.AnimateAttack(ability,turn, target, () => 
+                    {  
+                        if (hit)
+                        {
+                            combatVisualizer.AnimateDamageNumbers(target, damageDone, effectiveness);
+                            if (ability.ForcedMovement != 0)
+                            {
+                                target.ForcedMove(ability.ForcedMovement);
+                            }
+                            
+                        }
+                        ActionsCompleted();
+                        combatUI.EnableButtons();
+                    });
                 }
             }
         }
@@ -475,8 +506,23 @@ public class CombatManager : MonoBehaviour
             foreach (var target in targetedFish)
             {
                 bool hit;
-                ability.UseAbility(turn, target, out hit);
-                combatVisualizer.AnimateAttack(ability, turn, target, () => { ActionsCompleted(); if (ability.ForcedMovement != 0) { target.ForcedMove(ability.ForcedMovement); } combatUI.EnableButtons(); });
+                float damageDone;
+                Element.Effectiveness effectiveness;
+                ability.UseAbility(turn, target, out hit, out damageDone, out effectiveness);
+                combatVisualizer.AnimateAttack(ability, turn, target, () => 
+                {
+                    if (hit)
+                    {
+                        combatVisualizer.AnimateDamageNumbers(target, damageDone, effectiveness);
+
+                        if (ability.ForcedMovement != 0)
+                        {
+                            target.ForcedMove(ability.ForcedMovement);
+                        }
+                    }
+                    ActionsCompleted();
+                    combatUI.EnableButtons(); 
+                });
             }
            
         }
@@ -728,11 +774,12 @@ public class CombatManager : MonoBehaviour
         public virtual void StartTurn()
         {
             actionsLeft = actionsPerTurn;
-            TickEffects(StatusEffect.EffectUsage.preTurn);
+            
             combatManager.combatUI.NewTurn(this, team == Team.player);
+            TickEffects(StatusEffect.EffectUsage.preTurn);
             //NewTurn?.Invoke(this, team == Team.player);
 
-            
+
         }
         void ActionsCompleted()
         {

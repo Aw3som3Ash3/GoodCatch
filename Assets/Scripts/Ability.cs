@@ -76,6 +76,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
     [SerializeField]
     Element element;
+    public Element Element { get { return element; } }
     [SerializeField]
     EffectChance[] effects;
     public EffectChance[] Effects { get { return effects; } }
@@ -140,16 +141,20 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         
         return proctBonus;
     }
-    public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit)
+    public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit, out float damageDone, out Element.Effectiveness effectiveness)
     {
         if (target == null)
         {
             hit = false;
+            damageDone = 0;
+            effectiveness = Element.Effectiveness.none;
             return false;
         }
         if (baseDamage < 0)
         {
             target.fish.Restore(health: -baseDamage);
+            damageDone = baseDamage;
+            effectiveness = Element.Effectiveness.none;
             hit = true;
         }
         else
@@ -171,8 +176,8 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                             outgoingDamage = (effectInstance.effect as GuardEffect).TransferDamage(outgoingDamage, element, abilityType, effectInstance);
                         }
                     }
-                    
-                    target.fish.TakeDamage(outgoingDamage, element, abilityType);
+                    //Element.Effectiveness effectivenss;
+                    damageDone = target.fish.TakeDamage(outgoingDamage, element, abilityType,out effectiveness);
                     foreach(var effect in target.effects.Where((x) => x.effect is ThornEffect))
                     {
                         (effect.effect as ThornEffect).ReflectDamage(user.fish);
@@ -182,17 +187,22 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                 else if(baseDamage<0)
                 {
                     target.fish.Restore(-baseDamage + damageMod);
+                    damageDone = baseDamage;
+                    effectiveness = Element.Effectiveness.none;
                 }
-                
-              
-
-
+                else
+                {
+                    damageDone = 0;
+                    effectiveness = Element.Effectiveness.none;
+                }
                 ProctEffect(user, target);
                 hit = true;
             }
             else
             {
                 Debug.Log("missed: " + target);
+                damageDone = 0;
+                effectiveness = Element.Effectiveness.none;
                 hit = false;
             }
         }
