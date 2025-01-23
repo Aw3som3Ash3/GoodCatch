@@ -3,6 +3,6 @@
     <ui:Template name="BottomMapping" src="project://database/Assets/Resources/UXMLs/BottomMapping.uxml?fileID=9197481963319205126&amp;guid=5d7bcd9c060862046a186abe6a88fd74&amp;type=3#BottomMapping" />
     <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="InteractionHud" focusable="true" style="position: absolute; height: 58px; width: 176px; top: auto; left: auto; -unity-text-align: upper-center; font-size: 45px; bottom: 10%; align-self: center; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
     <PauseMenu />
-    <ui:Instance template="LoadingScreen" name="LoadingScreen" style="position: absolute; flex-grow: 1; bottom: 0; right: 0; left: 0; top: 0; display: flex; visibility: hidden;" />
     <ui:Instance template="BottomMapping" name="BottomMapping" style="flex-direction: column; bottom: 0; position: absolute; width: auto;" />
+    <ui:Instance template="LoadingScreen" name="LoadingScreen" style="position: absolute; flex-grow: 1; bottom: 0; right: 0; left: 0; top: 0; display: flex; visibility: hidden;" />
 </ui:UXML>

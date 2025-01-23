@@ -141,10 +141,10 @@ public class CombatManager : MonoBehaviour
     /// <param name="rewardFish"></param>
     public static void NewCombat(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
-        SceneManager.sceneLoaded += OnSceneLoad;
-        SceneManager.LoadScene("IntroScene");
-        
+        //SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.LoadSceneAsync("IntroScene").completed+= OnSceneLoad;
        
+
         playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
         CombatManager.enemyFishes = enemyFishes;
         CombatManager.rewardFish = rewardFish;
@@ -153,13 +153,17 @@ public class CombatManager : MonoBehaviour
         //StartTurn();
     }
 
+    private static void OnSceneLoad(AsyncOperation operation)
+    {
+        var battleOperation = SceneManager.LoadSceneAsync("BattleScene 1");
+        battleOperation.allowSceneActivation = false;
+        FindObjectOfType<PlayableDirector>().stopped += (x) => { battleOperation.allowSceneActivation=true; };
+        
+    }
+
     private static void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
     {
-        if (arg0.name == "IntroScene")
-        {
-            FindObjectOfType<PlayableDirector>().stopped += (x)=> SceneManager.LoadSceneAsync("BattleScene 1");
-            SceneManager.sceneLoaded -= OnSceneLoad;
-        }
+        
        
     }
 
