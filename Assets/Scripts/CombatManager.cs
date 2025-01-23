@@ -296,10 +296,10 @@ public class CombatManager : MonoBehaviour
     void ActionsCompleted()
     {
         actionsCompleted = true;
-        
-        
-        CompletedAllActions?.Invoke();
+
         CanFightEnd();
+        CompletedAllActions?.Invoke();
+        
     }
     void CanFightEnd()
     {
@@ -375,9 +375,9 @@ public class CombatManager : MonoBehaviour
     }
     void StartTurn()
     {
-        
-        currentTurn.Value.StartTurn();
         CanFightEnd();
+        currentTurn.Value.StartTurn();
+        
         if (currentTurn.Value is EnemyTurn)
         {
             
