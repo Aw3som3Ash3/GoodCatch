@@ -53,12 +53,12 @@ public class MudskipperDialogue : MonoBehaviour
         UIElement.SetActive(true);
         option1.visible = true;
         option1.Focus();
-        option2.visible = true;
+        option2.visible = false;
     }
 
     public void DisplayFirstOption(Action onClick)
     {
-        ShowUI();
+        ShowUISelectable();
         dialogue.text = "There is no tutorial yet... Wake Up!";
         option1.clicked += () => { onClick?.Invoke(); DisableUI(); };
         option2.clicked += DisableUI;
