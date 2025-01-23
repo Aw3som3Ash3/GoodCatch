@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         {
             if (InteractionUI == null)
             {
-                InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
+                InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
             }
             if (InteractionUI != null)
             {
