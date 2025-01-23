@@ -22,19 +22,22 @@ public static class InputDisplayer
         string folder = method == InputMethod.mouseAndKeyboard ? "Keyboard & Mouse" : "Xbox Series";
         string stringMethod = GetStringMethod(method);
         var binding=inputAction.bindings.Where((x)=> InputBinding.MaskByGroup(stringMethod).Matches(x)).First();
+
         var control=inputAction.controls.Where((x) => 
         {
             if(x.device is Gamepad && method == InputMethod.controller)
             {
                 return true;
             }else
-            if(x.device is Keyboard && method == InputMethod.mouseAndKeyboard)
+            if((x.device is Keyboard|| x.device is Mouse) && method == InputMethod.mouseAndKeyboard)
             {
                 return true;
             }
+            else
             return false;
 
         }).First();
+
         Debug.Log("binding" + binding.effectivePath);
         Debug.Log("controls" + control.path);
         if (location != null)
@@ -44,7 +47,7 @@ public static class InputDisplayer
         }
        
         
-        var operation = Addressables.LoadAssetAsync<Texture2D>("ControlIcons/" + folder + "/Default/" + GetPreffix(method) + control.path.Replace($"/{control.device.name}/", "")+".png");
+        var operation = Addressables.LoadAssetAsync<Texture2D>("ControlIcons/" + folder + "/Default/" + control.device.name.ToLower()+"_" + control.path.Replace($"/{control.device.name}/", "")+".png");
         //var operation = Addressables.LoadAssetAsync<Texture2D>(location[0].PrimaryKey);
 
         return operation;
