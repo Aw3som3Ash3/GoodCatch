@@ -163,6 +163,10 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void AnimateAttack(Ability ability,CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
+        if (!turnToObject.ContainsKey(target))
+        {
+            return;
+        }
         //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
         turnToObject[turn].AttackAnimation(() => { });
         StartCoroutine(ParticleAttackAnim(ability, turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));

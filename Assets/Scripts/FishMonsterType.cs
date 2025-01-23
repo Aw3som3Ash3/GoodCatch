@@ -433,13 +433,21 @@ public class FishMonster
         Debug.Log("took " + damageTaken + " damage \n current health: " + Health);
         if (Health <= 0)
         {
-            Feint();
+            //Feint();
         }
         else
         {
             ValueChanged?.Invoke();
         }
         return damageTaken;
+    }
+
+    public void CheckDeath()
+    {
+        if (Health <= 0)
+        {
+            Feint();
+        }
     }
     public void Restore(float health = 0, float stamina = 0)
     {

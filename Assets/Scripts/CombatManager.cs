@@ -486,6 +486,7 @@ public class CombatManager : MonoBehaviour
                         }
                         ActionsCompleted();
                         combatUI.EnableButtons();
+                        target.fish.CheckDeath();
                     });
                 }
             }
@@ -521,7 +522,8 @@ public class CombatManager : MonoBehaviour
                         }
                     }
                     ActionsCompleted();
-                    combatUI.EnableButtons(); 
+                    combatUI.EnableButtons();
+                    target.fish.CheckDeath();
                 });
             }
            
