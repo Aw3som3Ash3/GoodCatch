@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -78,9 +80,15 @@ public class MainMenu : MonoBehaviour
         playableDirector = FindObjectOfType<PlayableDirector>();
         var mainSceneLoading = SceneManager.LoadSceneAsync("DreamIsland");
         mainSceneLoading.allowSceneActivation = false;
-
+        InputAction action = new();
+        GoodCatchInputs uIActions = new GoodCatchInputs();
+        uIActions.UI.SkipCutscene.Enable();
+        uIActions.UI.SkipCutscene.performed += (x) => playableDirector.Stop();
+        //InputSystem.onAnyButtonPress.CallOnce((x) => playableDirector.Stop() );
         playableDirector.stopped += (x) =>
         {
+            uIActions.Disable();
+            //Destroy(uIActions);
             mainSceneLoading.allowSceneActivation = true;
             mainSceneLoading.completed += (x) =>
             {
@@ -92,15 +100,6 @@ public class MainMenu : MonoBehaviour
        
        
     }
-
-    //void OnSceneLoaded(Scene scene,LoadSceneMode mode)
-    //{
-        
-       
-        
-    //    SceneManager.sceneLoaded -= OnSceneLoaded;
-    //}
-
     void LoadGame()
     {
         for (int i = 1; i <= 3; i++)
