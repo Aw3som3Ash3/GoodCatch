@@ -24,6 +24,7 @@ public class MudskipperDialogue : MonoBehaviour
 
     private void Start()
     {
+
         DisableUI();
     }
 
@@ -57,9 +58,9 @@ public class MudskipperDialogue : MonoBehaviour
 
     public void DisplayFirstOption(Action onClick)
     {
-        ShowUISelectable();
+        ShowUI();
         dialogue.text = "There is no tutorial yet... Wake Up!";
-        //option1.clicked += () => { onClick?.Invoke(); DisableUI(); };
-        //option2.clicked += DisableUI;
+        option1.clicked += () => { onClick?.Invoke(); DisableUI(); };
+        option2.clicked += DisableUI;
     }
 }
