@@ -152,7 +152,7 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void AnimateBasicVFX(CombatManager.Turn target, ParticleSystem vfxPrefab)
     {
-        if (!turnToObject.ContainsKey(turn))
+        if (!turnToObject.ContainsKey(target))
         {
             return;
         }
