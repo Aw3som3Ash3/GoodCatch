@@ -1,0 +1,25 @@
+#ButtonContainer .unity-button {
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 11px;
+}
+
+#ButtonContainer .unity-button:hover {
+    scale: 1.1 1.1;
+    transition-duration: 0.1s;
+}
+
+#ButtonContainer .unity-button:focus {
+    scale: 1.1 1;
+    transition-duration: 0.1s;
+}
