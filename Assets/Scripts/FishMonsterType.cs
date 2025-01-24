@@ -166,7 +166,8 @@ public class FishMonsterType : ScriptableObject
 
         return talent;
     }
-    public FishMonster GenerateMonster()
+
+    public FishMonster GenerateMonster(int startingLevel = 1)
     {
 
         int speed = RandomAttributeValue(agility);
@@ -187,7 +188,7 @@ public class FishMonsterType : ScriptableObject
         int accuracy = RandomAttributeValue(this.accuracy);
         TalentScale accuracyTalent = CalculateTalent(this.accuracy);
 
-        return new FishMonster(this, speed,agilityTalent ,attack,attackTalent ,special,specialTalent, fortitude, fortitudeTalent, specialFort, specialFortTalent,accuracy, accuracyTalent,GenerateAbilities());
+        return new FishMonster(this, speed,agilityTalent ,attack,attackTalent ,special,specialTalent, fortitude, fortitudeTalent, specialFort, specialFortTalent,accuracy, accuracyTalent,GenerateAbilities(),startingLevel);
     }
 
     Ability[] GenerateAbilities()
@@ -311,7 +312,7 @@ public class FishMonster
     public AnimationClip AttackAnimation { get { return type.AttackAnimation; } }
     public AnimationClip IdleAnimation { get { return type.IdleAnimation; } }
 
-    public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent, Ability[] abilities)
+    public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent, Ability[] abilities,int startingLevel)
     {
 
         this.Type = monsterType;
@@ -334,6 +335,10 @@ public class FishMonster
         health = MaxHealth;
         this.abilities = abilities;
         abilityIds = new string[Abilities.Length];
+        for(int i = 1; i < startingLevel; i++)
+        {
+            LevelUp();
+        }
         for(int i = 0; i < abilityIds.Length; i++)
         {
             abilityIds[i] = Abilities[i].AbilityID;
@@ -380,7 +385,7 @@ public class FishMonster
     void LevelUp()
     {
         level++;
-        xp = 0;
+        xp %=xpToLevelUp;
         maxHealth = HealthFormula();
         health = MaxHealth;
         maxStamina = StaminaFormula();
@@ -428,13 +433,21 @@ public class FishMonster
         Debug.Log("took " + damageTaken + " damage \n current health: " + Health);
         if (Health <= 0)
         {
-            Feint();
+            //Feint();
         }
         else
         {
             ValueChanged?.Invoke();
         }
         return damageTaken;
+    }
+
+    public void CheckDeath()
+    {
+        if (Health <= 0)
+        {
+            Feint();
+        }
     }
     public void Restore(float health = 0, float stamina = 0)
     {

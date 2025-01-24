@@ -184,7 +184,11 @@ public class PauseMenu : VisualElement
         {
             bottomMapping.visible = !PauseActive;
         }
-       
+        var questUI = panel.visualTree.Q("QuestUI");
+        if (questUI != null)
+        {
+            questUI.visible = !PauseActive;
+        }
 
     }
 

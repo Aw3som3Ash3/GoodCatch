@@ -141,10 +141,10 @@ public class CombatManager : MonoBehaviour
     /// <param name="rewardFish"></param>
     public static void NewCombat(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
-        SceneManager.sceneLoaded += OnSceneLoad;
-        SceneManager.LoadScene("IntroScene");
-        
+        //SceneManager.sceneLoaded += OnSceneLoad;
+        SceneManager.LoadSceneAsync("CombatTransition").completed+= OnSceneLoad;
        
+
         playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
         CombatManager.enemyFishes = enemyFishes;
         CombatManager.rewardFish = rewardFish;
@@ -153,15 +153,14 @@ public class CombatManager : MonoBehaviour
         //StartTurn();
     }
 
-    private static void OnSceneLoad(Scene arg0, LoadSceneMode arg1)
+    private static void OnSceneLoad(AsyncOperation operation)
     {
-        if (arg0.name == "IntroScene")
-        {
-            FindObjectOfType<PlayableDirector>().stopped += (x)=> SceneManager.LoadSceneAsync("BattleScene 1");
-            SceneManager.sceneLoaded -= OnSceneLoad;
-        }
-       
+        var battleOperation = SceneManager.LoadSceneAsync("BattleScene 1");
+        battleOperation.allowSceneActivation = false;
+        FindObjectOfType<PlayableDirector>().stopped += (x) => { battleOperation.allowSceneActivation=true; };
+        
     }
+
 
     void DraftFish(int index,int target)
     {
@@ -297,10 +296,10 @@ public class CombatManager : MonoBehaviour
     void ActionsCompleted()
     {
         actionsCompleted = true;
-        
-        
-        CompletedAllActions?.Invoke();
+
         CanFightEnd();
+        CompletedAllActions?.Invoke();
+        
     }
     void CanFightEnd()
     {
@@ -376,9 +375,9 @@ public class CombatManager : MonoBehaviour
     }
     void StartTurn()
     {
-        
-        currentTurn.Value.StartTurn();
         CanFightEnd();
+        currentTurn.Value.StartTurn();
+        
         if (currentTurn.Value is EnemyTurn)
         {
             
@@ -487,6 +486,7 @@ public class CombatManager : MonoBehaviour
                         }
                         ActionsCompleted();
                         combatUI.EnableButtons();
+                        target.fish.CheckDeath();
                     });
                 }
             }
@@ -522,7 +522,8 @@ public class CombatManager : MonoBehaviour
                         }
                     }
                     ActionsCompleted();
-                    combatUI.EnableButtons(); 
+                    combatUI.EnableButtons();
+                    target.fish.CheckDeath();
                 });
             }
            
@@ -919,6 +920,7 @@ public class CombatManager : MonoBehaviour
                 effects.Remove(effect);
                 EffectRemoved?.Invoke(effect);
             }
+            
         }
 
 

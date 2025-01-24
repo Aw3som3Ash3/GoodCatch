@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -50,25 +54,52 @@ public class MainMenu : MonoBehaviour
             button.clicked += () => 
             { 
                 SavingSystem.SetSlot(index); 
-                SavingSystem.ClearSlot(index); 
-                SceneManager.LoadScene("Main Scene");
+                SavingSystem.ClearSlot(index);
                 SceneManager.sceneLoaded += OnSceneLoaded;
+                SceneManager.LoadSceneAsync("IntroScene").completed+=OnSceneLoaded;
+                
+                
+
+
             };
             
             
         }
     }
-
-
-    void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        if (scene.name == "Main Scene")
+        if (arg0.name == "Main Scene")
         {
             FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+            SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+    private void OnSceneLoaded(AsyncOperation operation)
+    {
+        PlayableDirector playableDirector;
+        playableDirector = FindObjectOfType<PlayableDirector>();
+        var mainSceneLoading = SceneManager.LoadSceneAsync("DreamIsland");
+        mainSceneLoading.allowSceneActivation = false;
+        InputAction action = new();
+        GoodCatchInputs uIActions = new GoodCatchInputs();
+        uIActions.UI.SkipCutscene.Enable();
+        uIActions.UI.SkipCutscene.performed += (x) => playableDirector.Stop();
+        //InputSystem.onAnyButtonPress.CallOnce((x) => playableDirector.Stop() );
+        playableDirector.stopped += (x) =>
+        {
+            uIActions.Disable();
+            //Destroy(uIActions);
+            mainSceneLoading.allowSceneActivation = true;
+            mainSceneLoading.completed += (x) =>
+            {
+               
 
+            };
+
+        };
+       
+       
+    }
     void LoadGame()
     {
         for (int i = 1; i <= 3; i++)

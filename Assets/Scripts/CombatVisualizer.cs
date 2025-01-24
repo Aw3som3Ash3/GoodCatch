@@ -74,6 +74,7 @@ public class CombatVisualizer : MonoBehaviour
     {
         var ui = FishUI[turnToObject[turn]];
         Destroy(turnToObject[turn].gameObject);
+        turnToObject.Remove(turn);
         ui.parent.Remove(ui);
     }
     public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
@@ -91,7 +92,10 @@ public class CombatVisualizer : MonoBehaviour
    
     public void AnimateDamageNumbers(Turn turn,float damage,Element.Effectiveness effectiveness, bool healing=false)
     {
-
+        if (!turnToObject.ContainsKey(turn))
+        {
+            return;
+        }
         var textObj = new GameObject("damage text", typeof(TextMeshPro));
         textObj.transform.position = turnToObject[turn].transform.position;
         textObj.transform.rotation = Camera.main.transform.rotation;
@@ -138,12 +142,20 @@ public class CombatVisualizer : MonoBehaviour
 
     public void MoveFish(CombatManager.Turn turn, Vector3 destination, Action CompletedMove = null)
     {
+        if (!turnToObject.ContainsKey(turn))
+        {
+            return;
+        }
         turnToObject[turn].SetDestination(destination);
         turnToObject[turn].ReachedDestination += CompletedMove;
         CompletedMove += () => turnToObject[turn].ReachedDestination -= CompletedMove;
     }
     public void AnimateBasicVFX(CombatManager.Turn target, ParticleSystem vfxPrefab)
     {
+        if (!turnToObject.ContainsKey(target))
+        {
+            return;
+        }
         var vfx = Instantiate(vfxPrefab, turnToObject[target].transform.position, turnToObject[target].transform.rotation);
         var main = vfx.main;
         main.stopAction = ParticleSystemStopAction.Destroy;
@@ -151,6 +163,10 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void AnimateAttack(Ability ability,CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
+        if (!turnToObject.ContainsKey(target))
+        {
+            return;
+        }
         //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
         turnToObject[turn].AttackAnimation(() => { });
         StartCoroutine(ParticleAttackAnim(ability, turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));

@@ -580,6 +580,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipCutscene"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a1c86ee-a3a5-47e2-b5a5-ba10926ec9d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1143,6 +1152,28 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""ChangeTab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c1fad90-bb03-4f62-b3ed-e86ee35f6b6e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SkipCutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3405ff7a-819e-49e5-93a6-8faad4d399de"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SkipCutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1387,7 +1418,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Hook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1398,7 +1429,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Hook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1728,6 +1759,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
         m_UI_ChangeTab = m_UI.FindAction("ChangeTab", throwIfNotFound: true);
+        m_UI_SkipCutscene = m_UI.FindAction("SkipCutscene", throwIfNotFound: true);
         // Ship
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
@@ -1929,6 +1961,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_Back;
     private readonly InputAction m_UI_ChangeTab;
+    private readonly InputAction m_UI_SkipCutscene;
     public struct UIActions
     {
         private @GoodCatchInputs m_Wrapper;
@@ -1948,6 +1981,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @Back => m_Wrapper.m_UI_Back;
         public InputAction @ChangeTab => m_Wrapper.m_UI_ChangeTab;
+        public InputAction @SkipCutscene => m_Wrapper.m_UI_SkipCutscene;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2002,6 +2036,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @ChangeTab.started += instance.OnChangeTab;
             @ChangeTab.performed += instance.OnChangeTab;
             @ChangeTab.canceled += instance.OnChangeTab;
+            @SkipCutscene.started += instance.OnSkipCutscene;
+            @SkipCutscene.performed += instance.OnSkipCutscene;
+            @SkipCutscene.canceled += instance.OnSkipCutscene;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -2051,6 +2088,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @ChangeTab.started -= instance.OnChangeTab;
             @ChangeTab.performed -= instance.OnChangeTab;
             @ChangeTab.canceled -= instance.OnChangeTab;
+            @SkipCutscene.started -= instance.OnSkipCutscene;
+            @SkipCutscene.performed -= instance.OnSkipCutscene;
+            @SkipCutscene.canceled -= instance.OnSkipCutscene;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -2328,6 +2368,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
         void OnChangeTab(InputAction.CallbackContext context);
+        void OnSkipCutscene(InputAction.CallbackContext context);
     }
     public interface IShipActions
     {
