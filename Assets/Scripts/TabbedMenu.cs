@@ -162,8 +162,17 @@ public class TabbedMenu : VisualElement
         {
             return;
         }
+       
+    }
+
+
+    protected virtual void OnChangedTab(VisualElement element)
+    {
         
     }
+
+
+
 }
 
 

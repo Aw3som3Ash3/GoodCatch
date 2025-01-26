@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Rendering.FilterWindow;
 
 public class MarinedexTabs : TabbedMenu
 {
@@ -27,17 +30,34 @@ public class MarinedexTabs : TabbedMenu
         }
     }
 
-        public MarinedexTabs()
+    public MarinedexTabs()
     {
         Init();
     }
     void Init()
     {
-        
+       
     }
+
+    protected override void OnChangedTab(VisualElement element)
+    {
+        var children = element.Children();
+        if (children.First().focusable)
+        {
+            children.First().Focus();
+        }
+        else
+        {
+            children.First().Children().First().Focus();
+        }
+
+    }
+   
     void CreateTab(string tabName,VisualElement content)
     {
         var tab=new TabMenuButton(tabName, content);
+        tab.focusable = false;
+        
         Add(tab);
     }
     void CreateTab(string tabName, string contentPath)
@@ -50,12 +70,10 @@ public class MarinedexTabs : TabbedMenu
             visualTreeAsset.CloneTree(content);
             if (content != null)
             {
-                var tab = new TabMenuButton(tabName, content);
-                Add(tab);
+                CreateTab(tabName, content);
             }
         }
-           
-       
-       
     }
+
+
 }
