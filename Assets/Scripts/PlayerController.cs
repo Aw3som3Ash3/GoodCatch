@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     string id="player";
     public string ID => id;
-
+    List<Vector3> lastSafePosition=new();
     object ISaveable.DataToSave {get{ return new SaveData(Matrix4x4.TRS(this.transform.position, this.transform.rotation, this.transform.localScale), Matrix4x4.TRS(model.transform.position, model.transform.rotation, model.transform.localScale)); } }
     [Serializable]
     struct SaveData
@@ -214,7 +216,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
         velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting ? sprintSpeed : moveSpeed), (characterController.isGrounded ? accel : accel / 4));
         RaycastHit hit;
-        if(Physics.Raycast(this.transform.position+(Vector3.up) + this.transform.TransformDirection(moveDir).normalized, Vector3.down,out hit,50))
+        if(Physics.Raycast(this.transform.position+(Vector3.up) + this.transform.TransformDirection(moveDir).normalized, Vector3.down,out hit,100))
         {
             var water = hit.collider.GetComponent<WaterSimulator>();
             if (water != null)
@@ -241,6 +243,13 @@ public class PlayerController : MonoBehaviour,ISaveable
         else
         {
             fallSpeed = -9.8f;
+            
+            lastSafePosition.Add(this.transform.position);
+            if (lastSafePosition.Count > 180)
+            {
+                lastSafePosition.RemoveAt(0);
+            }
+            
         }
     }
 
@@ -273,8 +282,10 @@ public class PlayerController : MonoBehaviour,ISaveable
             return;
         }
         fallSpeed = Mathf.Sqrt(jumpStrength * -1.0f * Gravity);
+        
     }
 
+    
     void StartFishing(InputAction.CallbackContext context)
     {
         if (context.action.IsPressed())
@@ -362,5 +373,20 @@ public class PlayerController : MonoBehaviour,ISaveable
     {
         audioController?.PlayClipRandom();
         //do audio event
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Water")&& other.gameObject.GetComponent<WaterSimulator>()!=null)
+        {
+            characterController.enabled = false;
+            if (this.transform.position.y + 1 < other.transform.position.y)
+            {
+                this.transform.position = lastSafePosition[lastSafePosition.Count-1];
+            }
+            characterController.enabled = true;
+
+        }
+        
     }
 }
