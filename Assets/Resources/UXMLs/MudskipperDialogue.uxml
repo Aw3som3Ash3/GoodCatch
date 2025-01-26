@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/MudskipperDialogue.uss?fileID=7433441132597879392&amp;guid=2f843e7b2c18f734e857a17b485db348&amp;type=3#MudskipperDialogue" />
     <ui:VisualElement name="Workspace" style="flex-grow: 1; align-self: center; justify-content: flex-end; flex-direction: row; align-items: auto;">
         <ui:VisualElement name="DialougeSystemContainer" style="flex-grow: 1; flex-direction: row; justify-content: center;">
             <ui:VisualElement name="TextBoxContainer" style="flex-grow: 1; height: 128px; width: 690px; background-color: rgba(255, 255, 255, 0); -unity-background-image-tint-color: rgb(255, 255, 255); max-height: 128px; max-width: 690px; min-width: 690px; justify-content: flex-start; align-items: auto; flex-direction: column; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/Untitled-2.png?fileID=2800000&amp;guid=974ce042074a358479cbf7fd311c6729&amp;type=3#Untitled-2&quot;); -unity-background-scale-mode: scale-to-fit;">
