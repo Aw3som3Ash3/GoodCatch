@@ -34,9 +34,14 @@ public class InputHudTip : VisualElement
         }
     }
 
-
     public InputHudTip()
     {
+        Init();
+
+    }
+    public InputHudTip(InputAction inputAction)
+    {
+
         Init();
 
     }

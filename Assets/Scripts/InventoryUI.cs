@@ -37,8 +37,8 @@ public class InventoryUI : PausePage
         InputManager.Input.UI.ChangeTab.Enable();
         leftTab = this.Q("LeftBumper");
         rightTab = this.Q("RightBumper");
-        ChangeIcons(GameManager.Instance.inputMethod);
-        GameManager.Instance.OnInputChange += OnInputChange;
+       
+        
 
     }
     public override bool Back()
@@ -48,10 +48,7 @@ public class InventoryUI : PausePage
         return base.Back();
         
     }
-    private void OnInputChange(InputMethod method)
-    {
-        ChangeIcons(method);
-    }
+
 
     void ChangeTab(InputAction.CallbackContext context)
     {
@@ -67,30 +64,5 @@ public class InventoryUI : PausePage
     }
 
 
-    void ChangeIcons(InputMethod inputMethod)
-    {
-        foreach (var binding in InputManager.Input.UI.ChangeTab.bindings.Where((x)=>x.groups== (inputMethod== InputMethod.mouseAndKeyboard?"Keyboard&Mouse":"Gamepad")))
-        {
-            if (binding.isPartOfComposite)
-            {
-                if (binding.name == "positive")
-                {
-                    InputDisplayer.GetInputIcon(binding, inputMethod).Completed+=(x) => rightTab.style.backgroundImage = x.Result;
-
-
-                    Debug.Log("has binding " + binding.effectivePath);
-
-                }
-                else if (binding.name == "negative")
-                {
-                    InputDisplayer.GetInputIcon(binding, inputMethod).Completed += (x) => leftTab.style.backgroundImage = x.Result;
-                }
-            }
-            
-
-
-
-        }
-
-    }
+    
 }

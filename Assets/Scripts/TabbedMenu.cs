@@ -16,6 +16,7 @@ public class TabbedMenu : VisualElement
 
     private readonly VisualElement m_TabContent;
     private readonly VisualElement m_Content;
+    private VisualElement changeTabRight, changeTabLeft;
 
     private readonly List<TabMenuButton> m_Tabs = new List<TabMenuButton>();
     private TabMenuButton m_ActiveTab;
@@ -27,24 +28,57 @@ public class TabbedMenu : VisualElement
         AddToClassList(s_UssClassName);
         styleSheets.Add(Resources.Load<StyleSheet>("UXMLs/TabbedView"));
 
+        var tabParent = new VisualElement();
+        tabParent.name = "unity-topbar-container";
+        hierarchy.Add(tabParent);
         m_TabContent = new VisualElement();
         m_TabContent.name = "unity-tabs-container";
         m_TabContent.AddToClassList(s_TabsContainerClassName);
-        hierarchy.Add(m_TabContent);
+       
+
+
+        changeTabLeft = new();
+        changeTabLeft.name = "changeTabLeftIcon";
+        changeTabLeft.style.width = 60;
+        changeTabLeft.style.height = 60;
+        changeTabLeft.AddToClassList("ChangeTabIcons");
+
+
+        changeTabRight = new();
+        changeTabRight.AddToClassList("ChangeTabIcons");
+        changeTabRight.name = "changeTabRightIcon";        
+        changeTabRight.style.width = 60;
+        changeTabRight.style.height = 60;
+
+
+        tabParent.Add(changeTabLeft);
+        tabParent.Add(m_TabContent);
+        tabParent.Add(changeTabRight);
+        tabParent.style.flexDirection = FlexDirection.Row;
 
         m_Content = new VisualElement();
         m_Content.name = "unity-content-container";
         m_Content.AddToClassList(s_ContentContainerClassName);
         hierarchy.Add(m_Content);
 
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnInputChange += ChangeTabIcons;
+            ChangeTabIcons( GameManager.Instance.inputMethod);
+        }
+        else
+        {
+            ChangeTabIcons(InputMethod.mouseAndKeyboard);
+        }
         RegisterCallback<AttachToPanelEvent>(ProcessEvent);
+       
     }
 
     public void AddTab(TabMenuButton tabButton, bool activate)
     {
         m_Tabs.Add(tabButton);
         m_TabContent.Add(tabButton);
-
+        //changeTabRight.BringToFront();
         tabButton.OnClose += RemoveTab;
         tabButton.OnSelect += Activate;
 
@@ -112,9 +146,9 @@ public class TabbedMenu : VisualElement
         {
             SelectTab(m_ActiveTab);
         }
-        else if (m_TabContent.childCount > 0)
+        else if (m_Tabs.Count > 0)
         {
-            m_ActiveTab = (TabMenuButton)m_TabContent[0];
+            m_ActiveTab = m_Tabs[0];
 
             SelectTab(m_ActiveTab);
         }
@@ -170,7 +204,32 @@ public class TabbedMenu : VisualElement
     {
         
     }
+    void ChangeTabIcons(InputMethod inputMethod)
+    {
+        foreach (var binding in InputManager.Input.UI.ChangeTab.bindings.Where((x) => x.groups == (inputMethod == InputMethod.mouseAndKeyboard ? "Keyboard&Mouse" : "Gamepad")))
+        {
+            if (binding.isPartOfComposite)
+            {
+                if (binding.name == "positive")
+                {
+                    InputDisplayer.GetInputIcon(binding, inputMethod).Completed += (x) => changeTabRight.style.backgroundImage = x.Result;
 
+
+                    Debug.Log("has binding " + binding.effectivePath);
+
+                }
+                else if (binding.name == "negative")
+                {
+                    InputDisplayer.GetInputIcon(binding, inputMethod).Completed += (x) => changeTabLeft.style.backgroundImage = x.Result;
+                }
+            }
+
+
+
+
+        }
+
+    }
 
 
 }
