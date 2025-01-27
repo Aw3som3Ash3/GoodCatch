@@ -185,6 +185,9 @@
     right: -47%;
     -unity-font-style: bold;
     top: -5px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-text-outline-width: 1px;
+    text-shadow: 1px 2px 0 rgb(0, 0, 0);
 }
 
 #FightTab {
