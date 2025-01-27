@@ -131,6 +131,7 @@
     width: 100%;
     background-image: url("project://database/Assets/Art/2D/UI/tab_other.png?fileID=21300000&guid=2d610eadbdfa6ae41b9f5e1337b4f5ce&type=3#tab_other");
     -unity-background-image-tint-color: rgba(58, 97, 117, 0.59);
+    translate: 0 14px;
 }
 
 #CombatTabs .unity-tab-button--active {
@@ -141,6 +142,8 @@
     -unity-background-image-tint-color: rgb(58, 97, 117);
     -unity-text-outline-width: 3px;
     -unity-text-outline-color: rgb(0, 0, 0);
+    translate: 0 1px;
+    transition-duration: 0.1s;
 }
 
 #CombatTabs .unity-tab-button:hover {
@@ -165,6 +168,8 @@
     background-color: rgba(0, 0, 0, 0);
     -unity-text-outline-width: 3px;
     -unity-text-outline-color: rgb(0, 0, 0);
+    scale: 1 1.2;
+    transform-origin: bottom;
 }
 
 #CombatTabs .unity-tab-button__top-bar {
@@ -302,6 +307,9 @@
     scale: 1.2 1.2;
     transition-duration: 0.1s;
     transform-origin: center;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 1.5px;
+    -unity-text-outline-color: rgb(0, 0, 0);
 }
 
 #Profile #unity-progress-bar {

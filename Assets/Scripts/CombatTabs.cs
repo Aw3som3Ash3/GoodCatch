@@ -97,8 +97,6 @@ public class CombatTabs : TabbedMenu
         {
             children.First().Children().ToArray()[childIndex].Focus();
         }
-           
-        
 
     }
 }

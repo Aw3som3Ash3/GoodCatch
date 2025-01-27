@@ -66,6 +66,7 @@ public class InventoryUI : PausePage
 
     }
 
+
     void ChangeIcons(InputMethod inputMethod)
     {
         foreach (var binding in InputManager.Input.UI.ChangeTab.bindings.Where((x)=>x.groups== (inputMethod== InputMethod.mouseAndKeyboard?"Keyboard&Mouse":"Gamepad")))

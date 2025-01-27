@@ -26,9 +26,10 @@ public class InventoryTabs : TabbedMenu
      
                 SetList(listView, dummyList);
             }
-            
+           
             
             TabMenuButton menu = new TabMenuButton(menus[i], listView);
+            menu.focusable = false;
             AddTab(menu,i==0? true:false);
         }
         
@@ -52,6 +53,12 @@ public class InventoryTabs : TabbedMenu
 
         }
        
+    }
+
+    protected override void OnChangedTab(VisualElement element)
+    {
+        base.OnChangedTab(element);
+        element.Q<ListView>().SetSelection(0);
     }
     void SetList(MultiColumnListView listView,List<ItemInventory.ItemSlot> playerInventory)
     {
