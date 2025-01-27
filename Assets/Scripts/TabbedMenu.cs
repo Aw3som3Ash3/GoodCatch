@@ -81,7 +81,7 @@ public class TabbedMenu : VisualElement
         //changeTabRight.BringToFront();
         tabButton.OnClose += RemoveTab;
         tabButton.OnSelect += Activate;
-
+        
         if (activate)
         {
             Activate(tabButton);
@@ -294,7 +294,7 @@ public class TabMenuButton : VisualElement
     {
         ContextualMenuManipulator menuManipulator = new ContextualMenuManipulator(PopulateContextMenu);
 
-        visualElement.focusable = true;
+        visualElement.focusable = false;
         visualElement.pickingMode = PickingMode.Position;
         visualElement.AddManipulator(menuManipulator);
 
