@@ -377,7 +377,7 @@ public class CombatManager : MonoBehaviour
     {
         CanFightEnd();
         currentTurn.Value.StartTurn();
-        
+        combatVisualizer.TargetCameraToFish(currentTurn.Value);
         if (currentTurn.Value is EnemyTurn)
         {
             

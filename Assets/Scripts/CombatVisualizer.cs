@@ -37,11 +37,13 @@ public class CombatVisualizer : MonoBehaviour
     EventSystem eventSystem;
     [SerializeField]
     Transform floaterStart;
+    [SerializeField] Transform cameraTarget;
     //public Action CompletedMove;
 
 
     Action canceled;
     Action<int> DepthSelection;
+
     private void Awake()
     {
         combatManager = FindObjectOfType<CombatManager>();
@@ -139,7 +141,10 @@ public class CombatVisualizer : MonoBehaviour
         Destroy(damageNumber);
     }
 
-
+    public void TargetCameraToFish(Turn turn)
+    {
+        cameraTarget.position = turnToObject[turn].transform.position;
+    }
     public void MoveFish(CombatManager.Turn turn, Vector3 destination, Action CompletedMove = null)
     {
         if (!turnToObject.ContainsKey(turn))
