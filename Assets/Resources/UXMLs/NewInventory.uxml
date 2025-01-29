@@ -33,11 +33,6 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="TopContextBox" style="flex-grow: 0; flex-shrink: 0; flex-direction: row; align-self: auto; align-items: stretch; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 2%; position: absolute;">
-            <ui:VisualElement name="BumperBox" style="flex-grow: 0; flex-direction: row; align-self: center; flex-shrink: 0; bottom: -56px; right: -26px;">
-                <ui:VisualElement name="RightBumper" focusable="false" style="flex-grow: 0; flex-shrink: 0; width: 60px; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_rb.png?fileID=2800000&amp;guid=bfe7e59127dabd045ae59c15f4a76dda&amp;type=3#xbox_rb&quot;); height: 60px; position: absolute; right: -697px; bottom: -84px;" />
-                <ui:VisualElement name="LeftBumper" tabindex="20" style="flex-grow: 0; flex-shrink: 0; width: 60px; background-image: url(&quot;project://database/Assets/Art/2D/UI/ControlsInputImage/XboxControls/xbox_leftShoulder.png?fileID=2800000&amp;guid=c0a807700215b4849beccddf3b02226a&amp;type=3#xbox_leftShoulder&quot;); height: 60px; position: absolute; left: 43px; bottom: -85px;" />
-            </ui:VisualElement>
-        </ui:VisualElement>
+        <ui:VisualElement name="TopContextBox" style="flex-grow: 0; flex-shrink: 0; flex-direction: row; align-self: auto; align-items: stretch; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 2%; position: absolute;" />
     </ui:VisualElement>
 </ui:UXML>

@@ -125,10 +125,14 @@ public class CombatManager : MonoBehaviour
                 if (target < 0)
                 {
                     combatUI.ResetFishPreview();
-                    return;
+                    callback.Invoke(false);
                 }
-                DraftFish(index, target);
-                callback.Invoke();
+                else
+                {
+                    DraftFish(index, target);
+                    callback.Invoke(true);
+                }
+                
             });
         });
         Time.timeScale = 1;
@@ -377,7 +381,7 @@ public class CombatManager : MonoBehaviour
     {
         CanFightEnd();
         currentTurn.Value.StartTurn();
-        
+        combatVisualizer.TargetCameraToFish(currentTurn.Value);
         if (currentTurn.Value is EnemyTurn)
         {
             

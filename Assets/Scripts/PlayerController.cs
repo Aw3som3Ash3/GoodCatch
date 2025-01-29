@@ -245,7 +245,7 @@ public class PlayerController : MonoBehaviour,ISaveable
             fallSpeed = -9.8f;
             
             lastSafePosition.Add(this.transform.position);
-            if (lastSafePosition.Count > 180)
+            if (lastSafePosition.Count > 60)
             {
                 lastSafePosition.RemoveAt(0);
             }
@@ -382,7 +382,7 @@ public class PlayerController : MonoBehaviour,ISaveable
             characterController.enabled = false;
             if (this.transform.position.y + 1 < other.transform.position.y)
             {
-                this.transform.position = lastSafePosition[lastSafePosition.Count-1];
+                this.transform.position = lastSafePosition[0];
             }
             characterController.enabled = true;
 

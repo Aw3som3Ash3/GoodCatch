@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class InputHudTip : VisualElement
 {
-    
+
     public string inputName { get; set; }
     InputAction inputAction;
     public new class UxmlFactory : UxmlFactory<InputHudTip, UxmlTraits>
@@ -30,13 +30,18 @@ public class InputHudTip : VisualElement
             {
                 ate.ChangeIcon();
             }
-            //ate.SubscribeToInputChange();
+            
         }
     }
 
-
     public InputHudTip()
     {
+        Init();
+
+    }
+    public InputHudTip(InputAction inputAction)
+    {
+
         Init();
 
     }
