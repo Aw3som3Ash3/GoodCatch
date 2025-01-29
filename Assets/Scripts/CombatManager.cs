@@ -125,10 +125,14 @@ public class CombatManager : MonoBehaviour
                 if (target < 0)
                 {
                     combatUI.ResetFishPreview();
-                    return;
+                    callback.Invoke(false);
                 }
-                DraftFish(index, target);
-                callback.Invoke();
+                else
+                {
+                    DraftFish(index, target);
+                    callback.Invoke(true);
+                }
+                
             });
         });
         Time.timeScale = 1;

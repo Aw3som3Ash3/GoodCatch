@@ -99,13 +99,13 @@ public class CombatVisualizer : MonoBehaviour
             return;
         }
         var textObj = new GameObject("damage text", typeof(TextMeshPro));
-        textObj.transform.position = turnToObject[turn].transform.position-Camera.main.transform.forward;
+        textObj.transform.position = turnToObject[turn].transform.position;
         textObj.transform.rotation = Camera.main.transform.rotation;
         textObj.layer = 16;
         var tmp=textObj.GetComponent<TextMeshPro>();
         tmp.text = damage.ToString("00");
         tmp.alignment=TMPro.TextAlignmentOptions.Center;
-        tmp.fontSize = 12;
+        tmp.fontSize = 11;
         switch (effectiveness)
         {
             case Element.Effectiveness.none:
@@ -378,14 +378,13 @@ public class CombatVisualizer : MonoBehaviour
         StopTargeting();
        
         DepthSelection = null;
-
-        if(GameManager.Instance.inputMethod == InputMethod.controller)
-        {
-            eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
-        }
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(true);
+        }
+        if (GameManager.Instance.inputMethod == InputMethod.controller)
+        {
+            eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
         }
         DepthSelection =targeted;
 

@@ -178,7 +178,7 @@ public class CombatUI : VisualElement
         throw new NotImplementedException();
     }
 
-    public void Draft(IList<FishMonster> playerFishes, Action<int,Action> callback)
+    public void Draft(IList<FishMonster> playerFishes, Action<int,Action<bool>> callback)
     {
         //ResetDisplayAbilities();
         tabbedView.SetEnabled(false);
@@ -217,26 +217,37 @@ public class CombatUI : VisualElement
                 isSelected = true;
                 slot.AddToClassList("DraftSelected");
                 PreivewFish(playerFishes[index]);
-                callback(index, () =>
+                callback(index, (Completed) =>
                 {
                     isSelected = false;
-                    if (index == -1)
-                    {
-                        return;
-                    }
-                    slot.SetEnabled(false);
-                    slot.style.unityBackgroundImageTintColor = Color.gray;
                     slot.RemoveFromClassList("DraftSelected");
+                    if (Completed)
+                    {
+                        slot.style.unityBackgroundImageTintColor = Color.gray;
+                        //var nextSelectedSlot = combatDraftUI.Q<Button>("slot" + (index + 1));
+                        //nextSelectedSlot.Focus();
+                        slot.SetEnabled(false);
+                    }
+
                     if (GameManager.Instance.inputMethod == InputMethod.controller)
                     {
                         int k = 0;
                         Button nextSelectedSlot;
-                        do
+                        if (Completed)
                         {
-                            nextSelectedSlot = combatDraftUI.Q<Button>("slot" + (k + 1));
-                            k++;
+                            do
+                            {
 
-                        } while (!nextSelectedSlot.enabledSelf);
+                                nextSelectedSlot = combatDraftUI.Q<Button>("slot" + (k + 1));
+                                k++;
+
+                            } while (!nextSelectedSlot.enabledSelf);
+                        }
+                        else
+                        {
+                            nextSelectedSlot = combatDraftUI.Q<Button>("slot" + (index + 1));
+                          
+                        }
 
                         nextSelectedSlot.Focus();
                     }
