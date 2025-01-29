@@ -99,9 +99,9 @@ public class CombatVisualizer : MonoBehaviour
             return;
         }
         var textObj = new GameObject("damage text", typeof(TextMeshPro));
-        textObj.transform.position = turnToObject[turn].transform.position;
+        textObj.transform.position = turnToObject[turn].transform.position-Camera.main.transform.forward;
         textObj.transform.rotation = Camera.main.transform.rotation;
-        textObj.layer = 13;
+        textObj.layer = 16;
         var tmp=textObj.GetComponent<TextMeshPro>();
         tmp.text = damage.ToString("00");
         tmp.alignment=TMPro.TextAlignmentOptions.Center;
