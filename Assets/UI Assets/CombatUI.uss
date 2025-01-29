@@ -104,7 +104,7 @@
     justify-content: space-around;
     align-items: flex-start;
     align-self: flex-start;
-    height: 35%;
+    height: auto;
     width: 904px;
 }
 

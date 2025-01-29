@@ -40,14 +40,6 @@
     font-size: 37px;
 }
 
-.unity-tabbed-view__tabs-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    width: 505px;
-    margin-left: 117px;
-}
-
 .unity-tabbed-view__content-container {
     flex-grow: 1;
     height: 100px;
@@ -83,4 +75,29 @@
     -unity-slice-right: 0;
     -unity-slice-scale: 1px;
     background-image: url("project://database/Assets/Art/2D/UI/dotted_line.png?fileID=21300000&guid=18d7bcbe08fd1b54f8b40745bfda4a5a&type=3#dotted_line");
+}
+
+.unity-tabbed-view__tabs-container {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    margin-left: 0;
+    margin-right: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+#unity-topbar-container {
+    margin-left: 60px;
+    margin-right: 60px;
+    flex-grow: 0;
+    flex-direction: row;
+    right: 0;
+    left: 0;
+    justify-content: space-around;
+}
+
+.ChangeTabIcons {
+    padding-bottom: 0;
+    margin-top: -10px;
 }

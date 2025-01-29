@@ -37,11 +37,13 @@ public class CombatVisualizer : MonoBehaviour
     EventSystem eventSystem;
     [SerializeField]
     Transform floaterStart;
+    [SerializeField] Transform cameraTarget;
     //public Action CompletedMove;
 
 
     Action canceled;
     Action<int> DepthSelection;
+
     private void Awake()
     {
         combatManager = FindObjectOfType<CombatManager>();
@@ -99,11 +101,11 @@ public class CombatVisualizer : MonoBehaviour
         var textObj = new GameObject("damage text", typeof(TextMeshPro));
         textObj.transform.position = turnToObject[turn].transform.position;
         textObj.transform.rotation = Camera.main.transform.rotation;
-        textObj.layer = 13;
+        textObj.layer = 16;
         var tmp=textObj.GetComponent<TextMeshPro>();
         tmp.text = damage.ToString("00");
         tmp.alignment=TMPro.TextAlignmentOptions.Center;
-        tmp.fontSize = 12;
+        tmp.fontSize = 11;
         switch (effectiveness)
         {
             case Element.Effectiveness.none:
@@ -139,7 +141,10 @@ public class CombatVisualizer : MonoBehaviour
         Destroy(damageNumber);
     }
 
-
+    public void TargetCameraToFish(Turn turn)
+    {
+        cameraTarget.position = turnToObject[turn].transform.position;
+    }
     public void MoveFish(CombatManager.Turn turn, Vector3 destination, Action CompletedMove = null)
     {
         if (!turnToObject.ContainsKey(turn))
@@ -373,14 +378,13 @@ public class CombatVisualizer : MonoBehaviour
         StopTargeting();
        
         DepthSelection = null;
-
-        if(GameManager.Instance.inputMethod == InputMethod.controller)
-        {
-            eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
-        }
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(true);
+        }
+        if (GameManager.Instance.inputMethod == InputMethod.controller)
+        {
+            eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
         }
         DepthSelection =targeted;
 
