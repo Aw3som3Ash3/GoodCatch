@@ -278,7 +278,8 @@
     transform-origin: center;
     color: rgb(255, 255, 255);
     -unity-text-outline-color: rgb(0, 0, 0);
-    -unity-text-outline-width: 1.5px;
+    -unity-text-outline-width: 2.5px;
+    text-shadow: 2px 1px 0 rgba(0, 0, 0, 0);
 }
 
 #Move:focus {
@@ -311,8 +312,9 @@
     transition-duration: 0.1s;
     transform-origin: center;
     color: rgb(255, 255, 255);
-    -unity-text-outline-width: 1.5px;
+    -unity-text-outline-width: 2.5px;
     -unity-text-outline-color: rgb(0, 0, 0);
+    text-shadow: 2px 1px 0 rgba(0, 0, 0, 0);
 }
 
 #Profile #unity-progress-bar {
