@@ -17,23 +17,27 @@ MonoBehaviour:
   states:
   - name: 
     description: 
-    objective: 
+    requirements:
+    - rid: 2711234729367568384
+  - name: 
+    description: 
     requirements:
     - rid: 6225482795948703745
-    - rid: 6225482795948703746
   references:
     version: 2
     RefIds:
+    - rid: 2711234729367568384
+      type: {class: CatchNumOfFishRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: CatchNumOfFishRequirement
+        IsCompleted: 0
+        targetOfFish: 1
+        currentAmount: 0
     - rid: 6225482795948703745
       type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: CatchNumOfSpecificFishRequirement
         IsCompleted: 0
-        targetOfFish: 3
+        targetOfFish: 1
+        currentAmount: 0
         fishMonsterType: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
-    - rid: 6225482795948703746
-      type: {class: CatchNumOfFishRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: CatchNumOfFishRequirement
-        IsCompleted: 0
-        targetOfFish: 5
