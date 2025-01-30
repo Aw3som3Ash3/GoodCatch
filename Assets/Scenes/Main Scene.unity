@@ -4697,6 +4697,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allScenes:
   - DesertIsland
+  - JungleScene
+  - Volcano
   playerController: {fileID: 202057787}
   mainUI: {fileID: 900925920}
 --- !u!1 &1682559721
@@ -4731,6 +4733,9 @@ MonoBehaviour:
   startingQuest: {fileID: 11400000, guid: 4dcc27b68f4890944bc97d51e92ebea4, type: 2}
   activeQuests: []
   completedQuests: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &1682559723
 Transform:
   m_ObjectHideFlags: 0
