@@ -185,6 +185,9 @@
     right: -47%;
     -unity-font-style: bold;
     top: -5px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-text-outline-width: 1px;
+    text-shadow: 1px 2px 0 rgb(0, 0, 0);
 }
 
 #FightTab {
@@ -275,7 +278,8 @@
     transform-origin: center;
     color: rgb(255, 255, 255);
     -unity-text-outline-color: rgb(0, 0, 0);
-    -unity-text-outline-width: 1.5px;
+    -unity-text-outline-width: 2.5px;
+    text-shadow: 2px 1px 0 rgba(0, 0, 0, 0);
 }
 
 #Move:focus {
@@ -308,8 +312,9 @@
     transition-duration: 0.1s;
     transform-origin: center;
     color: rgb(255, 255, 255);
-    -unity-text-outline-width: 1.5px;
+    -unity-text-outline-width: 2.5px;
     -unity-text-outline-color: rgb(0, 0, 0);
+    text-shadow: 2px 1px 0 rgba(0, 0, 0, 0);
 }
 
 #Profile #unity-progress-bar {
@@ -452,4 +457,13 @@
 .unity-tabbed-view__content-container {
     flex-grow: 1;
     height: 100px;
+}
+
+#AlfredInfo .unity-text-element {
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    font-size: 0;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    text-shadow: 2px 1px 0 rgb(0, 0, 0);
 }
