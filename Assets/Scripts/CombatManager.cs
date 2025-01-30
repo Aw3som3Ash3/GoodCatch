@@ -802,9 +802,13 @@ public class CombatManager : MonoBehaviour
         }
         public void EndTurn()
         {
-            fish.RecoverStamina();
-            TickEffects(StatusEffect.EffectUsage.postTurn);
-            TurnEnded?.Invoke();
+            if (actionsCompleted)
+            {
+                fish.RecoverStamina();
+                TickEffects(StatusEffect.EffectUsage.postTurn);
+                TurnEnded?.Invoke();
+            }
+            
         }
         public void Move(Action callback)
         {
