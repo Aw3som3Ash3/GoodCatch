@@ -218,6 +218,7 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
     [SerializeField]
     protected int targetOfFish;
     [SerializeField]
+    [HideInInspector]
     protected int currentAmount;
 
     public override string Objective => $"Catch {currentAmount}/{targetOfFish} fish";
