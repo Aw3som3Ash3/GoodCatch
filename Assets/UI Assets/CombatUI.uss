@@ -145,6 +145,7 @@
     -unity-text-outline-color: rgb(0, 0, 0);
     translate: 0 1px;
     transition-duration: 0.1s;
+    top: 4px;
 }
 
 #CombatTabs .unity-tab-button:hover {
@@ -243,9 +244,11 @@
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
-    top: 9px;
+    top: 18px;
     margin-bottom: 0;
     color: rgba(27, 27, 27, 0);
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
 }
 
 #Move:hover {
@@ -273,7 +276,6 @@
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
-    top: 9px;
     margin-bottom: 0;
     scale: 1.2 1.2;
     transition-duration: 0.1s;
@@ -308,7 +310,6 @@
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
-    top: 9px;
     margin-bottom: 0;
     scale: 1.2 1.2;
     transition-duration: 0.1s;
@@ -459,6 +460,7 @@
 .unity-tabbed-view__content-container {
     flex-grow: 1;
     height: 100px;
+    justify-content: flex-start;
 }
 
 #AlfredInfo .unity-text-element {
@@ -468,4 +470,8 @@
     color: rgb(255, 255, 255);
     -unity-font-style: bold;
     text-shadow: 2px 1px 0 rgb(0, 0, 0);
+}
+
+.ChangeTabIcons {
+    bottom: -11px;
 }
