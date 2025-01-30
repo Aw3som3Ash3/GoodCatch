@@ -27,8 +27,18 @@ public class FishingMiniGame : MonoBehaviour
     LayerMask fishZones;
 
     public Action OnCancel;
+
+    FishingPromptUI prompt;
+
+    void Awake()
+    {
+        prompt = FindObjectOfType<FishingPromptUI>(true);
+    }
+
     public void Initiate(Floater floater)
     {
+        prompt.ShowUI();
+
         this.floater = floater;
         virtualCamera.Priority = 15;
         InputManager.Input.Fishing.Enable();
@@ -51,6 +61,8 @@ public class FishingMiniGame : MonoBehaviour
     }
     void ExitFishing()
     {
+        prompt.DisableUI();
+
         InputManager.Input.Fishing.Disable();
         Destroy(this.gameObject);
         InputManager.Input.Fishing.Hook.performed -= OnHook;
