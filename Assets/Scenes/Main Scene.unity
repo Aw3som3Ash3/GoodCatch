@@ -2813,6 +2813,69 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.33945686, y: 0.6602352, z: 1.0777054}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1172314988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1172314990}
+  - component: {fileID: 1172314989}
+  m_Layer: 0
+  m_Name: CombatTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1172314989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172314988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b635a2c90ec1154c93290288868be6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action:
+    m_Name: Action
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: db088d1b-63a9-432d-889f-fb3cb5081a21
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1d061150-1857-4bdc-9f99-72507738f7c0
+      m_Path: <Keyboard>/f8
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Action
+      m_Flags: 0
+    m_Flags: 0
+  fishType: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
+  numOfFish: 3
+--- !u!4 &1172314990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172314988}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -36.482388, y: -3.1162803, z: -71.97025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1196275347
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,6 +4699,53 @@ MonoBehaviour:
   - DesertIsland
   playerController: {fileID: 202057787}
   mainUI: {fileID: 900925920}
+--- !u!1 &1682559721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682559723}
+  - component: {fileID: 1682559722}
+  m_Layer: 0
+  m_Name: QuestTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1682559722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682559721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4e4de07c2e9624eac181ff18b0a8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingQuest: {fileID: 11400000, guid: 4dcc27b68f4890944bc97d51e92ebea4, type: 2}
+  activeQuests: []
+  completedQuests: []
+--- !u!4 &1682559723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682559721}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40.869976, y: 4.3970275, z: -65.85285}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1772234276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6405,6 +6515,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 440733129}
+  - {fileID: 1682559723}
   - {fileID: 1670307632}
   - {fileID: 1460091548}
   - {fileID: 660186770}
@@ -6422,3 +6533,4 @@ SceneRoots:
   - {fileID: 668919500}
   - {fileID: 1004009602}
   - {fileID: 1110349346}
+  - {fileID: 1172314990}
