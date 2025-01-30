@@ -4770,6 +4770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allScenes:
   - DesertIsland
+  - JungleScene
+  - Volcano
   playerController: {fileID: 202057787}
   mainUI: {fileID: 900925920}
 --- !u!1 &1682559721
@@ -6543,7 +6545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -115.67
+      value: -115.16
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6551,11 +6553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48.4
+      value: 48.2
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.58806413
+      value: 0.5905541
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalRotation.x
@@ -6563,7 +6565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.80881435
+      value: 0.8069981
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalRotation.z
@@ -6575,7 +6577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 107.96
+      value: 107.607
       objectReference: {fileID: 0}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
