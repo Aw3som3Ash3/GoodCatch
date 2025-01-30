@@ -132,6 +132,7 @@
     background-image: url("project://database/Assets/Art/2D/UI/tab_other.png?fileID=21300000&guid=2d610eadbdfa6ae41b9f5e1337b4f5ce&type=3#tab_other");
     -unity-background-image-tint-color: rgba(58, 97, 117, 0.59);
     translate: 0 14px;
+    bottom: -13px;
 }
 
 #CombatTabs .unity-tab-button--active {
@@ -203,6 +204,7 @@
     background-image: url("project://database/Assets/Art/2D/UI/tab_fight.png?fileID=21300000&guid=258d1ccbfc066ba4abdf4cddd956a9e6&type=3#tab_fight");
     -unity-background-image-tint-color: rgb(58, 97, 117);
     height: 121%;
+    bottom: -9px;
 }
 
 #FightTab .unity-tab-button__content {
@@ -213,7 +215,7 @@
     align-items: center;
     background-color: rgb(58, 97, 117);
     max-height: 56%;
-    top: 9%;
+    top: 12.5%;
 }
 
 #Move {
