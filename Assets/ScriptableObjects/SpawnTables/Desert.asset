@@ -15,16 +15,16 @@ MonoBehaviour:
   daySpawn:
   - monster: {fileID: 11400000, guid: c5c8534c9be51e843a0840c8e4b4817c, type: 2}
     weight: 15
-  - monster: {fileID: 11400000, guid: 626f74771430aa44486f2c349ee21c44, type: 2}
+  - monster: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
     weight: 10
   - monster: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}
     weight: 10
-  - monster: {fileID: 11400000, guid: 4c4d1a2ba2dc3944a88c93c6f5c1c85e, type: 2}
+  - monster: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
     weight: 5
   nightSpawn:
-  - monster: {fileID: 11400000, guid: 626f74771430aa44486f2c349ee21c44, type: 2}
+  - monster: {fileID: 11400000, guid: 69edc2e2b09f128498b841b6605aad02, type: 2}
     weight: 10
   - monster: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}
     weight: 15
-  - monster: {fileID: 11400000, guid: 4c4d1a2ba2dc3944a88c93c6f5c1c85e, type: 2}
+  - monster: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
     weight: 15
