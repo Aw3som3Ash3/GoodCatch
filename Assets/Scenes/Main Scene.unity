@@ -2933,7 +2933,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   fishType: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
-  numOfFish: 3
+  numOfFish: 1
 --- !u!4 &1172314990
 Transform:
   m_ObjectHideFlags: 0
@@ -4804,6 +4804,9 @@ MonoBehaviour:
   startingQuest: {fileID: 11400000, guid: 4dcc27b68f4890944bc97d51e92ebea4, type: 2}
   activeQuests: []
   completedQuests: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &1682559723
 Transform:
   m_ObjectHideFlags: 0
