@@ -45,6 +45,8 @@ public class ShipControls : Station
     }
     void OnLeaveStation(InputAction.CallbackContext context)
     {
+        turnSpeed = 0;
+        sailValue = 0;
         InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
         LeaveSation();
     }
