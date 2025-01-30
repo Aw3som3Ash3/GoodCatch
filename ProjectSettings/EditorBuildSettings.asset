@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: efdf58ecf51595f46847b45a2105eea6
   - enabled: 1
-    path: Assets/Scenes/Islands/DreamIsland.unity
-    guid: 3c917bc96a14f704cbe9b98bfd618496
-  - enabled: 1
     path: Assets/Scenes/IntroScene.unity
     guid: e6404e75399eabb44b48696b314e7784
   - enabled: 1
