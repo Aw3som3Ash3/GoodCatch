@@ -42,6 +42,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
     // Start is called before the first frame update
     void Start()
     {
+        //if(activeQuests)
         AddQuest(startingQuest);
         currentQuest = activeQuests[0];
         currentQuest.Progressed += (state, requirement) => { OnQuestUpdate?.Invoke(currentQuest); };
@@ -67,5 +68,6 @@ public class QuestTracker : MonoBehaviour,ISaveable
         var data = JsonUtility.FromJson<(List<Quest.QuestInstance> active, List<Quest.QuestInstance> complete)>(json);
         activeQuests=data.active;
         completedQuests = data.complete;
+        OnQuestUpdate?.Invoke(currentQuest);
     }
 }
