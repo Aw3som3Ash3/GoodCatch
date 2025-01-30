@@ -1,0 +1,4 @@
+Idle: 1-60
+Phys. Attk.:181-240
+Magic Attk.:61-120
+Exuasted:121-180

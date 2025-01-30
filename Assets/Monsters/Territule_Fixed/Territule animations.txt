@@ -1,0 +1,7 @@
+Territule Animations:
+Idle: 12 - 150
+Physical: 175 - 490 (don't ask)
+Magical: no need has no magical attack
+Exausted: 500 - 638
+Dead: 175 - 240
+
