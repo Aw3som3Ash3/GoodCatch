@@ -132,6 +132,7 @@
     background-image: url("project://database/Assets/Art/2D/UI/tab_other.png?fileID=21300000&guid=2d610eadbdfa6ae41b9f5e1337b4f5ce&type=3#tab_other");
     -unity-background-image-tint-color: rgba(58, 97, 117, 0.59);
     translate: 0 14px;
+    bottom: -13px;
 }
 
 #CombatTabs .unity-tab-button--active {
@@ -144,6 +145,7 @@
     -unity-text-outline-color: rgb(0, 0, 0);
     translate: 0 1px;
     transition-duration: 0.1s;
+    top: 4px;
 }
 
 #CombatTabs .unity-tab-button:hover {
@@ -203,6 +205,7 @@
     background-image: url("project://database/Assets/Art/2D/UI/tab_fight.png?fileID=21300000&guid=258d1ccbfc066ba4abdf4cddd956a9e6&type=3#tab_fight");
     -unity-background-image-tint-color: rgb(58, 97, 117);
     height: 121%;
+    bottom: -9px;
 }
 
 #FightTab .unity-tab-button__content {
@@ -213,7 +216,7 @@
     align-items: center;
     background-color: rgb(58, 97, 117);
     max-height: 56%;
-    top: 9%;
+    top: 12.5%;
 }
 
 #Move {
@@ -241,9 +244,11 @@
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
-    top: 9px;
+    top: 18px;
     margin-bottom: 0;
     color: rgba(27, 27, 27, 0);
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
 }
 
 #Move:hover {
@@ -271,7 +276,6 @@
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
-    top: 9px;
     margin-bottom: 0;
     scale: 1.2 1.2;
     transition-duration: 0.1s;
@@ -306,7 +310,6 @@
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
-    top: 9px;
     margin-bottom: 0;
     scale: 1.2 1.2;
     transition-duration: 0.1s;
@@ -457,6 +460,7 @@
 .unity-tabbed-view__content-container {
     flex-grow: 1;
     height: 100px;
+    justify-content: flex-start;
 }
 
 #AlfredInfo .unity-text-element {
@@ -466,4 +470,8 @@
     color: rgb(255, 255, 255);
     -unity-font-style: bold;
     text-shadow: 2px 1px 0 rgb(0, 0, 0);
+}
+
+.ChangeTabIcons {
+    bottom: -11px;
 }
