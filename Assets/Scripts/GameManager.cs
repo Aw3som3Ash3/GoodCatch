@@ -160,6 +160,8 @@ public class GameManager : MonoBehaviour,ISaveable
     [SerializeField]
     UIDocument mainUI;
     UIDocument MainUI { get { if (mainUI == null) { return GameObject.Find("MainHud")?.GetComponent<UIDocument>(); } else { return mainUI; } } }
+
+    public event Action<FishMonsterType> CaughtFish;
     private void Awake()
     {
 
@@ -374,10 +376,10 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
-        CapturedFish(fishMonsterType.GenerateMonster());
+        CapturedFish(fishMonsterType.GenerateMonster(),true);
         
     }
-    public void CapturedFish(FishMonster fishMonster)
+    public void CapturedFish(FishMonster fishMonster,bool ignoreQuest=false)
     {
 
         switch (PlayerFishventory.AddFish(fishMonster))
@@ -391,6 +393,11 @@ public class GameManager : MonoBehaviour,ISaveable
         }
         gameData.hasSeenFish[fishMonster.ID]= true;
         Debug.Log("is fish found:"+ gameData.hasSeenFish[fishMonster.ID]);
+        if (!ignoreQuest)
+        {
+            CaughtFish?.Invoke(fishMonster.Type);
+        }
+       
 
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
@@ -411,6 +418,7 @@ public class GameManager : MonoBehaviour,ISaveable
             SceneManager.sceneLoaded += SceneLoadedLost;
         }
         SavingSystem.SaveSelf(this);
+        SavingSystem.SaveSelf(FindObjectOfType<QuestTracker>());
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
         SceneManager.LoadScene(mainScene);
@@ -443,10 +451,6 @@ public class GameManager : MonoBehaviour,ISaveable
         }
         
     }
-    
-    
-
-   
 
     public void Load(string json)
     {

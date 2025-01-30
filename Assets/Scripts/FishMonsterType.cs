@@ -217,7 +217,7 @@ public class FishMonster
 {
 
     FishMonsterType type;
-    FishMonsterType Type 
+    public FishMonsterType Type 
     { 
         get 
         { 
@@ -226,7 +226,7 @@ public class FishMonster
                 type = GameManager.Instance.Database.fishMonsters[id];
             } 
             return type;
-        } set 
+        } private set 
         {
             type = value; 
         } 

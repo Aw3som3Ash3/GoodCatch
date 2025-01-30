@@ -25,14 +25,18 @@ public class QuestUI : MonoBehaviour
 
         subQuestHeader.visible = false;
         subQuestImport.visible = false;
+
+        QuestTracker.Instance.OnQuestUpdate += (q) => { questText.text = q.CurrentState.Objective; };
+        if (QuestTracker.Instance.currentQuest != null)
+        {
+            questText.text = QuestTracker.Instance.currentQuest.CurrentState.Objective;
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hasFished == false)
-        {
-            questText.text = "Go Fishing";
-        }
+       
     }
 }

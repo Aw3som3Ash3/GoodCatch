@@ -523,13 +523,17 @@ public class CombatUI : VisualElement
     private void UpdateHealthDisplay()
     {
         healthBar.value = currentTurn.Health/currentTurn.MaxHealth;
+        healthBar.Q<Label>("HealthValue").text = currentTurn.Health + "/" + currentTurn.MaxHealth;
         staminaBar.value = currentTurn.Stamina/currentTurn.MaxStamina;
-        
+        //staminaBar.Q<Label>("StaminaValue").text = currentTurn.Stamina + "/" + currentTurn.MaxStamina;
+
     }
     private void UpdateHealthDisplayer(FishMonster fish)
     {
         healthBar.value = fish.Health / fish.MaxHealth;
+        healthBar.Q<Label>("HealthValue").text = fish.Health + "/" + fish.MaxHealth;
         staminaBar.value = fish.Stamina / fish.MaxStamina;
+        //staminaBar.Q<Label>("StaminaValue").text = fish.Stamina + "/" + fish.MaxStamina;
 
     }
     public void SetInventory(ItemInventory inv)
