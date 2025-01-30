@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Quest;
-using static UnityEditor.VersionControl.Asset;
 
 [CreateAssetMenu(fileName = "Quest", menuName = "Quest System/Quest", order = 3)]
 
@@ -25,8 +24,8 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         [SerializeField]
         [Multiline]
         string description;
-        [SerializeField]
-        string objective;
+        //[SerializeField]
+        //string objective;
         public string Objective 
         { 
             get 
@@ -114,13 +113,16 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
     {
         Quest quest;
         Quest @Quest { get { if (quest == null) { quest = Quest.getQuestById[questId]; } return quest; } set { quest = value; } }
+        [SerializeField]
         string questId;
         public string QuestName { get { return @Quest.name; } }
         public string QuestDescription { get { return @Quest.description; } }
        
         //public string QuestDescription { get { return quest.description; } }
         public QuestType type { get { return @Quest.type; } }
-        readonly public QuestState[] states;
+        [SerializeField]
+        public QuestState[] states;
+        [SerializeField]
         int currentStateIndex;
         public QuestState CurrentState 
         { 
@@ -215,6 +217,7 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
 {
     [SerializeField]
     protected int targetOfFish;
+    [SerializeField]
     protected int currentAmount;
 
     public override string Objective => $"Catch {currentAmount}/{targetOfFish} fish";

@@ -14,7 +14,7 @@ public class QuestUI : MonoBehaviour
 
     bool hasFished = false;
 
-    private void OnEnable()
+    private void Awake()
     {
         UIElement = this.gameObject;
         var rootVisualElement = GetComponent<UIDocument>().rootVisualElement;
@@ -26,12 +26,16 @@ public class QuestUI : MonoBehaviour
         subQuestHeader.visible = false;
         subQuestImport.visible = false;
 
+        
+        
+    }
+    private void Start()
+    {
         QuestTracker.Instance.OnQuestUpdate += (q) => { questText.text = q.CurrentState.Objective; };
         if (QuestTracker.Instance.currentQuest != null)
         {
             questText.text = QuestTracker.Instance.currentQuest.CurrentState.Objective;
         }
-        
     }
 
     // Update is called once per frame
