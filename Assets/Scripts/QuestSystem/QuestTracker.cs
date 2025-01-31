@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -47,6 +48,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
         currentQuest = activeQuests[0];
         currentQuest.Progressed += (state, requirement) => { OnQuestUpdate?.Invoke(currentQuest); };
         OnQuestUpdate?.Invoke(currentQuest);
+       
     }
 
     // Update is called once per frame
@@ -69,5 +71,11 @@ public class QuestTracker : MonoBehaviour,ISaveable
         activeQuests=data.active;
         completedQuests = data.complete;
         OnQuestUpdate?.Invoke(currentQuest);
+        
+    }
+
+    public IEnumerable<T> FindActiveRequirments<T>(Func<T, bool> predicate) where T : Quest.QuestRequirement
+    {
+       return activeQuests.Select(x => (x.CurrentState.Requirements.Where(r=>r is T)as IEnumerable<T>).FirstOrDefault(predicate));
     }
 }

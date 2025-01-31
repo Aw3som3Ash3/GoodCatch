@@ -841,18 +841,6 @@ PrefabInstance:
       propertyPath: mainUI
       value: 
       objectReference: {fileID: 900925920}
-    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
-      propertyPath: testfisth.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5880d3e7f6b0c7e4c8e8fdc20562efaf, type: 2}
-    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
-      propertyPath: testfisth.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
-    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
-      propertyPath: testfisth.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 69edc2e2b09f128498b841b6605aad02, type: 2}
     - target: {fileID: 6632416249239343018, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: m_LocalPosition.x
       value: 363.66382
