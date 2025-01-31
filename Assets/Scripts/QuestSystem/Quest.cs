@@ -42,8 +42,8 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
 
         [SerializeField]
         [SerializeReference]
-        QuestRequirement[] requirements;
-        public QuestRequirement[] Requirements { get { return requirements; } }
+        public QuestRequirement[] requirements;
+        //public QuestRequirement[] Requirements { get { return requirements; } }
 
         public event Action Completed;
         public event Action<QuestState, QuestRequirement> Progressed;
@@ -95,7 +95,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         }
         public abstract void Init();
 
-        protected void RequirementCompleted()
+        public void RequirementCompleted()
         {
             IsCompleted = true;
             Completed?.Invoke();
