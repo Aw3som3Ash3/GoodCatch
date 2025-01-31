@@ -147,8 +147,8 @@ public class CombatUI : VisualElement
         infoScreenDefense.text = fish.Fortitude.value.ToString();
         infoScreenMagicAttack.text = fish.Special.value.ToString();
         infoScreenMagicDefense.text = fish.SpecialFort.value.ToString();
-        infoScreenHealth.text = fish.Health.ToString()+"/"+fish.MaxHealth;
-        infoScreenStamina.text = fish.MaxStamina.ToString();
+        infoScreenHealth.text = fish.Health.ToString("00")+"/"+fish.MaxHealth.ToString("00");
+        infoScreenStamina.text = fish.MaxStamina.ToString("00");
     }
     private void OnInputChange(InputMethod method)
     {
@@ -523,7 +523,7 @@ public class CombatUI : VisualElement
     private void UpdateHealthDisplay()
     {
         healthBar.value = currentTurn.Health/currentTurn.MaxHealth;
-        healthBar.Q<Label>("HealthValue").text = currentTurn.Health + "/" + currentTurn.MaxHealth;
+        healthBar.Q<Label>("HealthValue").text = currentTurn.Health.ToString("00") + "/" + currentTurn.MaxHealth.ToString("00");
         staminaBar.value = currentTurn.Stamina/currentTurn.MaxStamina;
         //staminaBar.Q<Label>("StaminaValue").text = currentTurn.Stamina + "/" + currentTurn.MaxStamina;
 
@@ -531,7 +531,7 @@ public class CombatUI : VisualElement
     private void UpdateHealthDisplayer(FishMonster fish)
     {
         healthBar.value = fish.Health / fish.MaxHealth;
-        healthBar.Q<Label>("HealthValue").text = fish.Health + "/" + fish.MaxHealth;
+        healthBar.Q<Label>("HealthValue").text = fish.Health.ToString("00") + "/" + fish.MaxHealth.ToString("00");
         staminaBar.value = fish.Stamina / fish.MaxStamina;
         //staminaBar.Q<Label>("StaminaValue").text = fish.Stamina + "/" + fish.MaxStamina;
 

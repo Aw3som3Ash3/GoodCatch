@@ -171,9 +171,9 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                     float outgoingDamage = baseDamage + damageMod;
                     if (target.effects.Count>0)
                     {
-                        foreach (var effectInstance in target.effects.Where((x) => x.effect is GuardEffect))
+                        foreach (var effectInstance in target.effects.Where((x) => x is DefensiveEffect.DefensiveEffectInstance))
                         {
-                            outgoingDamage = (effectInstance.effect as GuardEffect).TransferDamage(outgoingDamage, element, abilityType, effectInstance);
+                            outgoingDamage = (effectInstance as DefensiveEffect.DefensiveEffectInstance).MitigateDamage(outgoingDamage, element, abilityType, effectInstance);
                         }
                     }
                     //Element.Effectiveness effectivenss;

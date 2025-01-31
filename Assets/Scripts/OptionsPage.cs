@@ -80,6 +80,9 @@ public class OptionsPage : PausePage
 
     private void OnMenu()
     {
+        GameObject.Destroy(QuestTracker.Instance.gameObject);
+        GameObject.Destroy(GameManager.Instance.gameObject);
+       
         SceneManager.LoadScene("MainMenu");
     }
 }
