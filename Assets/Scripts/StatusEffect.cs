@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-public abstract class StatusEffect : ScriptableObject
+public abstract class StatusEffect: ScriptableObject
 {
     [SerializeField]
     int duration;
@@ -19,7 +19,7 @@ public abstract class StatusEffect : ScriptableObject
     EffectUsage effectUsage;
 
 
-    public StatusEffectInstance NewInstance(FishMonster owner)
+    public virtual StatusEffectInstance NewInstance(FishMonster owner)
     {
         return new StatusEffectInstance(this,owner);
     }
@@ -31,6 +31,9 @@ public abstract class StatusEffect : ScriptableObject
         public StatusEffect effect { get; private set; }
         public Action<int> DurationChanged;
         public EffectUsage effectUsage { get { return effect.effectUsage; } }
+        /// <summary>
+        /// owner is the fish that casted the ability that proced the effect
+        /// </summary>
         public FishMonster owner { get; private set; }
         public StatusEffectInstance(StatusEffect effect,FishMonster owner)
         {

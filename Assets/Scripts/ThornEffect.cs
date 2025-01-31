@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "Thorns", menuName = "Status Effect/Thorns", order = 2)]
 public class ThornEffect : StatusEffect
 {
     [SerializeField]
