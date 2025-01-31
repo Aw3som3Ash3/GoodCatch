@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Barrier", menuName = "Status Effect/Defensive Effects/Barrier", order = 2)]
 public class BarrierEffect : DefensiveEffect
 {
 

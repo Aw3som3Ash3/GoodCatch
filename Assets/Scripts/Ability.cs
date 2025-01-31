@@ -177,8 +177,10 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                         }
                     }
                     //Element.Effectiveness effectivenss;
-                    damageDone = target.fish.TakeDamage(outgoingDamage, element, abilityType,out effectiveness);
-                    foreach(var effect in target.effects.Where((x) => x.effect is ThornEffect))
+                    
+                    damageDone = target.fish.TakeDamage(outgoingDamage, element, abilityType, out effectiveness);
+
+                    foreach (var effect in target.effects.Where((x) => x.effect is ThornEffect))
                     {
                         (effect.effect as ThornEffect).ReflectDamage(user.fish);
                     }
@@ -195,6 +197,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                     damageDone = 0;
                     effectiveness = Element.Effectiveness.none;
                 }
+                
                 ProctEffect(user, target);
                 hit = true;
             }

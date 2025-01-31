@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Guard", menuName = "Status Effect/Guard", order = 2)]
+[CreateAssetMenu(fileName = "Guard", menuName = "Status Effect/Defensive Effects/Guard", order = 2)]
 public class GuardEffect : DefensiveEffect
 {
     [SerializeField]
