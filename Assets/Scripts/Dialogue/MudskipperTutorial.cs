@@ -6,9 +6,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
-public class MudskipperTutorial : MonoBehaviour, IInteractable
+public class MudskipperTutorial : NPC
 {
-    public string StationName => "Mudskipper";
+
+    //public string StationName => "Mudskipper";
     public MudskipperDialogue dialogue;
 
     void Awake()
@@ -16,10 +17,11 @@ public class MudskipperTutorial : MonoBehaviour, IInteractable
         dialogue = FindObjectOfType<MudskipperDialogue>(true);
     }
 
-    public bool Interact()
+    public override bool Interact()
     {
+
         dialogue.DisplayFirstOption(LoadMainScene);
-        return true;
+        return base.Interact();
     }    
 
     void LoadMainScene()
