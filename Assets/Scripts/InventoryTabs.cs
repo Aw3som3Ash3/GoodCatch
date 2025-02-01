@@ -68,6 +68,7 @@ public class InventoryTabs : TabbedMenu
         //nameColumn.width = 50;
         nameColumn.sortable = true;
         nameColumn.stretchable = true;
+        //nameColumn.width =
         listView.columns.Add(nameColumn);
         
 
@@ -77,7 +78,9 @@ public class InventoryTabs : TabbedMenu
         
         //amountColumn.width = 50;
         amountColumn.sortable = true;
-        amountColumn.stretchable = true;
+        amountColumn.width = 250;
+        
+        //amountColumn.stretchable = true;
         listView.columns.Add(amountColumn);
         listView.showBorder = true;
         listView.sortingEnabled = true;
