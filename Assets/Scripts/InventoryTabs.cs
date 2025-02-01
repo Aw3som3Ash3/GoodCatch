@@ -127,13 +127,22 @@ public class InventoryTabs : TabbedMenu
         //var nameCell= new Label();
         //var amountCell= new Label();
         
-        Label leftLabel = new Label();
-        leftLabel.AddToClassList("left-column-text");
+        
         Label rightLabel = new Label();
         rightLabel.AddToClassList("right-column-text");
 
-        listView.columns["name"].makeCell = () => new Label();
-        listView.columns["amount"].makeCell = () => new Label();
+        listView.columns["name"].makeCell = () => 
+        {
+            Label leftLabel = new Label();
+            leftLabel.AddToClassList("left-column-text");
+            return leftLabel;
+        };
+        listView.columns["amount"].makeCell = () => 
+        {
+            Label rightLabel = new Label();
+            rightLabel.AddToClassList("right-column-text");
+            return rightLabel;
+        };
         listView.showAlternatingRowBackgrounds=AlternatingRowBackground.All;
 
         listView.columns["name"].bindCell = (VisualElement element, int index) =>
