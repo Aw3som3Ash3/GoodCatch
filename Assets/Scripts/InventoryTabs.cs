@@ -73,6 +73,7 @@ public class InventoryTabs : TabbedMenu
 
         var amountColumn = new Column();
         amountColumn.title = "amount";
+        amountColumn.name = "amount";
         
         //amountColumn.width = 50;
         amountColumn.sortable = true;
@@ -126,17 +127,16 @@ public class InventoryTabs : TabbedMenu
         listView.itemsSource = playerInventory;
         //var nameCell= new Label();
         //var amountCell= new Label();
-        
-        
-        
 
-        listView.columns["name"].makeCell = () => 
+
+
+        listView.columns["name"].makeCell = () =>
         {
             Label leftLabel = new Label();
             leftLabel.AddToClassList("left-column-text");
             return leftLabel;
         };
-        listView.columns["amount"].makeCell = () => 
+        listView.columns["amount"].makeCell = () =>
         {
             Label rightLabel = new Label();
             rightLabel.AddToClassList("right-column-text");
