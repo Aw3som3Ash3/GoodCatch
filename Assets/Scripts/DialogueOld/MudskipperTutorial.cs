@@ -10,17 +10,17 @@ public class MudskipperTutorial : NPC
 {
 
     //public string StationName => "Mudskipper";
-    public MudskipperDialogue dialogue;
+    //public MudskipperDialogue dialogue;
 
     void Awake()
     {
-        dialogue = FindObjectOfType<MudskipperDialogue>(true);
+        //dialogue = FindObjectOfType<MudskipperDialogue>(true);
     }
 
     public override bool Interact()
     {
-
-        dialogue.DisplayFirstOption(LoadMainScene);
+       
+        //dialogue.DisplayFirstOption(LoadMainScene);
         return base.Interact();
     }    
 
