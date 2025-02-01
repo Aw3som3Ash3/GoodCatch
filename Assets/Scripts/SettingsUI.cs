@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UIElements;
@@ -58,9 +59,26 @@ public class SettingsUI : VisualElement
             music.RegisterValueChangedCallback((evt) => GameManager.Instance.audioMixer.SetFloat("Music", evt.newValue));
         }
         
-
+      
         resolutions = this.Q<DropdownField>("ScreenDropDown");
+        resolutions.choices = Screen.resolutions.Select((x) => x.width.ToString() + "x" + x.height.ToString()).ToList();
+        resolutions.value = Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString();
+        resolutions.RegisterValueChangedCallback((evt) =>
+        {
+            var resolution = Screen.resolutions[resolutions.value.IndexOf(evt.newValue)];
+            int width=resolution.width;
+            int height = resolution.height;
+            var full = Screen.fullScreenMode;
+            Screen.SetResolution(width, height, full);
+
+        });
+        //Screen.SetResolution(1920, 1080, true);
+
+
+
         vsync = this.Q<Toggle>("VSYNCToggle");
+        vsync.value=QualitySettings.vSyncCount>0?true:false;
+        vsync.RegisterValueChangedCallback(evt => QualitySettings.vSyncCount = evt.newValue ? 1 : 0);
         brightness = this.Q<Slider>("BrightnessSlider");
     }
 }
