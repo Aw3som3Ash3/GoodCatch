@@ -22,9 +22,7 @@ public abstract class DialogueNode
     public string guid;
 
     public Vector2 position;
-    
 
-    
 
     public virtual void Enter()
     {
@@ -47,7 +45,8 @@ public class BasicDialogue : DialogueNode
 {
     [SerializeReference]
     public DialogueNode nextNode;
-    
+
+   
 }
 
 [Serializable]
@@ -67,4 +66,19 @@ public class BranchingDialogue : DialogueNode
     }
 
    
+}
+
+[Serializable]
+public class GiveQuest : BasicDialogue
+{
+    [SerializeField]
+    public Quest quest;
+
+    public override void Enter()
+    {
+        base.Enter();
+        QuestTracker.Instance?.AddQuest(quest);
+    }
+
+
 }

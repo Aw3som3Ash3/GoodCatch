@@ -12,8 +12,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dialogue", menuName = "Dialogue System/DialogueTree", order = 2)]
 public class Dialogue : ScriptableObject
 {
-    [SerializeReference]
+    [SerializeField]
+    //[SerializeReference]
     public StartNode rootNode;
+    [SerializeField]
     [SerializeReference]
     public List<DialogueNode> nodes;
 
@@ -23,10 +25,16 @@ public class Dialogue : ScriptableObject
 
     private void OnEnable()
     {
-        if (rootNode == null)
-        {
-            CreateRoot();
-        }
+        //if (rootNode == null)
+        //{
+        //    CreateRoot();
+            
+        //    nodes = new();
+        //}
+        //if (rootNode.guid == null && rootNode.guid != "root")
+        //{
+        //    rootNode.guid = "root";
+        //}
     }
 
     public DialogueNode CreateNode(Type type,Vector2 pos)
@@ -46,7 +54,8 @@ public class Dialogue : ScriptableObject
     public void CreateRoot()
     {
         var node = new StartNode();
-        node.guid = GUID.Generate().ToString();
+        //node.guid = GUID.Generate().ToString();
+        node.guid = "root";
         rootNode = node;
     }
     //public void MakeRoot(DialogueNode node) 
@@ -65,13 +74,17 @@ public class Dialogue : ScriptableObject
 
 #endif
 
-
+    [Serializable]
     public class StartNode 
     {
         [SerializeReference]
         public DialogueNode nextNode;
         public string guid;
         public Vector2 position = new();
+        public StartNode()
+        {
+            guid = "root";
+        }
     }
 }
 

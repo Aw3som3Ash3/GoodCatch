@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static BranchingDialogue;
-using static UnityEditor.Experimental.GraphView.Port;
 
 public abstract class DialogueNodeView : Node
 {
@@ -30,7 +30,11 @@ public abstract class DialogueNodeView : Node
         this.Q<Label>("title-label").text= dialogueNode.GetType().Name;
         dialogueField = this.Q<TextField>("dialogue");
         dialogueField.value = dialogueNode.dialouge;
-        dialogueField.RegisterValueChangedCallback((s) => dialogueNode.dialouge = s.newValue);
+        dialogueField.RegisterValueChangedCallback((s) => 
+        { 
+            dialogueNode.dialouge = s.newValue; 
+            AssetDatabase.SaveAssets(); 
+        }) ;
 
         input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(DialogueNode));
         input.allowMultiDrag = true;
@@ -108,7 +112,11 @@ public class DialogueBranchNodeView : DialogueNodeView
     void AddNewBranch(BranchingDialogue.Decision decision)
     {
         var port = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DialogueNode));
-        var branchView = new DialogueBranchView((s) => decision.choice = s.newValue, port,decision ,()=> (dialogueNode as BranchingDialogue).decisions.Remove(decision));
+        var branchView = new DialogueBranchView((s) => decision.choice = s.newValue, port,decision ,()=> 
+        { 
+            (dialogueNode as BranchingDialogue).decisions.Remove(decision); 
+            AssetDatabase.SaveAssets(); 
+        });
         outputContainer.Add(branchView);
     }
 
@@ -156,6 +164,24 @@ public class RootNodeView:Node
         outputContainer.Add(output);
     }
 
+}
+
+
+public class QuestNodeView : DialogueLineNodeView
+{
+    public QuestNodeView(DialogueNode dialogueNode) : base(dialogueNode)
+    {
+        var field = new ObjectField("Quest");
+        field.objectType = typeof(Quest);
+        field.RegisterValueChangedCallback((evt) => 
+        {
+            (dialogueNode as GiveQuest).quest = evt.newValue as Quest;
+           
+            AssetDatabase.SaveAssets();
+        } );
+        this.Q("extra").Add(field);
+
+    }
 }
 //public class DecisionPort : Port
 //{

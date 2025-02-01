@@ -12,7 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
   m_Name: Dialogue
   m_EditorClassIdentifier: 
-  nodes: []
+  rootNode:
+    nextNode:
+      rid: 187471170727313408
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 187471170727313408
+  - rid: 187471171136520215
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 187471170727313408
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 
+        guid: 4e1c50ee2c0854b41a24d63e4d58a049
+        position: {x: 535.3334, y: 86}
+        nextNode:
+          rid: 187471171136520215
+    - rid: 187471171136520215
+      type: {class: GiveQuest, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 
+        guid: 434b0be87598fc24697c93459975e1d4
+        position: {x: 1000.6667, y: 195.33334}
+        nextNode:
+          rid: -2
+        quest: {fileID: 0}
