@@ -19,7 +19,17 @@ public class DialogueDisplayer : MonoBehaviour
        
         rootVisualElement.visible = true;
         reader =new DialogueReader(dialogue);
-        reader.NextDialogue += (text) => { dialogueText.text = text; option1.visible = false; option2.visible = false; InputSystem.onAnyButtonPress.CallOnce(ctrl => reader.Next()); };
+        var inputs = new GoodCatchInputs();
+        inputs.UI.NextDialogue.performed += (x) => reader.Next();
+        inputs.UI.NextDialogue.Enable();
+        reader.NextDialogue += (text) => 
+        { 
+            dialogueText.text = text; 
+            option1.visible = false; 
+            option2.visible = false; 
+           
+            
+        };
         reader.OnCompleted += () =>
         {
             rootVisualElement.visible = false;
@@ -27,6 +37,8 @@ public class DialogueDisplayer : MonoBehaviour
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
             InputManager.EnablePlayer();
+            inputs.UI.NextDialogue.Disable();
+            inputs.Dispose();
         };
         //option1.clicked += () =>;
         

@@ -31,6 +31,7 @@ public class DialogueReader : IDisposable
     {
         if (currentNode == null)
         {
+            Debug.Log("completed dialogue");
             OnCompleted?.Invoke();
 
             return;
@@ -46,7 +47,7 @@ public class DialogueReader : IDisposable
     }
     public void Next()
     {
-        if(currentNode is BasicDialogue)
+        if(!(currentNode is BranchingDialogue))
         {
             currentNode.Exit();
             currentNode = (currentNode as BasicDialogue).nextNode;

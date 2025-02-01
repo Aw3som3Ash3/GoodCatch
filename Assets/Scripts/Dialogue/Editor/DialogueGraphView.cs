@@ -197,7 +197,8 @@ public class DialogueGraphView : GraphView
             });
         }
 
-
+        EditorUtility.SetDirty(dialogueTree);
+        AssetDatabase.SaveAssets();
         return graphViewChange;
         //throw new NotImplementedException();
     }
@@ -244,7 +245,15 @@ public class DialogueGraphView : GraphView
         
         if (dialogueNode is BasicDialogue)
         {
-            nodeView= new DialogueLineNodeView(dialogueNode);
+            
+            if (dialogueNode is GiveQuest)
+            {
+                nodeView = new QuestNodeView(dialogueNode);
+            }
+            else
+            {
+                nodeView = new DialogueLineNodeView(dialogueNode);
+            }
         }
         else if (dialogueNode is BranchingDialogue)
         {
