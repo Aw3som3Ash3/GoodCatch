@@ -11,6 +11,7 @@ public class OptionsPage : PausePage
     Button settings, save, load, mainMenu;
     VisualElement settingsBox;
     SaveAndLoadScreen saveAndLoadScreen;
+    SettingsUI settingsUI;
 
     public new class UxmlFactory : UxmlFactory<OptionsPage, OptionsPage.UxmlTraits>
     {
@@ -30,10 +31,12 @@ public class OptionsPage : PausePage
         this.StretchToParentSize();
         settings = this.Q<Button>("SettingsButton");
         settings.clicked += OnSettings;
-        save = this.Q<Button>("SaveButton");
-        save.clicked += OnSave;
-        load = this.Q<Button>("LoadButton");
-        load.clicked += OnLoad;
+        settingsUI = this.Q<SettingsUI>();
+        settingsUI.visible = false;
+        //save = this.Q<Button>("SaveButton");
+        //save.clicked += OnSave;
+        //load = this.Q<Button>("LoadButton");
+        //load.clicked += OnLoad;
         mainMenu = this.Q<Button>("MainMenu");
         mainMenu.clicked += OnMenu;
         settingsBox = this.Q("SettingsBox");
@@ -51,7 +54,8 @@ public class OptionsPage : PausePage
     }
     private void OnSettings()
     {
-        throw new NotImplementedException();
+        settingsUI.visible = true;
+        //throw new NotImplementedException();
     }
 
     private void OnSave()
