@@ -65,11 +65,15 @@ public class SettingsUI : VisualElement
         resolutions.value = Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString();
         resolutions.RegisterValueChangedCallback((evt) =>
         {
-            var resolution = Screen.resolutions[resolutions.value.IndexOf(evt.newValue)];
+
+            var resolution = Screen.resolutions[resolutions.index];
             int width=resolution.width;
             int height = resolution.height;
             var full = Screen.fullScreenMode;
             Screen.SetResolution(width, height, full);
+            Debug.Log(resolution);
+            Debug.Log(Screen.currentResolution);
+            
 
         });
         //Screen.SetResolution(1920, 1080, true);
