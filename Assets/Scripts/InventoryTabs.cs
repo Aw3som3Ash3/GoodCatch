@@ -73,7 +73,7 @@ public class InventoryTabs : TabbedMenu
 
         var amountColumn = new Column();
         amountColumn.title = "amount";
-        amountColumn.name = "amount";
+        
         //amountColumn.width = 50;
         amountColumn.sortable = true;
         amountColumn.stretchable = true;
@@ -127,6 +127,11 @@ public class InventoryTabs : TabbedMenu
         //var nameCell= new Label();
         //var amountCell= new Label();
         
+        Label leftLabel = new Label();
+        leftLabel.AddToClassList("left-collumn-text");
+        Label rightLabel = new Label();
+        rightLabel.AddToClassList("right-collumn-text");
+
         listView.columns["name"].makeCell = () => new Label();
         listView.columns["amount"].makeCell = () => new Label();
         listView.showAlternatingRowBackgrounds=AlternatingRowBackground.All;
