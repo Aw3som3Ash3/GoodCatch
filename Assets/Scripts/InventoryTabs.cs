@@ -128,8 +128,7 @@ public class InventoryTabs : TabbedMenu
         //var amountCell= new Label();
         
         
-        Label rightLabel = new Label();
-        rightLabel.AddToClassList("right-column-text");
+        
 
         listView.columns["name"].makeCell = () => 
         {
