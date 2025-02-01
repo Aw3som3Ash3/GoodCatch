@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
@@ -159,6 +160,8 @@ public class GameManager : MonoBehaviour,ISaveable
 
     [SerializeField]
     UIDocument mainUI;
+    [SerializeField]
+    public AudioMixer audioMixer;
     UIDocument MainUI { get { if (mainUI == null) { return GameObject.Find("MainHud")?.GetComponent<UIDocument>(); } else { return mainUI; } } }
 
     public event Action<FishMonsterType> CaughtFish;
