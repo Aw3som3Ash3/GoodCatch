@@ -12,7 +12,7 @@
                         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" text="Settings" class="PauseButton" style="background-color: rgba(200, 200, 200, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; -unity-font-style: normal; width: 500px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
                         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenu" text="Main Menu" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-style: normal;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="menu-container" style="flex-grow: 1;">
+                    <ui:VisualElement name="menu-container" style="flex-grow: 1; margin-right: 74px; margin-left: 74px;">
                         <SettingsUI />
                     </ui:VisualElement>
                 </ui:VisualElement>
