@@ -27,7 +27,7 @@ public class DialogueDisplayer : MonoBehaviour
             dialogueText.text = text; 
             option1.visible = false; 
             option2.visible = false; 
-           
+            
             
         };
         reader.OnCompleted += () =>
