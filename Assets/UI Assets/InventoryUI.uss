@@ -159,7 +159,7 @@
     font-size: 27px;
 }
 
-#unity-multi-column-view__row-container .unity-text-element .unity-label {
-    color: rgb(255, 0, 0);
-    font-size: 14px;
+.right-column-text {
+    -unity-text-align: upper-right;
+    margin-right: 26px;
 }
