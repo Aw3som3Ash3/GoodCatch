@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ModularSettings.uss?fileID=7433441132597879392&amp;guid=29894c24db7ca614a82f2edbb69fb673&amp;type=3#ModularSettings" />
+    <ui:VisualElement name="Workspace" style="flex-grow: 1;">
+        <ui:ScrollView name="SettingsBox" style="width: auto; flex-grow: 1;">
+            <ui:Label tabindex="-1" text="Sounds" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Sounds" style="border-bottom-color: rgb(211, 226, 245); border-bottom-width: 2px; width: 157px;" />
+            <ui:VisualElement name="MasterSoundContainer" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                <ui:Label tabindex="-1" text="Master Sound" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MasterSound" />
+                <ui:Slider high-value="100" name="MasterSoundSlider" style="width: 466px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="SFXContainer" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                <ui:Label tabindex="-1" text="Combat SFX" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SFX" />
+                <ui:Slider high-value="100" name="SFXSlider" style="width: 466px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="MusicContainer" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                <ui:Label tabindex="-1" text="Background Music" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MusicContainer" />
+                <ui:Slider high-value="100" name="MusicSlider" style="width: 466px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ForcableSpace" style="flex-grow: 1;">
+                <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Screen" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Screen" style="border-bottom-color: rgb(211, 226, 245); border-bottom-width: 2px; width: 161px;" />
+            <ui:DropdownField label="Dropdown" name="ScreenDropDown" />
+            <ui:VisualElement name="VSYNCContainer" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                <ui:Label tabindex="-1" text="VSYNC" parse-escape-sequences="true" display-tooltip-when-elided="true" name="VSYNC" />
+                <ui:Toggle name="VSYNCToggle" />
+            </ui:VisualElement>
+            <ui:VisualElement name="BrightnessContianer" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+                <ui:Label tabindex="-1" text="Brightness" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Brightness" />
+                <ui:Slider high-value="100" name="BrightnessSlider" style="width: 466px;" />
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

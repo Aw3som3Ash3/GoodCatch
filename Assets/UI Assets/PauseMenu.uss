@@ -19,3 +19,10 @@
     transition-duration: 0.1s;
     scale: 1.1 1.1;
 }
+
+#SettingsBox .unity-text-element {
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
+    color: rgb(211, 226, 245);
+    font-size: 59px;
+}
