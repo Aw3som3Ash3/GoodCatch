@@ -608,7 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Mudskipper
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 1925a89bd1bc0394499d89dc59b7d8db, type: 2}
 --- !u!136 &510201482
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -917,26 +917,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1078670870}
   - component: {fileID: 1078670869}
-  - component: {fileID: 1078670868}
+  - component: {fileID: 1078670871}
   m_Layer: 0
-  m_Name: MudskipperUI
+  m_Name: DialogueUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1078670868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078670867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f72f41e8737ba2347b226912f9b59439, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1078670869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,6 +956,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1078670871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078670867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b785bcdf6bd3a2c419653b97b197f81c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1250704361
 PrefabInstance:
   m_ObjectHideFlags: 0

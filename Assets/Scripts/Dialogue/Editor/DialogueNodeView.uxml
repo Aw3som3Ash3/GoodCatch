@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="node-border" focusable="true" style="flex-grow: 1; background-color: rgba(55, 55, 55, 0.47); color: rgb(210, 210, 210);">
+        <ui:VisualElement name="title" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); height: 30px; min-height: 0; flex-direction: row;">
+            <ui:Label tabindex="-1" text="Title" display-tooltip-when-elided="true" name="title-label" style="height: 27px; font-size: 15px; background-color: rgb(31, 31, 31); min-height: 10px; min-width: 120px; width: 338px;" />
+            <ui:VisualElement name="title-button-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+        </ui:VisualElement>
+        <ui:TextField picking-mode="Ignore" label="Dialogue" value="test" multiline="true" auto-correction="true" name="dialogue" style="padding-top: 1px; padding-right: 15px; height: auto; background-color: rgb(37, 37, 37); margin-left: 0; margin-right: 0; padding-left: 3px; flex-direction: column; flex-wrap: wrap; flex-grow: 0; flex-shrink: 0; flex-basis: auto; margin-bottom: 0;" />
+        <ui:VisualElement name="contents" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: auto; flex-basis: auto; min-height: auto;">
+            <ui:VisualElement name="divider" style="flex-grow: 0; background-color: rgb(0, 0, 0); height: 0; min-height: 3px; padding-left: 0; padding-top: 0; margin-top: 0;" />
+            <ui:VisualElement name="top" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                <ui:VisualElement name="input" style="flex-grow: 1; background-color: rgb(53, 53, 53); flex-direction: row; flex-shrink: 1; align-items: flex-start; align-self: stretch; width: 49%;" />
+                <ui:VisualElement name="divider" style="flex-grow: 1; background-color: rgba(31, 31, 31, 0.91); flex-direction: row; justify-content: flex-start; align-self: auto; min-width: 1%; max-width: 1%;" />
+                <ui:VisualElement name="output" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); min-width: 49%; max-width: 75%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="selection-border" focusable="false" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 100%; width: 100%; position: absolute; top: 0; left: 1px;" />
+</ui:UXML>
