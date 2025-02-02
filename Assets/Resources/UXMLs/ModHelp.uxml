@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ModHelp.uss?fileID=7433441132597879392&amp;guid=0e68547ab3b2da74a88427963518cf06&amp;type=3#ModHelp" />
+    <ui:VisualElement style="width: auto;">
+        <ui:ScrollView>
+            <ui:VisualElement name="Title">
+                <ui:Label tabindex="-1" text="CombatTips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatTips" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Details">
+                <ui:Label tabindex="-1" text="During a combat encounter you must select up to three of your monsters in your party to engage in combat.&#10;Remember to place monsters in lanes, that gives you the advantage.&#10;Monsters that you selected might be more useful when placed behind other monsters due to them having lower amount of health!&#10;Same goes other way around. Some of your monsters might be more useful in the front as they have higher health polls and defensive capabilities.&#10;Use the ability of your monster at the bottom of the screen to perform their roles! &#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Title">
+                <ui:Label tabindex="-1" text="Abilities" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Abilities" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Details">
+                <ui:Label tabindex="-1" text="Monsters have abilities that have some properties to them. A lot of information about your monsters’ abilities can be seen when hovering over the abilities in a tool tip.&#10;Abilities can cause certain status effects to activate on the enemy. The chance of a status effect activating is located inside the tooltip when hovering over your monster’s ability.&#10;There are two types of abilities to be aware of! There are magical and physical types of abilities, and they scale according to their corresponding stats.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Title">
+                <ui:Label tabindex="-1" text="Catching Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CatchingTIps" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Details">
+                <ui:Label tabindex="-1" text="Monsters at higher HP are going to be harder to catch since they haven’t been weakened yet. As the monster’s health goes down, the chance of catching the monster goes up.&#10;To catch the monster, you need to use the hooks you have procured and select the monster you would like to catch. &#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Title">
+                <ui:Label tabindex="-1" text="Inn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Inn" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Details">
+                <ui:Label tabindex="-1" text="Inns are where the player can rest, pass the time, and heal your monsters. The inn also acts as a spawn anchor when interacting with it." parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Title">
+                <ui:Label tabindex="-1" text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatTips" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Details">
+                <ui:Label tabindex="-1" text="You have your own boat. You can interact with your boat to get on it and drive it around! Your boat is your main journey to get around islands in the archipelago. You can dock your boat at the island’s piers when you approach them.&#10;Outside of boating across the ocean, you will be on foot on the islands where you will be able to sprint.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>
