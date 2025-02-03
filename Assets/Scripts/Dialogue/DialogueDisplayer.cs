@@ -33,6 +33,8 @@ public class DialogueDisplayer : MonoBehaviour
         reader.OnCompleted += () =>
         {
             rootVisualElement.visible = false;
+            option1.visible = false;
+            option2.visible = false;
             reader.Dispose();
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
