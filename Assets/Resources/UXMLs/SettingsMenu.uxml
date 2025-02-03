@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="ModControl" src="project://database/Assets/Resources/UXMLs/ModControl.uxml?fileID=9197481963319205126&amp;guid=90e12252c3347504b890f0580e2a9676&amp;type=3#ModControl" />
     <Style src="project://database/Assets/UI%20Assets/PauseMenu.uss?fileID=7433441132597879392&amp;guid=a7b5e17935909ec4ea2cbcebb02c8000&amp;type=3#PauseMenu" />
     <Style src="project://database/Assets/UI%20Assets/Options.uss?fileID=7433441132597879392&amp;guid=ddb424d28a728bf44b638637ad585ad5&amp;type=3#Options" />
     <ui:VisualElement name="SettingsMenuWorkspace" style="flex-grow: 1;">
@@ -16,8 +15,8 @@
                         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenu" text="Main Menu" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-style: normal;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="menu-container" style="flex-grow: 1; margin-right: 74px; margin-left: 74px;">
-                        <SettingsUI />
-                        <ui:Instance template="ModControl" name="ModControl" />
+                        <SettingsUI style="visibility: visible; display: flex;" />
+                        <ControlTabs />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
