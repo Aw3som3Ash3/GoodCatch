@@ -4,6 +4,7 @@
             <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
                 <ui:Label tabindex="-1" text="Sprint" parse-escape-sequences="true" display-tooltip-when-elided="true" />
             </ui:VisualElement>
+            <ControlsEditor input-Name="sprint" style="flex-direction: row;" />
         </ui:ScrollView>
     </ui:VisualElement>
 </ui:UXML>

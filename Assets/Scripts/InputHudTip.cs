@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,15 @@ public class InputHudTip : VisualElement
 
     public string inputName { get; set; }
     InputAction inputAction;
+
+    static event Action UpdateIcons;
     public new class UxmlFactory : UxmlFactory<InputHudTip, UxmlTraits>
     {
 
     }
     public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
     {
-        UxmlStringAttributeDescription m_inputName = new UxmlStringAttributeDescription {name="inputName", defaultValue="" };
+        UxmlStringAttributeDescription m_inputName = new UxmlStringAttributeDescription { name = "inputName", defaultValue = "" };
         public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
         {
             base.Init(ve, bag, cc);
@@ -30,25 +33,28 @@ public class InputHudTip : VisualElement
             {
                 ate.ChangeIcon();
             }
-            
+
         }
     }
 
     public InputHudTip()
     {
+        UpdateIcons += () => ChangeIcon();
         Init();
 
     }
     public InputHudTip(InputAction inputAction)
     {
-
         Init();
 
     }
-
+    public static void UpdateAllIcons()
+    {
+        UpdateIcons?.Invoke();
+    }
     public void Init()
     {
-        if (GameManager.Instance!= null)
+        if (GameManager.Instance != null)
         {
             ChangeIcon(GameManager.Instance.inputMethod);
         }
@@ -56,14 +62,14 @@ public class InputHudTip : VisualElement
         {
             ChangeIcon();
         }
-       
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnInputChange += ChangeIcon;
             Debug.Log("subscribed to input chnage");
         }
     }
-    void ChangeIcon(InputMethod inputMethod=InputMethod.mouseAndKeyboard)
+    void ChangeIcon(InputMethod inputMethod = InputMethod.mouseAndKeyboard)
     {
         if (inputName != null)
         {
@@ -73,7 +79,7 @@ public class InputHudTip : VisualElement
 
         if (inputAction != null)
         {
-            InputDisplayer.GetInputIcon(inputAction, inputMethod).Completed+=(x)=> this.style.backgroundImage = x.Result;
+            InputDisplayer.GetInputIcon(inputAction, inputMethod, 0, (x) => this.style.backgroundImage = x.Result);
             Debug.Log("has changed background");
         }
     }
@@ -84,5 +90,5 @@ public class InputHudTip : VisualElement
     //        GameManager.Instance.OnInputChange -= ChangeIcon;
     //    }
     //}
-    
+
 }

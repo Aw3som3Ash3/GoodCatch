@@ -171,14 +171,16 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                     float outgoingDamage = baseDamage + damageMod;
                     if (target.effects.Count>0)
                     {
-                        foreach (var effectInstance in target.effects.Where((x) => x.effect is GuardEffect))
+                        foreach (var effectInstance in target.effects.Where((x) => x is DefensiveEffect.DefensiveEffectInstance))
                         {
-                            outgoingDamage = (effectInstance.effect as GuardEffect).TransferDamage(outgoingDamage, element, abilityType, effectInstance);
+                            outgoingDamage = (effectInstance as DefensiveEffect.DefensiveEffectInstance).MitigateDamage(outgoingDamage, element, abilityType, effectInstance);
                         }
                     }
                     //Element.Effectiveness effectivenss;
-                    damageDone = target.fish.TakeDamage(outgoingDamage, element, abilityType,out effectiveness);
-                    foreach(var effect in target.effects.Where((x) => x.effect is ThornEffect))
+                    
+                    damageDone = target.fish.TakeDamage(outgoingDamage, element, abilityType, out effectiveness);
+
+                    foreach (var effect in target.effects.Where((x) => x.effect is ThornEffect))
                     {
                         (effect.effect as ThornEffect).ReflectDamage(user.fish);
                     }
@@ -195,6 +197,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                     damageDone = 0;
                     effectiveness = Element.Effectiveness.none;
                 }
+                
                 ProctEffect(user, target);
                 hit = true;
             }

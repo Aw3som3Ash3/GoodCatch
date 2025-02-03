@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GuardEffect : StatusEffect
+[CreateAssetMenu(fileName = "Guard", menuName = "Status Effect/Defensive Effects/Guard", order = 2)]
+public class GuardEffect : DefensiveEffect
 {
     [SerializeField]
     [Range(0, 1)]
@@ -13,16 +13,25 @@ public class GuardEffect : StatusEffect
     {
         
     }
-
-    public float TransferDamage( float damage,Element element, Ability.AbilityType type,StatusEffectInstance effectInstance)
+    public override StatusEffectInstance NewInstance(FishMonster owner)
     {
-
-        float damageToTransfer= damage*damageTransfer;
-        Element.Effectiveness effectiveness;
-        effectInstance.owner.TakeDamage(damage, element, type,out effectiveness);
-
-        return damage-damageToTransfer;
+        return new GuardEffectInstance(this,owner);
     }
 
-    
+    public class GuardEffectInstance : DefensiveEffectInstance
+    {
+        public GuardEffectInstance(StatusEffect effect, FishMonster owner) : base(effect, owner)
+        {
+        }
+
+        public override float MitigateDamage(float damage, Element element, Ability.AbilityType type, StatusEffectInstance effectInstance)
+        {
+
+            float damageToTransfer = damage * (effect as GuardEffect).damageTransfer;
+            Element.Effectiveness effectiveness;
+            effectInstance.owner.TakeDamage(damage, element, type, out effectiveness);
+
+            return damage - damageToTransfer;
+        }
+    }
 }
