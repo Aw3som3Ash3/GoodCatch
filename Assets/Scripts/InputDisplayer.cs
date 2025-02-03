@@ -45,7 +45,7 @@ public static class InputDisplayer
             else
                 return false;
 
-        }).First();
+        }).ToArray()[index];
 
         Debug.Log("binding" + binding.effectivePath);
         Debug.Log("controls" + control.path);

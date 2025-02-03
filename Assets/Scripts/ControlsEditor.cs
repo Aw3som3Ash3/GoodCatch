@@ -89,7 +89,14 @@ public class ControlsEditor : VisualElement
         //InputManager.Input.
         if (index >= bindings.Length)
         {
-            InputSystem.onAnyButtonPress.CallOnce((x) => { inputAction.AddBinding(x.path); ChangeIcons(); InputHudTip.UpdateAllIcons(); });
+           
+            InputSystem.onAnyButtonPress.CallOnce((x) => 
+            { 
+                var binding=inputAction.AddBinding(x.path); 
+                binding.WithGroup(stringMethod);
+                Debug.Log(binding); 
+                ChangeIcons(); 
+            });
         }
         else
         {
