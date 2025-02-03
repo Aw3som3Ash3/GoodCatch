@@ -9,3 +9,16 @@
     width: 45px;
     height: 45px;
 }
+
+#ScreenDropDown .unity-base-field__input {
+    flex-shrink: 0;
+    width: 305px;
+    max-width: 338px;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+#ScreenDropDown {
+    justify-content: space-between;
+}

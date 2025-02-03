@@ -19,7 +19,7 @@
                 <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" />
             </ui:VisualElement>
             <ui:Label tabindex="-1" text="Screen" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Screen" style="border-bottom-color: rgb(211, 226, 245); border-bottom-width: 2px; width: 161px;" />
-            <ui:DropdownField label="Dropdown" name="ScreenDropDown" />
+            <ui:DropdownField label="Dropdown" name="ScreenDropDown" style="margin-left: 0;" />
             <ui:VisualElement name="VSYNCContainer" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
                 <ui:Label tabindex="-1" text="VSYNC" parse-escape-sequences="true" display-tooltip-when-elided="true" name="VSYNC" />
                 <ui:Toggle name="VSYNCToggle" />
