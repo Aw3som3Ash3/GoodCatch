@@ -608,7 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Mudskipper
-  dialogue: {fileID: 11400000, guid: 1925a89bd1bc0394499d89dc59b7d8db, type: 2}
+  dialogue: {fileID: 11400000, guid: b92ac9d2d20c2774a898a959f9772a1c, type: 2}
 --- !u!136 &510201482
 CapsuleCollider:
   m_ObjectHideFlags: 0
