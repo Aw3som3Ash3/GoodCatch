@@ -234,7 +234,14 @@ public class PlayerController : MonoBehaviour,ISaveable
       
         
         anim.SetFloat("speed",velocity.magnitude);
-        characterController.Move((velocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
+
+        Vector3 shipVelocity=Vector3.zero;
+        var ship = GetComponentInParent<ShipSimulator>();
+        if (ship!=null)
+        {
+            shipVelocity = ship.Velocity;
+        }
+        characterController.Move((velocity + shipVelocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
 
         if (!characterController.isGrounded)
         {

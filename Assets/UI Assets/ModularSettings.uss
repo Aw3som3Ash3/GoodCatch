@@ -1,0 +1,24 @@
+#SettingsBox .unity-text-element {
+    font-size: 49px;
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
+    color: rgb(211, 226, 245);
+}
+
+.unity-toggle__checkmark {
+    width: 45px;
+    height: 45px;
+}
+
+#ScreenDropDown .unity-base-field__input {
+    flex-shrink: 0;
+    width: 305px;
+    max-width: 338px;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+#ScreenDropDown {
+    justify-content: space-between;
+}

@@ -1,15 +1,17 @@
 .unity-tab-button {
-    background-color: rgba(89, 95, 180, 0.93);
-    align-items: stretch;
+    background-color: rgba(255, 255, 255, 0);
+    align-items: center;
     justify-content: flex-start;
     align-self: auto;
     -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
     -unity-font-definition: initial;
     color: rgb(255, 255, 255);
+    width: 215px;
+    background-image: url("project://database/Assets/Art/2D/LoganInvetory/inventory_list_tab.png?fileID=21300000&guid=cac62e4c54764154086735480205e43e&type=3#inventory_list_tab");
 }
 
 .unity-tab-button:hover {
-    background-color: rgba(113, 170, 229, 0.93);
+    background-color: rgba(113, 170, 229, 0);
     scale: 1 1.2;
     transform-origin: bottom;
 }
@@ -23,7 +25,7 @@
 .unity-tab-button--active {
     transform-origin: bottom;
     scale: 1 1.2;
-    background-color: rgb(113, 170, 229);
+    background-color: rgba(113, 170, 229, 0);
 }
 
 .unity-tab-button__top-bar {
@@ -38,6 +40,7 @@
 
 .unity-tab-button__content-label {
     font-size: 37px;
+    background-color: rgba(255, 0, 0, 0);
 }
 
 .unity-tabbed-view__content-container {
@@ -61,7 +64,7 @@
     -unity-slice-right: 0;
     -unity-slice-left: 0;
     -unity-slice-top: 0;
-    background-image: url("project://database/Assets/Art/2D/UI/dotted_line.png?fileID=21300000&guid=18d7bcbe08fd1b54f8b40745bfda4a5a&type=3#dotted_line");
+    background-image: url("project://database/Assets/Art/2D/UI/dotted_line.png?fileID=2800000&guid=18d7bcbe08fd1b54f8b40745bfda4a5a&type=3#dotted_line");
 }
 
 #unity-multi-column-view__row-container {
@@ -70,11 +73,11 @@
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
-    -unity-background-scale-mode: scale-and-crop;
+    -unity-background-scale-mode: scale-to-fit;
     -unity-slice-bottom: 0;
     -unity-slice-right: 0;
     -unity-slice-scale: 1px;
-    background-image: url("project://database/Assets/Art/2D/UI/dotted_line.png?fileID=21300000&guid=18d7bcbe08fd1b54f8b40745bfda4a5a&type=3#dotted_line");
+    background-image: url("project://database/Assets/Art/2D/LoganInvetory/inventory_list_line_dashed.png?fileID=21300000&guid=011968c4b25093a4e93b3fb479e07518&type=3#inventory_list_line_dashed");
 }
 
 .unity-tabbed-view__tabs-container {
@@ -100,4 +103,67 @@
 .ChangeTabIcons {
     padding-bottom: 0;
     margin-top: -10px;
+}
+
+#unity-content-container {
+    background-image: url("project://database/Assets/Art/2D/LoganInvetory/inventory_list_window.png?fileID=21300000&guid=e4b85de3cb747ea4eb3bc373dfaea59d&type=3#inventory_list_window");
+}
+
+#name {
+    background-color: rgba(255, 0, 0, 0);
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
+    font-size: 39px;
+    height: 52px;
+    align-self: auto;
+    align-items: stretch;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    color: rgb(211, 226, 245);
+    max-height: 300px;
+    flex-direction: row-reverse;
+}
+
+#unity-multi-column-view__header-container {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#amount {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(211, 226, 245);
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
+    font-size: 39px;
+    flex-direction: row-reverse;
+    height: 52px;
+    justify-content: flex-start;
+    align-self: auto;
+}
+
+#TextContainer .unity-text-element {
+    color: rgb(211, 226, 245);
+}
+
+#amount #unity-multi-column-header-column-title {
+    align-self: auto;
+    align-items: stretch;
+    -unity-text-align: upper-right;
+}
+
+#unity-content-and-vertical-scroll-container {
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
+    color: rgb(211, 226, 245);
+    font-size: 27px;
+}
+
+.right-column-text {
+    -unity-text-align: upper-right;
+    margin-right: 26px;
+}
+
+.unity-collection-view__item--alternative-background {
+    background-color: rgb(90, 114, 154);
 }

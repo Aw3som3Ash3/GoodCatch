@@ -68,15 +68,19 @@ public class InventoryTabs : TabbedMenu
         //nameColumn.width = 50;
         nameColumn.sortable = true;
         nameColumn.stretchable = true;
+        //nameColumn.width =
         listView.columns.Add(nameColumn);
         
 
         var amountColumn = new Column();
         amountColumn.title = "amount";
         amountColumn.name = "amount";
+        
         //amountColumn.width = 50;
         amountColumn.sortable = true;
-        amountColumn.stretchable = true;
+        amountColumn.width = 250;
+        
+        //amountColumn.stretchable = true;
         listView.columns.Add(amountColumn);
         listView.showBorder = true;
         listView.sortingEnabled = true;
@@ -126,9 +130,21 @@ public class InventoryTabs : TabbedMenu
         listView.itemsSource = playerInventory;
         //var nameCell= new Label();
         //var amountCell= new Label();
-        
-        listView.columns["name"].makeCell = () => new Label();
-        listView.columns["amount"].makeCell = () => new Label();
+
+
+
+        listView.columns["name"].makeCell = () =>
+        {
+            Label leftLabel = new Label();
+            leftLabel.AddToClassList("left-column-text");
+            return leftLabel;
+        };
+        listView.columns["amount"].makeCell = () =>
+        {
+            Label rightLabel = new Label();
+            rightLabel.AddToClassList("right-column-text");
+            return rightLabel;
+        };
         listView.showAlternatingRowBackgrounds=AlternatingRowBackground.All;
 
         listView.columns["name"].bindCell = (VisualElement element, int index) =>
