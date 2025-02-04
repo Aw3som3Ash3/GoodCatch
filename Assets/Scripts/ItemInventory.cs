@@ -64,7 +64,7 @@ public class ItemInventory
         {
             items.Add(new ItemSlot(item));
         }
-        ItemAdded.Invoke(item, amount);
+        ItemAdded?.Invoke(item, amount);
     }
 
     public void RemoveItem(Item item, int amount = 1)
