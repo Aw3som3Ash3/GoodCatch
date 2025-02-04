@@ -47,6 +47,11 @@ public class ShipControls : Station
     {
         turnSpeed = 0;
         sailValue = 0;
+        ship.AdjustTurn(turnValue);
+
+        ship.AdjustSails(sailValue);
+        ship.PhysicSim.velocity = Vector3.zero;
+        ship.PhysicSim.angularVelocity = Vector3.zero;
         InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
         LeaveSation();
     }
