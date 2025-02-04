@@ -9,6 +9,7 @@ using static Quest;
 public class Quest : ScriptableObject,ISerializationCallbackReceiver
 {
     public static Dictionary<string, Quest> getQuestById = new();
+    
     public enum QuestType
     {
         Main,
@@ -21,9 +22,13 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
     {
         [SerializeField]
         string name;
+        public string Name { get { return name; } }
         [SerializeField]
         [Multiline]
         string description;
+        public string Description { get { return description; } }
+
+
         //[SerializeField]
         //string objective;
         public string Objective 
@@ -112,18 +117,20 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
     public class QuestInstance
     {
         Quest quest;
-        Quest @Quest { get { if (quest == null) { quest = Quest.getQuestById[questId]; } return quest; } set { quest = value; } }
+        public Quest @Quest { get { if (quest == null) { quest = Quest.getQuestById[questId]; } return quest; } set { quest = value; } }
         [SerializeField]
         string questId;
         public string QuestName { get { return @Quest.name; } }
         public string QuestDescription { get { return @Quest.description; } }
-       
+
         //public string QuestDescription { get { return quest.description; } }
         public QuestType type { get { return @Quest.type; } }
         [SerializeField]
         public QuestState[] states;
+        
         [SerializeField]
         int currentStateIndex;
+       
         public QuestState CurrentState 
         { 
             get 
@@ -190,6 +197,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
     string description;
     [SerializeField]
     QuestState[] states;
+    public QuestState[] States { get { return states; } }
 
     public QuestInstance GenerateQuest()
     {
@@ -208,6 +216,9 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
 
         }
         getQuestById[questId] = this;
+
+
+        
     }
 }
 

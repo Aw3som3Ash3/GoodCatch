@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   description: 
   states:
-  - name: 
+  - name: Speak To Skips
     description: 
     requirements:
     - rid: 6225482819130359814
@@ -30,7 +30,7 @@ MonoBehaviour:
       type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: SpeakToNPCQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         npcName: Mudskipper
     - rid: 6225482819130359816
       type: {class: CatchNumOfFishRequirement, ns: , asm: Assembly-CSharp}

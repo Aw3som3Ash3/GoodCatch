@@ -88,4 +88,21 @@ public class QuestTracker : MonoBehaviour,ISaveable
        //    return (x.CurrentState.requirements.ToList() as IEnumerable<T>)?.FirstOrDefault(predicate); 
        //});
     }
+
+    public bool IsQuestStateActive(Quest quest,string name)
+    {
+
+        foreach( var _quest in activeQuests)
+        {
+            Debug.Log(_quest);
+            if(quest==_quest.Quest &&quest.States.First(x=> { Debug.Log(x.Name+" vs"+ name); return x.Name.Equals(name); }) == _quest.CurrentState)
+            {
+                Debug.Log("has quest state");
+                return true;
+            }
+            
+            
+        }
+        return false;
+    }
 }
