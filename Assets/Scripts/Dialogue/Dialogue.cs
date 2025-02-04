@@ -19,7 +19,7 @@ public class Dialogue : ScriptableObject
     [SerializeReference]
     public List<DialogueNode> nodes;
 
-
+    //public List<Action> events { get; private set; }
 
 #if UNITY_EDITOR
 
@@ -39,8 +39,12 @@ public class Dialogue : ScriptableObject
 
     public DialogueNode CreateNode(Type type,Vector2 pos)
     {
-        var node= Activator.CreateInstance(type) as DialogueNode;
+        var node= (Activator.CreateInstance(type) as DialogueNode).SetTree(this);
         node.guid = GUID.Generate().ToString();
+        if(node is DialogueEventNode)
+        {
+            //events.Add((node as DialogueEventNode).Event);
+        }
         nodes.Add(node);
         node.position = pos;
         

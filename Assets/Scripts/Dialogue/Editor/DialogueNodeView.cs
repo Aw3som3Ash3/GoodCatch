@@ -183,6 +183,25 @@ public class QuestNodeView : DialogueLineNodeView
 
     }
 }
+
+public class DialogueEventNodeView : DialogueLineNodeView
+{
+    public DialogueEventNodeView(DialogueNode dialogueNode) : base(dialogueNode)
+    {
+        TextField eventField = new TextField();
+        Label label = new Label("Event Name");
+        this.Q("extra").Add(label);
+        this.Q("extra").Add(eventField);
+        eventField.RegisterValueChangedCallback(evt => 
+        { 
+            (dialogueNode as DialogueEventNode).dialogueEvent.name= evt.newValue;
+            EditorUtility.SetDirty((dialogueNode as DialogueEventNode).dialogueEvent);
+            AssetDatabase.SaveAssets();
+            //.SetDirty(); 
+        });
+
+    }
+}
 //public class DecisionPort : Port
 //{
 //    public BranchingDialogue.Decision decision { get; private set; }

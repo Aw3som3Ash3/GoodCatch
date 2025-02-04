@@ -250,6 +250,10 @@ public class DialogueGraphView : GraphView
             {
                 nodeView = new QuestNodeView(dialogueNode);
             }
+            else if (dialogueNode is DialogueEventNode)
+            {
+                nodeView = new DialogueEventNodeView(dialogueNode);
+            }
             else
             {
                 nodeView = new DialogueLineNodeView(dialogueNode);

@@ -21,6 +21,7 @@ MonoBehaviour:
   - rid: 187471219157368832
   - rid: 187471219157368833
   - rid: 187471219157368834
+  - rid: 187471219157368842
   references:
     version: 2
     RefIds:
@@ -46,7 +47,7 @@ MonoBehaviour:
             rid: 187471219157368834
         - choice: option two
           choiceNode:
-            rid: -2
+            rid: 187471219157368842
     - rid: 187471219157368834
       type: {class: GiveQuest, ns: , asm: Assembly-CSharp}
       data:
@@ -56,3 +57,24 @@ MonoBehaviour:
         nextNode:
           rid: -2
         quest: {fileID: 0}
+    - rid: 187471219157368842
+      type: {class: DialogueEventNode, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Event
+        guid: 0a082c61f073dce4295f5cb055fe39cd
+        position: {x: 1579.3334, y: 216.66667}
+        nextNode:
+          rid: -2
+        dialogueEvent: {fileID: 335140569693983105}
+--- !u!114 &335140569693983105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: TestName
+  m_EditorClassIdentifier: 
