@@ -1,9 +1,12 @@
+using System;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ShipSimulator : MonoBehaviour,ISaveable
 {
     [SerializeField]
     Rigidbody physicSim;
+    public Rigidbody PhysicSim { get { return physicSim; } }
     //[SerializeField]
     //Sail sail;
     [SerializeField]
@@ -25,10 +28,14 @@ public class ShipSimulator : MonoBehaviour,ISaveable
 
     public string ID => "ship";
 
+    [SerializeField]
+    PIDController zTorqueController=new (0.5f,0,0.25f);
+    [SerializeField]
+    PIDController xTorqueController=new(0.5f,0,0.25f);
     // Start is called before the first frame update
     void Start()
     {
-
+        
         //sailRatio = 1;
         //sail.SetrWindStrength(1);
         //sail.SetSailsAmount(sailRatio);
@@ -49,6 +56,25 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         physicSim.transform.localPosition = Vector3.zero;
         physicSim.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
+
+        physicSim.AddRelativeTorque(Vector3.forward*zTorqueController.TorquePID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.z), 0));
+        physicSim.AddRelativeTorque(Vector3.right*xTorqueController.TorquePID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.x), 0));
+        
+    }
+
+
+    public float TurnAngleToSignedAngle(float angle)
+    {
+        // Normalize the angle to be within 0 to 360 degrees
+        angle = angle % 360;
+
+        // Convert to signed angle
+        if (angle > 180)
+        {
+            angle -= 360;
+        }
+
+        return angle;
     }
     public void AdjustSails(float adjustment)
     {
@@ -106,4 +132,106 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     //{
     //    other.transform.parent = null;
     //}
+}
+
+[Serializable]
+public class PIDController
+{
+    public float proportionalGain=1;
+    public float intergralGain;
+    public float derivativeGain=0.5f;
+    public float intergralSaturation;
+    public float maxOutput=1;
+
+
+    float valueLast;
+
+    bool derrivativeInitialized = false;
+
+    float intergrationStored;
+    public PIDController()
+    {
+
+    }
+    public PIDController(float proportionalGain, float inergralGain,float derivativeGain )
+    {
+        this.proportionalGain= proportionalGain;
+        this.intergralGain= inergralGain;
+        this.derivativeGain= derivativeGain;
+    }
+    public float TorquePID(float dt, float currentAngle, float targetAngle)
+    {
+       
+
+        float error =   AngleDifference(currentAngle, targetAngle);
+
+
+
+        float P = proportionalGain * error;
+        float valueRateOfChange = AngleDifference(currentAngle, valueLast) / dt;
+        valueLast = currentAngle;
+        float deriveMeasure = 0;
+       
+        if (derrivativeInitialized)
+        {
+          
+            deriveMeasure = -valueRateOfChange;
+        }
+        else 
+        {
+            derrivativeInitialized = true;
+        }
+
+        intergrationStored = Mathf.Clamp(intergrationStored + (error * dt), -intergralSaturation, intergralSaturation);
+        float I = intergralGain * intergrationStored;
+
+
+        float D=derivativeGain * deriveMeasure;
+        float result = P +I+ D;
+
+
+        return Mathf.Clamp(result, -maxOutput, maxOutput);
+    }
+
+    float AngleDifference(float a, float b)
+    {
+        return (a - b + 540) % 360 - 180;
+    }
+    public float PID(float dt, float currentValue, float targetValue)
+    {
+
+
+        float error = targetValue - currentValue;
+
+
+
+        float P = proportionalGain * error;
+        float valueRateOfChange = (currentValue - valueLast) / dt;
+        valueLast=currentValue;
+        float deriveMeasure = 0;
+
+        if (derrivativeInitialized)
+        {
+
+            deriveMeasure = -valueRateOfChange;
+        }
+        else
+        {
+            derrivativeInitialized = true;
+        }
+
+        intergrationStored = Mathf.Clamp(intergrationStored + (error * dt), -intergralSaturation, intergralSaturation);
+        float I = intergralGain * intergrationStored;
+
+
+        float D = derivativeGain * deriveMeasure;
+        float result = P + I + D;
+
+
+        return result;
+    }
+    public void Reset()
+    {
+        derrivativeInitialized = false;
+    }
 }
