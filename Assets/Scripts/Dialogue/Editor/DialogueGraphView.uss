@@ -1,0 +1,10 @@
+GridBackground {
+	--grid-background-color: rgb(40,40,40);
+	--line-color:rgb(193,196,192,0.1f);
+	--thick-line-color:rgb(193,196,192,0.1f);
+	--spacing:15;
+
+}
+.DialogueRoot #title-label{
+	background-color: rgba(0, 255, 30,255);
+}

@@ -31,7 +31,12 @@ public class QuestUI : MonoBehaviour
     }
     private void Start()
     {
-        QuestTracker.Instance.OnQuestUpdate += (q) => { questText.text = q.CurrentState.Objective; };
+        QuestTracker.Instance.OnQuestUpdate += (q) => 
+        { 
+            Debug.Log("progressed on "+ q); 
+            Debug.Log("now on "+ q.CurrentState.Objective); 
+            questText.text = q.CurrentState.Objective; 
+        };
         if (QuestTracker.Instance.currentQuest != null)
         {
             questText.text = QuestTracker.Instance.currentQuest.CurrentState.Objective;
