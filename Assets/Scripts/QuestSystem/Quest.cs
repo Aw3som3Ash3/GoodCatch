@@ -237,6 +237,7 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
         if (currentAmount >= targetOfFish)
         {
             RequirementCompleted();
+            GameManager.Instance.CaughtFish -= OnFishCaught;
         }
         else
         {
@@ -260,5 +261,45 @@ public class CatchNumOfSpecificFishRequirement : CatchNumOfFishRequirement
     }
 }
 
+[Serializable]
+public class GatherAmountOfItems : Quest.QuestRequirement
+{
+    [SerializeField]
+    Item item;
+    [SerializeField]
+    int amount;
+    int progress;
+
+    public override string Objective => $"gather {amount} {item}s";
+
+    public override void Init()
+    {
+        GameManager.Instance.PlayerInventory.ItemAdded += ItemHasBeenAdded;
+    }
+
+    private void ItemHasBeenAdded(Item item, int amount)
+    {
+        if (item == this.item)
+        {
+            progress += amount;
+           
+
+            if (progress >= amount)
+            {
+                RequirementCompleted();
+                GameManager.Instance.PlayerInventory.ItemAdded -= ItemHasBeenAdded;
+            }
+            else
+            {
+                RequirementProgressed();
+            }
+        }
+
+        
+
+
+        //throw new NotImplementedException();
+    }
+}
 
 

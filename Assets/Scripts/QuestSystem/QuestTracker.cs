@@ -73,7 +73,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
         
     }
 
-    public List<T> FindActiveRequirments<T>(Func<T, bool> predicate) where T : Quest.QuestRequirement
+    public List<T> FindActiveRequirements<T>(Func<T, bool> predicate) where T : Quest.QuestRequirement
     {
         List<T> list = new();
         foreach(Quest.QuestInstance quest in activeQuests)

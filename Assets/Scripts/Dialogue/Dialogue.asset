@@ -16,7 +16,7 @@ MonoBehaviour:
     nextNode:
       rid: 187471170727313408
     guid: root
-    position: {x: 0, y: 0}
+    position: {x: 24, y: 19.333334}
   nodes:
   - rid: 187471170727313408
   - rid: 187471171136520215
@@ -32,7 +32,7 @@ MonoBehaviour:
       data:
         dialouge: 1
         guid: 4e1c50ee2c0854b41a24d63e4d58a049
-        position: {x: 510, y: 69.33333}
+        position: {x: 377.33334, y: -90}
         nextNode:
           rid: 187471171136520216
     - rid: 187471171136520215
@@ -40,7 +40,7 @@ MonoBehaviour:
       data:
         dialouge: quest
         guid: 434b0be87598fc24697c93459975e1d4
-        position: {x: 1430.6666, y: 178.66667}
+        position: {x: 1242, y: -35.333336}
         nextNode:
           rid: -2
         quest: {fileID: 11400000, guid: 4dcc27b68f4890944bc97d51e92ebea4, type: 2}
@@ -49,7 +49,7 @@ MonoBehaviour:
       data:
         dialouge: make a choice
         guid: 243c5c615206e9342b39b0b678a16537
-        position: {x: 888.6667, y: 74}
+        position: {x: 730.6667, y: 19.333334}
         decisions:
         - choice: choice?
           choiceNode:
@@ -65,6 +65,6 @@ MonoBehaviour:
       data:
         dialouge: ok
         guid: 9fc7c5ef93be36c4a957d5e615801714
-        position: {x: 1418.6017, y: 382.6433}
+        position: {x: 1242, y: 186}
         nextNode:
           rid: -2

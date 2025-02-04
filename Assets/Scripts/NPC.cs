@@ -14,14 +14,12 @@ public class NPC : MonoBehaviour, IInteractable
     public virtual bool Interact()
     {
 
-        foreach(var quest in QuestTracker.Instance?.FindActiveRequirments<SpeakToNPCQuestRequirement>((x) => x.NpcName == npcName))
+        foreach(var quest in QuestTracker.Instance?.FindActiveRequirements<SpeakToNPCQuestRequirement>((x) => x.NpcName == npcName))
         {
             if (quest != null) 
             {
                 quest.RequirementCompleted();
             }
-            
-           
         }
         DialogueDisplayer.Instance.NewDialogue(dialogue);
         //throw new System.NotImplementedException();

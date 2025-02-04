@@ -7,10 +7,11 @@ using UnityEngine;
 public class ItemInventory
 {
     [SerializeField]
-    List<ItemSlot> items=new(); 
+    List<ItemSlot> items=new();
     //SerializableDictionary<Item, int> items  = new SerializableDictionary<Item, int>();
 
     //IReadOnlyList<ItemSlot> cachedItemList;
+    public event Action<Item,int> ItemAdded;
 
     [Serializable]
     public class ItemSlot
@@ -63,7 +64,7 @@ public class ItemInventory
         {
             items.Add(new ItemSlot(item));
         }
-        
+        ItemAdded.Invoke(item, amount);
     }
 
     public void RemoveItem(Item item, int amount = 1)
