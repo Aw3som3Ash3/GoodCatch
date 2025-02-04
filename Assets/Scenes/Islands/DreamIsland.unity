@@ -1095,6 +1095,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6401348969714640072, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -9175835907002796863, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -1246,6 +1250,10 @@ PrefabInstance:
       propertyPath: mainUI
       value: 
       objectReference: {fileID: 1508715977}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
     - target: {fileID: 6632416249239343018, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: m_LocalPosition.x
       value: 363.66382

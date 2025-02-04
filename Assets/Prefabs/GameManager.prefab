@@ -106,3 +106,4 @@ MonoBehaviour:
   postProcessing: {fileID: 11400000, guid: 16f67f79273697442a16e80ef00755a8, type: 2}
   lastInnVisited: {fileID: 0}
   mainUI: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
