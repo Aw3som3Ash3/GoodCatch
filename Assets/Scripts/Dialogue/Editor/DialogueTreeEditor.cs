@@ -23,16 +23,24 @@ public class DialogueTreeEditor : EditorWindow
         Show();
         wnd.titleContent = new GUIContent("Dialogue Editor");
         Debug.Log(wnd);
-        
+        GenerateGraph();
 
 
     }
-    private void CreateGUI()
+    void GenerateGraph()
     {
+        if (graphView != null)
+        {
+            rootVisualElement.Remove(graphView);
+        }
         Debug.Log(dialogueTree);
         graphView = new DialogueGraphView();
         graphView.Setup(dialogueTree);
         rootVisualElement.Add(graphView);
+    }
+    private void CreateGUI()
+    {
+       
         //ShowGraphViewWindowWithTools<DialogueTreeEditor>();
         
     }
@@ -49,11 +57,12 @@ public class DialogueTreeEditor : EditorWindow
             Debug.Log(tree);
             if(wnd == null)
             {
-                wnd = new();
-                wnd.OpenWindow(tree);
+                wnd = CreateWindow<DialogueTreeEditor>();
+                
             }
+            wnd.OpenWindow(tree);
             // We can open MyAssetHandler asset using MyAssetHandler opening method
-            
+
 
             return true;
         }
