@@ -61,7 +61,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
         activeQuests.Add(newQuest);
         if (makeCurrent|| currentQuest==null)
         {
-            MakeCurrent(currentQuest);
+            MakeCurrent(newQuest);
         }
         newQuest.Completed += () => 
         { 
