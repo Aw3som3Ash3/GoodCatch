@@ -29,7 +29,7 @@ public class FishToCatch : MonoBehaviour
         model.transform.localPosition = new Vector3(0, -2, 0);
         this.hook = hook;
         behaviour = FishBehaviour.curious;
-        ChangDestination();
+        ChangeDestination();
         StartCoroutine(StateChanger());
     }
     // Start is called before the first frame update
@@ -50,18 +50,20 @@ public class FishToCatch : MonoBehaviour
 
             if (this.transform.localPosition == destination)
             {
-                ChangDestination();
+                ChangeDestination();
             }
         }
         else if (behaviour == FishBehaviour.goingToBite)
         {
 
-            MoveToDestination(transform.parent.InverseTransformPoint(hook.transform.position));
+            Vector3 dest = transform.parent.InverseTransformPoint(hook.transform.position);
+            dest.y = -2;
+            MoveToDestination(dest);
             if (this.transform.localPosition == transform.parent.InverseTransformPoint(hook.transform.position))
             {
                 behaviour = FishBehaviour.biting;
                 StartCoroutine(AnimatedHook());
-                Invoke("ResetBehaviour", 0.5f);
+                Invoke("ResetBehaviour", 0.75f);
             }
         }
 
@@ -86,12 +88,12 @@ public class FishToCatch : MonoBehaviour
         hook.GetComponent<SimpleWaterPhysics>().enabled = false;
         while (hook.position.y > (startY - 0.5f))
         {
-            hook.Translate(Vector3.down * 3 * Time.deltaTime);
+            hook.Translate(Vector3.down * 2 * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         while (hook.position.y < (startY))
         {
-            hook.Translate(Vector3.up * 3 * Time.deltaTime);
+            hook.Translate(Vector3.up * 1.5f * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         hook.GetComponent<SimpleWaterPhysics>().enabled = true;
@@ -109,7 +111,7 @@ public class FishToCatch : MonoBehaviour
         Quaternion targetRot = Quaternion.LookRotation((destination - this.transform.localPosition).normalized);
         this.transform.localRotation = Quaternion.RotateTowards(this.transform.localRotation, targetRot, 360 * Time.deltaTime);
     }
-    void ChangDestination()
+    void ChangeDestination()
     {
         destination = new Vector3(Random.Range(-5, 5), -2, Random.Range(-5, 5));
     }

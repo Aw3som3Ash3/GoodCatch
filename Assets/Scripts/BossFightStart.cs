@@ -14,15 +14,16 @@ public class BossFightStart : MonoBehaviour
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
 
-        fishMonsters.Add(fishMonster1.GenerateMonster());
-        fishMonsters.Add(fishMonster2.GenerateMonster());
-        fishMonsters.Add(fishMonster3.GenerateMonster());
+        fishMonsters.Add(fishMonster1.GenerateMonster(10));
+        fishMonsters.Add(fishMonster2.GenerateMonster(10));
+        fishMonsters.Add(fishMonster3.GenerateMonster(10));
 
 
         if (other.gameObject.tag == "Player")
         {
-            GameManager.Instance.LoadCombatScene(fishMonsters);
             this.gameObject.SetActive(false);
+            GameManager.Instance.LoadCombatScene(fishMonsters);
+            
             Debug.Log("Boss destroyed.");
         }
     }
