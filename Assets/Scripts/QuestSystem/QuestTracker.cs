@@ -19,6 +19,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
 
     public object DataToSave => (activeQuests, completedQuests);
 
+    public event Action<Quest.QuestInstance> OnCurrentQuestUpdate;
     public event Action<Quest.QuestInstance> OnQuestUpdate;
 
     public string ID => "QuestTracker";
@@ -42,11 +43,8 @@ public class QuestTracker : MonoBehaviour,ISaveable
     {
         //if(activeQuests)
         AddQuest(startingQuest);
-        currentQuest = activeQuests[0];
-        currentQuest.Progressed += (state, requirement) => { OnQuestUpdate?.Invoke(currentQuest); };
-        currentQuest.Completed += () => { OnQuestUpdate?.Invoke(currentQuest); };
-        currentQuest.NewState +=(x)=> OnQuestUpdate?.Invoke(currentQuest);
-        OnQuestUpdate?.Invoke(currentQuest);
+        MakeCurrent(activeQuests[0]);
+        OnCurrentQuestUpdate?.Invoke(currentQuest);
        
     }
 
@@ -56,20 +54,80 @@ public class QuestTracker : MonoBehaviour,ISaveable
         
     }
 
-    public void AddQuest(Quest quest)
+    public void AddQuest(Quest quest,bool makeCurrent=false)
     {
         var newQuest = quest.GenerateQuest();
         //newQuest.Progressed += (state,requirement) => OnQuestUpdate(newQuest);
         activeQuests.Add(newQuest);
+        if (makeCurrent|| currentQuest==null)
+        {
+            MakeCurrent(currentQuest);
+        }
+        newQuest.Completed += () => 
+        { 
+            activeQuests.Remove(newQuest); 
+            completedQuests.Add(newQuest);
+        };
+        newQuest.Progressed += (questState, questRequirement) =>
+        {
+            OnQuestUpdate?.Invoke(newQuest);
+        };
+        newQuest.NewState += (questState) =>
+        {
+            OnQuestUpdate?.Invoke(newQuest);
+        };
+    }
+    void MakeCurrent(Quest.QuestInstance quest)
+    {
+        RemoveCurrent();
+        currentQuest = quest;
 
+        currentQuest.Progressed += CurrentQuestProgressed;
+
+        currentQuest.Completed += CurrentQuestCompleted;
+
+        currentQuest.NewState += CurrentQuestNewState;
     }
 
+    private void CurrentQuestProgressed(Quest.QuestState state, Quest.QuestRequirement requirement)
+    {
+        OnCurrentQuestUpdate?.Invoke(currentQuest);
+    }
+
+    private void CurrentQuestCompleted()
+    {
+        OnCurrentQuestUpdate?.Invoke(currentQuest);
+        RemoveCurrent();
+       
+    }
+
+    private void CurrentQuestNewState(Quest.QuestState state)
+    {
+        OnCurrentQuestUpdate?.Invoke(currentQuest);
+       
+    }
+
+    void RemoveCurrent()
+    {
+        if (currentQuest == null)
+        {
+            return;
+        }
+        currentQuest.Progressed -= CurrentQuestProgressed;
+
+        currentQuest.Completed -= CurrentQuestCompleted;
+
+        currentQuest.NewState -= CurrentQuestNewState;
+
+
+        currentQuest = null;
+    }
     public void Load(string json)
     {
         var data = JsonUtility.FromJson<(List<Quest.QuestInstance> active, List<Quest.QuestInstance> complete)>(json);
         activeQuests=data.active;
         completedQuests = data.complete;
-        OnQuestUpdate?.Invoke(currentQuest);
+        OnCurrentQuestUpdate?.Invoke(currentQuest);
         
     }
 
