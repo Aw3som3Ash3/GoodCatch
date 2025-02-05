@@ -259,7 +259,10 @@ public class DialogueGraphView : GraphView
         
         if (dialogueNode is BasicDialogue)
         {
-            
+            if (dialogueNode is DialogueGiveItemNode)
+            {
+                nodeView = new DialogueGiveItemNodeView(dialogueNode);
+            }else
             if (dialogueNode is GiveQuest)
             {
                 nodeView = new QuestNodeView(dialogueNode);

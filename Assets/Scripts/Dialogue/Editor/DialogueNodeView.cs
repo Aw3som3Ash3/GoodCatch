@@ -178,6 +178,7 @@ public class QuestNodeView : DialogueLineNodeView
     {
         var field = new ObjectField("Quest");
         field.objectType = typeof(Quest);
+        field.value = (dialogueNode as GiveQuest).quest;
         field.RegisterValueChangedCallback((evt) => 
         {
             (dialogueNode as GiveQuest).quest = evt.newValue as Quest;
