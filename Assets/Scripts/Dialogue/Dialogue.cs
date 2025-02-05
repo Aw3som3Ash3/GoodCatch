@@ -18,8 +18,8 @@ public class Dialogue : ScriptableObject
     [SerializeField]
     [SerializeReference]
     public List<DialogueNode> nodes;
-
-    //public List<Action> events { get; private set; }
+    [SerializeField]
+    public List<DialogueEvent> events  { get; private set; } = new();
 
 #if UNITY_EDITOR
 
@@ -40,15 +40,20 @@ public class Dialogue : ScriptableObject
     public DialogueNode CreateNode(Type type,Vector2 pos)
     {
         var node= (Activator.CreateInstance(type) as DialogueNode).SetTree(this);
+        
         node.guid = GUID.Generate().ToString();
         if(node is DialogueEventNode)
         {
-            //events.Add((node as DialogueEventNode).Event);
+            events.Add((node as DialogueEventNode).dialogueEvent);
         }
         nodes.Add(node);
         node.position = pos;
         
         return node;
+    }
+    public T CreateNode<T>( Vector2 pos) where T : DialogueNode
+    {
+        return CreateNode(typeof(T), pos) as T;
     }
     public void DeleteNode(DialogueNode node)
     {

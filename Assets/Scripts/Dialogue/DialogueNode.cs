@@ -113,6 +113,15 @@ public class DialogueEventNode : BasicDialogue
         AssetDatabase.AddObjectToAsset(dialogueEvent, tree);
         return base.SetTree(tree);
     }
+
+    public  DialogueNode SetEvent(Dialogue tree,DialogueEvent _event)
+    {
+
+        AssetDatabase.RemoveObjectFromAsset(dialogueEvent);
+        ScriptableObject.Destroy(dialogueEvent);
+        dialogueEvent =_event;
+        return base.SetTree(tree);
+    }
     public override void Exit()
     {
         dialogueEvent.Invoke();

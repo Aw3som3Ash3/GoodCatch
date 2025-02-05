@@ -13,6 +13,7 @@ public class DialogueTreeEditor : EditorWindow
 
     DialogueGraphView graphView;
 
+    [SerializeReference]
     Dialogue dialogueTree;
     // Start is called before the first frame update
     [MenuItem("Examples/My Editor Window")]
@@ -32,6 +33,7 @@ public class DialogueTreeEditor : EditorWindow
         if (graphView != null)
         {
             rootVisualElement.Remove(graphView);
+            
         }
         Debug.Log(dialogueTree);
         graphView = new DialogueGraphView();
@@ -40,7 +42,10 @@ public class DialogueTreeEditor : EditorWindow
     }
     private void CreateGUI()
     {
-       
+        if (dialogueTree != null)
+        {
+            GenerateGraph();
+        }
         //ShowGraphViewWindowWithTools<DialogueTreeEditor>();
         
     }

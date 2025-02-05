@@ -45,6 +45,11 @@ public abstract class DialogueNodeView : Node
         inputContainer.Add(input);
 
     }
+    public virtual void UpdateFields()
+    {
+
+        dialogueField.value = dialogueNode.dialouge;
+    }
 
 
   
@@ -186,21 +191,34 @@ public class QuestNodeView : DialogueLineNodeView
 
 public class DialogueEventNodeView : DialogueLineNodeView
 {
+    TextField eventField;
     public DialogueEventNodeView(DialogueNode dialogueNode) : base(dialogueNode)
     {
-        TextField eventField = new TextField();
+        eventField = new TextField();
         Label label = new Label("Event Name");
         this.Q("extra").Add(label);
         this.Q("extra").Add(eventField);
+       
+        eventField.value = (dialogueNode as DialogueEventNode).dialogueEvent.name;
         eventField.RegisterValueChangedCallback(evt => 
         { 
             (dialogueNode as DialogueEventNode).dialogueEvent.name= evt.newValue;
             EditorUtility.SetDirty((dialogueNode as DialogueEventNode).dialogueEvent);
             AssetDatabase.SaveAssets();
+            
+            //(parent.parent as DialogueGraphView).UpdateValues();
             //.SetDirty(); 
         });
 
     }
+
+    public override void UpdateFields()
+    {
+        base.UpdateFields();
+        eventField.value = (dialogueNode as DialogueEventNode).dialogueEvent.name;
+    }
+
+
 }
 //public class DecisionPort : Port
 //{
