@@ -73,6 +73,8 @@ public class QuestTracker : MonoBehaviour,ISaveable
         
     }
 
+    
+
     public List<T> FindActiveRequirements<T>(Func<T, bool> predicate) where T : Quest.QuestRequirement
     {
         List<T> list = new();

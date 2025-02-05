@@ -42,9 +42,16 @@ public class NPC : MonoBehaviour, IInteractable
                 break;
             }
         }
-        DialogueDisplayer.Instance.NewDialogue(baseDialogue);
+        DialogueDisplayer.Instance.NewDialogue(baseDialogue, () => OnFinishedTalking());
+        
 
+        
+        //throw new System.NotImplementedException();
+        return true;
+    }
 
+    void OnFinishedTalking()
+    {
         foreach (var quest in QuestTracker.Instance?.FindActiveRequirements<SpeakToNPCQuestRequirement>((x) => x.NpcName == npcName))
         {
             if (quest != null)
@@ -52,8 +59,6 @@ public class NPC : MonoBehaviour, IInteractable
                 quest.RequirementCompleted();
             }
         }
-        //throw new System.NotImplementedException();
-        return true;
     }
     private void OnValidate()
     {

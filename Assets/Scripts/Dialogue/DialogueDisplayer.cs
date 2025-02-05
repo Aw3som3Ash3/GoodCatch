@@ -71,7 +71,12 @@ public class DialogueDisplayer : MonoBehaviour
 
         
     }
+    public void NewDialogue(Dialogue dialogue,Action OnCompleted)
+    {
+        NewDialogue(dialogue);
+        reader.OnCompleted += OnCompleted;
 
+    }
 
 
     private void Awake()
