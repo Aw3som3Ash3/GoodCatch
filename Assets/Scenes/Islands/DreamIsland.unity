@@ -608,11 +608,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Mudskipper
-  baseDialogue: {fileID: 11400000, guid: 1925a89bd1bc0394499d89dc59b7d8db, type: 2}
+  baseDialogue: {fileID: 11400000, guid: f5edc9df4146b434c9244234bb184c8f, type: 2}
   questBasedDialogues:
-  - quest: {fileID: 11400000, guid: b576c7a85ca51984eae02d756358043c, type: 2}
+  - quest: {fileID: 11400000, guid: 8789b08040d62fd41b8e41e89e17f6f5, type: 2}
     stateName: Speak To Skips
-    dialogue: {fileID: 11400000, guid: 2e60bba097126e9438e2c566926f9eb0, type: 2}
+    dialogue: {fileID: 11400000, guid: 9dae746ff4d1d18419a75cfe99c97623, type: 2}
+  - quest: {fileID: 11400000, guid: 29ff50a87758d7041b9663d36d45e238, type: 2}
+    stateName: Speak To Skips
+    dialogue: {fileID: 11400000, guid: ddc03b2c3c7c5714eb966e009561ffcd, type: 2}
 --- !u!136 &510201482
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -972,6 +975,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b785bcdf6bd3a2c419653b97b197f81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1153808656 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4696074230909722863, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
+  m_PrefabInstance: {fileID: 1326339827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1250704361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1227,6 +1235,95 @@ Transform:
   - {fileID: 973784965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1447572014
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 974920589635227073, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590930704555988278, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: id
+      value: f49d1b1b-c039-44f5-8390-91be6127f0d4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590930704555988278, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: maxAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590930704555988278, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: minAmount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590930704555988278, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: spawnTable
+      value: 
+      objectReference: {fileID: 11400000, guid: cc81ca42d8ce65240b7633d6b89ac2ae, type: 2}
+    - target: {fileID: 2590930704555988278, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: data.amount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106920063200259835, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_Name
+      value: FishZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765585591890449079, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_Size.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765585591890449079, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765585591890449079, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+      propertyPath: m_Size.z
+      value: 100
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
 --- !u!114 &1508715977 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 504907397506364804, guid: 29fdeeb17ba26c54ebb32048424d3021, type: 3}
@@ -1359,6 +1456,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3213950923036753611, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1153808656}
+    - target: {fileID: 3213950923036753611, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6489029574099155367, guid: d6edf833392f5794e9569eb0e13bdee0, type: 3}
       propertyPath: waveHeightX
       value: 0.11
@@ -1385,3 +1490,4 @@ SceneRoots:
   - {fileID: 1019034454}
   - {fileID: 411172016}
   - {fileID: 1341591979}
+  - {fileID: 1447572014}
