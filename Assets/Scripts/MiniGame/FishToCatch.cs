@@ -22,15 +22,16 @@ public class FishToCatch : MonoBehaviour
     FishBehaviour behaviour = FishBehaviour.none;
     float timer;
     Vector3 destination;
-    public void SetFish(FishMonsterType fishMonster, Transform hook)
+    public void SetFish(Transform hook)
     {
-        this.fishMonster = fishMonster;
-        model = Instantiate(fishMonster.Model, this.transform);
-        model.transform.localPosition = new Vector3(0, -2, 0);
+        //this.fishMonster = fishMonster;
+        //model = Instantiate(fishMonster.Model, this.transform);
+        //model.transform.localPosition = new Vector3(0, -2, 0);
         this.hook = hook;
         behaviour = FishBehaviour.curious;
         ChangeDestination();
         StartCoroutine(StateChanger());
+        Debug.Log("fish spawned");
     }
     // Start is called before the first frame update
     void Start()
@@ -59,7 +60,7 @@ public class FishToCatch : MonoBehaviour
             Vector3 dest = transform.parent.InverseTransformPoint(hook.transform.position);
             dest.y = -2;
             MoveToDestination(dest);
-            if (this.transform.localPosition == transform.parent.InverseTransformPoint(hook.transform.position))
+            if (this.transform.localPosition == dest)
             {
                 behaviour = FishBehaviour.biting;
                 StartCoroutine(AnimatedHook());
@@ -84,6 +85,7 @@ public class FishToCatch : MonoBehaviour
     }
     IEnumerator AnimatedHook()
     {
+        Debug.Log("bitting");
         float startY = hook.position.y;
         hook.GetComponent<SimpleWaterPhysics>().enabled = false;
         while (hook.position.y > (startY - 0.5f))
@@ -97,6 +99,7 @@ public class FishToCatch : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         hook.GetComponent<SimpleWaterPhysics>().enabled = true;
+        //ResetBehaviour();
     }
     void ResetBehaviour()
     {
