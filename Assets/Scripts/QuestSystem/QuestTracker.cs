@@ -2,10 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using UnityEngine;
-using UnityEngine.Playables;
-using UnityEngine.UIElements;
 
 public class QuestTracker : MonoBehaviour,ISaveable
 {
@@ -47,6 +44,8 @@ public class QuestTracker : MonoBehaviour,ISaveable
         AddQuest(startingQuest);
         currentQuest = activeQuests[0];
         currentQuest.Progressed += (state, requirement) => { OnQuestUpdate?.Invoke(currentQuest); };
+        currentQuest.Completed += () => { OnQuestUpdate?.Invoke(currentQuest); };
+        currentQuest.NewState +=(x)=> OnQuestUpdate?.Invoke(currentQuest);
         OnQuestUpdate?.Invoke(currentQuest);
        
     }
@@ -60,7 +59,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
     public void AddQuest(Quest quest)
     {
         var newQuest = quest.GenerateQuest();
-       
+        //newQuest.Progressed += (state,requirement) => OnQuestUpdate(newQuest);
         activeQuests.Add(newQuest);
 
     }
@@ -74,8 +73,38 @@ public class QuestTracker : MonoBehaviour,ISaveable
         
     }
 
-    public IEnumerable<T> FindActiveRequirments<T>(Func<T, bool> predicate) where T : Quest.QuestRequirement
+    
+
+    public List<T> FindActiveRequirements<T>(Func<T, bool> predicate) where T : Quest.QuestRequirement
     {
-       return activeQuests.Select(x => (x.CurrentState.Requirements.Where(r=>r is T)as IEnumerable<T>).FirstOrDefault(predicate));
+        List<T> list = new();
+        foreach(Quest.QuestInstance quest in activeQuests)
+        {
+            Debug.Log(quest.CurrentState.requirements.Where((x) => x is T).ToList() as List<T>);
+            list.AddRange(quest.CurrentState.requirements.Where((x) => x is T).Select(x=>x as T));
+        }
+        return list;
+       //return activeQuests.Select(x => 
+       //{
+       //    //Debug.Log(x);
+       //    return (x.CurrentState.requirements.ToList() as IEnumerable<T>)?.FirstOrDefault(predicate); 
+       //});
+    }
+
+    public bool IsQuestStateActive(Quest quest,string name)
+    {
+
+        foreach( var _quest in activeQuests)
+        {
+            Debug.Log(_quest);
+            if(quest==_quest.Quest &&quest.States.First(x=> { Debug.Log(x.Name+" vs"+ name); return x.Name.Equals(name); }) == _quest.CurrentState)
+            {
+                Debug.Log("has quest state");
+                return true;
+            }
+            
+            
+        }
+        return false;
     }
 }

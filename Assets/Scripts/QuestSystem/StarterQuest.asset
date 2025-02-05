@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c963494cf0a2f459443dfc8ab404fb, type: 3}
+  m_Name: StarterQuest
+  m_EditorClassIdentifier: 
+  type: 0
+  description: 
+  states:
+  - name: Speak To Skips
+    description: 
+    requirements:
+    - rid: 6225482819130359814
+  - name: 
+    description: 
+    requirements:
+    - rid: 6225482819130359816
+  references:
+    version: 2
+    RefIds:
+    - rid: 6225482819130359814
+      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: SpeakToNPCQuestRequirement
+        IsCompleted: 1
+        npcName: Mudskipper
+    - rid: 6225482819130359816
+      type: {class: CatchNumOfFishRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: CatchNumOfFishRequirement
+        IsCompleted: 0
+        targetOfFish: 4
+        currentAmount: 0
