@@ -21,6 +21,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
 
     public event Action<Quest.QuestInstance> OnCurrentQuestUpdate;
     public event Action<Quest.QuestInstance> OnQuestUpdate;
+    //public event Action<Quest.QuestInstance> OnNewQuest;
 
     public string ID => "QuestTracker";
 
@@ -87,6 +88,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
         currentQuest.Completed += CurrentQuestCompleted;
 
         currentQuest.NewState += CurrentQuestNewState;
+        OnCurrentQuestUpdate?.Invoke(currentQuest);
     }
 
     private void CurrentQuestProgressed(Quest.QuestState state, Quest.QuestRequirement requirement)
@@ -98,6 +100,11 @@ public class QuestTracker : MonoBehaviour,ISaveable
     {
         OnCurrentQuestUpdate?.Invoke(currentQuest);
         RemoveCurrent();
+
+        if (activeQuests.Count > 0)
+        {
+            MakeCurrent(activeQuests[0]);
+        }
        
     }
 

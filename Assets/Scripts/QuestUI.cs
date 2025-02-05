@@ -33,9 +33,18 @@ public class QuestUI : MonoBehaviour
     {
         QuestTracker.Instance.OnCurrentQuestUpdate += (q) => 
         { 
-            Debug.Log("progressed on "+ q); 
-            Debug.Log("now on "+ q.CurrentState.Objective); 
-            questText.text = q.CurrentState.Objective; 
+            Debug.Log("progressed on "+ q);
+            if (q.CurrentState != null)
+            {
+                Debug.Log("now on " + q.CurrentState.Objective);
+                questText.text = q.CurrentState.Objective;
+            }
+            else
+            {
+                questText.text = "no current quest";
+            }
+          
+           
         };
         if (QuestTracker.Instance.currentQuest != null)
         {
