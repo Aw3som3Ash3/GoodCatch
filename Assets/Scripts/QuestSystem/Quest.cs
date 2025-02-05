@@ -135,7 +135,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         { 
             get 
             {
-                if (states.Length <= 0)
+                if (states.Length <= 0|| currentStateIndex>=states.Length)
                 {
                     return null;
                 }
