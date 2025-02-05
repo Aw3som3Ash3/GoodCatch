@@ -692,6 +692,7 @@ public class CombatManager : MonoBehaviour
         public Action HasFeinted;
         bool actionsCompleted = true;
         public HashSet<StatusEffect.StatusEffectInstance> effects { get; private set; } = new HashSet<StatusEffect.StatusEffectInstance>();
+        public HashSet<StatusEffect> lastEffects { get; private set; } = new HashSet<StatusEffect>();
 
         public float Health { get { return fish.Health; } }
         public float MaxHealth { get { return fish.MaxHealth; } }
@@ -779,6 +780,7 @@ public class CombatManager : MonoBehaviour
         }
         public virtual void StartTurn()
         {
+            lastEffects.Clear();
             actionsLeft = actionsPerTurn;
             
             combatManager.combatUI.NewTurn(this, team == Team.player);
@@ -906,6 +908,11 @@ public class CombatManager : MonoBehaviour
             effects.Add(instance);
             NewEffect?.Invoke(instance);
         }
+        public bool HadEffectLastTurn(StatusEffect effect)
+        {
+            return lastEffects.Contains(effect);
+        }
+
         public void TickEffects(StatusEffect.EffectUsage usage)
         {
             HashSet<StatusEffect.StatusEffectInstance> effectsToRemove = new HashSet<StatusEffect.StatusEffectInstance>();
@@ -917,6 +924,7 @@ public class CombatManager : MonoBehaviour
                     if (!effect.DoEffect(this))
                     {
                         effectsToRemove.Add(effect);
+                        lastEffects.Add(effect.effect);
                     }
                 }
                     
@@ -927,6 +935,8 @@ public class CombatManager : MonoBehaviour
                 Debug.Log(effect + " removed");
                 effects.Remove(effect);
                 EffectRemoved?.Invoke(effect);
+                
+
             }
             
         }
