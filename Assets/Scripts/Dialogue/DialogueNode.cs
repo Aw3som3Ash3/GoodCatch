@@ -102,13 +102,14 @@ public class DialogueEventNode : BasicDialogue
     public DialogueEvent dialogueEvent;
     public DialogueEventNode()
     {
-        dialogueEvent=ScriptableObject.CreateInstance<DialogueEvent>();
+       
         
        
 
     }
     public override DialogueNode SetTree(Dialogue tree)
     {
+        dialogueEvent = ScriptableObject.CreateInstance<DialogueEvent>();
         AssetDatabase.AddObjectToAsset(dialogueEvent, tree);
         return base.SetTree(tree);
     }

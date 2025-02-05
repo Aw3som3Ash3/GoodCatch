@@ -19,7 +19,7 @@ public class DialogueTreeEditor : EditorWindow
     void OpenWindow(Dialogue dialogue)
     {
         dialogueTree = dialogue;
-        wnd = GetWindow<DialogueTreeEditor>();
+        //wnd = GetWindow<DialogueTreeEditor>();
         Show();
         wnd.titleContent = new GUIContent("Dialogue Editor");
         Debug.Log(wnd);
@@ -55,11 +55,7 @@ public class DialogueTreeEditor : EditorWindow
         {
             Dialogue tree = EditorUtility.InstanceIDToObject(instanceID) as Dialogue;
             Debug.Log(tree);
-            if(wnd == null)
-            {
-                wnd = CreateWindow<DialogueTreeEditor>();
-                
-            }
+            wnd = GetWindow<DialogueTreeEditor>();
             wnd.OpenWindow(tree);
             // We can open MyAssetHandler asset using MyAssetHandler opening method
 
