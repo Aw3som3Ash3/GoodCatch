@@ -227,7 +227,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         {
             float proctBonus = (user.special / 5) * 0.01f ;
             float targetDef = (target.special / 5) * 0.01f ;
-            if (UnityEngine.Random.Range(0, 1) - proctBonus < (effect.Chance)*(target.HadEffectLastTurn(effect.Effect)? 0.25:1)- targetDef)
+            if (UnityEngine.Random.Range(0, 1) - proctBonus < (effect.Chance)*(target.HadEffectLastTurn(effect.Effect)? 0.15f:1)- targetDef)
             {
                 target.AddEffects(effect.Effect,user.fish);
             }

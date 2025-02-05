@@ -692,7 +692,7 @@ public class CombatManager : MonoBehaviour
         public Action HasFeinted;
         bool actionsCompleted = true;
         public HashSet<StatusEffect.StatusEffectInstance> effects { get; private set; } = new HashSet<StatusEffect.StatusEffectInstance>();
-        public HashSet<StatusEffect> lastEffects { get; private set; } = new HashSet<StatusEffect>();
+        public Dictionary<StatusEffect,int> lastEffects { get; private set; } = new();
 
         public float Health { get { return fish.Health; } }
         public float MaxHealth { get { return fish.MaxHealth; } }
@@ -778,9 +778,28 @@ public class CombatManager : MonoBehaviour
             fish.HasFeinted =()=> { HasFeinted?.Invoke(); Debug.Log("fish has feinted"); };
             //stamina = maxStamina;
         }
+
+        void TickLastEffects()
+        {
+            List<StatusEffect> effectsToRemove=new();
+            foreach (var effect in lastEffects)
+            {
+                lastEffects[effect.Key]--;
+                if (effect.Value <= 0)
+                {
+                    effectsToRemove.Add(effect.Key);
+                }
+            }
+
+            foreach(var effect in effectsToRemove)
+            {
+                lastEffects.Remove(effect);
+            }
+        }
         public virtual void StartTurn()
         {
-            lastEffects.Clear();
+            
+           
             actionsLeft = actionsPerTurn;
             
             combatManager.combatUI.NewTurn(this, team == Team.player);
@@ -910,7 +929,7 @@ public class CombatManager : MonoBehaviour
         }
         public bool HadEffectLastTurn(StatusEffect effect)
         {
-            return lastEffects.Contains(effect);
+            return lastEffects.ContainsKey(effect);
         }
 
         public void TickEffects(StatusEffect.EffectUsage usage)
@@ -924,7 +943,7 @@ public class CombatManager : MonoBehaviour
                     if (!effect.DoEffect(this))
                     {
                         effectsToRemove.Add(effect);
-                        lastEffects.Add(effect.effect);
+                        lastEffects[(effect.effect)]=2;
                     }
                 }
                     
