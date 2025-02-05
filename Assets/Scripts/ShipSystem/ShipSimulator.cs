@@ -57,8 +57,8 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         physicSim.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
 
-        physicSim.AddRelativeTorque(Vector3.forward*zTorqueController.TorquePID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.z), 0));
-        physicSim.AddRelativeTorque(Vector3.right*xTorqueController.TorquePID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.x), 0));
+        physicSim.AddRelativeTorque(Vector3.forward*zTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.z), 0), ForceMode.Acceleration);
+        physicSim.AddRelativeTorque(Vector3.right*xTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.x), 0),ForceMode.Acceleration);
         
     }
 

@@ -6525,11 +6525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: xTorqueController.proportionalGain
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: zTorqueController.proportionalGain
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: xTorqueController.intergralSaturation
