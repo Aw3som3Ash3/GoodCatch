@@ -29,6 +29,8 @@ public abstract class DialogueNodeView : Node
         UseDefaultStyling();
         this.Q<Label>("title-label").text= dialogueNode.GetType().Name;
         dialogueField = this.Q<TextField>("dialogue");
+        dialogueField.multiline = true;
+        dialogueField.style.whiteSpace = WhiteSpace.Normal;
         dialogueField.value = dialogueNode.dialouge;
         dialogueField.RegisterValueChangedCallback((s) => 
         { 
