@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -59,6 +60,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     public TargetingType Targeting { get { return targetingType; } }
     [SerializeField]
     bool piercing;
+    public bool Piercing { get; }
     [SerializeField]
     int staminaUsage;
     public int StaminaUsage { get { return staminaUsage; } }
@@ -74,6 +76,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
     [SerializeField]
     Element element;
+    public Element Element { get { return element; } }
     [SerializeField]
     EffectChance[] effects;
     public EffectChance[] Effects { get { return effects; } }
@@ -118,43 +121,91 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
         return damage;
     }
-    public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit)
+    public float GetDamage(FishMonster fish)
+    {
+        float damage = 0;
+        if (baseDamage > 0)
+        {
+            damage = baseDamage + damageMultiplier * (abilityType == AbilityType.attack ? fish.Attack.value : fish.Special.value);
+        }
+        else if (baseDamage < 0)
+        {
+            damage = -baseDamage + damageMultiplier * (abilityType == AbilityType.attack ? fish.Attack.value : fish.Special.value);
+        }
+
+        return damage;
+    }
+    public float GetEffectBonus(FishMonster fish)
+    {
+        float proctBonus = (fish.Special.value / 5) * 0.01f;
+        
+        return proctBonus;
+    }
+    public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit, out float damageDone, out Element.Effectiveness effectiveness)
     {
         if (target == null)
         {
             hit = false;
+            damageDone = 0;
+            effectiveness = Element.Effectiveness.none;
             return false;
         }
         if (baseDamage < 0)
         {
             target.fish.Restore(health: -baseDamage);
+            damageDone = baseDamage;
+            effectiveness = Element.Effectiveness.none;
             hit = true;
         }
         else
         {
-            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - target.dodge) * 0.01) < accuracy)
+            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy -  (baseDamage >= 0 ? target.dodge:0 ) ) * 0.01) < accuracy)
             {
                 Debug.Log("attacking: " + target);
                 float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+
+
+
                 if (baseDamage > 0)
                 {
-                   
-                    target.fish.TakeDamage(baseDamage + damageMod, element, abilityType);
+                    float outgoingDamage = baseDamage + damageMod;
+                    if (target.effects.Count>0)
+                    {
+                        foreach (var effectInstance in target.effects.Where((x) => x is DefensiveEffect.DefensiveEffectInstance))
+                        {
+                            outgoingDamage = (effectInstance as DefensiveEffect.DefensiveEffectInstance).MitigateDamage(outgoingDamage, element, abilityType, effectInstance);
+                        }
+                    }
+                    //Element.Effectiveness effectivenss;
+                    
+                    damageDone = target.fish.TakeDamage(outgoingDamage, element, abilityType, out effectiveness);
+
+                    foreach (var effect in target.effects.Where((x) => x.effect is ThornEffect))
+                    {
+                        (effect.effect as ThornEffect).ReflectDamage(user.fish);
+                    }
+                    
                 }
                 else if(baseDamage<0)
                 {
                     target.fish.Restore(-baseDamage + damageMod);
+                    damageDone = baseDamage;
+                    effectiveness = Element.Effectiveness.none;
+                }
+                else
+                {
+                    damageDone = 0;
+                    effectiveness = Element.Effectiveness.none;
                 }
                 
-              
-
-
                 ProctEffect(user, target);
                 hit = true;
             }
             else
             {
                 Debug.Log("missed: " + target);
+                damageDone = 0;
+                effectiveness = Element.Effectiveness.none;
                 hit = false;
             }
         }
@@ -170,7 +221,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             float proctBonus = (user.special / 5) * 0.01f;
             if (UnityEngine.Random.Range(0, 1) + proctBonus < (effect.Chance))
             {
-                target.AddEffects(effect.Effect);
+                target.AddEffects(effect.Effect,user.fish);
             }
         }
     }
@@ -182,7 +233,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        if (abilityID == null || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
+        if (abilityID == null ||abilityID=="" || (getAbilityById.ContainsKey(abilityID) && getAbilityById[abilityID] != this))
         {
             abilityID = Guid.NewGuid().ToString();
             

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEditor;
 //using Unity.Mathematics;
 using UnityEngine;
@@ -93,8 +94,28 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     int baseStamina;
     public int BaseStamina { get { return baseStamina; } }
+
+    [Serializable]
+    struct AbilityOptions
+    {
+        [SerializeField]
+        Ability[] potentialAbilities;
+
+        public Ability GetAbility()
+        {
+            if (potentialAbilities ==null|| potentialAbilities.Length == 0) 
+            {
+                return null;
+            }
+            int index = potentialAbilities.Length > 1? UnityEngine.Random.Range(0, potentialAbilities.Length):0;
+            
+            return potentialAbilities[index];
+        }
+    }
+
+
     [SerializeField]
-    Ability[] baseAbilities;
+    AbilityOptions[] baseAbilities;
 
     [Header("Misc")]
     [SerializeField]
@@ -108,7 +129,7 @@ public class FishMonsterType : ScriptableObject
 
 
 
-    public Ability[] BaseAbilities { get { return baseAbilities; } }
+    //public Ability[] BaseAbilities { get { return baseAbilities; } }
 
     int RandomAttributeValue(Attribute attribute)
     {
@@ -145,7 +166,8 @@ public class FishMonsterType : ScriptableObject
 
         return talent;
     }
-    public FishMonster GenerateMonster()
+
+    public FishMonster GenerateMonster(int startingLevel = 1)
     {
 
         int speed = RandomAttributeValue(agility);
@@ -166,7 +188,17 @@ public class FishMonsterType : ScriptableObject
         int accuracy = RandomAttributeValue(this.accuracy);
         TalentScale accuracyTalent = CalculateTalent(this.accuracy);
 
-        return new FishMonster(this, speed,agilityTalent ,attack,attackTalent ,special,specialTalent, fortitude, fortitudeTalent, specialFort, specialFortTalent,accuracy, accuracyTalent);
+        return new FishMonster(this, speed,agilityTalent ,attack,attackTalent ,special,specialTalent, fortitude, fortitudeTalent, specialFort, specialFortTalent,accuracy, accuracyTalent,GenerateAbilities(),startingLevel);
+    }
+
+    Ability[] GenerateAbilities()
+    {
+        Ability[] abilities = new Ability[baseAbilities.Length];
+        for (int i = 0; i < baseAbilities.Length; i++)
+        {
+            abilities[i] = baseAbilities[i].GetAbility();
+        }
+        return abilities;
     }
 
 }
@@ -185,7 +217,7 @@ public class FishMonster
 {
 
     FishMonsterType type;
-    FishMonsterType Type 
+    public FishMonsterType Type 
     { 
         get 
         { 
@@ -194,7 +226,7 @@ public class FishMonster
                 type = GameManager.Instance.Database.fishMonsters[id];
             } 
             return type;
-        } set 
+        } private set 
         {
             type = value; 
         } 
@@ -280,7 +312,7 @@ public class FishMonster
     public AnimationClip AttackAnimation { get { return type.AttackAnimation; } }
     public AnimationClip IdleAnimation { get { return type.IdleAnimation; } }
 
-    public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent)
+    public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent, Ability[] abilities,int startingLevel)
     {
 
         this.Type = monsterType;
@@ -301,8 +333,12 @@ public class FishMonster
         stamina = MaxStamina;
         maxHealth = HealthFormula();
         health = MaxHealth;
-        abilities = monsterType.BaseAbilities;
+        this.abilities = abilities;
         abilityIds = new string[Abilities.Length];
+        for(int i = 1; i < startingLevel; i++)
+        {
+            LevelUp();
+        }
         for(int i = 0; i < abilityIds.Length; i++)
         {
             abilityIds[i] = Abilities[i].AbilityID;
@@ -349,7 +385,7 @@ public class FishMonster
     void LevelUp()
     {
         level++;
-        xp = 0;
+        xp %=xpToLevelUp;
         maxHealth = HealthFormula();
         health = MaxHealth;
         maxStamina = StaminaFormula();
@@ -381,23 +417,37 @@ public class FishMonster
         stamina = Mathf.Clamp(Stamina, 0, MaxStamina);
         ValueChanged?.Invoke();
     }
-    public void TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType)
+    public float TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType,out Element.Effectiveness effectiveness)
     {
         if (damage <= 0)
         {
             Debug.Log("took no damage");
-            return;
+            effectiveness = Element.Effectiveness.none;
+            return 0;
         }
         //float defenseMod = 1 - (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value) * 0.01f;
         float defenseMod =MathF.Pow(MathF.E,-0.015f* (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value));
         float damageTaken = damage * DamageModifier(elementType) * defenseMod;
+        effectiveness = GetEffectiveness(elementType);
         health -= damageTaken;
         Debug.Log("took " + damageTaken + " damage \n current health: " + Health);
         if (Health <= 0)
         {
+            //Feint();
+        }
+        else
+        {
+            ValueChanged?.Invoke();
+        }
+        return damageTaken;
+    }
+
+    public void CheckDeath()
+    {
+        if (Health <= 0)
+        {
             Feint();
         }
-        ValueChanged?.Invoke();
     }
     public void Restore(float health = 0, float stamina = 0)
     {
@@ -412,6 +462,14 @@ public class FishMonster
             return 1;
         }
         return Type.Elements.OrderByDescending(e => e.CompareStrength(elementType)).First().DamageModifier(elementType);
+    }
+    Element.Effectiveness GetEffectiveness(Element elementType)
+    {
+        if (elementType == null)
+        {
+            return Element.Effectiveness.none;
+        }
+        return Type.Elements.OrderByDescending(e => e.CompareStrength(elementType)).First().GetEffectiveness(elementType);
     }
     void Feint()
     {

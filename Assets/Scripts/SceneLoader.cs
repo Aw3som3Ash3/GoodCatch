@@ -87,9 +87,7 @@ public class SceneLoader : MonoBehaviour
         {
             yield return SceneManager.LoadSceneAsync(allScenes[i], LoadSceneMode.Additive);
         }
-        yield return new WaitForSecondsRealtime(0.5f);
         ScenesLoaded();
-        yield return new WaitForSecondsRealtime(0.25f);
 
     }
 

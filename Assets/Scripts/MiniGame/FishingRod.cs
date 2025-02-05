@@ -25,7 +25,6 @@ public class FishingRod : MonoBehaviour
         fishingLine.positionCount = 2;
         fishingLine.SetPosition(0, reel.localPosition);
         fishingLine.SetPosition(1, lineStart.localPosition);
-
     }
     // Start is called before the first frame update
     void Start()

@@ -15,10 +15,14 @@ public class PauseMenu : VisualElement
     OptionsPage optionsPage;
     Bestiary bestiaryPage;
     PausePage currentPage;
+    InventoryUI inventoryUI;
     VisualElement menu;
+
+    VisualElement lastSelected;
 
     bool exitCompletely = false;
     static PauseMenu mainPause;
+    public static bool PauseActive { get { return mainPause.menu.visible; } }
     public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
 
@@ -37,7 +41,7 @@ public class PauseMenu : VisualElement
         this.style.flexGrow = 1;
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
-
+        this.pickingMode = PickingMode.Ignore;
         bestiary =this.Q<Button>("FishBookButton");
         party = this.Q<Button>("PartyButton");
         settting = this.Q<Button>("OptionsButton");
@@ -45,7 +49,7 @@ public class PauseMenu : VisualElement
         menu = this.Q("PauseMenuWorkSpace");
         party.clicked +=Party;
         bestiary.clicked += () => BestiaryScreen();
-        inventory.clicked += () =>throw new NotImplementedException();
+        inventory.clicked += () =>InventoryMenu();
         settting.clicked += Options;
 
 
@@ -55,9 +59,27 @@ public class PauseMenu : VisualElement
         menu.focusable = true;
 
         //this.delegatesFocus = true;
+
         menu.SetEnabled(false);
         menu.visible = false;
+        mainPause.SetEnabled(false);
         menu.RegisterCallback<NavigationMoveEvent>(OnNavigate);
+        
+    }
+
+    private void OnInputChanged(InputMethod method)
+    {
+        if (method == InputMethod.controller)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+        }
+        else
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
+
+        }
     }
 
     void OnNavigate(NavigationMoveEvent evt)
@@ -85,6 +107,7 @@ public class PauseMenu : VisualElement
     }
     static public PauseMenu Pause()
     {
+        
         mainPause.OnPause();
         return mainPause;
     }
@@ -100,16 +123,13 @@ public class PauseMenu : VisualElement
     }
     void OnPause()
     {
-
+        
         //Debug.Log(party.focusController.focusedElement);
         Debug.Log("pausing");
         if (currentPage != null)
         {
             Back();
-            if (exitCompletely == true)
-            {
-                OnPause();
-            }
+            
             return;
         }
         
@@ -120,13 +140,15 @@ public class PauseMenu : VisualElement
             prevMode = UnityEngine.Cursor.lockState;
 
         }
-        menu.SetEnabled(!menu.enabledSelf);
+        mainPause.SetEnabled(!mainPause.enabledSelf);
+        menu.SetEnabled(mainPause.enabledSelf);
         menu.visible = menu.enabledSelf;
         //this.BringToFront();
 
         Time.timeScale = menu.enabledSelf ? 0 : 1;
         if (menu.enabledSelf)
         {
+            GameManager.Instance.OnInputChange += OnInputChanged;
             menu.Focus();
             //this.Focus();
             //this.CaptureMouse();
@@ -155,6 +177,17 @@ public class PauseMenu : VisualElement
             InputManager.EnablePlayer();
             InputManager.Input.UI.Back.Disable();
             InputManager.Input.UI.Back.performed -= Back;
+            GameManager.Instance.OnInputChange -= OnInputChanged;
+        }
+        var bottomMapping = panel.visualTree.Q("BottomMapping");
+        if (bottomMapping != null)
+        {
+            bottomMapping.visible = !PauseActive;
+        }
+        var questUI = panel.visualTree.Q("QuestUI");
+        if (questUI != null)
+        {
+            questUI.visible = !PauseActive;
         }
 
     }
@@ -169,13 +202,38 @@ public class PauseMenu : VisualElement
                 menu.SetEnabled(true);
                 menu.visible = true;
                 currentPage = null;
+                lastSelected?.Focus();
+                Debug.Log("last selected: " + lastSelected);
+
+            }
+           
+            if (exitCompletely)
+            {
+                OnPause();
             }
         }
-        
+        else
+        {
+            OnPause();
+        }
+
 
 
     }
+    void InventoryMenu()
+    {
+        if (inventoryUI == null)
+        {
+            inventoryUI = new();
 
+        }
+        lastSelected = inventory;
+        this.Add(inventoryUI);
+        //partyUI.UpdateUI();
+        menu.visible = false;
+        //menu.SetEnabled(false);
+        currentPage = inventoryUI;
+    }
     
     void Options()
     {
@@ -184,14 +242,16 @@ public class PauseMenu : VisualElement
             optionsPage = new();
 
         }
+        lastSelected= optionsPage;
         this.Add(optionsPage);
         menu.visible = false;
-        menu.SetEnabled(false);
+        //menu.SetEnabled(false);
         optionsPage.OpenOptions();
         currentPage = optionsPage;
     }
     void Party()
     {
+        lastSelected = party;
         if (partyUI == null)
         {
             partyUI = new();
@@ -201,7 +261,7 @@ public class PauseMenu : VisualElement
         this.Add(partyUI);
         partyUI.UpdateUI();
         menu.visible = false;
-        menu.SetEnabled(false);
+        //menu.SetEnabled(false);
         currentPage =partyUI;
     }
 
@@ -212,10 +272,10 @@ public class PauseMenu : VisualElement
         {
             bestiaryPage = new();
         }
-
+        lastSelected = bestiary;
         this.Add(bestiaryPage);
         menu.visible = false;
-        menu.SetEnabled(false);
+        //menu.SetEnabled(false);
         currentPage = bestiaryPage;
     }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Territule
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 6471563218846696764, guid: 8d2c71210eedfe9438b5396072a7ac43, type: 3}
+  model: {fileID: 2863066356070816069, guid: 1f0973555690d0c438cf3f45c47924d4, type: 3}
   fishId: 3
   icon: {fileID: 21300000, guid: 87665948b3ff9bf4bb2cc2352b0eeb20, type: 3}
   miniSprite: {fileID: -1980233701, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
@@ -55,10 +55,14 @@ MonoBehaviour:
   baseHealth: 100
   baseStamina: 70
   baseAbilities:
-  - {fileID: 11400000, guid: dd40a3087b6a7e94cbd8e47ebfce50f4, type: 2}
-  - {fileID: 11400000, guid: e8bc2003bb50e734199a7cc7ee610fe9, type: 2}
-  - {fileID: 11400000, guid: 8aae440482ee3dd499fc3beb884378a2, type: 2}
-  - {fileID: 11400000, guid: 8aae440482ee3dd499fc3beb884378a2, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: e8bc2003bb50e734199a7cc7ee610fe9, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: dd40a3087b6a7e94cbd8e47ebfce50f4, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: b434ec7b13f750149afbbb711502d563, type: 2}
   difficulty: 0
-  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
-  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  attackAnimation: {fileID: -6041800682480947867, guid: e407752a5900e0e4bbfc7aa237e94f25, type: 3}
+  idleAnimation: {fileID: -3100369314251171874, guid: e407752a5900e0e4bbfc7aa237e94f25, type: 3}

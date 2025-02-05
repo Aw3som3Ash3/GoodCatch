@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
+  m_Name: AbilityGuardTest
+  m_EditorClassIdentifier: 
+  abilityType: 1
+  availableDepths: -1
+  targetableDepths: -1
+  targetTeam: 0
+  targetingType: 0
+  piercing: 0
+  staminaUsage: 20
+  baseDamage: 0
+  accuracy: 1
+  damageMultiplier: 0
+  element: {fileID: 0}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 06a81e58855af6c42966a0b864de5f61, type: 2}
+    effectChance: 1
+  forcedMovement: 0
+  icon: {fileID: 0}
+  abilityVFX: {fileID: 0}
+  targetVFX: {fileID: 0}
+  abilityID: 62f4dcaf-9043-4a72-8a2c-5c21af0ca99a

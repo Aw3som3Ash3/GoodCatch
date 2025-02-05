@@ -47,7 +47,7 @@ public class DepthSelectors : MonoBehaviour
 
         EventTrigger.Entry clickEvent = new EventTrigger.Entry();
         clickEvent.eventID = EventTriggerType.PointerClick;
-        clickEvent.callback.AddListener((eventData) => { SelectDepth(); });
+        clickEvent.callback.AddListener((eventData) => { if((eventData as PointerEventData).button == PointerEventData.InputButton.Left)SelectDepth();});
         GetComponent<EventTrigger>().triggers.Add(clickEvent);
 
         EventTrigger.Entry submitEvent = new EventTrigger.Entry();

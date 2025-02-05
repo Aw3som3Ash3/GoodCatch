@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerController : MonoBehaviour,ISaveable
 {
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     float mouseSensitiviy;
     Vector2 rotVelocity;
     [SerializeField]
-    LayerMask interactionLayer;
+    LayerMask interactionLayer,waterLayer;
 
     AudioController audioController;
     [SerializeField]
@@ -36,11 +37,11 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     bool inStation;
 
-    bool sprinting { get { return inputs.Sprint.IsPressed(); } }
+    bool sprinting;
 
     string id="player";
     public string ID => id;
-
+    List<Vector3> lastSafePosition=new();
     object ISaveable.DataToSave {get{ return new SaveData(Matrix4x4.TRS(this.transform.position, this.transform.rotation, this.transform.localScale), Matrix4x4.TRS(model.transform.position, model.transform.rotation, model.transform.localScale)); } }
     [Serializable]
     struct SaveData
@@ -61,8 +62,10 @@ public class PlayerController : MonoBehaviour,ISaveable
         moveAction = inputs.Move;
         //moveAction.performed += OnMove;
         lookAction = inputs.Look;
+        //lookAction.performed += OnLook;
         inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
+        inputs.Sprint.performed += OnSprint;
         characterController = this.GetComponent<CharacterController>();
         inputs.Interact.performed += OnInteract;
         anim = GetComponentInChildren<Animator>();
@@ -70,6 +73,25 @@ public class PlayerController : MonoBehaviour,ISaveable
         audioController=GetComponent<AudioController>();
         //InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
     }
+
+    private void OnSprint(InputAction.CallbackContext context)
+    {
+        if (context.control.device is Gamepad)
+        {
+            if (context.action.IsPressed())
+            {
+                Debug.Log(" toggle sprint");
+                sprinting = !sprinting;
+            }
+            
+        }
+        else
+        {
+            sprinting = context.action.IsPressed();
+        }
+        
+    }
+
     private void OnEnable()
     {
         //inputs.Player.Enable();
@@ -137,14 +159,7 @@ public class PlayerController : MonoBehaviour,ISaveable
             InteractionUI.text = "";
             return;
         }
-        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * mouseSensitiviy, 0.5f);
-        cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
-        var angles = cameraRig.localEulerAngles;
-        angles.z = 0;
-        var angle = cameraRig.localEulerAngles.x;
-        angles.x = ClampRotation(angle, minPitch, maxPitch);
-        //print(angles.x);
-        cameraRig.localEulerAngles = angles;
+        OnLook();
         IInteractable interactible;
         if (InteractionCheck(out interactible))
         {
@@ -154,7 +169,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         {
             if (InteractionUI == null)
             {
-                InteractionUI = FindObjectOfType<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
+                InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
             }
             if (InteractionUI != null)
             {
@@ -165,6 +180,17 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
 
     }
+    void OnLook()
+    {
+        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * (GameManager.Instance.inputMethod==InputMethod.mouseAndKeyboard? mouseSensitiviy:1), 0.5f);
+        cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
+        var angles = cameraRig.localEulerAngles;
+        angles.z = 0;
+        var angle = cameraRig.localEulerAngles.x;
+        angles.x = ClampRotation(angle, minPitch, maxPitch);
+        //print(angles.x);
+        cameraRig.localEulerAngles = angles;
+    }
     private void FixedUpdate()
     {
         if (inStation)
@@ -173,19 +199,49 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(moveInput.x, 0, moveInput.y);
-        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting?sprintSpeed: moveSpeed) , (characterController.isGrounded ? accel : accel / 4));
+        if (moveDir.sqrMagnitude.Equals(0))
+        {
+            sprinting = inputs.Sprint.IsPressed();
+        }
+
         if (moveAction.IsInProgress())
         {
-            
+
             var angles = cameraRig.localEulerAngles;
             this.transform.Rotate(0, angles.y, 0);
             angles.y = 0;
             cameraRig.localEulerAngles = angles;
-            var targetRot= Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
-            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720*Time.deltaTime);
+            var targetRot = Quaternion.LookRotation(this.transform.TransformDirection(moveDir.normalized));
+            model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 720 * Time.deltaTime);
         }
+        velocity = Vector3.MoveTowards(velocity, this.transform.TransformDirection(moveDir) * (sprinting ? sprintSpeed : moveSpeed), (characterController.isGrounded ? accel : accel / 4));
+        RaycastHit hit;
+        if(Physics.Raycast(this.transform.position+(Vector3.up) + this.transform.TransformDirection(moveDir).normalized, Vector3.down,out hit,100))
+        {
+            var water = hit.collider.GetComponent<WaterSimulator>();
+            if (water != null)
+            {
+                Vector3 adjustedPoint = hit.point;
+                //adjustedPoint.y = water.transform.position.y;
+                if (!Physics.Raycast(adjustedPoint, Vector3.down, out hit, 0.2f,~waterLayer))
+                {
+                    velocity = Vector3.zero;
+                }
+                
+            }
+               
+        }
+      
+        
         anim.SetFloat("speed",velocity.magnitude);
-        characterController.Move((velocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
+
+        Vector3 shipVelocity=Vector3.zero;
+        var ship = GetComponentInParent<ShipSimulator>();
+        if (ship!=null)
+        {
+            shipVelocity = ship.Velocity;
+        }
+        characterController.Move((velocity + shipVelocity + (Vector3.up * fallSpeed)) * Time.fixedDeltaTime);
 
         if (!characterController.isGrounded)
         {
@@ -194,6 +250,13 @@ public class PlayerController : MonoBehaviour,ISaveable
         else
         {
             fallSpeed = -9.8f;
+            
+            lastSafePosition.Add(this.transform.position);
+            if (lastSafePosition.Count > 60)
+            {
+                lastSafePosition.RemoveAt(0);
+            }
+            
         }
     }
 
@@ -226,8 +289,10 @@ public class PlayerController : MonoBehaviour,ISaveable
             return;
         }
         fallSpeed = Mathf.Sqrt(jumpStrength * -1.0f * Gravity);
+        
     }
 
+    
     void StartFishing(InputAction.CallbackContext context)
     {
         if (context.action.IsPressed())
@@ -315,5 +380,20 @@ public class PlayerController : MonoBehaviour,ISaveable
     {
         audioController?.PlayClipRandom();
         //do audio event
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Water")&& other.gameObject.GetComponent<WaterSimulator>()!=null)
+        {
+            characterController.enabled = false;
+            if (this.transform.position.y + 1 < other.transform.position.y)
+            {
+                this.transform.position = lastSafePosition[0];
+            }
+            characterController.enabled = true;
+
+        }
+        
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
@@ -12,6 +13,7 @@ using UnityEngine.InputSystem.Users;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using static CombatManager;
 
 public class GameManager : MonoBehaviour,ISaveable
@@ -156,6 +158,14 @@ public class GameManager : MonoBehaviour,ISaveable
 
     String mainScene;
 
+    [SerializeField]
+    UIDocument mainUI;
+    [SerializeField]
+    public AudioMixer audioMixer;
+    UIDocument MainUI { get { if (mainUI == null) { return GameObject.Find("MainHud")?.GetComponent<UIDocument>(); } else { return mainUI; } } }
+
+    public event Action<FishMonsterType> CaughtFish;
+    public event Action WonFight;
     private void Awake()
     {
 
@@ -178,16 +188,32 @@ public class GameManager : MonoBehaviour,ISaveable
         //InputUser.PerformPairingWithDevice()
         gameData.hasSeenFish = new bool[database.fishMonsters.Count];
         InputManager.Input.UI.Pause.Enable();
-        InputManager.Input.UI.Pause.performed +=(x)=> PauseMenu.Pause();
-
+        InputManager.Input.UI.Pause.performed +=(x)=> 
+        {
+            PauseMenu.Pause();
+        };
+        MainUI.gameObject.SetActive(true);
+        
     }
 
     private void OnDeviceChange(InputControl control, InputEventPtr ptr)
     {
         Debug.Log(control.device);
-
+        
         //user.UnpairDevices();
-        InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+        
+        
+        if((control.device is Mouse|| control.device is Keyboard) &&(user.pairedDevices.FirstOrDefault((x) => x is Mouse || x is Keyboard) != null))
+        {
+
+            InputUser.PerformPairingWithDevice(control.device, user);
+        }
+        else
+        {
+            InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+
+        }
+
         //throw new NotImplementedException();
     }
 
@@ -354,10 +380,10 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
-        CapturedFish(fishMonsterType.GenerateMonster());
+        CapturedFish(fishMonsterType.GenerateMonster(),true);
         
     }
-    public void CapturedFish(FishMonster fishMonster)
+    public void CapturedFish(FishMonster fishMonster,bool ignoreQuest=false)
     {
 
         switch (PlayerFishventory.AddFish(fishMonster))
@@ -371,6 +397,11 @@ public class GameManager : MonoBehaviour,ISaveable
         }
         gameData.hasSeenFish[fishMonster.ID]= true;
         Debug.Log("is fish found:"+ gameData.hasSeenFish[fishMonster.ID]);
+        if (!ignoreQuest)
+        {
+            CaughtFish?.Invoke(fishMonster.Type);
+        }
+       
 
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
@@ -390,11 +421,16 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             SceneManager.sceneLoaded += SceneLoadedLost;
         }
+        else
+        {
+            WonFight?.Invoke();
+        }
         SavingSystem.SaveSelf(this);
+        SavingSystem.SaveSelf(FindObjectOfType<QuestTracker>());
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
         SceneManager.LoadScene(mainScene);
-        
+
         
         inCombat = false;
        
@@ -423,10 +459,6 @@ public class GameManager : MonoBehaviour,ISaveable
         }
         
     }
-    
-    
-
-   
 
     public void Load(string json)
     {

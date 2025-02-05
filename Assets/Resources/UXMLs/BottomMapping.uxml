@@ -1,0 +1,23 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ChrisUseThisFontStuff.uss?fileID=7433441132597879392&amp;guid=2285b821b813c6846be8fbb6ea894f0a&amp;type=3#ChrisUseThisFontStuff" />
+    <ui:VisualElement name="Workspace" style="flex-grow: 1; align-items: flex-start; justify-content: flex-end; flex-direction: column;">
+        <ui:VisualElement name="BottomUIMapping" style="flex-grow: 0; flex-direction: column; flex-shrink: 0; width: 822px; margin-bottom: 10px; margin-left: 5px;">
+            <ui:VisualElement name="InteractVisuals" style="flex-grow: 1; flex-direction: row;">
+                <InputHudTip name="InteractImage" inputName="Interact" style="width: 60px;" />
+                <ui:Label tabindex="-1" text="Interact" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-direction: row;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="CastVisuals" style="flex-grow: 1; flex-direction: row;">
+                <InputHudTip name="CastImage" inputName="Fish" style="width: 60px;" />
+                <ui:Label tabindex="-1" text="Cast" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Cast" style="font-size: 38px; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="SprintVisuals" style="flex-grow: 1; flex-direction: row;">
+                <InputHudTip name="InputHudTip" inputName="Sprint" style="width: 60px;" />
+                <ui:Label tabindex="-1" text="Sprint" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Sprint" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-direction: row;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="PauseVisuals" style="flex-grow: 1; flex-direction: row;">
+                <InputHudTip name="PauseImage" inputName="Pause" style="width: 60px;" />
+                <ui:Label tabindex="-1" text="Pause" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pause" style="font-size: 38px; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

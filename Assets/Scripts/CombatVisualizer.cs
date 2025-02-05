@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -36,15 +37,19 @@ public class CombatVisualizer : MonoBehaviour
     EventSystem eventSystem;
     [SerializeField]
     Transform floaterStart;
+    [SerializeField] Transform cameraTarget;
     //public Action CompletedMove;
-    // Start is called before the first frame update
 
+
+    Action canceled;
     Action<int> DepthSelection;
+
     private void Awake()
     {
         combatManager = FindObjectOfType<CombatManager>();
         combatDepths = combatManager.depths.ToList();
     }
+    // Start is called before the first frame update
     void Start()
     {
         eventSystem = EventSystem.current;
@@ -53,7 +58,7 @@ public class CombatVisualizer : MonoBehaviour
             depthSelectors[i].SetIndex(i);
             depthSelectors[i].Selected = (i) => { DepthSelection?.Invoke(i); StopTargeting(); };
             depthSelectors[i].Navigate += OnNaviagte;
-            InputManager.Input.Combat.Cancel.performed+=(x)=>StopTargeting();
+            InputManager.Input.Combat.Cancel.performed+=(x)=>CancelMove();
         }
        
     }
@@ -71,12 +76,13 @@ public class CombatVisualizer : MonoBehaviour
     {
         var ui = FishUI[turnToObject[turn]];
         Destroy(turnToObject[turn].gameObject);
+        turnToObject.Remove(turn);
         ui.parent.Remove(ui);
     }
     public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
     {
         FishObject fishObject = Instantiate(fishObjectPrefab, this.transform).GetComponent<FishObject>();
-        fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90, 0);
+        fishObject.transform.localEulerAngles = new Vector3(0, team == CombatManager.Team.player ? 90 : -90,0);
         fishObject.SetFish(turn);
         FishUI[fishObject] = combatUI.AddFishUI(turn, fishObject.transform);
         fishObjects.Add(fishObject);
@@ -85,15 +91,76 @@ public class CombatVisualizer : MonoBehaviour
         
 
     }
+   
+    public void AnimateDamageNumbers(Turn turn,float damage,Element.Effectiveness effectiveness, bool healing=false)
+    {
+        if (!turnToObject.ContainsKey(turn))
+        {
+            return;
+        }
+        var textObj = new GameObject("damage text", typeof(TextMeshPro));
+        textObj.transform.position = turnToObject[turn].transform.position;
+        textObj.transform.rotation = Camera.main.transform.rotation;
+        textObj.layer = 16;
+        var tmp=textObj.GetComponent<TextMeshPro>();
+        tmp.text = damage.ToString("00");
+        tmp.alignment=TMPro.TextAlignmentOptions.Center;
+        tmp.fontSize = 11;
+        switch (effectiveness)
+        {
+            case Element.Effectiveness.none:
+                tmp.color = Color.white;
+                break;
+            case Element.Effectiveness.strong:
+                tmp.color = Color.gray;
+                break;
+            case Element.Effectiveness.veryStrong:
+                tmp.color = Color.gray;
+                break;
+            case Element.Effectiveness.weak:
+                tmp.color = Color.yellow;
+                break;
+            case Element.Effectiveness.veryWeak:
+                tmp.color = Color.red;
+                break;
+            default:
+                tmp.color = Color.white;
+                break;
+        }
+        StartCoroutine(AnimateDamageNumbers(textObj));
+    }
+    IEnumerator AnimateDamageNumbers(GameObject damageNumber)
+    {
+        float time = 2;
+        while (time>0)
+        {
+            damageNumber.transform.Translate(Vector3.up * 5 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+            time -= Time.deltaTime;
+        }
+        Destroy(damageNumber);
+    }
 
+    public void TargetCameraToFish(Turn turn)
+    {
+        cameraTarget.position = turnToObject[turn].transform.position;
+    }
     public void MoveFish(CombatManager.Turn turn, Vector3 destination, Action CompletedMove = null)
     {
+        if (!turnToObject.ContainsKey(turn))
+        {
+            return;
+        }
         turnToObject[turn].SetDestination(destination);
         turnToObject[turn].ReachedDestination += CompletedMove;
         CompletedMove += () => turnToObject[turn].ReachedDestination -= CompletedMove;
     }
     public void AnimateBasicVFX(CombatManager.Turn target, ParticleSystem vfxPrefab)
     {
+        if (!turnToObject.ContainsKey(target))
+        {
+            return;
+        }
         var vfx = Instantiate(vfxPrefab, turnToObject[target].transform.position, turnToObject[target].transform.rotation);
         var main = vfx.main;
         main.stopAction = ParticleSystemStopAction.Destroy;
@@ -101,16 +168,21 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void AnimateAttack(Ability ability,CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
+        if (!turnToObject.ContainsKey(target))
+        {
+            return;
+        }
         //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
-        turnToObject[turn].AttackAnimation();
+        turnToObject[turn].AttackAnimation(() => { });
         StartCoroutine(ParticleAttackAnim(ability, turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
         //throw new NotImplementedException();
     }
 
-    public void SelectFish(CombatManager.Team team,Action<CombatManager.Turn> action)
+    public void SelectFish(CombatManager.Team team,Action<CombatManager.Turn> action,Action canceledCallback)
     {
         StopTargeting();
-        foreach(var fish in turnToObject)
+        canceled += canceledCallback;
+        foreach (var fish in turnToObject)
         {
             if (fish.Key.team == team)
             {
@@ -274,6 +346,8 @@ public class CombatVisualizer : MonoBehaviour
     public void StartTargeting(Func<int,Depth,bool> targetable,int ablityIndex ,Action<int> targeted)
     {
         StopTargeting();
+       
+        DepthSelection = null;
         DepthSelection += targeted;
         DepthSelection +=(x)=>StopTargeting();
         selected = -1;
@@ -302,20 +376,22 @@ public class CombatVisualizer : MonoBehaviour
     public void StartTargeting(Action<int> targeted)
     {
         StopTargeting();
+       
         DepthSelection = null;
-        if(GameManager.Instance.inputMethod == InputMethod.controller)
-        {
-            eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
-        }
         foreach (DepthSelectors selector in depthSelectors)
         {
             selector.SetSelection(true);
+        }
+        if (GameManager.Instance.inputMethod == InputMethod.controller)
+        {
+            eventSystem.SetSelectedGameObject(depthSelectors[0].gameObject);
         }
         DepthSelection =targeted;
 
     }
     void StopTargeting()
     {
+        //DepthSelection?.Invoke(-1);
         DepthSelection = null;
         foreach (DepthSelectors selector in depthSelectors)
         {
@@ -330,6 +406,18 @@ public class CombatVisualizer : MonoBehaviour
         //}
         StopSelectingFish();
         //isActive = true;
+       
+    }
+
+    void CancelMove()
+    {
+
+        DepthSelection?.Invoke(-1);
+       
+        StopTargeting();
+        canceled?.Invoke();
+        canceled = null;
+
     }
 
     public void CatchFishAnimation(Turn turn,bool catchingCalc,Action completed)

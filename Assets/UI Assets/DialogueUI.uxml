@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="DialogueArea" style="flex-grow: 1; flex-direction: row; align-self: flex-end; max-height: 501px; top: 54%;">
+        <ui:VisualElement name="ProfilePic" style="flex-grow: 1; align-self: auto; background-image: url(&quot;project://database/Assets/Art/2D/UI/dialogue%20mockup%20head.png?fileID=2800000&amp;guid=84924617baecfbe4e84ff84ed5adef8b&amp;type=3#dialogue mockup head&quot;); -unity-background-scale-mode: scale-to-fit; max-width: 361px; min-height: 506px;" />
+        <ui:VisualElement name="DialogueBox" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/2D/UI/dialogue%20mockup%20speech%20bubble.png?fileID=2800000&amp;guid=52b5ef8ef6abd57499700f77cf834854&amp;type=3#dialogue mockup speech bubble&quot;); -unity-background-scale-mode: scale-to-fit; min-height: 506px; margin-top: 0; margin-right: 67px; margin-bottom: 0; margin-left: 33px; max-width: 1469px;">
+            <ui:Label tabindex="-1" text="[Name]" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DialogueName" style="font-size: 48px; color: rgb(255, 255, 255); left: 60px; top: 92px; width: 613px;" />
+            <ui:Label tabindex="-1" text="[Text]" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DialogueText" style="font-size: 35px; color: rgb(255, 255, 255); left: 60px; top: 92px; width: 1366px; margin-top: 18px; margin-bottom: 23px; height: 184px; flex-wrap: wrap;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

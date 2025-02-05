@@ -82,6 +82,20 @@ public class AbilityButton : Button
         
         
     }
+    public void SetPreview(bool b)
+    {
+        if (b)
+        {
+            this.RemoveFromClassList("unity-disabled");
+        }
+        else
+        {
+            this.AddToClassList("unity-disabled");
+
+        }
+
+
+    }
     public void SetAbility(Ability ability,float damage,float baseAccuracy) 
     {
        
@@ -90,7 +104,7 @@ public class AbilityButton : Button
         text = ability.name;
         this.damageLabel.SetDamage(damage, ability.Accuracy + baseAccuracy);
         effectLabels.Clear();
-        for (int i = 0;i<effectLabels.Count;i++) 
+        for (int i = 0;i<ability.Effects.Length;i++) 
         {
             var label = new AbilityTooltipStatusChance();
             effectLabels.Add(label);

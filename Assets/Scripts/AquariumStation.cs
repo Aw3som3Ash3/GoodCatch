@@ -10,7 +10,7 @@ public class AquariumStation : MonoBehaviour, IInteractable
     public bool Interact()
     {
         //FindObjectOfType<UIDocument>().rootVisualElement.Add();
-        PauseMenu.Pause().AddPage(new AquariumScreen());
+        PauseMenu.Pause().AddPage(new AquariumScreen(),true);
         return true;
         
     }

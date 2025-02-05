@@ -119,11 +119,11 @@ public static class SavingSystem
     }
     public static void LoadGame()
     {
-        ReadData();
-        //if (data == null)
-        //{
-             
-        //}
+
+        if (data == null)
+        {
+            ReadData();
+        }
         SceneManager.LoadSceneAsync(data.GetScene());
         
         SceneManager.sceneLoaded += OnSceneLoad;

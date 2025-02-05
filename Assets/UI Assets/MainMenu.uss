@@ -19,7 +19,7 @@
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     transition-duration: 0.1s;
-    scale: 1.1 1.1;
+    scale: 1.3 1.3;
 }
 
 .TitleButton:focus {
@@ -32,7 +32,7 @@
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     transition-duration: 0.1s;
-    scale: 1.1 1.1;
+    scale: 1.3 1.3;
 }
 
 .SaveSlot {
@@ -43,4 +43,27 @@
     align-self: auto;
     justify-content: center;
     align-items: auto;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-top-left-radius: 17px;
+    border-top-right-radius: 17px;
+    border-bottom-right-radius: 17px;
+    border-bottom-left-radius: 17px;
+}
+
+.SaveSlot:focus {
+    scale: 1.2 1.2;
+    transition-duration: 0.1s;
+}
+
+.SaveSlot:hover {
+    scale: 1.2 1.2;
+    transition-duration: 0.1s;
 }

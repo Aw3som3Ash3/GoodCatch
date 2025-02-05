@@ -8,10 +8,12 @@ using UnityEngine.UIElements;
 
 public class OptionsPage : PausePage
 {
-    Button settings, save, load, mainMenu;
-    VisualElement settingsBox;
+    Button settings, controls, load, mainMenu;
+    VisualElement settingsBox,menuContainer;
     SaveAndLoadScreen saveAndLoadScreen;
-
+    SettingsUI settingsUI;
+    ControlTabs controlTabs;
+    
     public new class UxmlFactory : UxmlFactory<OptionsPage, OptionsPage.UxmlTraits>
     {
 
@@ -30,15 +32,27 @@ public class OptionsPage : PausePage
         this.StretchToParentSize();
         settings = this.Q<Button>("SettingsButton");
         settings.clicked += OnSettings;
-        save = this.Q<Button>("SaveButton");
-        save.clicked += OnSave;
-        load = this.Q<Button>("LoadButton");
-        load.clicked += OnLoad;
+        settingsUI = this.Q<SettingsUI>();
+        settingsUI.visible = (false);
+        //save = this.Q<Button>("SaveButton");
+        //save.clicked += OnSave;
+        //load = this.Q<Button>("LoadButton");
+        //load.clicked += OnLoad;
         mainMenu = this.Q<Button>("MainMenu");
         mainMenu.clicked += OnMenu;
         settingsBox = this.Q("SettingsBox");
-        
+        controlTabs = this.Q<ControlTabs>();
+        controlTabs.visible=(false);
+        controls=this.Q<Button>("Controls");
+        controls.clicked += OnControls;
+        menuContainer=this.Q("menu-container");
+        menuContainer.Remove(controlTabs);
+        menuContainer.Remove(settingsUI);
+
+
     }
+
+
     public void OpenOptions()
     {
        
@@ -49,9 +63,28 @@ public class OptionsPage : PausePage
         }
         
     }
+    void OnControls()
+    {
+        settingsUI.visible = (false);
+        controlTabs.visible = (true);
+        menuContainer.Add(controlTabs);
+        controlTabs.StretchToParentSize();
+        if (menuContainer.Contains(settingsUI))
+        {
+            menuContainer.Remove(settingsUI);
+        }
+      
+    }
     private void OnSettings()
     {
-        throw new NotImplementedException();
+        settingsUI.visible = (true);
+        controlTabs.visible = (false);
+        if (menuContainer.Contains(controlTabs))
+        {
+            menuContainer.Remove(controlTabs);
+        }
+        menuContainer.Add(settingsUI);
+        //throw new NotImplementedException();
     }
 
     private void OnSave()
@@ -80,6 +113,9 @@ public class OptionsPage : PausePage
 
     private void OnMenu()
     {
+        GameObject.Destroy(QuestTracker.Instance.gameObject);
+        GameObject.Destroy(GameManager.Instance.gameObject);
+       
         SceneManager.LoadScene("MainMenu");
     }
 }

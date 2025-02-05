@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Element;
 
 [CreateAssetMenu(fileName = "DoT Status Effect", menuName = "Status Effect/DoT", order = 1)]
 public class DoTStatusEffect : StatusEffect
@@ -11,7 +12,8 @@ public class DoTStatusEffect : StatusEffect
 
     public override void DoEffect(CombatManager.Turn turn)
     {
-        turn.fish.TakeDamage(damage, element, Ability.AbilityType.special);
+        Element.Effectiveness effectiveness;
+        turn.fish.TakeDamage(damage, element, Ability.AbilityType.special,out effectiveness);
     }
 
 

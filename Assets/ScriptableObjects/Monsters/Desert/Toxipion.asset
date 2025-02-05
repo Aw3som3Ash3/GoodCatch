@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
+  m_Name: Toxipion
+  m_EditorClassIdentifier: 
+  description: 
+  model: {fileID: 1494907282292339595, guid: 8cd4d5d17c5fd2d4d86d6daac6db8c99, type: 3}
+  fishId: 0
+  icon: {fileID: 21300000, guid: 88a761759bb22e944b442903076dcda9, type: 3}
+  miniSprite: {fileID: 1753212338, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
+  homeDepth: 0
+  preferredBait: []
+  elements:
+  - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
+  - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
+  agility:
+    min: 20
+    max: 40
+    minTalent: 0
+    maxTalent: 0
+  attack:
+    min: 15
+    max: 30
+    minTalent: 0
+    maxTalent: 0
+  special:
+    min: 0
+    max: 0
+    minTalent: 0
+    maxTalent: 0
+  fortitude:
+    min: 5
+    max: 10
+    minTalent: 0
+    maxTalent: 0
+  specialFortitude:
+    min: 0
+    max: 0
+    minTalent: 0
+    maxTalent: 0
+  accuracy:
+    min: 50
+    max: 50
+    minTalent: 0
+    maxTalent: 0
+  baseHealth: 90
+  baseStamina: 60
+  baseAbilities:
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 2ee697ef18cee894abf39268b95dae24, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: a8035b3bd99139044b2e81087e511dee, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 6fab145c45eb942489e4925e441658d5, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 5897680b2713dfd409b77d91eb6d58fc, type: 2}
+  difficulty: 0
+  attackAnimation: {fileID: -6041800682480947867, guid: e87e6124d38584c48a261637d009e8d8, type: 3}
+  idleAnimation: {fileID: -3100369314251171874, guid: e87e6124d38584c48a261637d009e8d8, type: 3}

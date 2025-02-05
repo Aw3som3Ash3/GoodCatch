@@ -39,6 +39,7 @@ public class CombatTabs : TabbedMenu
         TabMenuButton fightTab = new TabMenuButton("Fight", abilities);
         fightTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(fightTab); index = 0; });
         fightTab.name = "FightTab";
+        fightTab.focusable = false;
         this.AddTab(fightTab, true);
         tabs[0]= fightTab;
 
@@ -48,6 +49,7 @@ public class CombatTabs : TabbedMenu
         TabMenuButton itemsTab = new TabMenuButton("Items", items);
         itemsTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(itemsTab); index = 1; });
         itemsTab.name = "ItemsTab";
+        itemsTab.focusable = false;
         this.AddTab(itemsTab, false);
         tabs[1]= itemsTab;
 
@@ -58,26 +60,21 @@ public class CombatTabs : TabbedMenu
         TabMenuButton swapTab = new TabMenuButton("Swap", swap);
         swapTab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(swapTab); index = 2; });
         swapTab.name = "SwapTab";
+        swapTab.focusable = false;
         this.AddTab(swapTab, false);
         tabs[2]= swapTab;
         
         
     }
 
-    public void ChangeTab(int delta)
+    public override void ChangeTab(int delta)
     {
-        int targetIndex= Mathf.Clamp(index+delta, 0, 2);
-        if (index == targetIndex)
-        {
-            return;
-        }
-        index = targetIndex;
-        Activate(tabs[index]);
+        base.ChangeTab(delta);
+        FocusFirst();
+    }
 
-        if(tabs[index].Target.childCount<=0)
-        {
-            return;
-        }
+    public void FocusFirst()
+    {
         var children = tabs[index].Target.Children();
         if (children.First().focusable)
         {
@@ -87,6 +84,19 @@ public class CombatTabs : TabbedMenu
         {
             children.First().Children().First().Focus();
         }
-       
+    }
+    public void FocusOn(int childIndex)
+    {
+        var children = tabs[index].Target.Children();
+        if (children.First().focusable)
+        {
+            children.ToArray()[childIndex].Focus();
+            Debug.Log("refocuses on " + children.ToArray()[childIndex].name);
+        }
+        else
+        {
+            children.First().Children().ToArray()[childIndex].Focus();
+        }
+
     }
 }
