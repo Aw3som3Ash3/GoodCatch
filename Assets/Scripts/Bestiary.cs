@@ -49,8 +49,9 @@ public class Bestiary : PausePage
         {
             return;
         }
-        bestiaryPage.SetPage(fishMonsterType);
+        
         this.parent.Add(bestiaryPage);
+        bestiaryPage.SetPage(fishMonsterType);
         this.visible=false;
     }
 
@@ -143,7 +144,8 @@ public class BestiarySlot : VisualElement
 
 public class BestiaryPage:VisualElement
 {
-    Label fishTitle,location,timeOfDay,baits,stamina,hp,agility,attack,magicAttack,defense,magicDefense;
+    Label fishTitle,location,timeOfDay,baits,stamina,hp,agilityMin,attackMin,magicAttackMin,defenseMin,magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax;
+    
     
     public new class UxmlFactory : UxmlFactory<BestiaryPage, BestiaryPage.UxmlTraits>
     {
@@ -161,7 +163,7 @@ public class BestiaryPage:VisualElement
     void Init()
     {
         VisualElement root = this;
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/BeastiaryContentPage");
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/MarinIndexPage");
 
         visualTreeAsset.CloneTree(root);
         fishTitle = this.Q<Label>("NameAmount");
@@ -170,24 +172,47 @@ public class BestiaryPage:VisualElement
         baits = this.Q<Label>("BaitAmount");
         stamina = this.Q<Label>("StaAmount");
         hp = this.Q<Label>("HPAmount");
-        agility = this.Q<Label>("AgiAmount");
-        attack = this.Q<Label>("AtkAmount");
-        magicAttack = this.Q<Label>("MgAtkAmount");
-        defense = this.Q<Label>("FortAmount");
-        magicDefense = this.Q<Label>("MgForAmount");
+
+       
+
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
     }
     public void SetPage(FishMonsterType fishMonsterType)
     {
-        fishTitle.text = fishMonsterType.name;
-        stamina.text = fishMonsterType.BaseStamina.ToString();
-        hp.text=fishMonsterType.BaseHealth.ToString();
-        agility.text=fishMonsterType.Agility.Min+"-"+fishMonsterType.Agility.Max;
-        attack.text = fishMonsterType.Attack.Min + "-" + fishMonsterType.Attack.Max;
-        magicAttack.text = fishMonsterType.Special.Min + "-" + fishMonsterType.Attack.Max;
-        magicDefense.text = fishMonsterType.SpecialFortitude.Min + "-" + fishMonsterType.SpecialFortitude.Max;
-        defense.text = fishMonsterType.Fortitude.Min + "-" + fishMonsterType.Fortitude.Max;
+
+        Debug.Log(this.Q<MarinedexTabs>().Q("Stats-content"));
+        agilityMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumAgilityAmount");
+        attackMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumPhysicalAttackAmount");
+        magicAttackMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumMagicalAttackAmount");
+        defenseMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumPFAmount");
+        magicDefenseMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumMFAmount");
+
+
+        agilityMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumAgilityAmount");
+        attackMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumPhysicalAttackAmount");
+        magicAttackMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumMagicalAttackAmount");
+        defenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumPFAmount");
+        magicDefenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumMFAmount");
+
+
+        Debug.Log(fishMonsterType);
+        Debug.Log(agilityMin);
+        //fishTitle.text = fishMonsterType.name; 
+        //stamina.text = fishMonsterType.BaseStamina.ToString();
+        //hp.text=fishMonsterType.BaseHealth.ToString();
+        agilityMax.text = fishMonsterType.Agility.Max.ToString();
+        agilityMin.text = fishMonsterType.Agility.Min.ToString();
+        attackMin.text = fishMonsterType.Attack.Min.ToString();
+        attackMax.text = fishMonsterType.Attack.Max.ToString();
+
+        magicAttackMax.text = fishMonsterType.Special.Max.ToString();
+        magicAttackMin.text = fishMonsterType.Special.Min.ToString();
+
+        magicDefenseMax.text = fishMonsterType.SpecialFortitude.Max.ToString();
+        magicDefenseMin.text = fishMonsterType.SpecialFortitude.Min.ToString();
+        defenseMin.text = fishMonsterType.Fortitude.Min.ToString();
+        defenseMax.text = fishMonsterType.Fortitude.Max.ToString();
     }
 
 }
