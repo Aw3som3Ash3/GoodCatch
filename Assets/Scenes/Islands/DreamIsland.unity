@@ -618,6 +618,7 @@ MonoBehaviour:
     dialogue: {fileID: 11400000, guid: ddc03b2c3c7c5714eb966e009561ffcd, type: 2}
   skipTutorial: {fileID: 0}
   finishedTutorial: {fileID: -6363728242290185311, guid: ddc03b2c3c7c5714eb966e009561ffcd, type: 2}
+  postTutorialQuest: {fileID: 11400000, guid: 63e22f4c34faafe40a67bcabe0d63e00, type: 2}
 --- !u!136 &510201482
 CapsuleCollider:
   m_ObjectHideFlags: 0
