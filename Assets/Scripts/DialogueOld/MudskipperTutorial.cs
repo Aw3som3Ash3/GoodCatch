@@ -35,7 +35,7 @@ public class MudskipperTutorial : NPC
     private void FinishedTutorial_Event()
     {
        
-        if (postTutorialQuest = null)
+        if (postTutorialQuest == null)
         {
             QuestTracker.Instance.AddQuest(postTutorialQuest, true);
         }
