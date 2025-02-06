@@ -547,7 +547,7 @@ public class CombatManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentTurn != null&& combatVisualizer.turnToObject[currentTurn.Value]!=null)
+        if (currentTurn != null&& combatVisualizer.turnToObject?[currentTurn.Value]!=null)
         {
             combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
         }
