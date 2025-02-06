@@ -15,6 +15,8 @@ public class MudskipperTutorial : NPC
     DialogueEvent skipTutorial;
     [SerializeField]
     DialogueEvent finishedTutorial;
+    [SerializeField]
+    Quest postTutorialQuest;
 
     void Awake()
     {
@@ -33,6 +35,12 @@ public class MudskipperTutorial : NPC
     private void FinishedTutorial_Event()
     {
         LoadMainScene();
+        if (postTutorialQuest = null)
+        {
+            QuestTracker.Instance.AddQuest(postTutorialQuest, true);
+        }
+       
+        
     }
 
     public override bool Interact()
