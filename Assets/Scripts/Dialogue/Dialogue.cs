@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Callbacks;
-using UnityEditor.Experimental.GraphView;
+
+
 using UnityEngine;
 
 
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "Dialogue", menuName = "Dialogue System/DialogueTree", order = 2)]
 public class Dialogue : ScriptableObject
