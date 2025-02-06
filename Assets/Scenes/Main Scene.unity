@@ -1070,6 +1070,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 771363639}
   m_SourcePrefab: {fileID: 100100000, guid: 36c470907c48f0c449fc791803782a0a, type: 3}
+--- !u!4 &491122132 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1567134665207435743, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+  m_PrefabInstance: {fileID: 1078248768278574333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &504268846
 GameObject:
   m_ObjectHideFlags: 0
@@ -6469,6 +6474,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteamBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 651029237072880272, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Size.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567134665207435743, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567134665207435743, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567134665207435743, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.61
+      objectReference: {fileID: 0}
     - target: {fileID: 1935459141177377352, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.5
@@ -6493,6 +6514,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5712515846371703574, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Size.y
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6167894882296467100, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_Follow
       value: 
@@ -6501,6 +6526,10 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 296420409}
+    - target: {fileID: 7540289820249508841, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: stationZone
+      value: 
+      objectReference: {fileID: 491122132}
     - target: {fileID: 7968609533902908132, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
