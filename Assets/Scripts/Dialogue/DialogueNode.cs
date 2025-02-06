@@ -25,12 +25,13 @@ public abstract class DialogueNode
     public string guid;
 
     public Vector2 position;
-
+#if UNITY_EDITOR
     public virtual DialogueNode SetTree(Dialogue tree)
     {
         this.tree = tree;
         return this;
     }
+#endif
     public DialogueNode()
     {
        
@@ -109,6 +110,7 @@ public class DialogueEventNode : BasicDialogue
        
 
     }
+#if UNITY_EDITOR
     public override DialogueNode SetTree(Dialogue tree)
     {
         dialogueEvent = ScriptableObject.CreateInstance<DialogueEvent>();
@@ -124,6 +126,7 @@ public class DialogueEventNode : BasicDialogue
         dialogueEvent =_event;
         return base.SetTree(tree);
     }
+#endif
     public override void Exit()
     {
         dialogueEvent.Invoke();
