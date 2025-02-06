@@ -11,10 +11,21 @@ public class MudskipperTutorial : NPC
 
     //public string StationName => "Mudskipper";
     //public MudskipperDialogue dialogue;
+    [SerializeField]
+    DialogueEvent skipTutorial;
+    [SerializeField]
+    DialogueEvent finishedTutorial;
 
     void Awake()
     {
+        finishedTutorial.Event += FinishedTutorial_Event;
+        skipTutorial.Event += FinishedTutorial_Event;
         //dialogue = FindObjectOfType<MudskipperDialogue>(true);
+    }
+
+    private void FinishedTutorial_Event()
+    {
+        LoadMainScene();
     }
 
     public override bool Interact()
