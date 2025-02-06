@@ -194,7 +194,13 @@ public class CombatUI : VisualElement
             var value = slot.style.backgroundImage.value;
             value.sprite=playerFishes[i].Icon;
             slot.style.backgroundImage=value;
-            
+            if (playerFishes[i].Health <= 0)
+            {
+                slot.style.unityBackgroundImageTintColor = Color.gray;
+                slot.SetEnabled(false);
+                continue;
+            }
+
             slot.RegisterCallback<PointerOverEvent>((e) =>
             {
                 if (!isSelected)
