@@ -8,15 +8,21 @@ using UnityEngine.UIElements;
 
 public class DialogueDisplayer : MonoBehaviour
 {
+
     public static DialogueDisplayer Instance;
     DialogueReader reader;
 
     Label dialogueText;
     Button option1, option2;
     VisualElement rootVisualElement;
+    public bool IsActive { get; private set; } = false;
     public void NewDialogue(Dialogue dialogue)
     {
-       
+        if (IsActive)
+        {
+            return;
+        }
+        IsActive = true;
         rootVisualElement.visible = true;
         reader =new DialogueReader(dialogue);
         var inputs = new GoodCatchInputs();
@@ -41,6 +47,7 @@ public class DialogueDisplayer : MonoBehaviour
             InputManager.EnablePlayer();
             inputs.UI.NextDialogue.Disable();
             inputs.Dispose();
+            IsActive = false;
         };
         //option1.clicked += () =>;
         
@@ -64,7 +71,12 @@ public class DialogueDisplayer : MonoBehaviour
 
         
     }
+    public void NewDialogue(Dialogue dialogue,Action OnCompleted)
+    {
+        NewDialogue(dialogue);
+        reader.OnCompleted += OnCompleted;
 
+    }
 
 
     private void Awake()

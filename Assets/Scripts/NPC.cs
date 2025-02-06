@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using static NPC;
 
 public class NPC : MonoBehaviour, IInteractable
 {
@@ -9,23 +11,59 @@ public class NPC : MonoBehaviour, IInteractable
     string npcName;
     public string StationName => $"Talk To {npcName}";
     [SerializeField]
-    Dialogue dialogue;
+    Dialogue baseDialogue;
 
+    [Serializable]
+    public struct QuestBasedDialogue
+    {
+        [SerializeField]
+        public Quest quest;
+        [SerializeField]
+        public string stateName;
+        [SerializeField]
+        public Dialogue dialogue;
+    }
+
+    [SerializeField]
+    List<QuestBasedDialogue> questBasedDialogues;
+
+    //[SerializeField]
+    //List<UnityEvent> events;
     public virtual bool Interact()
     {
 
-        foreach(var quest in QuestTracker.Instance?.FindActiveRequirements<SpeakToNPCQuestRequirement>((x) => x.NpcName == npcName))
+        
+
+        foreach(QuestBasedDialogue questBasedDialogue in questBasedDialogues)
         {
-            if (quest != null) 
+            if (QuestTracker.Instance.IsQuestStateActive(questBasedDialogue.quest, questBasedDialogue.stateName))
             {
-                quest.RequirementCompleted();
+                DialogueDisplayer.Instance.NewDialogue(questBasedDialogue.dialogue);
+                break;
             }
         }
-        DialogueDisplayer.Instance.NewDialogue(dialogue);
+        DialogueDisplayer.Instance.NewDialogue(baseDialogue, () => OnFinishedTalking());
+        
+
+        
         //throw new System.NotImplementedException();
         return true;
     }
 
+    void OnFinishedTalking()
+    {
+        foreach (var quest in QuestTracker.Instance?.FindActiveRequirements<SpeakToNPCQuestRequirement>((x) => x.NpcName == npcName))
+        {
+            if (quest != null)
+            {
+                quest.RequirementCompleted();
+            }
+        }
+    }
+    private void OnValidate()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {

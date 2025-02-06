@@ -10,10 +10,13 @@ using UnityEngine.UIElements;
 public class ControlsEditor : VisualElement
 {
     public string inputName { get; set; }
+    //InputAction inputAction;
     Button primary, alt;
     
     Label title;
     InputMethod inputMethod { get; set; }
+    public static event Action OnChangingInput;
+    public static event Action OnCompletedChange;
 
     public new class UxmlFactory : UxmlFactory<ControlsEditor, ControlsEditor.UxmlTraits>
     {
@@ -30,6 +33,9 @@ public class ControlsEditor : VisualElement
             ate.inputMethod = m_inputMethod.GetValueFromBag(bag,cc);
             ate.inputName = m_inputName.GetValueFromBag(bag, cc);
             ate.title.text = m_inputName.GetValueFromBag(bag, cc);
+            
+            
+            
             ate.ChangeIcons();
         }
 
@@ -37,16 +43,50 @@ public class ControlsEditor : VisualElement
     public ControlsEditor()
     {
         Initial();
+        primary.clicked += () => ChangeInput(0);
+        alt.clicked += () => ChangeInput(1);
     }
 
+    public ControlsEditor(InputAction inputAction,InputMethod method)
+    {
+        inputMethod = method;
+        inputName = inputAction.name;
+
+        Initial();
+        ChangeIcons(inputAction);
+        title.text = inputName;
+        primary.clicked += () => ChangeInput(0);
+        alt.clicked += () => ChangeInput(1);
+    }
+
+    public ControlsEditor(InputBinding inputBinding, InputMethod method)
+    {
+        
+        inputMethod = method;
+        inputName = inputBinding.name;
+
+        Initial();
+        ChangeIcons();
+        title.text = inputName;
+    }
     void ChangeIcons()
     {
-        InputAction inputAction=null;
-        if (inputName != null)
+        InputAction inputAction = null;
+        if (inputName != null && inputAction == null)
         {
             inputAction = InputManager.Input.FindAction(inputName);
             Debug.Log(inputAction);
         }
+        ChangeIcons(inputAction);
+    }
+    void ChangeIcons(InputBinding inputBinding)
+    {
+        InputDisplayer.GetInputIcon(inputBinding, inputMethod).Completed+= (x) => primary.style.backgroundImage = x.Result;
+        //InputDisplayer.GetInputIcon(inputAction, inputMethod, 1, (x) => alt.style.backgroundImage = x.Result);
+    }
+    void ChangeIcons(InputAction inputAction)
+    {
+       
 
         if (inputAction != null)
         {
@@ -69,12 +109,12 @@ public class ControlsEditor : VisualElement
         primary.text = "";
         primary.style.width = 60;
         primary.style.height = 60;
-        primary.clicked += () => ChangeInput(0);
+       
         alt.text = "";
         alt.style.width = 60;
         alt.style.height = 60;
-        alt.clicked += () => ChangeInput(1);
-
+        
+        this.style.flexDirection = FlexDirection.Row;
 
         //title.bindingPath = "inputName";
         //throw new NotImplementedException();
@@ -103,6 +143,7 @@ public class ControlsEditor : VisualElement
             var bindingIndex = inputAction.GetBindingIndex(bindings[index]);
             InputSystem.onAnyButtonPress.CallOnce((x) => { inputAction.ApplyBindingOverride(bindingIndex, x.path); ChangeIcons(); InputHudTip.UpdateAllIcons(); });
         }
+        OnChangingInput?.Invoke();
 
     }
 

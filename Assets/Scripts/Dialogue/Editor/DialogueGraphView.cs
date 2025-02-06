@@ -196,13 +196,23 @@ public class DialogueGraphView : GraphView
                 //dialogueTree.AddChild(, );
             });
         }
-
+        UpdateValues();
         EditorUtility.SetDirty(dialogueTree);
         AssetDatabase.SaveAssets();
         return graphViewChange;
         //throw new NotImplementedException();
     }
+    public void UpdateValues()
+    {
+        foreach (var node in nodes)
+        {
+            if (node is DialogueNodeView)
+            {
+                (node as DialogueNodeView).UpdateFields();
+            }
 
+        }
+    }
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         base.BuildContextualMenu(evt);
@@ -215,6 +225,10 @@ public class DialogueGraphView : GraphView
 
             evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type, mousePos));
 
+        }
+        foreach(var _event in dialogueTree.events)
+        {
+            evt.menu.AppendAction($"[Event] {_event.name}", (a)=>CreateNodeView(dialogueTree.CreateNode<DialogueEventNode>(mousePos).SetEvent(dialogueTree,_event),mousePos));
         }
         
 
@@ -245,10 +259,17 @@ public class DialogueGraphView : GraphView
         
         if (dialogueNode is BasicDialogue)
         {
-            
+            if (dialogueNode is DialogueGiveItemNode)
+            {
+                nodeView = new DialogueGiveItemNodeView(dialogueNode);
+            }else
             if (dialogueNode is GiveQuest)
             {
                 nodeView = new QuestNodeView(dialogueNode);
+            }
+            else if (dialogueNode is DialogueEventNode)
+            {
+                nodeView = new DialogueEventNodeView(dialogueNode);
             }
             else
             {
