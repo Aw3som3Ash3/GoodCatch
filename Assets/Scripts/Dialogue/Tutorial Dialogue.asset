@@ -21,7 +21,7 @@ MonoBehaviour:
   - rid: 4799112187029225473
   - rid: 4799112187029225474
   - rid: 4799112187029225475
-  - rid: 4799112187029225478
+  - rid: 8474349671276347392
   references:
     version: 2
     RefIds:
@@ -57,8 +57,8 @@ MonoBehaviour:
         guid: e531c34b7e676374ca8f304f82fc9ab9
         position: {x: 1371, y: -54}
         nextNode:
-          rid: 4799112187029225478
-    - rid: 4799112187029225478
+          rid: 8474349671276347392
+    - rid: 8474349671276347392
       type: {class: GiveQuest, ns: , asm: Assembly-CSharp}
       data:
         dialouge: "So, what you\u2019re going to want to do is hold down your cast
@@ -66,8 +66,8 @@ MonoBehaviour:
           \nAfter that you will be put into combat because the monsters you will
           be facing won\u2019t go easy on you. \nYou\u2019re going to want to defeat
           them after you hook them in! So, give it a shot."
-        guid: 15d8ba39864c9d84480b510410d7fce8
-        position: {x: 2111, y: -100}
+        guid: 7bcb2099c689d2c4d848ab54be59afd1
+        position: {x: 2146, y: 120}
         nextNode:
           rid: -2
-        quest: {fileID: 0}
+        quest: {fileID: 11400000, guid: 8789b08040d62fd41b8e41e89e17f6f5, type: 2}
