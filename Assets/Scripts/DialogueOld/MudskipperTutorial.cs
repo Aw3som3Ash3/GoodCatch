@@ -34,13 +34,12 @@ public class MudskipperTutorial : NPC
 
     private void FinishedTutorial_Event()
     {
-        LoadMainScene();
+       
         if (postTutorialQuest = null)
         {
             QuestTracker.Instance.AddQuest(postTutorialQuest, true);
         }
-       
-        
+        LoadMainScene();
     }
 
     public override bool Interact()
