@@ -18,8 +18,15 @@ public class MudskipperTutorial : NPC
 
     void Awake()
     {
-        finishedTutorial.Event += FinishedTutorial_Event;
-        skipTutorial.Event += FinishedTutorial_Event;
+        if (finishedTutorial != null)
+        {
+            finishedTutorial.Event += FinishedTutorial_Event;
+        }
+        if (skipTutorial != null)
+        {
+            skipTutorial.Event += FinishedTutorial_Event;
+        }
+       
         //dialogue = FindObjectOfType<MudskipperDialogue>(true);
     }
 
