@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/PauseMenu.uss?fileID=7433441132597879392&amp;guid=a7b5e17935909ec4ea2cbcebb02c8000&amp;type=3#PauseMenu" />
-    <ui:VisualElement name="PauseMenuWorkSpace" style="flex-grow: 1; flex-direction: column; justify-content: center; align-items: center; margin-top: 50px;">
+    <ui:VisualElement name="PauseMenuWorkSpace" style="flex-grow: 1; flex-direction: column; justify-content: center; align-items: center; margin-top: 50px; position: absolute; height: 1026px; width: 1922px;">
         <ui:VisualElement name="BackgroundImage" style="flex-grow: 1; width: 100%; height: 100%; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/BigWaterBG.png?fileID=2800000&amp;guid=38b546484b7fb6e4db4f006e1aafa96d&amp;type=3#BigWaterBG&quot;);">
             <ui:Label tabindex="-1" text="Paused" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PausedText" style="font-size: 100px; justify-content: flex-start; align-self: center; top: 2%; color: rgb(0, 41, 93); -unity-text-outline-color: rgb(211, 226, 245); -unity-text-outline-width: 1px; text-shadow: 0 0 9px rgb(0, 0, 0); -unity-font-style: bold;" />
             <ui:VisualElement name="ContainerAlpha" style="flex-grow: 1; justify-content: center; align-items: center;">
