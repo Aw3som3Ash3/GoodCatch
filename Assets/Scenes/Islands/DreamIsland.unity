@@ -608,7 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Mudskipper
-  baseDialogue: {fileID: 11400000, guid: f5edc9df4146b434c9244234bb184c8f, type: 2}
+  baseDialogue: {fileID: 11400000, guid: 1925a89bd1bc0394499d89dc59b7d8db, type: 2}
   questBasedDialogues:
   - quest: {fileID: 11400000, guid: 8789b08040d62fd41b8e41e89e17f6f5, type: 2}
     stateName: Speak To Skips

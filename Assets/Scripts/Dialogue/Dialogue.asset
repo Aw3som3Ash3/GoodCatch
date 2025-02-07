@@ -21,7 +21,9 @@ MonoBehaviour:
   - rid: 187471307559927816
   decorators:
   - rid: 187471307559927817
-  events: []
+  - rid: 187471307559927819
+  events:
+  - {fileID: 7556364162038063805}
   references:
     version: 2
     RefIds:
@@ -34,6 +36,7 @@ MonoBehaviour:
         guid: 3fee1b0c1c2c9bc4595fcd04c3a701b9
         decorators:
         - rid: 187471307559927817
+        - rid: 187471307559927819
         position: {x: 392.00003, y: 74}
         nextNode:
           rid: -2
@@ -44,3 +47,21 @@ MonoBehaviour:
         guid: dd4654fa725c2644881b78b217f5207f
         item: {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
         amount: 5
+    - rid: 187471307559927819
+      type: {class: DialogueEventNode, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 612, y: 302}
+        guid: 470f6fdfcf3dbf343a9da81b9eafcaf8
+        dialogueEvent: {fileID: 7556364162038063805}
+--- !u!114 &7556364162038063805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 

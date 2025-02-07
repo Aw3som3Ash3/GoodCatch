@@ -289,9 +289,11 @@ public class DialogueGraphView : GraphView
             evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateDecorator(type, mousePos));
 
         }
-            foreach (var _event in dialogueTree.Events)
+        foreach (var _event in dialogueTree.Events)
         {
-            //evt.menu.AppendAction($"[Event] {_event.name}", (a)=>CreateDecorator(type,mousePos));
+            var eventNode = dialogueTree.CreateDecorator(typeof(DialogueEventNode), mousePos)as DialogueEventNode;
+            eventNode.SetEvent(_event);
+            evt.menu.AppendAction($"[Event] {_event.name}", (a)=>CreateDecoratorView(eventNode, mousePos));
         }
         
 

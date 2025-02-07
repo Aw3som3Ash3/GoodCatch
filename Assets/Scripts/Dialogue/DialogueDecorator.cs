@@ -53,7 +53,7 @@ public class DialogueEventNode : DialogueDecorator
 
     public override void Enter()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }
 
