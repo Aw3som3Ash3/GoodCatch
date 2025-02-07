@@ -26,49 +26,52 @@ public class DialogueTreeEditor : EditorWindow
     [MenuItem("Examples/My Editor Window")]
     static void OpenWindow(Dialogue dialogue)
     {
-        wnd = new();
-        wnd.dialogueTree = dialogue;
-       
+
         
-
-
+       
        
         wnd = GetWindow<DialogueTreeEditor>();
+        wnd.dialogueTree = dialogue;
         wnd.Show();
         wnd.titleContent = new GUIContent("Dialogue Editor");
         Debug.Log(wnd);
-        //wnd.GenerateGraph();
-
+        
+        wnd.GenerateGraph();
+        
 
     }
+
+    public DialogueTreeEditor()
+    {
+
+    }
+    
     void GenerateGraph()
     {
-        //if (graphView != null)
-        //{
-        //    //twoPaneSplitView.Remove(graphView);
-            
-        //}
-        Debug.Log(dialogueTree);
-        //graphView = new DialogueGraphView();
-        graphView.Setup(dialogueTree);
-        //if (twoPaneSplitView!=null)
-        //{
-        //    twoPaneSplitView.fixedPane.Add(graphView);
-        //}
-       
+
+        
+        if (dialogueTree != null)
+        {
+            if (twoPaneSplitView != null)
+            {
+                rootVisualElement.Remove(twoPaneSplitView);
+                rootVisualElement.MarkDirtyRepaint();
+            }
+            graphView = new DialogueGraphView();
+            graphView.Setup(dialogueTree);
+            inspector = new DialogueInspector(dialogueTree);
+
+            twoPaneSplitView = new(1, 1000, TwoPaneSplitViewOrientation.Horizontal);
+            twoPaneSplitView.Add(inspector);
+            twoPaneSplitView.Add(graphView);
+
+            rootVisualElement.Add(twoPaneSplitView);
+        }
     }
     private void CreateGUI()
     {
-        graphView = new DialogueGraphView();
-        graphView.Setup(dialogueTree);
-        inspector = new DialogueInspector(dialogueTree);
-        
-        twoPaneSplitView = new(1,1000, TwoPaneSplitViewOrientation.Horizontal);
-        twoPaneSplitView.Add(inspector);
-        twoPaneSplitView.Add(graphView);
+        wnd.GenerateGraph();
 
-        rootVisualElement.Add(twoPaneSplitView);
-        
     }
 
   

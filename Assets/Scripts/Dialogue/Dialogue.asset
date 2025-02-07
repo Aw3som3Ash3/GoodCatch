@@ -14,54 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootNode:
     nextNode:
-      rid: 187471307559927816
+      rid: 187471307559927829
     guid: root
     position: {x: 0, y: 0}
   nodes:
-  - rid: 187471307559927816
+  - rid: 187471307559927829
   decorators:
-  - rid: 187471307559927817
-  - rid: 187471307559927819
-  events:
-  - {fileID: 7556364162038063805}
+  - rid: 187471307559927830
+  events: []
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 187471307559927816
+    - rid: 187471307559927829
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: test give items
-        guid: 3fee1b0c1c2c9bc4595fcd04c3a701b9
+        dialouge: 
+        guid: d5db42c4659cc8a4f9afed919651e1d5
         decorators:
-        - rid: 187471307559927817
-        - rid: 187471307559927819
-        position: {x: 392.00003, y: 74}
+        - rid: 187471307559927830
+        position: {x: 444.66666, y: -66.666664}
         nextNode:
           rid: -2
-    - rid: 187471307559927817
-      type: {class: DialogueGiveItemNode, ns: , asm: Assembly-CSharp}
+    - rid: 187471307559927830
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 186.66669, y: 278.66666}
-        guid: dd4654fa725c2644881b78b217f5207f
-        item: {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-        amount: 5
-    - rid: 187471307559927819
-      type: {class: DialogueEventNode, ns: , asm: Assembly-CSharp}
-      data:
-        position: {x: 612, y: 302}
-        guid: 470f6fdfcf3dbf343a9da81b9eafcaf8
-        dialogueEvent: {fileID: 7556364162038063805}
---- !u!114 &7556364162038063805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
-  m_Name: Test
-  m_EditorClassIdentifier: 
+        position: {x: 353.3333, y: 250.00002}
+        guid: 41d8d76673a38ed45915247279820a10
+        quest: {fileID: 0}

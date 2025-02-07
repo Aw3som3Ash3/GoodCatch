@@ -616,7 +616,7 @@ MonoBehaviour:
   - quest: {fileID: 11400000, guid: 29ff50a87758d7041b9663d36d45e238, type: 2}
     stateName: Speak To Skips
     dialogue: {fileID: 11400000, guid: ddc03b2c3c7c5714eb966e009561ffcd, type: 2}
-  skipTutorial: {fileID: 0}
+  skipTutorial: {fileID: 7556364162038063805, guid: 1925a89bd1bc0394499d89dc59b7d8db, type: 2}
   finishedTutorial: {fileID: -6363728242290185311, guid: ddc03b2c3c7c5714eb966e009561ffcd, type: 2}
   postTutorialQuest: {fileID: 11400000, guid: 63e22f4c34faafe40a67bcabe0d63e00, type: 2}
 --- !u!136 &510201482

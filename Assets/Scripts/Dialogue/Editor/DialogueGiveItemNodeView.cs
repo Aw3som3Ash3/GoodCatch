@@ -13,19 +13,19 @@ public class DialogueGiveItemNodeView : DialogueDecoratorView
     {
         var field = new ObjectField("Item");
         field.objectType = typeof(Item);
-        field.value = (decorator as DialogueGiveItemNode).item;
+        field.value = (decorator as DialogueGiveItemDecorator).item;
         field.RegisterValueChangedCallback((evt) =>
         {
-            (decorator as DialogueGiveItemNode).item= evt.newValue as Item;
+            (decorator as DialogueGiveItemDecorator).item= evt.newValue as Item;
 
             AssetDatabase.SaveAssets();
         });
         contents.Add(field);
         IntegerField integerField = new IntegerField("Amount");
-        integerField.value= (decorator as DialogueGiveItemNode).amount;
+        integerField.value= (decorator as DialogueGiveItemDecorator).amount;
         integerField.RegisterValueChangedCallback((evt) =>
         {
-            (decorator as DialogueGiveItemNode).amount = evt.newValue;
+            (decorator as DialogueGiveItemDecorator).amount = evt.newValue;
 
             AssetDatabase.SaveAssets();
         });

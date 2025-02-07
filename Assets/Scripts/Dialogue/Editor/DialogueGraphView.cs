@@ -9,7 +9,7 @@ using System.Linq;
 using System;
 using static BranchingDialogue;
 
-public class DialogueGraphView : GraphView
+public class DialogueGraphView : GraphView,IEdgeConnectorListener
 {
 
     Dialogue dialogueTree;
@@ -282,7 +282,7 @@ public class DialogueGraphView : GraphView
         }
         foreach (var type in TypeCache.GetTypesDerivedFrom<DialogueDecorator>())
         {
-            if (type == typeof(DialogueEventNode))
+            if (type == typeof(DialogueEventDecorator))
             {
                 continue;
             }
@@ -291,7 +291,7 @@ public class DialogueGraphView : GraphView
         }
         foreach (var _event in dialogueTree.Events)
         {
-            var eventNode = dialogueTree.CreateDecorator(typeof(DialogueEventNode), mousePos)as DialogueEventNode;
+            var eventNode = dialogueTree.CreateDecorator(typeof(DialogueEventDecorator), mousePos)as DialogueEventDecorator;
             eventNode.SetEvent(_event);
             evt.menu.AppendAction($"[Event] {_event.name}", (a)=>CreateDecoratorView(eventNode, mousePos));
         }
@@ -326,16 +326,16 @@ public class DialogueGraphView : GraphView
     void CreateDecoratorView(DialogueDecorator decorator, Vector2 mousePos)
     {
         DialogueDecoratorView decoratorView=null;
-        if (decorator is DialogueGiveItemNode)
+        if (decorator is DialogueGiveItemDecorator)
         {
             decoratorView = new DialogueGiveItemNodeView(decorator);
         }
         else
-            if (decorator is GiveQuest)
+            if (decorator is GiveQuestDecorator)
         {
             decoratorView = new QuestNodeView(decorator);
         }
-        else if (decorator is DialogueEventNode)
+        else if (decorator is DialogueEventDecorator)
         {
             decoratorView = new DialogueEventNodeView(decorator);
         }
@@ -374,5 +374,18 @@ public class DialogueGraphView : GraphView
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
         return ports.ToList().Where(endPort => endPort.direction != startPort.direction && endPort.node != startPort.node).ToList();
+        
+    }
+
+    public void OnDropOutsidePort(Edge edge, Vector2 position)
+    {
+        
+        //BuildContextualMenu(new());
+        //throw new NotImplementedException();
+    }
+
+    public void OnDrop(GraphView graphView, Edge edge)
+    {
+        //throw new NotImplementedException();
     }
 }

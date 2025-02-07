@@ -16,11 +16,11 @@ public abstract class DialogueDecorator
 }
 
 
-public class DialogueEventNode : DialogueDecorator
+public class DialogueEventDecorator : DialogueDecorator
 {
     //public Action @Event;
     public DialogueEvent dialogueEvent;
-    public DialogueEventNode()
+    public DialogueEventDecorator()
     {
 
 
@@ -59,7 +59,7 @@ public class DialogueEventNode : DialogueDecorator
 
 
 [Serializable]
-public class GiveQuest : DialogueDecorator
+public class GiveQuestDecorator : DialogueDecorator
 {
     [SerializeField]
     public Quest quest;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueGiveItemNode : DialogueDecorator
+public class DialogueGiveItemDecorator : DialogueDecorator
 {
 
     [SerializeField]
@@ -10,7 +10,7 @@ public class DialogueGiveItemNode : DialogueDecorator
     [SerializeField]
     [Min(1)]
     public int amount;
-    public DialogueGiveItemNode()
+    public DialogueGiveItemDecorator()
     {
 
     }

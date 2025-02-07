@@ -35,10 +35,10 @@ public class QuestNodeView : DialogueDecoratorView
         
         var field = new ObjectField("Quest");
         field.objectType = typeof(Quest);
-        field.value = (dialogueDecorator as GiveQuest).quest;
+        field.value = (dialogueDecorator as GiveQuestDecorator).quest;
         field.RegisterValueChangedCallback((evt) =>
         {
-            (dialogueDecorator as GiveQuest).quest = evt.newValue as Quest;
+            (dialogueDecorator as GiveQuestDecorator).quest = evt.newValue as Quest;
 
             AssetDatabase.SaveAssets();
         });
@@ -62,11 +62,11 @@ public class DialogueEventNodeView : DialogueDecoratorView
         contents.Add(label);
         contents.Add(eventField);
 
-        eventField.value = (dialogueDecorator as DialogueEventNode).dialogueEvent.name;
+        eventField.value = (dialogueDecorator as DialogueEventDecorator).dialogueEvent.name;
         eventField.RegisterValueChangedCallback(evt =>
         {
-            (dialogueDecorator as DialogueEventNode).dialogueEvent.name = evt.newValue;
-            EditorUtility.SetDirty((dialogueDecorator as DialogueEventNode).dialogueEvent);
+            (dialogueDecorator as DialogueEventDecorator).dialogueEvent.name = evt.newValue;
+            EditorUtility.SetDirty((dialogueDecorator as DialogueEventDecorator).dialogueEvent);
             AssetDatabase.SaveAssets();
             
             //(parent.parent as DialogueGraphView).UpdateValues();
@@ -78,7 +78,7 @@ public class DialogueEventNodeView : DialogueDecoratorView
     public override void UpdateFields()
     {
         
-        eventField.value = (dialogueDecorator as DialogueEventNode).dialogueEvent.name;
+        eventField.value = (dialogueDecorator as DialogueEventDecorator).dialogueEvent.name;
     }
 
 
