@@ -6,29 +6,35 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class DialogueGiveItemNodeView : DialogueLineNodeView
+public class DialogueGiveItemNodeView : DialogueDecoratorView
 {
     // Start is called before the first frame update
-    public DialogueGiveItemNodeView(DialogueNode dialogueNode) : base(dialogueNode)
+    public DialogueGiveItemNodeView(DialogueDecorator decorator) : base(decorator)
     {
         var field = new ObjectField("Item");
         field.objectType = typeof(Item);
-        field.value = (dialogueNode as DialogueGiveItemNode).item;
+        field.value = (decorator as DialogueGiveItemNode).item;
         field.RegisterValueChangedCallback((evt) =>
         {
-            (dialogueNode as DialogueGiveItemNode).item= evt.newValue as Item;
+            (decorator as DialogueGiveItemNode).item= evt.newValue as Item;
 
             AssetDatabase.SaveAssets();
         });
-        this.Q("extra").Add(field);
+        contents.Add(field);
         IntegerField integerField = new IntegerField("Amount");
-        integerField.value= (dialogueNode as DialogueGiveItemNode).amount;
+        integerField.value= (decorator as DialogueGiveItemNode).amount;
         integerField.RegisterValueChangedCallback((evt) =>
         {
-            (dialogueNode as DialogueGiveItemNode).amount = evt.newValue;
+            (decorator as DialogueGiveItemNode).amount = evt.newValue;
 
             AssetDatabase.SaveAssets();
         });
-        this.Q("extra").Add(integerField);
+        contents.Add(integerField);
+    }
+
+
+    public override void UpdateFields()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -5,7 +5,10 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.Callbacks;
 using UnityEditor;
 using System;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
+using Unity.VisualScripting;
+using NUnit.Framework;
 
 public class DialogueTreeEditor : EditorWindow
 {
@@ -13,40 +16,58 @@ public class DialogueTreeEditor : EditorWindow
 
     DialogueGraphView graphView;
 
+    TwoPaneSplitView twoPaneSplitView;
+    DialogueInspector inspector;
+    
+
     [SerializeReference]
     Dialogue dialogueTree;
     // Start is called before the first frame update
     [MenuItem("Examples/My Editor Window")]
-    void OpenWindow(Dialogue dialogue)
+    static void OpenWindow(Dialogue dialogue)
     {
-        dialogueTree = dialogue;
-        //wnd = GetWindow<DialogueTreeEditor>();
-        Show();
+        wnd = new();
+        wnd.dialogueTree = dialogue;
+       
+        
+
+
+       
+        wnd = GetWindow<DialogueTreeEditor>();
+        wnd.Show();
         wnd.titleContent = new GUIContent("Dialogue Editor");
         Debug.Log(wnd);
-        GenerateGraph();
+        //wnd.GenerateGraph();
 
 
     }
     void GenerateGraph()
     {
-        if (graphView != null)
-        {
-            rootVisualElement.Remove(graphView);
+        //if (graphView != null)
+        //{
+        //    //twoPaneSplitView.Remove(graphView);
             
-        }
+        //}
         Debug.Log(dialogueTree);
-        graphView = new DialogueGraphView();
+        //graphView = new DialogueGraphView();
         graphView.Setup(dialogueTree);
-        rootVisualElement.Add(graphView);
+        //if (twoPaneSplitView!=null)
+        //{
+        //    twoPaneSplitView.fixedPane.Add(graphView);
+        //}
+       
     }
     private void CreateGUI()
     {
-        if (dialogueTree != null)
-        {
-            GenerateGraph();
-        }
-        //ShowGraphViewWindowWithTools<DialogueTreeEditor>();
+        graphView = new DialogueGraphView();
+        graphView.Setup(dialogueTree);
+        inspector = new DialogueInspector(dialogueTree);
+        
+        twoPaneSplitView = new(1,1000, TwoPaneSplitViewOrientation.Horizontal);
+        twoPaneSplitView.Add(inspector);
+        twoPaneSplitView.Add(graphView);
+
+        rootVisualElement.Add(twoPaneSplitView);
         
     }
 
@@ -60,8 +81,8 @@ public class DialogueTreeEditor : EditorWindow
         {
             Dialogue tree = EditorUtility.InstanceIDToObject(instanceID) as Dialogue;
             Debug.Log(tree);
-            wnd = GetWindow<DialogueTreeEditor>();
-            wnd.OpenWindow(tree);
+            
+            OpenWindow(tree);
             // We can open MyAssetHandler asset using MyAssetHandler opening method
 
 
@@ -70,3 +91,72 @@ public class DialogueTreeEditor : EditorWindow
         else return false; // The passed instance doesn't belong to MyAssetHandler type asset so we won't be able to open it using opening method inside MyAssetHandler
     }
 }
+
+
+public class DialogueInspector : InspectorElement
+{
+
+    Button addEvent=new();
+    Dialogue dialogue;
+    ListView list;
+
+    public  DialogueInspector(Dialogue dialogue)
+    {
+        this.dialogue = dialogue;
+        addEvent.text = "Add Event";
+        Add(addEvent);
+        addEvent.clicked += AddEvent;
+        var serializedObject = new UnityEditor.SerializedObject(dialogue);
+
+        //PropertyField field = new PropertyField(serializedObject.FindProperty("events"),"Events");
+
+        list = new ListView(dialogue.Events,25,makeItem:()=>new EventViewer(),bindItem:(elem,index)=>(elem as EventViewer).SetEvent(dialogue.Events[index]));
+       
+        
+        //list.BindProperty(serializedObject.FindProperty("events"));
+        
+
+        Debug.Log(serializedObject.FindProperty("events"));
+        //Debug.Log(field);
+        Add(list);
+
+    }
+
+    private void AddEvent()
+    {
+        dialogue.CreateEvent();
+        list.Rebuild();
+        //throw new NotImplementedException();
+    }
+
+
+    public class EventViewer : VisualElement
+    {
+        DialogueEvent dialogueEvent;
+        TextField title=new();
+        Button delete=new();
+        Action<DialogueEvent> Delete;
+        public EventViewer() 
+        {
+            //dialogueEvent= @event;
+            style.flexDirection = FlexDirection.Row;
+            style.alignContent = Align.Stretch;
+            Add(title);
+            delete.text = "Remove";
+            title.style.flexGrow = 1;
+            title.RegisterValueChangedCallback((evt) => { if (dialogueEvent != null) { dialogueEvent.name = evt.newValue;EditorUtility.SetDirty(dialogueEvent); AssetDatabase.SaveAssets(); } });
+            Add(delete);
+
+        }
+        public void SetEvent(DialogueEvent @event)
+        {
+            dialogueEvent = @event;
+            title.value = dialogueEvent.name;
+            delete.clicked += () => Delete?.Invoke(dialogueEvent);
+        }
+    }
+}
+
+
+
+

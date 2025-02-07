@@ -12,6 +12,7 @@ public abstract class DialogueNodeView : Node
 {
     public TextField dialogueField;
     public Port input;
+    public Port decoratorPort;
     public Action<DialogueNodeView> OnNodeSeletected;
     public DialogueNode dialogueNode { get; protected set; }
 
@@ -39,6 +40,11 @@ public abstract class DialogueNodeView : Node
         }) ;
 
         input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(DialogueNode));
+        decoratorPort = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(DialogueDecorator));
+        this.Q("decorator-output").Add(decoratorPort);
+        decoratorPort.portName = "";
+        decoratorPort.style.alignSelf = Align.Center;
+
         input.allowMultiDrag = true;
         //input.
         //Debug.Log(input.IsSnappable());
@@ -174,55 +180,7 @@ public class RootNodeView:Node
 }
 
 
-public class QuestNodeView : DialogueLineNodeView
-{
-    public QuestNodeView(DialogueNode dialogueNode) : base(dialogueNode)
-    {
-        var field = new ObjectField("Quest");
-        field.objectType = typeof(Quest);
-        field.value = (dialogueNode as GiveQuest).quest;
-        field.RegisterValueChangedCallback((evt) => 
-        {
-            (dialogueNode as GiveQuest).quest = evt.newValue as Quest;
-           
-            AssetDatabase.SaveAssets();
-        } );
-        this.Q("extra").Add(field);
 
-    }
-}
-
-public class DialogueEventNodeView : DialogueLineNodeView
-{
-    TextField eventField;
-    public DialogueEventNodeView(DialogueNode dialogueNode) : base(dialogueNode)
-    {
-        eventField = new TextField();
-        Label label = new Label("Event Name");
-        this.Q("extra").Add(label);
-        this.Q("extra").Add(eventField);
-       
-        eventField.value = (dialogueNode as DialogueEventNode).dialogueEvent.name;
-        eventField.RegisterValueChangedCallback(evt => 
-        { 
-            (dialogueNode as DialogueEventNode).dialogueEvent.name= evt.newValue;
-            EditorUtility.SetDirty((dialogueNode as DialogueEventNode).dialogueEvent);
-            AssetDatabase.SaveAssets();
-            
-            //(parent.parent as DialogueGraphView).UpdateValues();
-            //.SetDirty(); 
-        });
-
-    }
-
-    public override void UpdateFields()
-    {
-        base.UpdateFields();
-        eventField.value = (dialogueNode as DialogueEventNode).dialogueEvent.name;
-    }
-
-
-}
 //public class DecisionPort : Port
 //{
 //    public BranchingDialogue.Decision decision { get; private set; }
