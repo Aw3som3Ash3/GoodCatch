@@ -607,14 +607,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4235a9618204841973db9a34ca9c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Mudskipper
+  npcName: MrSkips
   baseDialogue: {fileID: 11400000, guid: b1b8d447fd36aa04e9db1fe24deb413f, type: 2}
   questBasedDialogues:
   - quest: {fileID: 11400000, guid: 8789b08040d62fd41b8e41e89e17f6f5, type: 2}
-    stateName: Speak To Skips
+    stateName: Speak To MrSkips
     dialogue: {fileID: 11400000, guid: 7e73032f89e4ff943a4c1f4d73d93120, type: 2}
   - quest: {fileID: 11400000, guid: 29ff50a87758d7041b9663d36d45e238, type: 2}
-    stateName: Speak To Skips
+    stateName: Speak To MrSkips
     dialogue: {fileID: 11400000, guid: 05a6ee9ca7d9ed54588f1edf21460624, type: 2}
   skipTutorial: {fileID: -541169476730117253, guid: b1b8d447fd36aa04e9db1fe24deb413f, type: 2}
   finishedTutorial: {fileID: 1235379646921652575, guid: 05a6ee9ca7d9ed54588f1edf21460624, type: 2}
