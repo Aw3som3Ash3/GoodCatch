@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+#endif
 using UnityEngine;
 
 [Serializable]
@@ -21,27 +23,37 @@ public abstract class DialogueNode
     public event Action<DialogueNode> OnEntered;
     public event Action< DialogueNode,DialogueNode> OnExit;
     public string guid;
-
+    [SerializeField]
+    [SerializeReference]
+    public List<DialogueDecorator> decorators=new();
     public Vector2 position;
-
+#if UNITY_EDITOR
     public virtual DialogueNode SetTree(Dialogue tree)
     {
         this.tree = tree;
         return this;
     }
+#endif
     public DialogueNode()
     {
        
     }
     public virtual void Enter()
     {
-       OnEntered?.Invoke(this);
+        foreach(var decorator in decorators)
+        {
+            decorator.Enter();
+        }
+        OnEntered?.Invoke(this);
     }
 
 
     public virtual void Exit()
     {
-
+        foreach (var decorator in decorators)
+        {
+            decorator.Exit();
+        }
 
     }
 
@@ -79,53 +91,6 @@ public class BranchingDialogue : DialogueNode
    
 }
 
-[Serializable]
-public class GiveQuest : BasicDialogue
-{
-    [SerializeField]
-    public Quest quest;
-
-  
-
-    public override void Enter()
-    {
-        base.Enter();
-        QuestTracker.Instance?.AddQuest(quest);
-    }
 
 
-}
 
-public class DialogueEventNode : BasicDialogue
-{
-    //public Action @Event;
-    public DialogueEvent dialogueEvent;
-    public DialogueEventNode()
-    {
-       
-        
-       
-
-    }
-    public override DialogueNode SetTree(Dialogue tree)
-    {
-        dialogueEvent = ScriptableObject.CreateInstance<DialogueEvent>();
-        AssetDatabase.AddObjectToAsset(dialogueEvent, tree);
-        return base.SetTree(tree);
-    }
-
-    public  DialogueNode SetEvent(Dialogue tree,DialogueEvent _event)
-    {
-
-        AssetDatabase.RemoveObjectFromAsset(dialogueEvent);
-        ScriptableObject.Destroy(dialogueEvent);
-        dialogueEvent =_event;
-        return base.SetTree(tree);
-    }
-    public override void Exit()
-    {
-        dialogueEvent.Invoke();
-        //Event?.Invoke();
-        base.Exit();
-    }
-}

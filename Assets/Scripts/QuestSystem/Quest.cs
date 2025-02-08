@@ -314,3 +314,19 @@ public class GatherAmountOfItems : Quest.QuestRequirement
 }
 
 
+public class ArbritaryQuestRequirment : QuestRequirement
+{
+    [SerializeField]
+    string tag;
+    public string Tag { get { return tag; } }
+    [SerializeField]
+    string objective;
+    public override string Objective => objective;
+
+    public override void Init()
+    {
+        
+    }
+}
+
+
