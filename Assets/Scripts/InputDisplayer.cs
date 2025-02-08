@@ -31,7 +31,7 @@ public static class InputDisplayer
         }
         var binding = bindings[index];
 
-        var control = inputAction.controls.Where((x) =>
+        var controls = inputAction.controls.Where((x) =>
         {
             if (x.device is Gamepad && method == InputMethod.controller)
             {
@@ -45,8 +45,14 @@ public static class InputDisplayer
             else
                 return false;
 
-        }).ToArray()[index];
+        }).ToArray();
 
+        if (index >= controls.Length)
+        {
+
+            return;
+        }
+        var control=controls[index];
         Debug.Log("binding" + binding.effectivePath);
         Debug.Log("controls" + control.path);
         if (location != null)

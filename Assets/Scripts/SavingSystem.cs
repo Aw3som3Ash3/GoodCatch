@@ -66,7 +66,7 @@ public static class SavingSystem
     public static void SaveGame(SaveMode saveMode)
     {
 
-        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
+        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
         data=new();
         data.SetScene();
         foreach(var saveable in saveables)

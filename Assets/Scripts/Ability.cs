@@ -197,8 +197,15 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                     damageDone = 0;
                     effectiveness = Element.Effectiveness.none;
                 }
-                
-                ProctEffect(user, target);
+
+                if (targetTeam == TargetTeam.enemy)
+                {
+                    ProctEffectHostile(user, target);
+                }else if (targetTeam == TargetTeam.friendly)
+                {
+                    ProctEffectFriendly(user, target);
+                }
+
                 hit = true;
             }
             else
@@ -214,14 +221,26 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         return true;
     }
 
-    void ProctEffect(CombatManager.Turn user, CombatManager.Turn target)
+    void ProctEffectHostile(CombatManager.Turn user, CombatManager.Turn target)
+    {
+        foreach (var effect in effects)
+        {
+            float proctBonus = (user.special / 5) * 0.01f ;
+            float targetDef = (target.special / 5) * 0.01f ;
+            if (UnityEngine.Random.Range(0, 1) - proctBonus < (effect.Chance)*(target.HadEffectLastTurn(effect.Effect)? 0.15f:1)- targetDef)
+            {
+                target.AddEffects(effect.Effect,user.fish);
+            }
+        }
+    }
+    void ProctEffectFriendly(CombatManager.Turn user, CombatManager.Turn target)
     {
         foreach (var effect in effects)
         {
             float proctBonus = (user.special / 5) * 0.01f;
-            if (UnityEngine.Random.Range(0, 1) + proctBonus < (effect.Chance))
+            if (UnityEngine.Random.Range(0, 1) - proctBonus < (effect.Chance))
             {
-                target.AddEffects(effect.Effect,user.fish);
+                target.AddEffects(effect.Effect, user.fish);
             }
         }
     }

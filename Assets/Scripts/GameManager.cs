@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour,ISaveable
     UIDocument MainUI { get { if (mainUI == null) { return GameObject.Find("MainHud")?.GetComponent<UIDocument>(); } else { return mainUI; } } }
 
     public event Action<FishMonsterType> CaughtFish;
+    public event Action WonFight;
     private void Awake()
     {
 
@@ -420,12 +421,16 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             SceneManager.sceneLoaded += SceneLoadedLost;
         }
+        else
+        {
+            WonFight?.Invoke();
+        }
         SavingSystem.SaveSelf(this);
         SavingSystem.SaveSelf(FindObjectOfType<QuestTracker>());
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
         SceneManager.LoadScene(mainScene);
-        
+
         
         inCombat = false;
        

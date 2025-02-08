@@ -16,7 +16,7 @@ MonoBehaviour:
     nextNode:
       rid: 187471170727313408
     guid: root
-    position: {x: 24, y: 19.333334}
+    position: {x: -30.666668, y: 45.33333}
   nodes:
   - rid: 187471170727313408
   - rid: 187471171136520215
@@ -32,7 +32,7 @@ MonoBehaviour:
       data:
         dialouge: 1
         guid: 4e1c50ee2c0854b41a24d63e4d58a049
-        position: {x: 377.33334, y: -90}
+        position: {x: 353.3333, y: 45.33333}
         nextNode:
           rid: 187471171136520216
     - rid: 187471171136520215

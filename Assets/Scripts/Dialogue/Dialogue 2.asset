@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: Dialogue 2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: -2
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 187471243714756628
+  - rid: 187471243714756629
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 187471243714756628
+      type: {class: DialogueEventNode, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 
+        guid: 25fb7b704a9b7264a8ab8e3e1c302d41
+        position: {x: 657.3333, y: 27.333334}
+        nextNode:
+          rid: -2
+        dialogueEvent: {fileID: 5775203648652655329}
+    - rid: 187471243714756629
+      type: {class: DialogueEventNode, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 
+        guid: 47db515bd93eb9841866cd9add6a7e12
+        position: {x: 657.3333, y: 266.66666}
+        nextNode:
+          rid: -2
+        dialogueEvent: {fileID: 5775203648652655329}
+--- !u!114 &5775203648652655329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: test245
+  m_EditorClassIdentifier: 

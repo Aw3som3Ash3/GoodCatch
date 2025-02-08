@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: Tutorial Dialogue
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 4799112187029225473
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 4799112187029225473
+  - rid: 4799112187029225474
+  - rid: 4799112187029225475
+  - rid: 4799112187029225478
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 4799112187029225473
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Hey, are you new here?
+        guid: 14dae65632b0d5c4cbf69abccc27e31b
+        position: {x: 390, y: -35}
+        decisions:
+        - choice: Yes
+          choiceNode:
+            rid: 4799112187029225474
+        - choice: No
+          choiceNode:
+            rid: -2
+    - rid: 4799112187029225474
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: "So, you\u2019re new here huh? Okay well that\u2019s good to hear
+          let me help you out!\n"
+        guid: d9efa9499d8827847bd1d7aefa0bfbf2
+        position: {x: 869, y: -35}
+        nextNode:
+          rid: 4799112187029225475
+    - rid: 4799112187029225475
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: "So, what you\u2019re going to want to do is hold down your cast
+          button into anywhere in this here water and try to catch your first fish. "
+        guid: e531c34b7e676374ca8f304f82fc9ab9
+        position: {x: 1371, y: -54}
+        nextNode:
+          rid: 4799112187029225478
+    - rid: 4799112187029225478
+      type: {class: GiveQuest, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: "So, what you\u2019re going to want to do is hold down your cast
+          button into anywhere in this here water and try to catch your first fish.
+          \nAfter that you will be put into combat because the monsters you will
+          be facing won\u2019t go easy on you. \nYou\u2019re going to want to defeat
+          them after you hook them in! So, give it a shot."
+        guid: 15d8ba39864c9d84480b510410d7fce8
+        position: {x: 2111, y: -100}
+        nextNode:
+          rid: -2
+        quest: {fileID: 0}

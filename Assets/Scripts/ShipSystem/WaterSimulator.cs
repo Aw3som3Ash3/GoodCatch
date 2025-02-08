@@ -17,6 +17,9 @@ public class WaterSimulator : MonoBehaviour
     Mesh mesh;
     WaterSimulator parent;
     float tideLevel;
+
+    [SerializeField]
+    LayerMask groundLayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,13 +56,47 @@ public class WaterSimulator : MonoBehaviour
                 tideLevel = Mathf.Sin(GameManager.Instance.DayTime * (2 * Mathf.PI / 12))*tideMultiplier;
             }
         }
-        
-        meshRenderer.material.SetFloat("_speedX", waveSpeedX);
-        meshRenderer.material.SetFloat("_frequencyX", waveFrequencyX);
-        meshRenderer.material.SetFloat("_amplitudeX", waveHeightX);
-        meshRenderer.material.SetFloat("_speedZ", waveSpeedZ);
-        meshRenderer.material.SetFloat("_frequencyZ", waveFrequencyZ);
-        meshRenderer.material.SetFloat("_amplitudeZ", waveHeightZ);
+
+        RaycastHit hit;
+        float modWaveSpeedX = waveSpeedX;
+        float modWaveHeightX = waveHeightX;
+        float modWaveHeightZ = waveHeightZ;
+        float modWaveSpeedZ = waveSpeedZ;
+        float modWaveFrequencyZ = waveFrequencyZ;
+        float modWaveFrequencyX = waveFrequencyX;
+
+        if (Physics.Raycast(this.transform.position + Vector3.up * 100, Vector3.down, 105,groundLayer))
+        {
+            Debug.Log("dry land");
+        }
+        else 
+        {
+            if (Physics.Raycast(this.transform.position, Vector3.down, out hit))
+            {
+                Debug.Log("deepish water");
+                //modWaveSpeedX += waveSpeedX;
+                modWaveHeightX += hit.distance / 50;
+                modWaveHeightZ += hit.distance / 50;
+                //modWaveSpeedX += waveSpeedZ;
+                //modWaveSpeedX += waveFrequencyZ;
+                //modWaveSpeedX += waveFrequencyX;
+
+            }
+            else
+            {
+                Debug.Log("deep");
+                modWaveHeightX *= 1.5f;
+                modWaveHeightZ *= 1.5f;
+            }
+        }
+
+
+        meshRenderer.material.SetFloat("_speedX", modWaveSpeedX);
+        meshRenderer.material.SetFloat("_frequencyX", modWaveFrequencyX);
+        meshRenderer.material.SetFloat("_amplitudeX", modWaveHeightX);
+        meshRenderer.material.SetFloat("_speedZ", modWaveSpeedZ);
+        meshRenderer.material.SetFloat("_frequencyZ", modWaveFrequencyZ);
+        meshRenderer.material.SetFloat("_amplitudeZ", modWaveHeightZ);
         meshRenderer.material.SetFloat("_time", timer);
         meshRenderer.material.SetVector("_Offset", originOffset+Vector3.up*tideLevel);
     }
