@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,6 +12,7 @@ public abstract class DialogueDecoratorView : Node
     protected VisualElement contents;
     public DialogueDecorator dialogueDecorator;
     public Port input;
+    public event Action OnEdited;
     public DialogueDecoratorView(DialogueDecorator dialogueDecorator) : base("Assets/Scripts/Dialogue/Editor/DialogueDecoratorView.uxml")
     {
         this.dialogueDecorator = dialogueDecorator;
@@ -22,8 +24,13 @@ public abstract class DialogueDecoratorView : Node
         input.portName = "";
         input.style.alignSelf = Align.Center;
         inputContainer.Add(input);
+        
     }
-
+    protected void NodeModified()
+    {
+        OnEdited?.Invoke();
+    } 
+    public abstract void Save();
     public abstract void UpdateFields();
 }
 
@@ -35,50 +42,51 @@ public class QuestNodeView : DialogueDecoratorView
         
         var field = new ObjectField("Quest");
         field.objectType = typeof(Quest);
-        field.value = (dialogueDecorator as GiveQuestDecorator).quest;
+        //field.value = ;
         field.RegisterValueChangedCallback((evt) =>
         {
-            (dialogueDecorator as GiveQuestDecorator).quest = evt.newValue as Quest;
+            NodeModified();
+            //(dialogueDecorator as GiveQuestDecorator).quest = evt.newValue as Quest;
 
-            AssetDatabase.SaveAssets();
+            //AssetDatabase.SaveAssets();
         });
         contents.Add(field);
 
     }
 
+    public override void Save()
+    {
+        //AssetDatabase.SaveAssets();
+    }
+
     public override void UpdateFields()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }
 
 public class DialogueEventNodeView : DialogueDecoratorView
 {
-    TextField eventField;
     public DialogueEventNodeView(DialogueDecorator dialogueDecorator) : base(dialogueDecorator)
     {
-        eventField = new TextField();
-        Label label = new Label("Event Name");
+        
+        Label label = new Label((dialogueDecorator as DialogueEventDecorator).dialogueEvent.name);
         contents.Add(label);
-        contents.Add(eventField);
+        
 
-        eventField.value = (dialogueDecorator as DialogueEventDecorator).dialogueEvent.name;
-        eventField.RegisterValueChangedCallback(evt =>
-        {
-            (dialogueDecorator as DialogueEventDecorator).dialogueEvent.name = evt.newValue;
-            EditorUtility.SetDirty((dialogueDecorator as DialogueEventDecorator).dialogueEvent);
-            AssetDatabase.SaveAssets();
-            
-            //(parent.parent as DialogueGraphView).UpdateValues();
-            //.SetDirty(); 
-        });
+    }
 
+    public override void Save()
+    {
+        //throw new System.NotImplementedException();
+        EditorUtility.SetDirty((dialogueDecorator as DialogueEventDecorator).dialogueEvent);
+        //AssetDatabase.SaveAssets();
     }
 
     public override void UpdateFields()
     {
         
-        eventField.value = (dialogueDecorator as DialogueEventDecorator).dialogueEvent.name;
+        
     }
 
 

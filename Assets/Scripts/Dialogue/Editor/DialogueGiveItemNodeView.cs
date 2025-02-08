@@ -18,7 +18,7 @@ public class DialogueGiveItemNodeView : DialogueDecoratorView
         {
             (decorator as DialogueGiveItemDecorator).item= evt.newValue as Item;
 
-            AssetDatabase.SaveAssets();
+            
         });
         contents.Add(field);
         IntegerField integerField = new IntegerField("Amount");
@@ -27,11 +27,16 @@ public class DialogueGiveItemNodeView : DialogueDecoratorView
         {
             (decorator as DialogueGiveItemDecorator).amount = evt.newValue;
 
-            AssetDatabase.SaveAssets();
+            
         });
         contents.Add(integerField);
     }
 
+    public override void Save()
+    {
+        AssetDatabase.SaveAssets();
+        
+    }
 
     public override void UpdateFields()
     {

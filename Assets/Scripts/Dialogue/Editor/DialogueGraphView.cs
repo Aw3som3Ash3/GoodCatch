@@ -14,12 +14,13 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
 
     Dialogue dialogueTree;
     public Dictionary<Port, Port> outputToPort;
+    public event Action OnEdited;
     // Start is called before the first frame update
 
     public DialogueGraphView() 
     {
 
-        //this.StretchToParentSize();
+        this.StretchToParentSize();
         Insert(0, new GridBackground());
         //
 
@@ -120,6 +121,7 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
     }
     private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
     {
+        OnEdited?.Invoke();
         if (graphViewChange.movedElements != null)
         {
             foreach (Node node in graphViewChange.movedElements)
@@ -316,6 +318,7 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
 
         DialogueNode node = dialogueTree.CreateNode(type, mousePos);
         CreateNodeView(node, mousePos);
+       
     }
     private void CreateDecorator(Type type, Vector2 mousePos)
     {
@@ -343,7 +346,7 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
         {
             AddElement(decoratorView);
         }
-
+        decoratorView.OnEdited += OnEdited;
         decoratorView.SetPosition(new Rect(mousePos, new Vector2(4, 2)));
     }
     void CreateNodeView(DialogueNode dialogueNode, Vector2 mousePos)
@@ -360,7 +363,7 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
         {
             nodeView = new DialogueBranchNodeView(dialogueNode);
         }
-
+        nodeView.OnEdited += OnEdited;
 
         
         nodeView.SetPosition(new Rect(mousePos,new Vector2(4,2)));
@@ -387,5 +390,21 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
     public void OnDrop(GraphView graphView, Edge edge)
     {
         //throw new NotImplementedException();
+    }
+
+    public void SaveAll()
+    {
+        foreach(Node node in nodes)
+        {
+            if(node is DialogueNodeView)
+            {
+                (node as DialogueNodeView).Save();
+            }
+            else if (node is DialogueDecoratorView)
+            {
+                (node as DialogueDecoratorView).Save();
+            }
+            
+        }
     }
 }

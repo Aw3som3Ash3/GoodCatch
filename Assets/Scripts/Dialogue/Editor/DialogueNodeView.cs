@@ -15,7 +15,7 @@ public abstract class DialogueNodeView : Node
     public Port decoratorPort;
     public Action<DialogueNodeView> OnNodeSeletected;
     public DialogueNode dialogueNode { get; protected set; }
-
+    public event Action OnEdited;
 
     //public new class UxmlFactory : UxmlFactory<DialogueNodeView, Node.UxmlTraits> { }
     public DialogueNodeView()
@@ -35,8 +35,9 @@ public abstract class DialogueNodeView : Node
         dialogueField.value = dialogueNode.dialouge;
         dialogueField.RegisterValueChangedCallback((s) => 
         { 
-            dialogueNode.dialouge = s.newValue; 
-            AssetDatabase.SaveAssets(); 
+            dialogueNode.dialouge = s.newValue;
+            NodeModified();
+            //AssetDatabase.SaveAssets(); 
         }) ;
 
         input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(DialogueNode));
@@ -52,6 +53,12 @@ public abstract class DialogueNodeView : Node
         input.portName = "input";
         inputContainer.Add(input);
 
+        
+
+    }
+    protected void NodeModified()
+    {
+        OnEdited?.Invoke();
     }
     public virtual void UpdateFields()
     {
@@ -59,7 +66,9 @@ public abstract class DialogueNodeView : Node
         dialogueField.value = dialogueNode.dialouge;
     }
 
+    public abstract void Save();
 
+    
   
 }
 
@@ -83,9 +92,10 @@ public class DialogueLineNodeView : DialogueNodeView
 
     }
 
-
-
-
+    public override void Save()
+    {
+        //throw new NotImplementedException();
+    }
 }
 
 
@@ -109,6 +119,7 @@ public class DialogueBranchNodeView : DialogueNodeView
             foreach (var branch in (dialogueNode as BranchingDialogue).decisions)
             {
                 AddNewBranch(branch);
+                NodeModified();
             }
         }
         
@@ -127,13 +138,17 @@ public class DialogueBranchNodeView : DialogueNodeView
         var port = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DialogueNode));
         var branchView = new DialogueBranchView((s) => decision.choice = s.newValue, port,decision ,()=> 
         { 
-            (dialogueNode as BranchingDialogue).decisions.Remove(decision); 
-            AssetDatabase.SaveAssets(); 
+            (dialogueNode as BranchingDialogue).decisions.Remove(decision);
+            NodeModified();
+            //AssetDatabase.SaveAssets(); 
         });
         outputContainer.Add(branchView);
     }
 
-    
+    public override void Save()
+    {
+        
+    }
 }
 
 public class DialogueBranchView : VisualElement
@@ -158,6 +173,10 @@ public class DialogueBranchView : VisualElement
         
         Add(element);
         this.decision = decision;
+    }
+    public void Save()
+    {
+
     }
 }
 
