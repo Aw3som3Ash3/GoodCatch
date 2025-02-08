@@ -32,14 +32,18 @@ public class DialogueTreeEditor : EditorWindow
     
 
     [MenuItem("Examples/My Editor Window")]
-    static void OpenWindow(Dialogue dialogue)
+    public static void OpenWindow(Dialogue dialogue)
     {
 
         //wnd.Show(dialogue);
         //wnd = new();
 
         //wnd = new();
-        wnd = GetWindow<DialogueTreeEditor>();
+        wnd = GetWindow<DialogueTreeEditor>(typeof(DialogueTreeEditor));
+        if (wnd.dialogueTree != null&&dialogue != wnd.dialogueTree)
+        {
+            wnd.SaveChanges();
+        }
         wnd.dialogueTree = dialogue;
         
         wnd.titleContent = new GUIContent("Dialogue Editor");
@@ -48,6 +52,7 @@ public class DialogueTreeEditor : EditorWindow
         wnd.Repaint();
         
         wnd.EndWindows();
+        wnd.Focus();
 
     }
 
@@ -211,6 +216,30 @@ public class DialogueInspector : InspectorElement
             
 
         }
+    }
+
+
+}
+
+[CustomEditor(typeof(Dialogue))]
+public class DialogueEditor : Editor
+{
+
+    public override VisualElement CreateInspectorGUI()
+    {
+        VisualElement root = new();
+
+        Button openEditor = new();
+        openEditor.clicked += OpenEditor_clicked;
+        openEditor.text = "Open Editor";
+        root.Add(openEditor);
+        //return base.CreateInspectorGUI();
+        return root;
+    }
+
+    private void OpenEditor_clicked()
+    {
+        DialogueTreeEditor.OpenWindow(serializedObject.targetObject as Dialogue);
     }
 }
 

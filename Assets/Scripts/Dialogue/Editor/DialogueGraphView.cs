@@ -293,9 +293,13 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
         }
         foreach (var _event in dialogueTree.Events)
         {
-            var eventNode = dialogueTree.CreateDecorator(typeof(DialogueEventDecorator), mousePos)as DialogueEventDecorator;
+
+            evt.menu.AppendAction($"[Event] {_event.name}", (a) =>
+            {
+            var eventNode = dialogueTree.CreateDecorator(typeof(DialogueEventDecorator), mousePos) as DialogueEventDecorator;
             eventNode.SetEvent(_event);
-            evt.menu.AppendAction($"[Event] {_event.name}", (a)=>CreateDecoratorView(eventNode, mousePos));
+            CreateDecoratorView(eventNode, mousePos);
+            });
         }
         
 
@@ -341,6 +345,10 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
         else if (decorator is DialogueEventDecorator)
         {
             decoratorView = new DialogueEventNodeView(decorator);
+        } 
+        else if(decorator is CompleteArbritaryQuestDecorator)
+        {
+            decoratorView = new CompleteArbritaryQuestDecoratorView(decorator);
         }
         if (decoratorView != null)
         {

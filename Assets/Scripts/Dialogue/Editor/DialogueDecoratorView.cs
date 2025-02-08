@@ -42,12 +42,12 @@ public class QuestNodeView : DialogueDecoratorView
         
         var field = new ObjectField("Quest");
         field.objectType = typeof(Quest);
-        //field.value = ;
+        field.value =  (dialogueDecorator as GiveQuestDecorator).quest;
         field.RegisterValueChangedCallback((evt) =>
         {
+            
+            (dialogueDecorator as GiveQuestDecorator).quest = evt.newValue as Quest;
             NodeModified();
-            //(dialogueDecorator as GiveQuestDecorator).quest = evt.newValue as Quest;
-
             //AssetDatabase.SaveAssets();
         });
         contents.Add(field);
@@ -56,7 +56,7 @@ public class QuestNodeView : DialogueDecoratorView
 
     public override void Save()
     {
-        //AssetDatabase.SaveAssets();
+        AssetDatabase.SaveAssets();
     }
 
     public override void UpdateFields()
@@ -90,4 +90,31 @@ public class DialogueEventNodeView : DialogueDecoratorView
     }
 
 
+}
+
+public class CompleteArbritaryQuestDecoratorView : DialogueDecoratorView
+{
+
+    TextField textField = new();
+    public CompleteArbritaryQuestDecoratorView(DialogueDecorator dialogueDecorator) : base(dialogueDecorator)
+    {
+        var completeArbritaryQuestDecorator = dialogueDecorator as CompleteArbritaryQuestDecorator;
+        textField.label = "Requirement Tag";
+        textField.value= completeArbritaryQuestDecorator.questTag;
+        textField.RegisterValueChangedCallback((evt) => { completeArbritaryQuestDecorator.questTag = evt.newValue; NodeModified(); });
+        contents.Add(textField);
+
+
+
+    }
+
+    public override void Save()
+    {
+        //throw new NotImplementedException();
+    }
+
+    public override void UpdateFields()
+    {
+        //throw new NotImplementedException();
+    }
 }

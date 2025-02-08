@@ -77,3 +77,22 @@ public class GiveQuestDecorator : DialogueDecorator
         throw new NotImplementedException();
     }
 }
+
+[Serializable]
+public class CompleteArbritaryQuestDecorator : DialogueDecorator
+{
+    public string questTag;
+    public override void Enter()
+    {
+        
+    }
+
+    public override void Exit()
+    {
+        foreach (var item in QuestTracker.Instance.FindActiveRequirements<ArbritaryQuestRequirment>((x) => x.Tag == questTag))
+        {
+            item.RequirementCompleted();
+
+        }
+    }
+}
