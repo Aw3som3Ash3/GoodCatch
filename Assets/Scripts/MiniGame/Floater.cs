@@ -42,10 +42,10 @@ public class Floater : MonoBehaviour
    
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.collider.CompareTag("Water"))
-        {
-            FailedCast();
-        }
+        //if (!collision.collider.CompareTag("Water"))
+        //{
+        //    FailedCast();
+        //}
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -59,13 +59,14 @@ public class Floater : MonoBehaviour
                 print(depth);
                 if (depth > 1)
                 {
-                    InitiateFishingMiniGame();
-                    audioController.PlayClipRandom();
+                   
                 }
-                else
-                {
-                    FailedCast();
-                }
+                InitiateFishingMiniGame();
+                audioController.PlayClipRandom();
+                //else
+                //{
+                //    FailedCast();
+                //}
 
             }
 

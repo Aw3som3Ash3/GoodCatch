@@ -70,7 +70,9 @@ public class FishingRod : MonoBehaviour
 
     void StartMiniGame()
     {
-        FishingMiniGame game = Instantiate(gamePrefab, floater.transform.position, this.transform.parent.transform.rotation);
+        
+
+        FishingMiniGame game = Instantiate(gamePrefab, floater.transform.position, this.transform.root.transform.rotation);
         game.Initiate(floater);
         game.OnCancel += OnComplete;
         InputManager.DisablePlayer();

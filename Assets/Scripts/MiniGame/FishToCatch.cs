@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class FishToCatch : MonoBehaviour
@@ -11,9 +12,11 @@ public class FishToCatch : MonoBehaviour
     float speed;
     //Vector3 destination;
     FishMonsterType fishMonster;
+    //float radius;
     enum FishBehaviour
     {
         none,
+        idle,
         curious,
         goingToBite,
         biting,
@@ -22,7 +25,18 @@ public class FishToCatch : MonoBehaviour
     FishBehaviour behaviour = FishBehaviour.none;
     float timer;
     Vector3 destination;
-    public void SetFish(Transform hook)
+
+    public void SetIdle(Vector3 center)
+    {
+        
+        behaviour = FishBehaviour.idle;
+        
+       
+    }
+
+  
+
+    public void StartCatching(Transform hook)
     {
         //this.fishMonster = fishMonster;
         //model = Instantiate(fishMonster.Model, this.transform);
@@ -42,6 +56,18 @@ public class FishToCatch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        if (behaviour == FishBehaviour.idle)
+        {
+            
+            float radius= Vector3.Distance(this.transform.parent.position , this.transform.position);
+            float dist = speed*10 * Time.deltaTime;
+            float rot = dist / radius;
+
+            transform.RotateAround(this.transform.parent.position,Vector3.up, rot);
+            transform.Translate(Mathf.Sin(Time.time) *0.05f* (this.transform.parent.position- this.transform.position).normalized * Time.deltaTime);
+        }
 
         if (behaviour == FishBehaviour.curious)
         {
@@ -116,7 +142,7 @@ public class FishToCatch : MonoBehaviour
     }
     void ChangeDestination()
     {
-        destination = new Vector3(Random.Range(-5, 5), -2, Random.Range(-5, 5));
+        destination = new Vector3(UnityEngine.Random.Range(-5, 5), -2, UnityEngine.Random.Range(-5, 5));
     }
     IEnumerator StateChanger()
     {
@@ -129,7 +155,7 @@ public class FishToCatch : MonoBehaviour
             {
                 yield return new WaitForSeconds(3);
 
-                if (Random.Range(0, 1f) > .95f - (.1 * numOfTries))
+                if (UnityEngine.Random.Range(0, 1f) > .95f - (.1 * numOfTries))
                 {
                     behaviour = FishBehaviour.goingToBite;
                     break;

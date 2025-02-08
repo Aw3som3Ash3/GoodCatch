@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishZone : SaveableObject,ISaveable
+public class FishZone : SaveableObject
 {
     [SerializeField]
     SpawnTables spawnTable;
@@ -20,13 +20,29 @@ public class FishZone : SaveableObject,ISaveable
     }
     [SerializeField]
     Data data;
-
+    [SerializeField]
+    GameObject fishPrefab;
+    List<FishToCatch> fishes=new();
+    [HideInInspector]
     public override object DataToSave => data;
+    [SerializeField]
+    float radius;
 
     // Start is called before the first frame update
     void Start()
     {
         data.amount = UnityEngine.Random.Range(minAmount, maxAmount + 1);
+
+        for (int i = 0; i < data.amount; i++)
+        {
+            var fish = GameObject.Instantiate(fishPrefab, this.transform).GetComponent<FishToCatch>();
+            fishes.Add(fish);
+            var rot = Quaternion.AngleAxis((float)i / data.amount * 360, Vector3.up);
+            fish.transform.Translate(rot * fish.transform.right*1 * (radius + UnityEngine.Random.Range(-0.5f,0.5f)));
+            fish.transform.rotation = rot;
+            
+            fish.SetIdle(this.transform.position);
+        }
     }
 
     // Update is called once per frame
@@ -35,13 +51,18 @@ public class FishZone : SaveableObject,ISaveable
         
     }
 
-    public FishMonsterType GetRandomFish( Action fishingSucceeded)
+    public FishMonsterType GetRandomFish( Action fishingSucceeded,out FishToCatch fishToCatch)
     {
         if (data.amount < 0)
         {
+            fishToCatch = null;
             return null;
         }
         fishingSucceeded += () => data.amount--;
+
+        fishToCatch = fishes[UnityEngine.Random.Range(0, fishes.Count)];
+        //fish.StartCatching(fishHook);
+        fishes.Remove(fishToCatch);
         return spawnTable.GetRandomFish();
     }
 
