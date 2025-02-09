@@ -1,5 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="ModControl" src="project://database/Assets/Resources/UXMLs/ModControl.uxml?fileID=9197481963319205126&amp;guid=90e12252c3347504b890f0580e2a9676&amp;type=3#ModControl" />
     <Style src="project://database/Assets/UI%20Assets/PauseMenu.uss?fileID=7433441132597879392&amp;guid=a7b5e17935909ec4ea2cbcebb02c8000&amp;type=3#PauseMenu" />
     <Style src="project://database/Assets/UI%20Assets/Options.uss?fileID=7433441132597879392&amp;guid=ddb424d28a728bf44b638637ad585ad5&amp;type=3#Options" />
     <ui:VisualElement name="SettingsMenuWorkspace" style="flex-grow: 1;">
@@ -11,13 +10,25 @@
                 <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
                     <ui:VisualElement name="TextColum" style="flex-grow: 0; align-items: flex-start; justify-content: space-around; padding-left: 3%; padding-bottom: -1%;">
                         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" text="Settings" class="PauseButton" style="background-color: rgba(200, 200, 200, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; -unity-font-style: normal; width: 500px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
-                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Help" text="Help" class="PauseButton" style="background-color: rgba(200, 200, 200, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; -unity-font-style: normal; width: 500px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
+                        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Help" text="Help" class="PauseButton" style="background-color: rgba(200, 200, 200, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; -unity-font-style: normal; width: 500px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; display: none;" />
                         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Controls" text="Controls" class="PauseButton" style="background-color: rgba(200, 200, 200, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 100px; -unity-font-style: normal; width: 500px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial;" />
                         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenu" text="Main Menu" class="PauseButton" style="background-color: rgba(188, 188, 188, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-style: normal;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="menu-container" style="flex-grow: 1; margin-right: 74px; margin-left: 74px;">
-                        <SettingsUI />
-                        <ui:Instance template="ModControl" name="ModControl" />
+                    <ui:VisualElement style="flex-grow: 1;">
+                        <ui:VisualElement name="menu-container" style="flex-grow: 1; margin-right: 74px; margin-left: 74px;">
+                            <SettingsUI name="SettingsUI" style="visibility: visible; display: flex;" />
+                            <ControlTabs />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="OptionsToolTips" style="flex-grow: 0; height: 119px; flex-direction: row; margin-right: 74px; margin-left: 74px;">
+                            <ui:VisualElement name="Select" style="flex-grow: 1; align-self: center; flex-direction: row; align-items: center; justify-content: flex-start;">
+                                <InputHudTip inputName="Submit" style="width: 60px; height: 60px;" />
+                                <ui:Label tabindex="-1" text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="Back" style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: center;">
+                                <InputHudTip name="InputHudTip" inputName="Back" style="width: 60px; height: 60px;" />
+                                <ui:Label tabindex="-1" text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

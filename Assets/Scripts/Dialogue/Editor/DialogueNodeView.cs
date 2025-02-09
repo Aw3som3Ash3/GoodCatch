@@ -29,6 +29,8 @@ public abstract class DialogueNodeView : Node
         UseDefaultStyling();
         this.Q<Label>("title-label").text= dialogueNode.GetType().Name;
         dialogueField = this.Q<TextField>("dialogue");
+        dialogueField.multiline = true;
+        dialogueField.style.whiteSpace = WhiteSpace.Normal;
         dialogueField.value = dialogueNode.dialouge;
         dialogueField.RegisterValueChangedCallback((s) => 
         { 
@@ -44,6 +46,11 @@ public abstract class DialogueNodeView : Node
         input.portName = "input";
         inputContainer.Add(input);
 
+    }
+    public virtual void UpdateFields()
+    {
+
+        dialogueField.value = dialogueNode.dialouge;
     }
 
 
@@ -173,6 +180,7 @@ public class QuestNodeView : DialogueLineNodeView
     {
         var field = new ObjectField("Quest");
         field.objectType = typeof(Quest);
+        field.value = (dialogueNode as GiveQuest).quest;
         field.RegisterValueChangedCallback((evt) => 
         {
             (dialogueNode as GiveQuest).quest = evt.newValue as Quest;
@@ -182,6 +190,38 @@ public class QuestNodeView : DialogueLineNodeView
         this.Q("extra").Add(field);
 
     }
+}
+
+public class DialogueEventNodeView : DialogueLineNodeView
+{
+    TextField eventField;
+    public DialogueEventNodeView(DialogueNode dialogueNode) : base(dialogueNode)
+    {
+        eventField = new TextField();
+        Label label = new Label("Event Name");
+        this.Q("extra").Add(label);
+        this.Q("extra").Add(eventField);
+       
+        eventField.value = (dialogueNode as DialogueEventNode).dialogueEvent.name;
+        eventField.RegisterValueChangedCallback(evt => 
+        { 
+            (dialogueNode as DialogueEventNode).dialogueEvent.name= evt.newValue;
+            EditorUtility.SetDirty((dialogueNode as DialogueEventNode).dialogueEvent);
+            AssetDatabase.SaveAssets();
+            
+            //(parent.parent as DialogueGraphView).UpdateValues();
+            //.SetDirty(); 
+        });
+
+    }
+
+    public override void UpdateFields()
+    {
+        base.UpdateFields();
+        eventField.value = (dialogueNode as DialogueEventNode).dialogueEvent.name;
+    }
+
+
 }
 //public class DecisionPort : Port
 //{

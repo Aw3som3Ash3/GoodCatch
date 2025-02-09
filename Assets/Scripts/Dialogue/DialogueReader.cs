@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static BranchingDialogue;
 
@@ -12,8 +11,17 @@ public class DialogueReader : IDisposable
     private bool disposedValue;
 
     //public event Func<Func<int, DialogueNode>,DialogueNode> OnChoiceRequired;
+    /// <summary>
+    /// an event that outputs the next dialogue string
+    /// </summary>
     public event Action<string> NextDialogue;
+    /// <summary>
+    /// event that is triggered when the reader reaches a branch node
+    /// </summary>
     public event Action< List<BranchingDialogue.Decision>> ChoiceRequired;
+    /// <summary>
+    /// event that is triggered when the dialogue is completed
+    /// </summary>
     public event Action OnCompleted;
     public DialogueReader(Dialogue dialogue)
     {
@@ -21,7 +29,9 @@ public class DialogueReader : IDisposable
         //currentNode = dialogue.rootNode.nextNode;
 
     }
-
+    /// <summary>
+    /// Starts the reading of the dialogue tree
+    /// </summary>
     public void Start()
     {
         currentNode = dialogue.rootNode.nextNode;
@@ -76,6 +86,8 @@ public class DialogueReader : IDisposable
                 // TODO: dispose managed state (managed objects)
             }
 
+            dialogue = null;
+            currentNode = null;
             // TODO: free unmanaged resources (unmanaged objects) and override finalizer
             // TODO: set large fields to null
             disposedValue = true;

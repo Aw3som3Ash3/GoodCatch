@@ -22,15 +22,16 @@ public class FishToCatch : MonoBehaviour
     FishBehaviour behaviour = FishBehaviour.none;
     float timer;
     Vector3 destination;
-    public void SetFish(FishMonsterType fishMonster, Transform hook)
+    public void SetFish(Transform hook)
     {
-        this.fishMonster = fishMonster;
-        model = Instantiate(fishMonster.Model, this.transform);
-        model.transform.localPosition = new Vector3(0, -2, 0);
+        //this.fishMonster = fishMonster;
+        //model = Instantiate(fishMonster.Model, this.transform);
+        //model.transform.localPosition = new Vector3(0, -2, 0);
         this.hook = hook;
         behaviour = FishBehaviour.curious;
-        ChangDestination();
+        ChangeDestination();
         StartCoroutine(StateChanger());
+        Debug.Log("fish spawned");
     }
     // Start is called before the first frame update
     void Start()
@@ -50,18 +51,20 @@ public class FishToCatch : MonoBehaviour
 
             if (this.transform.localPosition == destination)
             {
-                ChangDestination();
+                ChangeDestination();
             }
         }
         else if (behaviour == FishBehaviour.goingToBite)
         {
 
-            MoveToDestination(transform.parent.InverseTransformPoint(hook.transform.position));
-            if (this.transform.localPosition == transform.parent.InverseTransformPoint(hook.transform.position))
+            Vector3 dest = transform.parent.InverseTransformPoint(hook.transform.position);
+            dest.y = -2;
+            MoveToDestination(dest);
+            if (this.transform.localPosition == dest)
             {
                 behaviour = FishBehaviour.biting;
                 StartCoroutine(AnimatedHook());
-                Invoke("ResetBehaviour", 0.5f);
+                Invoke("ResetBehaviour", 0.75f);
             }
         }
 
@@ -82,19 +85,21 @@ public class FishToCatch : MonoBehaviour
     }
     IEnumerator AnimatedHook()
     {
+        Debug.Log("bitting");
         float startY = hook.position.y;
         hook.GetComponent<SimpleWaterPhysics>().enabled = false;
         while (hook.position.y > (startY - 0.5f))
         {
-            hook.Translate(Vector3.down * 3 * Time.deltaTime);
+            hook.Translate(Vector3.down * 2 * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         while (hook.position.y < (startY))
         {
-            hook.Translate(Vector3.up * 3 * Time.deltaTime);
+            hook.Translate(Vector3.up * 1.5f * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         hook.GetComponent<SimpleWaterPhysics>().enabled = true;
+        //ResetBehaviour();
     }
     void ResetBehaviour()
     {
@@ -109,7 +114,7 @@ public class FishToCatch : MonoBehaviour
         Quaternion targetRot = Quaternion.LookRotation((destination - this.transform.localPosition).normalized);
         this.transform.localRotation = Quaternion.RotateTowards(this.transform.localRotation, targetRot, 360 * Time.deltaTime);
     }
-    void ChangDestination()
+    void ChangeDestination()
     {
         destination = new Vector3(Random.Range(-5, 5), -2, Random.Range(-5, 5));
     }

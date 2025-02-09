@@ -13,26 +13,39 @@ public class DialogueTreeEditor : EditorWindow
 
     DialogueGraphView graphView;
 
+    [SerializeReference]
     Dialogue dialogueTree;
     // Start is called before the first frame update
     [MenuItem("Examples/My Editor Window")]
     void OpenWindow(Dialogue dialogue)
     {
         dialogueTree = dialogue;
-        wnd = GetWindow<DialogueTreeEditor>();
+        //wnd = GetWindow<DialogueTreeEditor>();
         Show();
         wnd.titleContent = new GUIContent("Dialogue Editor");
         Debug.Log(wnd);
-        
+        GenerateGraph();
 
 
     }
-    private void CreateGUI()
+    void GenerateGraph()
     {
+        if (graphView != null)
+        {
+            rootVisualElement.Remove(graphView);
+            
+        }
         Debug.Log(dialogueTree);
         graphView = new DialogueGraphView();
         graphView.Setup(dialogueTree);
         rootVisualElement.Add(graphView);
+    }
+    private void CreateGUI()
+    {
+        if (dialogueTree != null)
+        {
+            GenerateGraph();
+        }
         //ShowGraphViewWindowWithTools<DialogueTreeEditor>();
         
     }
@@ -47,13 +60,10 @@ public class DialogueTreeEditor : EditorWindow
         {
             Dialogue tree = EditorUtility.InstanceIDToObject(instanceID) as Dialogue;
             Debug.Log(tree);
-            if(wnd == null)
-            {
-                wnd = new();
-                wnd.OpenWindow(tree);
-            }
+            wnd = GetWindow<DialogueTreeEditor>();
+            wnd.OpenWindow(tree);
             // We can open MyAssetHandler asset using MyAssetHandler opening method
-            
+
 
             return true;
         }
