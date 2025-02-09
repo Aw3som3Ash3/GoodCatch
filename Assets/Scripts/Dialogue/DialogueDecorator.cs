@@ -74,7 +74,7 @@ public class GiveQuestDecorator : DialogueDecorator
 
     public override void Exit()
     {
-        throw new NotImplementedException();
+
     }
 }
 
