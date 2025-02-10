@@ -46,6 +46,8 @@ public class ShipControls : Station
     void OnLeaveStation(InputAction.CallbackContext context)
     {
         turnSpeed = 0;
+        turnValue = 0;
+
         sailValue = 0;
         ship.AdjustTurn(turnValue);
 
