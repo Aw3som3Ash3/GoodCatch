@@ -7,7 +7,9 @@ using UnityEngine.UIElements;
 
 public class MarinedexTabs : TabbedMenu
 {
-    string statComponentName,infoComponentName,localeComponentName;
+    const string statComponentName="ModStatCompontent";
+    const string infoComponentName="ModInfoComponent";
+    const string localeComponentName= "ModLocaleComponent";
 
     public new class UxmlFactory : UxmlFactory<MarinedexTabs, UxmlTraits> { }
     public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
@@ -20,22 +22,23 @@ public class MarinedexTabs : TabbedMenu
         {
             base.Init(ve, bag, cc);
             var dex = (ve as MarinedexTabs);
-            dex.statComponentName = m_statComponentName.GetValueFromBag(bag,cc);
-            dex.infoComponentName = m_infoComponentName.GetValueFromBag(bag, cc); ;
-            dex.localeComponentName = m_localeComponentName.GetValueFromBag(bag, cc); ;
-            dex.CreateTab("Stats", dex.statComponentName);
-            dex.CreateTab("Info", dex.infoComponentName);
-            dex.CreateTab("Locale", dex.localeComponentName);
+            //dex.statComponentName = m_statComponentName.GetValueFromBag(bag, cc);
+            //dex.infoComponentName = m_infoComponentName.GetValueFromBag(bag, cc);
+            //dex.localeComponentName = m_localeComponentName.GetValueFromBag(bag, cc);
+            
         }
     }
 
     public MarinedexTabs()
     {
         Init();
+
     }
     void Init()
     {
-       
+        CreateTab("Stats", statComponentName);
+        //dex.CreateTab("Info", dex.infoComponentName);
+        //dex.CreateTab("Locale", dex.localeComponentName);
     }
 
     protected override void OnChangedTab(VisualElement element)
@@ -62,6 +65,7 @@ public class MarinedexTabs : TabbedMenu
     void CreateTab(string tabName, string contentPath)
     {
         VisualElement content = new VisualElement();
+        content.name = tabName+"-content";
       
         VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/"+contentPath);
         if (visualTreeAsset!=null)
@@ -69,7 +73,7 @@ public class MarinedexTabs : TabbedMenu
             visualTreeAsset.CloneTree(content);
             if (content != null)
             {
-                CreateTab(tabName, content);
+                CreateTab(tabName + "-tab", content);
             }
         }
     }

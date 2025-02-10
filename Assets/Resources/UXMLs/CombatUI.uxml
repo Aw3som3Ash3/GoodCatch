@@ -26,7 +26,6 @@
                         <ui:Label tabindex="-1" text="Level" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level" style="font-size: 25px; padding-bottom: 0; padding-top: 8px; padding-right: 5px; padding-left: 5px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; position: absolute; top: 69px; left: 42px;" />
                         <ui:Label tabindex="-1" text="Lvl:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelName" style="font-size: 25px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; position: absolute; top: 69px; left: 5px;" />
                     </ui:VisualElement>
-                    <PauseMenu />
                 </ui:VisualElement>
             </ui:VisualElement>
             <CombatTabs name="CombatTabs" style="flex-grow: 1; margin-top: -9px; margin-bottom: 0; max-width: 50%; margin-right: 0; margin-left: 0; top: -2px; bottom: 1px;" />
@@ -70,5 +69,6 @@
                 <InputHudTip inputName="MoreInfo" style="width: 60px; height: 60px;" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <PauseMenu />
     </ui:VisualElement>
 </ui:UXML>
