@@ -371,10 +371,12 @@ public class CombatUI : VisualElement
     }
     void UseAbility(int index)
     {
+        abilityButtons[index].AddToClassList("AbilitySelected");
         currentTurn.UseAbility(index, () => 
         {
             if (GameManager.Instance.inputMethod==InputMethod.controller)
             {
+                abilityButtons[index].RemoveFromClassList("AbilitySelected");
                 FocusOn(index+1);
             }
         });
