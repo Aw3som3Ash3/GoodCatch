@@ -149,6 +149,24 @@ public class CombatUI : VisualElement
         infoScreenMagicDefense.text = fish.SpecialFort.value.ToString();
         infoScreenHealth.text = fish.Health.ToString("00")+"/"+fish.MaxHealth.ToString("00");
         infoScreenStamina.text = fish.MaxStamina.ToString("00");
+        if (fish.Type.Elements.Length >=1)
+        {
+            this.Q<Label>("Type1Amount").text = fish.Type.Elements[0].name;
+
+        }
+        else
+        {
+            this.Q<Label>("Type1Amount").text ="";
+        }
+        if (fish.Type.Elements.Length >= 2)
+        {
+            this.Q<Label>("Type2Amount").text = fish.Type.Elements[1].name;
+        }
+        else
+        {
+            this.Q<Label>("Type2Amount").text = "";
+        }
+           
     }
     private void OnInputChange(InputMethod method)
     {
@@ -606,7 +624,7 @@ public class CombatUI : VisualElement
         
         fishUI.onHoverStatus += (action) => action(toolTip);
         fishUI.onHoverExit += () => toolTip.visible = false;
-        this.Q("MainCombat").Add(fishUI);
+        this.Q("GameplayScene").Add(fishUI);
         return fishUI;
     }
 }
