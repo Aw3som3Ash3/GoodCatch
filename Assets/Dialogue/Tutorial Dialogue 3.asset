@@ -10,40 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
-  m_Name: Dialogue 2
+  m_Name: Tutorial Dialogue 3
   m_EditorClassIdentifier: 
   rootNode:
     nextNode:
-      rid: -2
+      rid: 187471312712368147
     guid: root
     position: {x: 0, y: 0}
   nodes:
-  - rid: 187471243714756628
-  - rid: 187471243714756629
+  - rid: 187471312712368147
+  decorators:
+  - rid: 187471312712368149
+  events:
+  - {fileID: 1235379646921652575}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 187471243714756628
-      type: {class: DialogueEventNode, ns: , asm: Assembly-CSharp}
+    - rid: 187471312712368147
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: 
-        guid: 25fb7b704a9b7264a8ab8e3e1c302d41
-        position: {x: 657.3333, y: 27.333334}
+        dialouge: "Looks like you know the basics of what fishing and combat is like.
+          Well, it\u2019s been nice knowing you, but it\u2019s time to wake up. "
+        guid: 4a3f22c9ce4a1ad488772c139f8ae94e
+        decorators:
+        - rid: 187471312712368149
+        position: {x: 423.3333, y: 74.666664}
         nextNode:
           rid: -2
-        dialogueEvent: {fileID: 5775203648652655329}
-    - rid: 187471243714756629
-      type: {class: DialogueEventNode, ns: , asm: Assembly-CSharp}
+    - rid: 187471312712368149
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: 
-        guid: 47db515bd93eb9841866cd9add6a7e12
-        position: {x: 657.3333, y: 266.66666}
-        nextNode:
-          rid: -2
-        dialogueEvent: {fileID: 5775203648652655329}
---- !u!114 &5775203648652655329
+        position: {x: 664.6667, y: 378.66666}
+        guid: af180d5579c7dc449884ea0fe0eeefdc
+        dialogueEvent: {fileID: 1235379646921652575}
+--- !u!114 &1235379646921652575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -53,5 +55,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
-  m_Name: test245
+  m_Name: CompletedTutrorial
   m_EditorClassIdentifier: 

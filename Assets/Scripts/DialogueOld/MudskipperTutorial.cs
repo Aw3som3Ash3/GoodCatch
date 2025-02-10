@@ -16,6 +16,8 @@ public class MudskipperTutorial : NPC
     [SerializeField]
     DialogueEvent finishedTutorial;
     [SerializeField]
+    DialogueEvent healFish;
+    [SerializeField]
     Quest postTutorialQuest;
 
     void Awake()
@@ -26,12 +28,23 @@ public class MudskipperTutorial : NPC
         }
         if (skipTutorial != null)
         {
-            skipTutorial.Event += FinishedTutorial_Event;
+            skipTutorial.Event += SkippedTutorial;
+        }
+        if (healFish != null)
+        {
+            healFish.Event += () => { GameManager.Instance.RestoreFish(); };
         }
        
         //dialogue = FindObjectOfType<MudskipperDialogue>(true);
     }
 
+
+    void SkippedTutorial()
+    {
+        //GameManager.Instance.
+
+        FinishedTutorial_Event();
+    }
     private void FinishedTutorial_Event()
     {
        
