@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 
 using UnityEngine;
+using UnityEditor.Experimental.GraphView;
 
 
 #if UNITY_EDITOR
@@ -20,7 +21,13 @@ public class Dialogue : ScriptableObject
     [SerializeReference]
     public List<DialogueNode> nodes;
     [SerializeField]
-    public List<DialogueEvent> events  { get; private set; } = new();
+    [SerializeReference]
+    public List<DialogueDecorator> decorators;
+
+    [SerializeField]
+    [SerializeReference]
+    List<DialogueEvent> events;
+    public List<DialogueEvent> @Events { get { return events; } }
 
 #if UNITY_EDITOR
 
@@ -43,23 +50,47 @@ public class Dialogue : ScriptableObject
         var node= (Activator.CreateInstance(type) as DialogueNode).SetTree(this);
         
         node.guid = GUID.Generate().ToString();
-        if(node is DialogueEventNode)
-        {
-            events.Add((node as DialogueEventNode).dialogueEvent);
-        }
+        //if(node is DialogueEventNode)
+        //{
+        //    events.Add((node as DialogueEventNode).dialogueEvent);
+        //}
         nodes.Add(node);
         node.position = pos;
         
         return node;
     }
+
+ 
+
     public T CreateNode<T>( Vector2 pos) where T : DialogueNode
     {
         return CreateNode(typeof(T), pos) as T;
+    }
+    public DialogueDecorator CreateDecorator(Type type,Vector2 pos)
+    {
+        var decorator = (Activator.CreateInstance(type) as DialogueDecorator);
+        decorator.position = pos;
+        decorators.Add(decorator);
+        decorator.guid = GUID.Generate().ToString();
+        return decorator;
+    }
+    public DialogueEvent CreateEvent()
+    {
+        var @event = ScriptableObject.CreateInstance<DialogueEvent>();
+        AssetDatabase.AddObjectToAsset(@event, this);
+        AssetDatabase.SaveAssets();
+        events.Add(@event);
+        return @event;
     }
     public void DeleteNode(DialogueNode node)
     {
         nodes.Remove(node);
         
+    }
+    public void DeleteDecorator(DialogueDecorator decorator)
+    {
+        decorators.Remove(decorator);
+
     }
     public void CreateRoot()
     {

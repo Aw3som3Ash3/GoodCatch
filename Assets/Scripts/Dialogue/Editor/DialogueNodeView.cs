@@ -12,9 +12,10 @@ public abstract class DialogueNodeView : Node
 {
     public TextField dialogueField;
     public Port input;
+    public Port decoratorPort;
     public Action<DialogueNodeView> OnNodeSeletected;
     public DialogueNode dialogueNode { get; protected set; }
-
+    public event Action OnEdited;
 
     //public new class UxmlFactory : UxmlFactory<DialogueNodeView, Node.UxmlTraits> { }
     public DialogueNodeView()
@@ -34,11 +35,17 @@ public abstract class DialogueNodeView : Node
         dialogueField.value = dialogueNode.dialouge;
         dialogueField.RegisterValueChangedCallback((s) => 
         { 
-            dialogueNode.dialouge = s.newValue; 
-            AssetDatabase.SaveAssets(); 
+            dialogueNode.dialouge = s.newValue;
+            NodeModified();
+            //AssetDatabase.SaveAssets(); 
         }) ;
 
         input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(DialogueNode));
+        decoratorPort = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Multi, typeof(DialogueDecorator));
+        this.Q("decorator-output").Add(decoratorPort);
+        decoratorPort.portName = "";
+        decoratorPort.style.alignSelf = Align.Center;
+
         input.allowMultiDrag = true;
         //input.
         //Debug.Log(input.IsSnappable());
@@ -46,6 +53,12 @@ public abstract class DialogueNodeView : Node
         input.portName = "input";
         inputContainer.Add(input);
 
+        
+
+    }
+    protected void NodeModified()
+    {
+        OnEdited?.Invoke();
     }
     public virtual void UpdateFields()
     {
@@ -53,7 +66,9 @@ public abstract class DialogueNodeView : Node
         dialogueField.value = dialogueNode.dialouge;
     }
 
+    public abstract void Save();
 
+    
   
 }
 
@@ -77,9 +92,10 @@ public class DialogueLineNodeView : DialogueNodeView
 
     }
 
-
-
-
+    public override void Save()
+    {
+        //throw new NotImplementedException();
+    }
 }
 
 
@@ -103,6 +119,7 @@ public class DialogueBranchNodeView : DialogueNodeView
             foreach (var branch in (dialogueNode as BranchingDialogue).decisions)
             {
                 AddNewBranch(branch);
+                NodeModified();
             }
         }
         
@@ -121,13 +138,17 @@ public class DialogueBranchNodeView : DialogueNodeView
         var port = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DialogueNode));
         var branchView = new DialogueBranchView((s) => decision.choice = s.newValue, port,decision ,()=> 
         { 
-            (dialogueNode as BranchingDialogue).decisions.Remove(decision); 
-            AssetDatabase.SaveAssets(); 
+            (dialogueNode as BranchingDialogue).decisions.Remove(decision);
+            NodeModified();
+            //AssetDatabase.SaveAssets(); 
         });
         outputContainer.Add(branchView);
     }
 
-    
+    public override void Save()
+    {
+        
+    }
 }
 
 public class DialogueBranchView : VisualElement
@@ -153,6 +174,10 @@ public class DialogueBranchView : VisualElement
         Add(element);
         this.decision = decision;
     }
+    public void Save()
+    {
+
+    }
 }
 
 public class RootNodeView:Node
@@ -174,55 +199,7 @@ public class RootNodeView:Node
 }
 
 
-public class QuestNodeView : DialogueLineNodeView
-{
-    public QuestNodeView(DialogueNode dialogueNode) : base(dialogueNode)
-    {
-        var field = new ObjectField("Quest");
-        field.objectType = typeof(Quest);
-        field.value = (dialogueNode as GiveQuest).quest;
-        field.RegisterValueChangedCallback((evt) => 
-        {
-            (dialogueNode as GiveQuest).quest = evt.newValue as Quest;
-           
-            AssetDatabase.SaveAssets();
-        } );
-        this.Q("extra").Add(field);
 
-    }
-}
-
-public class DialogueEventNodeView : DialogueLineNodeView
-{
-    TextField eventField;
-    public DialogueEventNodeView(DialogueNode dialogueNode) : base(dialogueNode)
-    {
-        eventField = new TextField();
-        Label label = new Label("Event Name");
-        this.Q("extra").Add(label);
-        this.Q("extra").Add(eventField);
-       
-        eventField.value = (dialogueNode as DialogueEventNode).dialogueEvent.name;
-        eventField.RegisterValueChangedCallback(evt => 
-        { 
-            (dialogueNode as DialogueEventNode).dialogueEvent.name= evt.newValue;
-            EditorUtility.SetDirty((dialogueNode as DialogueEventNode).dialogueEvent);
-            AssetDatabase.SaveAssets();
-            
-            //(parent.parent as DialogueGraphView).UpdateValues();
-            //.SetDirty(); 
-        });
-
-    }
-
-    public override void UpdateFields()
-    {
-        base.UpdateFields();
-        eventField.value = (dialogueNode as DialogueEventNode).dialogueEvent.name;
-    }
-
-
-}
 //public class DecisionPort : Port
 //{
 //    public BranchingDialogue.Decision decision { get; private set; }
