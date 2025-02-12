@@ -24,7 +24,7 @@ public class CombatManager : MonoBehaviour
    
     int roundNmber;
 
-    //[SerializeField]
+    [SerializeField]
     UIDocument ui;
     public CombatUI combatUI { get; private set; }
     //CombatUI combatUI;
@@ -80,7 +80,7 @@ public class CombatManager : MonoBehaviour
         depthIndex[depths[2]] = 2;
         combatAI = this.gameObject.AddComponent<CombatAI>();
         combatAI.SetCombatManager(this);
-        ui = FindObjectOfType<UIDocument>();
+        //ui = FindObjectOfType<UIDocument>();
         combatUI = new CombatUI();
         ui.rootVisualElement.Add(combatUI);
         GameManager.Instance.OnInputChange += InputChanged;

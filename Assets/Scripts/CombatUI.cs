@@ -114,6 +114,7 @@ public class CombatUI : VisualElement
         infoScreenStamina = this.Q<Label>("StamAmount");
         
         GameManager.Instance.OnInputChange += OnInputChange;
+        PauseMenu.GamePaused += EnableUI;
 
     }
     void OnMoreInfo(InputAction.CallbackContext context)
@@ -149,6 +150,24 @@ public class CombatUI : VisualElement
         infoScreenMagicDefense.text = fish.SpecialFort.value.ToString();
         infoScreenHealth.text = fish.Health.ToString("00")+"/"+fish.MaxHealth.ToString("00");
         infoScreenStamina.text = fish.MaxStamina.ToString("00");
+        if (fish.Type.Elements.Length >=1)
+        {
+            this.Q<Label>("Type1Amount").text = fish.Type.Elements[0].name;
+
+        }
+        else
+        {
+            this.Q<Label>("Type1Amount").text ="";
+        }
+        if (fish.Type.Elements.Length >= 2)
+        {
+            this.Q<Label>("Type2Amount").text = fish.Type.Elements[1].name;
+        }
+        else
+        {
+            this.Q<Label>("Type2Amount").text = "";
+        }
+           
     }
     private void OnInputChange(InputMethod method)
     {
@@ -353,10 +372,12 @@ public class CombatUI : VisualElement
     }
     void UseAbility(int index)
     {
+        abilityButtons[index].AddToClassList("AbilitySelected");
         currentTurn.UseAbility(index, () => 
         {
             if (GameManager.Instance.inputMethod==InputMethod.controller)
             {
+                abilityButtons[index].RemoveFromClassList("AbilitySelected");
                 FocusOn(index+1);
             }
         });
@@ -606,7 +627,17 @@ public class CombatUI : VisualElement
         
         fishUI.onHoverStatus += (action) => action(toolTip);
         fishUI.onHoverExit += () => toolTip.visible = false;
-        this.Q("MainCombat").Add(fishUI);
+        this.Q("ConditionArea").Add(fishUI);
         return fishUI;
+    }
+
+    void EnableUI(bool b)
+    {
+        this.SetEnabled(!b);
+    }
+
+    ~CombatUI() 
+    {
+        PauseMenu.GamePaused -= EnableUI;
     }
 }

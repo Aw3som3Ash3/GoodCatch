@@ -10,40 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
-  m_Name: Schlorm
+  m_Name: Manatia
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 5694862167236661731, guid: 4539f28628ca93d44856dba2ea651fd5, type: 3}
-  fishId: 5
+  model: {fileID: 0}
+  fishId: 0
   icon: {fileID: 0}
-  miniSprite: {fileID: -2146833316, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
+  miniSprite: {fileID: 0}
   homeDepth: 0
   preferredBait: []
   elements:
+  - {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
   - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
   agility:
-    min: 5
-    max: 10
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   attack:
-    min: 5
-    max: 10
+    min: 10
+    max: 15
     minTalent: 0
     maxTalent: 0
   special:
-    min: 20
-    max: 40
+    min: 15
+    max: 30
     minTalent: 0
     maxTalent: 0
   fortitude:
-    min: 5
-    max: 10
+    min: 15
+    max: 25
     minTalent: 0
     maxTalent: 0
   specialFortitude:
-    min: 10
-    max: 20
+    min: 15
+    max: 25
     minTalent: 0
     maxTalent: 0
   accuracy:
@@ -51,8 +52,8 @@ MonoBehaviour:
     max: 50
     minTalent: 0
     maxTalent: 0
-  baseHealth: 110
-  baseStamina: 50
+  baseHealth: 75
+  baseStamina: 90
   baseAbilities:
   - potentialAbilities:
     - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
@@ -63,5 +64,5 @@ MonoBehaviour:
   - potentialAbilities:
     - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   difficulty: 0
-  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
-  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  attackAnimation: {fileID: 0}
+  idleAnimation: {fileID: 0}

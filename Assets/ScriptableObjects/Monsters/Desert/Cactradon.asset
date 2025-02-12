@@ -60,7 +60,7 @@ MonoBehaviour:
   - potentialAbilities:
     - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: e4232237bdf5c26498217d60b86ed82f, type: 2}
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 9870c6867313ff042b2af302d92f3d57, type: 2}
   difficulty: 0

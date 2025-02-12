@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
-  m_Name: Vampire Squid
+  m_Name: Seraray
   m_EditorClassIdentifier: 
   description: 
   model: {fileID: 0}
-  fishId: 25
+  fishId: 15
   icon: {fileID: 0}
+  miniSprite: {fileID: 0}
   homeDepth: 0
   preferredBait: []
   elements:
-  - {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
-  - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
+  - {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
+  - {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
   agility:
-    min: 15
-    max: 30
+    min: 30
+    max: 40
     minTalent: 0
     maxTalent: 0
   attack:
-    min: 15
-    max: 30
+    min: 30
+    max: 40
     minTalent: 0
     maxTalent: 0
   special:
@@ -38,22 +39,30 @@ MonoBehaviour:
     maxTalent: 0
   fortitude:
     min: 15
-    max: 30
+    max: 25
     minTalent: 0
     maxTalent: 0
-  SpecialFortitude:
-    min: 15
-    max: 30
+  specialFortitude:
+    min: 5
+    max: 10
     minTalent: 0
     maxTalent: 0
   accuracy:
-    min: 0
-    max: 0
+    min: 50
+    max: 50
     minTalent: 0
     maxTalent: 0
-  baseHealth: 75
-  baseStamina: 75
-  baseAbilities: []
+  baseHealth: 70
+  baseStamina: 90
+  baseAbilities:
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
