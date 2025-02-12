@@ -22,6 +22,7 @@ public class PauseMenu : VisualElement
 
     bool exitCompletely = false;
     static PauseMenu mainPause;
+    static public event Action<bool> GamePaused;
     public static bool PauseActive { get { return mainPause.menu.visible; } }
     public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
@@ -57,7 +58,7 @@ public class PauseMenu : VisualElement
         Debug.Log(this);
 
         menu.focusable = true;
-
+        menu.delegatesFocus = true;
         //this.delegatesFocus = true;
 
         menu.SetEnabled(false);
@@ -168,6 +169,7 @@ public class PauseMenu : VisualElement
             InputManager.DisablePlayer();
             InputManager.Input.UI.Back.Enable();
             InputManager.Input.UI.Back.performed += Back;
+            
 
         }
         else
@@ -189,7 +191,7 @@ public class PauseMenu : VisualElement
         {
             questUI.visible = !PauseActive;
         }
-
+        GamePaused?.Invoke(menu.enabledSelf);
     }
 
     void Back(InputAction.CallbackContext context=default)

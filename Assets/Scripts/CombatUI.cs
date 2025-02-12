@@ -114,6 +114,7 @@ public class CombatUI : VisualElement
         infoScreenStamina = this.Q<Label>("StamAmount");
         
         GameManager.Instance.OnInputChange += OnInputChange;
+        PauseMenu.GamePaused += this.SetEnabled;
 
     }
     void OnMoreInfo(InputAction.CallbackContext context)
@@ -628,5 +629,10 @@ public class CombatUI : VisualElement
         fishUI.onHoverExit += () => toolTip.visible = false;
         this.Q("GameplayScene").Add(fishUI);
         return fishUI;
+    }
+
+    ~CombatUI() 
+    {
+        PauseMenu.GamePaused -= this.SetEnabled;
     }
 }
