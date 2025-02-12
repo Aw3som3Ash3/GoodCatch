@@ -71,6 +71,5 @@
                 <InputHudTip inputName="MoreInfo" style="width: 60px; height: 60px;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <PauseMenu />
     </ui:VisualElement>
 </ui:UXML>
