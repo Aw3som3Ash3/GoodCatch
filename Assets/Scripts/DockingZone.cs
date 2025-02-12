@@ -12,6 +12,8 @@ public class DockingZone : MonoBehaviour
     FixedJoint joint;
     [SerializeField]
     bool firstDock;
+    [SerializeField]
+    Transform dockExit;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,19 +31,23 @@ public class DockingZone : MonoBehaviour
     }
 
 
-    public void DockShip(ShipSimulator ship)
+    public void DockShip(ShipSimulator ship,bool resetPosition=false)
     {
         this.ship = ship;
         ship.transform.position=dockingPosition.position;
         ship.transform.rotation=dockingPosition.rotation;
-        ship.AnchorShip();
+        //ship.AnchorShip();
+        if (resetPosition)
+        {
+            PlayerController.player.SetPosition(dockExit.position);
+        }
         //joint=ship.PhysicSim.gameObject.AddComponent<FixedJoint>();
 
     }
 
     public void UndockShip()
     {
-        ship.UnAnchorShip();
+        //ship.UnAnchorShip();
         ship = null;
         Destroy(joint);
         joint = null;

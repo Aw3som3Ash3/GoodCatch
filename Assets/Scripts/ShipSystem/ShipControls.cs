@@ -66,7 +66,7 @@ public class ShipControls : Station
         foreach (Collider col in Physics.OverlapSphere(this.transform.position, 2, dockLayer))
         {
             Debug.Log(col);
-            col.GetComponent<DockingZone>()?.DockShip(ship);
+            col.GetComponent<DockingZone>()?.DockShip(ship,true);
             currentDock = col.GetComponent<DockingZone>();
 
 
