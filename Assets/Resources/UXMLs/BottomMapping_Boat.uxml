@@ -2,19 +2,19 @@
     <Style src="project://database/Assets/UI%20Assets/ChrisUseThisFontStuff.uss?fileID=7433441132597879392&amp;guid=2285b821b813c6846be8fbb6ea894f0a&amp;type=3#ChrisUseThisFontStuff" />
     <ui:VisualElement name="Workspace" style="flex-grow: 1; align-items: flex-start; justify-content: flex-end; flex-direction: column;">
         <ui:VisualElement name="BottomUIMapping" style="flex-grow: 0; flex-direction: column; flex-shrink: 0; width: 822px; margin-bottom: 10px; margin-left: 5px;">
-            <ui:VisualElement name="ForwardVisuals" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="ForwardVisuals" style="flex-grow: 1; flex-direction: row; display: none;">
                 <InputHudTip name="InteractImage" inputName="Interact" style="width: 60px;" />
                 <ui:Label tabindex="-1" text="Forward" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Forward" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-direction: row;" />
             </ui:VisualElement>
-            <ui:VisualElement name="ReverseVisuals" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="ReverseVisuals" style="flex-grow: 1; flex-direction: row; display: none;">
                 <InputHudTip name="InteractImage" inputName="Interact" style="width: 60px;" />
                 <ui:Label tabindex="-1" text="Reverse" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Reverse" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-direction: row;" />
             </ui:VisualElement>
-            <ui:VisualElement name="DockBoatVisuals" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="DockBoatVisuals" style="flex-grow: 1; flex-direction: row; display: flex;">
                 <InputHudTip name="InteractImage" inputName="Interact" style="width: 60px;" />
                 <ui:Label tabindex="-1" text="Dock Boat" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DockBoat" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-direction: row;" />
             </ui:VisualElement>
-            <ui:VisualElement name="ExitBoatVisuals" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="ExitBoatVisuals" style="flex-grow: 1; flex-direction: row; display: none;">
                 <InputHudTip name="InteractImage" inputName="Back" style="width: 60px;" />
                 <ui:Label tabindex="-1" text="Exit Boat" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitBoat" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-direction: row;" />
             </ui:VisualElement>
