@@ -9,20 +9,21 @@ using System.Linq;
 using System;
 using static BranchingDialogue;
 
-public class DialogueGraphView : GraphView
+public class DialogueGraphView : GraphView,IEdgeConnectorListener
 {
 
     Dialogue dialogueTree;
     public Dictionary<Port, Port> outputToPort;
+    public event Action OnEdited;
     // Start is called before the first frame update
 
     public DialogueGraphView() 
     {
-       
-        this.StretchToParentSize();
 
-        Insert(0, new GridBackground() );
-        
+        this.StretchToParentSize();
+        Insert(0, new GridBackground());
+        //
+
         this.AddManipulator(new ContentZoomer());
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
@@ -33,9 +34,11 @@ public class DialogueGraphView : GraphView
         
         
     }
+    
 
     public void Setup(Dialogue dialogue)
     {
+        
         this.dialogueTree= dialogue;
         graphViewChanged += OnGraphViewChanged;
         Debug.Log(dialogueTree.nodes.Count);
@@ -50,7 +53,12 @@ public class DialogueGraphView : GraphView
         {
            AddElement(rootNodeView.output.ConnectTo(FindNodeView(dialogueTree.rootNode.nextNode).input));
         }
-        
+        foreach (var decorator in dialogueTree.decorators)
+        {
+            CreateDecoratorView(decorator, decorator.position);
+        }
+
+
         foreach (var node in dialogueTree.nodes)
         {
             DialogueNodeView parentView = FindNodeView(node);
@@ -80,7 +88,18 @@ public class DialogueGraphView : GraphView
                
 
             }
+
+
+            foreach(var decorator in node.decorators)
+            {
+                var childView = FindDecoratorView(decorator);
+                Debug.Log(childView);
+                AddElement(parentView.decoratorPort.ConnectTo(childView.input));
+
+            }
             
+
+
         }
         
     }
@@ -91,7 +110,10 @@ public class DialogueGraphView : GraphView
         AddElement(nodeView);
         nodeView.SetPosition(new Rect(rootNode.position, new Vector2(4, 2)));
     }
-
+    DialogueDecoratorView FindDecoratorView(DialogueDecorator decorator)
+    {
+        return GetNodeByGuid(decorator.guid) as DialogueDecoratorView;
+    }
     DialogueNodeView FindNodeView(DialogueNode node)
     {
 
@@ -99,6 +121,7 @@ public class DialogueGraphView : GraphView
     }
     private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
     {
+        OnEdited?.Invoke();
         if (graphViewChange.movedElements != null)
         {
             foreach (Node node in graphViewChange.movedElements)
@@ -111,6 +134,10 @@ public class DialogueGraphView : GraphView
                 if (node is RootNodeView)
                 {
                     (node as RootNodeView).rootNode.position = node.GetPosition().position;
+                }
+                if(node is DialogueDecoratorView)
+                {
+                    (node as DialogueDecoratorView).dialogueDecorator.position = node.GetPosition().position;
                 }
             }
             
@@ -127,12 +154,18 @@ public class DialogueGraphView : GraphView
                     dialogueTree.DeleteNode(nodeView.dialogueNode);
                     //nodeView.OnNodeEdited -= GraphEdited;
                 }
-                
+                DialogueDecoratorView decoratorView = elem as DialogueDecoratorView;
+                if (decoratorView != null)
+                {
+                    dialogueTree.DeleteDecorator(decoratorView.dialogueDecorator);
+                }
+
                 Edge edge = elem as Edge;
                 if (edge != null)
                 {
                     DialogueNodeView parentView = edge.output.node as DialogueNodeView;
                     DialogueNodeView childView = edge.input.node as DialogueNodeView;
+                    DialogueDecoratorView childDecoratorView = edge.input.node as DialogueDecoratorView;
                    
                     if(edge.output.node is RootNodeView)
                     {
@@ -140,19 +173,33 @@ public class DialogueGraphView : GraphView
                     }
                     if (parentView != null && parentView.dialogueNode is BasicDialogue)
                     {
-                        (parentView.dialogueNode as BasicDialogue).nextNode = null;
+                        if (childView != null) 
+                        {
+                            (parentView.dialogueNode as BasicDialogue).nextNode = null;
+                        }
+                        
+                       
                     }
                     else if (parentView != null && parentView is DialogueBranchNodeView)
                     {
-                        foreach (DialogueBranchView branchView in (parentView as DialogueBranchNodeView).outputContainer.Children())
+                        if (childView != null)
                         {
-                            if (branchView.output == edge.output)
+                            foreach (DialogueBranchView branchView in (parentView as DialogueBranchNodeView).outputContainer.Children())
                             {
-                                branchView.decision.choiceNode = null;
-                            }
+                                if (branchView.output == edge.output)
+                                {
+                                    branchView.decision.choiceNode = null;
+                                }
 
+                            }
                         }
+                            
                     }
+                    if (parentView != null && childDecoratorView != null)
+                    {
+                        parentView.dialogueNode.decorators.Remove(childDecoratorView.dialogueDecorator);
+                    }
+
                     //childView.dialogueNode.parent = null;
                     //dialogueTree.RemoveChild(parentView.dialogueNode, childView.dialogueNode, parentView, edge.output);
                 }
@@ -167,6 +214,7 @@ public class DialogueGraphView : GraphView
             {
                 DialogueNodeView parentView = edge.output.node as DialogueNodeView;
                 DialogueNodeView childView = edge.input.node as DialogueNodeView;
+                DialogueDecoratorView childDecoratorView = edge.input.node as DialogueDecoratorView;
                 //Decision decisionPort = edge.output.node as DecisionPort;
                 if (edge.output.node is RootNodeView)
                 {
@@ -175,7 +223,11 @@ public class DialogueGraphView : GraphView
                 }
                 if (parentView !=null && parentView.dialogueNode is BasicDialogue)
                 {
-                    (parentView.dialogueNode as BasicDialogue).nextNode = childView.dialogueNode;
+                    if(childView != null)
+                    {
+                        (parentView.dialogueNode as BasicDialogue).nextNode = childView.dialogueNode;
+                    }
+                    
                 } 
                 else if(parentView != null && parentView is DialogueBranchNodeView)
                 {
@@ -189,7 +241,10 @@ public class DialogueGraphView : GraphView
                         
                     }
                 }
-                
+                if (parentView != null && childDecoratorView != null)
+                {
+                    parentView.dialogueNode.decorators.Add(childDecoratorView.dialogueDecorator);
+                }
 
                 //dialogueTree.AddChild(parentView.dialogueNode, childView.dialogueNode, parentView, edge.output);
                 //childView.dialogueNode.parent = parentView.dialogueNode;
@@ -218,6 +273,7 @@ public class DialogueGraphView : GraphView
         base.BuildContextualMenu(evt);
         var types = TypeCache.GetTypesDerivedFrom<DialogueNode>();
         Vector2 mousePos = MouseToContent(evt.localMousePosition);
+       
 
         foreach (var type in types)
         {
@@ -226,9 +282,24 @@ public class DialogueGraphView : GraphView
             evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type, mousePos));
 
         }
-        foreach(var _event in dialogueTree.events)
+        foreach (var type in TypeCache.GetTypesDerivedFrom<DialogueDecorator>())
         {
-            evt.menu.AppendAction($"[Event] {_event.name}", (a)=>CreateNodeView(dialogueTree.CreateNode<DialogueEventNode>(mousePos).SetEvent(dialogueTree,_event),mousePos));
+            if (type == typeof(DialogueEventDecorator))
+            {
+                continue;
+            }
+            evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateDecorator(type, mousePos));
+
+        }
+        foreach (var _event in dialogueTree.Events)
+        {
+
+            evt.menu.AppendAction($"[Event] {_event.name}", (a) =>
+            {
+            var eventNode = dialogueTree.CreateDecorator(typeof(DialogueEventDecorator), mousePos) as DialogueEventDecorator;
+            eventNode.SetEvent(_event);
+            CreateDecoratorView(eventNode, mousePos);
+            });
         }
         
 
@@ -240,8 +311,9 @@ public class DialogueGraphView : GraphView
     }
     private Vector2 MouseToContent(Vector2 position)
     {
-        position.x = (position.x - contentViewContainer.worldBound.x) / scale;
-        position.y = (position.y - contentViewContainer.worldBound.y) / scale;
+        
+        position.x = (position.x - contentViewContainer.localBound.x) / scale;
+        position.y = (position.y - contentViewContainer.localBound.y) / scale;
         return position;
     }
 
@@ -250,8 +322,41 @@ public class DialogueGraphView : GraphView
 
         DialogueNode node = dialogueTree.CreateNode(type, mousePos);
         CreateNodeView(node, mousePos);
+       
+    }
+    private void CreateDecorator(Type type, Vector2 mousePos)
+    {
+        DialogueDecorator decorator = dialogueTree.CreateDecorator(type, mousePos);
+        CreateDecoratorView(decorator, mousePos);
     }
 
+    void CreateDecoratorView(DialogueDecorator decorator, Vector2 mousePos)
+    {
+        DialogueDecoratorView decoratorView=null;
+        if (decorator is DialogueGiveItemDecorator)
+        {
+            decoratorView = new DialogueGiveItemNodeView(decorator);
+        }
+        else
+            if (decorator is GiveQuestDecorator)
+        {
+            decoratorView = new QuestNodeView(decorator);
+        }
+        else if (decorator is DialogueEventDecorator)
+        {
+            decoratorView = new DialogueEventNodeView(decorator);
+        } 
+        else if(decorator is CompleteArbritaryQuestDecorator)
+        {
+            decoratorView = new CompleteArbritaryQuestDecoratorView(decorator);
+        }
+        if (decoratorView != null)
+        {
+            AddElement(decoratorView);
+        }
+        decoratorView.OnEdited += OnEdited;
+        decoratorView.SetPosition(new Rect(mousePos, new Vector2(4, 2)));
+    }
     void CreateNodeView(DialogueNode dialogueNode, Vector2 mousePos)
     {
         //var nodeView = new Node();
@@ -259,31 +364,16 @@ public class DialogueGraphView : GraphView
         
         if (dialogueNode is BasicDialogue)
         {
-            if (dialogueNode is DialogueGiveItemNode)
-            {
-                nodeView = new DialogueGiveItemNodeView(dialogueNode);
-            }else
-            if (dialogueNode is GiveQuest)
-            {
-                nodeView = new QuestNodeView(dialogueNode);
-            }
-            else if (dialogueNode is DialogueEventNode)
-            {
-                nodeView = new DialogueEventNodeView(dialogueNode);
-            }
-            else
-            {
-                nodeView = new DialogueLineNodeView(dialogueNode);
-            }
+
+            nodeView = new DialogueLineNodeView(dialogueNode);
         }
         else if (dialogueNode is BranchingDialogue)
         {
             nodeView = new DialogueBranchNodeView(dialogueNode);
         }
-        //if (dialogueTree.rootNode == dialogueNode)
-        //{
-        //    nodeView.AddToClassList("DialogueRoot");
-        //}
+        nodeView.OnEdited += OnEdited;
+
+        
         nodeView.SetPosition(new Rect(mousePos,new Vector2(4,2)));
         //Debug.Log("should create node");
         //DialogueNodeView nodeView = new DialogueNodeView(dialogueNode);
@@ -295,5 +385,34 @@ public class DialogueGraphView : GraphView
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
         return ports.ToList().Where(endPort => endPort.direction != startPort.direction && endPort.node != startPort.node).ToList();
+        
+    }
+
+    public void OnDropOutsidePort(Edge edge, Vector2 position)
+    {
+        
+        //BuildContextualMenu(new());
+        //throw new NotImplementedException();
+    }
+
+    public void OnDrop(GraphView graphView, Edge edge)
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void SaveAll()
+    {
+        foreach(Node node in nodes)
+        {
+            if(node is DialogueNodeView)
+            {
+                (node as DialogueNodeView).Save();
+            }
+            else if (node is DialogueDecoratorView)
+            {
+                (node as DialogueDecoratorView).Save();
+            }
+            
+        }
     }
 }
