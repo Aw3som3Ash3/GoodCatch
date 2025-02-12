@@ -391,7 +391,7 @@ public class CombatUI : VisualElement
         value.sprite = fish.Icon;
         fishIcon.style.backgroundImage = value;
         tabbedView.SetEnabled(true);
-        UpdateHealthDisplayer(fish);
+        UpdateHealthDisplay(fish);
         UpdateInfo(fish);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
@@ -549,18 +549,14 @@ public class CombatUI : VisualElement
     }
     private void UpdateHealthDisplay()
     {
-        healthBar.value = currentTurn.Health/currentTurn.MaxHealth;
-        healthBar.Q<Label>("HealthValue").text = currentTurn.Health.ToString("00") + "/" + currentTurn.MaxHealth.ToString("00");
-        staminaBar.value = currentTurn.Stamina/currentTurn.MaxStamina;
-        //staminaBar.Q<Label>("StaminaValue").text = currentTurn.Stamina + "/" + currentTurn.MaxStamina;
-
+        UpdateHealthDisplay(currentTurn.fish);
     }
-    private void UpdateHealthDisplayer(FishMonster fish)
+    private void UpdateHealthDisplay(FishMonster fish)
     {
         healthBar.value = fish.Health / fish.MaxHealth;
-        healthBar.Q<Label>("HealthValue").text = fish.Health.ToString("00") + "/" + fish.MaxHealth.ToString("00");
+        healthBar.title = fish.Health.ToString("0") + "/" + fish.MaxHealth.ToString("0");
         staminaBar.value = fish.Stamina / fish.MaxStamina;
-        //staminaBar.Q<Label>("StaminaValue").text = fish.Stamina + "/" + fish.MaxStamina;
+        staminaBar.title = fish.Stamina.ToString("0") + "/" + fish.MaxStamina.ToString("0");
 
     }
     public void SetInventory(ItemInventory inv)

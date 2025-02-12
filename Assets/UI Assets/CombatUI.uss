@@ -475,3 +475,21 @@
 .ChangeTabIcons {
     bottom: -11px;
 }
+
+.unity-progress-bar__title-container {
+    align-self: flex-start;
+    align-items: auto;
+    justify-content: space-around;
+    flex-direction: column;
+    white-space: normal;
+}
+
+.unity-progress-bar__title {
+    align-self: flex-start;
+    align-items: auto;
+    justify-content: space-around;
+    flex-direction: column;
+    white-space: normal;
+    font-size: 26px;
+    -unity-font-style: bold;
+}
