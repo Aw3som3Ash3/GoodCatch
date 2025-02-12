@@ -627,7 +627,7 @@ public class CombatUI : VisualElement
         
         fishUI.onHoverStatus += (action) => action(toolTip);
         fishUI.onHoverExit += () => toolTip.visible = false;
-        this.Q("GameplayScene").Add(fishUI);
+        this.Q("ConditionArea").Add(fishUI);
         return fishUI;
     }
 
