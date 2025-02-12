@@ -52,7 +52,7 @@ public class ShipObject : MonoBehaviour
 
         yield return new WaitForSeconds(exitTime);
         this.transform.parent = null;
-        //this.transform.localEulerAngles = new Vector3(0, 0, 0);
+        this.transform.localEulerAngles = new Vector3(0, this.transform.localEulerAngles.y, 0);
         this.transform.localScale = Vector3.one;
     }
 }
