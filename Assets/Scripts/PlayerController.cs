@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour,ISaveable
 {
+   
+    static public PlayerController player;
     GoodCatchInputs.PlayerActions inputs;
     InputAction moveAction;
     InputAction lookAction;
@@ -43,6 +45,9 @@ public class PlayerController : MonoBehaviour,ISaveable
     public string ID => id;
     List<Vector3> lastSafePosition=new();
     object ISaveable.DataToSave {get{ return new SaveData(Matrix4x4.TRS(this.transform.position, this.transform.rotation, this.transform.localScale), Matrix4x4.TRS(model.transform.position, model.transform.rotation, model.transform.localScale)); } }
+    [SerializeField]
+    ShipSimulator ship;
+
     [Serializable]
     struct SaveData
     {
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour,ISaveable
 
     private void Awake()
     {
+        player = this;
         inputs = InputManager.Input.Player;
         InputManager.EnablePlayer();
         moveAction = inputs.Move;
@@ -136,7 +142,19 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
 
     }
-
+    public void SetPosition(Vector3 pos)
+    {
+        characterController.enabled = false;
+        this.transform.position = pos;
+        characterController.enabled = true;
+    }
+    public void SetPositionAndRotaion(Vector3 pos,Quaternion rotation)
+    {
+        characterController.enabled = false;
+        this.transform.position = pos;
+        this.transform.rotation = rotation;
+        characterController.enabled = true;
+    }
     private void StationInteracted(Station station, Transform transform)
     {
         inStation = true;
@@ -391,7 +409,23 @@ public class PlayerController : MonoBehaviour,ISaveable
             characterController.enabled = false;
             if (this.transform.position.y + 1 < other.transform.position.y)
             {
-                this.transform.position = lastSafePosition[0];
+                RaycastHit hit;
+                if (Physics.Raycast(lastSafePosition[0], Vector3.down,out hit, 1.2f))
+                {
+                    if (!hit.collider.CompareTag("Water"))
+                    {
+                        this.transform.position = lastSafePosition[0];
+                    }
+                    else
+                    {
+                        this.transform.position = ship.SafePosition();
+                    }
+                }
+                else
+                {
+                    this.transform.position = ship.SafePosition();
+                }
+               
             }
             characterController.enabled = true;
 
