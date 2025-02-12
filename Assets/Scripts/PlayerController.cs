@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     AudioController audioController;
     [SerializeField]
     FishingRod fishingRod;
-    Label InteractionUI;
+    VisualElement InteractionUI;
     Animator anim;
 
     bool inStation;
@@ -156,24 +156,26 @@ public class PlayerController : MonoBehaviour,ISaveable
 
         if (inStation)
         {
-            InteractionUI.text = "";
+            InteractionUI.visible = false;
+            InteractionUI.Q<Label>().text = "";
             return;
         }
         OnLook();
         IInteractable interactible;
         if (InteractionCheck(out interactible))
         {
-            InteractionUI.text = interactible.StationName;
+            InteractionUI.Q<Label>().text = interactible.StationName;
         }
         else
         {
             if (InteractionUI == null)
             {
-                InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
+                InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q("InteractionHud");
             }
             if (InteractionUI != null)
             {
-                InteractionUI.text = "";
+                InteractionUI.Q<Label>().text = "";
+                InteractionUI.visible = false;
 
             }
 
