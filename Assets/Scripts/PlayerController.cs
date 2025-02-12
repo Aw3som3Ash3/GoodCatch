@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         IInteractable interactible;
         if (InteractionCheck(out interactible))
         {
+            InteractionUI.visible = true;
             InteractionUI.Q<Label>().text = interactible.StationName;
         }
         else
