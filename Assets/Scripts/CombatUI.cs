@@ -331,9 +331,11 @@ public class CombatUI : VisualElement
     public void NextTurn()
     {
         var turn = turnList.ElementAt(0);
+        turn.RemoveFromClassList("CurrentTurn");
         turnList.Remove(turn);
         turnList.Add(turn);
-        
+        turnList.ElementAt(0).AddToClassList("CurrentTurn");
+
 
     }
     void EndTurn()
