@@ -60,7 +60,14 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         physicSim.AddRelativeTorque(Vector3.right*xTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.x), 0),ForceMode.Acceleration);
         
     }
-
+    public void AnchorShip()
+    {
+        physicSim.maxLinearVelocity = 0;
+    }
+    public void UnAnchorShip()
+    {
+        physicSim.maxLinearVelocity = maxSpeed*4;
+    }
 
     public float TurnAngleToSignedAngle(float angle)
     {

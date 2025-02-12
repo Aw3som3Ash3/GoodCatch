@@ -85,6 +85,10 @@ public class SceneLoader : MonoBehaviour
     {
         for(int i = 0; i < allScenes.Count; i++)
         {
+            if (SceneManager.GetSceneByName(allScenes[i]).IsValid())
+            {
+                continue;
+            }
             yield return SceneManager.LoadSceneAsync(allScenes[i], LoadSceneMode.Additive);
         }
         ScenesLoaded();

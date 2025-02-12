@@ -11,6 +11,9 @@ public class ShipControls : Station
     Transform wheel;
     [SerializeField]
     float turnSpeed;
+    DockingZone currentDock;
+    [SerializeField]
+    LayerMask dockLayer;
 
     public override void MoveInput(Vector2 input)
     {
@@ -37,6 +40,11 @@ public class ShipControls : Station
         {
             return false;
         }
+        if (currentDock != null)
+        {
+            currentDock.UndockShip();
+            currentDock = null;
+        }
         InputManager.Input.Ship.Enable();
         InputManager.Input.Ship.Move.performed += OnMove;
         InputManager.Input.Ship.Exit.performed += OnLeaveStation;
@@ -55,6 +63,14 @@ public class ShipControls : Station
         ship.PhysicSim.velocity = Vector3.zero;
         ship.PhysicSim.angularVelocity = Vector3.zero;
         InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
+        foreach (Collider col in Physics.OverlapSphere(this.transform.position, 2, dockLayer))
+        {
+            Debug.Log(col);
+            col.GetComponent<DockingZone>()?.DockShip(ship);
+            currentDock = col.GetComponent<DockingZone>();
+
+
+        }
         LeaveSation();
     }
     void OnMove(InputAction.CallbackContext context)
@@ -63,6 +79,8 @@ public class ShipControls : Station
     }
     public override void LeaveSation()
     {
+       
+       
         InputManager.Input.Ship.Disable();
         base.LeaveSation();
 
@@ -71,7 +89,7 @@ public class ShipControls : Station
     void Update()
     {
 
-        wheel.eulerAngles = new Vector3(wheel.eulerAngles.x, wheel.eulerAngles.y, -ship.turnRatio * 360);
+        //wheel.eulerAngles = new Vector3(wheel.eulerAngles.x, wheel.eulerAngles.y, -ship.turnRatio * 360);
 
     }
 }
