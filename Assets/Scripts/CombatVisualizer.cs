@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static CombatManager;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CombatVisualizer : MonoBehaviour
 {
@@ -157,7 +158,7 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void AnimateBasicVFX(CombatManager.Turn target, ParticleSystem vfxPrefab)
     {
-        if (!turnToObject.ContainsKey(target))
+        if (!turnToObject.ContainsKey(target)||vfxPrefab==null)
         {
             return;
         }
@@ -174,6 +175,10 @@ public class CombatVisualizer : MonoBehaviour
         }
         //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
         turnToObject[turn].AttackAnimation(() => { });
+        //if (ability.AbilityVFX)
+        //{
+
+        //}
         StartCoroutine(ParticleAttackAnim(ability, turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
         //throw new NotImplementedException();
     }
@@ -240,9 +245,10 @@ public class CombatVisualizer : MonoBehaviour
     IEnumerator ParticleAttackAnim(Ability ability,Vector3 start, Vector3 destination, Action CompletedMove)
     {
         
-        Vector3 targetDir = destination- start;
+       
         if (ability.AbilityVFX!=null)
         {
+            Vector3 targetDir = destination - start;
             var beam = Instantiate(ability.AbilityVFX, start, Quaternion.LookRotation(targetDir));
             var main = beam.main;
             main.stopAction = ParticleSystemStopAction.Destroy;
@@ -254,6 +260,11 @@ public class CombatVisualizer : MonoBehaviour
             
             
             yield return new WaitForSeconds(beam.main.duration + beam.main.startLifetime.constant);
+        }
+        else
+        {
+            Debug.LogWarning("missing animation on ability");
+            yield return new WaitForNextFrameUnit();
         }
         if(ability.TargetVFX != null)
         {

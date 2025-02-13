@@ -13,14 +13,14 @@ public class GuardEffect : DefensiveEffect
     {
         
     }
-    public override StatusEffectInstance NewInstance(FishMonster owner)
+    public override StatusEffectInstance NewInstance(CombatManager.Turn owner)
     {
         return new GuardEffectInstance(this,owner);
     }
 
     public class GuardEffectInstance : DefensiveEffectInstance
     {
-        public GuardEffectInstance(StatusEffect effect, FishMonster owner) : base(effect, owner)
+        public GuardEffectInstance(StatusEffect effect, CombatManager.Turn owner) : base(effect, owner)
         {
         }
 
@@ -28,8 +28,7 @@ public class GuardEffect : DefensiveEffect
         {
 
             float damageToTransfer = damage * (effect as GuardEffect).damageTransfer;
-            Element.Effectiveness effectiveness;
-            effectInstance.owner.TakeDamage(damage, element, type, out effectiveness);
+            effectInstance.owner.TakeDamage(damage, element, type);
 
             return damage - damageToTransfer;
         }

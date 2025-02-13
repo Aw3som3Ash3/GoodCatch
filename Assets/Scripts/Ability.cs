@@ -141,20 +141,20 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         
         return proctBonus;
     }
-    public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit, out float damageDone, out Element.Effectiveness effectiveness)
+    public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit, out float damageDone)
     {
         if (target == null)
         {
             hit = false;
             damageDone = 0;
-            effectiveness = Element.Effectiveness.none;
+            
             return false;
         }
         if (baseDamage < 0)
         {
             target.fish.Restore(health: -baseDamage);
             damageDone = baseDamage;
-            effectiveness = Element.Effectiveness.none;
+            
             hit = true;
         }
         else
@@ -178,11 +178,11 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                     }
                     //Element.Effectiveness effectivenss;
                     
-                    damageDone = target.fish.TakeDamage(outgoingDamage, element, abilityType, out effectiveness);
+                    damageDone = target.TakeDamage(outgoingDamage, element, abilityType);
 
                     foreach (var effect in target.effects.Where((x) => x.effect is ThornEffect))
                     {
-                        (effect.effect as ThornEffect).ReflectDamage(user.fish);
+                        (effect.effect as ThornEffect).ReflectDamage(user);
                     }
                     
                 }
@@ -190,12 +190,12 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
                 {
                     target.fish.Restore(-baseDamage + damageMod);
                     damageDone = baseDamage;
-                    effectiveness = Element.Effectiveness.none;
+                    
                 }
                 else
                 {
                     damageDone = 0;
-                    effectiveness = Element.Effectiveness.none;
+                    
                 }
 
                 if (targetTeam == TargetTeam.enemy)
@@ -212,7 +212,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             {
                 Debug.Log("missed: " + target);
                 damageDone = 0;
-                effectiveness = Element.Effectiveness.none;
+                
                 hit = false;
             }
         }
@@ -229,7 +229,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             float targetDef = (target.special / 5) * 0.01f ;
             if (UnityEngine.Random.Range(0, 1) - proctBonus < (effect.Chance)*(target.HadEffectLastTurn(effect.Effect)? 0.15f:1)- targetDef)
             {
-                target.AddEffects(effect.Effect,user.fish);
+                target.AddEffects(effect.Effect,user);
             }
         }
     }
@@ -240,7 +240,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             float proctBonus = (user.special / 5) * 0.01f;
             if (UnityEngine.Random.Range(0, 1) - proctBonus < (effect.Chance))
             {
-                target.AddEffects(effect.Effect, user.fish);
+                target.AddEffects(effect.Effect, user);
             }
         }
     }

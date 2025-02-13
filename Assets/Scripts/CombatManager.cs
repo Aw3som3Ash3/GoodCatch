@@ -474,14 +474,14 @@ public class CombatManager : MonoBehaviour
                 {
                     bool hit;
                     float damageDone;
-                    Element.Effectiveness effectiveness;
-                    ability.UseAbility(turn, target, out hit,out damageDone,out effectiveness);
+                    
+                    ability.UseAbility(turn, target, out hit,out damageDone);
                     
                     combatVisualizer.AnimateAttack(ability,turn, target, () => 
                     {  
                         if (hit)
                         {
-                            combatVisualizer.AnimateDamageNumbers(target, damageDone, effectiveness);
+                           
                             if (ability.ForcedMovement != 0)
                             {
                                 target.ForcedMove(ability.ForcedMovement);
@@ -512,14 +512,13 @@ public class CombatManager : MonoBehaviour
             {
                 bool hit;
                 float damageDone;
-                Element.Effectiveness effectiveness;
-                ability.UseAbility(turn, target, out hit, out damageDone, out effectiveness);
+                
+                ability.UseAbility(turn, target, out hit, out damageDone);
                 combatVisualizer.AnimateAttack(ability, turn, target, () => 
                 {
                     if (hit)
                     {
-                        combatVisualizer.AnimateDamageNumbers(target, damageDone, effectiveness);
-
+                       
                         if (ability.ForcedMovement != 0)
                         {
                             target.ForcedMove(ability.ForcedMovement);
@@ -796,6 +795,14 @@ public class CombatManager : MonoBehaviour
                 lastEffects.Remove(effect);
             }
         }
+
+        public float TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType )
+        {
+            Element.Effectiveness effectiveness;
+            var damageOut= fish.TakeDamage(damage, elementType, abilityType, out effectiveness);
+            combatManager.combatVisualizer.AnimateDamageNumbers(this, damageOut, effectiveness);
+            return damageOut;
+        }
         public virtual void StartTurn()
         {
             
@@ -912,7 +919,7 @@ public class CombatManager : MonoBehaviour
         {
             //fish.TakeDamage()
         }
-        public void AddEffects(StatusEffect effect,FishMonster owner)
+        public void AddEffects(StatusEffect effect, CombatManager.Turn owner)
         {
             foreach (var e in effects)
             {
