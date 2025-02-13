@@ -58,7 +58,7 @@ public class PauseMenu : VisualElement
         Debug.Log(this);
 
         this.focusable = true;
-        this.delegatesFocus = true;
+        
         //this.delegatesFocus = true;
 
         menu.SetEnabled(false);
