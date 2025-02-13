@@ -14,14 +14,23 @@ public class DockingZone : MonoBehaviour
     bool firstDock;
     [SerializeField]
     Transform dockExit;
+    [SerializeField]
+    Mesh shipMesh;
+    [SerializeField]
+    Vector3 gizmoOffset;
     // Start is called before the first frame update
     void Start()
     {
         if (firstDock)
         {
-            DockShip(FindObjectOfType<ShipSimulator>());
+            ResetShip();
         }
         //DockShip(ship);
+    }
+
+    public void ResetShip()
+    {
+        DockShip(FindObjectOfType<ShipSimulator>());
     }
 
     // Update is called once per frame
@@ -53,5 +62,11 @@ public class DockingZone : MonoBehaviour
         joint = null;
        
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawMesh(shipMesh,0 ,dockingPosition.transform.position+gizmoOffset, dockingPosition.transform.rotation);
+      
     }
 }
