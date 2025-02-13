@@ -435,6 +435,7 @@ public class CombatManager : MonoBehaviour
             return;
         }
         Team targetedTeam = Team.player;
+        actionsCompleted = false;
         if (ability.TargetedTeam == Ability.TargetTeam.friendly)
         {
             targetedTeam = turn.team;
@@ -442,11 +443,17 @@ public class CombatManager : MonoBehaviour
         else if (ability.TargetedTeam == Ability.TargetTeam.enemy)
         {
             targetedTeam = turn.team == Team.player ? Team.enemy : Team.player;
+        }else if (ability.TargetedTeam == Ability.TargetTeam.self)
+        {
+            bool hit;
+            float damageDone;
+            ability.UseAbility(turn, turn, out hit, out damageDone);
+            ActionsCompleted();
+            combatUI.EnableButtons();
+            turn.fish.CheckDeath();
+            return;
         }
 
-        actionsCompleted = false;
-
-        
         if (ability.Targeting == Ability.TargetingType.all)
         {
             List<Turn> targets = new();
@@ -530,7 +537,7 @@ public class CombatManager : MonoBehaviour
                 });
             }
            
-        }
+        } 
     }
     void RemoveFishFromBattle(Turn turn)
     {
@@ -879,7 +886,9 @@ public class CombatManager : MonoBehaviour
         public bool DepthTargetable(int abilityIndex, Depth depth)
         {
 
-            return combatManager.depth[depth].SideHasFish(fish.GetAbility(abilityIndex).TargetedTeam ==Ability.TargetTeam.enemy? oppositeTeam:team) && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth);
+            return combatManager.depth[depth].SideHasFish(fish.GetAbility(abilityIndex).TargetedTeam ==Ability.TargetTeam.enemy? oppositeTeam:team) 
+                && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth)
+                && !(fish.GetAbility(abilityIndex).ignoreSelf && currentDepth.TargetFirst(team)==this &&currentDepth.depth==depth);
         }
         public void UseItem(Item item,Action callback)
         {
@@ -892,12 +901,21 @@ public class CombatManager : MonoBehaviour
             if (AbilityUsable(abilityIndex))
             {
                 //Ability ability = fish.GetAbility(abilityIndex);
+                if(fish.GetAbility(abilityIndex).TargetedTeam == Ability.TargetTeam.self)
+                {
+                    UseAbilityDirect(abilityIndex, depthIndex);
+                    callback.Invoke();
+                }
+                else
+                {
+                    combatManager.combatVisualizer.StartTargeting(DepthTargetable, abilityIndex, (i) => { if (i >= 0) { UseAbilityDirect(abilityIndex, i); } callback.Invoke(); });
+                }
+               
 
-                combatManager.combatVisualizer.StartTargeting(DepthTargetable,abilityIndex ,(i) => { if (i >= 0) { UseAbility(abilityIndex, i); } callback.Invoke(); });
             }
 
         }
-        public void UseAbility(int abilityIndex, int depthIndex)
+        public void UseAbilityDirect(int abilityIndex, int depthIndex)
         {
             if (AbilityUsable(abilityIndex))
             {

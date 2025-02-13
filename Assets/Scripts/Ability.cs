@@ -21,18 +21,21 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     {
         friendly,
         enemy,
+        self,
         all
     }
     public enum TargetingType
     {
         single,
-        all
+        all,
     }
     public enum AbilityType
     {
         attack,
         special,
     }
+    [SerializeField]
+    public bool ignoreSelf=false;
     [Serializable]
     public struct EffectChance
     {
