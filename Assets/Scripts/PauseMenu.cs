@@ -58,13 +58,13 @@ public class PauseMenu : VisualElement
         Debug.Log(this);
 
         this.focusable = true;
-        //this.delegatesFocus = true;
+        this.delegatesFocus = true;
         //this.delegatesFocus = true;
 
         menu.SetEnabled(false);
         menu.visible = false;
         mainPause.SetEnabled(false);
-        menu.RegisterCallback<NavigationMoveEvent>(OnNavigate);
+        this.RegisterCallback<NavigationMoveEvent>(OnNavigate);
         
     }
 
