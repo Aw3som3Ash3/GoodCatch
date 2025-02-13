@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BottomMapping_Boat" src="project://database/Assets/Resources/UXMLs/BottomMapping_Boat.uxml?fileID=9197481963319205126&amp;guid=887bd4615544f7b47825eed875f789a7&amp;type=3#BottomMapping_Boat" />
     <ui:Template name="LoadingScreen" src="project://database/Assets/Resources/UXMLs/LoadingScreen.uxml?fileID=9197481963319205126&amp;guid=2635b8bca8c560641aff3af0645c3047&amp;type=3#LoadingScreen" />
-    <ui:Template name="BottomMapping_Boat" src="project://database/Assets/Resources/UXMLs/BottomMapping_Boat.uxml?fileID=9197481963319205126&amp;guid=887bd4615544f7b47825eed875f789a7&amp;type=3#BottomMapping_Water" />
     <PauseMenu />
-    <ui:Instance template="BottomMapping_Boat" name="BottomMapping_Water" style="justify-content: flex-start; position: absolute; top: 896px; left: 0;" />
+    <ui:Instance template="BottomMapping_Boat" name="BottomMapping_Water" style="justify-content: flex-start; position: absolute; top: 784px; left: -3px;" />
     <ui:Instance template="LoadingScreen" name="LoadingScreen" style="position: absolute; flex-grow: 1; bottom: 0; right: 0; left: 0; top: 0; display: flex; visibility: hidden;" />
 </ui:UXML>

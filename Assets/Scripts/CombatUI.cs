@@ -35,7 +35,7 @@ public class CombatUI : VisualElement
 
     Label infoScreenHealth, infoScreenStamina, infoScreenAttack,infoScreenMagicAttack,infoScreenDefense,infoScreenMagicDefense,infoScreenAgility;
 
-    readonly GoodCatchInputs inputs= new();
+    readonly GoodCatchInputs inputs= InputManager.Input;
 
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;

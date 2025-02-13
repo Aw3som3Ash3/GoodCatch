@@ -493,3 +493,7 @@
     font-size: 26px;
     -unity-font-style: bold;
 }
+
+#TurnList .CombatTurn {
+    scale: 1.5 1.5;
+}
