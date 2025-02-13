@@ -103,7 +103,7 @@ public class Bestiary : PausePage
         {
             this.parent.Remove(bestiaryPage);
             this.visible = true;
-
+            this.Focus();
             return false;
         }
         return base.Back();
