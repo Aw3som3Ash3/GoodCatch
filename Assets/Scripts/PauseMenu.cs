@@ -86,8 +86,9 @@ public class PauseMenu : VisualElement
     void OnNavigate(NavigationMoveEvent evt)
     {
 
-        if (menu != null)
+        if (menu.visible)
         {
+            Debug.Log("overriding navigate");
             switch (evt.direction)
             {
                 case NavigationMoveEvent.Direction.Left:
@@ -238,8 +239,8 @@ public class PauseMenu : VisualElement
         this.Add(inventoryUI);
         //partyUI.UpdateUI();
         menu.visible = false;
+        menu.SetEnabled(false);
         inventory.Focus();
-        //menu.SetEnabled(false);
         currentPage = inventoryUI;
         this.delegatesFocus = true;
     }
@@ -250,7 +251,7 @@ public class PauseMenu : VisualElement
         lastSelected = optionsPage;
         this.Add(optionsPage);
         menu.visible = false;
-        //menu.SetEnabled(false);
+        menu.SetEnabled(false);
         optionsPage.OpenOptions();
         optionsPage.Focus();
         currentPage = optionsPage;
@@ -263,8 +264,8 @@ public class PauseMenu : VisualElement
         this.Add(partyUI);
         partyUI.UpdateUI();
         menu.visible = false;
+        menu.SetEnabled(false);
         partyUI.Focus();
-        //menu.SetEnabled(false);
         currentPage =partyUI;
         this.delegatesFocus = true;
     }
@@ -278,7 +279,7 @@ public class PauseMenu : VisualElement
         this.Add(bestiaryPage);
         menu.visible = false;
         bestiaryPage.Focus();
-        //menu.SetEnabled(false);
+        menu.SetEnabled(false);
         currentPage = bestiaryPage;
         this.delegatesFocus = true;
     }
