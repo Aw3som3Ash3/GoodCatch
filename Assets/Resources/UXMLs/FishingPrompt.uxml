@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd">
+    <Style src="project://database/Assets/UI%20Assets/ChrisUseThisFontStuff.uss?fileID=7433441132597879392&amp;guid=2285b821b813c6846be8fbb6ea894f0a&amp;type=3#ChrisUseThisFontStuff" />
+    <ui:VisualElement style="flex-grow: 0; flex-shrink: 0; align-self: flex-end; align-items: stretch; justify-content: flex-start; position: absolute; top: 1020px; left: 1744px;">
+        <ui:VisualElement name="InteractVisuals" style="flex-grow: 0; flex-direction: row; flex-shrink: 0;">
+            <InputHudTip name="InteractImage" inputName="Interact" style="width: 60px;" />
+            <ui:Label tabindex="-1" text="Cancel" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact" style="font-size: 38px; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-direction: row;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
