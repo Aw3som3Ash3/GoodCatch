@@ -85,26 +85,30 @@ public class PauseMenu : VisualElement
 
     void OnNavigate(NavigationMoveEvent evt)
     {
-       
 
-        switch (evt.direction)
+        if (menu != null)
         {
-            case NavigationMoveEvent.Direction.Left:
-                party.Focus();
-                break;
-            case NavigationMoveEvent.Direction.Right:
-                inventory.Focus();
-                break;
-            case NavigationMoveEvent.Direction.Up:
-                bestiary.Focus();
-                break;
-            case NavigationMoveEvent.Direction.Down:
-                settting.Focus();
-                break;
+            switch (evt.direction)
+            {
+                case NavigationMoveEvent.Direction.Left:
+                    party.Focus();
+                    break;
+                case NavigationMoveEvent.Direction.Right:
+                    inventory.Focus();
+                    break;
+                case NavigationMoveEvent.Direction.Up:
+                    bestiary.Focus();
+                    break;
+                case NavigationMoveEvent.Direction.Down:
+                    settting.Focus();
+                    break;
 
+            }
+            evt.PreventDefault();
         }
+        
 
-        evt.PreventDefault();
+        
     }
     static public PauseMenu Pause()
     {
