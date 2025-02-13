@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+[CreateAssetMenu(fileName = "Mark", menuName = "Status Effect/Mark", order = 2)]
 public class MarkStatusEffect : DefensiveEffect
 {
 
