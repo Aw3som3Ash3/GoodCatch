@@ -237,7 +237,7 @@ public class PauseMenu : VisualElement
         this.Add(inventoryUI);
         //partyUI.UpdateUI();
         menu.visible = false;
-        //inventory.Focus();
+        inventory.Focus();
         //menu.SetEnabled(false);
         currentPage = inventoryUI;
         this.delegatesFocus = true;
@@ -251,7 +251,7 @@ public class PauseMenu : VisualElement
         menu.visible = false;
         //menu.SetEnabled(false);
         optionsPage.OpenOptions();
-        //optionsPage.Focus();
+        optionsPage.Focus();
         currentPage = optionsPage;
         this.delegatesFocus = true;
     }
@@ -262,7 +262,7 @@ public class PauseMenu : VisualElement
         this.Add(partyUI);
         partyUI.UpdateUI();
         menu.visible = false;
-        //partyUI.Focus();
+        partyUI.Focus();
         //menu.SetEnabled(false);
         currentPage =partyUI;
         this.delegatesFocus = true;
@@ -276,7 +276,7 @@ public class PauseMenu : VisualElement
         lastSelected = bestiary;
         this.Add(bestiaryPage);
         menu.visible = false;
-        //bestiaryPage.Focus();
+        bestiaryPage.Focus();
         //menu.SetEnabled(false);
         currentPage = bestiaryPage;
         this.delegatesFocus = true;

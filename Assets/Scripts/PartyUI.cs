@@ -32,7 +32,9 @@ public class PartyUI : PausePage
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
-        
+        this.focusable = true;
+        this.delegatesFocus = true;
+
         SetUpUI();
         UpdateUI();
     }

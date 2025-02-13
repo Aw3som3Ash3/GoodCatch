@@ -40,7 +40,9 @@ public class Bestiary : PausePage
         fishList.selectionChanged += SelectionChanged;
         fishList.itemsChosen += ChoseItem;
         bestiaryPage = new BestiaryPage();
-        fishList.Children().First().Focus();
+        this.focusable = true;
+        this.delegatesFocus = true;
+        //fishList.Children().First().Focus();
     }
 
     private void ChoseItem(IEnumerable<object> enumerable)
