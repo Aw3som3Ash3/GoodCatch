@@ -57,8 +57,8 @@ public class PauseMenu : VisualElement
         mainPause = this;
         Debug.Log(this);
 
-        menu.focusable = true;
-        menu.delegatesFocus = true;
+        this.focusable = true;
+        //this.delegatesFocus = true;
         //this.delegatesFocus = true;
 
         menu.SetEnabled(false);
@@ -150,7 +150,8 @@ public class PauseMenu : VisualElement
         if (menu.enabledSelf)
         {
             GameManager.Instance.OnInputChange += OnInputChanged;
-            menu.Focus();
+            this.Focus();
+            //party.Focus();
             //this.Focus();
             //this.CaptureMouse();
             //this.pickingMode =;
