@@ -31,6 +31,9 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     PIDController zTorqueController=new (0.5f,0,0.25f);
     [SerializeField]
     PIDController xTorqueController=new(0.5f,0,0.25f);
+
+    [SerializeField]
+    Transform repawnPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +63,18 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         physicSim.AddRelativeTorque(Vector3.right*xTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.x), 0),ForceMode.Acceleration);
         
     }
-
+    public Vector3 SafePosition()
+    {
+        return repawnPoint.position;
+    }
+    public void AnchorShip()
+    {
+        physicSim.maxLinearVelocity = 0;
+    }
+    public void UnAnchorShip()
+    {
+        physicSim.maxLinearVelocity = maxSpeed*4;
+    }
 
     public float TurnAngleToSignedAngle(float angle)
     {

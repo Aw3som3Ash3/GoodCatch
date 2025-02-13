@@ -69,6 +69,7 @@ public class OptionsPage : PausePage
         controlTabs.visible = (true);
         menuContainer.Add(controlTabs);
         controlTabs.StretchToParentSize();
+        
         if (menuContainer.Contains(settingsUI))
         {
             menuContainer.Remove(settingsUI);
