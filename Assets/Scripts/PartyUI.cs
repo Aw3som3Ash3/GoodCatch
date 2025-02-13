@@ -87,6 +87,7 @@ public class PartyUI : PausePage
 
         }
 
+        this.Q("PartyMember" + (1)).Focus();
     }
 
 

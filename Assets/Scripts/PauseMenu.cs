@@ -11,11 +11,11 @@ public class PauseMenu : VisualElement
     Button settting, party, bestiary, inventory;
     CursorLockMode prevMode;
     bool prevVisability;
-    PartyUI partyUI;
-    OptionsPage optionsPage;
-    Bestiary bestiaryPage;
+    //PartyUI partyUI;
+    //OptionsPage optionsPage;
+    //Bestiary bestiaryPage;
     PausePage currentPage;
-    InventoryUI inventoryUI;
+    //InventoryUI inventoryUI;
     VisualElement menu;
 
     VisualElement lastSelected;
@@ -199,10 +199,12 @@ public class PauseMenu : VisualElement
             if (currentPage.Back())
             {
                 this.Remove(currentPage);
+
                 menu.SetEnabled(true);
                 menu.visible = true;
                 currentPage = null;
-                lastSelected?.Focus();
+                this.delegatesFocus = false;
+                //lastSelected?.Focus();
                 Debug.Log("last selected: " + lastSelected);
 
             }
@@ -222,61 +224,55 @@ public class PauseMenu : VisualElement
     }
     void InventoryMenu()
     {
-        if (inventoryUI == null)
-        {
-            inventoryUI = new();
 
-        }
+        InventoryUI inventoryUI = new();
         lastSelected = inventory;
         this.Add(inventoryUI);
         //partyUI.UpdateUI();
         menu.visible = false;
+        //inventory.Focus();
         //menu.SetEnabled(false);
         currentPage = inventoryUI;
+        this.delegatesFocus = true;
     }
     
     void Options()
     {
-        if (optionsPage == null)
-        {
-            optionsPage = new();
-
-        }
-        lastSelected= optionsPage;
+        OptionsPage optionsPage = new();
+        lastSelected = optionsPage;
         this.Add(optionsPage);
         menu.visible = false;
         //menu.SetEnabled(false);
         optionsPage.OpenOptions();
+        //optionsPage.Focus();
         currentPage = optionsPage;
+        this.delegatesFocus = true;
     }
     void Party()
     {
         lastSelected = party;
-        if (partyUI == null)
-        {
-            partyUI = new();
-
-        }
-
+        PartyUI partyUI = new();
         this.Add(partyUI);
         partyUI.UpdateUI();
         menu.visible = false;
+        //partyUI.Focus();
         //menu.SetEnabled(false);
         currentPage =partyUI;
+        this.delegatesFocus = true;
     }
 
 
     void BestiaryScreen()
     {
-        if (bestiaryPage == null)
-        {
-            bestiaryPage = new();
-        }
+
+        Bestiary bestiaryPage = new();
         lastSelected = bestiary;
         this.Add(bestiaryPage);
         menu.visible = false;
+        //bestiaryPage.Focus();
         //menu.SetEnabled(false);
         currentPage = bestiaryPage;
+        this.delegatesFocus = true;
     }
 
     
