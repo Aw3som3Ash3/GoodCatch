@@ -62,8 +62,8 @@ public class MainMenu : MonoBehaviour
 
 
             };
-            
-            
+
+            Time.timeScale = 1;
         }
     }
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -118,6 +118,7 @@ public class MainMenu : MonoBehaviour
             }
 
         }
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
