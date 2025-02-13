@@ -17,7 +17,7 @@ public class Inn : MonoBehaviour, IInteractable
     [SerializeField]
     DockingZone dockingZone;
 
-#if DEBUG
+
     [SerializeField]
     InputAction debugTeleport;
 
@@ -27,7 +27,7 @@ public class Inn : MonoBehaviour, IInteractable
     }
 
 
-#endif
+
     [SerializeField]
     bool isStartInn;
 
