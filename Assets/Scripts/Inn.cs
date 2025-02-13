@@ -23,12 +23,12 @@ public class Inn : MonoBehaviour, IInteractable
 
     private void TeleportDebug(InputAction.CallbackContext context)
     {
-        dockingZone.ResetShip();
-        PlayerController.player.SetPosition(respawnPoint.position);
+        Respawn();
     }
 
 
 #endif
+    [SerializeField]
     bool isStartInn;
 
     void Awake()
@@ -42,7 +42,11 @@ public class Inn : MonoBehaviour, IInteractable
         debugTeleport.Enable();
     }
 
-    
+    public void Respawn()
+    {
+        dockingZone.ResetShip();
+        PlayerController.player.SetPosition(respawnPoint.position);
+    }
     public bool Interact()
     {
         InnVisited?.Invoke(this);

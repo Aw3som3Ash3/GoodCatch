@@ -250,7 +250,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             lastInnVisited = Inn.StarterInn;
         }
-        FindObjectOfType<PlayerController>().transform.position=lastInnVisited.GetRepsawnPoint();
+        lastInnVisited.Respawn();
         AdvanceTime(3);
         RestoreFish();
     }
