@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class Inn : MonoBehaviour, IInteractable
@@ -13,7 +14,21 @@ public class Inn : MonoBehaviour, IInteractable
     public static Action<Inn> InnVisited;
     public static Inn StarterInn;
     public InnDialogue dialogue;
+    [SerializeField]
+    DockingZone dockingZone;
 
+#if DEBUG
+    [SerializeField]
+    InputAction debugTeleport;
+
+    private void TeleportDebug(InputAction.CallbackContext context)
+    {
+        Respawn();
+    }
+
+
+#endif
+    [SerializeField]
     bool isStartInn;
 
     void Awake()
@@ -23,8 +38,15 @@ public class Inn : MonoBehaviour, IInteractable
         {
             StarterInn = this;
         }
+        debugTeleport.performed += TeleportDebug;
+        debugTeleport.Enable();
     }
 
+    public void Respawn()
+    {
+        dockingZone.ResetShip();
+        PlayerController.player.SetPosition(respawnPoint.position);
+    }
     public bool Interact()
     {
         InnVisited?.Invoke(this);

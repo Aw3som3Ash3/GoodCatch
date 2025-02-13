@@ -113,6 +113,8 @@ MonoBehaviour:
   dockingPosition: {fileID: 1346627800672330311}
   firstDock: 1
   dockExit: {fileID: 7766509477500274524}
+  shipMesh: {fileID: -3692314041496164193, guid: fc07104db4c3a2543a3d8833d8ce1c8e, type: 3}
+  gizmoOffset: {x: 0, y: 1, z: 0}
 --- !u!65 &5623832941275732585
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -125,27 +125,38 @@ public class ControlsEditor : VisualElement
         var inputAction = InputManager.Input.FindAction(inputName);
         string stringMethod = inputMethod == InputMethod.mouseAndKeyboard ? "Keyboard&Mouse" : "Gamepad";
         var bindings = inputAction.bindings.Where((x) => InputBinding.MaskByGroup(stringMethod).Matches(x)).ToArray();
-        
+        var operation=inputAction.PerformInteractiveRebinding(index)
+            .WithBindingGroup(stringMethod)
+            .WithCancelingThrough(inputMethod == InputMethod.mouseAndKeyboard ? "<Keyboard>/escape" : "<Gamepad>/start")
+            .OnComplete(RebindComplete)
+            .Start();
+
         //InputManager.Input.
-        if (index >= bindings.Length)
-        {
+        //if (index >= bindings.Length)
+        //{
            
-            InputSystem.onAnyButtonPress.CallOnce((x) => 
-            { 
-                var binding=inputAction.AddBinding(x.path); 
-                binding.WithGroup(stringMethod);
-                Debug.Log(binding); 
-                ChangeIcons(); 
-            });
-        }
-        else
-        {
-            var bindingIndex = inputAction.GetBindingIndex(bindings[index]);
-            InputSystem.onAnyButtonPress.CallOnce((x) => { inputAction.ApplyBindingOverride(bindingIndex, x.path); ChangeIcons(); InputHudTip.UpdateAllIcons(); });
-        }
-        OnChangingInput?.Invoke();
+        //    InputSystem.onAnyButtonPress.CallOnce((x) => 
+        //    { 
+        //        var binding=inputAction.AddBinding(x.path); 
+        //        binding.WithGroup(stringMethod);
+        //        Debug.Log(binding); 
+        //        ChangeIcons(); 
+        //    });
+        //}
+        //else
+        //{
+        //    var bindingIndex = inputAction.GetBindingIndex(bindings[index]);
+        //    InputSystem.onAnyButtonPress.CallOnce((x) => { inputAction.ApplyBindingOverride(bindingIndex, x.path); ChangeIcons(); InputHudTip.UpdateAllIcons(); });
+        //}
+        //OnChangingInput?.Invoke();
 
     }
 
-
+    private void RebindComplete(InputActionRebindingExtensions.RebindingOperation operation)
+    {
+        operation.Dispose();
+        ChangeIcons(); 
+        InputHudTip.UpdateAllIcons();
+        //throw new NotImplementedException();
+    }
 }
