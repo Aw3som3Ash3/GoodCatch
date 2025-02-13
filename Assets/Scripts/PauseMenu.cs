@@ -211,6 +211,7 @@ public class PauseMenu : VisualElement
                 menu.visible = true;
                 currentPage = null;
                 this.delegatesFocus = false;
+                this.Focus();
                 //lastSelected?.Focus();
                 Debug.Log("last selected: " + lastSelected);
 
