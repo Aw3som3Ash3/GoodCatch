@@ -335,6 +335,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         if (inputs.Fish.IsPressed())
         {
             anim.speed = 0;
+            Debug.Log("CASTINGG");
             inputs.Fish.canceled += Released;
 
         }
