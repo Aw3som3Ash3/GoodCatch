@@ -107,7 +107,10 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         {
             Name = this.GetType().Name;
         }
-        public abstract void Init();
+        public virtual void Init() 
+        {
+            IsCompleted = false;
+        }
 
         public void RequirementCompleted()
         {
@@ -245,8 +248,8 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
 
     public override void Init()
     {
+        base.Init();
         currentAmount = 0;
-        IsCompleted = false;
         GameManager.Instance.CaughtFish += OnFishCaught;
         //throw new NotImplementedException();
     }
@@ -296,8 +299,9 @@ public class GatherAmountOfItems : Quest.QuestRequirement
 
     public override void Init()
     {
+        base.Init();
         amount = 0;
-        IsCompleted = false;
+      
         GameManager.Instance.PlayerInventory.ItemAdded += ItemHasBeenAdded;
     }
 
@@ -336,10 +340,7 @@ public class ArbritaryQuestRequirment : QuestRequirement
     string objective;
     public override string Objective => objective;
 
-    public override void Init()
-    {
-        IsCompleted = false;
-    }
+   
 }
 
 
