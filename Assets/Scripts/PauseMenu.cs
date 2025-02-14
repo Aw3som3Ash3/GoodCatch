@@ -113,8 +113,11 @@ public class PauseMenu : VisualElement
     }
     static public PauseMenu Pause()
     {
+        if (mainPause.visible == false)
+        {
+            mainPause.OnPause();
+        }
         
-        mainPause.OnPause();
         return mainPause;
     }
     public void AddPage(PausePage pausePage, bool exitCompletely = true)
