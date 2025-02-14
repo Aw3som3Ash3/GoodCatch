@@ -140,6 +140,7 @@ public class MainMenu : MonoBehaviour
     }
     void LoadGame()
     {
+        loadScreen.Q<Label>("LoadTitle").text = "Load Game";
         for (int i = 1; i <= 3; i++)
         {
             int index = i;
