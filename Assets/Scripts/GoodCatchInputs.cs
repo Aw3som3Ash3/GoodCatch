@@ -1080,7 +1080,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1088,10 +1088,10 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""08dffd7b-491a-4309-9b63-f1c05b1683c1"",
-                    ""path"": ""*/{Back}"",
+                    ""path"": ""<Mouse>/{Back}"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
