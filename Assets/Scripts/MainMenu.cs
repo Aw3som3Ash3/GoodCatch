@@ -75,8 +75,16 @@ public class MainMenu : MonoBehaviour
         for (int i = 1; i <= 3; i++)
         {
             int index = i;
-
             var button = loadScreen.Q<Button>("Slot" + i);
+            if (!SavingSystem.HasSlot(i))
+            {
+                //button.text = "Empty Slot " + (i + 1);
+
+            }
+            else
+            {
+                //button.text = "Slot " + (i + 1);
+            }
             button.SetEnabled(true);
             button.clicked += () => 
             { 
