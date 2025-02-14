@@ -109,6 +109,10 @@ public class PlayerController : MonoBehaviour,ISaveable
         Station.LeftStation += StationLeft;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+        if (InteractionUI == null)
+        {
+            InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q("InteractionHud");
+        }
     }
     
     bool InteractionCheck(out IInteractable interactable)
@@ -180,6 +184,11 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
         OnLook();
         IInteractable interactible;
+
+        if (InteractionUI == null)
+        {
+            InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q("InteractionHud");
+        }
         if (InteractionCheck(out interactible))
         {
             InteractionUI.visible = true;
@@ -187,10 +196,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         }
         else
         {
-            if (InteractionUI == null)
-            {
-                InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q("InteractionHud");
-            }
+            
             if (InteractionUI != null)
             {
                 InteractionUI.Q<Label>().text = "";

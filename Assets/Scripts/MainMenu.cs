@@ -28,6 +28,8 @@ public class MainMenu : MonoBehaviour
         optionsScreen.visible = false;
         InputManager.Input.UI.Back.performed+=Back;
         InputManager.Input.UI.Back.Enable();
+        GameManager.Instance = null;
+        QuestTracker.Instance = null;
 
     }
 
