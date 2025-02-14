@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 [ExecuteAlways]
-public class TransformSaver : SaveableObject,ISaveable
+public class TransformSaver : SaveableObject
 {
     public override object DataToSave =>new Data( Matrix4x4.TRS(this.transform.position,this.transform.rotation,this.transform.localScale),this.gameObject.activeSelf);
 
