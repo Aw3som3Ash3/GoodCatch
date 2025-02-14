@@ -10,24 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19b5ed74439fc0e44adbdf372a056455, type: 3}
-  m_Name: OceanDesert
+  m_Name: VolcanoOcean
   m_EditorClassIdentifier: 
   daySpawn:
-  - monster: {fileID: 11400000, guid: c5c8534c9be51e843a0840c8e4b4817c, type: 2}
-    weight: 15
-  - monster: {fileID: 11400000, guid: 5880d3e7f6b0c7e4c8e8fdc20562efaf, type: 2}
-    weight: 10
-  - monster: {fileID: 11400000, guid: 1e0338ef5cf739c45b80d4f88f911772, type: 2}
-    weight: 10
-  - monster: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
-    weight: 10
+  - monster: {fileID: 11400000, guid: f804a3725d90a7b4c80c36d5e7f44278, type: 2}
+    weight: 20
   nightSpawn:
   - monster: {fileID: 11400000, guid: 87003e928c2aae646859a2a02e2532bc, type: 2}
     weight: 20
-  - monster: {fileID: 11400000, guid: 5880d3e7f6b0c7e4c8e8fdc20562efaf, type: 2}
-    weight: 10
-  - monster: {fileID: 11400000, guid: 1e0338ef5cf739c45b80d4f88f911772, type: 2}
-    weight: 10
   - monster: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
     weight: 10
   - monster: {fileID: 11400000, guid: 68f5f9f6ff91d7d4da0e9a5975fc5fcd, type: 2}
