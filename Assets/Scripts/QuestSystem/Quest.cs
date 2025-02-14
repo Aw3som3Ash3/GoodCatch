@@ -178,6 +178,10 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             {
                 return;
             }
+            foreach (var item in CurrentState.requirements)
+            {
+                item.Init();
+            }
             CurrentState.Completed += StateCompleted;
             CurrentState.Progressed += Progressed;
 

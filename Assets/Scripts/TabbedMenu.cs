@@ -190,12 +190,16 @@ public class TabbedMenu : VisualElement
             return;
         }
         index = targetIndex;
-        Activate(m_Tabs[index]);
-
-        if (m_Tabs[index].Target.childCount <= 0)
+        if (index < m_Tabs.Count)
         {
-            return;
+            Activate(m_Tabs[index]);
+
+            if (m_Tabs[index].Target.childCount <= 0)
+            {
+                return;
+            }
         }
+       
        
     }
 
