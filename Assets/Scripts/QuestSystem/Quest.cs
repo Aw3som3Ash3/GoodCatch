@@ -38,7 +38,15 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
                 string newString= "";
                 foreach (var requirement in requirements)
                 {
-                    newString += requirement.Objective + "\n";
+                    if (requirement.IsCompleted)
+                    {
+                        newString += "<s>" + requirement.Objective + " </s>\n";
+                    }
+                    else
+                    {
+                        newString += requirement.Objective + "\n";
+                    }
+                   
                 }
                 return newString;
 
@@ -56,6 +64,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         //public event Action<QuestRequirment> Progressed;
         public void Initialize()
         {
+            requirements=requirements.Clone() as Quest.QuestRequirement[];
             foreach (var requirment in requirements)
             {
                 requirment.Init();
@@ -151,7 +160,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             this.quest = quest;
             questId = quest.questId;
             states=new QuestState[quest.states.Length];
-            quest.states.CopyTo(this.states, 0);
+            states = quest.states.Clone() as QuestState[];
             foreach(var state in states)
             {
                 state.Initialize();
@@ -237,6 +246,7 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
     public override void Init()
     {
         currentAmount = 0;
+        IsCompleted = false;
         GameManager.Instance.CaughtFish += OnFishCaught;
         //throw new NotImplementedException();
     }
@@ -261,6 +271,7 @@ public class CatchNumOfSpecificFishRequirement : CatchNumOfFishRequirement
 {
     [SerializeField]
     FishMonsterType fishMonsterType;
+
     public override string Objective => $"Catch  {fishMonsterType.name}: {currentAmount}/{targetOfFish}";
     protected override void OnFishCaught(FishMonsterType type)
     {
@@ -285,6 +296,8 @@ public class GatherAmountOfItems : Quest.QuestRequirement
 
     public override void Init()
     {
+        amount = 0;
+        IsCompleted = false;
         GameManager.Instance.PlayerInventory.ItemAdded += ItemHasBeenAdded;
     }
 
@@ -325,7 +338,7 @@ public class ArbritaryQuestRequirment : QuestRequirement
 
     public override void Init()
     {
-        
+        IsCompleted = false;
     }
 }
 

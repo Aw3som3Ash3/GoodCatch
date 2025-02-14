@@ -4370,7 +4370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4e4de07c2e9624eac181ff18b0a8b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingQuest: {fileID: 11400000, guid: 4dcc27b68f4890944bc97d51e92ebea4, type: 2}
+  startingQuest: {fileID: 11400000, guid: 8ca3ef665139aca468d32423d451ce52, type: 2}
   activeQuests: []
   completedQuests: []
   references:
