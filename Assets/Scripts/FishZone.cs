@@ -27,6 +27,7 @@ public class FishZone : SaveableObject
     public override object DataToSave => data;
     [SerializeField]
     float radius;
+    public float Radius { get {return radius; } }
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +63,7 @@ public class FishZone : SaveableObject
 
         fishToCatch = fishes[UnityEngine.Random.Range(0, fishes.Count)];
         //fish.StartCatching(fishHook);
-        fishes.Remove(fishToCatch);
+        //fishes.Remove(fishToCatch);
         return spawnTable.GetRandomFish();
     }
 

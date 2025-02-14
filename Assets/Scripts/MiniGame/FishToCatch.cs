@@ -106,6 +106,9 @@ public class FishToCatch : MonoBehaviour
         }
         else
         {
+            behaviour = FishBehaviour.idle;
+            this.transform.position = this.transform.parent.position+Vector3.right*this.transform.GetComponentInParent<FishZone>().Radius;
+            this.transform.rotation= this.transform.parent.rotation;
             return false;
         }
     }
