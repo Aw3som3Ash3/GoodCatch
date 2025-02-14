@@ -37,8 +37,10 @@ public class InventoryUI : PausePage
         InputManager.Input.UI.ChangeTab.Enable();
         leftTab = this.Q("LeftBumper");
         rightTab = this.Q("RightBumper");
-       
-        
+        this.focusable = true;
+        this.delegatesFocus = true;
+
+
 
     }
     public override bool Back()

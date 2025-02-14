@@ -30,7 +30,7 @@ public static class InputDisplayer
             return;
         }
         var binding = bindings[index];
-
+        
         var controls = inputAction.controls.Where((x) =>
         {
             if (x.device is Gamepad && method == InputMethod.controller)

@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
+[Obsolete("TurnListUI is deprecated, its now in combat ui.")]
 public class TurnListUI : MonoBehaviour
 {
     [SerializeField]
@@ -42,6 +44,7 @@ public class TurnListUI : MonoBehaviour
     }
     public void NextTurn()
     {
+        
         turnIcons[0].transform.SetAsLastSibling();
         turnIcons.Move(0, turnIcons.Count - 1);
     }

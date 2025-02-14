@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8045376867422865450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: test
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,59 +26,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootNode:
     nextNode:
-      rid: 187471219157368832
+      rid: 187471310260011021
     guid: root
-    position: {x: 0, y: 0}
+    position: {x: 18.666656, y: 39.333336}
   nodes:
-  - rid: 187471219157368832
-  - rid: 187471219157368833
-  - rid: 187471219157368834
-  - rid: 187471219157368842
+  - rid: 187471310260011021
+  decorators: []
+  events:
+  - {fileID: -8045376867422865450}
+  - {fileID: 5256359603635145372}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 187471219157368832
+    - rid: 187471310260011021
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: hello
-        guid: 065a04a5ae464484482c909bb3a809c9
-        position: {x: 473.33334, y: 39.333336}
-        nextNode:
-          rid: 187471219157368833
-    - rid: 187471219157368833
-      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: make a decision
-        guid: 537e376b4b2378941b56aac8b571d4a5
-        position: {x: 920, y: 0}
-        decisions:
-        - choice: option one
-          choiceNode:
-            rid: 187471219157368834
-        - choice: option two
-          choiceNode:
-            rid: 187471219157368842
-    - rid: 187471219157368834
-      type: {class: GiveQuest, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: here is a quest
-        guid: 3c7259483a70fd74495a2a90aa21d4b8
-        position: {x: 1489.3334, y: -37.333336}
+        dialouge: 
+        guid: a9500926740688849aff911b5b7b368d
+        decorators: []
+        position: {x: 438, y: 190}
         nextNode:
           rid: -2
-        quest: {fileID: 0}
-    - rid: 187471219157368842
-      type: {class: DialogueEventNode, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: Event
-        guid: 0a082c61f073dce4295f5cb055fe39cd
-        position: {x: 1579.3334, y: 216.66667}
-        nextNode:
-          rid: -2
-        dialogueEvent: {fileID: 335140569693983105}
---- !u!114 &335140569693983105
+--- !u!114 &5256359603635145372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,5 +59,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
-  m_Name: TestName
+  m_Name: five
   m_EditorClassIdentifier: 

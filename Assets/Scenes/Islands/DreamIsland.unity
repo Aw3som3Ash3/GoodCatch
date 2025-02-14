@@ -607,17 +607,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4235a9618204841973db9a34ca9c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Mudskipper
-  baseDialogue: {fileID: 11400000, guid: f5edc9df4146b434c9244234bb184c8f, type: 2}
+  npcName: MrSkips
+  baseDialogue: {fileID: 11400000, guid: b1b8d447fd36aa04e9db1fe24deb413f, type: 2}
   questBasedDialogues:
   - quest: {fileID: 11400000, guid: 8789b08040d62fd41b8e41e89e17f6f5, type: 2}
-    stateName: Speak To Skips
-    dialogue: {fileID: 11400000, guid: 9dae746ff4d1d18419a75cfe99c97623, type: 2}
+    stateName: Speak To MrSkips
+    dialogue: {fileID: 11400000, guid: 7e73032f89e4ff943a4c1f4d73d93120, type: 2}
   - quest: {fileID: 11400000, guid: 29ff50a87758d7041b9663d36d45e238, type: 2}
-    stateName: Speak To Skips
-    dialogue: {fileID: 11400000, guid: ddc03b2c3c7c5714eb966e009561ffcd, type: 2}
-  skipTutorial: {fileID: 0}
-  finishedTutorial: {fileID: -6363728242290185311, guid: ddc03b2c3c7c5714eb966e009561ffcd, type: 2}
+    stateName: Speak To MrSkips
+    dialogue: {fileID: 11400000, guid: 05a6ee9ca7d9ed54588f1edf21460624, type: 2}
+  skipTutorial: {fileID: -541169476730117253, guid: b1b8d447fd36aa04e9db1fe24deb413f, type: 2}
+  finishedTutorial: {fileID: 1235379646921652575, guid: 05a6ee9ca7d9ed54588f1edf21460624, type: 2}
+  healFish: {fileID: -8881602098096103646, guid: 7e73032f89e4ff943a4c1f4d73d93120, type: 2}
   postTutorialQuest: {fileID: 11400000, guid: 63e22f4c34faafe40a67bcabe0d63e00, type: 2}
 --- !u!136 &510201482
 CapsuleCollider:
@@ -1023,7 +1024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: f4991eff6029a864c9f6c881d9f7aa07, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 8f84fb16ba6aac342a4102fa220be0d8, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: 753101612e7efca42a6f564fdb36740b, type: 3}
   m_SortingOrder: 0
 --- !u!4 &1078670870
 Transform:
@@ -1404,6 +1405,26 @@ PrefabInstance:
       propertyPath: audioMixer
       value: 
       objectReference: {fileID: 24100000, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: testfisth.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: testfisth.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: startingItems.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: startingItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: startingItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6632416249239343018, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: m_LocalPosition.x
       value: 363.66382

@@ -232,7 +232,7 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
     [HideInInspector]
     protected int currentAmount;
 
-    public override string Objective => $"Catch {currentAmount}/{targetOfFish} fish";
+    public override string Objective => $"Catch fish {currentAmount}/{targetOfFish}";
 
     public override void Init()
     {
@@ -261,7 +261,7 @@ public class CatchNumOfSpecificFishRequirement : CatchNumOfFishRequirement
 {
     [SerializeField]
     FishMonsterType fishMonsterType;
-    public override string Objective => $"Catch {currentAmount}/{targetOfFish} {fishMonsterType.name}";
+    public override string Objective => $"Catch  {fishMonsterType.name}: {currentAmount}/{targetOfFish}";
     protected override void OnFishCaught(FishMonsterType type)
     {
         if (fishMonsterType == type)
@@ -281,7 +281,7 @@ public class GatherAmountOfItems : Quest.QuestRequirement
     int amount;
     int progress;
 
-    public override string Objective => $"gather {amount} {item}s";
+    public override string Objective => $"Gather {amount} {item}: {progress}/{amount} ";
 
     public override void Init()
     {
@@ -310,6 +310,22 @@ public class GatherAmountOfItems : Quest.QuestRequirement
 
 
         //throw new NotImplementedException();
+    }
+}
+
+
+public class ArbritaryQuestRequirment : QuestRequirement
+{
+    [SerializeField]
+    string tag;
+    public string Tag { get { return tag; } }
+    [SerializeField]
+    string objective;
+    public override string Objective => objective;
+
+    public override void Init()
+    {
+        
     }
 }
 
