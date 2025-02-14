@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7521723901936486484}
   - component: {fileID: 4821022885034645193}
   - component: {fileID: 1754777196141411367}
-  m_Layer: 17
+  m_Layer: 18
   m_Name: Fish Stand-in
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8362484918581084930}
   - component: {fileID: 6466594883629627962}
-  m_Layer: 17
+  m_Layer: 18
   m_Name: Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
