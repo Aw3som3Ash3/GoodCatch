@@ -28,15 +28,15 @@ MonoBehaviour:
     overrideShaderPassIndex: 7
     overrideMode: 0
     overrideDepthState: 0
-    depthCompareFunction: 0
-    enableWrite: 0
+    depthCompareFunction: 8
+    enableWrite: 1
     stencilSettings:
       overrideStencilState: 0
-      stencilReference: 15
-      stencilCompareFunction: 6
-      passOperation: 5
-      failOperation: 2
-      zFailOperation: 2
+      stencilReference: 3
+      stencilCompareFunction: 8
+      passOperation: 0
+      failOperation: 0
+      zFailOperation: 0
     cameraSettings:
       overrideCamera: 0
       restoreCamera: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
     overrideShader: {fileID: 0}
     overrideShaderPassIndex: 0
     overrideMode: 1
-    overrideDepthState: 1
+    overrideDepthState: 0
     depthCompareFunction: 8
     enableWrite: 1
     stencilSettings:
