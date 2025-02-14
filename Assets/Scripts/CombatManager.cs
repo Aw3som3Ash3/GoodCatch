@@ -301,11 +301,12 @@ public class CombatManager : MonoBehaviour
     {
         actionsCompleted = true;
 
-        CanFightEnd();
-        CompletedAllActions?.Invoke();
         
+        CompletedAllActions?.Invoke();
+        CanFightEnd();
+
     }
-    void CanFightEnd()
+    bool CanFightEnd()
     {
         int numOfFriendly = 0;
         int numOfEnemy = 0;
@@ -323,11 +324,14 @@ public class CombatManager : MonoBehaviour
         if (numOfEnemy <= 0)
         {
             EndFight(Team.player);
+            return true;
         }
         else if (numOfFriendly <= 0)
         {
             EndFight(Team.enemy);
+            return true;
         }
+        return false;
     }
     void EndFight(Team winningTeam)
     {
@@ -379,8 +383,10 @@ public class CombatManager : MonoBehaviour
     }
     void StartTurn()
     {
-        CanFightEnd();
+
+        
         currentTurn.Value.StartTurn();
+        
         combatVisualizer.TargetCameraToFish(currentTurn.Value);
         if (currentTurn.Value is EnemyTurn)
         {
@@ -391,6 +397,10 @@ public class CombatManager : MonoBehaviour
     }
     void NextTurn()
     {
+        if (CanFightEnd())
+        {
+            return;
+        }
         if (!actionsCompleted && currentTurn.Value.team == Team.player)
         {
             return;
@@ -531,9 +541,9 @@ public class CombatManager : MonoBehaviour
                             target.ForcedMove(ability.ForcedMovement);
                         }
                     }
-                    ActionsCompleted();
                     combatUI.EnableButtons();
                     target.fish.CheckDeath();
+                    ActionsCompleted();
                 });
             }
            
@@ -817,7 +827,11 @@ public class CombatManager : MonoBehaviour
             actionsLeft = actionsPerTurn;
             
             combatManager.combatUI.NewTurn(this, team == Team.player);
-            TickEffects(StatusEffect.EffectUsage.preTurn);
+            TickEffects(StatusEffect.EffectUsage.preTurn); 
+            if (combatManager.CanFightEnd())
+            {
+                EndTurn();
+            }
             //NewTurn?.Invoke(this, team == Team.player);
 
 
@@ -825,6 +839,7 @@ public class CombatManager : MonoBehaviour
         void ActionsCompleted()
         {
             actionsCompleted = true;
+
         }
         public void UseAction(int amount = 1)
         {
@@ -837,6 +852,7 @@ public class CombatManager : MonoBehaviour
         }
         public void EndTurn()
         {
+            
             if (actionsCompleted)
             {
                 fish.RecoverStamina();
