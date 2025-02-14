@@ -36,7 +36,10 @@ public static class SavingSystem
 
         public string GetSaveable(string id)
         {
-
+            if (!SaveableObject.ContainsKey(id))
+            {
+                return null;
+            }
             return SaveableObject[id];
         }
 

@@ -146,14 +146,14 @@ public class GameManager : MonoBehaviour,ISaveable
         {TimeOfDay.Midnight,0}
     };
 
-    public InputMethod inputMethod { get; private set; }
+   // public InputMethod inputMethod { get; private set; }
 
     public object DataToSave { get => gameData;}
     string id="05f";
     public string ID => id;
 
 
-    public Action<InputMethod> OnInputChange;
+    
     InputUser user;
 
     String mainScene;
@@ -181,10 +181,7 @@ public class GameManager : MonoBehaviour,ISaveable
         }
         Inn.InnVisited += (inn) => lastInnVisited = inn;
 
-        user = InputUser.CreateUserWithoutPairedDevices();
-        InputUser.listenForUnpairedDeviceActivity = 1;
-        InputUser.onUnpairedDeviceUsed += OnDeviceChange;
-        InputUser.onChange += OnDeviceChange;
+        
         //InputUser.PerformPairingWithDevice()
         gameData.hasSeenFish = new bool[database.fishMonsters.Count];
         InputManager.Input.UI.Pause.Enable();
@@ -196,53 +193,7 @@ public class GameManager : MonoBehaviour,ISaveable
         
     }
 
-    private void OnDeviceChange(InputControl control, InputEventPtr ptr)
-    {
-        Debug.Log(control.device);
-        
-        //user.UnpairDevices();
-        
-        
-        if((control.device is Mouse|| control.device is Keyboard) &&(user.pairedDevices.FirstOrDefault((x) => x is Mouse || x is Keyboard) != null))
-        {
-
-            InputUser.PerformPairingWithDevice(control.device, user);
-        }
-        else
-        {
-            InputUser.PerformPairingWithDevice(control.device, user, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
-
-        }
-
-        //throw new NotImplementedException();
-    }
-
-    private void OnDeviceChange(InputUser user, InputUserChange change, InputDevice device)
-    {
-
-        Debug.Log(user);
-        Debug.Log(device);
-        if (change == InputUserChange.DevicePaired)
-        {
-            
-            if (device is Gamepad)
-            {
-                Debug.Log("is gamepad");
-                inputMethod = InputMethod.controller;
-            }
-            else if (device is Mouse || device is Keyboard)
-            {
-                inputMethod = InputMethod.mouseAndKeyboard;
-                Debug.Log("is m&k");
-            }
-            OnInputChange?.Invoke(inputMethod);
-        }else if(change == InputUserChange.Removed)
-        {
-            //user.UnpairDevice(device);
-        }
-        
-    }
-
+    
 
     public void PlayerLost()
     {

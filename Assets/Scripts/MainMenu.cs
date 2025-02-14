@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
     public AudioMixer mixer;
     private void Awake()
     {
+        InputManager.Init();
         uIDocument = GetComponent<UIDocument>();
         mainMenu = uIDocument.rootVisualElement.Q("MainMenu");
         mainScreen = uIDocument.rootVisualElement.Q("MainScreen");

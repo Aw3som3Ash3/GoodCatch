@@ -27,7 +27,7 @@ public class InputHudTip : VisualElement
             ate.inputName = m_inputName.GetValueFromBag(bag, cc);
             if (GameManager.Instance != null)
             {
-                ate.ChangeIcon(GameManager.Instance.inputMethod);
+                ate.ChangeIcon(InputManager.inputMethod);
             }
             else
             {
@@ -56,7 +56,7 @@ public class InputHudTip : VisualElement
     {
         if (GameManager.Instance != null)
         {
-            ChangeIcon(GameManager.Instance.inputMethod);
+            ChangeIcon(InputManager.inputMethod);
         }
         else
         {
@@ -65,7 +65,7 @@ public class InputHudTip : VisualElement
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.OnInputChange += ChangeIcon;
+            InputManager.OnInputChange += ChangeIcon;
             Debug.Log("subscribed to input chnage");
         }
     }

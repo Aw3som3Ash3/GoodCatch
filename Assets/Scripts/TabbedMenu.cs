@@ -63,8 +63,8 @@ public class TabbedMenu : VisualElement
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.OnInputChange += ChangeTabIcons;
-            ChangeTabIcons( GameManager.Instance.inputMethod);
+            InputManager.OnInputChange += ChangeTabIcons;
+            ChangeTabIcons( InputManager.inputMethod);
         }
         else
         {
