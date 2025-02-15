@@ -858,6 +858,7 @@ public class CombatManager : MonoBehaviour
                 fish.RecoverStamina();
                 TickEffects(StatusEffect.EffectUsage.postTurn);
                 TurnEnded?.Invoke();
+                combatManager.CanFightEnd();
             }
             
         }
@@ -949,10 +950,7 @@ public class CombatManager : MonoBehaviour
             int target = UnityEngine.Mathf.Clamp(depthIndex - direction, 0, 2);
             Move(target);
         }
-        public void TakeDamage()
-        {
-            //fish.TakeDamage()
-        }
+      
         public void AddEffects(StatusEffect effect, CombatManager.Turn owner)
         {
             foreach (var e in effects)
@@ -998,7 +996,7 @@ public class CombatManager : MonoBehaviour
                 
 
             }
-            
+            fish.CheckDeath();
         }
 
 
