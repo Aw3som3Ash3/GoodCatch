@@ -3371,6 +3371,113 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd7db14dc29776e409ffc96261bb1623, type: 3}
+--- !u!1001 &1256492973
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 217075524678377272, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_Name
+      value: TikTak
+      objectReference: {fileID: 0}
+    - target: {fileID: 217075524678377272, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 945508870961653312, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922108248573638755, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 217075524678377272, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1256492976}
+    - targetCorrespondingSourceObject: {fileID: 217075524678377272, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1256492975}
+  m_SourcePrefab: {fileID: 100100000, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+--- !u!1 &1256492974 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 217075524678377272, guid: 03ee90458ac2a6d458305e3735b41d13, type: 3}
+  m_PrefabInstance: {fileID: 1256492973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1256492975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256492974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ce85c94b1d14441a144d6621aeae30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startBattleEvent: {fileID: 8554448041428749914, guid: 85bd15c0a0c671e4980cc981617b2bc6, type: 2}
+  fishToFight:
+  - fishMonsters: {fileID: 11400000, guid: 87003e928c2aae646859a2a02e2532bc, type: 2}
+    level: 5
+--- !u!114 &1256492976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256492974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11ca95dc4a5ee249b04050fcad685dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Crampus
+  baseDialogue: {fileID: 11400000, guid: 85bd15c0a0c671e4980cc981617b2bc6, type: 2}
+  questBasedDialogues: []
 --- !u!1 &1308293444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5731,3 +5838,4 @@ SceneRoots:
   - {fileID: 1172314990}
   - {fileID: 119904985}
   - {fileID: 613407050}
+  - {fileID: 1256492973}
