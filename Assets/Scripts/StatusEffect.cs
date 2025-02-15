@@ -19,7 +19,7 @@ public abstract class StatusEffect: ScriptableObject
     EffectUsage effectUsage;
 
 
-    public virtual StatusEffectInstance NewInstance(FishMonster owner)
+    public virtual StatusEffectInstance NewInstance(CombatManager.Turn owner)
     {
         return new StatusEffectInstance(this,owner);
     }
@@ -34,8 +34,8 @@ public abstract class StatusEffect: ScriptableObject
         /// <summary>
         /// owner is the fish that casted the ability that proced the effect
         /// </summary>
-        public FishMonster owner { get; private set; }
-        public StatusEffectInstance(StatusEffect effect,FishMonster owner)
+        public CombatManager.Turn owner { get; private set; }
+        public StatusEffectInstance(StatusEffect effect, CombatManager.Turn owner)
         {
             remainingDuration = effect.duration;
             this.effect = effect;
@@ -52,7 +52,7 @@ public abstract class StatusEffect: ScriptableObject
         {
             return this.effect == effect;
         }
-        public void ResetEffect(FishMonster newOwner)
+        public void ResetEffect(CombatManager.Turn newOwner)
         {
             remainingDuration = effect.duration;
             owner = newOwner;

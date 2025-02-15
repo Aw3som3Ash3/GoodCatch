@@ -8,7 +8,7 @@ public class StatusPotion : Potion
     StatusEffect statusEffect;
     protected override void PotionEffect(PlayerTurn turn)
     {
-        turn.AddEffects(statusEffect,turn.fish);
+        turn.AddEffects(statusEffect,turn);
     }
 
    
