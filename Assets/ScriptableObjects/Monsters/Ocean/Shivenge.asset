@@ -57,7 +57,8 @@ MonoBehaviour:
   baseAbilities:
   - potentialAbilities:
     - {fileID: 11400000, guid: bf3b914237c3a39498e1a063758b6313, type: 2}
-  - potentialAbilities: []
+  - potentialAbilities:
+    - {fileID: 11400000, guid: f0a1bf49121adca4fbd0cf12c7e57665, type: 2}
   - potentialAbilities: []
   - potentialAbilities: []
   difficulty: 0
