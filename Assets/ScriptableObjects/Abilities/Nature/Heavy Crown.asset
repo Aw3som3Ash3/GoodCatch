@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
-  m_Name: Boiling Point
+  m_Name: Heavy Crown
   m_EditorClassIdentifier: 
   ignoreSelf: 0
   abilityType: 0
-  availableDepths: 4
-  targetableDepths: 4
-  targetTeam: 2
-  targetingType: 0
+  availableDepths: 1
+  targetableDepths: 6
+  targetTeam: 1
+  targetingType: 1
   piercing: 0
-  staminaUsage: 15
-  baseDamage: 0
-  accuracy: 1
+  staminaUsage: 25
+  baseDamage: 20
+  accuracy: 0.2
   damageMultiplier: 0
-  element: {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
+  element: {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
   effects:
-  - statusEffect: {fileID: 0}
-    effectChance: 0
+  - statusEffect: {fileID: 11400000, guid: 03aea42deaffc924eaceb399f58df1d0, type: 2}
+    effectChance: 0.1
   forcedMovement: 0
   icon: {fileID: 0}
   abilityVFX: {fileID: 0}
   targetVFX: {fileID: 0}
-  abilityID: 27ced413-f783-4592-ae08-82d5d5ab9465
+  abilityID: c199fdc0-8733-4d72-9562-f6c10e600418

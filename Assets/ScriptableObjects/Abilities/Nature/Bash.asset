@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
-  m_Name: Boiling Point
+  m_Name: Bash
   m_EditorClassIdentifier: 
   ignoreSelf: 0
   abilityType: 0
-  availableDepths: 4
-  targetableDepths: 4
-  targetTeam: 2
+  availableDepths: 3
+  targetableDepths: 6
+  targetTeam: 1
   targetingType: 0
   piercing: 0
   staminaUsage: 15
-  baseDamage: 0
-  accuracy: 1
-  damageMultiplier: 0
-  element: {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
-  effects:
-  - statusEffect: {fileID: 0}
-    effectChance: 0
+  baseDamage: 20
+  accuracy: 0.7
+  damageMultiplier: 0.5
+  element: {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
+  effects: []
   forcedMovement: 0
   icon: {fileID: 0}
   abilityVFX: {fileID: 0}
   targetVFX: {fileID: 0}
-  abilityID: 27ced413-f783-4592-ae08-82d5d5ab9465
+  abilityID: b079407e-ff46-441c-b747-af6aed26126a
