@@ -48,7 +48,8 @@ public class OptionsPage : PausePage
         menuContainer=this.Q("menu-container");
         menuContainer.Remove(controlTabs);
         menuContainer.Remove(settingsUI);
-
+        this.focusable = true;
+        this.delegatesFocus = true;
 
     }
 
@@ -69,6 +70,7 @@ public class OptionsPage : PausePage
         controlTabs.visible = (true);
         menuContainer.Add(controlTabs);
         controlTabs.StretchToParentSize();
+        
         if (menuContainer.Contains(settingsUI))
         {
             menuContainer.Remove(settingsUI);

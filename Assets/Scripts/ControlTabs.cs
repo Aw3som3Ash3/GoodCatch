@@ -25,7 +25,7 @@ public class ControlTabs : TabbedMenu
         AddTab(controlerTab, false);
         SetElements(keyboardAndMouse, InputMethod.mouseAndKeyboard);
         SetElements(controler, InputMethod.controller);
-
+        
         inputs.UI.ChangeTab.performed += (x) => ChangeTab((int)x.ReadValue<float>());
         inputs.UI.ChangeTab.Enable();
 

@@ -61,6 +61,7 @@ public class DialogueDisplayer : MonoBehaviour
             option2.text = decisions[1].choice;
             option1.visible = true; 
             option2.visible = true;
+            rootVisualElement.Q<Button>().Focus();
         };
         reader.Start();
 

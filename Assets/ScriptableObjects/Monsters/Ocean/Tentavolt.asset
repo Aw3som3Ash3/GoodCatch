@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
+  m_Name: Tentavolt
+  m_EditorClassIdentifier: 
+  description: 
+  model: {fileID: 0}
+  fishId: 0
+  icon: {fileID: 0}
+  miniSprite: {fileID: 0}
+  homeDepth: -1
+  preferredBait: []
+  elements:
+  - {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
+  - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
+  agility:
+    min: 10
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  attack:
+    min: 10
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  special:
+    min: 15
+    max: 25
+    minTalent: 0
+    maxTalent: 0
+  fortitude:
+    min: 5
+    max: 10
+    minTalent: 0
+    maxTalent: 0
+  specialFortitude:
+    min: 10
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  accuracy:
+    min: 50
+    max: 50
+    minTalent: 0
+    maxTalent: 0
+  baseHealth: 60
+  baseStamina: 100
+  baseAbilities: []
+  difficulty: 0
+  attackAnimation: {fileID: 0}
+  idleAnimation: {fileID: 0}

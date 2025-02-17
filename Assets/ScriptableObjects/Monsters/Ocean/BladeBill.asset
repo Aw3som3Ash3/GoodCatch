@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
+  m_Name: BladeBill
+  m_EditorClassIdentifier: 
+  description: 
+  model: {fileID: 0}
+  fishId: 20
+  icon: {fileID: 0}
+  miniSprite: {fileID: 0}
+  homeDepth: 0
+  preferredBait: []
+  elements:
+  - {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
+  agility:
+    min: 20
+    max: 35
+    minTalent: 0
+    maxTalent: 0
+  attack:
+    min: 15
+    max: 25
+    minTalent: 0
+    maxTalent: 0
+  special:
+    min: 5
+    max: 10
+    minTalent: 0
+    maxTalent: 0
+  fortitude:
+    min: 15
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  specialFortitude:
+    min: 10
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  accuracy:
+    min: 50
+    max: 50
+    minTalent: 0
+    maxTalent: 0
+  baseHealth: 75
+  baseStamina: 90
+  baseAbilities:
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  difficulty: 0
+  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
+  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

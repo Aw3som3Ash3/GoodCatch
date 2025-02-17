@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   description: 
   states:
-  - name: Speak To Skips
+  - name: Speak To MrSkips
     description: 
     requirements:
     - rid: 6225482819130359814
@@ -27,4 +27,4 @@ MonoBehaviour:
       data:
         Name: SpeakToNPCQuestRequirement
         IsCompleted: 1
-        npcName: Mudskipper
+        npcName: MrSkips

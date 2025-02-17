@@ -6,7 +6,7 @@ using UnityEngine;
 public class CombatHook : CombatItem
 {
     [SerializeField]
-    [Range(0,1)]
+    [Range(0,2)]
     float catchBonus;
     public float CatchBonus { get { return catchBonus; } }
    
