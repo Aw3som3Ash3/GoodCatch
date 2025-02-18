@@ -15,17 +15,18 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="menu-container" style="flex-grow: 1; margin-right: 74px; margin-left: 74px; justify-content: space-between;">
                         <SettingsUI style="visibility: visible; display: flex;" />
-                        <ui:VisualElement name="OptionsToolTips" style="flex-grow: 0; height: 119px; flex-direction: row;">
-                            <ui:VisualElement name="Back" style="flex-grow: 1; flex-direction: row; justify-content: flex-start; align-items: center;">
-                                <InputHudTip name="InputHudTip" inputName="Back" style="width: 60px; height: 60px;" />
-                                <ui:Label tabindex="-1" text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="Select" style="flex-grow: 1; align-self: auto; flex-direction: row; align-items: center; justify-content: flex-end;">
-                                <InputHudTip inputName="Submit" style="width: 60px; height: 60px;" />
-                                <ui:Label tabindex="-1" text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" />
-                            </ui:VisualElement>
-                        </ui:VisualElement>
+                        <ControlTabs />
                     </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="OptionsToolTips" style="flex-grow: 0; height: 119px; flex-direction: row;">
+                <ui:VisualElement name="Back" style="flex-grow: 1; flex-direction: row; justify-content: flex-start; align-items: center;">
+                    <InputHudTip name="InputHudTip" inputName="Back" style="width: 60px; height: 60px;" />
+                    <ui:Label tabindex="-1" text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Select" style="flex-grow: 1; align-self: auto; flex-direction: row; align-items: center; justify-content: flex-end;">
+                    <InputHudTip inputName="Submit" style="width: 60px; height: 60px;" />
+                    <ui:Label tabindex="-1" text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

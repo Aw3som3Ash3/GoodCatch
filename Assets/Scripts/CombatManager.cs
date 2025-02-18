@@ -82,7 +82,7 @@ public class CombatManager : MonoBehaviour
         //ui = FindObjectOfType<UIDocument>();
         combatUI = new CombatUI();
         ui.rootVisualElement.Add(combatUI);
-        GameManager.Instance.OnInputChange += InputChanged;
+        InputManager.OnInputChange += InputChanged;
         //combatUI.UseNet += UseNet;
     }
 
@@ -243,7 +243,7 @@ public class CombatManager : MonoBehaviour
     //sets up the combat
     void SetUp()
     {
-        if (GameManager.Instance.inputMethod== InputMethod.mouseAndKeyboard)
+        if (InputManager.inputMethod== InputMethod.mouseAndKeyboard)
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Confined;
             UnityEngine.Cursor.visible = true;
@@ -365,7 +365,7 @@ public class CombatManager : MonoBehaviour
         playerFishes = null;
         enemyFishes = null;
         rewardFish = false;
-        GameManager.Instance.OnInputChange -= InputChanged;
+        InputManager.OnInputChange -= InputChanged;
         GameManager.Instance.CombatEnded(winningTeam);
 
     }

@@ -16,8 +16,9 @@ public class QuestTracker : MonoBehaviour,ISaveable
     [SerializeField]
     List<Quest.QuestInstance> completedQuests= new();
     public Quest.QuestInstance currentQuest { get; private set; }
+    int currentQuestIndex;
 
-    public object DataToSave => (activeQuests, completedQuests);
+    public object DataToSave => (activeQuests, completedQuests, currentQuestIndex);
 
     public event Action<Quest.QuestInstance> OnCurrentQuestUpdate;
     public event Action<Quest.QuestInstance> OnQuestUpdate;
@@ -54,7 +55,22 @@ public class QuestTracker : MonoBehaviour,ISaveable
     {
         
     }
-
+    public void ForceCompleteQuest(Quest quest)
+    {
+        List<Quest.QuestInstance> questInstanceToRemove = new();
+        activeQuests.ForEach((questInstance) =>
+        {
+            if (questInstance.Quest == quest)
+            {
+                questInstanceToRemove.Add(questInstance);
+            }
+        });
+        questInstanceToRemove.ForEach((questInstance) => 
+        {
+            activeQuests.Remove(questInstance);
+            completedQuests.Add(questInstance);
+        });
+    }
     public void AddQuest(Quest quest,bool makeCurrent=false)
     {
         var newQuest = quest.GenerateQuest();
@@ -82,6 +98,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
     {
         RemoveCurrent();
         currentQuest = quest;
+        currentQuestIndex=activeQuests.IndexOf(currentQuest);
 
         currentQuest.Progressed += CurrentQuestProgressed;
 
@@ -131,9 +148,11 @@ public class QuestTracker : MonoBehaviour,ISaveable
     }
     public void Load(string json)
     {
-        var data = JsonUtility.FromJson<(List<Quest.QuestInstance> active, List<Quest.QuestInstance> complete)>(json);
+        var data = JsonUtility.FromJson<(List<Quest.QuestInstance> active, List<Quest.QuestInstance> complete,int currentQuestIndex)>(json);
         activeQuests=data.active;
         completedQuests = data.complete;
+        currentQuestIndex = data.currentQuestIndex;
+        MakeCurrent(activeQuests[currentQuestIndex]);
         OnCurrentQuestUpdate?.Invoke(currentQuest);
         
     }

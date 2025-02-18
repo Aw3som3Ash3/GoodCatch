@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
-  m_Name: Sea Dragon
+  m_Name: Inkandescent
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 0}
-  fishId: 13
-  icon: {fileID: 0}
+  model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
+  fishId: 19
+  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: 0
   preferredBait: []
   elements:
-  - {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
-  - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
+  - {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}
+  - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   agility:
     min: 15
     max: 30
@@ -41,9 +42,9 @@ MonoBehaviour:
     max: 30
     minTalent: 0
     maxTalent: 0
-  SpecialFortitude:
-    min: 15
-    max: 30
+  specialFortitude:
+    min: 0
+    max: 0
     minTalent: 0
     maxTalent: 0
   accuracy:

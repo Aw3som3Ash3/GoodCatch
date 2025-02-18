@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,7 +16,7 @@ public class Bestiary : PausePage
     Label fishLabel;
     VisualElement fishPic;
     BestiaryPage bestiaryPage;
-   
+    int previousSelectedIndex;
     public new class UxmlFactory : UxmlFactory<Bestiary, Bestiary.UxmlTraits>
     {
 
@@ -38,11 +39,25 @@ public class Bestiary : PausePage
         this.Q("unity-slider").Children().First().focusable = false;
         SetList();
         fishList.selectionChanged += SelectionChanged;
+        //fishList.RegisterCallback<NavigationMoveEvent>(OnNavigate);
         fishList.itemsChosen += ChoseItem;
         bestiaryPage = new BestiaryPage();
         this.focusable = true;
         this.delegatesFocus = true;
         //fishList.Children().First().Focus();
+    }
+
+    private void OnNavigate(NavigationMoveEvent evt)
+    {
+        Debug.Log("nav event");
+        if(previousSelectedIndex!= fishList.selectedIndex)
+        {
+            Debug.Log("should chnage selection too " + previousSelectedIndex);
+            fishList.SetSelection(previousSelectedIndex);
+            evt.PreventDefault();
+        }
+
+       
     }
 
     private void ChoseItem(IEnumerable<object> enumerable)
@@ -52,22 +67,29 @@ public class Bestiary : PausePage
         {
             return;
         }
-        
+        this.delegatesFocus = false;
         this.parent.Add(bestiaryPage);
         bestiaryPage.SetPage(fishMonsterType);
-        this.visible=false;
+        previousSelectedIndex = fishList.selectedIndex;
+        fishList.SetEnabled(false);
+        //fishList.visible=(false);
+        //this.Q("BookBG").visible=false;
     }
 
     private void SelectionChanged(IEnumerable<object> enumerable)
     {
 
+        
         FishMonsterType fishMonsterType = fishList.selectedItem as FishMonsterType;
-
+        if (fishMonsterType ==null) 
+        {
+            return;
+        }
         fishLabel.text = hasSeenFish[fishMonsterType.fishId]? fishMonsterType.name:"????????????";
         var value = fishPic.style.backgroundImage.value;
         value.sprite= hasSeenFish[fishMonsterType.fishId] ? fishMonsterType?.Icon:null;
         fishPic.style.backgroundImage = value;
-
+        //previousSelectedIndex = fishList.selectedIndex;
         //throw new NotImplementedException();
     }
 
@@ -101,9 +123,16 @@ public class Bestiary : PausePage
 
         if (this.parent.Contains(bestiaryPage))
         {
+            fishList.SetEnabled(true);
             this.parent.Remove(bestiaryPage);
-            this.visible = true;
-            this.Focus();
+            this.Q("BookBG").visible = true;
+            
+            
+            //fishList.visible = (true);
+            fishList.Focus();
+            fishList.SetSelectionWithoutNotify(new List<int>{ previousSelectedIndex });
+            this.delegatesFocus = true;
+
             return false;
         }
         return base.Back();

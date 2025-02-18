@@ -49,8 +49,9 @@ public class FishingMiniGame : MonoBehaviour
         if(Physics.Raycast(this.transform.position,Vector3.down,out hit,100, fishZones))
         {
             Debug.Log(" hit fishZones");
-            fishMonster=hit.collider.GetComponent<FishZone>().GetRandomFish(SuccesfulFishing);
-            Invoke("SpawnFish", UnityEngine.Random.Range(0,1f));
+            fishMonster=hit.collider.GetComponent<FishZone>().GetRandomFish(SuccesfulFishing,out fishToCatch);
+            fishToCatch.StartCatching(floater.transform);
+            //Invoke("SpawnFish", UnityEngine.Random.Range(0,1f));
         }
         
     }
@@ -77,12 +78,13 @@ public class FishingMiniGame : MonoBehaviour
         //floater.transform.position = new Vector3(circle.position.x, floater.transform.position.y, circle.position.z);
     }
 
-    void SpawnFish()
-    {
-        Debug.Log("shoulde spawn");
-        fishToCatch = Instantiate(fishToCatchPrefab, this.transform).GetComponent<FishToCatch>();
-        fishToCatch.SetFish(floater.transform);
-    }
+    //void SpawnFish()
+    //{
+    //    Debug.Log("shoulde spawn");
+    //    fishToCatch = Instantiate(fishToCatchPrefab, this.transform).GetComponent<FishToCatch>();
+    //    fishToCatch.transform.Translate(Vector3.down*2);
+    //    fishToCatch.StartCatching(floater.transform);
+    //}
 
     void OnHook(InputAction.CallbackContext context)
     {

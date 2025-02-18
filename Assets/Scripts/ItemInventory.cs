@@ -62,7 +62,10 @@ public class ItemInventory
         }
         else
         {
-            items.Add(new ItemSlot(item));
+            var slot = new ItemSlot(item);
+            slot.amount = amount;
+            items.Add(slot);
+
         }
         ItemAdded?.Invoke(item, amount);
     }

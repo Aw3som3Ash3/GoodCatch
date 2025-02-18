@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BladeBill
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 0}
-  fishId: 20
-  icon: {fileID: 0}
-  miniSprite: {fileID: 0}
+  model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
+  fishId: 17
+  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: 0
   preferredBait: []
   elements:

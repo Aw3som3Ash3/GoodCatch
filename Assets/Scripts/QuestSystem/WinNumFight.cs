@@ -7,7 +7,7 @@ public class WinNumFight : Quest.QuestRequirement
     [SerializeField]
     int amount;
     int current;
-    public override string Objective => $"Win {amount} of fights";
+    public override string Objective => $"Win fights {current}/{amount}";
 
     public override void Init()
     {

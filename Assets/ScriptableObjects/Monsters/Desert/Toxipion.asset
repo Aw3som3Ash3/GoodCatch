@@ -62,7 +62,7 @@ MonoBehaviour:
   - potentialAbilities:
     - {fileID: 11400000, guid: 6fab145c45eb942489e4925e441658d5, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: 5897680b2713dfd409b77d91eb6d58fc, type: 2}
+    - {fileID: 11400000, guid: a8035b3bd99139044b2e81087e511dee, type: 2}
   difficulty: 0
   attackAnimation: {fileID: -6041800682480947867, guid: e87e6124d38584c48a261637d009e8d8, type: 3}
   idleAnimation: {fileID: -3100369314251171874, guid: e87e6124d38584c48a261637d009e8d8, type: 3}

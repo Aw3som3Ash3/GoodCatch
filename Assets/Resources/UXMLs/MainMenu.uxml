@@ -18,5 +18,6 @@
                 <ui:Button text="SLOT 3" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Slot3" class="SaveSlot" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <OptionsPageMenu style="visibility: hidden;" />
     </ui:VisualElement>
 </ui:UXML>
