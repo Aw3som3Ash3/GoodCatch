@@ -540,9 +540,10 @@ public class CombatManager : MonoBehaviour
                             target.ForcedMove(ability.ForcedMovement);
                         }
                     }
-                    combatUI.EnableButtons();
+                    
                     target.fish.CheckDeath();
                     ActionsCompleted();
+                    combatUI.EnableButtons();
                 });
             }
            
