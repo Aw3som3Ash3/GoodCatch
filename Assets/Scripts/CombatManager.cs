@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Playables;
@@ -721,15 +720,15 @@ public class CombatManager : MonoBehaviour
         {
             get
             {
-                return fish.Agility.value + GetAttributeMod("agility");
+                return Mathf.RoundToInt(fish.Agility.value + (fish.Agility.value * GetAttributeMulti("aglity")) + GetAttributeMod("agility"));
             }
         }
-        public float dodge { get { return (fish.Dodge / 2 )+GetAttributeMod("dodge"); } }
+        public float dodge { get { return (fish.Dodge + (fish.Dodge * GetAttributeMulti("dodge")) + GetAttributeMod("dodge")); } }
         public int accuracy
         {
             get
             {
-                return fish.Accuracy.value + GetAttributeMod("accuracy");
+                return Mathf.RoundToInt(fish.Accuracy.value + (fish.Accuracy.value * GetAttributeMulti("accuracy")) + GetAttributeMod("accuracy"));
             }
         }
         public int attack
@@ -737,28 +736,28 @@ public class CombatManager : MonoBehaviour
             get
             {
                 
-                return fish.Attack.value + GetAttributeMod("attack");
+                return Mathf.RoundToInt(fish.Attack.value + (fish.Attack.value * GetAttributeMulti("attack")) + GetAttributeMod("attack"));
             }
         }
         public int special
         {
             get
             {
-                return fish.Special.value + GetAttributeMod("special");
+                return Mathf.RoundToInt(fish.Special.value + (fish.Special.value * GetAttributeMulti("special")) + GetAttributeMod("special"));
             }
         }
         public int fortitude
         {
             get
             {
-                return fish.Fortitude.value + GetAttributeMod("fortitude");
+                return Mathf.RoundToInt(fish.Fortitude.value + (fish.Fortitude.value * GetAttributeMulti("fortitude")) + GetAttributeMod("fortitude"));
             }
         }
         public int specialFort
         {
             get
             {
-                return fish.SpecialFort.value + GetAttributeMod("specialFort");
+                return Mathf.RoundToInt(fish.SpecialFort.value + (fish.SpecialFort.value * GetAttributeMulti("specialFort")) + GetAttributeMod("specialFort"));
             }
         }
         int GetAttributeMod(string name)
@@ -776,6 +775,28 @@ public class CombatManager : MonoBehaviour
                     foreach (var e in compoundEffect.Effects)
                     {
                         val += (e as StatModifierStatusEffect).Attribute[name];
+                    }
+                }
+
+
+            }
+            return val;
+        }
+        float GetAttributeMulti(string name)
+        {
+            float val = 0;
+            foreach (StatusEffect effect in effects.Select(x => x.effect))
+            {
+                if (effect is StatMultiplierStatusEffect)
+                {
+                    val += (effect as StatMultiplierStatusEffect).Attribute[name];
+                }
+                else if (effect is CompoundEffect)
+                {
+                    CompoundEffect compoundEffect = (CompoundEffect)effect;
+                    foreach (var e in compoundEffect.Effects)
+                    {
+                        val += (e as StatMultiplierStatusEffect).Attribute[name];
                     }
                 }
 
@@ -858,6 +879,7 @@ public class CombatManager : MonoBehaviour
                 fish.RecoverStamina();
                 TickEffects(StatusEffect.EffectUsage.postTurn);
                 TurnEnded?.Invoke();
+                combatManager.CanFightEnd();
             }
             
         }
@@ -949,10 +971,7 @@ public class CombatManager : MonoBehaviour
             int target = UnityEngine.Mathf.Clamp(depthIndex - direction, 0, 2);
             Move(target);
         }
-        public void TakeDamage()
-        {
-            //fish.TakeDamage()
-        }
+      
         public void AddEffects(StatusEffect effect, CombatManager.Turn owner)
         {
             foreach (var e in effects)
@@ -998,7 +1017,7 @@ public class CombatManager : MonoBehaviour
                 
 
             }
-            
+            fish.CheckDeath();
         }
 
 
