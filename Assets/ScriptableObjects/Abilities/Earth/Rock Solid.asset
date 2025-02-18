@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
+  m_Name: Rock Solid
+  m_EditorClassIdentifier: 
+  ignoreSelf: 0
+  abilityType: 0
+  availableDepths: 1
+  targetableDepths: -1
+  targetTeam: 0
+  targetingType: 0
+  piercing: 0
+  staminaUsage: 15
+  baseDamage: 0
+  accuracy: 1
+  damageMultiplier: 0
+  element: {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: c8ef48abdd7fb4548aa35d350ae3ed5f, type: 2}
+    effectChance: 1
+  forcedMovement: 0
+  icon: {fileID: 0}
+  abilityVFX: {fileID: 0}
+  targetVFX: {fileID: 0}
+  abilityID: c9dcdbc5-9aba-4ff8-b57f-7f478c998d17

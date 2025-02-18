@@ -67,7 +67,7 @@ MonoBehaviour:
     - rid: 187471312712368130
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: 
+        dialouge: Than wake up
         guid: baff6ce8ea805fa438effad05878e742
         decorators:
         - rid: 187471312712368129

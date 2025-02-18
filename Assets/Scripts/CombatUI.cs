@@ -113,7 +113,7 @@ public class CombatUI : VisualElement
         infoScreenHealth = this.Q<Label>("HealthAmount");
         infoScreenStamina = this.Q<Label>("StamAmount");
         
-        GameManager.Instance.OnInputChange += OnInputChange;
+        InputManager.OnInputChange += OnInputChange;
         PauseMenu.GamePaused += EnableUI;
 
     }
@@ -254,7 +254,7 @@ public class CombatUI : VisualElement
                         slot.SetEnabled(false);
                     }
 
-                    if (GameManager.Instance.inputMethod == InputMethod.controller)
+                    if (InputManager.inputMethod == InputMethod.controller)
                     {
                         int k = 0;
                         Button nextSelectedSlot;
@@ -280,7 +280,7 @@ public class CombatUI : VisualElement
                 });
 
             };
-            if (i == 0&& GameManager.Instance.inputMethod == InputMethod.controller)
+            if (i == 0&& InputManager.inputMethod == InputMethod.controller)
             {
                 slot.Focus();
             }
@@ -347,7 +347,7 @@ public class CombatUI : VisualElement
     void Move()
     {
         currentTurn.Move(() => { 
-            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            if (InputManager.inputMethod == InputMethod.controller)
             {
                 //FocusOn(0);
             }
@@ -361,7 +361,7 @@ public class CombatUI : VisualElement
             EnableButtons();
            
             tabbedView.ChangeTab(-3);
-            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            if (InputManager.inputMethod == InputMethod.controller)
             {
                 abilityButtons[0].Focus();
             }
@@ -377,7 +377,7 @@ public class CombatUI : VisualElement
         abilityButtons[index].AddToClassList("AbilitySelected");
         currentTurn.UseAbility(index, () => 
         {
-            if (GameManager.Instance.inputMethod==InputMethod.controller)
+            if (InputManager.inputMethod==InputMethod.controller)
             {
                 abilityButtons[index].RemoveFromClassList("AbilitySelected");
                 FocusOn(index+1);

@@ -46,8 +46,33 @@ public class CombatAI : MonoBehaviour
                     depthIndex = i;
                 }
             }
-            currentTurn.UseAbility(Random.Range(0,4), depthIndex);
-            combatManager.CompletedAllActions += Logic;
+            int abilityIndex = 0;
+            int tryCount=0;
+            do
+            {
+                if (tryCount >=5)
+                {
+                    break;
+                }
+                abilityIndex = Random.Range(0, 4);
+                tryCount++;
+               
+
+
+            } while (!currentTurn.AbilityUsable(abilityIndex));
+
+            if (currentTurn.AbilityUsable(abilityIndex))
+            {
+                currentTurn.UseAbilityDirect(abilityIndex, depthIndex);
+                combatManager.CompletedAllActions += Logic;
+            }
+            else
+            {
+                currentTurn.EndTurn();
+            }
+            
+
+            
         }
         else
         {
