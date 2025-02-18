@@ -12,8 +12,8 @@ public class DoTStatusEffect : StatusEffect
 
     public override void DoEffect(CombatManager.Turn turn)
     {
-        Element.Effectiveness effectiveness;
-        turn.fish.TakeDamage(damage, element, Ability.AbilityType.special,out effectiveness);
+        
+        turn.TakeDamage(damage, element, Ability.AbilityType.special);
     }
 
 

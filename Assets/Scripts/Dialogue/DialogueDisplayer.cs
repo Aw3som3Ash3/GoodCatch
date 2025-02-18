@@ -65,10 +65,14 @@ public class DialogueDisplayer : MonoBehaviour
         };
         reader.Start();
 
-        
+        if (InputManager.inputMethod==InputMethod.mouseAndKeyboard)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
+        }
 
-        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-        UnityEngine.Cursor.visible = true;
+       
+
         InputManager.DisablePlayer();
 
         

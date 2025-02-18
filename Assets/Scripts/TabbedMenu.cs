@@ -63,8 +63,8 @@ public class TabbedMenu : VisualElement
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.OnInputChange += ChangeTabIcons;
-            ChangeTabIcons( GameManager.Instance.inputMethod);
+            InputManager.OnInputChange += ChangeTabIcons;
+            ChangeTabIcons( InputManager.inputMethod);
         }
         else
         {
@@ -190,12 +190,16 @@ public class TabbedMenu : VisualElement
             return;
         }
         index = targetIndex;
-        Activate(m_Tabs[index]);
-
-        if (m_Tabs[index].Target.childCount <= 0)
+        if (index < m_Tabs.Count)
         {
-            return;
+            Activate(m_Tabs[index]);
+
+            if (m_Tabs[index].Target.childCount <= 0)
+            {
+                return;
+            }
         }
+       
        
     }
 

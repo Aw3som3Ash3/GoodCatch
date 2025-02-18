@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
+  m_Name: Puncture
+  m_EditorClassIdentifier: 
+  ignoreSelf: 0
+  abilityType: 0
+  availableDepths: 2
+  targetableDepths: 2
+  targetTeam: 1
+  targetingType: 0
+  piercing: 1
+  staminaUsage: 20
+  baseDamage: 15
+  accuracy: 0.7
+  damageMultiplier: 0.7
+  element: {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 8f32b3a618d31f642a3108a7f1db6491, type: 2}
+    effectChance: 1
+  forcedMovement: 0
+  icon: {fileID: 0}
+  abilityVFX: {fileID: 0}
+  targetVFX: {fileID: 0}
+  abilityID: 1c112848-e45a-43b8-b9b3-38d46ba1268a

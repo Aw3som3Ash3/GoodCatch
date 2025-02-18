@@ -12,13 +12,13 @@ public class BarrierEffect : DefensiveEffect
     }
 
 
-    public override StatusEffectInstance NewInstance(FishMonster owner)
+    public override StatusEffectInstance NewInstance(CombatManager.Turn owner)
     {
         return new BarrierEffectInstance(this, owner);
     }
     public class BarrierEffectInstance : DefensiveEffectInstance
     {
-        public BarrierEffectInstance(StatusEffect effect, FishMonster owner) : base(effect, owner)
+        public BarrierEffectInstance(StatusEffect effect, CombatManager.Turn owner) : base(effect, owner)
         {
 
         }

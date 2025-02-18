@@ -36,6 +36,10 @@ public static class SavingSystem
 
         public string GetSaveable(string id)
         {
+            if (!SaveableObject.ContainsKey(id))
+            {
+                return null;
+            }
             return SaveableObject[id];
         }
 
@@ -66,7 +70,7 @@ public static class SavingSystem
     public static void SaveGame(SaveMode saveMode)
     {
 
-        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
+        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
         data=new();
         data.SetScene();
         foreach(var saveable in saveables)
@@ -186,7 +190,7 @@ public static class SavingSystem
             var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
             foreach (var saveable in saveables)
             {
-               
+                Debug.Log(saveable.ID + ":" + saveable);
                 saveable.Load(data.GetSaveable(saveable.ID));
                 Time.timeScale= 1;
             }

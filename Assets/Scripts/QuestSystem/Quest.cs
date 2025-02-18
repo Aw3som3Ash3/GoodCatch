@@ -38,7 +38,15 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
                 string newString= "";
                 foreach (var requirement in requirements)
                 {
-                    newString += requirement.Objective + "\n";
+                    if (requirement.IsCompleted)
+                    {
+                        newString += "<s>" + requirement.Objective + " </s>\n";
+                    }
+                    else
+                    {
+                        newString += requirement.Objective + "\n";
+                    }
+                   
                 }
                 return newString;
 
@@ -56,6 +64,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         //public event Action<QuestRequirment> Progressed;
         public void Initialize()
         {
+            requirements=requirements.Clone() as Quest.QuestRequirement[];
             foreach (var requirment in requirements)
             {
                 requirment.Init();
@@ -98,7 +107,10 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         {
             Name = this.GetType().Name;
         }
-        public abstract void Init();
+        public virtual void Init() 
+        {
+            IsCompleted = false;
+        }
 
         public void RequirementCompleted()
         {
@@ -151,7 +163,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             this.quest = quest;
             questId = quest.questId;
             states=new QuestState[quest.states.Length];
-            quest.states.CopyTo(this.states, 0);
+            states = quest.states.Clone() as QuestState[];
             foreach(var state in states)
             {
                 state.Initialize();
@@ -165,6 +177,10 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             if (CurrentState == null)
             {
                 return;
+            }
+            foreach (var item in CurrentState.requirements)
+            {
+                item.Init();
             }
             CurrentState.Completed += StateCompleted;
             CurrentState.Progressed += Progressed;
@@ -236,6 +252,7 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
 
     public override void Init()
     {
+        base.Init();
         currentAmount = 0;
         GameManager.Instance.CaughtFish += OnFishCaught;
         //throw new NotImplementedException();
@@ -261,6 +278,7 @@ public class CatchNumOfSpecificFishRequirement : CatchNumOfFishRequirement
 {
     [SerializeField]
     FishMonsterType fishMonsterType;
+
     public override string Objective => $"Catch  {fishMonsterType.name}: {currentAmount}/{targetOfFish}";
     protected override void OnFishCaught(FishMonsterType type)
     {
@@ -285,6 +303,9 @@ public class GatherAmountOfItems : Quest.QuestRequirement
 
     public override void Init()
     {
+        base.Init();
+        amount = 0;
+      
         GameManager.Instance.PlayerInventory.ItemAdded += ItemHasBeenAdded;
     }
 
@@ -323,10 +344,7 @@ public class ArbritaryQuestRequirment : QuestRequirement
     string objective;
     public override string Objective => objective;
 
-    public override void Init()
-    {
-        
-    }
+   
 }
 
 

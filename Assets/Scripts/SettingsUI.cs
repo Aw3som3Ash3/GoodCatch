@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class SettingsUI : VisualElement
 {
+    AudioMixer audioMixer;
     Slider masterSound, sfx, music;
     DropdownField resolutions;
     Toggle vsync;
@@ -31,32 +32,44 @@ public class SettingsUI : VisualElement
         VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/ModSettings");
 
         visualTreeAsset.CloneTree(root);
+        if (GameManager.Instance != null)
+        {
+            audioMixer=GameManager.Instance.audioMixer;
+        }
+        else 
+        {
+            MainMenu menu= GameObject.FindObjectOfType<MainMenu>();
+            if (menu != null)
+            {
+                audioMixer = menu.mixer;
+            }
 
+        }
         masterSound = this.Q<Slider>("MasterSoundSlider");
        
-        if (GameManager.Instance != null)
+        if (audioMixer != null)
         {
             float volume;
             masterSound.lowValue = soundMin;
             masterSound.highValue = soundMax;
-            GameManager.Instance.audioMixer.GetFloat("Master", out volume);
+            audioMixer.GetFloat("Master", out volume);
             masterSound.value = volume;
             
-            masterSound.RegisterValueChangedCallback((evt) => GameManager.Instance.audioMixer.SetFloat("Master", evt.newValue));
+            masterSound.RegisterValueChangedCallback((evt) => audioMixer.SetFloat("Master", evt.newValue));
 
             sfx = this.Q<Slider>("SFXSlider");
             sfx.lowValue = soundMin*2;
             sfx.highValue = soundMax;
-            GameManager.Instance.audioMixer.GetFloat("Effects", out volume);
+            audioMixer.GetFloat("Effects", out volume);
             sfx.value = volume;
-            sfx.RegisterValueChangedCallback((evt) => GameManager.Instance.audioMixer.SetFloat("Effects", evt.newValue));
+            sfx.RegisterValueChangedCallback((evt) => audioMixer.SetFloat("Effects", evt.newValue));
 
             music = this.Q<Slider>("MusicSlider");
             music.lowValue = soundMin * 2;
             music.highValue = soundMax;
-            GameManager.Instance.audioMixer.GetFloat("Music", out volume);
+            audioMixer.GetFloat("Music", out volume);
             music.value = volume;
-            music.RegisterValueChangedCallback((evt) => GameManager.Instance.audioMixer.SetFloat("Music", evt.newValue));
+            music.RegisterValueChangedCallback((evt) => audioMixer.SetFloat("Music", evt.newValue));
         }
         
       

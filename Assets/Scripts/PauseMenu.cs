@@ -113,8 +113,11 @@ public class PauseMenu : VisualElement
     }
     static public PauseMenu Pause()
     {
+        if (mainPause.menu.visible == false)
+        {
+            mainPause.OnPause();
+        }
         
-        mainPause.OnPause();
         return mainPause;
     }
     public void AddPage(PausePage pausePage, bool exitCompletely = true)
@@ -154,13 +157,13 @@ public class PauseMenu : VisualElement
         Time.timeScale = menu.enabledSelf ? 0 : 1;
         if (menu.enabledSelf)
         {
-            GameManager.Instance.OnInputChange += OnInputChanged;
+            InputManager.OnInputChange += OnInputChanged;
             this.Focus();
             //party.Focus();
             //this.Focus();
             //this.CaptureMouse();
             //this.pickingMode =;
-            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            if (InputManager.inputMethod == InputMethod.controller)
             {
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 UnityEngine.Cursor.visible = false;
@@ -185,7 +188,7 @@ public class PauseMenu : VisualElement
             InputManager.EnablePlayer();
             InputManager.Input.UI.Back.Disable();
             InputManager.Input.UI.Back.performed -= Back;
-            GameManager.Instance.OnInputChange -= OnInputChanged;
+            InputManager.OnInputChange -= OnInputChanged;
         }
         var bottomMapping = panel.visualTree.Q("BottomMapping");
         if (bottomMapping != null)

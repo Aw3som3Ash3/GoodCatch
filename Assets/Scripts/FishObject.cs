@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -38,7 +40,7 @@ public class FishObject : MonoBehaviour
     [SerializeField]
     AudioClip defaultClip;
     AudioSource source;
-    
+    Material[] defaultMats;
     public Transform hookLocation { get; private set; }
     private void Awake()
     {
@@ -103,11 +105,16 @@ public class FishObject : MonoBehaviour
         var rend = model.GetComponentInChildren<Renderer>();
         if (v)
         {
-            rend.materials = new Material[2] { rend.material, outlineMat };
+           
+            var list= rend.materials.ToList();
+            list.Add(outlineMat);
+            rend.materials=list.ToArray();
         }
         else
         {
-            rend.materials= new Material[1]{ rend.material};
+            
+            rend.materials = defaultMats;
+            
         }
        
         print("hovering over fish");
@@ -143,9 +150,11 @@ public class FishObject : MonoBehaviour
     public void SetFish(CombatManager.Turn turn)
     {
         this.turn = turn;
+        
         model = Instantiate(turn.fish.Model, this.transform);
         model.transform.localPosition = Vector3.zero;
         model.layer = outlineLayer;
+        defaultMats = model.GetComponentInChildren<Renderer>().materials;
         foreach (Transform child in model.transform)
         {
             child.gameObject.layer = outlineLayer;

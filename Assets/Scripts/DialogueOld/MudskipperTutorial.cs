@@ -52,7 +52,10 @@ public class MudskipperTutorial : NPC
 
         if (postTutorialQuest != null)
         {
+            QuestTracker.Instance.ForceCompleteQuest(QuestTracker.Instance.currentQuest.Quest);
+
             QuestTracker.Instance.AddQuest(postTutorialQuest, true);
+
         }
         LoadMainScene();
     }

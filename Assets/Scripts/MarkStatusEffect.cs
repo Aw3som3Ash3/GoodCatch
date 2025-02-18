@@ -30,14 +30,14 @@ public class MarkStatusEffect : DefensiveEffect
     {
         
     }
-    public override StatusEffectInstance NewInstance(FishMonster owner)
+    public override StatusEffectInstance NewInstance(CombatManager.Turn owner)
     {
         return new MarkStatusEffectInstance(this,owner);
     }
 
     public class MarkStatusEffectInstance : DefensiveEffectInstance
     {
-        public MarkStatusEffectInstance(StatusEffect effect, FishMonster owner) : base(effect, owner)
+        public MarkStatusEffectInstance(StatusEffect effect, CombatManager.Turn owner) : base(effect, owner)
         {
 
         }

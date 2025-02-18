@@ -40,10 +40,10 @@ public class QuestUI : MonoBehaviour
         toggle.text = "Complete?";
         questText.Add(toggle);*/
 
-        Toggle toggle2 = new Toggle();
-        toggle2.name = "checkbox2";
-        toggle2.text = "";
-        checkBox.Add(toggle2);
+        //Toggle toggle2 = new Toggle();
+        //toggle2.name = "checkbox2";
+        //toggle2.text = "";
+        //checkBox.Add(toggle2);
 
         QuestTracker.Instance.OnCurrentQuestUpdate += (q) => 
         { 
