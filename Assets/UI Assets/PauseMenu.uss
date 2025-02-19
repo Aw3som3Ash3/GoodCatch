@@ -47,3 +47,7 @@
     color: rgb(211, 226, 245);
     font-size: 59px;
 }
+
+.unity-base-dropdown {
+    background-color: rgb(233, 232, 232);
+}

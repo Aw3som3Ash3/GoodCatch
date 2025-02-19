@@ -32,10 +32,69 @@
     background-color: rgba(28, 11, 178, 0.34);
 }
 
-#ScreenDropDown {
-    justify-content: space-between;
+#ScreenDropDown .unity-base-field__input:hover {
+    flex-shrink: 0;
+    width: 305px;
+    max-width: 338px;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-top-width: 3px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-left-color: rgb(0, 0, 60);
+    border-right-color: rgb(0, 0, 60);
+    border-top-color: rgb(0, 0, 60);
+    border-bottom-color: rgb(0, 0, 60);
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    background-color: rgb(255, 15, 0);
+    scale: 2 2;
 }
 
 #ScreenDropDown {
     justify-content: space-between;
+}
+
+#MasterSoundSlider:hover #unity-dragger {
+    scale: 1 1;
+    background-color: rgb(0, 21, 255);
+}
+
+#SFXSlider:hover #unity-dragger {
+    scale: 1 1;
+    background-color: rgb(0, 21, 255);
+}
+
+#MusicSlider:hover #unity-dragger {
+    scale: 1 1;
+    background-color: rgb(0, 21, 255);
+}
+
+#BrightnessSlider:hover #unity-dragger {
+    scale: 1 1;
+    background-color: rgb(0, 21, 255);
+}
+
+#MasterSoundSlider:focus #unity-dragger {
+    scale: 1 1;
+    background-color: rgb(0, 255, 238);
+}
+
+#SFXSlider:focus #unity-dragger {
+    scale: 1 1;
+    background-color: rgb(0, 255, 238);
+}
+
+#MusicSlider:focus #unity-dragger {
+    scale: 1 1;
+    background-color: rgb(0, 255, 238);
+}
+
+#BrightnessSlider:focus #unity-dragger {
+    scale: 1 1;
+    background-color: rgb(0, 21, 255);
 }

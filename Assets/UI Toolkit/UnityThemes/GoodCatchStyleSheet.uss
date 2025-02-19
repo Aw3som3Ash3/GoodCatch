@@ -3,7 +3,19 @@ VisualElement {
     -unity-font-definition: initial;
 }
 
-.unity-base-dropdown.unity-scroll-view {
-    background-color: rgb(255, 0, 0);
+.unity-base-dropdown .unity-base-dropdown__container-outer .unity-scroll-view {
+    background-color: rgb(44, 66, 116);
     -unity-background-image-tint-color: rgb(255, 0, 0);
+}
+
+.unity-base-dropdown .unity-base-dropdown__container-outer .unity-scroll-view .unity-text-element {
+    font-size: 30px;
+    color: rgb(211, 226, 245);
+    -unity-text-outline-width: 5px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-text-outline-color: rgb(0, 0, 0);
+    text-shadow: 2px 3px 0 rgba(0, 0, 0, 0);
 }
