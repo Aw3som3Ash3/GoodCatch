@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe36e9bd50bb6484d94cfa035ae843bc, type: 3}
   m_Name: Rock Solid
   m_EditorClassIdentifier: 
-  duration: 0
+  duration: 1
   icon: {fileID: 0}
   effectUsage: 0
   damageTransfer: 1
