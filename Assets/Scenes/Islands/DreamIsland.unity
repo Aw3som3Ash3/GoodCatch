@@ -620,6 +620,9 @@ MonoBehaviour:
   finishedTutorial: {fileID: 1235379646921652575, guid: 05a6ee9ca7d9ed54588f1edf21460624, type: 2}
   healFish: {fileID: -8881602098096103646, guid: 7e73032f89e4ff943a4c1f4d73d93120, type: 2}
   postTutorialQuest: {fileID: 11400000, guid: 63e22f4c34faafe40a67bcabe0d63e00, type: 2}
+  items:
+  - item: {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
+    amount: 99
 --- !u!136 &510201482
 CapsuleCollider:
   m_ObjectHideFlags: 0
