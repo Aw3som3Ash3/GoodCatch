@@ -15,10 +15,10 @@ public class ThornEffect : StatusEffect
         //throw new System.NotImplementedException();
     }
 
-    public void ReflectDamage(FishMonster targetFish)
+    public void ReflectDamage(CombatManager.Turn targetFish)
     {
-        Element.Effectiveness effectiveness;
-        targetFish.TakeDamage(damage,element,type, out effectiveness);
+        
+        targetFish.TakeDamage(damage,element,type);
     }
 
     // Start is called before the first frame update

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -13,6 +14,26 @@ public class CompoundEffect : StatusEffect
         {
             effect.DoEffect(turn);
         }
+        
         //throw new System.NotImplementedException();
+    }
+    public override StatusEffectInstance NewInstance(CombatManager.Turn owner)
+    {
+        return new CompoundEffectInstance(this,owner);
+    }
+    public class CompoundEffectInstance : StatusEffectInstance
+    {
+       List<StatusEffectInstance> effectInstances=new();
+        public CompoundEffectInstance(CompoundEffect effect, CombatManager.Turn owner) : base(effect, owner)
+        {
+            foreach (var _effect in effect.effects)
+            {
+                effectInstances.Add(_effect.NewInstance(owner));
+            }
+            
+
+        }
+
+        
     }
 }
