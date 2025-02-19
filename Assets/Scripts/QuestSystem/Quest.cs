@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using static Quest;
 
@@ -18,7 +20,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
     }
 
     [Serializable]
-    public class QuestState
+    public class QuestState:ICloneable
     {
         [SerializeField]
         string name;
@@ -64,9 +66,10 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         //public event Action<QuestRequirment> Progressed;
         public void Initialize()
         {
-            requirements=requirements.Clone() as Quest.QuestRequirement[];
-            foreach (var requirment in requirements)
+            
+            foreach (QuestRequirement requirment in requirements)
             {
+                
                 requirment.Init();
                 requirment.Completed += CheckIfCompleted;
                 requirment.Progressed += OnProgress;
@@ -90,10 +93,19 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             Completed?.Invoke();
         }
 
-
+        public object Clone()
+        {
+            Debug.Log(this + " has been cloned");
+            var state= new QuestState();
+            state.name = name;
+            state.description = description;
+            state.requirements = requirements.Select(a => (QuestRequirement)a.Clone()).ToArray(); ;
+            return state;
+            
+        }
     }
     [Serializable]
-    public abstract class QuestRequirement
+    public abstract class QuestRequirement:ICloneable
     {
         [HideInInspector]
         public string Name;
@@ -123,6 +135,12 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             Progressed?.Invoke(this);
         }
 
+        public object Clone()
+        {
+            Debug.Log(this + " has been cloned");
+            //req.Name = Name;
+            return this.MemberwiseClone();
+        }
     }
 
     [Serializable]
@@ -163,9 +181,10 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             this.quest = quest;
             questId = quest.questId;
             states=new QuestState[quest.states.Length];
-            states = quest.states.Clone() as QuestState[];
-            foreach(var state in states)
+            states = quest.states.Select(a => (QuestState)a.Clone()).ToArray(); ;
+            foreach(QuestState state in states)
             {
+                
                 state.Initialize();
             }
             currentStateIndex = 0;
