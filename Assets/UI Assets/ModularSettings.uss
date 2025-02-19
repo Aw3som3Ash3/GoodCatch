@@ -98,3 +98,41 @@
     scale: 1 1;
     background-color: rgb(0, 21, 255);
 }
+
+#VSYNCContainer #VSYNCToggle:focus {
+    border-left-color: rgb(99, 117, 204);
+    border-right-color: rgb(99, 117, 204);
+    border-top-color: rgb(99, 117, 204);
+    border-bottom-color: rgb(99, 117, 204);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    background-color: rgba(255, 0, 0, 0);
+    scale: 1 1;
+    margin-top: 19px;
+}
+
+#VSYNCContainer #VSYNCToggle:hover {
+    border-left-color: rgb(99, 117, 204);
+    border-right-color: rgb(99, 117, 204);
+    border-top-color: rgb(99, 117, 204);
+    border-bottom-color: rgb(99, 117, 204);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    background-color: rgba(255, 0, 0, 0);
+    scale: 1 1;
+    margin-top: 19px;
+}
+
+#VSYNCContainer #VSYNCToggle {
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    background-color: rgba(255, 0, 0, 0);
+    scale: 1 1;
+    margin-top: 19px;
+}
