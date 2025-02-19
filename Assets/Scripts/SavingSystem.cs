@@ -184,6 +184,10 @@ public static class SavingSystem
         //Debug.LogError("scene loaded");
         var sceneLoader = GameObject.FindObjectOfType<SceneLoader>(true);
         Debug.Log("current slot: " +currentSlot);
+        if (sceneLoader == null)
+        {
+            return;
+        }
         sceneLoader.AllScenesLoaded += () =>
         {
            

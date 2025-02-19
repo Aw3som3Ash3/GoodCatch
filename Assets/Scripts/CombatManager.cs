@@ -540,9 +540,10 @@ public class CombatManager : MonoBehaviour
                             target.ForcedMove(ability.ForcedMovement);
                         }
                     }
-                    combatUI.EnableButtons();
+                    
                     target.fish.CheckDeath();
                     ActionsCompleted();
+                    combatUI.EnableButtons();
                 });
             }
            
@@ -562,7 +563,7 @@ public class CombatManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentTurn != null&& combatVisualizer.turnToObject?[currentTurn.Value]!=null)
+        if (currentTurn != null&& (combatVisualizer.turnToObject.ContainsKey(currentTurn.Value)|| combatVisualizer.turnToObject?[currentTurn.Value] != null))
         {
             combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
         }
