@@ -37,10 +37,12 @@ public class FishZone : SaveableObject
         for (int i = 0; i < data.amount; i++)
         {
             var fish = GameObject.Instantiate(fishPrefab, this.transform).GetComponent<FishToCatch>();
+            fish.transform.rotation = this.transform.rotation;
             fishes.Add(fish);
-            var rot = Quaternion.AngleAxis((float)i / data.amount * 360, Vector3.up);
-            fish.transform.Translate(rot * fish.transform.right*1 * (radius + UnityEngine.Random.Range(-0.5f,0.5f)));
-            fish.transform.rotation = rot;
+            var rot = Quaternion.AngleAxis(((float)i / data.amount * 360), Vector3.up);
+            var dir = (rot * Vector3.right);
+            fish.transform.localPosition= dir * 1 * (radius + UnityEngine.Random.Range(-0.5f,0.5f));
+            fish.transform.localRotation = rot;
             
             fish.SetIdle(this.transform.position);
         }
