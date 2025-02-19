@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class OptionsPage : PausePage
 {
-    Button settings, controls, load, mainMenu;
+    Button settings, controls, saveAndQuit, mainMenu;
     VisualElement settingsBox,menuContainer;
     SaveAndLoadScreen saveAndLoadScreen;
     SettingsUI settingsUI;
@@ -38,6 +38,8 @@ public class OptionsPage : PausePage
         //save.clicked += OnSave;
         //load = this.Q<Button>("LoadButton");
         //load.clicked += OnLoad;
+        saveAndQuit = this.Q<Button>("SaveAndQuit");
+        saveAndQuit.clicked += SaveAndQuit;
         mainMenu = this.Q<Button>("MainMenu");
         mainMenu.clicked += OnMenu;
         settingsBox = this.Q("SettingsBox");
@@ -53,15 +55,21 @@ public class OptionsPage : PausePage
 
     }
 
+    private void SaveAndQuit()
+    {
+        SavingSystem.SaveGame(SavingSystem.SaveMode.ManualSave);
+        Application.Quit();
+    }
 
+    public void CloseAll()
+    {
+        settingsUI.visible = (false);
+        controlTabs.visible = (false);
+    }
     public void OpenOptions()
     {
-       
-        if (saveAndLoadScreen != null&& settingsBox==saveAndLoadScreen.parent)
-        {
-            settingsBox.Remove(saveAndLoadScreen);
-
-        }
+       CloseAll();
+        
         
     }
     void OnControls()
@@ -103,7 +111,7 @@ public class OptionsPageMenu : VisualElement
 {
     Button settings, controls, load, mainMenu;
     VisualElement settingsBox, menuContainer;
-    SaveAndLoadScreen saveAndLoadScreen;
+
     SettingsUI settingsUI;
     ControlTabs controlTabs;
 
@@ -151,12 +159,8 @@ public class OptionsPageMenu : VisualElement
     }
     public void OpenOptions()
     {
+        CloseAll();
 
-        if (saveAndLoadScreen != null && settingsBox == saveAndLoadScreen.parent)
-        {
-            settingsBox.Remove(saveAndLoadScreen);
-
-        }
 
     }
     void OnControls()
