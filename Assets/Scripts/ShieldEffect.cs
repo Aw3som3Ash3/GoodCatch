@@ -16,7 +16,7 @@ public class ShieldEffect : DefensiveEffect
     public class ShieldEffectInstance : DefensiveEffectInstance
     {
         float currentHealth;
-        public ShieldEffectInstance(StatusEffect effect, FishMonster owner) : base(effect, owner)
+        public ShieldEffectInstance(StatusEffect effect, CombatManager.Turn owner) : base(effect, owner)
         {
             currentHealth = (effect as ShieldEffect).shieldHealth;
         }

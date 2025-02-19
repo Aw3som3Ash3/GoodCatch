@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-[ExecuteAlways]
+
 public abstract class SaveableObject : MonoBehaviour,ISaveable
 {
 
@@ -18,6 +18,7 @@ public abstract class SaveableObject : MonoBehaviour,ISaveable
 
     public abstract void Load(string json);
 
+    [ExecuteAlways]
     private void Awake()
     {
 #if UNITY_EDITOR

@@ -324,9 +324,12 @@ public class CombatUI : VisualElement
     }
     public void RemoveTurn(CombatManager.Turn turn)
     {
-        
-        turnList.Remove(turnIcon[turn]);
-        turnIcon.Remove(turn);
+        if (turnIcon.ContainsKey(turn))
+        {
+            turnList.Remove(turnIcon[turn]);
+            turnIcon.Remove(turn);
+        }
+       
     }
     public void NextTurn()
     {
