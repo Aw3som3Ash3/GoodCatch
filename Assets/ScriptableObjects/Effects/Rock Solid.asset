@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Rock Solid
   m_EditorClassIdentifier: 
   duration: 1
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: d9608ff3789b5524d810e8a6ee2d9c80, type: 3}
   effectUsage: 0
   damageTransfer: 1
