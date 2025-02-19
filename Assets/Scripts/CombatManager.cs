@@ -848,9 +848,9 @@ public class CombatManager : MonoBehaviour
             
            
             actionsLeft = actionsPerTurn;
-            
+            TickEffects(StatusEffect.EffectUsage.preTurn);
             combatManager.combatUI.NewTurn(this, team == Team.player);
-            TickEffects(StatusEffect.EffectUsage.preTurn); 
+            
             if (combatManager.CanFightEnd())
             {
                 EndTurn();
