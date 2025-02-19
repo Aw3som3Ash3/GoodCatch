@@ -113,7 +113,8 @@ public class CombatUI : VisualElement
         infoScreenHealth = this.Q<Label>("HealthAmount");
         infoScreenStamina = this.Q<Label>("StamAmount");
         
-        GameManager.Instance.OnInputChange += OnInputChange;
+        InputManager.OnInputChange += OnInputChange;
+        PauseMenu.GamePaused += EnableUI;
 
     }
     void OnMoreInfo(InputAction.CallbackContext context)
@@ -149,6 +150,24 @@ public class CombatUI : VisualElement
         infoScreenMagicDefense.text = fish.SpecialFort.value.ToString();
         infoScreenHealth.text = fish.Health.ToString("00")+"/"+fish.MaxHealth.ToString("00");
         infoScreenStamina.text = fish.MaxStamina.ToString("00");
+        if (fish.Type.Elements.Length >=1)
+        {
+            this.Q<Label>("Type1Amount").text = fish.Type.Elements[0].name;
+
+        }
+        else
+        {
+            this.Q<Label>("Type1Amount").text ="";
+        }
+        if (fish.Type.Elements.Length >= 2)
+        {
+            this.Q<Label>("Type2Amount").text = fish.Type.Elements[1].name;
+        }
+        else
+        {
+            this.Q<Label>("Type2Amount").text = "";
+        }
+           
     }
     private void OnInputChange(InputMethod method)
     {
@@ -235,7 +254,7 @@ public class CombatUI : VisualElement
                         slot.SetEnabled(false);
                     }
 
-                    if (GameManager.Instance.inputMethod == InputMethod.controller)
+                    if (InputManager.inputMethod == InputMethod.controller)
                     {
                         int k = 0;
                         Button nextSelectedSlot;
@@ -261,7 +280,7 @@ public class CombatUI : VisualElement
                 });
 
             };
-            if (i == 0&& GameManager.Instance.inputMethod == InputMethod.controller)
+            if (i == 0&& InputManager.inputMethod == InputMethod.controller)
             {
                 slot.Focus();
             }
@@ -305,16 +324,21 @@ public class CombatUI : VisualElement
     }
     public void RemoveTurn(CombatManager.Turn turn)
     {
-        
-        turnList.Remove(turnIcon[turn]);
-        turnIcon.Remove(turn);
+        if (turnIcon.ContainsKey(turn))
+        {
+            turnList.Remove(turnIcon[turn]);
+            turnIcon.Remove(turn);
+        }
+       
     }
     public void NextTurn()
     {
         var turn = turnList.ElementAt(0);
+        turn.RemoveFromClassList("CurrentTurn");
         turnList.Remove(turn);
         turnList.Add(turn);
-        
+        turnList.ElementAt(0).AddToClassList("CurrentTurn");
+
 
     }
     void EndTurn()
@@ -326,7 +350,7 @@ public class CombatUI : VisualElement
     void Move()
     {
         currentTurn.Move(() => { 
-            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            if (InputManager.inputMethod == InputMethod.controller)
             {
                 //FocusOn(0);
             }
@@ -340,7 +364,7 @@ public class CombatUI : VisualElement
             EnableButtons();
            
             tabbedView.ChangeTab(-3);
-            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            if (InputManager.inputMethod == InputMethod.controller)
             {
                 abilityButtons[0].Focus();
             }
@@ -353,10 +377,12 @@ public class CombatUI : VisualElement
     }
     void UseAbility(int index)
     {
+        abilityButtons[index].AddToClassList("AbilitySelected");
         currentTurn.UseAbility(index, () => 
         {
-            if (GameManager.Instance.inputMethod==InputMethod.controller)
+            if (InputManager.inputMethod==InputMethod.controller)
             {
+                abilityButtons[index].RemoveFromClassList("AbilitySelected");
                 FocusOn(index+1);
             }
         });
@@ -370,7 +396,7 @@ public class CombatUI : VisualElement
         value.sprite = fish.Icon;
         fishIcon.style.backgroundImage = value;
         tabbedView.SetEnabled(true);
-        UpdateHealthDisplayer(fish);
+        UpdateHealthDisplay(fish);
         UpdateInfo(fish);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
@@ -528,18 +554,14 @@ public class CombatUI : VisualElement
     }
     private void UpdateHealthDisplay()
     {
-        healthBar.value = currentTurn.Health/currentTurn.MaxHealth;
-        healthBar.Q<Label>("HealthValue").text = currentTurn.Health.ToString("00") + "/" + currentTurn.MaxHealth.ToString("00");
-        staminaBar.value = currentTurn.Stamina/currentTurn.MaxStamina;
-        //staminaBar.Q<Label>("StaminaValue").text = currentTurn.Stamina + "/" + currentTurn.MaxStamina;
-
+        UpdateHealthDisplay(currentTurn.fish);
     }
-    private void UpdateHealthDisplayer(FishMonster fish)
+    private void UpdateHealthDisplay(FishMonster fish)
     {
         healthBar.value = fish.Health / fish.MaxHealth;
-        healthBar.Q<Label>("HealthValue").text = fish.Health.ToString("00") + "/" + fish.MaxHealth.ToString("00");
+        healthBar.title = fish.Health.ToString("0") + "/" + fish.MaxHealth.ToString("0");
         staminaBar.value = fish.Stamina / fish.MaxStamina;
-        //staminaBar.Q<Label>("StaminaValue").text = fish.Stamina + "/" + fish.MaxStamina;
+        staminaBar.title = fish.Stamina.ToString("0") + "/" + fish.MaxStamina.ToString("0");
 
     }
     public void SetInventory(ItemInventory inv)
@@ -606,7 +628,17 @@ public class CombatUI : VisualElement
         
         fishUI.onHoverStatus += (action) => action(toolTip);
         fishUI.onHoverExit += () => toolTip.visible = false;
-        this.Q("MainCombat").Add(fishUI);
+        this.Q("ConditionArea").Add(fishUI);
         return fishUI;
+    }
+
+    void EnableUI(bool b)
+    {
+        this.SetEnabled(!b);
+    }
+
+    ~CombatUI() 
+    {
+        PauseMenu.GamePaused -= EnableUI;
     }
 }

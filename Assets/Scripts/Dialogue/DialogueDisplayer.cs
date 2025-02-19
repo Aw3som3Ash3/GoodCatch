@@ -46,6 +46,7 @@ public class DialogueDisplayer : MonoBehaviour
             UnityEngine.Cursor.visible = false;
             InputManager.EnablePlayer();
             inputs.UI.NextDialogue.Disable();
+            
             inputs.Dispose();
             IsActive = false;
         };
@@ -60,13 +61,18 @@ public class DialogueDisplayer : MonoBehaviour
             option2.text = decisions[1].choice;
             option1.visible = true; 
             option2.visible = true;
+            rootVisualElement.Q<Button>().Focus();
         };
         reader.Start();
 
-        
+        if (InputManager.inputMethod==InputMethod.mouseAndKeyboard)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
+        }
 
-        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-        UnityEngine.Cursor.visible = true;
+       
+
         InputManager.DisablePlayer();
 
         

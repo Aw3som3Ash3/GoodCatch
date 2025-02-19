@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     AudioController audioController;
     [SerializeField]
     FishingRod fishingRod;
-    Label InteractionUI;
+    VisualElement InteractionUI;
     Animator anim;
 
     bool inStation;
@@ -109,6 +109,10 @@ public class PlayerController : MonoBehaviour,ISaveable
         Station.LeftStation += StationLeft;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+        if (InteractionUI == null)
+        {
+            InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q("InteractionHud");
+        }
     }
     
     bool InteractionCheck(out IInteractable interactable)
@@ -174,24 +178,29 @@ public class PlayerController : MonoBehaviour,ISaveable
 
         if (inStation)
         {
-            InteractionUI.text = "";
+            InteractionUI.visible = false;
+            InteractionUI.Q<Label>().text = "";
             return;
         }
         OnLook();
         IInteractable interactible;
+
+        if (InteractionUI == null)
+        {
+            InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q("InteractionHud");
+        }
         if (InteractionCheck(out interactible))
         {
-            InteractionUI.text = interactible.StationName;
+            InteractionUI.visible = true;
+            InteractionUI.Q<Label>().text = interactible.StationName;
         }
         else
         {
-            if (InteractionUI == null)
-            {
-                InteractionUI = GameObject.Find("MainHud").GetComponent<UIDocument>().rootVisualElement.Q<Label>("InteractionHud");
-            }
+            
             if (InteractionUI != null)
             {
-                InteractionUI.text = "";
+                InteractionUI.Q<Label>().text = "";
+                InteractionUI.visible = false;
 
             }
 
@@ -200,7 +209,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     }
     void OnLook()
     {
-        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * (GameManager.Instance.inputMethod==InputMethod.mouseAndKeyboard? mouseSensitiviy:1), 0.5f);
+        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * (InputManager.inputMethod==InputMethod.mouseAndKeyboard? mouseSensitiviy:1), 0.5f);
         cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
         var angles = cameraRig.localEulerAngles;
         angles.z = 0;
@@ -332,6 +341,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         if (inputs.Fish.IsPressed())
         {
             anim.speed = 0;
+            Debug.Log("CASTINGG");
             inputs.Fish.canceled += Released;
 
         }

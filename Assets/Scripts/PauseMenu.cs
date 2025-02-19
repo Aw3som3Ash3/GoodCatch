@@ -11,17 +11,18 @@ public class PauseMenu : VisualElement
     Button settting, party, bestiary, inventory;
     CursorLockMode prevMode;
     bool prevVisability;
-    PartyUI partyUI;
-    OptionsPage optionsPage;
-    Bestiary bestiaryPage;
+    //PartyUI partyUI;
+    //OptionsPage optionsPage;
+    //Bestiary bestiaryPage;
     PausePage currentPage;
-    InventoryUI inventoryUI;
+    //InventoryUI inventoryUI;
     VisualElement menu;
 
     VisualElement lastSelected;
 
     bool exitCompletely = false;
     static PauseMenu mainPause;
+    static public event Action<bool> GamePaused;
     public static bool PauseActive { get { return mainPause.menu.visible; } }
     public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
@@ -56,14 +57,14 @@ public class PauseMenu : VisualElement
         mainPause = this;
         Debug.Log(this);
 
-        menu.focusable = true;
-
+        this.focusable = true;
+        
         //this.delegatesFocus = true;
 
         menu.SetEnabled(false);
         menu.visible = false;
         mainPause.SetEnabled(false);
-        menu.RegisterCallback<NavigationMoveEvent>(OnNavigate);
+        this.RegisterCallback<NavigationMoveEvent>(OnNavigate);
         
     }
 
@@ -84,31 +85,39 @@ public class PauseMenu : VisualElement
 
     void OnNavigate(NavigationMoveEvent evt)
     {
-       
 
-        switch (evt.direction)
+        if (menu.visible)
         {
-            case NavigationMoveEvent.Direction.Left:
-                party.Focus();
-                break;
-            case NavigationMoveEvent.Direction.Right:
-                inventory.Focus();
-                break;
-            case NavigationMoveEvent.Direction.Up:
-                bestiary.Focus();
-                break;
-            case NavigationMoveEvent.Direction.Down:
-                settting.Focus();
-                break;
+            Debug.Log("overriding navigate");
+            switch (evt.direction)
+            {
+                case NavigationMoveEvent.Direction.Left:
+                    party.Focus();
+                    break;
+                case NavigationMoveEvent.Direction.Right:
+                    inventory.Focus();
+                    break;
+                case NavigationMoveEvent.Direction.Up:
+                    bestiary.Focus();
+                    break;
+                case NavigationMoveEvent.Direction.Down:
+                    settting.Focus();
+                    break;
 
+            }
+            evt.PreventDefault();
         }
+        
 
-        evt.PreventDefault();
+        
     }
     static public PauseMenu Pause()
     {
+        if (mainPause.menu.visible == false)
+        {
+            mainPause.OnPause();
+        }
         
-        mainPause.OnPause();
         return mainPause;
     }
     public void AddPage(PausePage pausePage, bool exitCompletely = true)
@@ -148,12 +157,13 @@ public class PauseMenu : VisualElement
         Time.timeScale = menu.enabledSelf ? 0 : 1;
         if (menu.enabledSelf)
         {
-            GameManager.Instance.OnInputChange += OnInputChanged;
-            menu.Focus();
+            InputManager.OnInputChange += OnInputChanged;
+            this.Focus();
+            //party.Focus();
             //this.Focus();
             //this.CaptureMouse();
             //this.pickingMode =;
-            if (GameManager.Instance.inputMethod == InputMethod.controller)
+            if (InputManager.inputMethod == InputMethod.controller)
             {
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 UnityEngine.Cursor.visible = false;
@@ -168,6 +178,7 @@ public class PauseMenu : VisualElement
             InputManager.DisablePlayer();
             InputManager.Input.UI.Back.Enable();
             InputManager.Input.UI.Back.performed += Back;
+            
 
         }
         else
@@ -177,7 +188,7 @@ public class PauseMenu : VisualElement
             InputManager.EnablePlayer();
             InputManager.Input.UI.Back.Disable();
             InputManager.Input.UI.Back.performed -= Back;
-            GameManager.Instance.OnInputChange -= OnInputChanged;
+            InputManager.OnInputChange -= OnInputChanged;
         }
         var bottomMapping = panel.visualTree.Q("BottomMapping");
         if (bottomMapping != null)
@@ -189,7 +200,7 @@ public class PauseMenu : VisualElement
         {
             questUI.visible = !PauseActive;
         }
-
+        GamePaused?.Invoke(menu.enabledSelf);
     }
 
     void Back(InputAction.CallbackContext context=default)
@@ -199,10 +210,13 @@ public class PauseMenu : VisualElement
             if (currentPage.Back())
             {
                 this.Remove(currentPage);
+
                 menu.SetEnabled(true);
                 menu.visible = true;
                 currentPage = null;
-                lastSelected?.Focus();
+                this.delegatesFocus = false;
+                this.Focus();
+                //lastSelected?.Focus();
                 Debug.Log("last selected: " + lastSelected);
 
             }
@@ -222,61 +236,55 @@ public class PauseMenu : VisualElement
     }
     void InventoryMenu()
     {
-        if (inventoryUI == null)
-        {
-            inventoryUI = new();
 
-        }
+        InventoryUI inventoryUI = new();
         lastSelected = inventory;
         this.Add(inventoryUI);
         //partyUI.UpdateUI();
         menu.visible = false;
-        //menu.SetEnabled(false);
+        menu.SetEnabled(false);
+        inventory.Focus();
         currentPage = inventoryUI;
+        this.delegatesFocus = true;
     }
     
     void Options()
     {
-        if (optionsPage == null)
-        {
-            optionsPage = new();
-
-        }
-        lastSelected= optionsPage;
+        OptionsPage optionsPage = new();
+        lastSelected = optionsPage;
         this.Add(optionsPage);
         menu.visible = false;
-        //menu.SetEnabled(false);
+        menu.SetEnabled(false);
         optionsPage.OpenOptions();
+        optionsPage.Focus();
         currentPage = optionsPage;
+        this.delegatesFocus = true;
     }
     void Party()
     {
         lastSelected = party;
-        if (partyUI == null)
-        {
-            partyUI = new();
-
-        }
-
+        PartyUI partyUI = new();
         this.Add(partyUI);
         partyUI.UpdateUI();
         menu.visible = false;
-        //menu.SetEnabled(false);
+        menu.SetEnabled(false);
+        partyUI.Focus();
         currentPage =partyUI;
+        this.delegatesFocus = true;
     }
 
 
     void BestiaryScreen()
     {
-        if (bestiaryPage == null)
-        {
-            bestiaryPage = new();
-        }
+
+        Bestiary bestiaryPage = new();
         lastSelected = bestiary;
         this.Add(bestiaryPage);
         menu.visible = false;
-        //menu.SetEnabled(false);
+        bestiaryPage.Focus();
+        menu.SetEnabled(false);
         currentPage = bestiaryPage;
+        this.delegatesFocus = true;
     }
 
     

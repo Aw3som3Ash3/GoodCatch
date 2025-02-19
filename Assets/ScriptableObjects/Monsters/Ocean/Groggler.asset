@@ -54,10 +54,14 @@ MonoBehaviour:
   baseHealth: 110
   baseStamina: 50
   baseAbilities:
-  - {fileID: 11400000, guid: 10cf72c79020f23459effc82fb72cf69, type: 2}
-  - {fileID: 11400000, guid: 9d0363fb3a079424592f6f1f13618db4, type: 2}
-  - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
-  - {fileID: 11400000, guid: f894117255974f54ca983c9014b30f00, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: f568e7516c1624947a34b2d710fc8576, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: bf3b914237c3a39498e1a063758b6313, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: b1f9c5b4878425849ac3cd31e3312d3f, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

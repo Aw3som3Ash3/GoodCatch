@@ -60,6 +60,7 @@ public class FishingRod : MonoBehaviour
             Destroy(floater.gameObject);
         }
         OnComplete += callback;
+        Debug.Log("CASTING");
         floater = Instantiate(floaterPrefab, lineStart.transform.position, floaterPrefab.transform.rotation).GetComponent<Floater>();
         floater.completed += OnComplete;
         floater.HitWater += StartMiniGame;
@@ -70,7 +71,9 @@ public class FishingRod : MonoBehaviour
 
     void StartMiniGame()
     {
-        FishingMiniGame game = Instantiate(gamePrefab, floater.transform.position, this.transform.parent.transform.rotation);
+        
+
+        FishingMiniGame game = Instantiate(gamePrefab, floater.transform.position, this.transform.root.transform.rotation);
         game.Initiate(floater);
         game.OnCancel += OnComplete;
         InputManager.DisablePlayer();

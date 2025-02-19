@@ -58,7 +58,11 @@ public class InventoryTabs : TabbedMenu
     protected override void OnChangedTab(VisualElement element)
     {
         base.OnChangedTab(element);
-        element.Q<ListView>().SetSelection(0);
+        if (element.Q<ListView>().childCount > 0)
+        {
+            element.Q<ListView>().SetSelection(0);
+        }
+       
     }
     void SetList(MultiColumnListView listView,List<ItemInventory.ItemSlot> playerInventory)
     {

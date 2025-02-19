@@ -105,6 +105,7 @@ public class FishMonsterType : ScriptableObject
         {
             if (potentialAbilities ==null|| potentialAbilities.Length == 0) 
             {
+                Debug.LogError("No Ability");
                 return null;
             }
             int index = potentialAbilities.Length > 1? UnityEngine.Random.Range(0, potentialAbilities.Length):0;
@@ -194,9 +195,14 @@ public class FishMonsterType : ScriptableObject
     Ability[] GenerateAbilities()
     {
         Ability[] abilities = new Ability[baseAbilities.Length];
+       
         for (int i = 0; i < baseAbilities.Length; i++)
         {
             abilities[i] = baseAbilities[i].GetAbility();
+            if (abilities[i] == null)
+            {
+                Debug.LogError($"NO ABILITIES ON {name} SLOT {i}");
+            }
         }
         return abilities;
     }
@@ -333,15 +339,17 @@ public class FishMonster
         stamina = MaxStamina;
         maxHealth = HealthFormula();
         health = MaxHealth;
+        
         this.abilities = abilities;
-        abilityIds = new string[Abilities.Length];
+        abilityIds = new string[abilities.Length];
         for(int i = 1; i < startingLevel; i++)
         {
             LevelUp();
         }
         for(int i = 0; i < abilityIds.Length; i++)
         {
-            abilityIds[i] = Abilities[i].AbilityID;
+            Debug.Log("id :" + abilities[i]);
+            abilityIds[i] = abilities[i].AbilityID;
         }
         id = type.fishId;
     }

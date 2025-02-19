@@ -11,10 +11,4 @@ public class SpeakToNPCQuestRequirement : Quest.QuestRequirement
     public string NpcName { get { return npcName; } }
     public override string Objective => $"Speak to {npcName}";
 
-    public override void Init()
-    {
-        //throw new System.NotImplementedException();
-    }
-
-   
 }

@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Playables;
@@ -24,7 +23,7 @@ public class CombatManager : MonoBehaviour
    
     int roundNmber;
 
-    //[SerializeField]
+    [SerializeField]
     UIDocument ui;
     public CombatUI combatUI { get; private set; }
     //CombatUI combatUI;
@@ -80,10 +79,10 @@ public class CombatManager : MonoBehaviour
         depthIndex[depths[2]] = 2;
         combatAI = this.gameObject.AddComponent<CombatAI>();
         combatAI.SetCombatManager(this);
-        ui = FindObjectOfType<UIDocument>();
+        //ui = FindObjectOfType<UIDocument>();
         combatUI = new CombatUI();
         ui.rootVisualElement.Add(combatUI);
-        GameManager.Instance.OnInputChange += InputChanged;
+        InputManager.OnInputChange += InputChanged;
         //combatUI.UseNet += UseNet;
     }
 
@@ -244,7 +243,7 @@ public class CombatManager : MonoBehaviour
     //sets up the combat
     void SetUp()
     {
-        if (GameManager.Instance.inputMethod== InputMethod.mouseAndKeyboard)
+        if (InputManager.inputMethod== InputMethod.mouseAndKeyboard)
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Confined;
             UnityEngine.Cursor.visible = true;
@@ -301,11 +300,12 @@ public class CombatManager : MonoBehaviour
     {
         actionsCompleted = true;
 
-        CanFightEnd();
-        CompletedAllActions?.Invoke();
         
+        CompletedAllActions?.Invoke();
+        CanFightEnd();
+
     }
-    void CanFightEnd()
+    bool CanFightEnd()
     {
         int numOfFriendly = 0;
         int numOfEnemy = 0;
@@ -323,11 +323,14 @@ public class CombatManager : MonoBehaviour
         if (numOfEnemy <= 0)
         {
             EndFight(Team.player);
+            return true;
         }
         else if (numOfFriendly <= 0)
         {
             EndFight(Team.enemy);
+            return true;
         }
+        return false;
     }
     void EndFight(Team winningTeam)
     {
@@ -362,7 +365,7 @@ public class CombatManager : MonoBehaviour
         playerFishes = null;
         enemyFishes = null;
         rewardFish = false;
-        GameManager.Instance.OnInputChange -= InputChanged;
+        InputManager.OnInputChange -= InputChanged;
         GameManager.Instance.CombatEnded(winningTeam);
 
     }
@@ -379,8 +382,10 @@ public class CombatManager : MonoBehaviour
     }
     void StartTurn()
     {
-        CanFightEnd();
+
+        
         currentTurn.Value.StartTurn();
+        
         combatVisualizer.TargetCameraToFish(currentTurn.Value);
         if (currentTurn.Value is EnemyTurn)
         {
@@ -391,6 +396,10 @@ public class CombatManager : MonoBehaviour
     }
     void NextTurn()
     {
+        if (CanFightEnd())
+        {
+            return;
+        }
         if (!actionsCompleted && currentTurn.Value.team == Team.player)
         {
             return;
@@ -435,6 +444,7 @@ public class CombatManager : MonoBehaviour
             return;
         }
         Team targetedTeam = Team.player;
+        actionsCompleted = false;
         if (ability.TargetedTeam == Ability.TargetTeam.friendly)
         {
             targetedTeam = turn.team;
@@ -442,11 +452,17 @@ public class CombatManager : MonoBehaviour
         else if (ability.TargetedTeam == Ability.TargetTeam.enemy)
         {
             targetedTeam = turn.team == Team.player ? Team.enemy : Team.player;
+        }else if (ability.TargetedTeam == Ability.TargetTeam.self)
+        {
+            bool hit;
+            float damageDone;
+            ability.UseAbility(turn, turn, out hit, out damageDone);
+            ActionsCompleted();
+            combatUI.EnableButtons();
+            turn.fish.CheckDeath();
+            return;
         }
 
-        actionsCompleted = false;
-
-        
         if (ability.Targeting == Ability.TargetingType.all)
         {
             List<Turn> targets = new();
@@ -474,14 +490,14 @@ public class CombatManager : MonoBehaviour
                 {
                     bool hit;
                     float damageDone;
-                    Element.Effectiveness effectiveness;
-                    ability.UseAbility(turn, target, out hit,out damageDone,out effectiveness);
+                    
+                    ability.UseAbility(turn, target, out hit,out damageDone);
                     
                     combatVisualizer.AnimateAttack(ability,turn, target, () => 
                     {  
                         if (hit)
                         {
-                            combatVisualizer.AnimateDamageNumbers(target, damageDone, effectiveness);
+                           
                             if (ability.ForcedMovement != 0)
                             {
                                 target.ForcedMove(ability.ForcedMovement);
@@ -512,26 +528,26 @@ public class CombatManager : MonoBehaviour
             {
                 bool hit;
                 float damageDone;
-                Element.Effectiveness effectiveness;
-                ability.UseAbility(turn, target, out hit, out damageDone, out effectiveness);
+                
+                ability.UseAbility(turn, target, out hit, out damageDone);
                 combatVisualizer.AnimateAttack(ability, turn, target, () => 
                 {
                     if (hit)
                     {
-                        combatVisualizer.AnimateDamageNumbers(target, damageDone, effectiveness);
-
+                       
                         if (ability.ForcedMovement != 0)
                         {
                             target.ForcedMove(ability.ForcedMovement);
                         }
                     }
+                    
+                    target.fish.CheckDeath();
                     ActionsCompleted();
                     combatUI.EnableButtons();
-                    target.fish.CheckDeath();
                 });
             }
            
-        }
+        } 
     }
     void RemoveFishFromBattle(Turn turn)
     {
@@ -547,7 +563,7 @@ public class CombatManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentTurn != null&& combatVisualizer.turnToObject?[currentTurn.Value]!=null)
+        if (currentTurn != null&& (combatVisualizer.turnToObject.ContainsKey(currentTurn.Value)|| combatVisualizer.turnToObject?[currentTurn.Value] != null))
         {
             combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
         }
@@ -705,15 +721,15 @@ public class CombatManager : MonoBehaviour
         {
             get
             {
-                return fish.Agility.value + GetAttributeMod("agility");
+                return Mathf.RoundToInt(fish.Agility.value + (fish.Agility.value * GetAttributeMulti("aglity")) + GetAttributeMod("agility"));
             }
         }
-        public float dodge { get { return (fish.Dodge / 2 )+GetAttributeMod("dodge"); } }
+        public float dodge { get { return (fish.Dodge + (fish.Dodge * GetAttributeMulti("dodge")) + GetAttributeMod("dodge")); } }
         public int accuracy
         {
             get
             {
-                return fish.Accuracy.value + GetAttributeMod("accuracy");
+                return Mathf.RoundToInt(fish.Accuracy.value + (fish.Accuracy.value * GetAttributeMulti("accuracy")) + GetAttributeMod("accuracy"));
             }
         }
         public int attack
@@ -721,28 +737,28 @@ public class CombatManager : MonoBehaviour
             get
             {
                 
-                return fish.Attack.value + GetAttributeMod("attack");
+                return Mathf.RoundToInt(fish.Attack.value + (fish.Attack.value * GetAttributeMulti("attack")) + GetAttributeMod("attack"));
             }
         }
         public int special
         {
             get
             {
-                return fish.Special.value + GetAttributeMod("special");
+                return Mathf.RoundToInt(fish.Special.value + (fish.Special.value * GetAttributeMulti("special")) + GetAttributeMod("special"));
             }
         }
         public int fortitude
         {
             get
             {
-                return fish.Fortitude.value + GetAttributeMod("fortitude");
+                return Mathf.RoundToInt(fish.Fortitude.value + (fish.Fortitude.value * GetAttributeMulti("fortitude")) + GetAttributeMod("fortitude"));
             }
         }
         public int specialFort
         {
             get
             {
-                return fish.SpecialFort.value + GetAttributeMod("specialFort");
+                return Mathf.RoundToInt(fish.SpecialFort.value + (fish.SpecialFort.value * GetAttributeMulti("specialFort")) + GetAttributeMod("specialFort"));
             }
         }
         int GetAttributeMod(string name)
@@ -760,6 +776,28 @@ public class CombatManager : MonoBehaviour
                     foreach (var e in compoundEffect.Effects)
                     {
                         val += (e as StatModifierStatusEffect).Attribute[name];
+                    }
+                }
+
+
+            }
+            return val;
+        }
+        float GetAttributeMulti(string name)
+        {
+            float val = 0;
+            foreach (StatusEffect effect in effects.Select(x => x.effect))
+            {
+                if (effect is StatMultiplierStatusEffect)
+                {
+                    val += (effect as StatMultiplierStatusEffect).Attribute[name];
+                }
+                else if (effect is CompoundEffect)
+                {
+                    CompoundEffect compoundEffect = (CompoundEffect)effect;
+                    foreach (var e in compoundEffect.Effects)
+                    {
+                        val += (e as StatMultiplierStatusEffect).Attribute[name];
                     }
                 }
 
@@ -796,6 +834,14 @@ public class CombatManager : MonoBehaviour
                 lastEffects.Remove(effect);
             }
         }
+
+        public float TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType )
+        {
+            Element.Effectiveness effectiveness;
+            var damageOut= fish.TakeDamage(damage, elementType, abilityType, out effectiveness);
+            combatManager.combatVisualizer.AnimateDamageNumbers(this, damageOut, effectiveness);
+            return damageOut;
+        }
         public virtual void StartTurn()
         {
             
@@ -803,7 +849,11 @@ public class CombatManager : MonoBehaviour
             actionsLeft = actionsPerTurn;
             
             combatManager.combatUI.NewTurn(this, team == Team.player);
-            TickEffects(StatusEffect.EffectUsage.preTurn);
+            TickEffects(StatusEffect.EffectUsage.preTurn); 
+            if (combatManager.CanFightEnd())
+            {
+                EndTurn();
+            }
             //NewTurn?.Invoke(this, team == Team.player);
 
 
@@ -811,6 +861,7 @@ public class CombatManager : MonoBehaviour
         void ActionsCompleted()
         {
             actionsCompleted = true;
+
         }
         public void UseAction(int amount = 1)
         {
@@ -823,11 +874,13 @@ public class CombatManager : MonoBehaviour
         }
         public void EndTurn()
         {
+            
             if (actionsCompleted)
             {
                 fish.RecoverStamina();
                 TickEffects(StatusEffect.EffectUsage.postTurn);
                 TurnEnded?.Invoke();
+                combatManager.CanFightEnd();
             }
             
         }
@@ -872,7 +925,9 @@ public class CombatManager : MonoBehaviour
         public bool DepthTargetable(int abilityIndex, Depth depth)
         {
 
-            return combatManager.depth[depth].SideHasFish(fish.GetAbility(abilityIndex).TargetedTeam ==Ability.TargetTeam.enemy? oppositeTeam:team) && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth);
+            return combatManager.depth[depth].SideHasFish(fish.GetAbility(abilityIndex).TargetedTeam ==Ability.TargetTeam.enemy? oppositeTeam:team) 
+                && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth)
+                && !(fish.GetAbility(abilityIndex).ignoreSelf && currentDepth.TargetFirst(team)==this &&currentDepth.depth==depth);
         }
         public void UseItem(Item item,Action callback)
         {
@@ -885,12 +940,21 @@ public class CombatManager : MonoBehaviour
             if (AbilityUsable(abilityIndex))
             {
                 //Ability ability = fish.GetAbility(abilityIndex);
+                if(fish.GetAbility(abilityIndex).TargetedTeam == Ability.TargetTeam.self)
+                {
+                    UseAbilityDirect(abilityIndex, depthIndex);
+                    callback.Invoke();
+                }
+                else
+                {
+                    combatManager.combatVisualizer.StartTargeting(DepthTargetable, abilityIndex, (i) => { if (i >= 0) { UseAbilityDirect(abilityIndex, i); } callback.Invoke(); });
+                }
+               
 
-                combatManager.combatVisualizer.StartTargeting(DepthTargetable,abilityIndex ,(i) => { if (i >= 0) { UseAbility(abilityIndex, i); } callback.Invoke(); });
             }
 
         }
-        public void UseAbility(int abilityIndex, int depthIndex)
+        public void UseAbilityDirect(int abilityIndex, int depthIndex)
         {
             if (AbilityUsable(abilityIndex))
             {
@@ -908,11 +972,8 @@ public class CombatManager : MonoBehaviour
             int target = UnityEngine.Mathf.Clamp(depthIndex - direction, 0, 2);
             Move(target);
         }
-        public void TakeDamage()
-        {
-            //fish.TakeDamage()
-        }
-        public void AddEffects(StatusEffect effect,FishMonster owner)
+      
+        public void AddEffects(StatusEffect effect, CombatManager.Turn owner)
         {
             foreach (var e in effects)
             {
@@ -957,7 +1018,7 @@ public class CombatManager : MonoBehaviour
                 
 
             }
-            
+            fish.CheckDeath();
         }
 
 
