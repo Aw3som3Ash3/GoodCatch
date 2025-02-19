@@ -100,6 +100,7 @@ public class OptionsPage : PausePage
 
     private void OnMenu()
     {
+        SavingSystem.SaveGame(SavingSystem.SaveMode.ManualSave);
         GameObject.Destroy(QuestTracker.Instance.gameObject);
         GameObject.Destroy(GameManager.Instance.gameObject);
        
