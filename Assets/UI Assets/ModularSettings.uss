@@ -17,6 +17,23 @@
     align-self: auto;
     justify-content: flex-start;
     align-items: stretch;
+    border-top-width: 3px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-left-color: rgb(0, 0, 60);
+    border-right-color: rgb(0, 0, 60);
+    border-top-color: rgb(0, 0, 60);
+    border-bottom-color: rgb(0, 0, 60);
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    background-color: rgba(28, 11, 178, 0.34);
+}
+
+#ScreenDropDown {
+    justify-content: space-between;
 }
 
 #ScreenDropDown {

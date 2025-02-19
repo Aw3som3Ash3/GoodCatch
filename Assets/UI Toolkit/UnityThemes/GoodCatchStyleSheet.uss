@@ -2,3 +2,8 @@ VisualElement {
     -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
     -unity-font-definition: initial;
 }
+
+.unity-base-dropdown.unity-scroll-view {
+    background-color: rgb(255, 0, 0);
+    -unity-background-image-tint-color: rgb(255, 0, 0);
+}
