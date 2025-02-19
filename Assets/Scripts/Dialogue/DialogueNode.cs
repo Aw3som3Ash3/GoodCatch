@@ -13,6 +13,10 @@ public abstract class DialogueNode
     [SerializeField]
     [Multiline]
     public string dialouge;
+    [SerializeField]
+    public AudioClip voiceClip;
+
+
 
     //public DialogueNode parent;
     protected Dialogue tree;
