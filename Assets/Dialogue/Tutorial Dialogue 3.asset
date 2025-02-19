@@ -33,6 +33,7 @@ MonoBehaviour:
       data:
         dialouge: "Looks like you know the basics of what fishing and combat is like.
           Well, it\u2019s been nice knowing you, but it\u2019s time to wake up. "
+        voiceClip: {fileID: 0}
         guid: 4a3f22c9ce4a1ad488772c139f8ae94e
         decorators:
         - rid: 187471312712368149
