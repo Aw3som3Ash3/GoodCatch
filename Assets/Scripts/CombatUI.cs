@@ -364,7 +364,7 @@ public class CombatUI : VisualElement
             EnableButtons();
            
             tabbedView.ChangeTab(-3);
-            if (InputManager.inputMethod == InputMethod.controller)
+            if (InputManager.inputMethod == InputMethod.controller&&currentTurn.ActionLeft)
             {
                 abilityButtons[0].Focus();
             }
