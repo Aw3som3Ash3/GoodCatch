@@ -63,11 +63,10 @@ public class ShipControls : Station
         ship.PhysicSim.velocity = Vector3.zero;
         ship.PhysicSim.angularVelocity = Vector3.zero;
         InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
-        foreach (Collider col in Physics.OverlapSphere(this.transform.position, 2, dockLayer))
+        foreach (Collider col in Physics.OverlapSphere(ship.transform.position, 10, dockLayer))
         {
             Debug.Log(col);
-            col.GetComponent<DockingZone>()?.DockShip(ship,true,LeaveSation);
-            currentDock = col.GetComponent<DockingZone>();
+            col.GetComponent<DockingZone>()?.DockShip(ship,true,()=> { LeaveSation(); currentDock = col.GetComponent<DockingZone>(); });
             return;
 
         }
