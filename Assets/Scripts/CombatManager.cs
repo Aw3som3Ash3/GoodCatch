@@ -829,7 +829,7 @@ public class CombatManager : MonoBehaviour
             this.combatManager = combatManager;
             currentDepth = startingDepth;
             combatManager.CompletedAllActions += ActionsCompleted;
-            fish.HasFeinted =()=> { HasFeinted?.Invoke(); Debug.Log("fish has feinted"); };
+            fish.HasFeinted =()=> { HasFeinted?.Invoke(); if (IsCurrentTurn) { EndTurn(); } Debug.Log("fish has feinted"); };
             //stamina = maxStamina;
         }
 
@@ -863,15 +863,16 @@ public class CombatManager : MonoBehaviour
             
            
             actionsLeft = actionsPerTurn;
+           
+            
+            combatManager.combatUI.NewTurn(this, team == Team.player);
             TickEffects(StatusEffect.EffectUsage.preTurn);
             if (combatManager.CanFightEnd())
             {
-                EndTurn();
+                //EndTurn();
                 return;
             }
-            combatManager.combatUI.NewTurn(this, team == Team.player);
-            
-            
+
             //NewTurn?.Invoke(this, team == Team.player);
 
 
