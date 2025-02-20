@@ -81,12 +81,12 @@ public class MainMenu : MonoBehaviour
             var button = loadScreen.Q<Button>("Slot" + i);
             if (!SavingSystem.HasSlot(i))
             {
-                //button.text = "Empty Slot " + (i + 1);
+                button.text = "Empty" + (i + 1);
 
             }
             else
             {
-                //button.text = "Slot " + (i + 1);
+                button.text = "Slot " + (i + 1);
             }
             button.SetEnabled(true);
             button.clicked += () => 
@@ -146,6 +146,15 @@ public class MainMenu : MonoBehaviour
             int index = i;
 
             var button = loadScreen.Q<Button>("Slot" + i);
+            if (!SavingSystem.HasSlot(i))
+            {
+                button.text = "Empty" + (i + 1);
+
+            }
+            else
+            {
+                button.text = "Slot " + (i + 1);
+            }
             if (SavingSystem.HasSlot(i))
             {
                 button.clicked += () => { SavingSystem.LoadGame(index); InputManager.Input.UI.Back.performed -= Back; };
