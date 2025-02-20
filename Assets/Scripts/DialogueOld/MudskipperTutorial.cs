@@ -74,6 +74,7 @@ public class MudskipperTutorial : NPC
             QuestTracker.Instance.AddQuest(postTutorialQuest, true);
 
         }
+        GameManager.Instance.ResetLastInn();
         LoadMainScene();
     }
 
