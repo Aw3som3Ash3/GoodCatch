@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -30,6 +29,19 @@ public class MainMenu : MonoBehaviour
         InputManager.Input.UI.Back.Enable();
         GameManager.Instance = null;
         QuestTracker.Instance = null;
+        InputManager.OnInputChange += (method) =>
+        {
+            if (method == InputMethod.mouseAndKeyboard)
+            {
+                UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+                UnityEngine.Cursor.visible = true;
+            }
+            else
+            {
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
+            }
+        };
 
     }
 
@@ -81,12 +93,12 @@ public class MainMenu : MonoBehaviour
             var button = loadScreen.Q<Button>("Slot" + i);
             if (!SavingSystem.HasSlot(i))
             {
-                //button.text = "Empty Slot " + (i + 1);
+                button.text = "Empty " + (i);
 
             }
             else
             {
-                //button.text = "Slot " + (i + 1);
+                button.text = "Slot " + (i);
             }
             button.SetEnabled(true);
             button.clicked += () => 
@@ -146,6 +158,15 @@ public class MainMenu : MonoBehaviour
             int index = i;
 
             var button = loadScreen.Q<Button>("Slot" + i);
+            if (!SavingSystem.HasSlot(i))
+            {
+                button.text = "Empty " + (i);
+
+            }
+            else
+            {
+                button.text = "Slot " + (i);
+            }
             if (SavingSystem.HasSlot(i))
             {
                 button.clicked += () => { SavingSystem.LoadGame(index); InputManager.Input.UI.Back.performed -= Back; };

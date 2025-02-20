@@ -48,6 +48,7 @@ MonoBehaviour:
       type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
       data:
         dialouge: 'Hey, are you new here? '
+        voiceClip: {fileID: 0}
         guid: 19719eb3afcd4444f9a908807a5eedfe
         decorators: []
         position: {x: 448.5, y: 125.73335}
@@ -68,6 +69,7 @@ MonoBehaviour:
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
         dialouge: Than wake up
+        voiceClip: {fileID: 0}
         guid: baff6ce8ea805fa438effad05878e742
         decorators:
         - rid: 187471312712368129
@@ -79,6 +81,7 @@ MonoBehaviour:
       data:
         dialouge: "So, you\u2019re new here huh? Okay well that\u2019s good to hear
           let me help you out! "
+        voiceClip: {fileID: 0}
         guid: e44b5b3e173bc1d4983bcb35c246b16b
         decorators: []
         position: {x: 1166.6666, y: 192.66667}
@@ -92,6 +95,7 @@ MonoBehaviour:
           After that you will be put into combat because the monsters you will be
           facing won\u2019t go easy on you. You\u2019re going to want to defeat them
           after you hook them in! So, give it a shot. "
+        voiceClip: {fileID: 0}
         guid: 0aa66c4ac04fa9f48aa18495e91674a4
         decorators:
         - rid: 187471312712368167

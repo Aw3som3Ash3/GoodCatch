@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class StatusEffect: ScriptableObject
 {
     [SerializeField]
+    [Min(1)]
     int duration;
 
     [SerializeField]

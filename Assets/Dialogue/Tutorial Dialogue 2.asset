@@ -50,6 +50,7 @@ MonoBehaviour:
           for your fish. You\u2019re going to want to open up your backpack and select
           the healing item and apply it to your monster. After you have done that
           talk to me again."
+        voiceClip: {fileID: 0}
         guid: 084740a1af63b1947957da69df2b4473
         decorators:
         - rid: 187471312712368140
@@ -65,6 +66,7 @@ MonoBehaviour:
           reliably, you\u2019re going to want to get their health real low and then
           use your hook on them in your bag tab! So, get to fishing and talk to me
           once you have captured a fish"
+        voiceClip: {fileID: 0}
         guid: 44023665a6923484983808815be91260
         decorators:
         - rid: 187471312712368168
@@ -83,7 +85,7 @@ MonoBehaviour:
         position: {x: 426, y: 415.33334}
         guid: eb1a927e159487b439a18b8f48d2e715
         item: {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-        amount: 5
+        amount: 99
     - rid: 187471312712368168
       type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
       data:
