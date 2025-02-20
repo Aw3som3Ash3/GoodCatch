@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour,ISaveable
         public ItemInventory PlayerInventory;
         public float dayTime;
         public bool[] hasSeenFish;
+        public string currentInnId;
         public GameData(int partySize)
         {
             PlayerFishventory = new Fishventory(partySize);
@@ -38,7 +39,9 @@ public class GameManager : MonoBehaviour,ISaveable
             StoredFishventory = new Fishventory();
             dayTime =0;
             hasSeenFish = new bool[0];
-            
+            currentInnId = "";
+
+
         }
     }
     public List<bool> HasSeenFish{ get { return gameData.hasSeenFish.ToList(); } }
@@ -66,7 +69,7 @@ public class GameManager : MonoBehaviour,ISaveable
     VolumeProfile postProcessing;
 
     [SerializeField]
-    Inn lastInnVisited;
+    public Inn lastInnVisited { get { return Inn.innIds[gameData.currentInnId]; } }
 
     bool inCombat;
     [Flags]
@@ -179,7 +182,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             Destroy(this.gameObject);
         }
-        Inn.InnVisited += (inn) => lastInnVisited = inn;
+        Inn.InnVisited += (inn) => gameData.currentInnId=inn.innId;
 
         
         //InputUser.PerformPairingWithDevice()
@@ -194,14 +197,19 @@ public class GameManager : MonoBehaviour,ISaveable
     }
 
     
-
+    public void ResetLastInn()
+    {
+        gameData.currentInnId = null;
+    }
     public void PlayerLost()
     {
-        if(lastInnVisited == null)
+        if(gameData.currentInnId == null|| gameData.currentInnId=="")
         {
-            lastInnVisited = Inn.StarterInn;
+            gameData.currentInnId = Inn.StarterInn.innId;
         }
+       
         lastInnVisited.Respawn();
+        Debug.Log("player has died");
         AdvanceTime(3);
         RestoreFish();
     }
@@ -331,7 +339,7 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
-        CapturedFish(fishMonsterType.GenerateMonster(),true);
+        CapturedFish(fishMonsterType.GenerateMonster(5),true);
         
     }
     public void CapturedFish(FishMonster fishMonster,bool ignoreQuest=false)

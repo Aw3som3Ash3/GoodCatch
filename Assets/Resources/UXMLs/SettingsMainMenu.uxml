@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/PauseMenu.uss?fileID=7433441132597879392&amp;guid=a7b5e17935909ec4ea2cbcebb02c8000&amp;type=3#PauseMenu" />
     <Style src="project://database/Assets/UI%20Assets/Options.uss?fileID=7433441132597879392&amp;guid=ddb424d28a728bf44b638637ad585ad5&amp;type=3#Options" />
+    <Style src="project://database/Assets/UI%20Toolkit/UnityThemes/GoodCatchStyleSheet.uss?fileID=7433441132597879392&amp;guid=3514bcc995f7ff84c8e081dd8739d774&amp;type=3#GoodCatchStyleSheet" />
     <ui:VisualElement name="SettingsMenuWorkspace" style="flex-grow: 1;">
         <ui:VisualElement name="BackgroundContainer" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/System_Menu_BG_v2.png?fileID=2800000&amp;guid=b4bc9a62b1b1d434d82285b14b8b7bcf&amp;type=3#System_Menu_BG_v2&quot;);">
             <ui:VisualElement name="ContainerAlpha" style="flex-grow: 1;">

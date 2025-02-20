@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using System.Linq;
+
 
 
 #if UNITY_EDITOR
@@ -71,6 +73,45 @@ public class Dialogue : ScriptableObject
         decorators.Add(decorator);
         decorator.guid = GUID.Generate().ToString();
         return decorator;
+    }
+    public DialogueEvent RemoveEvent(DialogueEvent @event)
+    {
+
+        int amount =decorators.RemoveAll((x) => 
+        {
+            if (x is DialogueEventDecorator)
+            {
+                return (x as DialogueEventDecorator).dialogueEvent == @event;
+
+            }
+            else
+            {
+                return false;
+            }
+        });
+        foreach (var node in nodes)
+        {
+            node.decorators.RemoveAll((x) =>
+            {
+                if (x is DialogueEventDecorator)
+                {
+                    return (x as DialogueEventDecorator).dialogueEvent == @event;
+
+                }
+                else
+                {
+                    return false;
+                }
+            });
+        }
+
+        Debug.Log(amount+" deleted nodes");
+        events.Remove(@event);
+        AssetDatabase.RemoveObjectFromAsset(@event);
+        AssetDatabase.SaveAssets();
+
+       
+        return @event;
     }
     public DialogueEvent CreateEvent()
     {
