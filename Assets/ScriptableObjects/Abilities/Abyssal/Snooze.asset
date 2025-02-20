@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreSelf: 0
   abilityType: 0
-  availableDepths: -1
-  targetableDepths: -1
+  availableDepths: 4
+  targetableDepths: 4
   targetTeam: 0
   targetingType: 0
   piercing: 1
