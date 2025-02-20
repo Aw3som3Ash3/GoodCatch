@@ -391,7 +391,7 @@ public class CombatManager : MonoBehaviour
         {
             foreach(FishMonster enemy in enemyFishes)
             {
-                fish.AddXp((enemy.Level / fish.Level)*100);
+                fish.AddXp(((float)enemy.Level / fish.Level)*100);
             }
             
         }
