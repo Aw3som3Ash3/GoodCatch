@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c963494cf0a2f459443dfc8ab404fb, type: 3}
+  m_Name: Dolfin Retreiver
+  m_EditorClassIdentifier: 
+  type: 0
+  description: 'Capture dolfins
+
+'
+  states:
+  - name: Dolfin Savior
+    description: Capture 3 Dolfins
+    requirements:
+    - rid: 6374090361146703878
+  references:
+    version: 2
+    RefIds:
+    - rid: 6374090361146703878
+      type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: CatchNumOfSpecificFishRequirement
+        IsCompleted: 0
+        targetOfFish: 3
+        currentAmount: 0
+        fishMonsterType: {fileID: 11400000, guid: 082d515f808f06a47bd335e4aab82d0e, type: 2}
