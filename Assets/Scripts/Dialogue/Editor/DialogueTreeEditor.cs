@@ -163,7 +163,7 @@ public class DialogueInspector : InspectorElement
 
         //PropertyField field = new PropertyField(serializedObject.FindProperty("events"),"Events");
 
-        list = new ListView(dialogue.Events,25,makeItem:()=> { var item = new EventViewer(); item.OnEdited += OnEdited; return item; },bindItem:(elem,index)=>(elem as EventViewer).SetEvent(dialogue.Events[index]));
+        list = new ListView(dialogue.Events,25,makeItem:()=> { var item = new EventViewer(); item.OnEdited += OnEdited; return item; },bindItem:(elem,index)=> { (elem as EventViewer).SetEvent(dialogue.Events[index]); (elem as EventViewer).Delete += EventDeleted; });
        
         
         //list.BindProperty(serializedObject.FindProperty("events"));
@@ -173,6 +173,13 @@ public class DialogueInspector : InspectorElement
         //Debug.Log(field);
         Add(list);
 
+    }
+
+    private void EventDeleted(DialogueEvent @event)
+    {
+        dialogue.Events.Remove(@event);
+        OnEdited?.Invoke();
+        list.Rebuild();
     }
 
     private void AddEvent()
@@ -189,7 +196,7 @@ public class DialogueInspector : InspectorElement
         DialogueEvent dialogueEvent;
         TextField title=new();
         Button delete=new();
-        Action<DialogueEvent> Delete;
+        public Action<DialogueEvent> Delete;
         public event Action OnEdited;
         public EventViewer() 
         {
@@ -198,6 +205,7 @@ public class DialogueInspector : InspectorElement
             style.alignContent = Align.Stretch;
             Add(title);
             delete.text = "Remove";
+            delete.clicked += () => Delete?.Invoke(dialogueEvent);
             title.style.flexGrow = 1;
             
             Add(delete);
