@@ -228,10 +228,11 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     {
         foreach (var effect in effects)
         {
-            float proctBonus = (user.special / 5) * 0.01f ;
-            float targetDef = (target.special / 5) * 0.01f ;
-            if (UnityEngine.Random.Range(0, 1) - proctBonus < (effect.Chance)*(target.HadEffectLastTurn(effect.Effect)? 0.15f:1)- targetDef)
+            float proctBonus = (user.special / 5f) * 0.01f ;
+            float targetDef = (target.special / 5f) * 0.01f ;
+            if (UnityEngine.Random.Range(0, 1f)  < (effect.Chance + proctBonus) *(target.HadEffectLastTurn(effect.Effect)? 0.15f:1)- targetDef)
             {
+
                 target.AddEffects(effect.Effect,user);
             }
         }
