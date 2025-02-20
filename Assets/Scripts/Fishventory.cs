@@ -39,7 +39,11 @@ public class Fishventory
         }
 
     }
-
+    public void RemoveFishOfType(FishMonsterType fish)
+    {
+        
+        fishies.RemoveAll((x)=>x.Type==fish);
+    }
     public void RemoveFish(FishMonster fish)
     {
         fishies.Remove(fish);
