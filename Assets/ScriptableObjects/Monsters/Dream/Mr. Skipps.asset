@@ -19,7 +19,8 @@ MonoBehaviour:
   miniSprite: {fileID: 1714699419, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: -1
   preferredBait: []
-  elements: []
+  elements:
+  - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
   agility:
     min: 20
     max: 20

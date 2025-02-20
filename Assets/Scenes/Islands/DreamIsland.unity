@@ -1829,6 +1829,8 @@ MonoBehaviour:
   finishedTutorial: {fileID: 1235379646921652575, guid: 05a6ee9ca7d9ed54588f1edf21460624, type: 2}
   healFish: {fileID: -8881602098096103646, guid: 7e73032f89e4ff943a4c1f4d73d93120, type: 2}
   postTutorialQuest: {fileID: 11400000, guid: 63e22f4c34faafe40a67bcabe0d63e00, type: 2}
+  mudskipper: {fileID: 11400000, guid: 65d33d0db1bc78a43811bf103f09d88e, type: 2}
+  pyrishForSKippingQuest: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
   items:
   - item: {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
     amount: 99
@@ -4525,13 +4527,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24100000, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: lastInnVisited
+      value: 
+      objectReference: {fileID: 778403260}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
+      objectReference: {fileID: 11400000, guid: 65d33d0db1bc78a43811bf103f09d88e, type: 2}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: startingItems.Array.size
       value: 0
