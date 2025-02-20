@@ -11,6 +11,7 @@ using static BranchingDialogue;
 public abstract class DialogueNodeView : Node
 {
     public TextField dialogueField;
+    public ObjectField objectField;
     public Port input;
     public Port decoratorPort;
     public Action<DialogueNodeView> OnNodeSeletected;
@@ -29,6 +30,15 @@ public abstract class DialogueNodeView : Node
         this.dialogueNode = dialogueNode;
         UseDefaultStyling();
         this.Q<Label>("title-label").text= dialogueNode.GetType().Name;
+        objectField = new("Voice Clip");
+        objectField.objectType =  typeof(AudioClip);
+        objectField.value = dialogueNode.voiceClip;
+        objectField.RegisterValueChangedCallback((evt) =>
+        {
+            dialogueNode.voiceClip=evt.newValue as AudioClip;
+            NodeModified();
+        });
+        this.Q("extra").Add(objectField);
         dialogueField = this.Q<TextField>("dialogue");
         dialogueField.multiline = true;
         dialogueField.style.whiteSpace = WhiteSpace.Normal;

@@ -182,6 +182,7 @@ public class CombatManager : MonoBehaviour
     }
     void UseItem(Item item,Action completedCallback,Action canceledCallback)
     {
+        
         if(item is CombatHook)
         {
             combatVisualizer.SelectFish(Team.enemy,(t) => 
@@ -344,27 +345,42 @@ public class CombatManager : MonoBehaviour
         var victoryScreen = new CombatVictory(playerFishes,enemyFishes,fishCaught);
         ui.rootVisualElement.Add(victoryScreen);
         combatUI.SetEnabled(false);
-        RewardXP();
+       
         if (winningTeam==Team.player)
         {
+
+            foreach (var fish in playerFishes)
+            {
+                victoryScreen.fishXpBar[fish].value = fish.Xp;
+            }
+            RewardXP();
+            yield return new WaitForFixedUpdate();
             for (int i = 0; i < 300; i++)
             {
 
                 foreach (var fish in playerFishes)
                 {
-                    victoryScreen.fishXpBar[fish].value = Mathf.Lerp(victoryScreen.fishXpBar[fish].value, fish.Xp, (float)i / 300);
+                    victoryScreen.fishXpBar[fish].value = Mathf.MoveTowards(victoryScreen.fishXpBar[fish].value, fish.Xp, 1);
                    
 
 
                 }
                 yield return new WaitForFixedUpdate();
             }
-           
+
+        }
+        else
+        {
+            for (int i = 0; i < 300; i++)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+
         }
         //ui.rootVisualElement.Remove(combatUI);
-        playerFishes = null;
-        enemyFishes = null;
-        rewardFish = false;
+        //playerFishes = null;
+        //enemyFishes = null;
+        //rewardFish = false;
         InputManager.OnInputChange -= InputChanged;
         GameManager.Instance.CombatEnded(winningTeam);
 
@@ -847,13 +863,15 @@ public class CombatManager : MonoBehaviour
             
            
             actionsLeft = actionsPerTurn;
-            
-            combatManager.combatUI.NewTurn(this, team == Team.player);
-            TickEffects(StatusEffect.EffectUsage.preTurn); 
+            TickEffects(StatusEffect.EffectUsage.preTurn);
             if (combatManager.CanFightEnd())
             {
                 EndTurn();
+                return;
             }
+            combatManager.combatUI.NewTurn(this, team == Team.player);
+            
+            
             //NewTurn?.Invoke(this, team == Team.player);
 
 
@@ -929,9 +947,23 @@ public class CombatManager : MonoBehaviour
                 && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth)
                 && !(fish.GetAbility(abilityIndex).ignoreSelf && currentDepth.TargetFirst(team)==this &&currentDepth.depth==depth);
         }
-        public void UseItem(Item item,Action callback)
+
+        public bool ItemUsable(Item item)
         {
-            combatManager.UseItem(item, () => UseAction(), () => callback?.Invoke()); ;
+            if(item is CombatHook&&rewardFish==false)
+            {
+                return false;
+            }
+
+            return ActionLeft && GameManager.Instance.PlayerInventory.Contains(item);
+        }
+        public void UseItem(Item item,Action<bool> callback)
+        {
+            if (!ActionLeft)
+            {
+                return;
+            }
+            combatManager.UseItem(item, () => { UseAction(); callback?.Invoke(true); }, () => {callback?.Invoke(false);});
             
                     
         }
@@ -990,7 +1022,12 @@ public class CombatManager : MonoBehaviour
         }
         public bool HadEffectLastTurn(StatusEffect effect)
         {
-            return lastEffects.ContainsKey(effect);
+            var b=lastEffects.ContainsKey(effect);
+            if (b)
+            {
+                Debug.Log($"had {effect} last turns");
+            }
+            return b;
         }
 
         public void TickEffects(StatusEffect.EffectUsage usage)

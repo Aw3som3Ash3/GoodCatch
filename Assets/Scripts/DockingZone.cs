@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,25 +39,52 @@ public class DockingZone : MonoBehaviour
     {
         
     }
-
-
-    public void DockShip(ShipSimulator ship,bool resetPosition=false)
+    public void DockShip(ShipSimulator ship)
     {
+
         this.ship = ship;
+        //ship.AnchorShip();
         ship.transform.position=dockingPosition.position;
         ship.transform.rotation=dockingPosition.rotation;
-        //ship.AnchorShip();
-        if (resetPosition)
-        {
-            PlayerController.player.SetPosition(dockExit.position);
-        }
         //joint=ship.PhysicSim.gameObject.AddComponent<FixedJoint>();
 
     }
 
+    public void DockShip(ShipSimulator ship,bool resetPosition=false, Action callback = null)
+    {
+        StopCoroutine(DockShipAnimation(callback, resetPosition));
+        this.ship = ship;
+        //ship.AnchorShip();
+        StartCoroutine(DockShipAnimation(callback, resetPosition));
+      
+        //joint=ship.PhysicSim.gameObject.AddComponent<FixedJoint>();
+
+    }
+
+    IEnumerator DockShipAnimation(Action completed,bool resetPosition = false)
+    {
+
+        ship.PhysicSim.isKinematic = true;
+        while (Vector3.Distance(ship.transform.position, dockingPosition.position)>0.5f || ship.transform.rotation != dockingPosition.rotation)
+        {
+            yield return new WaitForFixedUpdate();
+            ship.transform.position=Vector3.MoveTowards(ship.transform.position,dockingPosition.position,10*Time.fixedDeltaTime);
+            ship.transform.rotation = Quaternion.RotateTowards(ship.transform.rotation, dockingPosition.rotation,90 * Time.fixedDeltaTime);
+        }
+        if (resetPosition)
+        {
+            PlayerController.player.SetPosition(dockExit.position);
+        }
+        ship.PhysicSim.isKinematic = false;
+        completed?.Invoke();
+    }
+
+
     public void UndockShip()
     {
         //ship.UnAnchorShip();
+        StopCoroutine("DockShipAnimation");
+        ship.PhysicSim.isKinematic = false;
         ship = null;
         Destroy(joint);
         joint = null;

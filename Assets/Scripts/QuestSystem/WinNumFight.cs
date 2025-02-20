@@ -11,6 +11,8 @@ public class WinNumFight : Quest.QuestRequirement
 
     public override void Init()
     {
+        base.Init();
+        current = 0;
         GameManager.Instance.WonFight += () =>
         {
             current++;

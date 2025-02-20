@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
-  m_Name: Pyrish
+  m_Name: Seraray
   m_EditorClassIdentifier: 
   description: 
-  model: {fileID: 382904234463608869, guid: 7b82c4c356ef77f4fbd0a48f185782a1, type: 3}
-  fishId: 0
-  icon: {fileID: 21300000, guid: c241e728dd65ba44b80f5bc3a7491b34, type: 3}
-  miniSprite: {fileID: 1569861162, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
+  model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
+  fishId: 13
+  icon: {fileID: 21300000, guid: f20264d0a1892024c88c9f36649ff27b, type: 3}
+  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: 0
   preferredBait: []
   elements:
-  - {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
+  - {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
+  - {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
   agility:
-    min: 15
-    max: 30
+    min: 30
+    max: 40
     minTalent: 0
     maxTalent: 0
   attack:
-    min: 15
-    max: 30
+    min: 30
+    max: 40
     minTalent: 0
     maxTalent: 0
   special:
@@ -37,13 +38,13 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   fortitude:
-    min: 8
-    max: 15
+    min: 15
+    max: 25
     minTalent: 0
     maxTalent: 0
   specialFortitude:
-    min: 8
-    max: 15
+    min: 5
+    max: 10
     minTalent: 0
     maxTalent: 0
   accuracy:
@@ -51,19 +52,17 @@ MonoBehaviour:
     max: 50
     minTalent: 0
     maxTalent: 0
-  baseHealth: 100
-  baseStamina: 60
+  baseHealth: 70
+  baseStamina: 90
   baseAbilities:
   - potentialAbilities:
     - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
-    - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}
-    - {fileID: 11400000, guid: d91d835999b3c03468f55c3f346e42d7, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: f5e161f5f7750b6468c04d356a177b7c, type: 2}
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   difficulty: 0
-  attackAnimation: {fileID: -6041800682480947867, guid: cdcf3c9b8c0f6a643bdb737875dd6491, type: 3}
-  idleAnimation: {fileID: -3100369314251171874, guid: 0160b92afe5b5a74a876363f68994f29, type: 3}
+  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
+  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

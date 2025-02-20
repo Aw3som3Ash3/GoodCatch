@@ -38,14 +38,7 @@ public class CombatAI : MonoBehaviour
         {
             CombatManager.Turn weakestTarget = combatManager.depths[0].TargetFirst(CombatManager.Team.player);
             int depthIndex = 0;
-            for (int i = 1; i < combatManager.depths.Length; i++)
-            {
-                if (combatManager.depths[i].TargetFirst(CombatManager.Team.player)?.Health < weakestTarget?.Health || weakestTarget == null)
-                {
-                    weakestTarget = combatManager.depths[i].TargetFirst(CombatManager.Team.player);
-                    depthIndex = i;
-                }
-            }
+            
             int abilityIndex = 0;
             int tryCount=0;
             do
@@ -60,6 +53,30 @@ public class CombatAI : MonoBehaviour
 
 
             } while (!currentTurn.AbilityUsable(abilityIndex));
+
+
+            if(currentTurn.fish.GetAbility(abilityIndex).TargetedTeam == Ability.TargetTeam.self)
+            {
+                depthIndex=currentTurn.depthIndex;
+            }
+            else
+            {
+                for (int i = 1; i < combatManager.depths.Length; i++)
+                {
+                    if (currentTurn.fish.GetAbility(abilityIndex).TargetedTeam == Ability.TargetTeam.enemy && combatManager.depths[i].TargetFirst(CombatManager.Team.player)?.Health < weakestTarget?.Health || weakestTarget == null)
+                    {
+                        weakestTarget = combatManager.depths[i].TargetFirst(CombatManager.Team.player);
+                        depthIndex = i;
+                    }
+                    else if (currentTurn.fish.GetAbility(abilityIndex).TargetedTeam == Ability.TargetTeam.friendly && (combatManager.depths[i].TargetFirst(CombatManager.Team.enemy)?.Health < weakestTarget?.Health || weakestTarget == null))
+                    {
+                        weakestTarget = combatManager.depths[i].TargetFirst(CombatManager.Team.enemy);
+                        depthIndex = i;
+
+                    }
+                }
+            }
+            
 
             if (currentTurn.AbilityUsable(abilityIndex))
             {

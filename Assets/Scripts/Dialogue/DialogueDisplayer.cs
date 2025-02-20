@@ -46,7 +46,7 @@ public class DialogueDisplayer : MonoBehaviour
             UnityEngine.Cursor.visible = false;
             InputManager.EnablePlayer();
             inputs.UI.NextDialogue.Disable();
-            
+            rootVisualElement.Q("Yes").Focus();
             inputs.Dispose();
             IsActive = false;
         };

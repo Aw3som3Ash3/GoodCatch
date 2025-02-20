@@ -32,6 +32,10 @@ public class CombatVictory : VisualElement
         visualTreeAsset.CloneTree(root);
         this.style.position = Position.Absolute;
         this.StretchToParentSize();
+        if (playerFishes == null)
+        {
+            return;
+        }
         //setting up the player fishes side
         for(int i = 0; i < 7; i++)
         {

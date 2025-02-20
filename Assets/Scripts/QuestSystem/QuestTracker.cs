@@ -73,6 +73,10 @@ public class QuestTracker : MonoBehaviour,ISaveable
     }
     public void AddQuest(Quest quest,bool makeCurrent=false)
     {
+        if(activeQuests.Select(x=>x.Quest).ToList().Contains(quest)|| completedQuests.Select(x => x.Quest).ToList().Contains(quest))
+        {
+            return;
+        }
         var newQuest = quest.GenerateQuest();
         //newQuest.Progressed += (state,requirement) => OnQuestUpdate(newQuest);
         activeQuests.Add(newQuest);
@@ -181,7 +185,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
         foreach( var _quest in activeQuests)
         {
             Debug.Log(_quest);
-            if(quest==_quest.Quest &&quest.States.First(x=> { Debug.Log(x.Name+" vs"+ name); return x.Name.Equals(name); }) == _quest.CurrentState)
+            if(quest==_quest.Quest &&quest.States.First(x=> { Debug.Log(x.Name+" vs"+ name); return x.Name.Equals(name); }).Name.Equals(name))
             {
                 Debug.Log("has quest state");
                 return true;
