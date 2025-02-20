@@ -207,7 +207,9 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             gameData.currentInnId = Inn.StarterInn.innId;
         }
+       
         lastInnVisited.Respawn();
+        Debug.Log("player has died");
         AdvanceTime(3);
         RestoreFish();
     }
