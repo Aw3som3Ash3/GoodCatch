@@ -461,8 +461,8 @@ public class FishMonster
     }
     public void Restore(float health = 0, float stamina = 0)
     {
-        this.health += health;
-        this.stamina += stamina;
+        this.health =Mathf.Clamp(this.health+health,0,MaxHealth);
+        this.stamina = Mathf.Clamp(this.stamina+stamina, 0, maxStamina);
         ValueChanged?.Invoke();
     }
     float DamageModifier(Element elementType)
