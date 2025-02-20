@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour,ISaveable
     
     public void ResetLastInn()
     {
-        gameData.hasSeenFish = null;
+        gameData.currentInnId = null;
     }
     public void PlayerLost()
     {
