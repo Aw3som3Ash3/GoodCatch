@@ -35,7 +35,11 @@ public class Inn : MonoBehaviour, IInteractable
 
     void Awake()
     {
-        innIds.Add(innId,this);
+        if (!innIds.ContainsKey(innId))
+        {
+            innIds.Add(innId, this);
+        }
+       
         dialogue=FindObjectOfType<InnDialogue>(true);
         if (isStartInn)
         {
