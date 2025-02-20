@@ -35,21 +35,27 @@ public class Inn : MonoBehaviour, IInteractable
 
     void Awake()
     {
-        if (!innIds.ContainsKey(innId))
-        {
-            innIds.Add(innId, this);
-        }
-        dialogue=FindObjectOfType<InnDialogue>(true);
+       
+        dialogue =FindObjectOfType<InnDialogue>(true);
         if (isStartInn)
         {
             StarterInn = this;
+            Debug.Log($"{this} is the new starter inn {StarterInn}");
             //GameManager.Instance.ga = this;
             
         }
+        if (innIds == null)
+        {
+            innIds = new Dictionary<string, Inn>();
+        }
+        innIds[innId] = this;
         debugTeleport.performed += TeleportDebug;
         debugTeleport.Enable();
     }
-
+    public static void RemoveInnFromDictionary(string innId)
+    {
+        innIds.Remove(innId);
+    }
     public void Respawn()
     {
         if (dockingZone != null)
@@ -57,6 +63,7 @@ public class Inn : MonoBehaviour, IInteractable
             dockingZone.ResetShip();
         }
         Debug.Log(PlayerController.player);
+        Debug.Log(innId);
         Debug.Log(respawnPoint.position);
         PlayerController.player.SetPosition(respawnPoint.position);
     }

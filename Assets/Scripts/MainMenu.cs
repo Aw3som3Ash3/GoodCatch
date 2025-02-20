@@ -120,8 +120,9 @@ public class MainMenu : MonoBehaviour
     {
         if (arg0.name == "Main Scene")
         {
-            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);  GameManager.Instance.ResetLastInn(); } ;
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            
         }
     }
     private void OnSceneLoaded(AsyncOperation operation)

@@ -829,7 +829,7 @@ public class CombatManager : MonoBehaviour
             this.combatManager = combatManager;
             currentDepth = startingDepth;
             combatManager.CompletedAllActions += ActionsCompleted;
-            fish.HasFeinted =()=> { HasFeinted?.Invoke(); if (IsCurrentTurn) { EndTurn(); } Debug.Log("fish has feinted"); };
+            fish.HasFeinted =()=> { TurnEnded?.Invoke(); HasFeinted?.Invoke();Debug.Log("fish has feinted"); };
             //stamina = maxStamina;
         }
 
