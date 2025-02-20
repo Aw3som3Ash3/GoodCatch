@@ -20,6 +20,17 @@ public class MudskipperTutorial : NPC
     [SerializeField]
     Quest postTutorialQuest;
 
+    [Serializable]
+    struct TutorialItems
+    {
+        [SerializeField]
+        public Item item;
+        [SerializeField]
+        public int amount;
+    }
+    [SerializeField]
+    List<TutorialItems> items;
+
     void Awake()
     {
         if (finishedTutorial != null)
@@ -42,7 +53,10 @@ public class MudskipperTutorial : NPC
     void SkippedTutorial()
     {
         //GameManager.Instance.
-
+        foreach(TutorialItems item in items)
+        {
+            GameManager.Instance.PlayerInventory.AddItem(item.item, item.amount);
+        }
         FinishedTutorial_Event();
     }
     private void FinishedTutorial_Event()

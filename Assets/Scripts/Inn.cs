@@ -44,7 +44,11 @@ public class Inn : MonoBehaviour, IInteractable
 
     public void Respawn()
     {
-        dockingZone.ResetShip();
+        if (dockingZone != null)
+        {
+            dockingZone.ResetShip();
+        }
+      
         PlayerController.player.SetPosition(respawnPoint.position);
     }
     public bool Interact()
