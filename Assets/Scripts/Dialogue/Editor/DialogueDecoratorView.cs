@@ -69,7 +69,11 @@ public class DialogueEventNodeView : DialogueDecoratorView
 {
     public DialogueEventNodeView(DialogueDecorator dialogueDecorator) : base(dialogueDecorator)
     {
-        
+        if((dialogueDecorator as DialogueEventDecorator).dialogueEvent == null)
+        {
+            this.parent.Remove(this);
+            
+        }
         Label label = new Label((dialogueDecorator as DialogueEventDecorator).dialogueEvent.name);
         contents.Add(label);
         

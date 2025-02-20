@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c963494cf0a2f459443dfc8ab404fb, type: 3}
+  m_Name: CactradonDwindler
+  m_EditorClassIdentifier: 
+  type: 0
+  description: "Catch a Cactradon! These prickly losers are \neverywhere around night
+    time in the oasis!\nSee if you can dwindle there numbers down."
+  states:
+  - name: Cactradon Hunt
+    description: 
+    requirements:
+    - rid: 6374090361146703872
+  references:
+    version: 2
+    RefIds:
+    - rid: 6374090361146703872
+      type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: CatchNumOfSpecificFishRequirement
+        IsCompleted: 0
+        targetOfFish: 3
+        currentAmount: 0
+        fishMonsterType: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}

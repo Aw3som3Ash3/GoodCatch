@@ -457,9 +457,10 @@ public class CombatUI : VisualElement
             }
 
         }
-        foreach (var item in itemBar.Children())
+        foreach (CombatItemUI item in itemBar.Children())
         {
-            item.SetEnabled(currentTurn.ActionLeft);
+            
+            item.SetEnabled(currentTurn.ItemUsable(item.item));
         }
         endTurnButton.SetEnabled(true);
         if (currentTurn.ActionLeft)
@@ -607,7 +608,20 @@ public class CombatUI : VisualElement
     }
     void UseItem(Item item)
     {
-        currentTurn.UseItem(item,()=>FocusOn());
+        currentTurn.UseItem(item,(b)=> 
+        { 
+            if (b) 
+            {
+                EnableButtons();
+                endTurnButton.Focus();
+            }
+            else
+            {
+                FocusOn();
+            }
+            
+           
+        });
     }
     private void AddEffect(StatusEffect.StatusEffectInstance instance)
     {

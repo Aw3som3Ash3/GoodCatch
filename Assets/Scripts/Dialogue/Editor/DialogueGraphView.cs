@@ -344,6 +344,11 @@ public class DialogueGraphView : GraphView,IEdgeConnectorListener
         }
         else if (decorator is DialogueEventDecorator)
         {
+            if((decorator as DialogueEventDecorator).dialogueEvent == null)
+            {
+                dialogueTree.DeleteDecorator(decorator);
+                return;
+            }
             decoratorView = new DialogueEventNodeView(decorator);
         } 
         else if(decorator is CompleteArbritaryQuestDecorator)

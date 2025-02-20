@@ -182,6 +182,7 @@ public class CombatManager : MonoBehaviour
     }
     void UseItem(Item item,Action completedCallback,Action canceledCallback)
     {
+        
         if(item is CombatHook)
         {
             combatVisualizer.SelectFish(Team.enemy,(t) => 
@@ -929,9 +930,23 @@ public class CombatManager : MonoBehaviour
                 && fish.GetAbility(abilityIndex).TargetableDepths.HasFlag(depth)
                 && !(fish.GetAbility(abilityIndex).ignoreSelf && currentDepth.TargetFirst(team)==this &&currentDepth.depth==depth);
         }
-        public void UseItem(Item item,Action callback)
+
+        public bool ItemUsable(Item item)
         {
-            combatManager.UseItem(item, () => UseAction(), () => callback?.Invoke()); ;
+            if(item is CombatHook&&rewardFish==false)
+            {
+                return false;
+            }
+
+            return ActionLeft && GameManager.Instance.PlayerInventory.Contains(item);
+        }
+        public void UseItem(Item item,Action<bool> callback)
+        {
+            if (!ActionLeft)
+            {
+                return;
+            }
+            combatManager.UseItem(item, () => { UseAction(); callback?.Invoke(true); }, () => {callback?.Invoke(false);});
             
                     
         }
