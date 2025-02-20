@@ -81,7 +81,8 @@ public class DialogueTreeEditor : EditorWindow
             graphView.Setup(dialogueTree);
             graphView.OnEdited += () => hasUnsavedChanges = true;
             inspector = new DialogueInspector(dialogueTree);
-            inspector.OnEdited += () => hasUnsavedChanges = true;
+            inspector.OnEdited += () =>hasUnsavedChanges = true;
+            inspector.OnEventRemoved += GenerateGraph;
             rightPane.Add(graphView);
             leftPane.Add(inspector);
             
@@ -152,6 +153,7 @@ public class DialogueInspector : InspectorElement
     Dialogue dialogue;
     ListView list;
     public event Action OnEdited;
+    public event Action OnEventRemoved;
 
     public  DialogueInspector(Dialogue dialogue)
     {
@@ -177,7 +179,8 @@ public class DialogueInspector : InspectorElement
 
     private void EventDeleted(DialogueEvent @event)
     {
-        dialogue.Events.Remove(@event);
+        dialogue.RemoveEvent(@event);
+        OnEventRemoved?.Invoke();
         OnEdited?.Invoke();
         list.Rebuild();
     }
@@ -205,7 +208,6 @@ public class DialogueInspector : InspectorElement
             style.alignContent = Align.Stretch;
             Add(title);
             delete.text = "Remove";
-            delete.clicked += () => Delete?.Invoke(dialogueEvent);
             title.style.flexGrow = 1;
             
             Add(delete);
