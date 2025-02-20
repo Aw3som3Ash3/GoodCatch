@@ -19,6 +19,8 @@ public class MudskipperTutorial : NPC
     DialogueEvent healFish;
     [SerializeField]
     Quest postTutorialQuest;
+    [SerializeField]
+    FishMonsterType mudskipper,pyrishForSKippingQuest;
 
     [Serializable]
     struct TutorialItems
@@ -57,17 +59,18 @@ public class MudskipperTutorial : NPC
         {
             GameManager.Instance.PlayerInventory.AddItem(item.item, item.amount);
         }
+        GameManager.Instance.CapturedFish(pyrishForSKippingQuest);
+        QuestTracker.Instance.ForceCompleteQuest(QuestTracker.Instance.currentQuest.Quest);
         FinishedTutorial_Event();
     }
     private void FinishedTutorial_Event()
     {
-       
 
 
+        GameManager.Instance.PlayerFishventory.RemoveFishOfType(mudskipper);
         if (postTutorialQuest != null)
         {
-            QuestTracker.Instance.ForceCompleteQuest(QuestTracker.Instance.currentQuest.Quest);
-
+           
             QuestTracker.Instance.AddQuest(postTutorialQuest, true);
 
         }
