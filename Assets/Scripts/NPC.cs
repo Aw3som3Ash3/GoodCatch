@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour, IInteractable
             if (QuestTracker.Instance.IsQuestStateActive(questBasedDialogue.quest, questBasedDialogue.stateName))
             {
                 DialogueDisplayer.Instance.NewDialogue(questBasedDialogue.dialogue);
-                break;
+                return true;
             }
         }
         DialogueDisplayer.Instance.NewDialogue(baseDialogue, () => OnFinishedTalking());
