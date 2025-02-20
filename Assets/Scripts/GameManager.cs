@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
-        CapturedFish(fishMonsterType.GenerateMonster(),true);
+        CapturedFish(fishMonsterType.GenerateMonster(5),true);
         
     }
     public void CapturedFish(FishMonster fishMonster,bool ignoreQuest=false)

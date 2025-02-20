@@ -25,14 +25,8 @@ public class InputHudTip : VisualElement
             base.Init(ve, bag, cc);
             var ate = ve as InputHudTip;
             ate.inputName = m_inputName.GetValueFromBag(bag, cc);
-            if (GameManager.Instance != null)
-            {
-                ate.ChangeIcon(InputManager.inputMethod);
-            }
-            else
-            {
-                ate.ChangeIcon();
-            }
+            ate.ChangeIcon(InputManager.inputMethod);
+            
 
         }
     }
@@ -54,20 +48,9 @@ public class InputHudTip : VisualElement
     }
     public void Init()
     {
-        if (GameManager.Instance != null)
-        {
-            ChangeIcon(InputManager.inputMethod);
-        }
-        else
-        {
-            ChangeIcon();
-        }
+        ChangeIcon(InputManager.inputMethod);
+        InputManager.OnInputChange += ChangeIcon;
 
-        if (GameManager.Instance != null)
-        {
-            InputManager.OnInputChange += ChangeIcon;
-            Debug.Log("subscribed to input chnage");
-        }
     }
     void ChangeIcon(InputMethod inputMethod = InputMethod.mouseAndKeyboard)
     {
