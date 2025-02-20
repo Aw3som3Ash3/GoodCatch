@@ -56,7 +56,8 @@ public class Inn : MonoBehaviour, IInteractable
         {
             dockingZone.ResetShip();
         }
-      
+        Debug.Log(PlayerController.player);
+        Debug.Log(respawnPoint.position);
         PlayerController.player.SetPosition(respawnPoint.position);
     }
     public bool Interact()
