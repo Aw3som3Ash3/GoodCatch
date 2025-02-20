@@ -39,7 +39,6 @@ public class Inn : MonoBehaviour, IInteractable
         {
             innIds.Add(innId, this);
         }
-       
         dialogue=FindObjectOfType<InnDialogue>(true);
         if (isStartInn)
         {
