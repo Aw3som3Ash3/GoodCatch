@@ -10,13 +10,15 @@ public class Inn : MonoBehaviour, IInteractable
 {
     public string StationName => "Inn";
     [SerializeField]
+    public string innId;
+    [SerializeField]
     Transform respawnPoint;
     public static Action<Inn> InnVisited;
     public static Inn StarterInn;
     public InnDialogue dialogue;
     [SerializeField]
     DockingZone dockingZone;
-
+    public static Dictionary<string, Inn> innIds = new();
 
     [SerializeField]
     InputAction debugTeleport;
@@ -33,10 +35,13 @@ public class Inn : MonoBehaviour, IInteractable
 
     void Awake()
     {
+        innIds.Add(innId,this);
         dialogue=FindObjectOfType<InnDialogue>(true);
         if (isStartInn)
         {
             StarterInn = this;
+            //GameManager.Instance.ga = this;
+            
         }
         debugTeleport.performed += TeleportDebug;
         debugTeleport.Enable();
