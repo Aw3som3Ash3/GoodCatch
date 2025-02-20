@@ -181,7 +181,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
         foreach( var _quest in activeQuests)
         {
             Debug.Log(_quest);
-            if(quest==_quest.Quest &&quest.States.First(x=> { Debug.Log(x.Name+" vs"+ name); return x.Name.Equals(name); }) == _quest.CurrentState)
+            if(quest==_quest.Quest &&quest.States.First(x=> { Debug.Log(x.Name+" vs"+ name); return x.Name.Equals(name); }).Name.Equals(name))
             {
                 Debug.Log("has quest state");
                 return true;
