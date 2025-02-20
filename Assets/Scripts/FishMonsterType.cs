@@ -465,7 +465,7 @@ public class FishMonster
     }
     float DamageModifier(Element elementType)
     {
-        if (elementType == null)
+        if (elementType == null||type.Elements.Length<=0)
         {
             return 1;
         }
