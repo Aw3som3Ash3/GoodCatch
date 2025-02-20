@@ -73,6 +73,10 @@ public class QuestTracker : MonoBehaviour,ISaveable
     }
     public void AddQuest(Quest quest,bool makeCurrent=false)
     {
+        if(activeQuests.Select(x=>x.Quest).ToList().Contains(quest)|| completedQuests.Select(x => x.Quest).ToList().Contains(quest))
+        {
+            return;
+        }
         var newQuest = quest.GenerateQuest();
         //newQuest.Progressed += (state,requirement) => OnQuestUpdate(newQuest);
         activeQuests.Add(newQuest);
