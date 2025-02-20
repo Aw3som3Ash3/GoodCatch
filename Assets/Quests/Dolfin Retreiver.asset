@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c963494cf0a2f459443dfc8ab404fb, type: 3}
   m_Name: Dolfin Retreiver
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   description: 'Capture dolfins
 
 '
