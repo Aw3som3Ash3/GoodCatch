@@ -450,12 +450,14 @@ public class FishMonster
         return damageTaken;
     }
 
-    public void CheckDeath()
+    public bool CheckDeath()
     {
         if (Health <= 0)
         {
             Feint();
+            return true;
         }
+        return false;
     }
     public void Restore(float health = 0, float stamina = 0)
     {
