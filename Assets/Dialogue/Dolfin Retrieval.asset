@@ -44,4 +44,4 @@ MonoBehaviour:
       data:
         position: {x: 497, y: 168}
         guid: a5efc03a348bde14fb799a7fc448024e
-        quest: {fileID: 0}
+        quest: {fileID: 11400000, guid: 8bb4f37a16e0b2d458ca685d12a65ea8, type: 2}
