@@ -144,6 +144,107 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         
         return proctBonus;
     }
+    public bool UseAbility(CombatManager.Turn user, CombatManager.CombatDepth targetDepth)
+    {
+        if (targetDepth == null)
+        {
+            return false;
+        }
+        CombatManager.Team targetedTeam=0;
+        if (user.team == CombatManager.Team.player)
+        {
+            if (targetTeam == TargetTeam.enemy)
+            {
+                targetedTeam=CombatManager.Team.enemy;
+            }
+            else
+            {
+                targetedTeam = CombatManager.Team.player;
+            }
+
+        }else if (user.team == CombatManager.Team.enemy)
+        {
+            if (targetTeam == TargetTeam.enemy)
+            {
+                targetedTeam = CombatManager.Team.player;
+            }
+            else
+            {
+                targetedTeam = CombatManager.Team.enemy;
+            }
+
+        }
+        var targets = targetDepth.TargetSide(targetedTeam);
+
+        if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - (targetTeam == TargetTeam.enemy ? targets[0].dodge : 0)) * 0.01) < accuracy)
+        {
+            float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+            
+            if(targetTeam == TargetTeam.enemy)
+            {
+                float propigatedDamage = baseDamage + damageMod;
+                for (int i = 0; i < targets.Count; i++)
+                {
+
+                    if (targets[i].effects.Count > 0)
+                    {
+                        foreach (var effectInstance in targets[i].effects.Where((x) => x is DefensiveEffect.DefensiveEffectInstance))
+                        {
+                            propigatedDamage = (effectInstance as DefensiveEffect.DefensiveEffectInstance).MitigateDamage(propigatedDamage, element, abilityType, effectInstance);
+                        }
+                    }
+                    if (!piercing)
+                    {
+                        propigatedDamage = targets[i].TakeDamage(propigatedDamage, element, abilityType) / 2;
+                    }
+                    else
+                    {
+                        targets[i].TakeDamage(propigatedDamage, element, abilityType);
+                    }
+
+                    foreach (var effect in targets[i].effects.Where((x) => x.effect is ThornEffect))
+                    {
+                        (effect.effect as ThornEffect).ReflectDamage(user);
+                    }
+
+                    ProctEffectHostile(user, targets[i],Mathf.Pow(0.5f,i));
+                    if (ForcedMovement != 0)
+                    {
+                        targets[i].ForcedMove(ForcedMovement);
+                    }
+                }
+               
+            }
+            else if (targetTeam == TargetTeam.friendly)
+            {
+
+                if (baseDamage < 0)
+                {
+                    targets[0].fish.Restore(-baseDamage + damageMod);
+                    
+                }else if (baseDamage > 0)
+                {
+                    targets[0].TakeDamage(baseDamage + damageMod, element, abilityType);
+                }
+                ProctEffectFriendly(user, targets[0]);
+                if (ForcedMovement != 0)
+                {
+                    targets[0].ForcedMove(ForcedMovement);
+                }
+            }
+           
+
+            return true;
+        }
+        else
+        {
+            Debug.Log("missed target");
+            return false;
+        }
+
+        
+
+    }
     public bool UseAbility(CombatManager.Turn user, CombatManager.Turn target, out bool hit, out float damageDone)
     {
         if (target == null)
@@ -194,7 +295,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
             if (targetTeam == TargetTeam.enemy)
             {
-                ProctEffectHostile(user, target);
+                ProctEffectHostile(user, target,1);
             }
             else if (targetTeam == TargetTeam.friendly)
             {
@@ -215,13 +316,13 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         return true;
     }
 
-    void ProctEffectHostile(CombatManager.Turn user, CombatManager.Turn target)
+    void ProctEffectHostile(CombatManager.Turn user, CombatManager.Turn target,float muliplier)
     {
         foreach (var effect in effects)
         {
             float proctBonus = (user.special / 5f) * 0.01f ;
             float targetDef = (target.special / 5f) * 0.01f ;
-            if (UnityEngine.Random.Range(0, 1f)  < (effect.Chance + proctBonus) *(target.HadEffectLastTurn(effect.Effect)? 0.15f:1)- targetDef)
+            if (UnityEngine.Random.Range(0, 1f)  < (effect.Chance + proctBonus) *(target.HadEffectLastTurn(effect.Effect)? 0.15f:1)* muliplier - targetDef)
             {
 
                 target.AddEffects(effect.Effect,user);
