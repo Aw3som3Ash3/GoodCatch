@@ -1,0 +1,16 @@
+.PlayerColor {
+    background-color: rgb(77, 122, 229);
+}
+
+.TargetEnemy {
+    background-color: rgb(255, 0, 0);
+}
+
+.TargetTeam {
+}
+
+.UsableDepth {
+}
+
+.TargetableDepth {
+}

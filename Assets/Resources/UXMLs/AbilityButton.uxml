@@ -1,8 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 1; justify-content: space-between; align-items: stretch;">
-        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" style="max-width: none; min-width: auto; align-self: auto; align-items: center; flex-grow: 1; flex-shrink: 1; height: 100%;" />
-        <ui:VisualElement name="tooltip" tabindex="0" focusable="false" style="flex-grow: 1; position: absolute; height: auto; top: auto; width: auto; bottom: 130%; transform-origin: bottom; translate: 0 0; max-height: none; left: auto; right: auto; min-width: 300px; max-width: 450px; align-self: center; background-color: rgba(90, 90, 90, 0.91); flex-wrap: wrap; flex-direction: column; justify-content: space-between; align-items: center;">
-            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="tooltipAbilityName" text="ABILITY NAME" style="align-items: center; border-bottom-color: rgb(0, 0, 0); border-bottom-width: 3px; flex-grow: 1; -unity-text-align: upper-center; align-self: stretch; margin-right: 0; margin-left: 0;" />
+    <Style src="project://database/Assets/UI%20Assets/AbilityButton.uss?fileID=7433441132597879392&amp;guid=4e9401c04481e7f45b9d4381453839c1&amp;type=3#AbilityButton" />
+    <ui:VisualElement name="ButtonWorkspace" style="flex-grow: 0; align-items: center; width: 80px; height: 80px; align-self: center; flex-direction: column; flex-shrink: 0;">
+        <ui:VisualElement name="TabContainer" style="flex-grow: 1; position: absolute; left: 0; top: 0; right: 0; bottom: 0; flex-direction: row;">
+            <ui:VisualElement name="LeftColumn" style="flex-grow: 0; justify-content: space-between; align-items: flex-start; flex-shrink: 0; position: relative; height: 79px;">
+                <ui:VisualElement name="Tab1" class="PlayerColor" style="flex-grow: 0; flex-shrink: 0; width: 40px; height: 20px; left: -10px;" />
+                <ui:VisualElement name="Tab1" class="PlayerColor" style="flex-grow: 0; flex-shrink: 0; width: 40px; height: 20px; left: -10px;" />
+                <ui:VisualElement name="Tab1" class="PlayerColor" style="flex-grow: 0; flex-shrink: 0; width: 40px; height: 20px; left: -10px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="RightColumn" style="flex-grow: 0; justify-content: space-between; align-items: flex-start; flex-shrink: 0; position: relative; height: 79px;">
+                <ui:VisualElement name="Tab1" class="TargetEnemy" style="flex-grow: 0; flex-shrink: 0; width: 40px; height: 20px; left: 10px;" />
+                <ui:VisualElement name="Tab1" class="TargetEnemy" style="flex-grow: 0; flex-shrink: 0; width: 40px; height: 20px; left: 10px;" />
+                <ui:VisualElement name="Tab1" class="TargetEnemy" style="flex-grow: 0; flex-shrink: 0; width: 40px; height: 20px; left: 10px;" />
+            </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="Button" style="flex-grow: 0; justify-content: flex-start; align-items: auto; flex-shrink: 0; background-color: rgb(255, 255, 255); flex-direction: row; position: absolute; left: 0; top: 0; right: 0; bottom: 0;" />
     </ui:VisualElement>
 </ui:UXML>
