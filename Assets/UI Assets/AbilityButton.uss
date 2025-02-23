@@ -1,16 +1,68 @@
 .PlayerColor {
-    background-color: rgb(77, 122, 229);
+    background-color: rgb(50, 50, 50);
 }
 
-.TargetEnemy {
-    background-color: rgb(255, 0, 0);
-}
-
-.TargetTeam {
+.PlayerColor.UsableDepth {
+    background-color: rgb(0, 181, 220);
 }
 
 .UsableDepth {
+    translate: -10px 0;
+}
+
+.TargetEnemy.TargetableDepth {
+    background-color: rgb(255, 0, 0);
 }
 
 .TargetableDepth {
+    translate: 10px 0;
+}
+
+.TargetEnemy {
+    background-color: rgb(50, 50, 50);
+}
+
+.NotTargetable {
+    background-color: rgb(104, 104, 104);
+}
+
+.TargetableDepth {
+}
+
+.TargetTeam {
+    background-color: rgb(50, 50, 50);
+}
+
+.TargetTeam.TargetableDepth {
+    background-color: rgb(12, 255, 0);
+}
+
+#Button:hover #LeftColumn > VisualElement {
+    left: auto;
+    transition-delay: 0s;
+    transition-duration: 0.25s;
+    translate: -35px 0;
+}
+
+#Button:hover #RightColumn > VisualElement {
+    left: auto;
+    transition-duration: 0.25s;
+    transition-property: all;
+    transition-timing-function: ease;
+    translate: 35px 0;
+    transition-delay: 0s;
+}
+
+#Button #LeftColumn > VisualElement {
+    left: auto;
+    transition-delay: 0s;
+    transition-duration: 0.25s;
+}
+
+#Button #RightColumn > VisualElement {
+    left: auto;
+    transition-duration: 0.25s;
+    transition-property: all;
+    transition-timing-function: ease;
+    transition-delay: 0s;
 }

@@ -14,7 +14,7 @@ public class CombatUI : VisualElement
     CombatTabs tabbedView;
     PlayerTurn currentTurn;
     Button moveButton,endTurnButton,runButton;
-    AbilityButton[] abilityButtons=new AbilityButton[4];
+    AbilityButton[] abilityButtons=new AbilityButton[3];
     ProgressBar healthBar, staminaBar;
     VisualElement turnMarker;
     VisualElement turnList;
