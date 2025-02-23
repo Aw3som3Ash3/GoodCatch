@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour,ISaveable
         {
             CapturedFish(fish);
         }
-        PlayerFishventory.Fishies[0].ChangeName("SteveO");
+        //PlayerFishventory.Fishies[0].ChangeName("SteveO");
 
         sun = FindObjectOfType<Light>().gameObject;
         for(int i=0;i<startingItems.Length;i++)
@@ -432,4 +432,10 @@ public class GameManager : MonoBehaviour,ISaveable
     {
         gameData = JsonUtility.FromJson<GameData>(json);
     }
+
+    private void OnDestroy()
+    {
+        
+    }
+    
 }

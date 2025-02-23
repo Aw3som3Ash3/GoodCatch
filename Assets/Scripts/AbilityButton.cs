@@ -153,7 +153,7 @@ public class AbilityButton : Button
 
             if (ability.TargetableDepths.HasFlag((Depth)(1 << i)))
             {
-                rightTabs[0].AddToClassList(TARGETABLE_DEPTH_TAB_CLASS);
+                rightTabs[i].AddToClassList(TARGETABLE_DEPTH_TAB_CLASS);
             }
             else
             {
