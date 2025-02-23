@@ -74,7 +74,7 @@ public class MudskipperTutorial : NPC
             QuestTracker.Instance.AddQuest(postTutorialQuest, true);
 
         }
-        GameManager.Instance.ResetLastInn();
+        
         LoadMainScene();
     }
 
@@ -87,6 +87,9 @@ public class MudskipperTutorial : NPC
 
     void LoadMainScene()
     {
-        SceneManager.LoadScene("Main Scene");
+        
+        SceneManager.LoadSceneAsync("Main Scene").completed+=(opertaion)=> { FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { Inn.RemoveInnFromDictionary(Inn.StarterInn.innId); GameManager.Instance.ResetLastInn(); }; };
     }
+
+    
 }

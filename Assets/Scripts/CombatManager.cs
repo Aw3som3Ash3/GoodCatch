@@ -391,7 +391,7 @@ public class CombatManager : MonoBehaviour
         {
             foreach(FishMonster enemy in enemyFishes)
             {
-                fish.AddXp((enemy.Level / fish.Level)*100);
+                fish.AddXp(((float)enemy.Level / fish.Level)*100);
             }
             
         }
@@ -829,7 +829,7 @@ public class CombatManager : MonoBehaviour
             this.combatManager = combatManager;
             currentDepth = startingDepth;
             combatManager.CompletedAllActions += ActionsCompleted;
-            fish.HasFeinted =()=> { HasFeinted?.Invoke(); Debug.Log("fish has feinted"); };
+            fish.HasFeinted =()=> { TurnEnded?.Invoke(); HasFeinted?.Invoke();Debug.Log("fish has feinted"); };
             //stamina = maxStamina;
         }
 
@@ -863,15 +863,16 @@ public class CombatManager : MonoBehaviour
             
            
             actionsLeft = actionsPerTurn;
+           
+            
+            combatManager.combatUI.NewTurn(this, team == Team.player);
             TickEffects(StatusEffect.EffectUsage.preTurn);
             if (combatManager.CanFightEnd())
             {
-                EndTurn();
+                //EndTurn();
                 return;
             }
-            combatManager.combatUI.NewTurn(this, team == Team.player);
-            
-            
+
             //NewTurn?.Invoke(this, team == Team.player);
 
 

@@ -153,71 +153,62 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             
             return false;
         }
-        if (baseDamage < 0)
+        if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - (targetTeam == TargetTeam.enemy ? target.dodge : 0)) * 0.01) < accuracy)
         {
-            target.fish.Restore(health: -baseDamage);
-            damageDone = baseDamage;
-            
+            Debug.Log("attacking: " + target);
+            float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+
+
+
+            if (baseDamage > 0)
+            {
+                float outgoingDamage = baseDamage + damageMod;
+                if (target.effects.Count > 0)
+                {
+                    foreach (var effectInstance in target.effects.Where((x) => x is DefensiveEffect.DefensiveEffectInstance))
+                    {
+                        outgoingDamage = (effectInstance as DefensiveEffect.DefensiveEffectInstance).MitigateDamage(outgoingDamage, element, abilityType, effectInstance);
+                    }
+                }
+                //Element.Effectiveness effectivenss;
+
+                damageDone = target.TakeDamage(outgoingDamage, element, abilityType);
+
+                foreach (var effect in target.effects.Where((x) => x.effect is ThornEffect))
+                {
+                    (effect.effect as ThornEffect).ReflectDamage(user);
+                }
+
+            }
+            else if (baseDamage < 0)
+            {
+                target.fish.Restore(-baseDamage + damageMod);
+                damageDone = baseDamage;
+
+            }
+            else
+            {
+                damageDone = 0;
+
+            }
+
+            if (targetTeam == TargetTeam.enemy)
+            {
+                ProctEffectHostile(user, target);
+            }
+            else if (targetTeam == TargetTeam.friendly)
+            {
+                ProctEffectFriendly(user, target);
+            }
+
             hit = true;
         }
         else
         {
-            if (UnityEngine.Random.Range(0, 1) - ((user.accuracy -  (baseDamage >= 0 ? target.dodge:0 ) ) * 0.01) < accuracy)
-            {
-                Debug.Log("attacking: " + target);
-                float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
+            Debug.Log("missed: " + target);
+            damageDone = 0;
 
-
-
-                if (baseDamage > 0)
-                {
-                    float outgoingDamage = baseDamage + damageMod;
-                    if (target.effects.Count>0)
-                    {
-                        foreach (var effectInstance in target.effects.Where((x) => x is DefensiveEffect.DefensiveEffectInstance))
-                        {
-                            outgoingDamage = (effectInstance as DefensiveEffect.DefensiveEffectInstance).MitigateDamage(outgoingDamage, element, abilityType, effectInstance);
-                        }
-                    }
-                    //Element.Effectiveness effectivenss;
-                    
-                    damageDone = target.TakeDamage(outgoingDamage, element, abilityType);
-
-                    foreach (var effect in target.effects.Where((x) => x.effect is ThornEffect))
-                    {
-                        (effect.effect as ThornEffect).ReflectDamage(user);
-                    }
-                    
-                }
-                else if(baseDamage<0)
-                {
-                    target.fish.Restore(-baseDamage + damageMod);
-                    damageDone = baseDamage;
-                    
-                }
-                else
-                {
-                    damageDone = 0;
-                    
-                }
-
-                if (targetTeam == TargetTeam.enemy)
-                {
-                    ProctEffectHostile(user, target);
-                }else if (targetTeam == TargetTeam.friendly)
-                {
-                    ProctEffectFriendly(user, target);
-                }
-
-                hit = true;
-            }
-            else
-            {
-                Debug.Log("missed: " + target);
-                damageDone = 0;
-                
-                hit = false;
-            }
+            hit = false;
         }
 
 

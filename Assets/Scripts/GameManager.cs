@@ -199,13 +199,14 @@ public class GameManager : MonoBehaviour,ISaveable
     
     public void ResetLastInn()
     {
-        gameData.currentInnId = null;
+        gameData.currentInnId =null;
     }
     public void PlayerLost()
     {
         if(gameData.currentInnId == null|| gameData.currentInnId=="")
         {
             gameData.currentInnId = Inn.StarterInn.innId;
+            Debug.Log(Inn.StarterInn);
         }
        
         lastInnVisited.Respawn();
@@ -396,8 +397,16 @@ public class GameManager : MonoBehaviour,ISaveable
     }
     void SceneLoadedLost(Scene arg0, LoadSceneMode arg1)
     {
-        PlayerLost();
-        SceneManager.sceneLoaded -= SceneLoadedLost;
+        if(arg0.name=="Main Scene")
+        {
+            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
+            {
+                PlayerLost();
+                SceneManager.sceneLoaded -= SceneLoadedLost;
+            };
+        }
+        
+       
     }
     void SceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
