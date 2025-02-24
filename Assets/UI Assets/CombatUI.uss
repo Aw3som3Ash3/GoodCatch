@@ -15,10 +15,10 @@
     flex-grow: 1;
     height: 79%;
     transform-origin: top;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
     border-top-width: 3px;
     border-right-width: 3px;
     border-bottom-width: 3px;
@@ -28,51 +28,10 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     top: 7%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
     -unity-font-style: bold;
     font-size: 25px;
     width: 20%;
-}
-
-.Actions:hover {
-    flex-grow: 1;
-    height: 90%;
-    transform-origin: top;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-top-width: 3px;
-    border-right-width: 3px;
-    border-bottom-width: 3px;
-    border-left-width: 3px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    top: 3%;
-    background-color: rgb(255, 255, 255);
-    transition-duration: 0.1s;
-}
-
-.Actions:focus {
-    flex-grow: 1;
-    height: 90%;
-    transform-origin: center;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-top-width: 3px;
-    border-right-width: 3px;
-    border-bottom-width: 3px;
-    border-left-width: 3px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    top: 3%;
-    transition-duration: 0.1s;
 }
 
 #HealthBar .unity-progress-bar__progress {

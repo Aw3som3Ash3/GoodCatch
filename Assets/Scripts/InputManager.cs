@@ -9,19 +9,21 @@ public static class InputManager
 {
     static bool initiated;
     // Start is called before the first frame update
-    public static GoodCatchInputs Input { get; private set; } = new GoodCatchInputs();
+    public static GoodCatchInputs Input { get; private set; } = new();
     public static InputMethod inputMethod { get; private set; }
     static InputUser user;
     static public event Action<InputMethod> OnInputChange;
 
     //public static InputMethod inputMethod { get {return InputSystem. } }
-    public static void Init() 
+    public static void Init()
     {
-        if (initiated)
+        if (Input != null)
         {
-            return;
+            Input.Dispose();
         }
-        initiated = true;
+        Input = new GoodCatchInputs();
+
+        //initiated = true;
         user = InputUser.CreateUserWithoutPairedDevices();
         InputUser.listenForUnpairedDeviceActivity = 1;
         InputUser.onUnpairedDeviceUsed += OnDeviceChange;
