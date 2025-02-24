@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f39fd4c2835cb94cad2e89c37922c49, type: 3}
   m_Name: Slimed
   m_EditorClassIdentifier: 
-  duration: 0
+  duration: 3
   icon: {fileID: 0}
   effectUsage: 1
-  agility: 0
+  agility: -5
   accuracy: 0
   attack: 0
   special: 0
   fortitude: 0
-  specialFort: 0
+  specialFort: -5
   dodge: 0
