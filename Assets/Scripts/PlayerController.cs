@@ -117,7 +117,8 @@ public class PlayerController : MonoBehaviour,ISaveable
     
     bool InteractionCheck(out IInteractable interactable)
     {
-        var colliders = Physics.OverlapSphere(this.transform.position, 2, interactionLayer);
+        Collider[] colliders= new Collider[10];
+        Physics.OverlapSphereNonAlloc(this.transform.position, 2, colliders, interactionLayer);
         foreach (var collider in colliders)
         {
             interactable = collider.GetComponentInParent<IInteractable>();
