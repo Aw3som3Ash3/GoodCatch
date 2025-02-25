@@ -7,19 +7,27 @@ using UnityEngine.InputSystem.Users;
 
 public static class InputManager
 {
-    static bool initiated;
+    //static bool initiated;
     // Start is called before the first frame update
-    public static GoodCatchInputs Input { get; private set; } = new();
+    public static GoodCatchInputs Input { get; private set; }
     public static InputMethod inputMethod { get; private set; }
     static InputUser user;
     static public event Action<InputMethod> OnInputChange;
 
+
+
+
     //public static InputMethod inputMethod { get {return InputSystem. } }
+
+    [RuntimeInitializeOnLoadMethod]
     public static void Init()
     {
         if (Input != null)
         {
+            InputUser.onUnpairedDeviceUsed -= OnDeviceChange;
+            InputUser.onChange -= OnDeviceChange;
             Input.Dispose();
+            
         }
         Input = new GoodCatchInputs();
 
@@ -29,6 +37,8 @@ public static class InputManager
         InputUser.onUnpairedDeviceUsed += OnDeviceChange;
         InputUser.onChange += OnDeviceChange;
     }
+
+    
     public static void EnablePlayer()
     {
         Input.Player.Enable();
@@ -97,7 +107,7 @@ public static class InputManager
 
     }
 
-
+  
 }
 public enum InputMethod
 {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stat Multiplier Effect", menuName = "Status Effect/Stat Modifier", order = 4)]
+[CreateAssetMenu(fileName = "Stat Multiplier Effect", menuName = "Status Effect/Stat Multiplier", order = 4)]
 public class StatMultiplierStatusEffect : StatusEffect
 {
     [Range(-1.5f,1.5f)][SerializeField] float agility;
