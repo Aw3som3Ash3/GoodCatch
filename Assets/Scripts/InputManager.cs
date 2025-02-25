@@ -9,7 +9,7 @@ public static class InputManager
 {
     //static bool initiated;
     // Start is called before the first frame update
-    public static GoodCatchInputs Input { get; private set; }
+    public static GoodCatchInputs Input { get; private set; } = new();
     public static InputMethod inputMethod { get; private set; }
     static InputUser user;
     static public event Action<InputMethod> OnInputChange;
