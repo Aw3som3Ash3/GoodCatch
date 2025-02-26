@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Bubble Blast
   m_EditorClassIdentifier: 
   ignoreSelf: 0
-  abilityType: 0
-  availableDepths: 0
-  targetableDepths: 0
-  targetTeam: 0
+  abilityType: 1
+  availableDepths: -1
+  targetableDepths: -1
+  targetTeam: 1
   targetingType: 0
   piercing: 0
-  staminaUsage: 0
-  baseDamage: 0
-  accuracy: 0
+  staminaUsage: 15
+  baseDamage: 20
+  accuracy: 0.6
   damageMultiplier: 0
-  element: {fileID: 0}
+  element: {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
   effects: []
   forcedMovement: 0
   icon: {fileID: 0}

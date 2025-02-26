@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: Stunning Smile
   m_EditorClassIdentifier: 
   ignoreSelf: 0
-  abilityType: 0
-  availableDepths: 0
-  targetableDepths: 0
-  targetTeam: 0
+  abilityType: 1
+  availableDepths: 6
+  targetableDepths: -1
+  targetTeam: 1
   targetingType: 0
   piercing: 0
-  staminaUsage: 0
+  staminaUsage: 15
   baseDamage: 0
-  accuracy: 0
+  accuracy: 0.5
   damageMultiplier: 0
-  element: {fileID: 0}
-  effects: []
+  element: {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 90f851c082415d3428765fd6060807ee, type: 2}
+    effectChance: 1
   forcedMovement: 0
   icon: {fileID: 0}
   abilityVFX: {fileID: 0}
