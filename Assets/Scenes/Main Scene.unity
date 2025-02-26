@@ -4385,7 +4385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fdbe5c1f069ec49a2955351fbd490a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commands: []
+  commands:
+  - {fileID: 11400000, guid: 0ba8fee5be496384e83872a1dcb308c8, type: 2}
   document: {fileID: 1426963062}
   openConsole:
     m_Name: Open Console
