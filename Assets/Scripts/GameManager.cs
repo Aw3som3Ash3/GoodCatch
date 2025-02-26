@@ -15,9 +15,10 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.XR;
 using static CombatManager;
 
-public class GameManager : MonoBehaviour,ISaveable
+public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 {
     public static GameManager Instance;
     [SerializeField]
@@ -339,6 +340,17 @@ public class GameManager : MonoBehaviour,ISaveable
     {
         PlayerFishventory.RestoreHealthAllFish();
     }
+    [DevConsoleCommand("AddFish")]
+    static public void CaptureFishByID(string id)
+    {
+        var fish = Instance.database.fishMonsters[int.Parse(id)];
+        Instance.CapturedFish(fish);
+    }
+    [DevConsoleCommand("RemoveFish")]
+    static public void RemoveFishFromInventory(string index)
+    {
+        Instance.PlayerFishventory.RemoveFish(Instance.PlayerFishventory.Fishies[int.Parse(index)]);
+    }
     public void CapturedFish(FishMonsterType fishMonsterType)
     {
         CapturedFish(fishMonsterType.GenerateMonster(5),true);
@@ -365,15 +377,61 @@ public class GameManager : MonoBehaviour,ISaveable
        
 
     }
-    public void StartCombatByFishIds(params string[] fishIds)
+    [DevConsoleCommand("StartCombat")]
+    public static void StartCombatByFishIds(string fish1 ="-1", string fish2 = "-1", string fish3 = "-1")
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        foreach (string fishId in fishIds)
+        if (int.Parse(fish1) >= 0)
         {
-            fishMonsters.Add(database.fishMonsters[int.Parse(fishId)].GenerateMonster());
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster());
         }
-        LoadCombatScene(fishMonsters);
+        if (int.Parse(fish2) >= 0)
+        {
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster());
+        }
+        if (int.Parse(fish3) >= 0)
+        {
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish3)].GenerateMonster());
+        }
+       
+
+        Instance.LoadCombatScene(fishMonsters);
     }
+    [DevConsoleCommand("StartCombat")]
+    public static void StartCombatByFishIds(string fish1, string fish2)
+    {
+        List<FishMonster> fishMonsters = new List<FishMonster>();
+        if (int.Parse(fish1) >= 0)
+        {
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster());
+        }
+        if (int.Parse(fish2) >= 0)
+        {
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster());
+        }
+
+
+        Instance.LoadCombatScene(fishMonsters);
+    }
+    [DevConsoleCommand("StartCombat")]
+    public static void StartCombatByFishIds(string fish1)
+    {
+        List<FishMonster> fishMonsters = new List<FishMonster>();
+        fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster());
+
+
+
+        Instance.LoadCombatScene(fishMonsters);
+    }
+    //public static void StartCombatByFishIds(params string[] fishIds)
+    //{
+    //    List<FishMonster> fishMonsters = new List<FishMonster>();
+    //    foreach (string fishId in fishIds)
+    //    {
+    //        fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fishId)].GenerateMonster());
+    //    }
+    //    Instance.LoadCombatScene(fishMonsters);
+    //}
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
         SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);

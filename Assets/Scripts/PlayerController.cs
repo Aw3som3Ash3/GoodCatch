@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class PlayerController : MonoBehaviour,ISaveable
+public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
 {
    
     static public PlayerController player;
@@ -171,6 +171,14 @@ public class PlayerController : MonoBehaviour,ISaveable
         InputManager.EnablePlayer();
 
 
+    }
+    [DevConsoleCommand("TP")]
+    public static void TeleportToPosition(string x,string y, string z)
+    {
+
+        player.characterController.enabled = false;
+        player.SetPosition(new Vector3(float.Parse(x),float.Parse(y),float.Parse(z) ));
+        player.characterController.enabled = true;
     }
     // Update is called once per frame
     void Update()
