@@ -140,7 +140,6 @@ public class CombatManager : MonoBehaviour,IUseDevCommands
     public static void KillAllEnemies()
     {
         CombatManager manager=FindAnyObjectByType<CombatManager>();
-        Element.Effectiveness effectiveness;
         enemyFishes.ForEach(f => 
         {
 

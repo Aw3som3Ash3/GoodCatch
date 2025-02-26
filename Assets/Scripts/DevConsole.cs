@@ -121,7 +121,7 @@ public class DevConsole : MonoBehaviour
     {
         string[] strings = command.Split(" ");
         RunCommand(strings[0], strings.Skip(1).ToArray());
-        root.visible = false;
+        consolePanel.visible = false;
         //UnityEngine.Cursor.visible = false; 
         //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         commandField.value = null;
