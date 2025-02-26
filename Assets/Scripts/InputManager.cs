@@ -19,7 +19,7 @@ public static class InputManager
 
     //public static InputMethod inputMethod { get {return InputSystem. } }
 
-    [RuntimeInitializeOnLoadMethod]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void Init()
     {
         if (Input != null)
