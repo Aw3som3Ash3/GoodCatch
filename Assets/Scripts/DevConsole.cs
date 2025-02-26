@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 
@@ -23,6 +24,7 @@ public class DevConsole : MonoBehaviour
     UIDocument document;
     TextField commandField;
     VisualElement root,consolePanel;
+    ScrollView consoleLog;
     [SerializeField]
 
     InputAction openConsole;
@@ -82,6 +84,9 @@ public class DevConsole : MonoBehaviour
         root = document.rootVisualElement;
         consolePanel = root.Q("ConsolePanel");
         commandField =root.Q<TextField>("CommandField");
+        consoleLog = root.Q<ScrollView>("ConsoleLog");
+        
+        Application.logMessageReceived += Application_logMessageReceived;
         commandField.value = null;
 
         commandField.RegisterCallback<NavigationSubmitEvent>((evt) => DoCommand(commandField.value));
@@ -91,6 +96,33 @@ public class DevConsole : MonoBehaviour
         openConsole.Enable();
     }
 
+    private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
+    {
+        var label = new Label();
+        label.text = condition;
+        switch (type)
+        {
+            case LogType.Error:
+                label.style.color = Color.red;
+                break;
+            case LogType.Warning:
+                label.style.color = Color.yellow;
+                break;
+            case LogType.Assert:
+                break;
+            case LogType.Log:
+                label.style.color = Color.white;
+                break;
+            case LogType.Exception:
+                label.style.color = Color.red;
+                break;
+        }
+       
+        consoleLog.Add(label);
+        root.schedule.Execute(() => consoleLog.ScrollTo(label)).StartingIn(10);
+        consoleLog.verticalScroller.value = consoleLog.verticalScroller.highValue+100;
+        
+    }
     private void ToggleConsole(InputAction.CallbackContext context)
     {
        
@@ -99,14 +131,24 @@ public class DevConsole : MonoBehaviour
         {
             InputManager.DisablePlayer();
             root.schedule.Execute(() => commandField.Focus()).StartingIn(10);
+            Time.timeScale = 0;
+            UnityEngine.Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
         }
         else
         {
-            InputManager.EnablePlayer();
+            CloseConsole();
         }
        
         /*UnityEngine.Cursor.visible = true; UnityEngine.Cursor.lockState = CursorLockMode.Confined;*/ 
 
+    }
+    void CloseConsole()
+    {
+        Time.timeScale = 1;
+        InputManager.EnablePlayer();
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -120,17 +162,15 @@ public class DevConsole : MonoBehaviour
     void DoCommand(string command)
     {
         string[] strings = command.Split(" ");
+        Debug.Log(command);
         RunCommand(strings[0], strings.Skip(1).ToArray());
-        consolePanel.visible = false;
-        //UnityEngine.Cursor.visible = false; 
-        //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         commandField.value = null;
-        InputManager.EnablePlayer();
+        CloseConsole();
     }
 
     void RunCommand(string command ,string[] args)
     {
-        Debug.Log(args.Length);
+        
         if (consoleCommands.ContainsKey(command))
         {
             consoleCommands[command].Find((x)=> x.Method.GetParameters().Length-1==args.Length) ?.DynamicInvoke(args);
