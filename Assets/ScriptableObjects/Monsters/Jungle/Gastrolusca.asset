@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
-  m_Name: Ourorones
+  m_Name: Gastrolusca
   m_EditorClassIdentifier: 
   description: 
   model: {fileID: 0}
