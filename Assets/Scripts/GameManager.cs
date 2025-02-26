@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -363,6 +364,15 @@ public class GameManager : MonoBehaviour,ISaveable
         }
        
 
+    }
+    public void StartCombatByFishIds(params string[] fishIds)
+    {
+        List<FishMonster> fishMonsters = new List<FishMonster>();
+        foreach (string fishId in fishIds)
+        {
+            fishMonsters.Add(database.fishMonsters[int.Parse(fishId)].GenerateMonster());
+        }
+        LoadCombatScene(fishMonsters);
     }
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
