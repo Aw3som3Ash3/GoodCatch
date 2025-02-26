@@ -10,25 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
-  m_Name: Erosion
+  m_Name: Fight or Fright
   m_EditorClassIdentifier: 
   ignoreSelf: 0
   abilityType: 1
   availableDepths: 3
-  targetableDepths: 3
+  targetableDepths: 6
   targetTeam: 1
-  targetingType: 0
-  piercing: 0
-  staminaUsage: 15
-  baseDamage: 5
-  accuracy: 0.5
+  targetingType: 1
+  piercing: 1
+  staminaUsage: 10
+  baseDamage: 0
+  accuracy: 0.7
   damageMultiplier: 0
-  element: {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
+  element: {fileID: 11400000, guid: 861589faee089304c8b447c528048ad1, type: 2}
   effects:
-  - statusEffect: {fileID: 11400000, guid: 72bc74a1a9f600543ad2404fd38f6cb9, type: 2}
-    effectChance: 1
-  forcedMovement: 0
+  - statusEffect: {fileID: 11400000, guid: a6755699e9512ba48bf010190d2d0e2c, type: 2}
+    effectChance: 0.5
+  - statusEffect: {fileID: 11400000, guid: f82ec8165843d0847ba472d89c05b625, type: 2}
+    effectChance: 0.5
+  forcedMovement: -2
   icon: {fileID: 0}
   abilityVFX: {fileID: 0}
   targetVFX: {fileID: 0}
-  abilityID: 84a59c69-7749-40ad-bdfd-f878dd9f8e58
+  abilityID: 9a05d72f-52cd-4bc1-a4f4-aba41f6f271e

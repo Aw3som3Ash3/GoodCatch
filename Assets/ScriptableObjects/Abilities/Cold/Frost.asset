@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreSelf: 0
   abilityType: 0
-  availableDepths: 0
-  targetableDepths: 0
+  availableDepths: -1
+  targetableDepths: -1
   targetTeam: 0
   targetingType: 0
   piercing: 0
-  staminaUsage: 0
-  baseDamage: 0
-  accuracy: 0
+  staminaUsage: 15
+  baseDamage: 15
+  accuracy: 0.9
   damageMultiplier: 0
-  element: {fileID: 0}
+  element: {fileID: 11400000, guid: 995284df01056f249b16f9aa1d66683e, type: 2}
   effects: []
   forcedMovement: 0
   icon: {fileID: 0}
