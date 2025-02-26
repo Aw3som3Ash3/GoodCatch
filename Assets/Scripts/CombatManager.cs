@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 using static CombatManager;
 
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : MonoBehaviour,IUseDevCommands
 {
     public enum Team
     {
@@ -136,7 +136,19 @@ public class CombatManager : MonoBehaviour
         });
         Time.timeScale = 1;
     }
+    [DevConsoleCommand("KillAllEnemyFish")]
+    public static void KillAllEnemies()
+    {
+        CombatManager manager=FindAnyObjectByType<CombatManager>();
+        Element.Effectiveness effectiveness;
+        enemyFishes.ForEach(f => 
+        {
 
+            manager.getFishesTurn[f].TakeDamage(10000, null, Ability.AbilityType.special);
+            f.CheckDeath();
+            manager.CanFightEnd();
+        });
+    }
 
     /// <summary>
     /// tells the combat manager to setup a new combat with a set of paramaters

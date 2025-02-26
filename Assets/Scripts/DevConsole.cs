@@ -7,6 +7,7 @@ using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.UIElements;
 
 
@@ -15,6 +16,9 @@ public class DevConsole : MonoBehaviour
     // Start is called before the first frame update
     //[SerializeField]
     //List<DevCommand> commands;
+#pragma warning disable UDR0001 // Domain Reload Analyzer
+    static DevConsole Instance;
+#pragma warning restore UDR0001 // Domain Reload Analyzer
     [SerializeField]
     UIDocument document;
     TextField commandField;
@@ -37,7 +41,22 @@ public class DevConsole : MonoBehaviour
             commandAction = action;
         }
     }
+    private void Awake()
+    {
 
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+       
+
+    }
     //List<IUseDevCommands> 
     void Start()
     {
@@ -152,16 +171,12 @@ public class DevConsole : MonoBehaviour
             call = Expression.Call(method, expressions);
             return Expression.Lambda(call, arguments).Compile();
            
+        } else if(paramaters.Length==0)
+        {
+            call = Expression.Call(method);
+            var argument = Expression.Parameter(typeof(object), "args");
+            return Expression.Lambda(call).Compile();
         }
-        //else if (paramaters[0].ParameterType.IsArray)
-        //{
-        //    paramaters[0].arr
-        //    var argument = Expression.Parameter(typeof(object), "args");
-
-        //    call = Expression.Call(method, Expression.Convert(argument, paramaters[0].ParameterType));
-        //    return Expression.Lambda(call, argument).Compile();
-        //}
-        else
         {
             var argument = Expression.Parameter(typeof(object), "args");
 
