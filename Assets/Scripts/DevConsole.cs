@@ -230,7 +230,7 @@ public class DevConsole : MonoBehaviour
         }
         {
             var argument = Expression.Parameter(typeof(string), "args");
-
+            //Convert.ChangeType(argument, paramaters[0].ParameterType);
             call = Expression.Call(method, Expression.Convert(argument, paramaters[0].ParameterType));
             return Expression.Lambda(call, argument).Compile();
         }
