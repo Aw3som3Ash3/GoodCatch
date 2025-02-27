@@ -1,14 +1,12 @@
 #Abilities {
     flex-direction: row;
-    justify-content: space-around;
-    align-self: stretch;
     flex-grow: 0;
-    align-items: flex-start;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
     visibility: visible;
     display: flex;
     background-color: rgba(0, 0, 0, 0);
-    transform-origin: center;
+    flex-shrink: 0;
+    bottom: -8px;
 }
 
 .Actions {

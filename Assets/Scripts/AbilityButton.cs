@@ -14,6 +14,7 @@ public class AbilityButton : Button
     AbilityToolTipTitle title;
     AbilityTooltipActions damageLabel;
     List<AbilityTooltipStatusChance> effectLabels;
+    VisualElement buttonCover;
 
    // Clickable clickable;
     
@@ -68,6 +69,7 @@ public class AbilityButton : Button
         title=new AbilityToolTipTitle();
         damageLabel=new AbilityTooltipActions();
         effectLabels = new();
+        buttonCover = this.Q<VisualElement>("ButtonCover");
         //clickable =new Clickable(() => 
         //{ 
         //    if (usable) 
@@ -186,6 +188,9 @@ public class AbilityButton : Button
         }
         abilityName = ability.name;
         title.SetToolTip(abilityName,"",ability.AvailableDepths,ability.TargetableDepths);
+        var backgroundValue=buttonCover.style.backgroundImage.value;
+        backgroundValue.sprite= ability.Icon;
+        buttonCover.style.backgroundImage=backgroundValue;
         //text = ability.name;
         this.damageLabel.SetDamage(damage, ability.Accuracy + baseAccuracy);
         effectLabels.Clear();
