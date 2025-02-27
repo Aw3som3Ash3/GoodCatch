@@ -99,7 +99,7 @@ public class PartyUI : PausePage
         var value = preview.style.backgroundImage.value;
         value.sprite = fishMonster.Icon;
         description.text = fishMonster.description;
-        hpAmount.text = fishMonster.MaxHealth.ToString(); 
+        hpAmount.text = fishMonster.Health.ToString() +"/" +fishMonster.MaxHealth.ToString(); 
         attackAmount.text = fishMonster.Attack.value.ToString();
         defenseAmount.text = fishMonster.Fortitude.value.ToString();
         agilityAmount.text = fishMonster.Agility.value.ToString();
