@@ -277,6 +277,15 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     /// advances time by in game hours not real time
     /// </summary>
     /// <param name="time"></param>
+    /// 
+
+    [DevConsoleCommand("AdvanceTime")]
+    public static void AdvanceTimeCommand(string time)
+    {
+        Instance.AdvanceTime(float.Parse(time));
+    }
+
+
     public void AdvanceTime(float time)
     {
         DayTime += time;

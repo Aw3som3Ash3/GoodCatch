@@ -171,6 +171,17 @@ public class DevConsole : MonoBehaviour
     void RunCommand(string command ,string[] args)
     {
         
+        if (command == "Help")
+        {
+
+            foreach (var item in consoleCommands)
+            {
+                Debug.Log(item.Key);
+
+            }
+            return;
+        }
+
         if (consoleCommands.ContainsKey(command))
         {
             consoleCommands[command].Find((x)=> x.Method.GetParameters().Length-1==args.Length) ?.DynamicInvoke(args);
@@ -214,11 +225,11 @@ public class DevConsole : MonoBehaviour
         } else if(paramaters.Length==0)
         {
             call = Expression.Call(method);
-            var argument = Expression.Parameter(typeof(object), "args");
+            var argument = Expression.Parameter(typeof(string), "args");
             return Expression.Lambda(call).Compile();
         }
         {
-            var argument = Expression.Parameter(typeof(object), "args");
+            var argument = Expression.Parameter(typeof(string), "args");
 
             call = Expression.Call(method, Expression.Convert(argument, paramaters[0].ParameterType));
             return Expression.Lambda(call, argument).Compile();
