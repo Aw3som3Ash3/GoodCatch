@@ -73,7 +73,7 @@ public class CombatUI : VisualElement
     public void InitialNormal()
     {
         VisualElement root = this;
-
+        root.styleSheets.Clear();
         //var fishUI = this.Q("ConditionArea").Children();
 
         root.Clear();
