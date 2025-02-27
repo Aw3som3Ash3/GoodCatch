@@ -167,6 +167,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands
        
 
         playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
+        playerFishes.ForEach((f) => f.RestoreStaminaFull());
         CombatManager.enemyFishes = enemyFishes;
         CombatManager.rewardFish = rewardFish;
         
