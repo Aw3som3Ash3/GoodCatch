@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [Serializable]
 public class ItemInventory
@@ -56,9 +57,19 @@ public class ItemInventory
     public void AddItem(Item item, int amount = 1)
     {
         var itemSlot=items.Find((slot) => slot.Item == item);
+        Debug.Log("max amount " + item.MaxAmount);
         if (itemSlot != null)
         {
-            itemSlot.amount += amount;
+            if (item is KeyItem)
+            {
+                Debug.Log("already has key item");
+                return;
+            }
+            if (itemSlot.amount<item.MaxAmount)
+            {
+                itemSlot.amount += amount;
+            }
+           
         }
         else
         {
@@ -73,9 +84,14 @@ public class ItemInventory
     public void RemoveItem(Item item, int amount = 1)
     {
         var itemSlot = items.Find((slot) => slot.Item == item);
-
+        
         if (itemSlot!=null)
         {
+            if(item is KeyItem||item.IsDeletable)
+            {
+                Debug.Log("Item cannot be deleted");
+                return;
+            }
             itemSlot.amount -= Mathf.Clamp(amount, 0, itemSlot.amount);
             if (itemSlot.amount == 0)
             {
@@ -83,7 +99,11 @@ public class ItemInventory
             }
         }
     }
+    public bool HasKeyItem(KeyItem keyItem)
+    {
 
+        return items.Select(slot => slot.Item).Contains(keyItem);
+    }
     public IReadOnlyList<ItemSlot> GetListOfItems<T>()
     {
 
