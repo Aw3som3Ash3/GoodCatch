@@ -882,6 +882,18 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: testfisth.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: testfisth.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: testfisth.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 082d515f808f06a47bd335e4aab82d0e, type: 2}
