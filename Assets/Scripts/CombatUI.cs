@@ -58,6 +58,7 @@ public class CombatUI : VisualElement
 
         VisualElement root = this;
         root.Clear();
+        root.styleSheets.Clear();
         VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatUI 2");
 
         visualTreeAsset.CloneTree(root);
