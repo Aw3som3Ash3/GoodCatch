@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class QuestTracker : MonoBehaviour,ISaveable
+public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
 {
     static public QuestTracker Instance;
     [SerializeField]
@@ -54,6 +54,12 @@ public class QuestTracker : MonoBehaviour,ISaveable
     void Update()
     {
         
+    }
+    [DevConsoleCommand("CompleteCurrentQuest")]
+    public static void CompleteCurrentQuest()
+    {
+
+        Instance.ForceCompleteQuest(Instance.currentQuest.Quest);
     }
     public void ForceCompleteQuest(Quest quest)
     {
