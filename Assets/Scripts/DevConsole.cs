@@ -132,8 +132,8 @@ public class DevConsole : MonoBehaviour
             InputManager.DisablePlayer();
             root.schedule.Execute(() => commandField.Focus()).StartingIn(10);
             Time.timeScale = 0;
-            UnityEngine.Cursor.visible = true;
-            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            //UnityEngine.Cursor.visible = true;
+            //UnityEngine.Cursor.lockState = CursorLockMode.Confined;
         }
         else
         {
@@ -147,8 +147,8 @@ public class DevConsole : MonoBehaviour
     {
         Time.timeScale = 1;
         InputManager.EnablePlayer();
-        UnityEngine.Cursor.visible = false;
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        //UnityEngine.Cursor.visible = false;
+        //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -165,7 +165,7 @@ public class DevConsole : MonoBehaviour
         Debug.Log(command);
         RunCommand(strings[0], strings.Skip(1).ToArray());
         commandField.value = null;
-        CloseConsole();
+        //CloseConsole();
     }
 
     void RunCommand(string command ,string[] args)
