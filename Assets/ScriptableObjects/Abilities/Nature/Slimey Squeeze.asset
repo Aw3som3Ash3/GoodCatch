@@ -15,9 +15,9 @@ MonoBehaviour:
   ignoreSelf: 0
   abilityType: 1
   availableDepths: 2
-  targetableDepths: -1
+  targetableDepths: 2
   targetTeam: 0
-  targetingType: 1
+  targetingType: 0
   piercing: 1
   staminaUsage: 0
   baseDamage: -20
