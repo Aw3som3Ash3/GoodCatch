@@ -90,7 +90,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
     [SerializeField]
     Sprite icon;
-    public Sprite Icon =>Icon;
+    public Sprite Icon =>icon;
     [SerializeField]
     ParticleSystem abilityVFX, targetVFX;
     public ParticleSystem AbilityVFX { get {  return abilityVFX; } }
