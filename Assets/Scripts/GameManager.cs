@@ -349,6 +349,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     {
         PlayerFishventory.RestoreHealthAllFish();
     }
+
     [DevConsoleCommand("AddFish")]
     static public void CaptureFishByID(string id)
     {
@@ -386,6 +387,15 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
        
 
     }
+    [DevConsoleCommand("AddItem")]
+    public static void AddItems(string name,string amount)
+    {
+        var item = Item.getItemById.Select((x) => x.Value).First((x)=>x.name==name);
+        Instance.PlayerInventory.AddItem(item,int.Parse(amount));
+
+    }
+
+
     [DevConsoleCommand("StartCombat")]
     public static void StartCombatByFishIds(string fish1, string level1, string fish2, string level2, string fish3, string level3)
     {
@@ -498,6 +508,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         
        
     }
+
     void SceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == "BattleScene 1")
