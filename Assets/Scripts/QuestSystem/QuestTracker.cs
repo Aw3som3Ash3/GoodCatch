@@ -60,6 +60,7 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
     {
 
         Instance.ForceCompleteQuest(Instance.currentQuest.Quest);
+        //Instance.OnCurrentQuestUpdate?.Invoke(Instance.currentQuest);
     }
     public void ForceCompleteQuest(Quest quest)
     {
@@ -76,6 +77,11 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
             activeQuests.Remove(questInstance);
             completedQuests.Add(questInstance);
         });
+
+        if (currentQuest.Quest == quest)
+        {
+            CurrentQuestCompleted();
+        }
     }
     public void AddQuest(Quest quest,bool makeCurrent=false)
     {
@@ -131,6 +137,11 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
         if (activeQuests.Count > 0)
         {
             MakeCurrent(activeQuests[0]);
+
+        }
+        else
+        {
+            OnCurrentQuestUpdate?.Invoke(null);
         }
        
     }
