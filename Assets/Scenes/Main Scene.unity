@@ -877,6 +877,18 @@ PrefabInstance:
       propertyPath: mainUI
       value: 
       objectReference: {fileID: 900925920}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: testfisth.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: testfisth.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 082d515f808f06a47bd335e4aab82d0e, type: 2}
+    - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+      propertyPath: testfisth.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: f804a3725d90a7b4c80c36d5e7f44278, type: 2}
     - target: {fileID: 6632416249239343018, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: m_LocalPosition.x
       value: 363.66382
@@ -4385,8 +4397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fdbe5c1f069ec49a2955351fbd490a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commands:
-  - {fileID: 11400000, guid: 0ba8fee5be496384e83872a1dcb308c8, type: 2}
   document: {fileID: 1426963062}
   openConsole:
     m_Name: Open Console
