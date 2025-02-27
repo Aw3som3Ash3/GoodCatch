@@ -1,4 +1,4 @@
-using Palmmedia.ReportGenerator.Core.Common;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +15,6 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using UnityEngine.XR;
 using static CombatManager;
 
 public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
