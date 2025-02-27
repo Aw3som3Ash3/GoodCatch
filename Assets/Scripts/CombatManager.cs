@@ -26,6 +26,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField]
     UIDocument ui;
     public CombatUI combatUI { get; private set; }
+    public DraftUI draftUI { get; private set; }
     //CombatUI combatUI;
     //[SerializeField]
     //TurnListUI turnListUI;
@@ -61,7 +62,8 @@ public class CombatManager : MonoBehaviour
     //CinemachineVirtualCamera virtualCamera;
 
     static bool rewardFish;
-
+    [SerializeField]
+    CinemachineTargetGroup targetGroup;
     public CombatAI combatAI { get; private set; }
     int draftedCount;
 
@@ -80,8 +82,13 @@ public class CombatManager : MonoBehaviour
         combatAI = this.gameObject.AddComponent<CombatAI>();
         combatAI.SetCombatManager(this);
         //ui = FindObjectOfType<UIDocument>();
+
+
+        //draftUI = new();
         combatUI = new CombatUI();
         ui.rootVisualElement.Add(combatUI);
+        combatUI.InitialDraft();
+        //ui.rootVisualElement.Add(draftUI);
         InputManager.OnInputChange += InputChanged;
         //combatUI.UseNet += UseNet;
     }
@@ -176,6 +183,7 @@ public class CombatManager : MonoBehaviour
         if (draftedCount >= 3 || draftedCount >= playerFishes.Count)
         {
             combatUI.StopDraft();
+            targetGroup.m_Targets[2].weight = 0;
             OrderTurn();
             StartTurn();
         }
@@ -256,7 +264,7 @@ public class CombatManager : MonoBehaviour
         }
         
         Turn.TurnEnded += NextTurn;
-        combatUI.SetInventory(GameManager.Instance.PlayerInventory);
+        //combatUI.SetInventory(GameManager.Instance.PlayerInventory);
         for (int i = 0; i < enemyFishes.Count; i++)
         {
             Turn turn = new EnemyTurn(this, enemyFishes[i], depths[i % 3]);
@@ -265,7 +273,6 @@ public class CombatManager : MonoBehaviour
             getFishesTurn[enemyFishes[i]] = turn;
             fishCaught[enemyFishes[i]] = false;
         }
-        
     }
     private void OnDisable()
     {

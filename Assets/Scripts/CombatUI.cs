@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+//using System.Reflection.Emit;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,9 +33,10 @@ public class CombatUI : VisualElement
     VisualElement moreInfoButton;
     Clickable moreInfoClickable;
 
-    Label infoScreenHealth, infoScreenStamina, infoScreenAttack,infoScreenMagicAttack,infoScreenDefense,infoScreenMagicDefense,infoScreenAgility;
+    Label infoScreenHealth, infoScreenStamina, infoScreenAttack,infoScreenMagicAttack,infoScreenDefense,infoScreenMagicDefense,infoScreenAgility,infoScreenAccuracy;
 
     readonly GoodCatchInputs inputs= InputManager.Input;
+    HashSet<FishUI> fishUIs = new HashSet<FishUI>();
 
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
@@ -49,17 +50,37 @@ public class CombatUI : VisualElement
     }
     public CombatUI() 
     {
-        Initial();
+        
     }
-    public void Initial()
+
+    public void InitialDraft()
     {
 
         VisualElement root = this;
+        root.Clear();
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatUI 2");
+
+        visualTreeAsset.CloneTree(root);
+        this.style.flexGrow = 1;
+
+        inputs.Combat.Enable();
+        this.StretchToParentSize();
+        this.pickingMode = PickingMode.Ignore;
+        Initial();
+    }
+
+    public void InitialNormal()
+    {
+        VisualElement root = this;
+
+        //var fishUI = this.Q("ConditionArea").Children();
+
+        root.Clear();
         VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/CombatUI");
 
         visualTreeAsset.CloneTree(root);
         this.style.flexGrow = 1;
-      
+
         inputs.Combat.Enable();
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
@@ -70,10 +91,21 @@ public class CombatUI : VisualElement
         runButton = this.Q<Button>("RunButton");
         runButton.clicked += OnRun;
         moveButton = tabbedView.Q<Button>("Move");
-        moveButton.clicked +=Move;
+        moveButton.clicked += Move;
+        Initial();
+        foreach (FishUI fishUI in fishUIs)
+        {
+            this.Q("ConditionArea").Add(fishUI);
+        }
+    }
+        
+    public void Initial()
+    {
+
+       
         for (int i = 0; i < abilityButtons.Length; i++)
         {
-            abilityButtons[i] = tabbedView.Q<AbilityButton>("ability" + i);
+            abilityButtons[i] = this.Q<AbilityButton>("ability" + i);
             int index = i;
             abilityButtons[i].clicked += () => UseAbility(index);
 
@@ -102,17 +134,18 @@ public class CombatUI : VisualElement
         moreInfoScreen = this.Q("AlfredInfo");
       
         moreInfoOpen = true;
-        moreInfoButton.AddManipulator(moreInfoClickable);
-        moreInfoButton.RegisterCallback<ClickEvent>((e) => MoreInfo());
+        moreInfoButton?.AddManipulator(moreInfoClickable);
+        moreInfoButton?.RegisterCallback<ClickEvent>((e) => MoreInfo());
         
-        infoScreenAgility = this.Q<Label>("AgilityAmount");
+        infoScreenAgility = this.Q<Label>("AgiAmount");
         infoScreenAttack = this.Q<Label>("AtkAmount");
         infoScreenDefense = this.Q<Label>("DefAmount");
-        infoScreenMagicAttack = this.Q<Label>("MgAtkAmount");
-        infoScreenMagicDefense = this.Q<Label>("MgDefAmount");
-        infoScreenHealth = this.Q<Label>("HealthAmount");
-        infoScreenStamina = this.Q<Label>("StamAmount");
-        
+        infoScreenMagicAttack = this.Q<Label>("MgkAmount");
+        infoScreenMagicDefense = this.Q<Label>("ResAmount");
+        infoScreenAccuracy = this.Q<Label>("AccAmount");
+        //infoScreenHealth = this.Q<Label>("HealthAmount");
+        //infoScreenStamina = this.Q<Label>("StamAmount");
+
         InputManager.OnInputChange += OnInputChange;
         PauseMenu.GamePaused += EnableUI;
 
@@ -148,24 +181,20 @@ public class CombatUI : VisualElement
         infoScreenDefense.text = fish.Fortitude.value.ToString();
         infoScreenMagicAttack.text = fish.Special.value.ToString();
         infoScreenMagicDefense.text = fish.SpecialFort.value.ToString();
-        infoScreenHealth.text = fish.Health.ToString("00")+"/"+fish.MaxHealth.ToString("00");
-        infoScreenStamina.text = fish.MaxStamina.ToString("00");
-        if (fish.Type.Elements.Length >=1)
+        //infoScreenHealth.text = fish.Health.ToString("00")+"/"+fish.MaxHealth.ToString("00");
+        //infoScreenStamina.text = fish.MaxStamina.ToString("00");
+        var addElem= this.Q("AddElement");
+      
+        if (addElem == null)
         {
-            this.Q<Label>("Type1Amount").text = fish.Type.Elements[0].name;
-
+            return;
         }
-        else
+        addElem?.Clear();
+        for (int i=0;i< fish.Type.Elements.Length;i++)
         {
-            this.Q<Label>("Type1Amount").text ="";
-        }
-        if (fish.Type.Elements.Length >= 2)
-        {
-            this.Q<Label>("Type2Amount").text = fish.Type.Elements[1].name;
-        }
-        else
-        {
-            this.Q<Label>("Type2Amount").text = "";
+            Label label = new();
+            label.text = fish.Type.Elements[i].name;
+            addElem.Add(label);
         }
            
     }
@@ -200,10 +229,10 @@ public class CombatUI : VisualElement
     public void Draft(IList<FishMonster> playerFishes, Action<int,Action<bool>> callback)
     {
         //ResetDisplayAbilities();
-        tabbedView.SetEnabled(false);
+        //tabbedView.SetEnabled(false);
         combatDraftUI.SetEnabled(true);
         combatDraftUI.visible = true;
-        endTurnButton.SetEnabled(false);
+        //endTurnButton.SetEnabled(false);
         bool isSelected = false;
         for (int i = 0;i < playerFishes.Count;i++)
         {
@@ -235,7 +264,6 @@ public class CombatUI : VisualElement
                     PreivewFish(playerFishes[index]);
                 }
             });
-
 
             slot.clicked += () =>
             {
@@ -290,6 +318,7 @@ public class CombatUI : VisualElement
 
     public void StopDraft()
     {
+        InitialNormal();
         combatDraftUI.SetEnabled(false); 
         combatDraftUI.visible = false;
         tabbedView.SetEnabled(true);
@@ -395,7 +424,7 @@ public class CombatUI : VisualElement
         var value = fishIcon.style.backgroundImage.value;
         value.sprite = fish.Icon;
         fishIcon.style.backgroundImage = value;
-        tabbedView.SetEnabled(true);
+        //tabbedView.SetEnabled(true);
         UpdateHealthDisplay(fish);
         UpdateInfo(fish);
         for (int i = 0; i < abilityButtons.Length; i++)
@@ -639,10 +668,10 @@ public class CombatUI : VisualElement
     public FishUI AddFishUI(CombatManager.Turn turn, Transform target)
     {
         var fishUI = new FishUI(turn, target);
-        
+        fishUIs.Add(fishUI);
         fishUI.onHoverStatus += (action) => action(toolTip);
         fishUI.onHoverExit += () => toolTip.visible = false;
-        this.Q("ConditionArea").Add(fishUI);
+        //this.Q("ConditionArea").Add(fishUI);
         return fishUI;
     }
 
