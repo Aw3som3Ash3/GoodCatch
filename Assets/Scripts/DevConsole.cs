@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
@@ -63,23 +64,19 @@ public class DevConsole : MonoBehaviour
     void Start()
     {
 
-        foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IUseDevCommands))))
+        foreach (var method in TypeCache.GetMethodsWithAttribute<DevConsoleCommand>().Where((m) => m.IsStatic))
         {
-
-            foreach (var method in type.GetMethods().Where((t)=>t.IsStatic&&t.HasAttribute(typeof(DevConsoleCommand))))
+            var attr = method.GetCustomAttribute<DevConsoleCommand>();
+            if (consoleCommands.ContainsKey(attr.CommnadName))
             {
-                var attr = method.GetCustomAttribute<DevConsoleCommand>();
-                if (consoleCommands.ContainsKey(attr.CommnadName))
-                {
-                    consoleCommands[attr.CommnadName].Add(CommandInvoker(method));
-                }
-                else
-                {
-                    consoleCommands.Add(attr.CommnadName,new() { CommandInvoker(method) });
-                }
-                
+                consoleCommands[attr.CommnadName].Add(CommandInvoker(method));
             }
-        };
+            else
+            {
+                consoleCommands.Add(attr.CommnadName, new() { CommandInvoker(method) });
+            }
+
+        }
         //consoleCommands
         root = document.rootVisualElement;
         consolePanel = root.Q("ConsolePanel");
