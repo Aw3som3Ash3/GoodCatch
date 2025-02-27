@@ -62,7 +62,7 @@ public class QuestUI : MonoBehaviour
           
            
         };
-        if (QuestTracker.Instance.currentQuest != null)
+        if (QuestTracker.Instance.currentQuest != null&&QuestTracker.Instance.currentQuest.CurrentState!=null)
         {
             questText.text = QuestTracker.Instance.currentQuest.CurrentState.Objective;
         }

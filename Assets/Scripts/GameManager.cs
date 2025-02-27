@@ -387,49 +387,62 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     }
     [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1 ="-1", string fish2 = "-1", string fish3 = "-1")
+    public static void StartCombatByFishIds(string fish1, string level1, string fish2, string level2, string fish3, string level3)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
         if (int.Parse(fish1) >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster());
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
         }
         if (int.Parse(fish2) >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster());
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster(int.Parse(level2)));
         }
         if (int.Parse(fish3) >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish3)].GenerateMonster());
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish3)].GenerateMonster(int.Parse(level3)));
         }
        
 
         Instance.LoadCombatScene(fishMonsters);
     }
     [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1, string fish2)
+    public static void StartCombatByFishIds(string fish1, string level1, string fish2, string level2)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
         if (int.Parse(fish1) >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster());
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
         }
         if (int.Parse(fish2) >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster());
+            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster(int.Parse(level2)));
         }
 
 
         Instance.LoadCombatScene(fishMonsters);
     }
     [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1)
+    public static void StartCombatByFishIds(string fish1,string level1)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster());
+        fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
 
 
 
+        Instance.LoadCombatScene(fishMonsters);
+    }
+    [DevConsoleCommand("StartCombatRandom")]
+    public static void StartCombatRandom(string amount, string level)
+    {
+        int _amount=int.Parse(amount);
+        int _level=int.Parse(level);
+
+        List<FishMonster> fishMonsters = new List<FishMonster>();
+        for(int i = 0; i < _amount; i++)
+        {
+            fishMonsters.Add(Instance.database.fishMonsters[UnityEngine.Random.Range(0,Instance.database.FishMonsters.Count)].GenerateMonster());
+        }
         Instance.LoadCombatScene(fishMonsters);
     }
     //public static void StartCombatByFishIds(params string[] fishIds)
