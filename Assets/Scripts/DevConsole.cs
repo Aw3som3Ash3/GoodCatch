@@ -97,7 +97,7 @@ public class DevConsole : MonoBehaviour
             }
 
 
-            if (consoleCommands[attr.CommandName].description.NullIfEmpty()==null && attr.Description.NullIfEmpty() != null)
+            if (string.IsNullOrEmpty(consoleCommands[attr.CommandName].description)&& string.IsNullOrEmpty(attr.Description))
             {
                 //Debug.Log("has updated description "+ attr.Description);
                 consoleCommands[attr.CommandName].UpdateDescription(attr.Description);
@@ -249,8 +249,8 @@ public class DevConsole : MonoBehaviour
 
     void RunCommand(string command ,string[] args)
     {
-        
-        if (command == "Help")
+       
+        if (command.FirstCharacterToUpper() == "Help")
         {
             print("------------------------------------------------------------------------------\n" +
                 "Commands:\n\n");
@@ -264,7 +264,7 @@ public class DevConsole : MonoBehaviour
             return;
         }
 
-        if (args.Length>0 &&  args[0] == "Help" && consoleCommands.ContainsKey(command))
+        if (args.Length>0 &&  args[0].FirstCharacterToUpper() == "Help" && consoleCommands.ContainsKey(command))
         {
             print("------------------------------------------------------------------------------\n" +
                 $"{command}: {consoleCommands[command].description}:\n");
