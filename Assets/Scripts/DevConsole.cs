@@ -30,7 +30,7 @@ public class DevConsole : MonoBehaviour
 
     InputAction openConsole;
 
-    Dictionary<string,List<Delegate>> consoleCommands=new();
+    Dictionary<string, List<(Delegate @delegate, string[] paramaterNames)>> consoleCommands=new();
 
     LinkedList<string> previousCommands=new();
     LinkedListNode<string> selectedCommand;
@@ -70,13 +70,14 @@ public class DevConsole : MonoBehaviour
         foreach (var method in TypeCache.GetMethodsWithAttribute<DevConsoleCommand>().Where((m) => m.IsStatic))
         {
             var attr = method.GetCustomAttribute<DevConsoleCommand>();
+            var commnad = (CommandInvoker(method), method.GetParameters().Select((x) => $"[{x.ParameterType.HumanName()}]{x.Name}"  ).ToArray());
             if (consoleCommands.ContainsKey(attr.CommnadName))
             {
-                consoleCommands[attr.CommnadName].Add(CommandInvoker(method));
+                consoleCommands[attr.CommnadName].Add(commnad);
             }
             else
             {
-                consoleCommands.Add(attr.CommnadName, new() { CommandInvoker(method) });
+                consoleCommands.Add(attr.CommnadName, new() { commnad });
             }
 
         }
@@ -230,19 +231,38 @@ public class DevConsole : MonoBehaviour
 
             foreach (var item in consoleCommands)
             {
-                Debug.Log(item.Key);
+                print(item.Key);
 
+            }
+            return;
+        }
+
+        if (args[0] == "Help" && consoleCommands.ContainsKey(command))
+        {
+            foreach (var item in consoleCommands[command])
+            {
+                string paramatersString = " ";
+                //Debug.Log(item.@delegate.GetMethodInfo().Name);
+                var paramaters = item.paramaterNames;
+                for (int i = 0; i < paramaters.Length; i++)
+                {
+                    paramatersString +=paramaters[i]+" "; 
+
+
+                }
+
+               print(command + paramatersString);
             }
             return;
         }
 
         if (consoleCommands.ContainsKey(command))
         {
-            consoleCommands[command].Find((x)=> x.Method.GetParameters().Length-1==args.Length) ?.DynamicInvoke(args);
+            consoleCommands[command].Find((x)=> x.@delegate.Method.GetParameters().Length-1==args.Length).@delegate?.DynamicInvoke(args);
         }
         else
         {
-            Debug.Log($"no command of type{command} found");
+            print($"no command of type{command} found");
         }
        
         //commands.First((c)=>c.CommandName==command).RunCommand(args);
@@ -264,26 +284,30 @@ public class DevConsole : MonoBehaviour
         MethodCallExpression call=null;
         if (paramaters.Length > 1)
         {
-            ParameterExpression[] arguments = new ParameterExpression[paramaters.Length];
+            List<ParameterExpression> arguments = new();
             
             Expression[] expressions =new Expression[paramaters.Length];
             for (int i = 0; i < paramaters.Length; i++)
             {
-                arguments[i] = Expression.Parameter(typeof(string), "arg" + i);
 
+                var argument = Expression.Parameter(typeof(string), "arg" + i);
+                arguments.Add(argument);
                 if (paramaters[i].ParameterType != typeof(string))
                 {
                     var parseMethod = paramaters[i].ParameterType.GetMethod("Parse", new[] { typeof(string) });
-                    expressions[i] = Expression.Call(parseMethod, arguments[i]);
+                    
+                    expressions[i] = Expression.Call(parseMethod, argument);
+                    
                 }
                 else
                 {
-                    expressions[i] = Expression.Convert(arguments[i], paramaters[i].ParameterType);
+                    expressions[i] = Expression.Convert(argument, paramaters[i].ParameterType);
                 }
 
 
-                Debug.Log("arugument " + i + arguments[i]);
+                Debug.Log("argument " + i +": "+ argument.Name);
             }
+            
             call = Expression.Call(method, expressions);
             return Expression.Lambda(call, arguments).Compile();
            
@@ -292,7 +316,7 @@ public class DevConsole : MonoBehaviour
             call = Expression.Call(method);
             var argument = Expression.Parameter(typeof(string), "args");
             return Expression.Lambda(call).Compile();
-        }
+        }else
         {
             var argument = Expression.Parameter(typeof(string), "args");
             //Convert.ChangeType(argument, paramaters[0].ParameterType);
@@ -304,10 +328,14 @@ public class DevConsole : MonoBehaviour
             }
             else
             {
-                expression = Expression.Convert(argument, paramaters[0].ParameterType);
+                //expression = Expression.Convert(argument, paramaters[0].ParameterType);
+                expression = argument;
+                
+               
             }
             call = Expression.Call(method, expression);
             return Expression.Lambda(call, argument).Compile();
+
         }
 
        
