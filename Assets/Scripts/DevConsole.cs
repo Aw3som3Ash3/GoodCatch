@@ -31,6 +31,9 @@ public class DevConsole : MonoBehaviour
     InputAction openConsole;
 
     Dictionary<string,List<Delegate>> consoleCommands=new();
+
+    LinkedList<string> previousCommands=new();
+    LinkedListNode<string> selectedCommand;
     
     //HashSet<Commands> consoleCommands = new HashSet<Commands>();
 
@@ -85,12 +88,63 @@ public class DevConsole : MonoBehaviour
         
         Application.logMessageReceived += Application_logMessageReceived;
         commandField.value = null;
+        commandField.RegisterCallback<KeyDownEvent>((evt) => { if (evt.character=='\n') { evt.PreventDefault(); } }  );
+        commandField.RegisterCallback<NavigationSubmitEvent>((evt) =>
+        {
+            evt.PreventDefault();
+            evt.StopImmediatePropagation();
+            DoCommand(commandField.value);
 
-        commandField.RegisterCallback<NavigationSubmitEvent>((evt) => DoCommand(commandField.value));
+        });
+        commandField.RegisterCallback<NavigationMoveEvent>(OnNaviagate);
         consolePanel.visible = false;
 
         openConsole.performed += ToggleConsole;
         openConsole.Enable();
+    }
+
+    private void OnNaviagate(NavigationMoveEvent evt)
+    {
+        if (selectedCommand == null&& previousCommands.First!=null)
+        {
+            selectedCommand = previousCommands.First;
+            commandField.value = selectedCommand.Value;
+        }
+        else if(selectedCommand != null)
+        {
+            switch (evt.direction)
+            {
+                case NavigationMoveEvent.Direction.None:
+                    break;
+                case NavigationMoveEvent.Direction.Left:
+                    break;
+                case NavigationMoveEvent.Direction.Up:
+                    if (selectedCommand.Next != null)
+                    {
+                        selectedCommand = selectedCommand.Next;
+                    }
+                    commandField.value = selectedCommand.Value;
+                    break;
+                case NavigationMoveEvent.Direction.Right:
+                    break;
+                case NavigationMoveEvent.Direction.Down:
+                    if (selectedCommand.Previous != null)
+                    {
+                        selectedCommand = selectedCommand.Previous;
+                        commandField.value = selectedCommand.Value;
+                    }
+                    commandField.value ="";
+                    break;
+                case NavigationMoveEvent.Direction.Next:
+                    break;
+                case NavigationMoveEvent.Direction.Previous:
+                    break;
+            }
+           
+        }
+
+        evt.StopImmediatePropagation();
+        evt.PreventDefault();
     }
 
     private void Application_logMessageReceived(string condition, string stackTrace, LogType type)
@@ -161,7 +215,10 @@ public class DevConsole : MonoBehaviour
         string[] strings = command.Split(" ");
         Debug.Log(command);
         RunCommand(strings[0], strings.Skip(1).ToArray());
-        commandField.value = null;
+        commandField.SetValueWithoutNotify("");
+       // commandField.Focus();
+        previousCommands.AddFirst(command);
+        selectedCommand = null;
         //CloseConsole();
     }
 
