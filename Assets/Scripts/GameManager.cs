@@ -386,7 +386,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
        
 
     }
-    [DevConsoleCommand("StartCombat")]
+    [DevConsoleCommand("StartCombat","Will Start a combat scenario to upto three fish with indicated level")]
     public static void StartCombatByFishIds(int fish1, int level1, int fish2, int level2, int fish3, int level3)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();

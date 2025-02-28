@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 
 public class DevConsole : MonoBehaviour
@@ -30,22 +31,36 @@ public class DevConsole : MonoBehaviour
 
     InputAction openConsole;
 
-    Dictionary<string, List<(Delegate @delegate, string[] paramaterNames)>> consoleCommands=new();
+    Dictionary<string, Command> consoleCommands=new();
+
+
 
     LinkedList<string> previousCommands=new();
     LinkedListNode<string> selectedCommand;
     
     //HashSet<Commands> consoleCommands = new HashSet<Commands>();
 
-    struct Commands
+    class Command
     {
         public string commandName;
-        public Delegate commandAction;
-        public Commands(string name,Delegate action)
+        public string description;
+        public readonly List<(Delegate @delegate, string[] paramaterNames)> commandActions;
+        public Command(string name,string description, (Delegate action, string[] paramaterNames) command )
         {
             commandName = name;
-            commandAction = action;
+            commandActions = new(){ command };
+            this.description = description;
         }
+        public void AddCommand((Delegate action, string[] paramaterNames) command)
+        {
+            commandActions.Add(command);
+        }
+        public void UpdateDescription(string newDescription)
+        {
+            description = newDescription;
+            //Debug.Log("changed description to: "+description);
+        }
+
     }
     private void Awake()
     {
@@ -70,14 +85,23 @@ public class DevConsole : MonoBehaviour
         foreach (var method in TypeCache.GetMethodsWithAttribute<DevConsoleCommand>().Where((m) => m.IsStatic))
         {
             var attr = method.GetCustomAttribute<DevConsoleCommand>();
-            var commnad = (CommandInvoker(method), method.GetParameters().Select((x) => $"[{x.ParameterType.HumanName()}]{x.Name}"  ).ToArray());
-            if (consoleCommands.ContainsKey(attr.CommnadName))
+            var command = (CommandInvoker(method),method.GetParameters().Select((x) => $"[{x.ParameterType.HumanName()}]{x.Name}"  ).ToArray());
+            if (consoleCommands.ContainsKey(attr.CommandName))
             {
-                consoleCommands[attr.CommnadName].Add(commnad);
+                consoleCommands[attr.CommandName].AddCommand(command);
             }
             else
             {
-                consoleCommands.Add(attr.CommnadName, new() { commnad });
+                //consoleCommands.Add(attr.CommandName,(new() { command },attr.Description) );
+                consoleCommands.Add(attr.CommandName,new Command(attr.CommandName,attr.Description,command));
+            }
+
+
+            if (consoleCommands[attr.CommandName].description.NullIfEmpty()==null && attr.Description.NullIfEmpty() != null)
+            {
+                //Debug.Log("has updated description "+ attr.Description);
+                consoleCommands[attr.CommandName].UpdateDescription(attr.Description);
+                //Debug.Log("new description " + consoleCommands[attr.CommandName].description);
             }
 
         }
@@ -231,15 +255,16 @@ public class DevConsole : MonoBehaviour
 
             foreach (var item in consoleCommands)
             {
-                print(item.Key);
+                print($"{item.Key}-{item.Value.description}");
 
             }
             return;
         }
 
-        if (args[0] == "Help" && consoleCommands.ContainsKey(command))
+        if (args.Length>0 &&  args[0] == "Help" && consoleCommands.ContainsKey(command))
         {
-            foreach (var item in consoleCommands[command])
+            print($"{command}-{consoleCommands[command].description}");
+            foreach (var item in consoleCommands[command].commandActions)
             {
                 string paramatersString = " ";
                 //Debug.Log(item.@delegate.GetMethodInfo().Name);
@@ -258,7 +283,7 @@ public class DevConsole : MonoBehaviour
 
         if (consoleCommands.ContainsKey(command))
         {
-            consoleCommands[command].Find((x)=> x.@delegate.Method.GetParameters().Length-1==args.Length).@delegate?.DynamicInvoke(args);
+            consoleCommands[command].commandActions.Find((x)=> x.@delegate.Method.GetParameters().Length-1==args.Length).@delegate?.DynamicInvoke(args);
         }
         else
         {
@@ -351,20 +376,19 @@ public class DevConsole : MonoBehaviour
 
 public class DevConsoleCommand: System.Attribute
 {
-    string commnadName;
-    public string CommnadName => commnadName;
-    int maxParamaters = -1;
-    public int MaxParamaters => maxParamaters;
+    string commandName;
+    public string CommandName => commandName;
+    string description=null;
+    public string Description=>description;
     public DevConsoleCommand(string commandName)
     {
-        this.commnadName = commandName;
+        this.commandName = commandName;
         
     }
-    public DevConsoleCommand(string commandName,int maxParamaters)
+    public DevConsoleCommand(string commandName,string description)
     {
-        this.commnadName = commandName;
-        this.maxParamaters = maxParamaters;
-
+        this.commandName = commandName;
+        this.description = description;
     }
 
 
@@ -383,19 +407,6 @@ public interface IUseDevCommands
     }
 }
 
-
-public interface IDevCommand
-{
-
-
-    string MethodName { get; }
-    string CommandName { get; }
-
-    public abstract void RunCommand(string[] args);
-
-
-
-}
 
 
 
