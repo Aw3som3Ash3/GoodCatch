@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="ConsolePanel" style="flex-grow: 0; flex-shrink: 0; align-items: flex-start; width: 50%; height: 50%; background-color: rgba(61, 61, 61, 0.5); flex-direction: column-reverse;">
+    <Style src="project://database/Assets/UI%20Assets/DevConsole.uss?fileID=7433441132597879392&amp;guid=e91d37766af5015429dcc45f381a7f74&amp;type=3#DevConsole" />
+    <ui:VisualElement name="ConsolePanel" style="flex-grow: 0; flex-shrink: 0; align-items: flex-start; width: 50%; height: 50%; background-color: rgba(61, 61, 61, 0.95); flex-direction: column-reverse; padding-left: 10px;">
         <ui:TextField picking-mode="Ignore" name="CommandField" style="justify-content: flex-start; align-self: stretch;" />
-        <ui:ScrollView name="ConsoleLog" style="flex-grow: 0; height: 100%; width: 100%;" />
+        <ui:ScrollView name="ConsoleLog" style="flex-grow: 0; height: 100%; width: 100%; padding-right: 0; padding-left: 10px;" />
     </ui:VisualElement>
 </ui:UXML>

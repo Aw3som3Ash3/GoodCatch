@@ -252,10 +252,13 @@ public class DevConsole : MonoBehaviour
         
         if (command == "Help")
         {
+            print("------------------------------------------------------------------------------\n" +
+                "Commands:\n\n");
+
 
             foreach (var item in consoleCommands)
             {
-                print($"{item.Key}-{item.Value.description}");
+                print($"    -{item.Key}: {item.Value.description}");
 
             }
             return;
@@ -263,8 +266,9 @@ public class DevConsole : MonoBehaviour
 
         if (args.Length>0 &&  args[0] == "Help" && consoleCommands.ContainsKey(command))
         {
-            print($"{command}-{consoleCommands[command].description}");
-            foreach (var item in consoleCommands[command].commandActions)
+            print("------------------------------------------------------------------------------\n" +
+                $"{command}: {consoleCommands[command].description}:\n");
+            foreach (var item in consoleCommands[command].commandActions.OrderBy((x)=>x.paramaterNames.Length))
             {
                 string paramatersString = " ";
                 //Debug.Log(item.@delegate.GetMethodInfo().Name);
@@ -276,7 +280,7 @@ public class DevConsole : MonoBehaviour
 
                 }
 
-               print(command + paramatersString);
+               print("  -"+command + paramatersString);
             }
             return;
         }
