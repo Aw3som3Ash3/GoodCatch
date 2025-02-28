@@ -172,6 +172,9 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
 
 
     }
+
+    
+
     [DevConsoleCommand("TP")]
     public static void TeleportToPosition(float x,float y, float z)
     {

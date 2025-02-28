@@ -442,6 +442,11 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
         Instance.LoadCombatScene(fishMonsters);
     }
+    [DevConsoleCommand("BoolTest")]
+    public static void TestBool(bool b)
+    {
+        print(b);
+    }
     //public static void StartCombatByFishIds(params string[] fishIds)
     //{
     //    List<FishMonster> fishMonsters = new List<FishMonster>();

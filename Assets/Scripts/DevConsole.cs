@@ -239,7 +239,17 @@ public class DevConsole : MonoBehaviour
         {
             var argument = Expression.Parameter(typeof(string), "args");
             //Convert.ChangeType(argument, paramaters[0].ParameterType);
-            call = Expression.Call(method, Expression.Convert(argument, paramaters[0].ParameterType));
+            Expression expression = null;
+            if (paramaters[0].ParameterType != typeof(string))
+            {
+                var parseMethod = paramaters[0].ParameterType.GetMethod("Parse", new[] { typeof(string) });
+                expression = Expression.Call(parseMethod, argument);
+            }
+            else
+            {
+                expression = Expression.Convert(argument, paramaters[0].ParameterType);
+            }
+            call = Expression.Call(method, expression);
             return Expression.Lambda(call, argument).Compile();
         }
 
