@@ -209,11 +209,22 @@ public class DevConsole : MonoBehaviour
         {
             ParameterExpression[] arguments = new ParameterExpression[paramaters.Length];
             
-            UnaryExpression[] expressions =new UnaryExpression[paramaters.Length];
+            Expression[] expressions =new Expression[paramaters.Length];
             for (int i = 0; i < paramaters.Length; i++)
             {
-                arguments[i] = Expression.Parameter(typeof(string), "arg"+i);
-                expressions[i] = Expression.Convert(arguments[i], paramaters[i].ParameterType);
+                arguments[i] = Expression.Parameter(typeof(string), "arg" + i);
+
+                if (paramaters[i].ParameterType != typeof(string))
+                {
+                    var parseMethod = paramaters[i].ParameterType.GetMethod("Parse", new[] { typeof(string) });
+                    expressions[i] = Expression.Call(parseMethod, arguments[i]);
+                }
+                else
+                {
+                    expressions[i] = Expression.Convert(arguments[i], paramaters[i].ParameterType);
+                }
+
+
                 Debug.Log("arugument " + i + arguments[i]);
             }
             call = Expression.Call(method, expressions);
