@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreSelf: 0
   abilityType: 0
-  availableDepths: 4
+  availableDepths: 6
   targetableDepths: -1
   targetTeam: 1
   targetingType: 1
   piercing: 1
-  staminaUsage: 25
+  staminaUsage: 20
   baseDamage: 5
   accuracy: 0.6
   damageMultiplier: 0

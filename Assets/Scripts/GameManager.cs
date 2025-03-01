@@ -1,4 +1,4 @@
-using Palmmedia.ReportGenerator.Core.Common;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +15,6 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using UnityEngine.XR;
 using static CombatManager;
 
 public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
@@ -225,7 +224,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         {
             CapturedFish(fish);
         }
-        PlayerFishventory.Fishies[0].ChangeName("SteveO");
+        //PlayerFishventory.Fishies[0].ChangeName("SteveO");
 
         sun = FindObjectOfType<Light>().gameObject;
         for(int i=0;i<startingItems.Length;i++)
@@ -349,6 +348,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     {
         PlayerFishventory.RestoreHealthAllFish();
     }
+
     [DevConsoleCommand("AddFish")]
     static public void CaptureFishByID(string id)
     {
@@ -384,6 +384,13 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             CaughtFish?.Invoke(fishMonster.Type);
         }
        
+
+    }
+    [DevConsoleCommand("AddItem")]
+    public static void AddItems(string name,string amount)
+    {
+        var item = Item.getItemById.Select((x) => x.Value).First((x)=>x.name==name);
+        Instance.PlayerInventory.AddItem(item,int.Parse(amount));
 
     }
     [DevConsoleCommand("StartCombat","Will Start a combat scenario to upto three fish with indicated level")]
@@ -500,6 +507,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         
        
     }
+
     void SceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == "BattleScene 1")
@@ -524,4 +532,10 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     {
         gameData = JsonUtility.FromJson<GameData>(json);
     }
+
+    private void OnDestroy()
+    {
+        
+    }
+    
 }

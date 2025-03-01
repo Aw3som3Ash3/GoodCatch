@@ -1,29 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4548099163419476015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-2136780211661723505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,16 +20,19 @@ MonoBehaviour:
   nodes:
   - rid: 6374090361146703873
   decorators:
-  - rid: 6374090361146703875
-  events:
-  - {fileID: 3691940327684409277}
-  - {fileID: -2136780211661723505}
-  - {fileID: -4548099163419476015}
+  - rid: 931072558350467073
+  events: []
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 931072558350467073
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 512, y: 214.4}
+        guid: e7d4619110900f6498bb5744314f1591
+        quest: {fileID: 11400000, guid: 3705ffc923cefac469db9b8599ba2dc5, type: 2}
     - rid: 6374090361146703873
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -62,25 +41,7 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: e2331979d8c31b64e9e4453a4bce5d94
         decorators:
-        - rid: 6374090361146703875
+        - rid: 931072558350467073
         position: {x: 410, y: -26}
         nextNode:
           rid: -2
-    - rid: 6374090361146703875
-      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
-      data:
-        position: {x: 523, y: 168}
-        guid: 4016154266b64f542b896e08c4188ee4
-        quest: {fileID: 11400000, guid: 3705ffc923cefac469db9b8599ba2dc5, type: 2}
---- !u!114 &3691940327684409277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

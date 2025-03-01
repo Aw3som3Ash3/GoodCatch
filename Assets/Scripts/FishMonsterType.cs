@@ -427,6 +427,10 @@ public class FishMonster
         stamina = Mathf.Clamp(Stamina, 0, MaxStamina);
         ValueChanged?.Invoke();
     }
+    public void RestoreStaminaFull()
+    {
+        stamina = maxStamina;
+    }
     public float TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType,out Element.Effectiveness effectiveness)
     {
         if (damage <= 0)

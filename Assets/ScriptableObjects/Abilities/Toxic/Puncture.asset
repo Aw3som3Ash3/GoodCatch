@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Puncture
   m_EditorClassIdentifier: 
   ignoreSelf: 0
-  abilityType: 0
-  availableDepths: 2
-  targetableDepths: 2
+  abilityType: 1
+  availableDepths: 1
+  targetableDepths: 3
   targetTeam: 1
   targetingType: 0
   piercing: 1

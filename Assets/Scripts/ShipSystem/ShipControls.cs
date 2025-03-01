@@ -19,8 +19,7 @@ public class ShipControls : Station
     {
         turnValue = input.x;
         sailValue = input.y;
-        ship.AdjustTurn(turnValue);
-
+        ship.AdjustTurn(sailValue>=0? turnValue:-turnValue);
         ship.AdjustSails(sailValue);
     }
 

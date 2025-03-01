@@ -34,6 +34,7 @@ MonoBehaviour:
   - rid: 187471312712368130
   - rid: 187471312712368132
   - rid: 187471312712368134
+  - rid: 6374090520396824595
   decorators:
   - rid: 187471312712368129
   - rid: 187471312712368167
@@ -93,18 +94,28 @@ MonoBehaviour:
         dialouge: "So, what you\u2019re going to want to do is hold down your cast
           button into anywhere in this here water and try to catch your first fish.
           After that you will be put into combat because the monsters you will be
-          facing won\u2019t go easy on you. You\u2019re going to want to defeat them
-          after you hook them in! So, give it a shot. "
+          facing won\u2019t go easy on you."
         voiceClip: {fileID: 0}
         guid: 0aa66c4ac04fa9f48aa18495e91674a4
-        decorators:
-        - rid: 187471312712368167
+        decorators: []
         position: {x: 1670, y: 216}
         nextNode:
-          rid: -2
+          rid: 6374090520396824595
     - rid: 187471312712368167
       type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 2007.3333, y: 528}
+        position: {x: 2557, y: 579}
         guid: 9c83146c4d8ef864584e9d524b67fe29
         quest: {fileID: 11400000, guid: 8789b08040d62fd41b8e41e89e17f6f5, type: 2}
+    - rid: 6374090520396824595
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: "You\u2019re going to want to defeat them after you hook them in!
+          So, give it a shot. "
+        voiceClip: {fileID: 0}
+        guid: 276104d91192e2d43a49d2089d8d9384
+        decorators:
+        - rid: 187471312712368167
+        position: {x: 2567, y: 238}
+        nextNode:
+          rid: -2

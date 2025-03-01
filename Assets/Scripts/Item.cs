@@ -20,6 +20,9 @@ public abstract class Item : ScriptableObject,ISerializationCallbackReceiver
     string itemId;
     public string ItemId { get { return itemId; } }
 
+    public virtual int MaxAmount { get { return -1; } }
+    public virtual bool IsDeletable { get { return true; } }
+
     public static Dictionary<string,Item> getItemById=new Dictionary<string,Item>();
 
     private void OnEnable()
@@ -43,4 +46,10 @@ public abstract class Item : ScriptableObject,ISerializationCallbackReceiver
 
     }
 
+}
+
+public abstract class KeyItem : Item
+{
+    public override int MaxAmount => 1;
+    public override bool IsDeletable => false;
 }
