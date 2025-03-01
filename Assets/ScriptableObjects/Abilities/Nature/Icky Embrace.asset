@@ -15,10 +15,10 @@ MonoBehaviour:
   ignoreSelf: 0
   abilityType: 1
   availableDepths: 2
-  targetableDepths: -1
+  targetableDepths: 2
   targetTeam: 1
   targetingType: 0
-  piercing: 0
+  piercing: 1
   staminaUsage: 5
   baseDamage: 10
   accuracy: 0.7

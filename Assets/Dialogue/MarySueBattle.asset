@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2097953719363034844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: MarySueBattle
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: MarySueBattle
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 931072558350467074
+    guid: root
+    position: {x: 88.79999, y: 276.80002}
+  nodes:
+  - rid: 931072558350467074
+  decorators:
+  - rid: 931072558350467075
+  events:
+  - {fileID: -2097953719363034844}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 931072558350467074
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: FIGHT ME!!!!!
+        voiceClip: {fileID: 0}
+        guid: 41f31f5a3b57896498023a5b49598c71
+        decorators:
+        - rid: 931072558350467075
+        position: {x: 544.80005, y: 222.40002}
+        nextNode:
+          rid: -2
+    - rid: 931072558350467075
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 553.6, y: 460}
+        guid: a1aca054013e57448936455d883df654
+        dialogueEvent: {fileID: -2097953719363034844}

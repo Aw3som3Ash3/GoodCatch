@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 using static CombatManager;
 
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : MonoBehaviour,IUseDevCommands
 {
     public enum Team
     {
@@ -26,6 +26,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField]
     UIDocument ui;
     public CombatUI combatUI { get; private set; }
+    public DraftUI draftUI { get; private set; }
     //CombatUI combatUI;
     //[SerializeField]
     //TurnListUI turnListUI;
@@ -61,7 +62,8 @@ public class CombatManager : MonoBehaviour
     //CinemachineVirtualCamera virtualCamera;
 
     static bool rewardFish;
-
+    [SerializeField]
+    CinemachineTargetGroup targetGroup;
     public CombatAI combatAI { get; private set; }
     int draftedCount;
 
@@ -80,8 +82,13 @@ public class CombatManager : MonoBehaviour
         combatAI = this.gameObject.AddComponent<CombatAI>();
         combatAI.SetCombatManager(this);
         //ui = FindObjectOfType<UIDocument>();
+
+
+        //draftUI = new();
         combatUI = new CombatUI();
         ui.rootVisualElement.Add(combatUI);
+        combatUI.InitialDraft();
+        //ui.rootVisualElement.Add(draftUI);
         InputManager.OnInputChange += InputChanged;
         //combatUI.UseNet += UseNet;
     }
@@ -136,7 +143,18 @@ public class CombatManager : MonoBehaviour
         });
         Time.timeScale = 1;
     }
+    [DevConsoleCommand("KillAllEnemyFish")]
+    public static void KillAllEnemies()
+    {
+        CombatManager manager=FindAnyObjectByType<CombatManager>();
+        enemyFishes.ForEach(f => 
+        {
 
+            manager.getFishesTurn[f].TakeDamage(10000, null, Ability.AbilityType.special);
+            f.CheckDeath();
+            manager.CanFightEnd();
+        });
+    }
 
     /// <summary>
     /// tells the combat manager to setup a new combat with a set of paramaters
@@ -149,6 +167,7 @@ public class CombatManager : MonoBehaviour
        
 
         playerFishes = GameManager.Instance.PlayerFishventory.Fishies.ToList();
+        playerFishes.ForEach((f) => f.RestoreStaminaFull());
         CombatManager.enemyFishes = enemyFishes;
         CombatManager.rewardFish = rewardFish;
         
@@ -176,6 +195,7 @@ public class CombatManager : MonoBehaviour
         if (draftedCount >= 3 || draftedCount >= playerFishes.Count)
         {
             combatUI.StopDraft();
+            targetGroup.m_Targets[2].weight = 0;
             OrderTurn();
             StartTurn();
         }
@@ -256,7 +276,7 @@ public class CombatManager : MonoBehaviour
         }
         
         Turn.TurnEnded += NextTurn;
-        combatUI.SetInventory(GameManager.Instance.PlayerInventory);
+        //combatUI.SetInventory(GameManager.Instance.PlayerInventory);
         for (int i = 0; i < enemyFishes.Count; i++)
         {
             Turn turn = new EnemyTurn(this, enemyFishes[i], depths[i % 3]);
@@ -265,7 +285,6 @@ public class CombatManager : MonoBehaviour
             getFishesTurn[enemyFishes[i]] = turn;
             fishCaught[enemyFishes[i]] = false;
         }
-        
     }
     private void OnDisable()
     {
@@ -481,49 +500,22 @@ public class CombatManager : MonoBehaviour
 
         if (ability.Targeting == Ability.TargetingType.all)
         {
-            List<Turn> targets = new();
-            if (ability.Piercing)
-            {
-                targets.AddRange(depth[Depth.shallow].TargetSide(targetedTeam));
-                targets.AddRange(depth[Depth.middle].TargetSide(targetedTeam));
-                targets.AddRange(depth[Depth.abyss].TargetSide(targetedTeam));
-                
-            }
-            else
-            {
-                targets.Add(depth[Depth.shallow].TargetFirst(targetedTeam));
-                targets.Add(depth[Depth.middle].TargetFirst(targetedTeam));
-                targets.Add(depth[Depth.abyss].TargetFirst(targetedTeam));
-            }
             
-           
-            targets[1] = depth[Depth.middle].TargetFirst(targetedTeam);
-            targets[2] = depth[Depth.abyss].TargetFirst(targetedTeam);
-
-            foreach (var target in targets)
+            foreach (var depth in depths)
             {
-                if (target != null)
+                if (depth.SideHasFish(targetedTeam) && ability.DepthTargetable(depth.depth))
                 {
-                    bool hit;
-                    float damageDone;
-                    
-                    ability.UseAbility(turn, target, out hit,out damageDone);
-                    
-                    combatVisualizer.AnimateAttack(ability,turn, target, () => 
-                    {  
-                        if (hit)
+                    if(ability.UseAbility(turn, depth))
+                    {
+                        combatVisualizer.AnimateAttack(ability, turn, depth.TargetFirst(targetedTeam), () =>
                         {
-                           
-                            if (ability.ForcedMovement != 0)
-                            {
-                                target.ForcedMove(ability.ForcedMovement);
-                            }
+                            depth.TargetSide(targetedTeam).ForEach((turn) => turn.fish.CheckDeath());
+                            ActionsCompleted();
+                            combatUI.EnableButtons();
                             
-                        }
-                        ActionsCompleted();
-                        combatUI.EnableButtons();
-                        target.fish.CheckDeath();
-                    });
+                        });
+                    }
+                    
                 }
             }
         }
@@ -531,7 +523,7 @@ public class CombatManager : MonoBehaviour
         {
             CombatDepth targetedDepth = depths[depthIndex];
 
-            List<Turn> targetedFish = ability.Piercing? targetedDepth.TargetSide(targetedTeam) : new(){targetedDepth.TargetFirst(targetedTeam)} ;
+            Turn targetedFish = targetedDepth.TargetFirst(targetedTeam);
             if (targetedFish == null)
             {
                 ActionsCompleted();
@@ -539,29 +531,14 @@ public class CombatManager : MonoBehaviour
             }
             //ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
             // var attackingFish = turn.fish;
-           
-            foreach (var target in targetedFish)
+            ability.UseAbility(turn, targetedDepth);
+            combatVisualizer.AnimateAttack(ability, turn, targetedFish, () =>
             {
-                bool hit;
-                float damageDone;
-                
-                ability.UseAbility(turn, target, out hit, out damageDone);
-                combatVisualizer.AnimateAttack(ability, turn, target, () => 
-                {
-                    if (hit)
-                    {
-                       
-                        if (ability.ForcedMovement != 0)
-                        {
-                            target.ForcedMove(ability.ForcedMovement);
-                        }
-                    }
-                    
-                    target.fish.CheckDeath();
-                    ActionsCompleted();
-                    combatUI.EnableButtons();
-                });
-            }
+
+                targetedDepth.TargetSide(targetedTeam).ForEach((turn) => turn.fish.CheckDeath());
+                ActionsCompleted();
+                combatUI.EnableButtons();
+            });
            
         } 
     }
