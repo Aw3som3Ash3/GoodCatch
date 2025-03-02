@@ -67,7 +67,10 @@ public class PauseMenu : VisualElement
         this.RegisterCallback<NavigationMoveEvent>(OnNavigate);
         
     }
-
+    public static void ClearPause()
+    {
+        mainPause = null;
+    }
     private void OnInputChanged(InputMethod method)
     {
         if (method == InputMethod.controller)

@@ -8,7 +8,7 @@ public class CombatTabs : TabbedMenu
 {
     // Start is called before the first frame update
     Button move=new Button();
-    AbilityButton[] buttons= new AbilityButton[4];
+    AbilityButton[] buttons= new AbilityButton[3];
     TabMenuButton[] tabs= new TabMenuButton[3];
 
     int index;

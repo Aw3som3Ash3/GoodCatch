@@ -207,6 +207,8 @@ public class FishMonsterType : ScriptableObject
         return abilities;
     }
 
+   
+
 }
 public enum TalentScale
 {

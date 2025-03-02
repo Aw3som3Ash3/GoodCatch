@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [Serializable]
 public class ItemInventory
@@ -65,7 +64,7 @@ public class ItemInventory
                 Debug.Log("already has key item");
                 return;
             }
-            if (itemSlot.amount<item.MaxAmount)
+            if (item.MaxAmount==-1||itemSlot.amount<item.MaxAmount)
             {
                 itemSlot.amount += amount;
             }

@@ -169,7 +169,7 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void AnimateAttack(Ability ability,CombatManager.Turn turn, CombatManager.Turn target, Action CompletedMove = null)
     {
-        if (!turnToObject.ContainsKey(target))
+        if (target==null||!turnToObject.ContainsKey(target))
         {
             return;
         }

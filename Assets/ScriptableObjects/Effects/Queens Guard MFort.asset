@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f39fd4c2835cb94cad2e89c37922c49, type: 3}
   m_Name: Queens Guard MFort
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 2
   icon: {fileID: 0}
   effectUsage: 1
   agility: 0
