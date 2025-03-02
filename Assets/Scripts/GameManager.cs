@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     [SerializeField]
     public Inn lastInnVisited { get { return Inn.innIds[gameData.currentInnId]; } }
-
+    event Action OnPlayerLost;
     bool inCombat;
     [Flags]
     public enum TimeOfDay
@@ -234,6 +234,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
        
         lastInnVisited.Respawn();
+        OnPlayerLost?.Invoke();
         Debug.Log("player has died");
         AdvanceTime(3);
         RestoreFish();
@@ -483,6 +484,19 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         
        
     }
+
+    public void LoadBossCombatScene(List<FishMonster> enemyFishes, string objectid)
+    {
+        gameData.currentScene = SceneManager.GetActiveScene().buildIndex;
+        SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+        //mainEventSystem.enabled = false;
+        CombatManager.NewCombat(enemyFishes, false);
+        inCombat = true;
+        SceneManager.sceneLoaded += SceneLoaded;
+        OnPlayerLost += () => FindObjectsOfType<BossFightStart>(true).First((x) => x.ID == objectid).gameObject.SetActive(true);
+
+
+    }
     public void CombatEnded(Team winningTeam)
     {
 
@@ -505,6 +519,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         inCombat = false;
        
     }
+
     void SceneLoadedLost(Scene arg0, LoadSceneMode arg1)
     {
         if(arg0.name=="Main Scene")
