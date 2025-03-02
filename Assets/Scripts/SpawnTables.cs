@@ -12,6 +12,8 @@ public class SpawnTables : ScriptableObject
         [SerializeField]
         public FishMonsterType monster;
         [SerializeField]
+        public int minLevel, maxLevel;
+        [SerializeField]
         public int weight;
     }
 
@@ -20,7 +22,7 @@ public class SpawnTables : ScriptableObject
 
 
     
-    public FishMonsterType GetRandomFish()
+    public FishMonster GetRandomFish()
     {
         int totalWeight = 0;
         var monsters = GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Day) ? daySpawn : nightSpawn;
@@ -29,17 +31,18 @@ public class SpawnTables : ScriptableObject
             totalWeight += monster.weight;
         }
 
-        FishMonsterType fishMonster = monsters[0].monster;
+        //FishMonsterType fishMonster = monsters[0].monster;
+        Chance monsterChance = monsters[0];
         int num=UnityEngine.Random.Range(0, totalWeight);
         int cumalativeWeight=0;
         for(int i = 0;i<monsters.Length;i++)
         {
             if (num >cumalativeWeight && num < monsters[i].weight + cumalativeWeight)
             {
-                fishMonster = monsters[i].monster;
+                monsterChance = monsters[i];
             }
             cumalativeWeight += monsters[i].weight;
         }
-        return fishMonster;
+        return monsterChance.monster.GenerateMonster(UnityEngine.Random.Range(monsterChance.minLevel, monsterChance.maxLevel));
     }
 }

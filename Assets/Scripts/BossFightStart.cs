@@ -13,10 +13,12 @@ public class BossFightStart : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-
-        fishMonsters.Add(fishMonster1.GenerateMonster());
-        fishMonsters.Add(fishMonster2.GenerateMonster());
-        fishMonsters.Add(fishMonster3.GenerateMonster());
+        if(fishMonster1!=null)
+            fishMonsters.Add(fishMonster1.GenerateMonster());
+        if (fishMonster2 != null)
+            fishMonsters.Add(fishMonster2.GenerateMonster());
+        if(fishMonster3!=null)
+            fishMonsters.Add(fishMonster3.GenerateMonster());
 
 
         if (other.gameObject.tag == "Player")
@@ -28,11 +30,11 @@ public class BossFightStart : MonoBehaviour
     }
 
 
-    /*void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             this.gameObject.SetActive(false);
         }
-    }*/
+    }
 }
