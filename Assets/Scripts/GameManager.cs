@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
     }
     public List<bool> HasSeenFish{ get { return gameData.hasSeenFish.ToList(); } }
-    GameData gameData=new GameData(7);
+    GameData gameData=new GameData(6);
     public Fishventory PlayerFishventory { get { return gameData.PlayerFishventory; }}
     public Fishventory StoredFishventory { get { return gameData.StoredFishventory; }}
     public ItemInventory PlayerInventory { get { return gameData.PlayerInventory; } }
