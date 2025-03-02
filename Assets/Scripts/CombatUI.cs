@@ -94,6 +94,7 @@ public class CombatUI : VisualElement
         moveButton = tabbedView.Q<Button>("Move");
         moveButton.clicked += Move;
         Initial();
+        SetInventory(GameManager.Instance.PlayerInventory);
         foreach (FishUI fishUI in fishUIs)
         {
             this.Q("ConditionArea").Add(fishUI);
