@@ -64,8 +64,8 @@ public class DevConsole : MonoBehaviour
     }
     private void Awake()
     {
-
-
+        
+        
         if (Instance == null)
         {
             Instance = this;
@@ -256,7 +256,7 @@ public class DevConsole : MonoBehaviour
                 "Commands:\n\n");
 
 
-            foreach (var item in consoleCommands)
+            foreach (var item in consoleCommands.OrderBy((command)=>command.Key))
             {
                 print($"    -{item.Key}: {item.Value.description}");
 

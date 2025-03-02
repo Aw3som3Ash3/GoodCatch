@@ -454,6 +454,14 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     {
         print(b);
     }
+    [DevConsoleCommand("DiscoverAllFish","Mark the whole marindex as discovered")]
+    public static void DiscoverAllFish()
+    {
+        for (int i = 0; i < Instance.gameData.hasSeenFish.Length; i++)
+        {
+            Instance.gameData.hasSeenFish[i] = true;
+        }
+    }
     //public static void StartCombatByFishIds(params string[] fishIds)
     //{
     //    List<FishMonster> fishMonsters = new List<FishMonster>();
