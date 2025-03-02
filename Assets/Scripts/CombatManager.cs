@@ -143,7 +143,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands
         });
         Time.timeScale = 1;
     }
-    [DevConsoleCommand("KillAllEnemyFish")]
+    [DevConsoleCommand("KillAllEnemyFish","Use to kill all opposing fish. Only use on a player's turn to avoid bugs")]
     public static void KillAllEnemies()
     {
         CombatManager manager=FindAnyObjectByType<CombatManager>();
@@ -152,8 +152,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands
 
             manager.getFishesTurn[f].TakeDamage(10000, null, Ability.AbilityType.special);
             f.CheckDeath();
-            manager.CanFightEnd();
+           
         });
+        manager.CanFightEnd();
     }
 
     /// <summary>
