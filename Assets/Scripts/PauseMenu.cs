@@ -120,6 +120,10 @@ public class PauseMenu : VisualElement
         {
             mainPause.OnPause();
         }
+        else
+        {
+            return null;
+        }
         
         return mainPause;
     }
