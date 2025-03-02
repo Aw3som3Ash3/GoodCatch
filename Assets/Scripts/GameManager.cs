@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         public float dayTime;
         public bool[] hasSeenFish;
         public string currentInnId;
+        public int currentScene;
         public GameData(int partySize)
         {
             PlayerFishventory = new Fishventory(partySize);
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             dayTime =0;
             hasSeenFish = new bool[0];
             currentInnId = "";
-
+            currentScene = 0;
 
         }
     }
@@ -160,13 +162,13 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     
     InputUser user;
 
-    String mainScene;
+    //string mainScene;
 
     [SerializeField]
     UIDocument mainUI;
     [SerializeField]
     public AudioMixer audioMixer;
-    UIDocument MainUI { get { if (mainUI == null) { return GameObject.Find("MainHud")?.GetComponent<UIDocument>(); } else { return mainUI; } } }
+    UIDocument MainUI { get { if (mainUI == null) { mainUI= GameObject.Find("MainHud")?.GetComponent<UIDocument>(); return mainUI; } else { return mainUI; } } }
 
     public event Action<FishMonsterType> CaughtFish;
     public event Action WonFight;
@@ -193,8 +195,29 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         {
             PauseMenu.Pause();
         };
-        MainUI.gameObject.SetActive(true);
-        
+        if (mainUI != null)
+        {
+            MainUI.gameObject.SetActive(true);
+        }
+
+
+        //mainScene = SceneManager.GetActiveScene().name;
+        DayTime = startingTime;
+
+        foreach (var fish in testfisth)
+        {
+            CapturedFish(fish);
+        }
+        //PlayerFishventory.Fishies[0].ChangeName("SteveO");
+
+        sun = FindObjectOfType<Light>().gameObject;
+        for (int i = 0; i < startingItems.Length; i++)
+        {
+            PlayerInventory.AddItem(startingItems[i]);
+        }
+        InputManager.Input.Player.QuickSave.performed += (x) => SavingSystem.SaveGame(SavingSystem.SaveMode.QuickSave);
+        InputManager.Input.Player.QuickLoad.performed += (x) => SavingSystem.LoadGame();
+
     }
 
     
@@ -218,21 +241,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     // Start is called before the first frame update
     void Start()
     {
-        mainScene = SceneManager.GetActiveScene().name;
-        DayTime = startingTime;
-        foreach(var fish in testfisth)
-        {
-            CapturedFish(fish);
-        }
-        //PlayerFishventory.Fishies[0].ChangeName("SteveO");
-
-        sun = FindObjectOfType<Light>().gameObject;
-        for(int i=0;i<startingItems.Length;i++)
-        {
-            PlayerInventory.AddItem(startingItems[i]);
-        }
-        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(SavingSystem.SaveMode.QuickSave);
-        InputManager.Input.Player.QuickLoad.performed +=(x)=>SavingSystem.LoadGame();
+        
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
 
@@ -465,6 +474,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     //}
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
+        gameData.currentScene = SceneManager.GetActiveScene().buildIndex;
         SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
         //mainEventSystem.enabled = false;
         CombatManager.NewCombat(enemyFishes, rewardFish);
@@ -484,11 +494,12 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         {
             WonFight?.Invoke();
         }
-        SavingSystem.SaveSelf(this);
-        SavingSystem.SaveSelf(FindObjectOfType<QuestTracker>());
+        SavingSystem.SaveSelf(this,this.gameObject.scene.buildIndex);
+        var questTracker = FindObjectOfType<QuestTracker>();
+        SavingSystem.SaveSelf(questTracker, questTracker.gameObject.scene.buildIndex);
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
-        SceneManager.LoadScene(mainScene);
+        SceneManager.LoadScene(gameData.currentScene);
 
         
         inCombat = false;
@@ -515,7 +526,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             inCombat = true;
             
         }
-        else if(arg0.name == mainScene)
+        else if(arg0.buildIndex == gameData.currentScene)
         {
             print("should load");
             SavingSystem.LoadGame();
@@ -530,6 +541,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     public void Load(string json)
     {
+        gameData =new();
         gameData = JsonUtility.FromJson<GameData>(json);
     }
 

@@ -186,6 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
+  startingObjects:
+  - {fileID: 41092281630482985, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
+  - {fileID: 194803169935906162, guid: 2f3b8a281334ce84f8620dfe41f913f8, type: 3}
 --- !u!114 &76238157
 MonoBehaviour:
   m_ObjectHideFlags: 0
