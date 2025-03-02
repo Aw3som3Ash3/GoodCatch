@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class QuestTracker : MonoBehaviour,ISaveable
+public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
 {
     static public QuestTracker Instance;
     [SerializeField]
@@ -55,6 +55,13 @@ public class QuestTracker : MonoBehaviour,ISaveable
     {
         
     }
+    [DevConsoleCommand("CompleteCurrentQuest")]
+    public static void CompleteCurrentQuest()
+    {
+
+        Instance.ForceCompleteQuest(Instance.currentQuest.Quest);
+        //Instance.OnCurrentQuestUpdate?.Invoke(Instance.currentQuest);
+    }
     public void ForceCompleteQuest(Quest quest)
     {
         List<Quest.QuestInstance> questInstanceToRemove = new();
@@ -70,6 +77,11 @@ public class QuestTracker : MonoBehaviour,ISaveable
             activeQuests.Remove(questInstance);
             completedQuests.Add(questInstance);
         });
+
+        if (currentQuest.Quest == quest)
+        {
+            CurrentQuestCompleted();
+        }
     }
     public void AddQuest(Quest quest,bool makeCurrent=false)
     {
@@ -125,6 +137,11 @@ public class QuestTracker : MonoBehaviour,ISaveable
         if (activeQuests.Count > 0)
         {
             MakeCurrent(activeQuests[0]);
+
+        }
+        else
+        {
+            OnCurrentQuestUpdate?.Invoke(null);
         }
        
     }

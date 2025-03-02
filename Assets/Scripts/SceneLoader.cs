@@ -102,6 +102,7 @@ public class SceneLoader : MonoBehaviour
         mainUI.rootVisualElement.Remove(mainUI.rootVisualElement.Q("LoadingScreen"));
         AllScenesLoaded?.Invoke();
         Time.timeScale = 1.0f;
+       
 
     }
 }

@@ -741,6 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27ed046e071cfb46a9026157a72d990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innId: dream
   respawnPoint: {fileID: 778403261}
   dialogue: {fileID: 0}
   dockingZone: {fileID: 0}

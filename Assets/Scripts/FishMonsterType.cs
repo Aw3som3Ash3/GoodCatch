@@ -207,6 +207,8 @@ public class FishMonsterType : ScriptableObject
         return abilities;
     }
 
+   
+
 }
 public enum TalentScale
 {
@@ -425,6 +427,10 @@ public class FishMonster
         stamina = Mathf.Clamp(Stamina, 0, MaxStamina);
         ValueChanged?.Invoke();
     }
+    public void RestoreStaminaFull()
+    {
+        stamina = maxStamina;
+    }
     public float TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType,out Element.Effectiveness effectiveness)
     {
         if (damage <= 0)
@@ -450,17 +456,19 @@ public class FishMonster
         return damageTaken;
     }
 
-    public void CheckDeath()
+    public bool CheckDeath()
     {
         if (Health <= 0)
         {
             Feint();
+            return true;
         }
+        return false;
     }
     public void Restore(float health = 0, float stamina = 0)
     {
-        this.health += health;
-        this.stamina += stamina;
+        this.health =Mathf.Clamp(this.health+health,0,MaxHealth);
+        this.stamina = Mathf.Clamp(this.stamina+stamina, 0, maxStamina);
         ValueChanged?.Invoke();
     }
     float DamageModifier(Element elementType)

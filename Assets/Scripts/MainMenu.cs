@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     public AudioMixer mixer;
     private void Awake()
     {
-        InputManager.Init();
+        //InputManager.Init();
         uIDocument = GetComponent<UIDocument>();
         mainMenu = uIDocument.rootVisualElement.Q("MainMenu");
         mainScreen = uIDocument.rootVisualElement.Q("MainScreen");
@@ -29,22 +29,29 @@ public class MainMenu : MonoBehaviour
         InputManager.Input.UI.Back.Enable();
         GameManager.Instance = null;
         QuestTracker.Instance = null;
-        InputManager.OnInputChange += (method) =>
-        {
-            if (method == InputMethod.mouseAndKeyboard)
-            {
-                UnityEngine.Cursor.lockState = CursorLockMode.Confined;
-                UnityEngine.Cursor.visible = true;
-            }
-            else
-            {
-                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-                UnityEngine.Cursor.visible = false;
-            }
-        };
+        InputManager.OnInputChange += OnInputChange;
+
 
     }
 
+    void OnInputChange(InputMethod inputMethod)
+    {
+        if (inputMethod == InputMethod.mouseAndKeyboard)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
+        }
+        else
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+        }
+    }
+    private void OnDestroy()
+    {
+        InputManager.OnInputChange -= OnInputChange;
+
+    }
     private void Back(InputAction.CallbackContext context)
     {
         if (mainScreen.visible != true) 
@@ -120,8 +127,9 @@ public class MainMenu : MonoBehaviour
     {
         if (arg0.name == "Main Scene")
         {
-            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);  GameManager.Instance.ResetLastInn(); } ;
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            
         }
     }
     private void OnSceneLoaded(AsyncOperation operation)
