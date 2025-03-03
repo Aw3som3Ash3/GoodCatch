@@ -2,17 +2,18 @@
     <Style src="project://database/Assets/UI%20Assets/BestiaryListMenu.uss?fileID=7433441132597879392&amp;guid=eeeba0854fec8e1438ce167e19af102d&amp;type=3#BestiaryListMenu" />
     <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 1; flex-direction: row; background-image: none; background-color: rgb(0, 0, 0);">
         <ui:VisualElement name="BookBG" style="flex-grow: 1; flex-direction: row; background-image: none; background-color: rgba(132, 128, 128, 0.46);">
-            <ui:VisualElement name="RightSide" style="flex-grow: 1; min-width: 45%; background-color: rgba(0, 255, 231, 0); margin-left: 50px; margin-bottom: 50px;">
-                <ui:Label tabindex="-1" text="Marindex" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" style="-unity-font-style: bold; font-size: 90%; -unity-text-align: upper-center; margin-top: 4%; padding-right: 63px;" />
+            <ui:VisualElement name="RightSide" style="flex-grow: 0; min-width: auto; background-color: rgba(0, 255, 231, 0); margin-left: 0; margin-bottom: 0; margin-top: 0; margin-right: 0; width: 675px; flex-shrink: 0;">
+                <ui:Label tabindex="-1" text="Marindex" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" style="-unity-font-style: bold; font-size: 90%; -unity-text-align: upper-center; margin-top: 0; padding-right: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-bottom: 0; padding-left: 0;" />
                 <ui:ListView name="FishList" show-alternating-row-backgrounds="ContentOnly" show-border="true" style="height: 100%;" />
             </ui:VisualElement>
-            <ui:VisualElement name="LeftSide" style="flex-grow: 1; max-width: 56%;">
-                <ui:VisualElement name="PngBox" style="flex-grow: 1; background-color: rgba(123, 123, 123, 0); padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; min-width: 50%; margin-top: 175px;">
-                    <ui:VisualElement name="PngAmount" style="flex-grow: 0; background-color: rgb(144, 76, 76); padding-top: 0; padding-left: 0; padding-bottom: 0; padding-right: 0; align-items: stretch; width: 600px; min-width: auto; min-height: auto; align-self: center; justify-content: center; height: 600px; flex-shrink: 0;" />
-                    <ui:VisualElement name="HoveredNameContainer" style="flex-grow: 0; height: 216px; justify-content: center;">
-                        <ui:Label tabindex="-1" text="HoveredFishName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HoveredNameAmount" style="font-size: 75px; -unity-text-align: upper-center; -unity-font: initial; -unity-font-style: bold;" />
+            <ui:VisualElement name="LeftSide" style="flex-grow: 1; max-width: none; background-color: rgb(152, 152, 152);">
+                <ui:VisualElement name="PngBox" style="flex-grow: 1; background-color: rgba(123, 123, 123, 0); padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; min-width: 50%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+                    <ui:VisualElement name="PngAmount" style="flex-grow: 0; background-color: rgb(144, 76, 76); padding-top: 0; padding-left: 0; padding-bottom: 0; padding-right: 0; align-items: stretch; width: 200px; min-width: auto; min-height: auto; align-self: center; justify-content: center; height: 200px; flex-shrink: 0;" />
+                    <ui:VisualElement name="HoveredNameContainer" style="flex-grow: 0; height: auto; justify-content: center;">
+                        <ui:Label tabindex="-1" text="HoveredFishName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HoveredNameAmount" style="font-size: 49px; -unity-text-align: upper-center; -unity-font: initial; -unity-font-style: bold; color: rgb(255, 255, 255); height: auto;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:VisualElement name="ModContainer" style="flex-grow: 1; height: 630px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
