@@ -27,6 +27,8 @@ public class ShipSimulator : MonoBehaviour,ISaveable
 
     public string ID => "ship";
 
+
+
     [SerializeField]
     PIDController zTorqueController=new (0.5f,0,0.25f);
     [SerializeField]
@@ -57,7 +59,8 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         this.transform.rotation = physicSim.transform.rotation;
         physicSim.transform.localPosition = Vector3.zero;
         physicSim.transform.localRotation = Quaternion.Euler(Vector3.zero);
-
+        wheelLeft.Rotate(Vector3.right * (sailRatio + turnRatio) *maxSpeed * Time.fixedDeltaTime);
+        wheelRight.Rotate(Vector3.right * (sailRatio - turnRatio) * maxSpeed * Time.fixedDeltaTime);
 
         physicSim.AddRelativeTorque(Vector3.forward*zTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.z), 0), ForceMode.Acceleration);
         physicSim.AddRelativeTorque(Vector3.right*xTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.x), 0),ForceMode.Acceleration);

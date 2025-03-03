@@ -97,7 +97,10 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
         }
         
     }
-
+    public void SetVisibility(bool b)
+    {
+        this.GetComponentInChildren<SkinnedMeshRenderer>(true).gameObject.SetActive(b);
+    }
     private void OnEnable()
     {
         //inputs.Player.Enable();
