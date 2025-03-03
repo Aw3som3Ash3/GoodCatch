@@ -19,6 +19,19 @@ public class MudskipperTutorial : NPC
     DialogueEvent healFish;
     [SerializeField]
     Quest postTutorialQuest;
+    [SerializeField]
+    FishMonsterType mudskipper,pyrishForSKippingQuest;
+
+    [Serializable]
+    struct TutorialItems
+    {
+        [SerializeField]
+        public Item item;
+        [SerializeField]
+        public int amount;
+    }
+    [SerializeField]
+    List<TutorialItems> items;
 
     void Awake()
     {
@@ -42,21 +55,26 @@ public class MudskipperTutorial : NPC
     void SkippedTutorial()
     {
         //GameManager.Instance.
-
+        foreach(TutorialItems item in items)
+        {
+            GameManager.Instance.PlayerInventory.AddItem(item.item, item.amount);
+        }
+        GameManager.Instance.CapturedFish(pyrishForSKippingQuest);
+        QuestTracker.Instance.ForceCompleteQuest(QuestTracker.Instance.currentQuest.Quest);
         FinishedTutorial_Event();
     }
     private void FinishedTutorial_Event()
     {
-       
 
 
+        GameManager.Instance.PlayerFishventory.RemoveFishOfType(mudskipper);
         if (postTutorialQuest != null)
         {
-            QuestTracker.Instance.ForceCompleteQuest(QuestTracker.Instance.currentQuest.Quest);
-
+           
             QuestTracker.Instance.AddQuest(postTutorialQuest, true);
 
         }
+        
         LoadMainScene();
     }
 
@@ -69,6 +87,9 @@ public class MudskipperTutorial : NPC
 
     void LoadMainScene()
     {
-        SceneManager.LoadScene("Main Scene");
+        
+        SceneManager.LoadSceneAsync("Main Scene").completed+=(opertaion)=> { FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { Inn.RemoveInnFromDictionary(Inn.StarterInn.innId); GameManager.Instance.ResetLastInn(); }; };
     }
+
+    
 }

@@ -10,13 +10,15 @@ public class Inn : MonoBehaviour, IInteractable
 {
     public string StationName => "Inn";
     [SerializeField]
+    public string innId;
+    [SerializeField]
     Transform respawnPoint;
     public static Action<Inn> InnVisited;
     public static Inn StarterInn;
     public InnDialogue dialogue;
     [SerializeField]
     DockingZone dockingZone;
-
+    public static Dictionary<string, Inn> innIds = new();
 
     [SerializeField]
     InputAction debugTeleport;
@@ -33,18 +35,36 @@ public class Inn : MonoBehaviour, IInteractable
 
     void Awake()
     {
-        dialogue=FindObjectOfType<InnDialogue>(true);
+       
+        dialogue =FindObjectOfType<InnDialogue>(true);
         if (isStartInn)
         {
             StarterInn = this;
+            Debug.Log($"{this} is the new starter inn {StarterInn}");
+            //GameManager.Instance.ga = this;
+            
         }
+        if (innIds == null)
+        {
+            innIds = new Dictionary<string, Inn>();
+        }
+        innIds[innId] = this;
         debugTeleport.performed += TeleportDebug;
         debugTeleport.Enable();
     }
-
+    public static void RemoveInnFromDictionary(string innId)
+    {
+        innIds.Remove(innId);
+    }
     public void Respawn()
     {
-        dockingZone.ResetShip();
+        if (dockingZone != null)
+        {
+            dockingZone.ResetShip();
+        }
+        Debug.Log(PlayerController.player);
+        Debug.Log(innId);
+        Debug.Log(respawnPoint.position);
         PlayerController.player.SetPosition(respawnPoint.position);
     }
     public bool Interact()

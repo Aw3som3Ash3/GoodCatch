@@ -16,7 +16,7 @@ public class FishingMiniGame : MonoBehaviour
 
     int difficulty;
     //[SerializeField]
-    FishMonsterType fishMonster;
+   // FishMonsterType fishMonster;
     [SerializeField]
     GameObject fishToCatchPrefab;
     FishToCatch fishToCatch;
@@ -29,6 +29,7 @@ public class FishingMiniGame : MonoBehaviour
     public Action OnCancel;
 
     FishingPromptUI prompt;
+    FishZone fishZone;
 
     void Awake()
     {
@@ -49,7 +50,8 @@ public class FishingMiniGame : MonoBehaviour
         if(Physics.Raycast(this.transform.position,Vector3.down,out hit,100, fishZones))
         {
             Debug.Log(" hit fishZones");
-            fishMonster=hit.collider.GetComponent<FishZone>().GetRandomFish(SuccesfulFishing,out fishToCatch);
+            fishZone = hit.collider.GetComponent<FishZone>();
+            fishToCatch = fishZone.GetFishObect();
             fishToCatch.StartCatching(floater.transform);
             //Invoke("SpawnFish", UnityEngine.Random.Range(0,1f));
         }
@@ -104,10 +106,10 @@ public class FishingMiniGame : MonoBehaviour
     void FishingSuccess()
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        int num = UnityEngine.Random.Range(1, 2);
+        int num = UnityEngine.Random.Range(1, Mathf.Clamp(GameManager.Instance.PlayerFishventory.Fishies.Count+1,0,4));
         for (int i = 0; i < num; i++)
         {
-            fishMonsters.Add(fishMonster.GenerateMonster());
+            fishMonsters.Add(fishZone.GetRandomFish());
         }
         SuccesfulFishing?.Invoke();
         GameManager.Instance.LoadCombatScene(fishMonsters, true);

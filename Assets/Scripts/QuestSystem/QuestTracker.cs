@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class QuestTracker : MonoBehaviour,ISaveable
+public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
 {
     static public QuestTracker Instance;
     [SerializeField]
@@ -55,6 +55,13 @@ public class QuestTracker : MonoBehaviour,ISaveable
     {
         
     }
+    [DevConsoleCommand("CompleteCurrentQuest")]
+    public static void CompleteCurrentQuest()
+    {
+
+        Instance.ForceCompleteQuest(Instance.currentQuest.Quest);
+        //Instance.OnCurrentQuestUpdate?.Invoke(Instance.currentQuest);
+    }
     public void ForceCompleteQuest(Quest quest)
     {
         List<Quest.QuestInstance> questInstanceToRemove = new();
@@ -70,9 +77,18 @@ public class QuestTracker : MonoBehaviour,ISaveable
             activeQuests.Remove(questInstance);
             completedQuests.Add(questInstance);
         });
+
+        if (currentQuest.Quest == quest)
+        {
+            CurrentQuestCompleted();
+        }
     }
     public void AddQuest(Quest quest,bool makeCurrent=false)
     {
+        if(activeQuests.Select(x=>x.Quest).ToList().Contains(quest)|| completedQuests.Select(x => x.Quest).ToList().Contains(quest))
+        {
+            return;
+        }
         var newQuest = quest.GenerateQuest();
         //newQuest.Progressed += (state,requirement) => OnQuestUpdate(newQuest);
         activeQuests.Add(newQuest);
@@ -121,6 +137,11 @@ public class QuestTracker : MonoBehaviour,ISaveable
         if (activeQuests.Count > 0)
         {
             MakeCurrent(activeQuests[0]);
+
+        }
+        else
+        {
+            OnCurrentQuestUpdate?.Invoke(null);
         }
        
     }
@@ -181,7 +202,7 @@ public class QuestTracker : MonoBehaviour,ISaveable
         foreach( var _quest in activeQuests)
         {
             Debug.Log(_quest);
-            if(quest==_quest.Quest &&quest.States.First(x=> { Debug.Log(x.Name+" vs"+ name); return x.Name.Equals(name); }) == _quest.CurrentState)
+            if(quest==_quest.Quest &&quest.States.First(x=> { Debug.Log(x.Name+" vs"+ name); return x.Name.Equals(name); }).Name.Equals(name))
             {
                 Debug.Log("has quest state");
                 return true;

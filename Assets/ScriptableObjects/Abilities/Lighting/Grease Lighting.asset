@@ -16,7 +16,7 @@ MonoBehaviour:
   abilityType: 0
   availableDepths: 4
   targetableDepths: 0
-  targetTeam: 2
+  targetTeam: 0
   targetingType: 0
   piercing: 0
   staminaUsage: 25

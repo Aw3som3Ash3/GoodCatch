@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -17,9 +16,14 @@ public class MainMenu : MonoBehaviour
     OptionsPageMenu optionsScreen;
     [SerializeField]
     public AudioMixer mixer;
+
+    [SerializeField]
+    GameObject[] startingObjects;
+
+    Action<int> startGameEvent;
     private void Awake()
     {
-        InputManager.Init();
+        //InputManager.Init();
         uIDocument = GetComponent<UIDocument>();
         mainMenu = uIDocument.rootVisualElement.Q("MainMenu");
         mainScreen = uIDocument.rootVisualElement.Q("MainScreen");
@@ -30,9 +34,48 @@ public class MainMenu : MonoBehaviour
         InputManager.Input.UI.Back.Enable();
         GameManager.Instance = null;
         QuestTracker.Instance = null;
+        InputManager.OnInputChange += OnInputChange;
+
+
+
+        for (int i = 1; i <= 3; i++)
+        {
+            int index = i;
+            var button = loadScreen.Q<Button>("Slot" + i);
+
+            //button.SetEnabled(true);
+            button.clicked += () =>
+            {
+                startGameEvent.Invoke(index);
+                for (int j = 0; j < startingObjects.Length; j++)
+                {
+                    //Instantiate(startingObjects[j]);
+                }
+            };
+
+            Time.timeScale = 1;
+        }
 
     }
 
+    void OnInputChange(InputMethod inputMethod)
+    {
+        if (inputMethod == InputMethod.mouseAndKeyboard)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
+        }
+        else
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+        }
+    }
+    private void OnDestroy()
+    {
+        InputManager.OnInputChange -= OnInputChange;
+
+    }
     private void Back(InputAction.CallbackContext context)
     {
         if (mainScreen.visible != true) 
@@ -81,35 +124,36 @@ public class MainMenu : MonoBehaviour
             var button = loadScreen.Q<Button>("Slot" + i);
             if (!SavingSystem.HasSlot(i))
             {
-                //button.text = "Empty Slot " + (i + 1);
+                button.text = "Empty " + (i);
 
             }
             else
             {
-                //button.text = "Slot " + (i + 1);
+                button.text = "Slot " + (i);
             }
             button.SetEnabled(true);
-            button.clicked += () => 
-            { 
-                SavingSystem.SetSlot(index); 
-                SavingSystem.ClearSlot(index);
-                SceneManager.sceneLoaded += OnSceneLoaded;
-                SceneManager.LoadSceneAsync("IntroScene").completed+=OnSceneLoaded;
-                InputManager.Input.UI.Back.performed -= Back;
 
-
-
-            };
-
-            Time.timeScale = 1;
+            
         }
+        Time.timeScale = 1;
+        startGameEvent = (index) =>
+        {
+            SavingSystem.SetSlot(index);
+            SavingSystem.ClearSlot(index);
+            //SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.LoadSceneAsync("IntroScene").completed += OnSceneLoaded;
+            InputManager.Input.UI.Back.performed -= Back;
+        };
+       
+
     }
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         if (arg0.name == "Main Scene")
         {
-            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);  GameManager.Instance.ResetLastInn(); } ;
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            
         }
     }
     private void OnSceneLoaded(AsyncOperation operation)
@@ -146,9 +190,17 @@ public class MainMenu : MonoBehaviour
             int index = i;
 
             var button = loadScreen.Q<Button>("Slot" + i);
+            if (!SavingSystem.HasSlot(i))
+            {
+                button.text = "Empty " + (i);
+
+            }
+            else
+            {
+                button.text = "Slot " + (i);
+            }
             if (SavingSystem.HasSlot(i))
             {
-                button.clicked += () => { SavingSystem.LoadGame(index); InputManager.Input.UI.Back.performed -= Back; };
                 button.SetEnabled(true);
             }
             else
@@ -158,8 +210,14 @@ public class MainMenu : MonoBehaviour
 
         }
         Time.timeScale = 1;
-    }
 
+        startGameEvent = (index) =>
+        {
+            SavingSystem.LoadGame(index); 
+            InputManager.Input.UI.Back.performed -= Back;
+        };
+    }
+   
     // Update is called once per frame
     void Update()
     {

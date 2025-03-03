@@ -46,7 +46,7 @@ public class AquariumScreen : PausePage
         mainOptions.visible = true;
         mainOptions.SetEnabled(true);
         level = this.Q<Label>("LevelAmount");
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 6; i++)
         {
             int index = i;
             partySlots[i]=party.Q<Button>("slot" + (i + 1));

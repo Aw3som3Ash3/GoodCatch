@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fish Database
   m_EditorClassIdentifier: 
   fishMonsters:
+  - {fileID: 11400000, guid: 65d33d0db1bc78a43811bf103f09d88e, type: 2}
   - {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
   - {fileID: 11400000, guid: 1e0338ef5cf739c45b80d4f88f911772, type: 2}
   - {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
@@ -27,7 +28,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be86766beb7a3a24ea242a56cd406d0d, type: 2}
   - {fileID: 11400000, guid: 107131bcbcacb3546a47124b68635eb5, type: 2}
   - {fileID: 11400000, guid: a1edc9789a38b3a47ae17c831183c6dc, type: 2}
-  - {fileID: 11400000, guid: dbfc44777909da74f9345af1f0779ca2, type: 2}
   - {fileID: 11400000, guid: 87003e928c2aae646859a2a02e2532bc, type: 2}
   - {fileID: 11400000, guid: 69c52de4159f81445b182d7a74c765fe, type: 2}
   - {fileID: 11400000, guid: 1dcd175decd3a34429785c289aeebad0, type: 2}

@@ -67,13 +67,13 @@ public class WaterSimulator : MonoBehaviour
 
         if (Physics.Raycast(this.transform.position + Vector3.up * 100, Vector3.down, 105,groundLayer))
         {
-            Debug.Log("dry land");
+            //Debug.Log("dry land");
         }
         else 
         {
             if (Physics.Raycast(this.transform.position, Vector3.down, out hit))
             {
-                Debug.Log("deepish water");
+                //Debug.Log("deepish water");
                 //modWaveSpeedX += waveSpeedX;
                 modWaveHeightX += hit.distance / 50;
                 modWaveHeightZ += hit.distance / 50;
@@ -84,7 +84,7 @@ public class WaterSimulator : MonoBehaviour
             }
             else
             {
-                Debug.Log("deep");
+                //Debug.Log("deep");
                 modWaveHeightX *= 1.5f;
                 modWaveHeightZ *= 1.5f;
             }

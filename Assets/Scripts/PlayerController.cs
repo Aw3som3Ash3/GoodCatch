@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class PlayerController : MonoBehaviour,ISaveable
+public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
 {
    
     static public PlayerController player;
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour,ISaveable
         //moveAction.performed += OnMove;
         lookAction = inputs.Look;
         //lookAction.performed += OnLook;
-        inputs.Jump.performed += OnJump;
+        //inputs.Jump.performed += OnJump;
         inputs.Fish.performed += StartFishing;
         inputs.Sprint.performed += OnSprint;
         characterController = this.GetComponent<CharacterController>();
@@ -117,9 +117,14 @@ public class PlayerController : MonoBehaviour,ISaveable
     
     bool InteractionCheck(out IInteractable interactable)
     {
-        var colliders = Physics.OverlapSphere(this.transform.position, 2, interactionLayer);
+        Collider[] colliders= new Collider[10];
+        Physics.OverlapSphereNonAlloc(this.transform.position, 2, colliders, interactionLayer);
         foreach (var collider in colliders)
         {
+            if (collider == null)
+            {
+                continue;
+            }
             interactable = collider.GetComponentInParent<IInteractable>();
 
             if (interactable != null)
@@ -172,6 +177,17 @@ public class PlayerController : MonoBehaviour,ISaveable
 
 
     }
+
+    
+
+    [DevConsoleCommand("TP")]
+    public static void TeleportToPosition(float x,float y, float z)
+    {
+
+        player.characterController.enabled = false;
+        player.SetPosition(new Vector3(x,y,z ));
+        player.characterController.enabled = true;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -209,7 +225,7 @@ public class PlayerController : MonoBehaviour,ISaveable
     }
     void OnLook()
     {
-        rotVelocity = Vector2.MoveTowards(rotVelocity, lookAction.ReadValue<Vector2>() * (InputManager.inputMethod==InputMethod.mouseAndKeyboard? mouseSensitiviy:1), 0.5f);
+        rotVelocity = Vector2.Lerp(rotVelocity, lookAction.ReadValue<Vector2>() * (InputManager.inputMethod==InputMethod.mouseAndKeyboard? mouseSensitiviy:1), 0.5f);
         cameraRig.Rotate(new Vector3(-rotVelocity.y, rotVelocity.x, 0));
         var angles = cameraRig.localEulerAngles;
         angles.z = 0;

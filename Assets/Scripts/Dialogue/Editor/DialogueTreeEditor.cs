@@ -81,7 +81,8 @@ public class DialogueTreeEditor : EditorWindow
             graphView.Setup(dialogueTree);
             graphView.OnEdited += () => hasUnsavedChanges = true;
             inspector = new DialogueInspector(dialogueTree);
-            inspector.OnEdited += () => hasUnsavedChanges = true;
+            inspector.OnEdited += () =>hasUnsavedChanges = true;
+            inspector.OnEventRemoved += GenerateGraph;
             rightPane.Add(graphView);
             leftPane.Add(inspector);
             
@@ -152,6 +153,7 @@ public class DialogueInspector : InspectorElement
     Dialogue dialogue;
     ListView list;
     public event Action OnEdited;
+    public event Action OnEventRemoved;
 
     public  DialogueInspector(Dialogue dialogue)
     {
@@ -163,7 +165,7 @@ public class DialogueInspector : InspectorElement
 
         //PropertyField field = new PropertyField(serializedObject.FindProperty("events"),"Events");
 
-        list = new ListView(dialogue.Events,25,makeItem:()=> { var item = new EventViewer(); item.OnEdited += OnEdited; return item; },bindItem:(elem,index)=>(elem as EventViewer).SetEvent(dialogue.Events[index]));
+        list = new ListView(dialogue.Events,25,makeItem:()=> { var item = new EventViewer(); item.OnEdited += OnEdited; return item; },bindItem:(elem,index)=> { (elem as EventViewer).SetEvent(dialogue.Events[index]); (elem as EventViewer).Delete += EventDeleted; });
        
         
         //list.BindProperty(serializedObject.FindProperty("events"));
@@ -173,6 +175,14 @@ public class DialogueInspector : InspectorElement
         //Debug.Log(field);
         Add(list);
 
+    }
+
+    private void EventDeleted(DialogueEvent @event)
+    {
+        dialogue.RemoveEvent(@event);
+        OnEventRemoved?.Invoke();
+        OnEdited?.Invoke();
+        list.Rebuild();
     }
 
     private void AddEvent()
@@ -189,7 +199,7 @@ public class DialogueInspector : InspectorElement
         DialogueEvent dialogueEvent;
         TextField title=new();
         Button delete=new();
-        Action<DialogueEvent> Delete;
+        public Action<DialogueEvent> Delete;
         public event Action OnEdited;
         public EventViewer() 
         {
