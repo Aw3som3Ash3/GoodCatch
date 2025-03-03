@@ -493,8 +493,18 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         CombatManager.NewCombat(enemyFishes, false);
         inCombat = true;
         SceneManager.sceneLoaded += SceneLoaded;
-        OnPlayerLost += () => FindObjectsOfType<BossFightStart>(true).First((x) => x.ID == objectid).gameObject.SetActive(true);
+        OnPlayerLost += OnPlayerLostFight;
+        WonFight += PlayerWonFight;
 
+        void OnPlayerLostFight()
+        {
+            FindObjectsOfType<BossFightStart>(true).First((x) => x.ID == objectid).gameObject.SetActive(true);
+        }
+        void PlayerWonFight()
+        {
+            OnPlayerLost -= OnPlayerLostFight;
+            WonFight -= PlayerWonFight;
+        }
 
     }
     public void CombatEnded(Team winningTeam)
