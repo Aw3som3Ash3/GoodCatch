@@ -448,6 +448,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d16073f380bbda40a2c1779513bb87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &212537847 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 755020072210208841, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+  m_PrefabInstance: {fileID: 1078248768278574333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &216323067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3361,6 +3366,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
   m_PrefabInstance: {fileID: 1111353437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1156752262 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4619259731894228599, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+  m_PrefabInstance: {fileID: 1078248768278574333}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1172314988
 GameObject:
@@ -7166,6 +7176,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteamBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: wheelLeft
+      value: 
+      objectReference: {fileID: 212537847}
+    - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: wheelRight
+      value: 
+      objectReference: {fileID: 1156752262}
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalPosition.x
       value: -113.38

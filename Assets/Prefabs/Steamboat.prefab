@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3003637647177378172}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Children
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4382855780925934600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Reel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 5099071819252406064}
   - component: {fileID: 3370759950762718554}
   - component: {fileID: 3932235140695506238}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PhysicsSim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2039858187526171771}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -459,6 +459,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: emmaBoat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 335464491718236186, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 968501323805869450, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1147326644473496224, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -510,6 +518,14 @@ PrefabInstance:
     - target: {fileID: 1147326644473496224, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025886283404753973, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358907807224051128, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 730761912927881024, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
@@ -627,6 +643,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: emmaBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 335464491718236186, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 968501323805869450, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1147326644473496224, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -679,6 +703,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2025886283404753973, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5444611523325844967, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358907807224051128, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7504204694323134010, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -711,6 +751,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7361876977442284730}
   m_SourcePrefab: {fileID: 100100000, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+--- !u!4 &755020072210208841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4239377888846685645, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+  m_PrefabInstance: {fileID: 3508046256783703428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1319212623774287045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2513533744711481665, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
@@ -799,6 +844,11 @@ MeshCollider:
 --- !u!4 &4558499320748588836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1147326644473496224, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
+  m_PrefabInstance: {fileID: 3508046256783703428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4619259731894228599 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8121675934956350451, guid: 03ec18ea66dd22d49bd6a66c597b736d, type: 3}
   m_PrefabInstance: {fileID: 3508046256783703428}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6380297832205239230 stripped
@@ -1297,6 +1347,14 @@ PrefabInstance:
       propertyPath: physicSim
       value: 
       objectReference: {fileID: 3370759950762718554}
+    - target: {fileID: 6575424345204521440, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
+      propertyPath: wheelLeft
+      value: 
+      objectReference: {fileID: 755020072210208841}
+    - target: {fileID: 6575424345204521440, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
+      propertyPath: wheelRight
+      value: 
+      objectReference: {fileID: 4619259731894228599}
     - target: {fileID: 6575424345204521440, guid: 46bafb632677ea94eaa10f3380b4161e, type: 3}
       propertyPath: repawnPoint
       value: 
