@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,13 +8,16 @@ public class ShipControls : Station
     ShipSimulator ship;
     float turnValue;
     float sailValue;
-    [SerializeField]
-    Transform wheel;
-    [SerializeField]
-    float turnSpeed;
     DockingZone currentDock;
     [SerializeField]
     LayerMask dockLayer;
+
+    [SerializeField]
+    FishingRod fishingRod;
+    [SerializeField]
+    GameObject rodBase;
+
+
 
     public override void MoveInput(Vector2 input)
     {
@@ -21,6 +25,7 @@ public class ShipControls : Station
         sailValue = input.y;
         ship.AdjustTurn(sailValue>=0? turnValue:-turnValue);
         ship.AdjustSails(sailValue);
+        
     }
 
     public override void Use()
@@ -31,7 +36,9 @@ public class ShipControls : Station
     // Start is called before the first frame update
     void Start()
     {
-
+        InputManager.Input.Ship.Move.performed += OnMove;
+        InputManager.Input.Ship.Exit.performed += OnLeaveStation;
+        InputManager.Input.Ship.Fish.performed += OnCast;
     }
     public override bool Interact()
     {
@@ -45,31 +52,44 @@ public class ShipControls : Station
             currentDock = null;
         }
         InputManager.Input.Ship.Enable();
-        InputManager.Input.Ship.Move.performed += OnMove;
-        InputManager.Input.Ship.Exit.performed += OnLeaveStation;
+        PlayerController.player.SetVisibility(false);
         return true;
 
     }
+
+    private void OnCast(InputAction.CallbackContext context)
+    {
+        InputManager.Input.Ship.Disable();
+        fishingRod.CastLine(Vector3.zero, 0, () => { InputManager.Input.Ship.Enable(); });
+        
+        //throw new NotImplementedException();
+    }
+
     void OnLeaveStation(InputAction.CallbackContext context)
     {
-        turnSpeed = 0;
-        turnValue = 0;
-
-        sailValue = 0;
-        ship.AdjustTurn(turnValue);
-
-        ship.AdjustSails(sailValue);
-        ship.PhysicSim.velocity = Vector3.zero;
-        ship.PhysicSim.angularVelocity = Vector3.zero;
-        InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
         foreach (Collider col in Physics.OverlapSphere(ship.transform.position, 10, dockLayer))
         {
             Debug.Log(col);
-            col.GetComponent<DockingZone>()?.DockShip(ship,true,()=> { LeaveSation(); currentDock = col.GetComponent<DockingZone>(); });
-            return;
+            if (col.GetComponent<DockingZone>() != null)
+            {
+                col.GetComponent<DockingZone>()?.DockShip(ship, true, () => { InputManager.Input.Ship.Exit.performed -= OnLeaveStation; LeaveSation(); currentDock = col.GetComponent<DockingZone>(); });
+                PlayerController.player.SetVisibility(true);
+                turnValue = 0;
+
+                sailValue = 0;
+                ship.AdjustTurn(turnValue);
+
+                ship.AdjustSails(sailValue);
+                ship.PhysicSim.velocity = Vector3.zero;
+                ship.PhysicSim.angularVelocity = Vector3.zero;
+                return;
+            }
 
         }
-        LeaveSation();
+       
+       
+       
+       
     }
     void OnMove(InputAction.CallbackContext context)
     {
@@ -80,8 +100,17 @@ public class ShipControls : Station
        
        
         InputManager.Input.Ship.Disable();
+       
         base.LeaveSation();
 
+    }
+
+    private void OnDestroy()
+    {
+        InputManager.Input.Ship.Enable();
+        InputManager.Input.Ship.Move.performed -= OnMove;
+        InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
+        InputManager.Input.Ship.Fish.performed -= OnCast;
     }
     // Update is called once per frame
     void Update()

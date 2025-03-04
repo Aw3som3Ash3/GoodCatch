@@ -18,11 +18,12 @@ public class FishingRod : MonoBehaviour
     Action OnComplete;
 
     public AudioController audioController;
+    int defualtPositionCount;
 
     private void Awake()
     {
         fishingLine = GetComponent<LineRenderer>();
-        fishingLine.positionCount = 2;
+        defualtPositionCount=fishingLine.positionCount;
         fishingLine.SetPosition(0, reel.localPosition);
         fishingLine.SetPosition(1, lineStart.localPosition);
     }
@@ -38,7 +39,7 @@ public class FishingRod : MonoBehaviour
         if (floater != null)
         {
             Vector3 relativeFloaterPos = this.transform.InverseTransformPoint(floater.LineEndPos);
-            for (int i = 2; i < fishingLine.positionCount-1; i++)
+            for (int i = defualtPositionCount; i < fishingLine.positionCount-1; i++)
             {
                 Vector3 pos = QuadBezier(lineStart.localPosition,(relativeFloaterPos - lineStart.localPosition)/2 +Vector3.down*2 + Vector3.back * 2 , relativeFloaterPos, (float)(i-2)/ (float)(fishingLine.positionCount - 2));
                 fishingLine.SetPosition(i, pos);
@@ -47,7 +48,7 @@ public class FishingRod : MonoBehaviour
         }
         else
         {
-            fishingLine.positionCount = 2;
+            fishingLine.positionCount = defualtPositionCount;
         }
     }
 
