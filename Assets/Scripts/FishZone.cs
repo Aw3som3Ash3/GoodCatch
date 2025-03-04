@@ -53,22 +53,19 @@ public class FishZone : SaveableObject
     {
         
     }
-
-    public FishMonsterType GetRandomFish( Action fishingSucceeded,out FishToCatch fishToCatch)
+    public FishToCatch GetFishObect()
+    {
+        return fishes[UnityEngine.Random.Range(0, fishes.Count)];
+    }
+    public FishMonster GetRandomFish()
     {
         if (data.amount < 0)
         {
-            fishToCatch = null;
             return null;
         }
-        fishingSucceeded += () => data.amount--;
-
-        fishToCatch = fishes[UnityEngine.Random.Range(0, fishes.Count)];
-        //fish.StartCatching(fishHook);
-        //fishes.Remove(fishToCatch);
+        data.amount--;
         return spawnTable.GetRandomFish();
     }
-
     public override void Load(string json)
     {
         //JsonUtility.FromJsonOverwrite(json, this);

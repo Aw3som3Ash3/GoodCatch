@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 using static CombatManager;
 
 
-public class CombatManager : MonoBehaviour,IUseDevCommands
+public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 {
     public enum Team
     {
@@ -65,6 +65,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands
     [SerializeField]
     CinemachineTargetGroup targetGroup;
     public CombatAI combatAI { get; private set; }
+
+    public object DataToSave => (enemyFishes,rewardFish);
+
+    public string ID => "CombatManager";
+
     int draftedCount;
 
     GameObject previousSelected;
@@ -143,7 +148,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands
         });
         Time.timeScale = 1;
     }
-    [DevConsoleCommand("KillAllEnemyFish")]
+    [DevConsoleCommand("KillAllEnemyFish","Use to kill all opposing fish. Only use on a player's turn to avoid bugs")]
     public static void KillAllEnemies()
     {
         CombatManager manager=FindAnyObjectByType<CombatManager>();
@@ -152,8 +157,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands
 
             manager.getFishesTurn[f].TakeDamage(10000, null, Ability.AbilityType.special);
             f.CheckDeath();
-            manager.CanFightEnd();
+           
         });
+        manager.CanFightEnd();
     }
 
     /// <summary>
@@ -561,6 +567,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands
             combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
         }
         
+    }
+
+    public void Load(string json)
+    {
+        var data= JsonUtility.FromJson<(List<FishMonster> enemyFishes,bool rewardFish)>(json);
+        NewCombat(data.enemyFishes, data.rewardFish);
     }
 
     [Serializable]

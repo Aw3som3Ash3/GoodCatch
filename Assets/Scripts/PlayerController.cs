@@ -177,12 +177,15 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
 
 
     }
+
+    
+
     [DevConsoleCommand("TP")]
-    public static void TeleportToPosition(string x,string y, string z)
+    public static void TeleportToPosition(float x,float y, float z)
     {
 
         player.characterController.enabled = false;
-        player.SetPosition(new Vector3(float.Parse(x),float.Parse(y),float.Parse(z) ));
+        player.SetPosition(new Vector3(x,y,z ));
         player.characterController.enabled = true;
     }
     // Update is called once per frame

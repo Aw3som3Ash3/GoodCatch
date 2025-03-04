@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ModMButtons.uss?fileID=7433441132597879392&amp;guid=16ccc856c4f3c2e4aba0a72c742b6fbe&amp;type=3#ModMButtons" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-shrink: 0; flex-direction: column; align-items: center;">
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row; flex-shrink: 0;">
+            <AbilityButton name="Ability0" />
+            <AbilityButton name="Ability1" />
+            <AbilityButton name="Ability2" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row; flex-shrink: 0;">
+            <AbilityButton name="Ability3" />
+            <AbilityButton name="Ability4" />
+            <AbilityButton name="Ability5" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

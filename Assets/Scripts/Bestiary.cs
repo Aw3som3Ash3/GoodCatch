@@ -10,7 +10,14 @@ using UnityEngine.UIElements;
 public class Bestiary : PausePage
 {
     ListView fishList;
-    List<FishMonsterType> fishMonsters { get { return GameManager.Instance.Database.fishMonsters; } }
+    List<FishMonsterType> fishMonsters 
+    { get 
+        { 
+
+            
+            return GameManager.Instance.Database.fishMonsters; 
+        } 
+    }
     List<bool> hasSeenFish { get { return GameManager.Instance.HasSeenFish; } }
 
     Label fishLabel;
@@ -105,7 +112,7 @@ public class Bestiary : PausePage
         {
 
             //(item as Label).text = Path.GetFileNameWithoutExtension(files[index].Name);
-            (item as BestiarySlot).SetFish(fishMonsters[index], hasSeenFish[fishMonsters[index].fishId]);
+            (item as BestiarySlot).SetFish(fishList.itemsSource[index] as FishMonsterType, hasSeenFish[(fishList.itemsSource[index] as FishMonsterType).fishId]);
 
         };
 
@@ -115,7 +122,7 @@ public class Bestiary : PausePage
         fishList.fixedItemHeight = 65;
 
 
-        fishList.itemsSource =fishMonsters;
+        fishList.itemsSource =fishMonsters.Skip(1).ToList();
     }
 
     public override bool Back()
