@@ -66,13 +66,16 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     CinemachineTargetGroup targetGroup;
     public CombatAI combatAI { get; private set; }
 
-    public object DataToSave => (enemyFishes,rewardFish);
+    public object DataToSave => (enemyFishes,rewardFish,randomState);
 
     public string ID => "CombatManager";
 
     int draftedCount;
 
     GameObject previousSelected;
+    [SerializeField]
+    [HideInInspector]
+    UnityEngine.Random.State randomState;
     private void Awake()
     {
         depths[0] = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -291,6 +294,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             getFishesTurn[enemyFishes[i]] = turn;
             fishCaught[enemyFishes[i]] = false;
         }
+
+        randomState = UnityEngine.Random.state;
+
+
     }
     private void OnDisable()
     {
@@ -362,7 +369,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     {
        
         StartCoroutine(CombatVictoryScreen(winningTeam));
- 
+        playerFishes.ForEach((f) => f.UpdateHealth(getFishesTurn[f].Health));
     }
 
     IEnumerator CombatVictoryScreen(Team winningTeam)
@@ -571,8 +578,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     public void Load(string json)
     {
-        var data= JsonUtility.FromJson<(List<FishMonster> enemyFishes,bool rewardFish)>(json);
+        var data= JsonUtility.FromJson<(List<FishMonster> enemyFishes,bool rewardFish,UnityEngine.Random.State state)>(json);
         NewCombat(data.enemyFishes, data.rewardFish);
+        UnityEngine.Random.state = data.state;
     }
 
     [Serializable]
@@ -714,14 +722,15 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         bool actionsCompleted = true;
         public HashSet<StatusEffect.StatusEffectInstance> effects { get; private set; } = new HashSet<StatusEffect.StatusEffectInstance>();
         public Dictionary<StatusEffect,int> lastEffects { get; private set; } = new();
-
-        public float Health { get { return fish.Health; } }
+        float health;
+        public float Health { get { return health; } }
         public float MaxHealth { get { return fish.MaxHealth; } }
 
         public float MaxStamina { get { return fish.MaxStamina; } }
         public float Stamina { get { return fish.Stamina; } }
         public Action<StatusEffect.StatusEffectInstance> NewEffect;
         public Action<StatusEffect.StatusEffectInstance> EffectRemoved;
+        public event Action ValueChanged;
         public int agility
         {
             get
@@ -818,7 +827,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             this.combatManager = combatManager;
             currentDepth = startingDepth;
             combatManager.CompletedAllActions += ActionsCompleted;
+            health=fish.Health;
             fish.HasFeinted =()=> { TurnEnded?.Invoke(); HasFeinted?.Invoke();Debug.Log("fish has feinted"); };
+            fish.ValueChanged += ValueChanged;
             //stamina = maxStamina;
         }
 
@@ -845,6 +856,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             Element.Effectiveness effectiveness;
             var damageOut= fish.TakeDamage(damage, elementType, abilityType, out effectiveness);
             combatManager.combatVisualizer.AnimateDamageNumbers(this, damageOut, effectiveness);
+            health-=damageOut;
+            ValueChanged?.Invoke();
             return damageOut;
         }
         public virtual void StartTurn()
@@ -1047,7 +1060,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             }
             fish.CheckDeath();
         }
-
+        ~Turn()
+        {
+            fish.ValueChanged -= ValueChanged;
+        }
 
     }
 }
