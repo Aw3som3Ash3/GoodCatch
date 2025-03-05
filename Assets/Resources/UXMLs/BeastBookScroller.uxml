@@ -13,7 +13,9 @@
                         <ui:Label tabindex="-1" text="HoveredFishName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HoveredNameAmount" style="font-size: 49px; -unity-text-align: upper-center; -unity-font: initial; -unity-font-style: bold; color: rgb(255, 255, 255); height: auto;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="ModContainer" style="flex-grow: 1; height: 630px;" />
+                <ui:VisualElement name="ModContainer" style="flex-grow: 1; height: 630px;">
+                    <MarinedexTabs />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
