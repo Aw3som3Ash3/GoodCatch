@@ -218,7 +218,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         
     }
 
-
+    Stack<(Turn,int index)> draftStack=new();
     void DraftFish(int index,int target)
     {
         Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);
@@ -227,11 +227,17 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         currentCombatents.Add(turn);
         getFishesTurn[playerFishes[index]] = turn;
         draftedCount++;
-        undoDraft=()=> 
+        draftStack.Push((turn,index));
+        undoDraft =()=> 
         {
-            RemoveFishFromBattle(turn);
-            combatUI.ReAddToDraft(index);
-            draftedCount--;
+            (Turn turn, int index) val;
+            if(draftStack.TryPop(out val))
+            {
+                RemoveFishFromBattle(val.turn);
+                combatUI.ReAddToDraft(val.index);
+                draftedCount--;
+            }
+           
         };
         if (draftedCount >= 3 || draftedCount >= playerFishes.Count)
         {
@@ -250,6 +256,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         targetGroup.m_Targets[2].weight = 0;
         OrderTurn();
         StartTurn();
+        draftStack.Clear();
 
     }
     void UseItem(Item item,Action completedCallback,Action canceledCallback)
@@ -600,8 +607,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void RemoveFishFromBattle(Turn turn)
     {
+        currentCombatents.Remove(turn);
         combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
+        getFishesTurn.Remove(turn.fish);
         //playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
