@@ -52,6 +52,8 @@ public class ShipControls : Station
             currentDock = null;
         }
         InputManager.Input.Ship.Enable();
+        InputManager.DisablePlayer();
+
         PlayerController.player.SetVisibility(false);
         return true;
 
@@ -59,9 +61,14 @@ public class ShipControls : Station
 
     private void OnCast(InputAction.CallbackContext context)
     {
+        turnValue = 0;
+
+        sailValue = 0;
+        ship.AdjustTurn(turnValue);
+
+        ship.AdjustSails(sailValue);
         InputManager.Input.Ship.Disable();
         fishingRod.CastLine(Vector3.zero, 0, () => { InputManager.Input.Ship.Enable(); });
-        
         //throw new NotImplementedException();
     }
 
@@ -78,7 +85,7 @@ public class ShipControls : Station
 
                 sailValue = 0;
                 ship.AdjustTurn(turnValue);
-
+                InputManager.EnablePlayer();
                 ship.AdjustSails(sailValue);
                 ship.PhysicSim.velocity = Vector3.zero;
                 ship.PhysicSim.angularVelocity = Vector3.zero;
