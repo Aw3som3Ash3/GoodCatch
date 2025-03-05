@@ -37,7 +37,7 @@ public class CombatUI : VisualElement
 
     readonly GoodCatchInputs inputs= InputManager.Input;
     HashSet<FishUI> fishUIs = new HashSet<FishUI>();
-
+    public event Action EndDraft;
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
     public new class UxmlFactory : UxmlFactory<CombatUI, CombatUI.UxmlTraits>
@@ -67,11 +67,23 @@ public class CombatUI : VisualElement
         inputs.Combat.Enable();
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
+       
         Initial();
+        endTurnButton = root.Q<Button>("ConfirmDraft");
+        endTurnButton.clicked += EndDraftingPhase;
+        Debug.Log("Confirm draft: " + endTurnButton);
+        endTurnButton.SetEnabled(true);
+    }
+
+    void EndDraftingPhase()
+    {
+        Debug.Log("SHould end draft");
+        EndDraft?.Invoke();
     }
 
     public void InitialNormal()
     {
+        endTurnButton.clicked -= EndDraftingPhase;
         VisualElement root = this;
         root.styleSheets.Clear();
         //var fishUI = this.Q("ConditionArea").Children();
@@ -93,6 +105,8 @@ public class CombatUI : VisualElement
         runButton.clicked += OnRun;
         moveButton = tabbedView.Q<Button>("Move");
         moveButton.clicked += Move;
+        endTurnButton = this.Q<Button>("EndTurn");
+        endTurnButton.clicked += EndTurn;
         Initial();
         SetInventory(GameManager.Instance.PlayerInventory);
         foreach (FishUI fishUI in fishUIs)
@@ -115,8 +129,7 @@ public class CombatUI : VisualElement
             
             abilityButtons[i].MouseExit += () => toolTip.visible = false;
         }
-        endTurnButton = this.Q<Button>("EndTurn");
-        endTurnButton.clicked += EndTurn;
+        
         staminaBar = this.Q<ProgressBar>("StaminaBar");
         healthBar = this.Q<ProgressBar>("HealthBar");
         turnMarker = this.Q("TurnMarker");
@@ -227,7 +240,13 @@ public class CombatUI : VisualElement
     {
         throw new NotImplementedException();
     }
+    public void ReAddToDraft(int fishIndex)
+    {
 
+        var slot = combatDraftUI.Q<Button>("slot" + (fishIndex + 1));
+        slot.style.unityBackgroundImageTintColor = Color.white;
+        slot.SetEnabled(true);
+    }
     public void Draft(IList<FishMonster> playerFishes, Action<int,Action<bool>> callback)
     {
         //ResetDisplayAbilities();
