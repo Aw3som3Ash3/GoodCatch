@@ -72,7 +72,7 @@ public class FishUI : VisualElement
 
         //this.fish.ValueChanged -= UpdateUI;
         this.turn = turn;
-        this.turn.fish.ValueChanged += UpdateUI;
+        this.turn.ValueChanged += UpdateUI;
         this.target = target;
         UpdateUI();
         this.turn.NewEffect += NewEffect;
@@ -111,6 +111,6 @@ public class FishUI : VisualElement
 
     ~FishUI()
     {
-        this.turn.fish.ValueChanged -= UpdateUI;
+        this.turn.ValueChanged -= UpdateUI;
     }
 }
