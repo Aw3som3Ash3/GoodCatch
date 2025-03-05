@@ -22,6 +22,7 @@ public class CombatUI : VisualElement
     ItemInventory inventory;
     VisualElement combatDraftUI;
     VisualElement statusBar;
+    VisualElement profileSection;
     Label fishName, level;
     VisualElement fishIcon;
     ToolTipBox toolTip;
@@ -38,6 +39,8 @@ public class CombatUI : VisualElement
     readonly GoodCatchInputs inputs= InputManager.Input;
     HashSet<FishUI> fishUIs = new HashSet<FishUI>();
     public event Action EndDraft;
+
+    const string PROFILE_COLLAPSED_STATE="ProfileCollapsed";
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
     public new class UxmlFactory : UxmlFactory<CombatUI, CombatUI.UxmlTraits>
@@ -67,12 +70,13 @@ public class CombatUI : VisualElement
         inputs.Combat.Enable();
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
-       
+        
         Initial();
         endTurnButton = root.Q<Button>("ConfirmDraft");
         endTurnButton.clicked += EndDraftingPhase;
         Debug.Log("Confirm draft: " + endTurnButton);
         endTurnButton.SetEnabled(true);
+        MoreInfo(true);
     }
 
     void EndDraftingPhase()
@@ -144,7 +148,7 @@ public class CombatUI : VisualElement
         level = this.Q<Label>("Level");
         fishIcon = this.Q("ProfilePic");
         inputs.Combat.MoreInfo.performed += OnMoreInfo;
-
+        profileSection = this.Q("Profile");
         moreInfoButton = this.Q("IndicatorImageBox");
         moreInfoScreen = this.Q("AlfredInfo");
       
@@ -171,22 +175,25 @@ public class CombatUI : VisualElement
     }
     void MoreInfo()
     {
-        if (moreInfoOpen)
+        if (profileSection.ClassListContains(PROFILE_COLLAPSED_STATE))
         {
-            moreInfoBaseWidth = moreInfoScreen.layout.width;
-            Debug.Log("base width" + moreInfoBaseWidth);
+            profileSection.RemoveFromClassList(PROFILE_COLLAPSED_STATE);
         }
-        moreInfoOpen = !moreInfoOpen;
-        var width = moreInfoScreen.style.width.value;
-        width.value = moreInfoOpen? moreInfoBaseWidth:0;
-        moreInfoScreen.style.width = width;
-        moreInfoScreen.Children().ToArray()[0].visible = moreInfoOpen;
-        moreInfoScreen.Children().ToArray()[1].visible = moreInfoOpen;
+        else
+        {
+            profileSection.AddToClassList(PROFILE_COLLAPSED_STATE);
+        }
     }
     void MoreInfo(bool open)
     {
-        moreInfoOpen = open;
-        MoreInfo();
+        if (open)
+        {
+            profileSection.RemoveFromClassList(PROFILE_COLLAPSED_STATE);
+        }
+        else
+        {
+            profileSection.AddToClassList(PROFILE_COLLAPSED_STATE);
+        }
     }
 
     void UpdateInfo(FishMonster fish)
@@ -196,9 +203,11 @@ public class CombatUI : VisualElement
         infoScreenDefense.text = fish.Fortitude.value.ToString();
         infoScreenMagicAttack.text = fish.Special.value.ToString();
         infoScreenMagicDefense.text = fish.SpecialFort.value.ToString();
+        infoScreenAccuracy.text = fish.Accuracy.value.ToString();
+
         //infoScreenHealth.text = fish.Health.ToString("00")+"/"+fish.MaxHealth.ToString("00");
         //infoScreenStamina.text = fish.MaxStamina.ToString("00");
-        var addElem= this.Q("AddElement");
+        var addElem = this.Q("AddElement");
       
         if (addElem == null)
         {
