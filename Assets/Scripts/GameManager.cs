@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         public float dayTime;
         public bool[] hasSeenFish;
         public string currentInnId;
+        public int currentScene;
         public GameData(int partySize)
         {
             PlayerFishventory = new Fishventory(partySize);
@@ -41,12 +43,12 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             dayTime =0;
             hasSeenFish = new bool[0];
             currentInnId = "";
-
+            currentScene = 0;
 
         }
     }
     public List<bool> HasSeenFish{ get { return gameData.hasSeenFish.ToList(); } }
-    GameData gameData=new GameData(7);
+    GameData gameData=new GameData(6);
     public Fishventory PlayerFishventory { get { return gameData.PlayerFishventory; }}
     public Fishventory StoredFishventory { get { return gameData.StoredFishventory; }}
     public ItemInventory PlayerInventory { get { return gameData.PlayerInventory; } }
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     [SerializeField]
     public Inn lastInnVisited { get { return Inn.innIds[gameData.currentInnId]; } }
-
+    event Action OnPlayerLost;
     bool inCombat;
     [Flags]
     public enum TimeOfDay
@@ -160,13 +162,13 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     
     InputUser user;
 
-    String mainScene;
+    //string mainScene;
 
     [SerializeField]
     UIDocument mainUI;
     [SerializeField]
     public AudioMixer audioMixer;
-    UIDocument MainUI { get { if (mainUI == null) { return GameObject.Find("MainHud")?.GetComponent<UIDocument>(); } else { return mainUI; } } }
+    UIDocument MainUI { get { if (mainUI == null) { mainUI= GameObject.Find("MainHud")?.GetComponent<UIDocument>(); return mainUI; } else { return mainUI; } } }
 
     public event Action<FishMonsterType> CaughtFish;
     public event Action WonFight;
@@ -193,8 +195,29 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         {
             PauseMenu.Pause();
         };
-        MainUI.gameObject.SetActive(true);
-        
+        if (mainUI != null)
+        {
+            MainUI.gameObject.SetActive(true);
+        }
+
+
+        //mainScene = SceneManager.GetActiveScene().name;
+        DayTime = startingTime;
+
+        foreach (var fish in testfisth)
+        {
+            CapturedFish(fish);
+        }
+        //PlayerFishventory.Fishies[0].ChangeName("SteveO");
+
+        sun = FindObjectOfType<Light>().gameObject;
+        for (int i = 0; i < startingItems.Length; i++)
+        {
+            PlayerInventory.AddItem(startingItems[i]);
+        }
+        InputManager.Input.Player.QuickSave.performed += (x) => SavingSystem.SaveGame(SavingSystem.SaveMode.QuickSave);
+        InputManager.Input.Player.QuickLoad.performed += (x) => SavingSystem.LoadGame();
+
     }
 
     
@@ -211,6 +234,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
        
         lastInnVisited.Respawn();
+        OnPlayerLost?.Invoke();
         Debug.Log("player has died");
         AdvanceTime(3);
         RestoreFish();
@@ -218,21 +242,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     // Start is called before the first frame update
     void Start()
     {
-        mainScene = SceneManager.GetActiveScene().name;
-        DayTime = startingTime;
-        foreach(var fish in testfisth)
-        {
-            CapturedFish(fish);
-        }
-        //PlayerFishventory.Fishies[0].ChangeName("SteveO");
-
-        sun = FindObjectOfType<Light>().gameObject;
-        for(int i=0;i<startingItems.Length;i++)
-        {
-            PlayerInventory.AddItem(startingItems[i]);
-        }
-        InputManager.Input.Player.QuickSave.performed +=(x)=>SavingSystem.SaveGame(SavingSystem.SaveMode.QuickSave);
-        InputManager.Input.Player.QuickLoad.performed +=(x)=>SavingSystem.LoadGame();
+        
         //FishingMiniGame.SuccesfulFishing += (fish) => LoadCombatScene(new List<FishMonster>() { fish }, true);
     }
 
@@ -393,59 +403,54 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         Instance.PlayerInventory.AddItem(item,int.Parse(amount));
 
     }
-
-
-    [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1, string level1, string fish2, string level2, string fish3, string level3)
+    [DevConsoleCommand("StartCombat","Will Start a combat scenario to upto three fish with indicated level")]
+    public static void StartCombatByFishIds(int fish1, int level1, int fish2, int level2, int fish3, int level3)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        if (int.Parse(fish1) >= 0)
+        if (fish1 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish1].GenerateMonster(level1));
         }
-        if (int.Parse(fish2) >= 0)
+        if (fish2 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster(int.Parse(level2)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish2].GenerateMonster(level2));
         }
-        if (int.Parse(fish3) >= 0)
+        if (fish3 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish3)].GenerateMonster(int.Parse(level3)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish3].GenerateMonster(level3));
         }
        
 
         Instance.LoadCombatScene(fishMonsters);
     }
     [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1, string level1, string fish2, string level2)
+    public static void StartCombatByFishIds(int fish1, int level1, int fish2, int level2)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        if (int.Parse(fish1) >= 0)
+        if (fish1 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish1].GenerateMonster(level1));
         }
-        if (int.Parse(fish2) >= 0)
+        if (fish2 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster(int.Parse(level2)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish2].GenerateMonster(level2));
         }
 
 
         Instance.LoadCombatScene(fishMonsters);
     }
     [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1,string level1)
+    public static void StartCombatByFishIds(int fish1,int level1)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
-
-
-
+        fishMonsters.Add(Instance.database.fishMonsters[fish1].GenerateMonster(level1));
         Instance.LoadCombatScene(fishMonsters);
     }
     [DevConsoleCommand("StartCombatRandom")]
-    public static void StartCombatRandom(string amount, string level)
+    public static void StartCombatRandom(int amount, int level)
     {
-        int _amount=int.Parse(amount);
-        int _level=int.Parse(level);
+        int _amount=amount;
+        int _level=level;
 
         List<FishMonster> fishMonsters = new List<FishMonster>();
         for(int i = 0; i < _amount; i++)
@@ -453,6 +458,19 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             fishMonsters.Add(Instance.database.fishMonsters[UnityEngine.Random.Range(0,Instance.database.FishMonsters.Count)].GenerateMonster());
         }
         Instance.LoadCombatScene(fishMonsters);
+    }
+    [DevConsoleCommand("BoolTest")]
+    public static void TestBool(bool b)
+    {
+        print(b);
+    }
+    [DevConsoleCommand("DiscoverAllFish","Mark the whole marindex as discovered")]
+    public static void DiscoverAllFish()
+    {
+        for (int i = 0; i < Instance.gameData.hasSeenFish.Length; i++)
+        {
+            Instance.gameData.hasSeenFish[i] = true;
+        }
     }
     //public static void StartCombatByFishIds(params string[] fishIds)
     //{
@@ -465,6 +483,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     //}
     public void LoadCombatScene(List<FishMonster> enemyFishes, bool rewardFish = false)
     {
+        gameData.currentScene = SceneManager.GetActiveScene().buildIndex;
         SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
         //mainEventSystem.enabled = false;
         CombatManager.NewCombat(enemyFishes, rewardFish);
@@ -472,6 +491,29 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         SceneManager.sceneLoaded += SceneLoaded;
         
        
+    }
+
+    public void LoadBossCombatScene(List<FishMonster> enemyFishes, string objectid)
+    {
+        gameData.currentScene = SceneManager.GetActiveScene().buildIndex;
+        SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+        //mainEventSystem.enabled = false;
+        CombatManager.NewCombat(enemyFishes, false);
+        inCombat = true;
+        SceneManager.sceneLoaded += SceneLoaded;
+        OnPlayerLost += OnPlayerLostFight;
+        WonFight += PlayerWonFight;
+
+        void OnPlayerLostFight()
+        {
+            FindObjectsOfType<BossFightStart>(true).First((x) => x.ID == objectid).gameObject.SetActive(true);
+        }
+        void PlayerWonFight()
+        {
+            OnPlayerLost -= OnPlayerLostFight;
+            WonFight -= PlayerWonFight;
+        }
+
     }
     public void CombatEnded(Team winningTeam)
     {
@@ -484,16 +526,18 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         {
             WonFight?.Invoke();
         }
-        SavingSystem.SaveSelf(this);
-        SavingSystem.SaveSelf(FindObjectOfType<QuestTracker>());
+        SavingSystem.SaveSelf(this,this.gameObject.scene.buildIndex);
+        var questTracker = FindObjectOfType<QuestTracker>();
+        SavingSystem.SaveSelf(questTracker, questTracker.gameObject.scene.buildIndex);
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
-        SceneManager.LoadScene(mainScene);
+        SceneManager.LoadScene(gameData.currentScene);
 
         
         inCombat = false;
        
     }
+
     void SceneLoadedLost(Scene arg0, LoadSceneMode arg1)
     {
         if(arg0.name=="Main Scene")
@@ -515,7 +559,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             inCombat = true;
             
         }
-        else if(arg0.name == mainScene)
+        else if(arg0.buildIndex == gameData.currentScene)
         {
             print("should load");
             SavingSystem.LoadGame();
@@ -530,6 +574,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     public void Load(string json)
     {
+        gameData =new();
         gameData = JsonUtility.FromJson<GameData>(json);
     }
 

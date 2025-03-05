@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BossFightStart : MonoBehaviour
+public class BossFightStart : TransformSaver
 {
     [SerializeField] FishMonsterType fishMonster1;
     [SerializeField] FishMonsterType fishMonster2;
     [SerializeField] FishMonsterType fishMonster3;
 
 
+    private void Awake()
+    {
+        
+    }
     void OnTriggerEnter(Collider other)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();

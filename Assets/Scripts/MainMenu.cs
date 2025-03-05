@@ -16,6 +16,11 @@ public class MainMenu : MonoBehaviour
     OptionsPageMenu optionsScreen;
     [SerializeField]
     public AudioMixer mixer;
+
+    [SerializeField]
+    GameObject[] startingObjects;
+
+    Action<int> startGameEvent;
     private void Awake()
     {
         //InputManager.Init();
@@ -31,6 +36,25 @@ public class MainMenu : MonoBehaviour
         QuestTracker.Instance = null;
         InputManager.OnInputChange += OnInputChange;
 
+
+
+        for (int i = 1; i <= 3; i++)
+        {
+            int index = i;
+            var button = loadScreen.Q<Button>("Slot" + i);
+
+            //button.SetEnabled(true);
+            button.clicked += () =>
+            {
+                startGameEvent.Invoke(index);
+                for (int j = 0; j < startingObjects.Length; j++)
+                {
+                    //Instantiate(startingObjects[j]);
+                }
+            };
+
+            Time.timeScale = 1;
+        }
 
     }
 
@@ -108,20 +132,20 @@ public class MainMenu : MonoBehaviour
                 button.text = "Slot " + (i);
             }
             button.SetEnabled(true);
-            button.clicked += () => 
-            { 
-                SavingSystem.SetSlot(index); 
-                SavingSystem.ClearSlot(index);
-                SceneManager.sceneLoaded += OnSceneLoaded;
-                SceneManager.LoadSceneAsync("IntroScene").completed+=OnSceneLoaded;
-                InputManager.Input.UI.Back.performed -= Back;
 
-
-
-            };
-
-            Time.timeScale = 1;
+            
         }
+        Time.timeScale = 1;
+        startGameEvent = (index) =>
+        {
+            SavingSystem.SetSlot(index);
+            SavingSystem.ClearSlot(index);
+            //SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.LoadSceneAsync("IntroScene").completed += OnSceneLoaded;
+            InputManager.Input.UI.Back.performed -= Back;
+        };
+       
+
     }
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
@@ -177,7 +201,6 @@ public class MainMenu : MonoBehaviour
             }
             if (SavingSystem.HasSlot(i))
             {
-                button.clicked += () => { SavingSystem.LoadGame(index); InputManager.Input.UI.Back.performed -= Back; };
                 button.SetEnabled(true);
             }
             else
@@ -187,8 +210,14 @@ public class MainMenu : MonoBehaviour
 
         }
         Time.timeScale = 1;
-    }
 
+        startGameEvent = (index) =>
+        {
+            SavingSystem.LoadGame(index); 
+            InputManager.Input.UI.Back.performed -= Back;
+        };
+    }
+   
     // Update is called once per frame
     void Update()
     {
