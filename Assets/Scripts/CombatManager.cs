@@ -159,7 +159,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         {
 
             manager.getFishesTurn[f].TakeDamage(10000, null, Ability.AbilityType.special);
-            f.CheckDeath();
+            manager.getFishesTurn[f].CheckDeath();
            
         });
         manager.CanFightEnd();
@@ -507,7 +507,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             ability.UseAbility(turn, turn, out hit, out damageDone);
             ActionsCompleted();
             combatUI.EnableButtons();
-            turn.fish.CheckDeath();
+            turn.CheckDeath();
             return;
         }
 
@@ -522,7 +522,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                     {
                         combatVisualizer.AnimateAttack(ability, turn, depth.TargetFirst(targetedTeam), () =>
                         {
-                            depth.TargetSide(targetedTeam).ForEach((turn) => turn.fish.CheckDeath());
+                            depth.TargetSide(targetedTeam).ForEach((turn) => turn.CheckDeath());
                             ActionsCompleted();
                             combatUI.EnableButtons();
                             
@@ -548,7 +548,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             combatVisualizer.AnimateAttack(ability, turn, targetedFish, () =>
             {
 
-                targetedDepth.TargetSide(targetedTeam).ForEach((turn) => turn.fish.CheckDeath());
+                targetedDepth.TargetSide(targetedTeam).ForEach((turn) => turn.CheckDeath());
                 ActionsCompleted();
                 combatUI.EnableButtons();
             });
@@ -828,8 +828,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             currentDepth = startingDepth;
             combatManager.CompletedAllActions += ActionsCompleted;
             health=fish.Health;
-            fish.HasFeinted =()=> { TurnEnded?.Invoke(); HasFeinted?.Invoke();Debug.Log("fish has feinted"); };
-            fish.ValueChanged += ValueChanged;
+            //fish.HasFeinted =()=> { TurnEnded?.Invoke(); HasFeinted?.Invoke();Debug.Log("fish has feinted"); };
+            fish.ValueChanged +=()=> ValueChanged?.Invoke();
             //stamina = maxStamina;
         }
 
@@ -859,6 +859,21 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             health-=damageOut;
             ValueChanged?.Invoke();
             return damageOut;
+        }
+        public bool CheckDeath()
+        {
+            if (Health <= 0)
+            {
+                Feint();
+                return true;
+            }
+            return false;
+        }
+        void Feint()
+        {
+            //isDead = true;
+            HasFeinted?.Invoke();
+            Debug.Log("Should Feint or die");
         }
         public virtual void StartTurn()
         {
@@ -1058,11 +1073,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 
 
             }
-            fish.CheckDeath();
+            CheckDeath();
         }
         ~Turn()
         {
-            fish.ValueChanged -= ValueChanged;
+            fish.ValueChanged-=ValueChanged;
         }
 
     }

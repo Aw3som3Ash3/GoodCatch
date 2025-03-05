@@ -454,15 +454,7 @@ public class FishMonster
         this.health = health;
     }
 
-    public bool CheckDeath()
-    {
-        if (Health <= 0)
-        {
-            Feint();
-            return true;
-        }
-        return false;
-    }
+  
     public void Restore(float health = 0, float stamina = 0)
     {
         this.health =Mathf.Clamp(this.health+health,0,MaxHealth);

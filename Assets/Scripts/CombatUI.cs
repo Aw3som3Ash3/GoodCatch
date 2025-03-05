@@ -586,9 +586,17 @@ public class CombatUI : VisualElement
     }
     private void UpdateHealthDisplay()
     {
-        UpdateHealthDisplay(currentTurn.fish);
+        UpdateHealthDisplay(currentTurn);
     }
     private void UpdateHealthDisplay(FishMonster fish)
+    {
+        healthBar.value = fish.Health / fish.MaxHealth;
+        healthBar.title = fish.Health.ToString("0") + "/" + fish.MaxHealth.ToString("0");
+        staminaBar.value = fish.Stamina / fish.MaxStamina;
+        staminaBar.title = fish.Stamina.ToString("0") + "/" + fish.MaxStamina.ToString("0");
+
+    }
+    private void UpdateHealthDisplay(PlayerTurn fish)
     {
         healthBar.value = fish.Health / fish.MaxHealth;
         healthBar.title = fish.Health.ToString("0") + "/" + fish.MaxHealth.ToString("0");
