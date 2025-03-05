@@ -524,7 +524,7 @@ public class CombatUI : VisualElement
         if (this.currentTurn != null)
         {
             this.currentTurn.NewEffect -= AddEffect;
-            this.currentTurn.fish.ValueChanged -= UpdateHealthDisplay;
+            this.currentTurn.ValueChanged -= UpdateHealthDisplay;
         }
 
         Debug.Log(currentTurn);
@@ -548,7 +548,7 @@ public class CombatUI : VisualElement
         ResetEffects();
         SetEffects();
         currentTurn.NewEffect += AddEffect;
-        currentTurn.fish.ValueChanged += UpdateHealthDisplay;
+        currentTurn.ValueChanged += UpdateHealthDisplay;
         UpdateInfo(currentTurn.fish);
         UpdateHealthDisplay();
     }
