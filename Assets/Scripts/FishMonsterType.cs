@@ -443,28 +443,18 @@ public class FishMonster
         float defenseMod =MathF.Pow(MathF.E,-0.015f* (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value));
         float damageTaken = damage * DamageModifier(elementType) * defenseMod;
         effectiveness = GetEffectiveness(elementType);
-        health -= damageTaken;
+        //health -= damageTaken;
         Debug.Log("took " + damageTaken + " damage \n current health: " + Health);
-        if (Health <= 0)
-        {
-            //Feint();
-        }
-        else
-        {
-            ValueChanged?.Invoke();
-        }
+        //ValueChanged?.Invoke();
         return damageTaken;
     }
 
-    public bool CheckDeath()
+    public void UpdateHealth(float health)
     {
-        if (Health <= 0)
-        {
-            Feint();
-            return true;
-        }
-        return false;
+        this.health = health;
     }
+
+  
     public void Restore(float health = 0, float stamina = 0)
     {
         this.health =Mathf.Clamp(this.health+health,0,MaxHealth);

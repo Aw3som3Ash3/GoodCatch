@@ -524,7 +524,7 @@ public class CombatUI : VisualElement
         if (this.currentTurn != null)
         {
             this.currentTurn.NewEffect -= AddEffect;
-            this.currentTurn.fish.ValueChanged -= UpdateHealthDisplay;
+            this.currentTurn.ValueChanged -= UpdateHealthDisplay;
         }
 
         Debug.Log(currentTurn);
@@ -548,7 +548,7 @@ public class CombatUI : VisualElement
         ResetEffects();
         SetEffects();
         currentTurn.NewEffect += AddEffect;
-        currentTurn.fish.ValueChanged += UpdateHealthDisplay;
+        currentTurn.ValueChanged += UpdateHealthDisplay;
         UpdateInfo(currentTurn.fish);
         UpdateHealthDisplay();
     }
@@ -586,9 +586,17 @@ public class CombatUI : VisualElement
     }
     private void UpdateHealthDisplay()
     {
-        UpdateHealthDisplay(currentTurn.fish);
+        UpdateHealthDisplay(currentTurn);
     }
     private void UpdateHealthDisplay(FishMonster fish)
+    {
+        healthBar.value = fish.Health / fish.MaxHealth;
+        healthBar.title = fish.Health.ToString("0") + "/" + fish.MaxHealth.ToString("0");
+        staminaBar.value = fish.Stamina / fish.MaxStamina;
+        staminaBar.title = fish.Stamina.ToString("0") + "/" + fish.MaxStamina.ToString("0");
+
+    }
+    private void UpdateHealthDisplay(PlayerTurn fish)
     {
         healthBar.value = fish.Health / fish.MaxHealth;
         healthBar.title = fish.Health.ToString("0") + "/" + fish.MaxHealth.ToString("0");
