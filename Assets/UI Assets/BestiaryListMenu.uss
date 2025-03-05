@@ -98,6 +98,7 @@ Scroller .unity-repeat-button {
 #unity-tabs-container .unity-text-element {
     align-self: center;
     font-size: 39px;
+    color: rgb(55, 20, 5);
 }
 
 .unity-tab-button--active {

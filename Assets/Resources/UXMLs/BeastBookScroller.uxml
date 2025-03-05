@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/BestiaryListMenu.uss?fileID=7433441132597879392&amp;guid=eeeba0854fec8e1438ce167e19af102d&amp;type=3#BestiaryListMenu" />
     <Style src="project://database/Assets/UI%20Assets/Marindex.uss?fileID=7433441132597879392&amp;guid=bec157839a408f245a23073832d3f48f&amp;type=3#Marindex" />
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/BigWaterBG.png?fileID=2800000&amp;guid=38b546484b7fb6e4db4f006e1aafa96d&amp;type=3#BigWaterBG&quot;); height: 742px; position: absolute; width: 1931px; top: 1002px; left: -7px;" />
     <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 0; flex-direction: row; background-image: none; background-color: rgb(0, 0, 0); height: 1009px;">
         <ui:VisualElement name="BookBG" style="flex-grow: 1; flex-direction: row; background-image: none; background-color: rgba(132, 128, 128, 0.46);">
             <ui:VisualElement name="RightSide" style="flex-grow: 0; min-width: auto; background-color: rgba(0, 255, 231, 0); margin-left: 0; margin-bottom: 0; margin-top: 0; margin-right: 0; width: 675px; flex-shrink: 0;">
