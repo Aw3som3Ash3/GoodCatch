@@ -47,3 +47,7 @@ Scroller .unity-repeat-button {
     color: rgb(255, 255, 255);
     text-shadow: 1px 5px 0 rgb(0, 0, 0);
 }
+
+#unity-tabs-container {
+    background-color: rgb(255, 255, 255);
+}
