@@ -94,6 +94,7 @@ public class CombatUI : VisualElement
         moveButton = tabbedView.Q<Button>("Move");
         moveButton.clicked += Move;
         Initial();
+        SetInventory(GameManager.Instance.PlayerInventory);
         foreach (FishUI fishUI in fishUIs)
         {
             this.Q("ConditionArea").Add(fishUI);
@@ -664,7 +665,7 @@ public class CombatUI : VisualElement
     {
         Vector2 pos= Camera.main.WorldToViewportPoint( target.transform.position + Vector3.up * 1.5f);
         turnMarker.transform.position = new Vector2(pos.x * worldBound.width,(1 - pos.y)* worldBound.height);
-        Debug.Log("turn marker position: "+ pos);
+        //Debug.Log("turn marker position: "+ pos);
     }
     public FishUI AddFishUI(CombatManager.Turn turn, Transform target)
     {

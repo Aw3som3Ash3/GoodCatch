@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ModMStats.uss?fileID=7433441132597879392&amp;guid=92afd01bd2f2e244cb399e8e8ebd29c5&amp;type=3#ModMStats" />
+    <MarinedexTabs stat-uxml="ModStatCompontent" style="height: 583px; max-width: none; min-width: auto; width: auto; flex-shrink: 0; justify-content: flex-start; align-self: center;" />
+</ui:UXML>

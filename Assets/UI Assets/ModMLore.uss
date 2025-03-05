@@ -1,0 +1,7 @@
+#Title {
+    font-size: 60px;
+}
+
+.Detail {
+    font-size: 49px;
+}

@@ -403,59 +403,54 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         Instance.PlayerInventory.AddItem(item,int.Parse(amount));
 
     }
-
-
-    [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1, string level1, string fish2, string level2, string fish3, string level3)
+    [DevConsoleCommand("StartCombat","Will Start a combat scenario to upto three fish with indicated level")]
+    public static void StartCombatByFishIds(int fish1, int level1, int fish2, int level2, int fish3, int level3)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        if (int.Parse(fish1) >= 0)
+        if (fish1 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish1].GenerateMonster(level1));
         }
-        if (int.Parse(fish2) >= 0)
+        if (fish2 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster(int.Parse(level2)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish2].GenerateMonster(level2));
         }
-        if (int.Parse(fish3) >= 0)
+        if (fish3 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish3)].GenerateMonster(int.Parse(level3)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish3].GenerateMonster(level3));
         }
        
 
         Instance.LoadCombatScene(fishMonsters);
     }
     [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1, string level1, string fish2, string level2)
+    public static void StartCombatByFishIds(int fish1, int level1, int fish2, int level2)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        if (int.Parse(fish1) >= 0)
+        if (fish1 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish1].GenerateMonster(level1));
         }
-        if (int.Parse(fish2) >= 0)
+        if (fish2 >= 0)
         {
-            fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish2)].GenerateMonster(int.Parse(level2)));
+            fishMonsters.Add(Instance.database.fishMonsters[fish2].GenerateMonster(level2));
         }
 
 
         Instance.LoadCombatScene(fishMonsters);
     }
     [DevConsoleCommand("StartCombat")]
-    public static void StartCombatByFishIds(string fish1,string level1)
+    public static void StartCombatByFishIds(int fish1,int level1)
     {
         List<FishMonster> fishMonsters = new List<FishMonster>();
-        fishMonsters.Add(Instance.database.fishMonsters[int.Parse(fish1)].GenerateMonster(int.Parse(level1)));
-
-
-
+        fishMonsters.Add(Instance.database.fishMonsters[fish1].GenerateMonster(level1));
         Instance.LoadCombatScene(fishMonsters);
     }
     [DevConsoleCommand("StartCombatRandom")]
-    public static void StartCombatRandom(string amount, string level)
+    public static void StartCombatRandom(int amount, int level)
     {
-        int _amount=int.Parse(amount);
-        int _level=int.Parse(level);
+        int _amount=amount;
+        int _level=level;
 
         List<FishMonster> fishMonsters = new List<FishMonster>();
         for(int i = 0; i < _amount; i++)
@@ -463,6 +458,19 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             fishMonsters.Add(Instance.database.fishMonsters[UnityEngine.Random.Range(0,Instance.database.FishMonsters.Count)].GenerateMonster());
         }
         Instance.LoadCombatScene(fishMonsters);
+    }
+    [DevConsoleCommand("BoolTest")]
+    public static void TestBool(bool b)
+    {
+        print(b);
+    }
+    [DevConsoleCommand("DiscoverAllFish","Mark the whole marindex as discovered")]
+    public static void DiscoverAllFish()
+    {
+        for (int i = 0; i < Instance.gameData.hasSeenFish.Length; i++)
+        {
+            Instance.gameData.hasSeenFish[i] = true;
+        }
     }
     //public static void StartCombatByFishIds(params string[] fishIds)
     //{
