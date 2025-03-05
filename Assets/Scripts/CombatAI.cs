@@ -47,7 +47,7 @@ public class CombatAI : MonoBehaviour
                 {
                     break;
                 }
-                abilityIndex = Random.Range(0, 4);
+                abilityIndex = Random.Range(0, 3);
                 tryCount++;
                
 

@@ -30,26 +30,40 @@ public static class SavingSystem
     class GameData
     {
         [SerializeField]
-        SerializableDictionary<string, string> SaveableObject;
+        SerializableDictionary<int, SerializableDictionary<string, string>> SceneData=new();
+
+        //[SerializeField]
+        //SerializableDictionary<string, string> SaveableObject;
+        
         [SerializeField]
         int currentScene;
 
-        public string GetSaveable(string id)
+        public string GetSaveable(string objectId,int sceneId)
         {
-            if (!SaveableObject.ContainsKey(id))
+            if (SceneData.ContainsKey(sceneId))
+            {
+                if (!SceneData[sceneId].ContainsKey(objectId))
+                {
+                    return null;
+                }
+
+                return SceneData[sceneId][objectId];
+            }
+            else
             {
                 return null;
             }
-            return SaveableObject[id];
+
+           
         }
 
-        public void AddSaveable(ISaveable saveable)
+        public void AddSaveable(ISaveable saveable,int sceneId)
         {
-            if (SaveableObject == null)
+            if (!SceneData.ContainsKey(sceneId) || SceneData[sceneId] == null)
             {
-                SaveableObject=new SerializableDictionary<string, string>();
+                SceneData[sceneId] = new SerializableDictionary<string, string>();
             }
-            SaveableObject[saveable.ID]= JsonUtility.ToJson(saveable.DataToSave);
+            SceneData[sceneId][saveable.ID]= JsonUtility.ToJson(saveable.DataToSave);
         }
         public void SetScene()
         {
@@ -63,19 +77,23 @@ public static class SavingSystem
 
     }
   
-    public static void SaveSelf(ISaveable saveable,bool writeData = false)
+    public static void SaveSelf(ISaveable saveable,int sceneId,bool writeData = false)
     {
-        data.AddSaveable(saveable);
+        data.AddSaveable(saveable, sceneId);
     }
     public static void SaveGame(SaveMode saveMode)
     {
 
         var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
-        data=new();
+        if (data== null)
+        {
+            data = new();
+        }
         data.SetScene();
         foreach(var saveable in saveables)
         {
-            data.AddSaveable(saveable);
+            int sceneId = (saveable as MonoBehaviour).gameObject.scene.buildIndex;
+            data.AddSaveable(saveable, sceneId);
             
         }
         if (saveMode == SaveMode.ManualSave)
@@ -177,7 +195,7 @@ public static class SavingSystem
     static void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         SceneManager.sceneLoaded -= OnSceneLoad;
-        if (scene.buildIndex != data.GetScene())
+        if (scene.buildIndex != data.GetScene()||scene.buildIndex==0)
         {
             return;
         }
@@ -186,6 +204,14 @@ public static class SavingSystem
         Debug.Log("current slot: " +currentSlot);
         if (sceneLoader == null)
         {
+            var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
+            foreach (var saveable in saveables)
+            {
+                int sceneId = (saveable as MonoBehaviour).gameObject.scene.buildIndex;
+                Debug.Log(saveable.ID + ":" + saveable +" scene id"+sceneId);
+                saveable.Load(data.GetSaveable(saveable.ID, sceneId));
+                Time.timeScale = 1;
+            }
             return;
         }
         sceneLoader.AllScenesLoaded += () =>
@@ -194,8 +220,9 @@ public static class SavingSystem
             var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
             foreach (var saveable in saveables)
             {
+                int sceneId = (saveable as MonoBehaviour).gameObject.scene.buildIndex;
                 Debug.Log(saveable.ID + ":" + saveable);
-                saveable.Load(data.GetSaveable(saveable.ID));
+                saveable.Load(data.GetSaveable(saveable.ID, sceneId));
                 Time.timeScale= 1;
             }
             sceneLoader.AllScenesLoaded = null;
@@ -216,7 +243,8 @@ public static class SavingSystem
         {
             ReadData(SAVE_FILE);
         }
-        saveable.Load(data.GetSaveable(ID));
+        int sceneId = (saveable as MonoBehaviour).gameObject.scene.buildIndex;
+        saveable.Load(data.GetSaveable(ID, sceneId));
     
         
     }

@@ -107,7 +107,11 @@ public class FishObject : MonoBehaviour
         {
            
             var list= rend.materials.ToList();
-            list.Add(outlineMat);
+            int amount = list.Count;
+            for (int i = 0; i < amount; i++)
+            {
+                list.Add(outlineMat);
+            }
             rend.materials=list.ToArray();
         }
         else

@@ -48,62 +48,9 @@ MonoBehaviour:
   startingTime: 12.2
   secondsPerHour: 60
   testfisth:
-  - {fileID: 11400000, guid: 5880d3e7f6b0c7e4c8e8fdc20562efaf, type: 2}
-  - {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
-  - {fileID: 11400000, guid: 69edc2e2b09f128498b841b6605aad02, type: 2}
-  startingItems:
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
-  - {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
+  - {fileID: 11400000, guid: 65d33d0db1bc78a43811bf103f09d88e, type: 2}
+  startingItems: []
   tempTimeOfDayText: {fileID: 0}
   postProcessing: {fileID: 11400000, guid: 16f67f79273697442a16e80ef00755a8, type: 2}
-  lastInnVisited: {fileID: 0}
   mainUI: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
