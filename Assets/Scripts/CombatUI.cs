@@ -70,7 +70,9 @@ public class CombatUI : VisualElement
         inputs.Combat.Enable();
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
-        
+        combatDraftUI = this.Q("CombatDraftUI");
+        combatDraftUI.SetEnabled(false);
+        combatDraftUI.visible = false;
         Initial();
         endTurnButton = root.Q<Button>("ConfirmDraft");
         endTurnButton.clicked += EndDraftingPhase;
