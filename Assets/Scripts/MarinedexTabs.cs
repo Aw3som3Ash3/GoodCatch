@@ -39,6 +39,7 @@ public class MarinedexTabs : TabbedMenu
         CreateTab("Stats", statComponentName);
         CreateTab("Abilities", abilityComponentName);
         CreateTab("Lore", loreComponentName);
+        InputManager.Input.UI.ChangeTab.performed += (x) => ChangeTab((int)x.ReadValue<float>());
         //dex.CreateTab("Info", dex.infoComponentName);
         //dex.CreateTab("Locale", dex.localeComponentName);
     }
