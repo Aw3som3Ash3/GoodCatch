@@ -261,7 +261,7 @@ public class DevConsole : MonoBehaviour
 
             foreach (var item in consoleCommands.OrderBy((command)=>command.Key))
             {
-                print($"    -{item.Key}: {item.Value.description}");
+                print($"    {item.Key}: {item.Value.description}");
 
             }
             return;
@@ -283,7 +283,7 @@ public class DevConsole : MonoBehaviour
 
                 }
 
-               print("  -"+command + paramatersString);
+               print("  "+command + paramatersString);
             }
             return;
         }
