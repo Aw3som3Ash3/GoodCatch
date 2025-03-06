@@ -5,13 +5,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Unity.VisualScripting;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 
 public class DevConsole : MonoBehaviour
@@ -82,27 +81,31 @@ public class DevConsole : MonoBehaviour
     void Start()
     {
 
-        foreach (var method in TypeCache.GetMethodsWithAttribute<DevConsoleCommand>().Where((m) => m.IsStatic))
+        foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where((t) => t ==typeof(IUseDevCommands)))
         {
-            var attr = method.GetCustomAttribute<DevConsoleCommand>();
-            var command = (CommandInvoker(method),method.GetParameters().Select((x) => $"[{x.ParameterType.HumanName()}]{x.Name}"  ).ToArray());
-            if (consoleCommands.ContainsKey(attr.CommandName))
+            foreach (var method in type.GetMethods().Where((x) => x.HasAttribute<DevConsoleCommand>()))
             {
-                consoleCommands[attr.CommandName].AddCommand(command);
-            }
-            else
-            {
-                //consoleCommands.Add(attr.CommandName,(new() { command },attr.Description) );
-                consoleCommands.Add(attr.CommandName,new Command(attr.CommandName,attr.Description,command));
-            }
+                var attr = method.GetCustomAttribute<DevConsoleCommand>();
+                var command = (CommandInvoker(method), method.GetParameters().Select((x) => $"[{x.ParameterType.HumanName()}]{x.Name}").ToArray());
+                if (consoleCommands.ContainsKey(attr.CommandName))
+                {
+                    consoleCommands[attr.CommandName].AddCommand(command);
+                }
+                else
+                {
+                    //consoleCommands.Add(attr.CommandName,(new() { command },attr.Description) );
+                    consoleCommands.Add(attr.CommandName, new Command(attr.CommandName, attr.Description, command));
+                }
 
 
-            if (string.IsNullOrEmpty(consoleCommands[attr.CommandName].description)&& !string.IsNullOrEmpty(attr.Description))
-            {
-                //Debug.Log("has updated description "+ attr.Description);
-                consoleCommands[attr.CommandName].UpdateDescription(attr.Description);
-                //Debug.Log("new description " + consoleCommands[attr.CommandName].description);
+                if (string.IsNullOrEmpty(consoleCommands[attr.CommandName].description) && !string.IsNullOrEmpty(attr.Description))
+                {
+                    //Debug.Log("has updated description "+ attr.Description);
+                    consoleCommands[attr.CommandName].UpdateDescription(attr.Description);
+                    //Debug.Log("new description " + consoleCommands[attr.CommandName].description);
+                }
             }
+            
 
         }
         //consoleCommands
