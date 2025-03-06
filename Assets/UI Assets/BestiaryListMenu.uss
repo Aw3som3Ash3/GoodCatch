@@ -41,9 +41,68 @@ Scroller .unity-repeat-button {
     height: 177px;
 }
 
-.unity-text-element {
+#MenuTitle {
     -unity-text-outline-width: 1px;
     -unity-text-outline-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     text-shadow: 1px 5px 0 rgb(0, 0, 0);
+}
+
+#unity-topbar-container {
+    flex-direction: row;
+    align-self: center;
+    width: 1194px;
+    height: 89px;
+}
+
+#unity-tabs-container {
+    align-self: center;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-grow: 1;
+    width: 1324px;
+}
+
+#unity-tabs-container .unity-tab-button__content {
+    font-size: 39px;
+    background-color: rgb(248, 242, 212);
+    border-left-color: rgb(55, 20, 5);
+    border-right-color: rgb(55, 20, 5);
+    border-top-color: rgb(55, 20, 5);
+    border-bottom-color: rgb(55, 20, 5);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+#unity-tabs-container .unity-tab-button__content :hover {
+    font-size: 39px;
+    background-color: rgb(216, 212, 184);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+#unity-tabs-container .unity-tab-button__content :focus {
+    font-size: 39px;
+    background-color: rgb(255, 255, 255);
+    flex-grow: 0;
+}
+
+#unity-tabs-container .unity-text-element {
+    align-self: center;
+    font-size: 39px;
+    color: rgb(55, 20, 5);
+}
+
+.unity-tab-button--active {
+    scale: 1.1 1.1;
+    background-color: rgb(69, 27, 54);
+    -unity-background-image-tint-color: rgb(255, 0, 0);
 }
