@@ -7221,6 +7221,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteamBoat
       objectReference: {fileID: 0}
+    - target: {fileID: 3370759950762718554, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Drag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932235140695506238, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: dampenForce
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 6167894882296467100, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_Lens.FarClipPlane
       value: 3000
@@ -7264,6 +7272,30 @@ PrefabInstance:
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Size.x
+      value: 2.355695
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Size.y
+      value: 3.6750302
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Size.z
+      value: 8.261947
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Center.x
+      value: -0.054459102
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Center.y
+      value: -2.8613183
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Center.z
+      value: -2.436306
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

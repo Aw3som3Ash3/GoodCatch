@@ -53,7 +53,11 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     private void FixedUpdate()
     {
 
+        Vector3 targetVelocity = this.transform.forward * (maxSpeed * sailRatio - turnRatio / 2);
+        targetVelocity.y = 0;
+        physicSim.velocity = Vector3.MoveTowards(physicSim.velocity, targetVelocity + new Vector3(0, physicSim.velocity.y, 0),maxSpeed*Time.deltaTime);
         physicSim.AddRelativeForce(Vector3.forward * (maxSpeed * sailRatio- turnRatio / 2), ForceMode.Acceleration);
+        
         //physicSim.maxLinearVelocity = maxSpeed * (1-turnRatio / 2);
         physicSim.AddRelativeTorque(Vector3.up * turningSpeed * turnRatio, ForceMode.Acceleration);
         this.transform.position = physicSim.transform.position;
