@@ -40,14 +40,14 @@ public class DevConsole : MonoBehaviour
     {
         public string commandName;
         public string description;
-        public readonly List<(Delegate @delegate, string[] paramaterNames)> commandActions;
-        public Command(string name,string description, (Delegate action, string[] paramaterNames) command )
+        public readonly List<(Delegate @delegate, (string name, Type type)[] paramaters)> commandActions;
+        public Command(string name,string description, (Delegate action, (string name, Type type)[] paramaters) command )
         {
             commandName = name;
             commandActions = new(){ command };
             this.description = description;
         }
-        public void AddCommand((Delegate action, string[] paramaterNames) command)
+        public void AddCommand((Delegate action, (string name, Type type)[] paramaters) command)
         {
             commandActions.Add(command);
         }
@@ -83,7 +83,11 @@ public class DevConsole : MonoBehaviour
             foreach (var method in type.GetMethods().Where((x) => x.IsStatic&&x.GetCustomAttribute<DevConsoleCommand>()!=null))
             {
                 var attr = method.GetCustomAttribute<DevConsoleCommand>();
-                var command = (CommandInvoker(method), method.GetParameters().Select((x) => $"[{x.ParameterType.Name}]{x.Name}").ToArray());
+
+                var _params = method.GetParameters().Select((x) => ($"[{x.ParameterType.Name}]{x.Name}", x.ParameterType)).ToArray();
+
+
+                var command = (CommandInvoker(method), _params);
                 if (consoleCommands.ContainsKey(attr.CommandName))
                 {
                     consoleCommands[attr.CommandName].AddCommand(command);
@@ -268,14 +272,14 @@ public class DevConsole : MonoBehaviour
         {
             print("------------------------------------------------------------------------------\n" +
                 $"{command}: {consoleCommands[command].description}:\n");
-            foreach (var item in consoleCommands[command].commandActions.OrderBy((x)=>x.paramaterNames.Length))
+            foreach (var item in consoleCommands[command].commandActions.OrderBy((x)=>x.paramaters.Length))
             {
                 string paramatersString = " ";
                 //Debug.Log(item.@delegate.GetMethodInfo().Name);
-                var paramaters = item.paramaterNames;
+                var paramaters = item.paramaters;
                 for (int i = 0; i < paramaters.Length; i++)
                 {
-                    paramatersString +=paramaters[i]+" "; 
+                    paramatersString +=paramaters[i].name+" "; 
 
 
                 }
@@ -289,7 +293,46 @@ public class DevConsole : MonoBehaviour
 
         if (consoleCommands.ContainsKey(command))
         {
-            consoleCommands[command].commandActions.Find((x)=> x.@delegate.Method.GetParameters().Length-1==args.Length).@delegate?.DynamicInvoke(args);
+            consoleCommands[command].commandActions.Find((command) =>
+                {
+                    if (command.paramaters.Length == args.Length)
+                    {
+                        for (int i = 0; i < command.paramaters.Length; i++)
+                        {
+                            
+                            switch (command.paramaters[i].type)
+                            {
+                                case Type intType when intType == typeof(int):
+                                    if (!int.TryParse(args[i],out int resultInt))
+                                    {
+                                        return false;
+                                    }
+                                    break;
+                                case Type floatType when floatType == typeof(float):
+                                    if (!float.TryParse(args[i], out float resultFloat))
+                                    {
+                                        return false;
+                                    }
+                                    break;
+
+                                case Type boolType when boolType == typeof(bool):
+                                    if (!bool.TryParse(args[i], out bool resultBool))
+                                    {
+                                        return false;
+                                    }
+                                    break;
+                                case Type stringType when stringType == typeof(string):
+                                    continue;
+                                default: 
+                                    return false;
+
+                            }
+                            //args[i]  command.paramaters[i].type.
+                        }
+                        return true;
+                    }
+                    return false;
+                }).@delegate?.DynamicInvoke(args);
         }
         else
         {
