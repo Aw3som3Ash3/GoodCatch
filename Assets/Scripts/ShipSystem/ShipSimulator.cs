@@ -54,7 +54,7 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     {
 
         physicSim.AddRelativeForce(Vector3.forward * (maxSpeed * sailRatio- turnRatio / 2), ForceMode.Acceleration);
-        physicSim.maxLinearVelocity = maxSpeed * (1-turnRatio / 2);
+        //physicSim.maxLinearVelocity = maxSpeed * (1-turnRatio / 2);
         physicSim.AddRelativeTorque(Vector3.up * turningSpeed * turnRatio, ForceMode.Acceleration);
         this.transform.position = physicSim.transform.position;
         this.transform.rotation = physicSim.transform.rotation;
