@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DockingZone : MonoBehaviour
+public class DockingZone : MonoBehaviour,IInteractable
 {
 
     [SerializeField]
@@ -19,6 +19,9 @@ public class DockingZone : MonoBehaviour
     Mesh shipMesh;
     [SerializeField]
     Vector3 gizmoOffset;
+
+    public string StationName => ship!=null? "Enter Ship":"";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +98,20 @@ public class DockingZone : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawMesh(shipMesh,0 ,dockingPosition.transform.position+gizmoOffset, dockingPosition.transform.rotation);
+      
+    }
+
+    public bool Interact()
+    {
+        if (ship != null)
+        {
+            ship.GetComponentInChildren<ShipControls>().Interact();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
       
     }
 }

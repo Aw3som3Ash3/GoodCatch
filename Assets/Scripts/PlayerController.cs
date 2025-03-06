@@ -97,7 +97,10 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
         }
         
     }
-
+    public void SetVisibility(bool b)
+    {
+        this.GetComponentInChildren<SkinnedMeshRenderer>(true).gameObject.SetActive(b);
+    }
     private void OnEnable()
     {
         //inputs.Player.Enable();
@@ -377,7 +380,7 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
         if (context.duration > 0.5)
         {
             anim.speed = 1;
-            fishingRod.CastLine(model.forward,Mathf.Clamp((float)context.duration,0,1.5f), () => { anim.SetTrigger("FishingComplete"); Invoke("FishingCompleted", 1f); });
+            fishingRod.CastLine(model.forward,Mathf.Clamp((float)context.duration,0,1.5f), () => { anim.SetTrigger("FishingComplete"); Invoke("FishingCompleted", 1f); InputManager.EnablePlayer(); });
         }
         
         

@@ -27,6 +27,8 @@ public class ShipSimulator : MonoBehaviour,ISaveable
 
     public string ID => "ship";
 
+
+
     [SerializeField]
     PIDController zTorqueController=new (0.5f,0,0.25f);
     [SerializeField]
@@ -51,13 +53,15 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     private void FixedUpdate()
     {
 
-        physicSim.AddRelativeForce(Vector3.forward * (maxSpeed * sailRatio), ForceMode.Acceleration);
+        physicSim.AddRelativeForce(Vector3.forward * (maxSpeed * sailRatio- turnRatio / 2), ForceMode.Acceleration);
+        physicSim.maxLinearVelocity = maxSpeed * (1-turnRatio / 2);
         physicSim.AddRelativeTorque(Vector3.up * turningSpeed * turnRatio, ForceMode.Acceleration);
         this.transform.position = physicSim.transform.position;
         this.transform.rotation = physicSim.transform.rotation;
         physicSim.transform.localPosition = Vector3.zero;
         physicSim.transform.localRotation = Quaternion.Euler(Vector3.zero);
-
+        wheelLeft.Rotate(Vector3.right * Mathf.Clamp(sailRatio - turnRatio / 2, -1, 1) * maxSpeed*5 * Time.fixedDeltaTime);
+        wheelRight.Rotate(Vector3.right * Mathf.Clamp(sailRatio + turnRatio/2,-1,1) * maxSpeed*5 * Time.fixedDeltaTime);
 
         physicSim.AddRelativeTorque(Vector3.forward*zTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.z), 0), ForceMode.Acceleration);
         physicSim.AddRelativeTorque(Vector3.right*xTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.x), 0),ForceMode.Acceleration);
