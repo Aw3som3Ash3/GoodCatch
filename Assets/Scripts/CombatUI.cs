@@ -141,9 +141,9 @@ public class CombatUI : VisualElement
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
-        combatDraftUI = this.Q("CombatDraftUI");
-        combatDraftUI.SetEnabled(false);
-        combatDraftUI.visible = false;
+        //combatDraftUI = this.Q("CombatDraftUI");
+        //combatDraftUI.SetEnabled(false);
+        //combatDraftUI.visible = false;
         fishName = this.Q<Label>("Name");
         level = this.Q<Label>("Level");
         fishIcon = this.Q("ProfilePic");
