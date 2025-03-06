@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
@@ -16,7 +17,7 @@ public class DialogueDisplayer : MonoBehaviour
     Button option1, option2;
     VisualElement rootVisualElement;
     public bool IsActive { get; private set; } = false;
-    public void NewDialogue(Dialogue dialogue)
+    public void NewDialogue(Dialogue dialogue,Animator anim)
     {
         if (IsActive)
         {
@@ -28,9 +29,17 @@ public class DialogueDisplayer : MonoBehaviour
         var inputs = new GoodCatchInputs();
         inputs.UI.NextDialogue.performed += (x) => reader.Next();
         inputs.UI.NextDialogue.Enable();
-        reader.NextDialogue += (text) => 
+        reader.NextDialogue += (node) => 
         { 
-            dialogueText.text = text; 
+            dialogueText.text = node.dialouge; 
+            if(node.decorators.Find((x)=>x is DialogueGiveItemDecorator) != null)
+            {
+                anim.SetTrigger("GiveItem");
+            }
+            else
+            {
+                anim.SetTrigger("Dialogue");
+            }
             option1.visible = false; 
             option2.visible = false; 
             
@@ -77,9 +86,9 @@ public class DialogueDisplayer : MonoBehaviour
 
         
     }
-    public void NewDialogue(Dialogue dialogue,Action OnCompleted)
+    public void NewDialogue(Dialogue dialogue,Animator anim,Action OnCompleted)
     {
-        NewDialogue(dialogue);
+        NewDialogue(dialogue,anim);
         reader.OnCompleted += OnCompleted;
 
     }
