@@ -1550,6 +1550,15 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EndTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf8ac028-5f55-4b56-8be2-e72f729b463e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1706,6 +1715,28 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
                     ""action"": ""ChangeTab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e172fe6-5ce0-455b-90d7-ce9a10d42d0e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""EndTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf560742-2725-4e69-a5ad-71021a660fd4"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""EndTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1818,6 +1849,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         m_Combat_Click = m_Combat.FindAction("Click", throwIfNotFound: true);
         m_Combat_Cancel = m_Combat.FindAction("Cancel", throwIfNotFound: true);
         m_Combat_MoreInfo = m_Combat.FindAction("MoreInfo", throwIfNotFound: true);
+        m_Combat_EndTurn = m_Combat.FindAction("EndTurn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -2283,6 +2315,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_Combat_Click;
     private readonly InputAction m_Combat_Cancel;
     private readonly InputAction m_Combat_MoreInfo;
+    private readonly InputAction m_Combat_EndTurn;
     public struct CombatActions
     {
         private @GoodCatchInputs m_Wrapper;
@@ -2291,6 +2324,7 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         public InputAction @Click => m_Wrapper.m_Combat_Click;
         public InputAction @Cancel => m_Wrapper.m_Combat_Cancel;
         public InputAction @MoreInfo => m_Wrapper.m_Combat_MoreInfo;
+        public InputAction @EndTurn => m_Wrapper.m_Combat_EndTurn;
         public InputActionMap Get() { return m_Wrapper.m_Combat; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2312,6 +2346,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @MoreInfo.started += instance.OnMoreInfo;
             @MoreInfo.performed += instance.OnMoreInfo;
             @MoreInfo.canceled += instance.OnMoreInfo;
+            @EndTurn.started += instance.OnEndTurn;
+            @EndTurn.performed += instance.OnEndTurn;
+            @EndTurn.canceled += instance.OnEndTurn;
         }
 
         private void UnregisterCallbacks(ICombatActions instance)
@@ -2328,6 +2365,9 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
             @MoreInfo.started -= instance.OnMoreInfo;
             @MoreInfo.performed -= instance.OnMoreInfo;
             @MoreInfo.canceled -= instance.OnMoreInfo;
+            @EndTurn.started -= instance.OnEndTurn;
+            @EndTurn.performed -= instance.OnEndTurn;
+            @EndTurn.canceled -= instance.OnEndTurn;
         }
 
         public void RemoveCallbacks(ICombatActions instance)
@@ -2439,5 +2479,6 @@ public partial class @GoodCatchInputs: IInputActionCollection2, IDisposable
         void OnClick(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnMoreInfo(InputAction.CallbackContext context);
+        void OnEndTurn(InputAction.CallbackContext context);
     }
 }

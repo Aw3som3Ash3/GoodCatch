@@ -53,7 +53,7 @@ public class CombatUI : VisualElement
     }
     public CombatUI() 
     {
-        
+        inputs.Combat.EndTurn.performed += OnEndTurn;
     }
 
     public void InitialDraft()
@@ -79,6 +79,7 @@ public class CombatUI : VisualElement
         Debug.Log("Confirm draft: " + endTurnButton);
         endTurnButton.SetEnabled(true);
         MoreInfo(true);
+        OnEndTurnInput = end;
     }
 
     void EndDraftingPhase()
@@ -120,8 +121,15 @@ public class CombatUI : VisualElement
             this.Q("ConditionArea").Add(fishUI);
         }
         MoreInfo(false);
-    }
         
+        OnEndTurnInput = EndTurn;
+    }
+    Action OnEndTurnInput;
+    private void OnEndTurn(InputAction.CallbackContext context)
+    {
+        OnEndTurnInput?.Invoke();
+    }
+
     public void Initial()
     {
 
