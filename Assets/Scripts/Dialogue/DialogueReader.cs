@@ -14,7 +14,7 @@ public class DialogueReader : IDisposable
     /// <summary>
     /// an event that outputs the next dialogue string
     /// </summary>
-    public event Action<string> NextDialogue;
+    public event Action<DialogueNode> NextDialogue;
     /// <summary>
     /// event that is triggered when the reader reaches a branch node
     /// </summary>
@@ -47,7 +47,7 @@ public class DialogueReader : IDisposable
             return;
         }
         currentNode.Enter();
-        NextDialogue.Invoke(currentNode.dialouge);
+        NextDialogue.Invoke(currentNode);
         if (currentNode is BranchingDialogue)
         {
             var branchingDialogue = currentNode as BranchingDialogue;

@@ -12,7 +12,7 @@ public class NPC : MonoBehaviour, IInteractable
     public string StationName => $"Talk To {npcName}";
     [SerializeField]
     Dialogue baseDialogue;
-
+    Animator anim;
     [Serializable]
     public struct QuestBasedDialogue
     {
@@ -38,11 +38,11 @@ public class NPC : MonoBehaviour, IInteractable
         {
             if (QuestTracker.Instance.IsQuestStateActive(questBasedDialogue.quest, questBasedDialogue.stateName))
             {
-                DialogueDisplayer.Instance.NewDialogue(questBasedDialogue.dialogue, () => OnFinishedTalking());
+                DialogueDisplayer.Instance.NewDialogue(questBasedDialogue.dialogue, anim, () => OnFinishedTalking());
                 return true;
             }
         }
-        DialogueDisplayer.Instance.NewDialogue(baseDialogue, () => OnFinishedTalking());
+        DialogueDisplayer.Instance.NewDialogue(baseDialogue, anim, () => OnFinishedTalking());
         
 
         
@@ -67,6 +67,7 @@ public class NPC : MonoBehaviour, IInteractable
     // Start is called before the first frame update
     void Start()
     {
+        anim = this.GetComponent<Animator>();
        // var reader = new DialogueReader(dialogue);
         //reader.OnChoiceRequired += NPC_OnChoiceRequired;
         //reader.Next();

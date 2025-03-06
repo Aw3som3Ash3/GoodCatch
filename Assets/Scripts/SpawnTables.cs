@@ -6,6 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpawnTable", menuName = "Fish Monster/SpawnTable", order = -1)]
 public class SpawnTables : ScriptableObject
 {
+    static event Action OnLoad;
+    static HashSet<SpawnTables> spawnTables;
+
     [Serializable]
     struct Chance
     {
@@ -20,8 +23,32 @@ public class SpawnTables : ScriptableObject
     [SerializeField]
     Chance[] daySpawn,nightSpawn;
 
+    [RuntimeInitializeOnLoadMethod]
+    static void InitateSpawnTabled()
+    {
+        spawnTables = new HashSet<SpawnTables>();
+        OnLoad?.Invoke();
+    }
 
-    
+    private void OnEnable()
+    {
+        OnLoad += AddToSpawnTables;
+
+    }
+
+    void AddToSpawnTables()
+    {
+        spawnTables.Add(this);
+        OnLoad -= AddToSpawnTables;
+    }
+    private void OnDisable()
+    {
+        OnLoad -= AddToSpawnTables;
+    }
+    private void OnDestroy()
+    {
+        OnLoad -= AddToSpawnTables;
+    }
     public FishMonster GetRandomFish()
     {
         int totalWeight = 0;
@@ -45,4 +72,6 @@ public class SpawnTables : ScriptableObject
         }
         return monsterChance.monster.GenerateMonster(UnityEngine.Random.Range(monsterChance.minLevel, monsterChance.maxLevel));
     }
+
+
 }

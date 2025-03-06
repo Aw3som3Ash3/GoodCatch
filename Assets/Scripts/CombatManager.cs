@@ -19,8 +19,14 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         player,
         enemy
     }
+    enum CombatPhase
+    {
+        draft,
+        combat,
+        postCombat
+    }
     //Turn currentTurn;
-   
+    CombatPhase currentPhase=CombatPhase.draft;
     int roundNmber;
 
     [SerializeField]
@@ -66,13 +72,16 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     CinemachineTargetGroup targetGroup;
     public CombatAI combatAI { get; private set; }
 
-    public object DataToSave => (enemyFishes,rewardFish);
+    public object DataToSave => (enemyFishes,rewardFish,randomState);
 
     public string ID => "CombatManager";
 
     int draftedCount;
 
     GameObject previousSelected;
+    [SerializeField]
+    [HideInInspector]
+    UnityEngine.Random.State randomState;
     private void Awake()
     {
         depths[0] = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -130,7 +139,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         InputManager.Input.UI.Enable();
         combatUI.Draft(playerFishes, (index, callback) =>
         {
-
+            if (draftedCount > 3)
+            {
+                return;
+            }
             combatVisualizer.StartTargeting((target) =>
             {
                 if (target < 0)
@@ -147,7 +159,24 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             });
         });
         Time.timeScale = 1;
+        InputManager.Input.Combat.Cancel.performed += OnCancel;
+        combatUI.EndDraft += CompleteDraft;
     }
+    Action undoDraft;
+    private void OnCancel(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (combatVisualizer.CancelMove())
+        {
+            return;
+        }
+
+        if (currentPhase == CombatPhase.draft)
+        {
+            undoDraft?.Invoke();
+        }
+
+    }
+
     [DevConsoleCommand("KillAllEnemyFish","Use to kill all opposing fish. Only use on a player's turn to avoid bugs")]
     public static void KillAllEnemies()
     {
@@ -156,7 +185,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         {
 
             manager.getFishesTurn[f].TakeDamage(10000, null, Ability.AbilityType.special);
-            f.CheckDeath();
+            manager.getFishesTurn[f].CheckDeath();
            
         });
         manager.CanFightEnd();
@@ -189,7 +218,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         
     }
 
-
+    Stack<(Turn,int index)> draftStack=new();
     void DraftFish(int index,int target)
     {
         Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);
@@ -198,13 +227,37 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         currentCombatents.Add(turn);
         getFishesTurn[playerFishes[index]] = turn;
         draftedCount++;
+        draftStack.Push((turn,index));
+        undoDraft =()=> 
+        {
+            (Turn turn, int index) val;
+            if(draftStack.TryPop(out val))
+            {
+                RemoveFishFromBattle(val.turn);
+                combatUI.ReAddToDraft(val.index);
+                draftedCount--;
+            }
+           
+        };
         if (draftedCount >= 3 || draftedCount >= playerFishes.Count)
         {
-            combatUI.StopDraft();
-            targetGroup.m_Targets[2].weight = 0;
-            OrderTurn();
-            StartTurn();
+           
+            
         }
+
+    }
+
+    void CompleteDraft()
+    {
+        combatUI.EndDraft -= CompleteDraft;
+        currentPhase = CombatPhase.combat;
+        undoDraft = null;
+        combatUI.StopDraft();
+        targetGroup.m_Targets[2].weight = 0;
+        OrderTurn();
+        StartTurn();
+        draftStack.Clear();
+
     }
     void UseItem(Item item,Action completedCallback,Action canceledCallback)
     {
@@ -291,6 +344,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             getFishesTurn[enemyFishes[i]] = turn;
             fishCaught[enemyFishes[i]] = false;
         }
+
+        randomState = UnityEngine.Random.state;
+
+
     }
     private void OnDisable()
     {
@@ -362,7 +419,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     {
        
         StartCoroutine(CombatVictoryScreen(winningTeam));
- 
+        playerFishes.ForEach((f) => f.UpdateHealth(getFishesTurn[f].Health));
     }
 
     IEnumerator CombatVictoryScreen(Team winningTeam)
@@ -500,7 +557,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             ability.UseAbility(turn, turn, out hit, out damageDone);
             ActionsCompleted();
             combatUI.EnableButtons();
-            turn.fish.CheckDeath();
+            turn.CheckDeath();
             return;
         }
 
@@ -515,7 +572,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                     {
                         combatVisualizer.AnimateAttack(ability, turn, depth.TargetFirst(targetedTeam), () =>
                         {
-                            depth.TargetSide(targetedTeam).ForEach((turn) => turn.fish.CheckDeath());
+                            depth.TargetSide(targetedTeam).ForEach((turn) => turn.CheckDeath());
                             ActionsCompleted();
                             combatUI.EnableButtons();
                             
@@ -541,7 +598,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             combatVisualizer.AnimateAttack(ability, turn, targetedFish, () =>
             {
 
-                targetedDepth.TargetSide(targetedTeam).ForEach((turn) => turn.fish.CheckDeath());
+                targetedDepth.TargetSide(targetedTeam).ForEach((turn) => turn.CheckDeath());
                 ActionsCompleted();
                 combatUI.EnableButtons();
             });
@@ -550,8 +607,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void RemoveFishFromBattle(Turn turn)
     {
+        currentCombatents.Remove(turn);
         combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
+        getFishesTurn.Remove(turn.fish);
         //playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
@@ -571,8 +630,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     public void Load(string json)
     {
-        var data= JsonUtility.FromJson<(List<FishMonster> enemyFishes,bool rewardFish)>(json);
+        var data= JsonUtility.FromJson<(List<FishMonster> enemyFishes,bool rewardFish,UnityEngine.Random.State state)>(json);
         NewCombat(data.enemyFishes, data.rewardFish);
+        UnityEngine.Random.state = data.state;
     }
 
     [Serializable]
@@ -714,14 +774,15 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         bool actionsCompleted = true;
         public HashSet<StatusEffect.StatusEffectInstance> effects { get; private set; } = new HashSet<StatusEffect.StatusEffectInstance>();
         public Dictionary<StatusEffect,int> lastEffects { get; private set; } = new();
-
-        public float Health { get { return fish.Health; } }
+        float health;
+        public float Health { get { return health; } }
         public float MaxHealth { get { return fish.MaxHealth; } }
 
         public float MaxStamina { get { return fish.MaxStamina; } }
         public float Stamina { get { return fish.Stamina; } }
         public Action<StatusEffect.StatusEffectInstance> NewEffect;
         public Action<StatusEffect.StatusEffectInstance> EffectRemoved;
+        public event Action ValueChanged;
         public int agility
         {
             get
@@ -818,7 +879,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             this.combatManager = combatManager;
             currentDepth = startingDepth;
             combatManager.CompletedAllActions += ActionsCompleted;
-            fish.HasFeinted =()=> { TurnEnded?.Invoke(); HasFeinted?.Invoke();Debug.Log("fish has feinted"); };
+            health=fish.Health;
+            //fish.HasFeinted =()=> { TurnEnded?.Invoke(); HasFeinted?.Invoke();Debug.Log("fish has feinted"); };
+            fish.ValueChanged +=()=> ValueChanged?.Invoke();
             //stamina = maxStamina;
         }
 
@@ -845,7 +908,24 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             Element.Effectiveness effectiveness;
             var damageOut= fish.TakeDamage(damage, elementType, abilityType, out effectiveness);
             combatManager.combatVisualizer.AnimateDamageNumbers(this, damageOut, effectiveness);
+            health-=damageOut;
+            ValueChanged?.Invoke();
             return damageOut;
+        }
+        public bool CheckDeath()
+        {
+            if (Health <= 0)
+            {
+                Feint();
+                return true;
+            }
+            return false;
+        }
+        void Feint()
+        {
+            //isDead = true;
+            HasFeinted?.Invoke();
+            Debug.Log("Should Feint or die");
         }
         public virtual void StartTurn()
         {
@@ -1045,9 +1125,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 
 
             }
-            fish.CheckDeath();
+            CheckDeath();
         }
-
+        ~Turn()
+        {
+            fish.ValueChanged-=ValueChanged;
+        }
 
     }
 }

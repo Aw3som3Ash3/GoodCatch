@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 110072618089533300}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.9209957, z: -5}
+  m_LocalPosition: {x: 1.0000292, y: 0.9209957, z: -5.000029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59,7 +59,7 @@ MonoBehaviour:
     FieldOfView: 70
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 2000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -197,11 +197,12 @@ MonoBehaviour:
   mouseSensitiviy: 0.25
   interactionLayer:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 1089
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
   fishingRod: {fileID: 8452586820765843335}
+  ship: {fileID: 0}
 --- !u!114 &5494617037479837059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +280,7 @@ AudioSource:
   m_GameObject: {fileID: 458340447038428405}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9175835907002796863, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -326,7 +327,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
