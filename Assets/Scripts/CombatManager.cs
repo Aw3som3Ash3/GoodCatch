@@ -19,8 +19,14 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         player,
         enemy
     }
+    enum CombatPhase
+    {
+        draft,
+        combat,
+        postCombat
+    }
     //Turn currentTurn;
-   
+    CombatPhase currentPhase=CombatPhase.draft;
     int roundNmber;
 
     [SerializeField]
@@ -133,7 +139,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         InputManager.Input.UI.Enable();
         combatUI.Draft(playerFishes, (index, callback) =>
         {
-
+            if (draftedCount > 3)
+            {
+                return;
+            }
             combatVisualizer.StartTargeting((target) =>
             {
                 if (target < 0)
@@ -150,7 +159,24 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             });
         });
         Time.timeScale = 1;
+        InputManager.Input.Combat.Cancel.performed += OnCancel;
+        combatUI.EndDraft += CompleteDraft;
     }
+    Action undoDraft;
+    private void OnCancel(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (combatVisualizer.CancelMove())
+        {
+            return;
+        }
+
+        if (currentPhase == CombatPhase.draft)
+        {
+            undoDraft?.Invoke();
+        }
+
+    }
+
     [DevConsoleCommand("KillAllEnemyFish","Use to kill all opposing fish. Only use on a player's turn to avoid bugs")]
     public static void KillAllEnemies()
     {
@@ -192,7 +218,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         
     }
 
-
+    Stack<(Turn,int index)> draftStack=new();
     void DraftFish(int index,int target)
     {
         Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);
@@ -201,13 +227,37 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         currentCombatents.Add(turn);
         getFishesTurn[playerFishes[index]] = turn;
         draftedCount++;
+        draftStack.Push((turn,index));
+        undoDraft =()=> 
+        {
+            (Turn turn, int index) val;
+            if(draftStack.TryPop(out val))
+            {
+                RemoveFishFromBattle(val.turn);
+                combatUI.ReAddToDraft(val.index);
+                draftedCount--;
+            }
+           
+        };
         if (draftedCount >= 3 || draftedCount >= playerFishes.Count)
         {
-            combatUI.StopDraft();
-            targetGroup.m_Targets[2].weight = 0;
-            OrderTurn();
-            StartTurn();
+           
+            
         }
+
+    }
+
+    void CompleteDraft()
+    {
+        combatUI.EndDraft -= CompleteDraft;
+        currentPhase = CombatPhase.combat;
+        undoDraft = null;
+        combatUI.StopDraft();
+        targetGroup.m_Targets[2].weight = 0;
+        OrderTurn();
+        StartTurn();
+        draftStack.Clear();
+
     }
     void UseItem(Item item,Action completedCallback,Action canceledCallback)
     {
@@ -557,8 +607,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void RemoveFishFromBattle(Turn turn)
     {
+        currentCombatents.Remove(turn);
         combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
+        getFishesTurn.Remove(turn.fish);
         //playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
