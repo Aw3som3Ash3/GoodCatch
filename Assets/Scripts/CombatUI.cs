@@ -119,6 +119,7 @@ public class CombatUI : VisualElement
         {
             this.Q("ConditionArea").Add(fishUI);
         }
+        MoreInfo(false);
     }
         
     public void Initial()
