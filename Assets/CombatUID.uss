@@ -411,3 +411,11 @@
 #Profile.ProfileCollapsed {
     bottom: -200px;
 }
+
+#Profile {
+    bottom: 0;
+}
+
+#Profile.ProfileCollapsed {
+    bottom: -200px;
+}
