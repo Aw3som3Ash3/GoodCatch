@@ -403,3 +403,11 @@
     align-self: auto;
     width: 550px;
 }
+
+#Profile {
+    bottom: 0;
+}
+
+#Profile.ProfileCollapsed {
+    bottom: -200px;
+}
