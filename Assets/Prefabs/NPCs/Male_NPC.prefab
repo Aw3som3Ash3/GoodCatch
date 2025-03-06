@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f49d9ed505febd54b826718af839ae56, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 444.487
+      value: -17.081837
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f49d9ed505febd54b826718af839ae56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.6560886
+      value: 3.116087
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f49d9ed505febd54b826718af839ae56, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 748.758
+      value: 52.486385
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f49d9ed505febd54b826718af839ae56, type: 3}
       propertyPath: m_LocalRotation.w
@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Male_NPC
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: f49d9ed505febd54b826718af839ae56, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cd8d0812840468e449e3ec330049fc5a, type: 2}
     - target: {fileID: 8599719318572606555, guid: f49d9ed505febd54b826718af839ae56, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -87,5 +91,54 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f49d9ed505febd54b826718af839ae56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7899628539369311722}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f49d9ed505febd54b826718af839ae56, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3904034583092287817}
   m_SourcePrefab: {fileID: 100100000, guid: f49d9ed505febd54b826718af839ae56, type: 3}
+--- !u!1 &2318496406209989534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f49d9ed505febd54b826718af839ae56, type: 3}
+  m_PrefabInstance: {fileID: 3237417307397928655}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7899628539369311722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318496406209989534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11ca95dc4a5ee249b04050fcad685dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: John Questman
+  baseDialogue: {fileID: 11400000, guid: 5570a2b5066b9aa438d2028b584b9220, type: 2}
+  questBasedDialogues: []
+--- !u!136 &3904034583092287817
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318496406209989534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
