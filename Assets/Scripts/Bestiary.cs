@@ -6,10 +6,12 @@ using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static GameManager;
 
 public class Bestiary : PausePage
 {
     ListView fishList;
+    Label fishTitle, location, timeOfDay, baits, stamina, hp, agilityMin, attackMin, magicAttackMin, defenseMin, magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax;
     List<FishMonsterType> fishMonsters 
     { get 
         { 
@@ -22,7 +24,7 @@ public class Bestiary : PausePage
 
     Label fishLabel;
     VisualElement fishPic;
-    BestiaryPage bestiaryPage;
+    //BestiaryPage bestiaryPage;
     int previousSelectedIndex;
     public new class UxmlFactory : UxmlFactory<Bestiary, Bestiary.UxmlTraits>
     {
@@ -47,10 +49,31 @@ public class Bestiary : PausePage
         SetList();
         fishList.selectionChanged += SelectionChanged;
         //fishList.RegisterCallback<NavigationMoveEvent>(OnNavigate);
-        fishList.itemsChosen += ChoseItem;
-        bestiaryPage = new BestiaryPage();
+        //fishList.itemsChosen += ChoseItem;
+        //bestiaryPage = new BestiaryPage();
         this.focusable = true;
         this.delegatesFocus = true;
+
+
+        fishTitle = this.Q<Label>("NameAmount");
+        location = this.Q<Label>("LocationAmount");
+        timeOfDay = this.Q<Label>("TimeOfDayAmount");
+        baits = this.Q<Label>("BaitAmount");
+        stamina = this.Q<Label>("StaAmount");
+        hp = this.Q<Label>("HPAmount");
+
+        //agilityMin = this.Q<Label>("MinimumAgilityAmount");
+        //attackMin = this.Q<Label>("MinimumPhysicalAttackAmount");
+        //magicAttackMin = this.Q<Label>("MinimumMagicalAttackAmount");
+        //defenseMin = this.Q<Label>("MinimumPFAmount");
+        //magicDefenseMin = this.Q<Label>("MinimumMFAmount");
+
+
+        //agilityMax = this.Q<Label>("MaximumAgilityAmount");
+        //attackMax = this.Q<Label>("MaximumPhysicalAttackAmount");
+        //magicAttackMax = this.Q<Label>("MaximumMagicalAttackAmount");
+        //defenseMax = this.Q<Label>("MaximumPFAmount");
+        //magicDefenseMax = this.Q<Label>("MaximumMFAmount");
         //fishList.Children().First().Focus();
     }
 
@@ -67,21 +90,21 @@ public class Bestiary : PausePage
        
     }
 
-    private void ChoseItem(IEnumerable<object> enumerable)
-    {
-        FishMonsterType fishMonsterType = fishList.selectedItem as FishMonsterType;
-        if (hasSeenFish[fishMonsterType.fishId] == false)
-        {
-            return;
-        }
-        this.delegatesFocus = false;
-        this.parent.Add(bestiaryPage);
-        bestiaryPage.SetPage(fishMonsterType);
-        previousSelectedIndex = fishList.selectedIndex;
-        fishList.SetEnabled(false);
-        //fishList.visible=(false);
-        //this.Q("BookBG").visible=false;
-    }
+    //private void ChoseItem(IEnumerable<object> enumerable)
+    //{
+    //    FishMonsterType fishMonsterType = fishList.selectedItem as FishMonsterType;
+    //    if (hasSeenFish[fishMonsterType.fishId] == false)
+    //    {
+    //        return;
+    //    }
+    //    this.delegatesFocus = false;
+    //    //this.parent.Add(bestiaryPage);
+    //    bestiaryPage.SetPage(fishMonsterType);
+    //    previousSelectedIndex = fishList.selectedIndex;
+    //    fishList.SetEnabled(false);
+    //    //fishList.visible=(false);
+    //    //this.Q("BookBG").visible=false;
+    //}
 
     private void SelectionChanged(IEnumerable<object> enumerable)
     {
@@ -96,6 +119,7 @@ public class Bestiary : PausePage
         var value = fishPic.style.backgroundImage.value;
         value.sprite= hasSeenFish[fishMonsterType.fishId] ? fishMonsterType?.Icon:null;
         fishPic.style.backgroundImage = value;
+        SetPage(fishMonsterType);
         //previousSelectedIndex = fishList.selectedIndex;
         //throw new NotImplementedException();
     }
@@ -124,24 +148,64 @@ public class Bestiary : PausePage
 
         fishList.itemsSource =fishMonsters.Skip(1).ToList();
     }
+    public void SetPage(FishMonsterType fishMonsterType)
+    {
 
+        Debug.Log(this.Q<MarinedexTabs>().Q("Stats-content"));
+
+        agilityMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumAgilityAmount");
+        attackMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumPhysicalAttackAmount");
+        magicAttackMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumMagicalAttackAmount");
+        defenseMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumPFAmount");
+        magicDefenseMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumMFAmount");
+
+
+        agilityMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumAgilityAmount");
+        attackMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumPhysicalAttackAmount");
+        magicAttackMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumMagicalAttackAmount");
+        defenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumPFAmount");
+        magicDefenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumMFAmount");
+
+        Debug.Log(fishMonsterType);
+        Debug.Log(agilityMin);
+        //fishTitle.text = fishMonsterType.name; 
+        //stamina.text = fishMonsterType.BaseStamina.ToString();
+        //hp.text=fishMonsterType.BaseHealth.ToString();
+        if (hasSeenFish[fishMonsterType.fishId])
+        {
+            agilityMax.text = fishMonsterType.Agility.Max.ToString();
+            agilityMin.text = fishMonsterType.Agility.Min.ToString();
+            attackMin.text = fishMonsterType.Attack.Min.ToString();
+            attackMax.text = fishMonsterType.Attack.Max.ToString();
+
+            magicAttackMax.text = fishMonsterType.Special.Max.ToString();
+            magicAttackMin.text = fishMonsterType.Special.Min.ToString();
+
+            magicDefenseMax.text = fishMonsterType.SpecialFortitude.Max.ToString();
+            magicDefenseMin.text = fishMonsterType.SpecialFortitude.Min.ToString();
+            defenseMin.text = fishMonsterType.Fortitude.Min.ToString();
+            defenseMax.text = fishMonsterType.Fortitude.Max.ToString();
+        }
+        else
+        {
+            agilityMax.text = "??";
+            agilityMin.text = "??";
+            attackMin.text = "??";
+            attackMax.text = "??";
+
+            magicAttackMax.text = "??";
+            magicAttackMin.text = "??";
+
+            magicDefenseMax.text = "??";
+            magicDefenseMin.text = "??";
+            defenseMin.text = "??";
+            defenseMax.text = "??";
+        }
+       
+    }
     public override bool Back()
     {
 
-        if (this.parent.Contains(bestiaryPage))
-        {
-            fishList.SetEnabled(true);
-            this.parent.Remove(bestiaryPage);
-            this.Q("BookBG").visible = true;
-            
-            
-            //fishList.visible = (true);
-            fishList.Focus();
-            fishList.SetSelectionWithoutNotify(new List<int>{ previousSelectedIndex });
-            this.delegatesFocus = true;
-
-            return false;
-        }
         return base.Back();
 
     }
@@ -177,6 +241,10 @@ public class BestiarySlot : VisualElement
         fishName.text = wasSeen? fishMonsterType.name:"???????????";
         fishId.text = fishMonsterType.fishId.ToString();
     }
+
+    
+
+
 }
 
 
