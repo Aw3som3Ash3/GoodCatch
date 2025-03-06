@@ -78,9 +78,9 @@ public class DevConsole : MonoBehaviour
     void Start()
     {
 
-        foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where((t) => t ==typeof(IUseDevCommands)))
+        foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IUseDevCommands))))
         {
-            foreach (var method in type.GetMethods().Where((x) => x.GetCustomAttribute<DevConsoleCommand>()!=null))
+            foreach (var method in type.GetMethods().Where((x) => x.IsStatic&&x.GetCustomAttribute<DevConsoleCommand>()!=null))
             {
                 var attr = method.GetCustomAttribute<DevConsoleCommand>();
                 var command = (CommandInvoker(method), method.GetParameters().Select((x) => $"[{x.ParameterType.Name}]{x.Name}").ToArray());
