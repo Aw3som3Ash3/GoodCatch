@@ -510,7 +510,7 @@
 }
 
 #Profile.ProfileCollapsed {
-    bottom: -10px;
+    bottom: 0;
 }
 
 #StatWindow .unity-text-element {
