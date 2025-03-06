@@ -15,13 +15,13 @@ MonoBehaviour:
   description: 
   model: {fileID: 0}
   fishId: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 1842825a73b2d9b408e5ead227ea1141, type: 3}
   miniSprite: {fileID: 0}
   homeDepth: 0
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
-  - {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}
+  - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
   agility:
     min: 10
     max: 15
@@ -55,8 +55,6 @@ MonoBehaviour:
   baseHealth: 120
   baseStamina: 100
   baseAbilities:
-  - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
   - potentialAbilities:

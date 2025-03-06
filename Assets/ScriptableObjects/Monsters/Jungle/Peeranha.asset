@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   model: {fileID: 2032498811498950705, guid: 36c470907c48f0c449fc791803782a0a, type: 3}
-  fishId: 11
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  fishId: 12
+  icon: {fileID: 21300000, guid: 0bd48e3643e85394089f3ac2fb76018f, type: 3}
   miniSprite: {fileID: -1822290715, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 0
   preferredBait: []
