@@ -3,6 +3,5 @@
 }
 
 .Detail {
-    font-size: 36px;
-    color: rgb(55, 20, 5);
+    font-size: 49px;
 }

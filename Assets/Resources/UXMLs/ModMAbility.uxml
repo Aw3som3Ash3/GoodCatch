@@ -1,15 +1,15 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/ModMButtons.uss?fileID=7433441132597879392&amp;guid=16ccc856c4f3c2e4aba0a72c742b6fbe&amp;type=3#ModMButtons" />
-    <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-shrink: 0; flex-direction: row; align-items: center;">
-        <ui:VisualElement style="flex-grow: 1; flex-direction: column; flex-shrink: 0; height: 100%; justify-content: space-around;">
-            <AbilityButton name="Ability0" style="scale: 1.5 1.6;" />
-            <AbilityButton name="Ability1" style="scale: 1.6 1.6;" />
-            <AbilityButton name="Ability2" style="scale: 1.6 1.6;" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-shrink: 0; flex-direction: column; align-items: center;">
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row; flex-shrink: 0;">
+            <AbilityButton name="Ability0" />
+            <AbilityButton name="Ability1" />
+            <AbilityButton name="Ability2" />
         </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1; flex-direction: column; flex-shrink: 0; height: 100%; justify-content: space-around;">
-            <AbilityButton name="Ability3" style="scale: 1.6 1.6; border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
-            <AbilityButton name="Ability4" style="scale: 1.6 1.6;" />
-            <AbilityButton name="Ability5" style="scale: 1.6 1.6;" />
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row; flex-shrink: 0;">
+            <AbilityButton name="Ability3" />
+            <AbilityButton name="Ability4" />
+            <AbilityButton name="Ability5" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -59,7 +59,7 @@ public class CombatVisualizer : MonoBehaviour
             depthSelectors[i].SetIndex(i);
             depthSelectors[i].Selected = (i) => { DepthSelection?.Invoke(i); StopTargeting(); };
             depthSelectors[i].Navigate += OnNaviagte;
-            
+            InputManager.Input.Combat.Cancel.performed+=(x)=>CancelMove();
         }
        
     }
@@ -78,11 +78,7 @@ public class CombatVisualizer : MonoBehaviour
         var ui = FishUI[turnToObject[turn]];
         Destroy(turnToObject[turn].gameObject);
         turnToObject.Remove(turn);
-        if (ui != null&&ui.parent!=null)
-        {
-            ui.parent.Remove(ui);
-        }
-       
+        ui.parent.Remove(ui);
     }
     public void AddFish(CombatManager.Turn turn, Vector3 startingLocation, CombatManager.Team team)
     {
@@ -424,18 +420,14 @@ public class CombatVisualizer : MonoBehaviour
        
     }
 
-    public bool CancelMove()
+    void CancelMove()
     {
-        if (canceled == null)
-        {
-            return false;
-        }
+
         DepthSelection?.Invoke(-1);
        
         StopTargeting();
         canceled?.Invoke();
         canceled = null;
-        return true;
 
     }
 

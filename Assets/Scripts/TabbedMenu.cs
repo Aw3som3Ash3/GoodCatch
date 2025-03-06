@@ -61,14 +61,14 @@ public class TabbedMenu : VisualElement
         m_Content.AddToClassList(s_ContentContainerClassName);
         hierarchy.Add(m_Content);
 
-        if (InputManager.Input != null)
+        if (GameManager.Instance != null)
         {
             InputManager.OnInputChange += ChangeTabIcons;
             ChangeTabIcons( InputManager.inputMethod);
         }
         else
         {
-            //ChangeTabIcons(InputMethod.mouseAndKeyboard);
+            ChangeTabIcons(InputMethod.mouseAndKeyboard);
         }
         RegisterCallback<AttachToPanelEvent>(ProcessEvent);
        

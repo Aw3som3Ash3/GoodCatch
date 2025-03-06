@@ -63,8 +63,6 @@ public static class SavingSystem
             {
                 SceneData[sceneId] = new SerializableDictionary<string, string>();
             }
-            Debug.Log(sceneId);
-            Debug.Log("saveable: "+saveable+" Id: "+ saveable.ID);
             SceneData[sceneId][saveable.ID]= JsonUtility.ToJson(saveable.DataToSave);
         }
         public void SetScene()

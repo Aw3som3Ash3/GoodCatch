@@ -22,7 +22,6 @@ public class CombatUI : VisualElement
     ItemInventory inventory;
     VisualElement combatDraftUI;
     VisualElement statusBar;
-    VisualElement profileSection;
     Label fishName, level;
     VisualElement fishIcon;
     ToolTipBox toolTip;
@@ -38,9 +37,7 @@ public class CombatUI : VisualElement
 
     readonly GoodCatchInputs inputs= InputManager.Input;
     HashSet<FishUI> fishUIs = new HashSet<FishUI>();
-    public event Action EndDraft;
 
-    const string PROFILE_COLLAPSED_STATE="ProfileCollapsed";
     //public Action MoveAction,EndTurnAction;
     //public Action<int> AbilityAction;
     public new class UxmlFactory : UxmlFactory<CombatUI, CombatUI.UxmlTraits>
@@ -70,26 +67,11 @@ public class CombatUI : VisualElement
         inputs.Combat.Enable();
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
-        combatDraftUI = this.Q("CombatDraftUI");
-        combatDraftUI.SetEnabled(false);
-        combatDraftUI.visible = false;
         Initial();
-        endTurnButton = root.Q<Button>("ConfirmDraft");
-        endTurnButton.clicked += EndDraftingPhase;
-        Debug.Log("Confirm draft: " + endTurnButton);
-        endTurnButton.SetEnabled(true);
-        MoreInfo(true);
-    }
-
-    void EndDraftingPhase()
-    {
-        Debug.Log("SHould end draft");
-        EndDraft?.Invoke();
     }
 
     public void InitialNormal()
     {
-        endTurnButton.clicked -= EndDraftingPhase;
         VisualElement root = this;
         root.styleSheets.Clear();
         //var fishUI = this.Q("ConditionArea").Children();
@@ -111,15 +93,12 @@ public class CombatUI : VisualElement
         runButton.clicked += OnRun;
         moveButton = tabbedView.Q<Button>("Move");
         moveButton.clicked += Move;
-        endTurnButton = this.Q<Button>("EndTurn");
-        endTurnButton.clicked += EndTurn;
         Initial();
         SetInventory(GameManager.Instance.PlayerInventory);
         foreach (FishUI fishUI in fishUIs)
         {
             this.Q("ConditionArea").Add(fishUI);
         }
-        MoreInfo(false);
     }
         
     public void Initial()
@@ -136,7 +115,8 @@ public class CombatUI : VisualElement
             
             abilityButtons[i].MouseExit += () => toolTip.visible = false;
         }
-        
+        endTurnButton = this.Q<Button>("EndTurn");
+        endTurnButton.clicked += EndTurn;
         staminaBar = this.Q<ProgressBar>("StaminaBar");
         healthBar = this.Q<ProgressBar>("HealthBar");
         turnMarker = this.Q("TurnMarker");
@@ -144,14 +124,14 @@ public class CombatUI : VisualElement
         turnList = this.Q("TurnList");
         itemBar = this.Q("Items");
         statusBar = this.Q("StatusBar");
-        //combatDraftUI = this.Q("CombatDraftUI");
-        //combatDraftUI.SetEnabled(false);
-        //combatDraftUI.visible = false;
+        combatDraftUI = this.Q("CombatDraftUI");
+        combatDraftUI.SetEnabled(false);
+        combatDraftUI.visible = false;
         fishName = this.Q<Label>("Name");
         level = this.Q<Label>("Level");
         fishIcon = this.Q("ProfilePic");
         inputs.Combat.MoreInfo.performed += OnMoreInfo;
-        profileSection = this.Q("Profile");
+
         moreInfoButton = this.Q("IndicatorImageBox");
         moreInfoScreen = this.Q("AlfredInfo");
       
@@ -178,25 +158,22 @@ public class CombatUI : VisualElement
     }
     void MoreInfo()
     {
-        if (profileSection.ClassListContains(PROFILE_COLLAPSED_STATE))
+        if (moreInfoOpen)
         {
-            profileSection.RemoveFromClassList(PROFILE_COLLAPSED_STATE);
+            moreInfoBaseWidth = moreInfoScreen.layout.width;
+            Debug.Log("base width" + moreInfoBaseWidth);
         }
-        else
-        {
-            profileSection.AddToClassList(PROFILE_COLLAPSED_STATE);
-        }
+        moreInfoOpen = !moreInfoOpen;
+        var width = moreInfoScreen.style.width.value;
+        width.value = moreInfoOpen? moreInfoBaseWidth:0;
+        moreInfoScreen.style.width = width;
+        moreInfoScreen.Children().ToArray()[0].visible = moreInfoOpen;
+        moreInfoScreen.Children().ToArray()[1].visible = moreInfoOpen;
     }
     void MoreInfo(bool open)
     {
-        if (open)
-        {
-            profileSection.RemoveFromClassList(PROFILE_COLLAPSED_STATE);
-        }
-        else
-        {
-            profileSection.AddToClassList(PROFILE_COLLAPSED_STATE);
-        }
+        moreInfoOpen = open;
+        MoreInfo();
     }
 
     void UpdateInfo(FishMonster fish)
@@ -206,11 +183,9 @@ public class CombatUI : VisualElement
         infoScreenDefense.text = fish.Fortitude.value.ToString();
         infoScreenMagicAttack.text = fish.Special.value.ToString();
         infoScreenMagicDefense.text = fish.SpecialFort.value.ToString();
-        infoScreenAccuracy.text = fish.Accuracy.value.ToString();
-
         //infoScreenHealth.text = fish.Health.ToString("00")+"/"+fish.MaxHealth.ToString("00");
         //infoScreenStamina.text = fish.MaxStamina.ToString("00");
-        var addElem = this.Q("AddElement");
+        var addElem= this.Q("AddElement");
       
         if (addElem == null)
         {
@@ -252,13 +227,7 @@ public class CombatUI : VisualElement
     {
         throw new NotImplementedException();
     }
-    public void ReAddToDraft(int fishIndex)
-    {
 
-        var slot = combatDraftUI.Q<Button>("slot" + (fishIndex + 1));
-        slot.style.unityBackgroundImageTintColor = Color.white;
-        slot.SetEnabled(true);
-    }
     public void Draft(IList<FishMonster> playerFishes, Action<int,Action<bool>> callback)
     {
         //ResetDisplayAbilities();
@@ -617,17 +586,9 @@ public class CombatUI : VisualElement
     }
     private void UpdateHealthDisplay()
     {
-        UpdateHealthDisplay(currentTurn);
+        UpdateHealthDisplay(currentTurn.fish);
     }
     private void UpdateHealthDisplay(FishMonster fish)
-    {
-        healthBar.value = fish.Health / fish.MaxHealth;
-        healthBar.title = fish.Health.ToString("0") + "/" + fish.MaxHealth.ToString("0");
-        staminaBar.value = fish.Stamina / fish.MaxStamina;
-        staminaBar.title = fish.Stamina.ToString("0") + "/" + fish.MaxStamina.ToString("0");
-
-    }
-    private void UpdateHealthDisplay(PlayerTurn fish)
     {
         healthBar.value = fish.Health / fish.MaxHealth;
         healthBar.title = fish.Health.ToString("0") + "/" + fish.MaxHealth.ToString("0");

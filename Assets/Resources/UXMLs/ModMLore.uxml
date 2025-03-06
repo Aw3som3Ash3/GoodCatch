@@ -1,19 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/ModMLore.uss?fileID=7433441132597879392&amp;guid=d5e40777625d56f41949a10bf236f935&amp;type=3#ModMLore" />
-    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center; align-self: center; flex-shrink: 0; width: 100%;">
-        <ui:VisualElement name="LoreBox" style="flex-grow: 1; flex-shrink: 0; width: 70%;">
-            <ui:Label tabindex="-1" text="Lore" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="padding-left: 45px; font-size: 85px; color: rgb(55, 20, 5);" />
-            <ui:Label tabindex="-1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreAmount" class="Detail" style="white-space: normal; padding-right: 45px; padding-left: 45px;" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: flex-start;">
+        <ui:VisualElement name="LoreBox" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:Label tabindex="-1" text="Lore" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoreAmount" class="Detail" />
         </ui:VisualElement>
-        <ui:VisualElement name="LocationBox" style="flex-grow: 1; flex-shrink: 0; width: 30%; padding-left: 0; align-items: center;">
-            <ui:Label tabindex="-1" text="Location" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="padding-left: 0; font-size: 85px; color: rgb(55, 20, 5);" />
-            <ui:Label tabindex="-1" text="Desert Oaisis" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Detail" style="display: flex;" />
-            <ui:Label tabindex="-1" text="Desert Coast" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Detail" style="display: none;" />
-            <ui:Label tabindex="-1" text="Jungle Pond" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Detail" style="display: none;" />
-            <ui:Label tabindex="-1" text="Jungle Coast" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Detail" style="display: none;" />
-            <ui:Label tabindex="-1" text="Volcano Lava" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Detail" style="display: flex;" />
-            <ui:Label tabindex="-1" text="Volcano Coast" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Detail" style="display: none;" />
-            <ui:Label tabindex="-1" text="Ocean" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Detail" style="display: none;" />
+        <ui:VisualElement name="LocationBox" style="flex-grow: 1; flex-shrink: 0;">
+            <ui:Label tabindex="-1" text="Location" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

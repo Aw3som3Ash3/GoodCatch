@@ -27,18 +27,18 @@ public class BossFightStart : TransformSaver
 
         if (other.gameObject.tag == "Player")
         {
+            GameManager.Instance.LoadCombatScene(fishMonsters);
             this.gameObject.SetActive(false);
-            GameManager.Instance.LoadBossCombatScene(fishMonsters,ID);
             Debug.Log("Boss destroyed.");
         }
     }
 
 
-//    void OnTriggerExit(Collider other)
-//    {
-//        if (other.gameObject.tag == "Player")
-//        {
-//            this.gameObject.SetActive(false);
-//        }
-//    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 }
