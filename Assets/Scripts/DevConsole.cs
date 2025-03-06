@@ -250,7 +250,7 @@ public class DevConsole : MonoBehaviour
     void RunCommand(string command ,string[] args)
     {
         #region Commands Help
-        if (command.FirstCharacterToUpper() == "Help")
+        if (command == "Help")
         {
             print("------------------------------------------------------------------------------\n" +
                 "Commands:\n\n");
@@ -264,7 +264,7 @@ public class DevConsole : MonoBehaviour
             return;
         }
 
-        if (args.Length>0 &&  args[0].FirstCharacterToUpper() == "Help" && consoleCommands.ContainsKey(command))
+        if (args.Length>0 &&  args[0] == "Help" && consoleCommands.ContainsKey(command))
         {
             print("------------------------------------------------------------------------------\n" +
                 $"{command}: {consoleCommands[command].description}:\n");
