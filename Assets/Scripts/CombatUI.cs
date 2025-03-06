@@ -79,7 +79,7 @@ public class CombatUI : VisualElement
         Debug.Log("Confirm draft: " + endTurnButton);
         endTurnButton.SetEnabled(true);
         MoreInfo(true);
-        OnEndTurnInput = end;
+        OnEndTurnInput = EndDraftingPhase;
     }
 
     void EndDraftingPhase()
