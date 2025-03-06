@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Unity.VisualScripting;
 //using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -81,10 +80,10 @@ public class DevConsole : MonoBehaviour
 
         foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where((t) => t ==typeof(IUseDevCommands)))
         {
-            foreach (var method in type.GetMethods().Where((x) => x.HasAttribute<DevConsoleCommand>()))
+            foreach (var method in type.GetMethods().Where((x) => x.GetCustomAttribute<DevConsoleCommand>()!=null))
             {
                 var attr = method.GetCustomAttribute<DevConsoleCommand>();
-                var command = (CommandInvoker(method), method.GetParameters().Select((x) => $"[{x.ParameterType.HumanName()}]{x.Name}").ToArray());
+                var command = (CommandInvoker(method), method.GetParameters().Select((x) => $"[{x.ParameterType.Name}]{x.Name}").ToArray());
                 if (consoleCommands.ContainsKey(attr.CommandName))
                 {
                     consoleCommands[attr.CommandName].AddCommand(command);
