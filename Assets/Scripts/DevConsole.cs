@@ -26,8 +26,7 @@ public class DevConsole : MonoBehaviour
     [SerializeField]
 
     InputAction openConsole;
-
-    Dictionary<string, Command> consoleCommands=new();
+    Dictionary<string, Command> consoleCommands=new(StringComparer.OrdinalIgnoreCase);
 
 
 
@@ -88,14 +87,14 @@ public class DevConsole : MonoBehaviour
 
 
                 var command = (CommandInvoker(method), _params);
-                if (consoleCommands.ContainsKey(attr.CommandName))
+                if (consoleCommands.ContainsKey(attr.CommandName.ToLower()))
                 {
-                    consoleCommands[attr.CommandName].AddCommand(command);
+                    consoleCommands[attr.CommandName.ToLower()].AddCommand(command);
                 }
                 else
                 {
                     //consoleCommands.Add(attr.CommandName,(new() { command },attr.Description) );
-                    consoleCommands.Add(attr.CommandName, new Command(attr.CommandName, attr.Description, command));
+                    consoleCommands.Add(attr.CommandName.ToLower(), new Command(attr.CommandName, attr.Description, command));
                 }
 
 
@@ -243,7 +242,7 @@ public class DevConsole : MonoBehaviour
     {
         string[] strings = command.Split(" ");
         Debug.Log(command);
-        RunCommand(strings[0], strings.Skip(1).ToArray());
+        RunCommand(strings[0].ToLower(), strings.Skip(1).ToArray());
         commandField.SetValueWithoutNotify("");
        // commandField.Focus();
         previousCommands.AddFirst(command);
@@ -254,7 +253,7 @@ public class DevConsole : MonoBehaviour
     void RunCommand(string command ,string[] args)
     {
         #region Commands Help
-        if (command == "Help")
+        if (command.ToLower() == "help")
         {
             print("------------------------------------------------------------------------------\n" +
                 "Commands:\n\n");
@@ -268,7 +267,7 @@ public class DevConsole : MonoBehaviour
             return;
         }
 
-        if (args.Length>0 &&  args[0] == "Help" && consoleCommands.ContainsKey(command))
+        if (args.Length>0 &&  args[0].ToLower() == "help" && consoleCommands.ContainsKey(command))
         {
             print("------------------------------------------------------------------------------\n" +
                 $"{command}: {consoleCommands[command].description}:\n");
@@ -291,7 +290,7 @@ public class DevConsole : MonoBehaviour
         #endregion
 
 
-        if (consoleCommands.ContainsKey(command))
+        if (consoleCommands.ContainsKey(command.ToLower()))
         {
             consoleCommands[command].commandActions.Find((command) =>
                 {
