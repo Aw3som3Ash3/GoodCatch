@@ -8,8 +8,6 @@ using Unity.VisualScripting;
 //using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Playables;
-using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 
