@@ -11,6 +11,7 @@
     transform-origin: center;
     padding-right: 17px;
     padding-left: 40px;
+    top: 5px;
 }
 
 .Actions {
@@ -506,7 +507,7 @@
 }
 
 #Profile {
-    bottom: 174px;
+    bottom: 179px;
 }
 
 #Profile.ProfileCollapsed {
