@@ -111,9 +111,10 @@ public class FishingMiniGame : MonoBehaviour
         {
             fishMonsters.Add(fishZone.GetRandomFish());
         }
+        InputManager.Input.Fishing.Disable();
         SuccesfulFishing?.Invoke();
         GameManager.Instance.LoadCombatScene(fishMonsters, true);
-        ExitFishing();
+        //ExitFishing();
 
     }
 

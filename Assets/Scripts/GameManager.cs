@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     public event Action<FishMonsterType> CaughtFish;
     public event Action WonFight;
+    public bool isRespawning { get; private set; }
     private void Awake()
     {
 
@@ -232,7 +233,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             gameData.currentInnId = Inn.StarterInn.innId;
             Debug.Log(Inn.StarterInn);
         }
-       
+        isRespawning = true;
         lastInnVisited.Respawn();
         OnPlayerLost?.Invoke();
         Debug.Log("player has died");
@@ -305,6 +306,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
                 Day += Mathf.FloorToInt((DayTime / 24F));
                 DayTime %= 24;
             }
+            isRespawning = false;
         }));
        
        

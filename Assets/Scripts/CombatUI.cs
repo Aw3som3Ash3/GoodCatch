@@ -53,12 +53,12 @@ public class CombatUI : VisualElement
     }
     public CombatUI() 
     {
-        inputs.Combat.EndTurn.performed += OnEndTurn;
+       
     }
 
     public void InitialDraft()
     {
-
+        inputs.Combat.EndTurn.performed += OnEndTurn;
         VisualElement root = this;
         root.Clear();
         root.styleSheets.Clear();
@@ -414,7 +414,8 @@ public class CombatUI : VisualElement
     void EndTurn()
     {
         currentTurn.EndTurn();
-        
+        inputs.Combat.EndTurn.performed -= OnEndTurn;
+
 
     }
     void Move()
@@ -444,6 +445,7 @@ public class CombatUI : VisualElement
         {
             DisableButtons();
         }
+        inputs.Combat.EndTurn.performed += OnEndTurn;
     }
     void UseAbility(int index)
     {
