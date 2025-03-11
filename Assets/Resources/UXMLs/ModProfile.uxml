@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="BackgroundContainer" style="flex-grow: 0; background-color: rgb(154, 159, 245); height: 135px; flex-shrink: 0; width: 637px; flex-direction: row; border-top-left-radius: 75px; border-bottom-left-radius: 72px; border-top-width: 6px; border-right-width: 6px; border-bottom-width: 6px; border-left-width: 6px; border-left-color: rgba(0, 0, 0, 0.84); border-right-color: rgba(0, 0, 0, 0.84); border-top-color: rgba(0, 0, 0, 0.84); border-bottom-color: rgba(0, 0, 0, 0.84);">
+        <ui:VisualElement name="Colum1" style="flex-grow: 0; flex-shrink: 0; width: 135px; justify-content: center;">
+            <ui:VisualElement name="ArtContainer" style="flex-grow: 0; background-color: rgba(255, 37, 37, 0); border-top-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px; border-bottom-left-radius: 100px; flex-shrink: 0; width: 125px; height: 125px; justify-content: center; align-self: center; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; display: flex;">
+                <ui:VisualElement name="PixelArtAmount" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/MonstermonSprites.png?fileID=361366141&amp;guid=e594e3d34993e884789c3b09251a0dc5&amp;type=3#MonstermonSprites_5&quot;); width: 95px; height: 95px; align-self: center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Colum2" style="flex-grow: 1; padding-right: 26px;">
+            <ui:VisualElement name="Top" style="flex-grow: 0; flex-direction: row; justify-content: space-between;">
+                <ui:Label tabindex="-1" text="Namey Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" style="font-size: 36px;" />
+                <ui:VisualElement name="levelContainer" style="flex-grow: 0;">
+                    <ui:Label tabindex="-1" text="Lv.100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level" style="font-size: 36px; -unity-text-align: upper-right; margin-top: 4px; margin-right: 4px; margin-bottom: 0; margin-left: 2px; padding-top: 4px; padding-right: 2px; padding-bottom: 0; padding-left: 1px;" />
+                    <ui:VisualElement name="ExpBar" style="flex-grow: 0; flex-shrink: 0; height: 8px; background-color: rgba(255, 212, 0, 0); top: 0; margin-right: 7px; margin-left: 4px; padding-right: 4px; padding-left: 4px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Bottom" style="flex-grow: 1;">
+                <ui:VisualElement name="HPContainer" style="flex-grow: 1; justify-content: center;">
+                    <ui:VisualElement name="HPBar" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; background-color: rgb(0, 255, 11);">
+                        <ui:Label tabindex="-1" text="HP" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center;" />
+                        <ui:Label tabindex="-1" text="100/100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HpAmount" style="font-size: 36px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 9px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; -unity-text-align: upper-left;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
