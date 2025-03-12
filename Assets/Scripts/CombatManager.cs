@@ -555,9 +555,14 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             bool hit;
             float damageDone;
             ability.UseAbility(turn, turn, out hit, out damageDone);
-            ActionsCompleted();
-            combatUI.EnableButtons();
-            turn.CheckDeath();
+            combatVisualizer.AnimateAttack(ability, turn, turn, () =>
+            {
+                ActionsCompleted();
+                turn.CheckDeath();
+                combatUI.EnableButtons();
+
+            });
+           
             return;
         }
 
