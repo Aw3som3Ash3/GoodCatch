@@ -5,5 +5,5 @@
 .unity-tabbed-view__content-container {
     flex-grow: 1;
     height: 100px;
-    flex-direction: column;
+    justify-content: flex-start;
 }

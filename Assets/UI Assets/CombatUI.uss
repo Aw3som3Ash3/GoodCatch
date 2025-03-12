@@ -512,3 +512,15 @@
 #Profile.ProfileCollapsed {
     bottom: -10px;
 }
+
+#StatWindow .unity-text-element {
+    color: rgb(255, 255, 255);
+    -unity-text-outline-color: rgb(21, 26, 70);
+    -unity-text-outline-width: 1px;
+}
+
+#LevelContainer .unity-text-element {
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(21, 26, 70);
+}
