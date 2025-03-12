@@ -9,6 +9,8 @@
     display: flex;
     background-color: rgba(0, 0, 0, 0);
     transform-origin: center;
+    padding-right: 17px;
+    padding-left: 40px;
 }
 
 .Actions {
@@ -19,10 +21,10 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
-    border-top-width: 3px;
-    border-right-width: 3px;
-    border-bottom-width: 3px;
-    border-left-width: 3px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -32,6 +34,8 @@
     -unity-font-style: bold;
     font-size: 25px;
     width: 20%;
+    -unity-background-scale-mode: stretch-to-fill;
+    scale: 1 1;
 }
 
 #HealthBar .unity-progress-bar__progress {
@@ -41,6 +45,8 @@
 #HealthBar #unity-progress-bar {
     flex-grow: 1;
     min-height: 100%;
+    align-self: auto;
+    align-items: stretch;
 }
 
 #StaminaBar .unity-progress-bar__progress {
@@ -80,8 +86,10 @@
     background-image: url("project://database/Assets/Art/2D/UI/tab_other.png?fileID=21300000&guid=2d610eadbdfa6ae41b9f5e1337b4f5ce&type=3#tab_other");
     -unity-background-image-tint-color: rgba(58, 97, 117, 0);
     background-color: rgba(255, 0, 0, 0);
-    padding-bottom: 0;
-    padding-right: 118px;
+    align-items: center;
+    justify-content: space-between;
+    align-self: center;
+    -unity-text-align: middle-center;
 }
 
 #CombatTabs .unity-tab-button {
@@ -101,6 +109,12 @@
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 #CombatTabs .unity-tab-button--active {
@@ -114,7 +128,11 @@
     translate: 0 1px;
     transition-duration: 0.1s;
     top: 9px;
-    background-color: rgb(58, 97, 117);
+    background-color: rgb(21, 26, 70);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
 }
 
 #CombatTabs .unity-tab-button:hover {
@@ -149,12 +167,13 @@
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
     -unity-text-align: middle-center;
-    right: -47%;
     -unity-font-style: bold;
-    top: -5px;
     -unity-text-outline-color: rgb(0, 0, 0);
     -unity-text-outline-width: 1px;
     text-shadow: 1px 2px 0 rgb(0, 0, 0);
+    align-self: center;
+    justify-content: center;
+    align-items: auto;
 }
 
 #FightTab {
@@ -162,7 +181,6 @@
 
 #FightTab.unity-tab-button {
     background-image: none;
-    -unity-background-image-tint-color: rgba(58, 97, 117, 0.59);
     height: 121%;
 }
 
@@ -182,6 +200,12 @@
     background-color: rgb(58, 97, 117);
     max-height: 56%;
     top: 12.5%;
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
+    background-image: url("project://database/Assets/Art/2D/Textures/SandTextures_BaseMap.png?fileID=2800000&guid=201b5633e8da5e742ac2e66b958ba491&type=3#SandTextures_BaseMap");
+    -unity-background-image-tint-color: rgb(83, 92, 168);
+    -unity-background-scale-mode: scale-and-crop;
+    right: 0;
 }
 
 #Move {
@@ -191,7 +215,7 @@
     border-bottom-left-radius: 90px;
     min-width: auto;
     width: auto;
-    max-width: 9%;
+    max-width: 88px;
     background-image: url("project://database/Assets/Art/2D/UI/anchor3.png?fileID=2800000&guid=506f619b546a7d6428f92b94ccabd738&type=3#anchor3");
     -unity-background-scale-mode: scale-to-fit;
     border-left-color: rgb(0, 0, 0);
@@ -205,7 +229,7 @@
     border-bottom-width: 3px;
     border-left-width: 3px;
     height: 83%;
-    margin-left: 1%;
+    margin-left: 6%;
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
@@ -214,6 +238,7 @@
     color: rgba(27, 27, 27, 0);
     -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
     -unity-font-definition: initial;
+    scale: 1 1;
 }
 
 #Move:hover {
@@ -223,7 +248,7 @@
     border-bottom-left-radius: 90px;
     min-width: auto;
     width: auto;
-    max-width: 9%;
+    max-width: 88px;
     background-image: url("project://database/Assets/Art/2D/UI/anchor3.png?fileID=2800000&guid=506f619b546a7d6428f92b94ccabd738&type=3#anchor3");
     -unity-background-scale-mode: scale-to-fit;
     border-left-color: rgb(0, 0, 0);
@@ -237,7 +262,7 @@
     border-bottom-width: 3px;
     border-left-width: 3px;
     height: 83%;
-    margin-left: 1%;
+    margin-left: 6%;
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
@@ -258,7 +283,7 @@
     border-bottom-left-radius: 90px;
     min-width: auto;
     width: auto;
-    max-width: 9%;
+    max-width: 88px;
     background-image: url("project://database/Assets/Art/2D/UI/anchor3.png?fileID=2800000&guid=506f619b546a7d6428f92b94ccabd738&type=3#anchor3");
     -unity-background-scale-mode: scale-to-fit;
     border-left-color: rgb(0, 0, 0);
@@ -271,7 +296,7 @@
     border-bottom-width: 3px;
     border-left-width: 3px;
     height: 83%;
-    margin-left: 1%;
+    margin-left: 6%;
     margin-right: 1%;
     margin-top: 0;
     max-height: 88px;
@@ -287,7 +312,8 @@
 
 #Profile #unity-progress-bar {
     max-height: 32px;
-    max-width: 469px;
+    max-width: 515px;
+    margin-left: -6px;
 }
 
 #EndTurnArea .unity-button:hover {
@@ -429,12 +455,9 @@
 }
 
 #AlfredInfo .unity-text-element {
-    -unity-text-outline-width: 2px;
-    -unity-text-outline-color: rgb(0, 0, 0);
     font-size: 0;
     color: rgb(255, 255, 255);
     -unity-font-style: bold;
-    text-shadow: 2px 1px 0 rgb(0, 0, 0);
 }
 
 .ChangeTabIcons {
@@ -473,8 +496,31 @@
 }
 
 #unity-content-container {
+    -unity-text-align: upper-right;
+    -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
+    -unity-font-definition: initial;
 }
 
 #Abilities {
     flex-direction: row-reverse;
+}
+
+#Profile {
+    bottom: 174px;
+}
+
+#Profile.ProfileCollapsed {
+    bottom: -10px;
+}
+
+#StatWindow .unity-text-element {
+    color: rgb(255, 255, 255);
+    -unity-text-outline-color: rgb(21, 26, 70);
+    -unity-text-outline-width: 1px;
+}
+
+#LevelContainer .unity-text-element {
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(21, 26, 70);
 }
