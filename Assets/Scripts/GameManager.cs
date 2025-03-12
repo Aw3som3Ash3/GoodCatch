@@ -446,6 +446,15 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         fishMonsters.Add(Instance.database.fishMonsters[fish1].GenerateMonster(level1));
         Instance.LoadCombatScene(fishMonsters);
     }
+
+
+    [DevConsoleCommand("StartCombat")]
+    public static void StartCombatByFishName(string fish1, int level1)
+    {
+        List<FishMonster> fishMonsters = new List<FishMonster>();
+        fishMonsters.Add(Instance.database.fishMonsters.Find((f)=>f.name==fish1).GenerateMonster(level1));
+        Instance.LoadCombatScene(fishMonsters);
+    }
     [DevConsoleCommand("StartCombatRandom")]
     public static void StartCombatRandom(int amount, int level)
     {
@@ -459,6 +468,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
         Instance.LoadCombatScene(fishMonsters);
     }
+
     [DevConsoleCommand("BoolTest")]
     public static void TestBool(bool b)
     {
