@@ -1,0 +1,39 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ModCardCaught.uss?fileID=7433441132597879392&amp;guid=bca9cf171bad67e488b91115b9b8a8ec&amp;type=3#ModCardCaught" />
+    <ui:VisualElement name="Outline" focusable="true" style="flex-grow: 0; transition-property: width; transition-duration: 3s; transition-timing-function: ease; transition-delay: 0s; flex-shrink: 1; width: 480px; height: 630px; border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+        <ui:VisualElement name="CardBG" focusable="true" style="flex-grow: 0; transition-property: width; transition-duration: 3s; transition-timing-function: ease; transition-delay: 0s; background-color: rgb(108, 108, 108); flex-shrink: 1; border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px; align-self: auto; justify-content: flex-start;">
+            <ui:VisualElement name="FishPlacement" style="flex-grow: 0; background-color: rgba(255, 255, 255, 0); margin-top: 14px; display: none;">
+                <ui:VisualElement name="FishProfilePNG" style="flex-grow: 0; height: 446px; width: 436px; align-self: center; justify-content: flex-start; background-color: rgb(255, 255, 255); border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="BackCard" style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="Stack1" style="flex-grow: 0; margin-left: 28px; margin-top: 31px;">
+                    <ui:Label tabindex="-1" text="Health" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
+                    <ui:Label tabindex="-1" text="Stamina" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
+                    <ui:Label tabindex="-1" text="Attack" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
+                    <ui:Label tabindex="-1" text="Defence" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
+                    <ui:Label tabindex="-1" text="Magic" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
+                    <ui:Label tabindex="-1" text="Resist." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
+                    <ui:Label tabindex="-1" text="Accuracy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
+                    <ui:Label tabindex="-1" text="Agility" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Stack2" style="flex-grow: 1; margin-right: 28px; margin-top: 31px;">
+                    <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Health" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
+                    <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Stamina" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
+                    <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Attack" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
+                    <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Defence" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
+                    <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Magic" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
+                    <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Resist" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
+                    <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Accuracy" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
+                    <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Agility" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0; -unity-text-align: upper-right;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="DetailContainer" style="flex-grow: 0; display: flex;">
+                <ui:Label tabindex="-1" text="Fish Species" parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-self: center; font-size: 75px; padding-bottom: 0; margin-bottom: 0;" />
+                <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; justify-content: center;">
+                    <ui:Label tabindex="-1" text="Lv." parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; padding-top: 0; margin-top: 0; padding-bottom: 0; margin-bottom: 0;" />
+                    <ui:Label tabindex="-1" text="100" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; padding-top: 0; margin-top: 0; margin-bottom: 0; padding-bottom: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

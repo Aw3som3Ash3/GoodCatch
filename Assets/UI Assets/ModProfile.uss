@@ -1,11 +1,11 @@
-#XPbar .unity-progress-bar__progress {
+#XpBar .unity-progress-bar__progress {
     max-height: 16px;
 }
 
-#XPbar {
+#XpBar {
 }
 
-#XPbar #unity-progress-bar .unity-text-element {
+#XpBar #unity-progress-bar .unity-text-element {
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
@@ -18,7 +18,7 @@
     display: none;
 }
 
-#XPbar #unity-progress-bar .unity-progress-bar__background {
+#XpBar #unity-progress-bar .unity-progress-bar__background {
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;

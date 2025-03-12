@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="ModCardCaught" src="project://database/Assets/Resources/UXMLs/ModCardCaught.uxml?fileID=9197481963319205126&amp;guid=d2d1f275d10f71a48ba0b6034afff7d1&amp;type=3#ModCardCaught" />
+    <ui:VisualElement name="CaughtBox" style="flex-grow: 0; height: 95%;">
+        <ui:VisualElement name="PopulateWithCaught" style="flex-grow: 1; justify-content: space-around; flex-direction: row;">
+            <ui:Instance template="ModCardCaught" name="ModCardCaught" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

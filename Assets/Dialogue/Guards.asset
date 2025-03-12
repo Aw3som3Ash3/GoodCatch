@@ -36,7 +36,7 @@ MonoBehaviour:
         guid: f53e25affe6bda646bc2f3b72c30d2dd
         decorators:
         - rid: 8474350118825885699
-        position: {x: 443, y: -18}
+        position: {x: 434, y: -22}
         nextNode:
           rid: -2
     - rid: 8474350118825885699
