@@ -122,9 +122,10 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     int difficulty;
     [SerializeField]
-    AnimationClip attackAnimation,idleAnimation;
+    AnimationClip attackAnimation,idleAnimation,buffAnimation;
     public AnimationClip AttackAnimation { get { return attackAnimation; } }
     public AnimationClip IdleAnimation { get { return idleAnimation; } }
+    public AnimationClip BuffAnimation { get { return buffAnimation; } }
 
 
 
@@ -319,6 +320,7 @@ public class FishMonster
     public bool isDead { get { return health <= 0; }  }
     public AnimationClip AttackAnimation { get { return type.AttackAnimation; } }
     public AnimationClip IdleAnimation { get { return type.IdleAnimation; } }
+    public AnimationClip BuffAnimation { get { return type.BuffAnimation; } }
 
     public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent, Ability[] abilities,int startingLevel)
     {
