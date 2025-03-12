@@ -297,7 +297,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
             {
                 ProctEffectHostile(user, target,1);
             }
-            else if (targetTeam == TargetTeam.friendly)
+            else if (targetTeam == TargetTeam.friendly|| targetTeam == TargetTeam.self)
             {
                 ProctEffectFriendly(user, target);
             }
