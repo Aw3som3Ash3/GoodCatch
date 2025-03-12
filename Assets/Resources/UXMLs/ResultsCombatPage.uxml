@@ -1,17 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="ModProfile" src="project://database/Assets/Resources/UXMLs/ModProfile.uxml?fileID=9197481963319205126&amp;guid=5a0478e6f144e1346ad92d65eeb9a869&amp;type=3#ModProfile" />
     <ui:Template name="ModLevelUp" src="project://database/Assets/Resources/UXMLs/ModLevelUp.uxml?fileID=9197481963319205126&amp;guid=e309d3232f5501f4a820f4ee50def2b3&amp;type=3#ModLevelUp" />
     <Style src="project://database/Assets/UI%20Assets/ResultCombat.uss?fileID=7433441132597879392&amp;guid=6ce86f66d9a64904ea0e401813950077&amp;type=3#ResultCombat" />
     <ui:VisualElement name="Background" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="40PercentOfThePage" style="flex-grow: 0; width: 40%; flex-shrink: 0; height: 95%; justify-content: flex-start; background-color: rgba(0, 0, 0, 0.53);">
             <ui:Label tabindex="-1" text="VICTORY!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 60px; -unity-text-align: upper-center;" />
             <ui:VisualElement name="Populate" style="flex-grow: 1; justify-content: flex-start; align-self: center;">
-                <ui:Instance template="ModProfile" name="ModProfile" />
-                <ui:Instance template="ModProfile" name="ModProfile" />
-                <ui:Instance template="ModProfile" name="ModProfile" />
-                <ui:Instance template="ModProfile" name="ModProfile" />
-                <ui:Instance template="ModProfile" name="ModProfile" />
-                <ui:Instance template="ModProfile" name="ModProfile" />
+                <FishProfile name="FishProfile1" />
+                <FishProfile name="FishProfile2" />
+                <FishProfile name="FishProfile3" />
+                <FishProfile name="FishProfile4" />
+                <FishProfile name="FishProfile5" />
+                <FishProfile name="FishProfile6" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="VisualElement" style="flex-grow: 0; height: 580px; width: 712px; position: absolute; top: 430px; left: 1207px;">
