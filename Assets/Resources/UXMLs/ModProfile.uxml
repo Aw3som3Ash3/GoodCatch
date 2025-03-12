@@ -10,15 +10,12 @@
                 <ui:Label tabindex="-1" text="Namey Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" style="font-size: 36px;" />
                 <ui:VisualElement name="levelContainer" style="flex-grow: 0;">
                     <ui:Label tabindex="-1" text="Lv.100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level" style="font-size: 36px; -unity-text-align: upper-right; margin-top: 4px; margin-right: 4px; margin-bottom: 0; margin-left: 2px; padding-top: 4px; padding-right: 2px; padding-bottom: 0; padding-left: 1px;" />
-                    <ui:VisualElement name="ExpBar" style="flex-grow: 0; flex-shrink: 0; height: 8px; background-color: rgba(255, 212, 0, 0); top: 0; margin-right: 7px; margin-left: 4px; padding-right: 4px; padding-left: 4px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;" />
+                    <ui:ProgressBar value="22" name="XPbar" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Bottom" style="flex-grow: 1;">
                 <ui:VisualElement name="HPContainer" style="flex-grow: 1; justify-content: center;">
-                    <ui:VisualElement name="HPBar" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; background-color: rgb(0, 255, 11);">
-                        <ui:Label tabindex="-1" text="HP" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center;" />
-                        <ui:Label tabindex="-1" text="100/100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HpAmount" style="font-size: 36px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 9px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-self: center; -unity-text-align: upper-left;" />
-                    </ui:VisualElement>
+                    <ui:ProgressBar value="22" title="100/100" name="HpBar" style="font-size: 36px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
