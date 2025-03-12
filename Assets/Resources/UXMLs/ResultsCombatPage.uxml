@@ -1,7 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ResultCombat.uss?fileID=7433441132597879392&amp;guid=6ce86f66d9a64904ea0e401813950077&amp;type=3#ResultCombat" />
     <ui:VisualElement name="Background" style="flex-grow: 1;">
-        <ui:VisualElement name="40" style="flex-grow: 0; width: 40%; flex-shrink: 0; height: 95%;">
-            <ui:VisualElement name="Populate" style="flex-grow: 1;" />
+        <ui:VisualElement name="40PercentOfThePage" style="flex-grow: 0; width: 40%; flex-shrink: 0; height: 95%; justify-content: flex-start;">
+            <ui:Label tabindex="-1" text="VICTORY!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 60px; -unity-text-align: upper-center;" />
+            <ui:VisualElement name="Populate" style="flex-grow: 1; justify-content: flex-start; align-self: center;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
