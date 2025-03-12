@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Cramster
   m_EditorClassIdentifier: 
-  description: 
+  description: A clam that evolved into an apex predator; eating everything it sees.
+    Often dies from overeating in unregulated habitats.
   model: {fileID: 7728559625134885840, guid: 3ea3cde1bc15b6146b0c1c8ed750e77f, type: 3}
-  fishId: 2
+  fishId: 7
   icon: {fileID: 21300000, guid: 194b6b521222ee84cbb448ef968ba16b, type: 3}
   miniSprite: {fileID: -299405754, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
-  homeDepth: 0
+  homeDepth: 2
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
@@ -59,7 +60,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 6f0b18afa1bf3f9479af120461844496, type: 2}
+    - {fileID: 11400000, guid: c966308c70b7cff41afd92215fd5107b, type: 2}
   - potentialAbilities:
+    - {fileID: 11400000, guid: 766102c97b384ce4c9e11b26b1f15ff2, type: 2}
     - {fileID: 11400000, guid: f0a1bf49121adca4fbd0cf12c7e57665, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}

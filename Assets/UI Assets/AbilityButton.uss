@@ -44,7 +44,23 @@
     translate: -35px 0;
 }
 
+#Button:focus #LeftColumn > VisualElement {
+    left: auto;
+    transition-delay: 0s;
+    transition-duration: 0.25s;
+    translate: -35px 0;
+}
+
 #Button:hover #RightColumn > VisualElement {
+    left: auto;
+    transition-duration: 0.25s;
+    transition-property: all;
+    transition-timing-function: ease;
+    translate: 35px 0;
+    transition-delay: 0s;
+}
+
+#Button:focus #RightColumn > VisualElement {
     left: auto;
     transition-duration: 0.25s;
     transition-property: all;

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Shlorm
   m_EditorClassIdentifier: 
-  description: 
+  description: A thoughtless creature that roams the ocean floor with no goal. Stops
+    whatever it's doing to look at shiny objects.
   model: {fileID: 5694862167236661731, guid: 4539f28628ca93d44856dba2ea651fd5, type: 3}
-  fishId: 5
+  fishId: 6
   icon: {fileID: 21300000, guid: 8aace6d844f85dd4386bb882ceb79d16, type: 3}
   miniSprite: {fileID: -2146833316, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
-  homeDepth: 0
+  homeDepth: 2
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
@@ -55,13 +56,14 @@ MonoBehaviour:
   baseStamina: 50
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: d85dd998019c82a49975f554b924132e, type: 2}
-  - potentialAbilities:
+    - {fileID: 11400000, guid: 5cd7b8415f98a9a4483d0688c8ae46cd, type: 2}
     - {fileID: 11400000, guid: e46ebf49c02a65d499551d7d9c5ffa21, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: 4e729c0a09faf6f4385f1912f614a9e5, type: 2}
-  - potentialAbilities:
+    - {fileID: 11400000, guid: a51dc785075efc246bd96681f85c007b, type: 2}
     - {fileID: 11400000, guid: 9112786ee23707241a40fc739ef2d9f3, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 4e729c0a09faf6f4385f1912f614a9e5, type: 2}
+    - {fileID: 11400000, guid: d20d3edef4cd3ed49ae78cab848f331b, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
