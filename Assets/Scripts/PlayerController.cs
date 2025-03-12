@@ -37,14 +37,14 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
     VisualElement InteractionUI;
     Animator anim;
 
-    bool inStation;
 
+    bool inStation;
     bool sprinting;
 
     string id="player";
     public string ID => id;
     List<Vector3> lastSafePosition=new();
-    object ISaveable.DataToSave {get{ return new SaveData(Matrix4x4.TRS(this.transform.position, this.transform.rotation, this.transform.localScale), Matrix4x4.TRS(model.transform.position, model.transform.rotation, model.transform.localScale)); } }
+    object ISaveable.DataToSave {get{ return new SaveData(Matrix4x4.TRS(this.transform.position, this.transform.rotation, this.transform.localScale), Matrix4x4.TRS(model.transform.position, model.transform.rotation, model.transform.localScale), inStation); } }
     [SerializeField]
     ShipSimulator ship;
 
@@ -53,10 +53,12 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
     {
         [SerializeField]
         public Matrix4x4 transform,modelTransform;
-        public SaveData(Matrix4x4 transform,Matrix4x4 modelTransform)
+        public bool inStation;
+        public SaveData(Matrix4x4 transform,Matrix4x4 modelTransform, bool inStation)
         {
             this.transform = transform;
             this.modelTransform = modelTransform;
+            this.inStation = inStation;
         }
     }
 
@@ -148,7 +150,7 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
             if(interactable is Station)
             {
                 InputManager.DisablePlayer();
-                inStation = true;
+                //inStation = true;
             }
            
         }
@@ -170,6 +172,8 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
     private void StationInteracted(Station station, Transform transform)
     {
         inStation = true;
+        InteractionUI.visible = false;
+        InteractionUI.Q<Label>().text = "";
         this.transform.position = transform.position;
         this.transform.rotation = transform.rotation;
     }
@@ -410,7 +414,7 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
         model.transform.position = modelTransforms.GetPosition();
         model.transform.rotation = modelTransforms.rotation;
         model.transform.localScale = modelTransforms.lossyScale;
-
+        this.inStation = data.inStation;    
 
         characterController.enabled = true;
     }
@@ -421,6 +425,7 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
         inputs.Fish.performed -= StartFishing;
         inputs.Interact.performed -= OnInteract;
         Station.StationInteracted -= StationInteracted;
+        Station.LeftStation -= StationLeft;
     }
 
     void Footstep()

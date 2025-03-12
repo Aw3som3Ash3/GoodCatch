@@ -23,6 +23,7 @@ public class TransformSaver : SaveableObject
 
     public override void Load(string json)
     {
+        Debug.Log(this);
         var data =JsonUtility.FromJson<Data>(json);
         this.transform.position=data.transforms.GetPosition();
         this.transform.rotation = data.transforms.rotation;
