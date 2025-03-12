@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Cactradon
   m_EditorClassIdentifier: 
-  description: 
+  description: A puffer fish that feeds on cacti, developing its green appearance.
+    Pricks people it likes, unaware it's like a living cactus.
   model: {fileID: 8219524512982235684, guid: 2f2b373e7a6b3da4099933c06ea851db, type: 3}
-  fishId: 6
+  fishId: 7
   icon: {fileID: 21300000, guid: 8b6ef591d687b9442a07c9251a0d2ebd, type: 3}
   miniSprite: {fileID: -1025259575, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
-  homeDepth: 0
+  homeDepth: 2
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
@@ -56,12 +57,14 @@ MonoBehaviour:
   baseStamina: 70
   baseAbilities:
   - potentialAbilities:
+    - {fileID: 11400000, guid: e46ebf49c02a65d499551d7d9c5ffa21, type: 2}
+    - {fileID: 11400000, guid: 67fcadd0cdce4574bb5dd7dad291ed6c, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: e21e0dca23cf4eb409da00de008424ad, type: 2}
+    - {fileID: 11400000, guid: ce1bb97f395534949bd950fe3b214635, type: 2}
+  - potentialAbilities:
     - {fileID: 11400000, guid: f44ce491c38290542b642e451aaae825, type: 2}
     - {fileID: 11400000, guid: cb0708732c6c4a24c9f60a5bc3c5f769, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: c6fdc16619ede7345b5009e35b74b72c, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: 63fef3090477e1c458a3ca0f84ce3e75, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

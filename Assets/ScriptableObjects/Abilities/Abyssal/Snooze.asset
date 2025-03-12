@@ -18,7 +18,7 @@ MonoBehaviour:
   targetableDepths: 4
   targetTeam: 0
   targetingType: 0
-  piercing: 1
+  piercing: 0
   staminaUsage: 5
   baseDamage: -50
   accuracy: 0
