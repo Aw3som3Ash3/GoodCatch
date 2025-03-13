@@ -512,7 +512,7 @@ public class CombatUI : VisualElement
     }
     public void EnableButtons()
     {
-
+        inputs.Combat.EndTurn.performed += OnEndTurn;
         moveButton.SetEnabled(currentTurn.ActionLeft);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
@@ -556,6 +556,7 @@ public class CombatUI : VisualElement
         {
             item.SetEnabled(false);
         }
+        inputs.Combat.EndTurn.performed -= OnEndTurn;
     }
 
     public void UpdateVisuals(PlayerTurn currentTurn)
@@ -732,5 +733,6 @@ public class CombatUI : VisualElement
     ~CombatUI() 
     {
         PauseMenu.GamePaused -= EnableUI;
+        inputs.Combat.EndTurn.performed -= OnEndTurn;
     }
 }
