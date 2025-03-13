@@ -525,7 +525,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 90
   m_CollisionDetection: 0
 --- !u!1001 &216323067
 PrefabInstance:
@@ -1029,7 +1029,7 @@ PrefabInstance:
       objectReference: {fileID: 900925920}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[0]
@@ -1038,7 +1038,7 @@ PrefabInstance:
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: da2edb47c001e184cb805549ce28f05c, type: 2}
+      objectReference: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[2]
       value: 
@@ -3371,7 +3371,7 @@ MonoBehaviour:
       m_Action: Action
       m_Flags: 0
     m_Flags: 0
-  fishType: {fileID: 11400000, guid: 65d33d0db1bc78a43811bf103f09d88e, type: 2}
+  fishType: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
   numOfFish: 1
 --- !u!4 &1172314990
 Transform:
