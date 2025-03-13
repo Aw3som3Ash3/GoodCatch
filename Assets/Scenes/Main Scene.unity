@@ -891,7 +891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &366953391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c535e882658b0b14f81a3d109a444b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 68df45d3-f4cf-41ff-9f9a-216bec75e77f
   fishMonster1: {fileID: 0}
   fishMonster2: {fileID: 11400000, guid: 28e3832a5c8e98f4fab239307eaf1c9e, type: 2}
   fishMonster3: {fileID: 0}
@@ -1029,7 +1029,7 @@ PrefabInstance:
       objectReference: {fileID: 900925920}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[0]
@@ -5511,7 +5511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c535e882658b0b14f81a3d109a444b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 
+  id: 9b449e85-ec55-4551-a292-c36bb04732e6
   fishMonster1: {fileID: 0}
   fishMonster2: {fileID: 11400000, guid: b894782db77fd4c4a97a9fa05e35d7a6, type: 2}
   fishMonster3: {fileID: 0}
@@ -7468,7 +7468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_Size.x
-      value: 2.355695
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_Size.y
@@ -7477,6 +7477,10 @@ PrefabInstance:
     - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_Size.z
       value: 8.261947
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_Center.x
