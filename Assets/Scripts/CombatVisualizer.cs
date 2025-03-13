@@ -178,7 +178,15 @@ public class CombatVisualizer : MonoBehaviour
             return;
         }
         //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
-        turnToObject[turn].AttackAnimation(() => { });
+        if (ability.TargetedTeam == Ability.TargetTeam.enemy)
+        {
+            turnToObject[turn].AttackAnimation(() => { });
+        }
+        else
+        {
+            turnToObject[turn].BuffAnimation(() => { });
+        }
+
         //if (ability.AbilityVFX)
         //{
 
