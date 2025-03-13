@@ -557,6 +557,7 @@ public class CombatUI : VisualElement
             item.SetEnabled(false);
         }
         inputs.Combat.EndTurn.performed -= OnEndTurn;
+        
     }
 
     public void UpdateVisuals(PlayerTurn currentTurn)
@@ -725,10 +726,20 @@ public class CombatUI : VisualElement
         return fishUI;
     }
 
-    void EnableUI(bool b)
+    public void EnableUI(bool b)
     {
         this.SetEnabled(!b);
+        if (b)
+        {
+            inputs.Combat.EndTurn.performed += OnEndTurn;
+        }
+        else
+        {
+            inputs.Combat.EndTurn.performed -= OnEndTurn;
+        }
     }
+
+
 
     ~CombatUI() 
     {
