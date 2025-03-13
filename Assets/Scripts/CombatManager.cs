@@ -428,7 +428,19 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         var victoryScreen = new NewCombatVictory(playerFishes,fishCaught);
         ui.rootVisualElement.Add(victoryScreen);
         combatUI.SetEnabled(false);
-       
+        InputManager.Input.UI.Pause.performed += Skip;
+        GameManager.Instance.canPause = false;
+
+        void Skip(InputAction.CallbackContext context)
+        {
+
+            InputManager.Input.UI.Pause.performed -= Skip;
+            InputManager.OnInputChange -= InputChanged;
+            GameManager.Instance.CombatEnded(winningTeam);
+            GameManager.Instance.canPause = true;
+            StopAllCoroutines();
+        }
+        
         if (winningTeam==Team.player)
         {
 
