@@ -5,7 +5,7 @@
             <ui:VisualElement name="FishPlacement" style="flex-grow: 0; background-color: rgba(255, 255, 255, 0); margin-top: 14px; display: flex;">
                 <ui:VisualElement name="FishProfilePNG" style="flex-grow: 0; height: 446px; width: 436px; align-self: center; justify-content: flex-start; background-color: rgb(255, 255, 255); border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px;" />
             </ui:VisualElement>
-            <ui:VisualElement name="BackCard" style="flex-grow: 1; flex-direction: row; display: none;">
+            <ui:VisualElement name="BackCard" style="flex-grow: 1; flex-direction: row; display: flex; visibility: hidden; position: absolute; width: 100%; height: 75%;">
                 <ui:VisualElement name="Stack1" style="flex-grow: 0; margin-left: 28px; margin-top: 31px;">
                     <ui:Label tabindex="-1" text="Health" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
                     <ui:Label tabindex="-1" text="Stamina" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 36px; padding-bottom: 0; margin-bottom: 0;" />
