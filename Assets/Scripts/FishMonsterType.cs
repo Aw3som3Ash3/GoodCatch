@@ -389,7 +389,7 @@ public class FishMonster
     {
 
         this.xp += xp;
-        if (this.Xp > xpToLevelUp)
+        if (this.Xp >= xpToLevelUp)
         {
             LevelUp();
         }
