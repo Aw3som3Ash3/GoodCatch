@@ -8,7 +8,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="Colum2" style="flex-grow: 1; padding-right: 26px;">
             <ui:VisualElement name="Top" style="flex-grow: 0; flex-direction: row; justify-content: space-between;">
-                <ui:Label tabindex="-1" text="Namey Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" style="font-size: 36px;" />
+                <ui:Label tabindex="-1" text="Namey Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" style="font-size: 47px; height: 43px; width: 205px;" />
                 <ui:VisualElement name="levelContainer" style="flex-grow: 0; max-height: 60px;">
                     <ui:Label tabindex="-1" text="Lv.100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Level" style="font-size: 36px; -unity-text-align: upper-right; margin-top: 4px; margin-right: 4px; margin-bottom: 0; margin-left: 2px; padding-top: 4px; padding-right: 2px; padding-bottom: 0; padding-left: 1px;" />
                     <ui:ProgressBar value="22" name="XpBar" style="margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 2px; height: 10px; padding-right: 3px; padding-left: 2px;" />
