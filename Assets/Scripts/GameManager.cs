@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     public event Action<FishMonsterType> CaughtFish;
     public event Action WonFight;
+    public bool canPause=true;
     private void Awake()
     {
 
@@ -190,10 +191,15 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         
         //InputUser.PerformPairingWithDevice()
         gameData.hasSeenFish = new bool[database.fishMonsters.Count];
+        
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed +=(x)=> 
         {
-            PauseMenu.Pause();
+            if (canPause)
+            {
+                PauseMenu.Pause();
+            }
+            
         };
         if (mainUI != null)
         {
