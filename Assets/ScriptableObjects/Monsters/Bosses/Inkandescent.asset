@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "It catches prey by luring them with its luminescent digestive fluids.
     It subdues them with its body radiating 10,000\xB0F."
-  model: {fileID: 3310206257890562397, guid: 0f0db175d4ba7314dab7d5a829b73bb4, type: 3}
-  fishId: 19
+  model: {fileID: 3310206257890562397, guid: e63042fc75535844ebb0ab7b57c543f7, type: 3}
+  fishId: 23
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: -1
