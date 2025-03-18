@@ -179,7 +179,7 @@ public class FishObject : MonoBehaviour
             model.AddComponent<Animator>();
         }
         playableOutput = AnimationPlayableOutput.Create(playableGraph, "Animation", anim);
-        mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 2);
+        mixerPlayable = AnimationMixerPlayable.Create(playableGraph, 3);
         playableOutput.SetSourcePlayable(mixerPlayable);
         
 
@@ -187,10 +187,14 @@ public class FishObject : MonoBehaviour
         var idleClipPlayable = AnimationClipPlayable.Create(playableGraph, turn.fish.IdleAnimation);
 
         attackClipPlayable = AnimationClipPlayable.Create(playableGraph, turn.fish.AttackAnimation);
-
+        var buffClipPlayable = AnimationClipPlayable.Create(playableGraph, turn.fish.BuffAnimation);
+        
         playableGraph.Connect(idleClipPlayable, 0, mixerPlayable, 0);
         playableGraph.Connect(attackClipPlayable, 0, mixerPlayable, 1);
+        playableGraph.Connect(buffClipPlayable, 0, mixerPlayable, 2);
         mixerPlayable.SetInputWeight(0, 1.0f);
+        mixerPlayable.SetInputWeight(1, 0f);
+        mixerPlayable.SetInputWeight(2, 0f);
         
         attackClipPlayable.Pause();
         playableGraph.Play();
@@ -207,7 +211,11 @@ public class FishObject : MonoBehaviour
     }
     public void AttackAnimation(Action animationCompleted)
     {
+        mixerPlayable.SetInputWeight(0, 0);
+        mixerPlayable.SetInputWeight(1, 1.0f);
+        mixerPlayable.SetInputWeight(2, 0);
         StartCoroutine(AnimationTimer(animationCompleted));
+        
         if (defaultClip != null)
         {
             source.PlayOneShot(defaultClip);
@@ -216,10 +224,24 @@ public class FishObject : MonoBehaviour
         //playableGraph.
 
     }
-    IEnumerator AnimationTimer(Action animationCompleted)
+    public void BuffAnimation(Action animationCompleted)
     {
         mixerPlayable.SetInputWeight(0, 0);
-        mixerPlayable.SetInputWeight(1, 1.0f);
+        mixerPlayable.SetInputWeight(1, 0);
+        mixerPlayable.SetInputWeight(2, 1.0f);
+        StartCoroutine(AnimationTimer(animationCompleted));
+
+        if (defaultClip != null)
+        {
+            source.PlayOneShot(defaultClip);
+        }
+
+        //playableGraph.
+
+    }
+    IEnumerator AnimationTimer(Action animationCompleted)
+    {
+       
         
         attackClipPlayable.SetTime(0);
         playableGraph.Evaluate();

@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -479,6 +480,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         //playerFishes = null;
         //enemyFishes = null;
         //rewardFish = false;
+        GameManager.Instance.canPause = true;
         InputManager.OnInputChange -= InputChanged;
         GameManager.Instance.CombatEnded(winningTeam);
 
@@ -578,9 +580,14 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             bool hit;
             float damageDone;
             ability.UseAbility(turn, turn, out hit, out damageDone);
-            ActionsCompleted();
-            combatUI.EnableButtons();
-            turn.CheckDeath();
+            combatVisualizer.AnimateAttack(ability, turn, turn, () =>
+            {
+                ActionsCompleted();
+                turn.CheckDeath();
+                combatUI.EnableButtons();
+
+            });
+           
             return;
         }
 
