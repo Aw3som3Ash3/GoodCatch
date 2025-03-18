@@ -17,7 +17,7 @@ public class ShipControls : Station
     [SerializeField]
     GameObject rodBase;
 
-
+    public event Action<bool> OnInteract;
 
     public override void MoveInput(Vector2 input)
     {
@@ -36,6 +36,7 @@ public class ShipControls : Station
     // Start is called before the first frame update
     void Start()
     {
+        InputManager.Input.Ship.Disable();
         InputManager.Input.Ship.Move.performed += OnMove;
         InputManager.Input.Ship.Exit.performed += OnLeaveStation;
         InputManager.Input.Ship.Fish.performed += OnCast;
@@ -53,8 +54,9 @@ public class ShipControls : Station
         }
         InputManager.Input.Ship.Enable();
         InputManager.DisablePlayer();
-
+        //InputManager.Input.Ship.Exit.performed += OnLeaveStation;
         PlayerController.player.SetVisibility(false);
+        OnInteract?.Invoke(true);
         return true;
 
     }
@@ -79,8 +81,8 @@ public class ShipControls : Station
             Debug.Log(col);
             if (col.GetComponent<DockingZone>() != null)
             {
-                col.GetComponent<DockingZone>()?.DockShip(ship, true, () => { InputManager.Input.Ship.Exit.performed -= OnLeaveStation; LeaveSation(); currentDock = col.GetComponent<DockingZone>(); });
-                PlayerController.player.SetVisibility(true);
+                col.GetComponent<DockingZone>()?.DockShip(ship, true, () => { LeaveSation(); currentDock = col.GetComponent<DockingZone>(); PlayerController.player.SetVisibility(true); });
+                
                 turnValue = 0;
 
                 sailValue = 0;
@@ -89,6 +91,7 @@ public class ShipControls : Station
                 ship.AdjustSails(sailValue);
                 ship.PhysicSim.velocity = Vector3.zero;
                 ship.PhysicSim.angularVelocity = Vector3.zero;
+                
                 return;
             }
 
@@ -107,14 +110,14 @@ public class ShipControls : Station
        
        
         InputManager.Input.Ship.Disable();
-       
+        OnInteract?.Invoke(false);
         base.LeaveSation();
 
     }
 
     private void OnDestroy()
     {
-        InputManager.Input.Ship.Enable();
+        InputManager.Input.Ship.Disable();
         InputManager.Input.Ship.Move.performed -= OnMove;
         InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
         InputManager.Input.Ship.Fish.performed -= OnCast;

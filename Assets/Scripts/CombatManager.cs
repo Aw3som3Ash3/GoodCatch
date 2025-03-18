@@ -107,7 +107,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         InputManager.OnInputChange += InputChanged;
         //combatUI.UseNet += UseNet;
     }
-
+    private void OnDestroy()
+    {
+        InputManager.OnInputChange -= InputChanged;
+        CompletedAllActions = null;
+    }
     private void InputChanged(InputMethod method)
     {
 

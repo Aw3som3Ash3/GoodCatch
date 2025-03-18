@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
+  m_Name: Gastrolusca
+  m_EditorClassIdentifier: 
+  description: Despite angelic appearance, it's solitary in nature. It attacks with
+    its poison clouds to maintain territory.
+  model: {fileID: 0}
+  fishId: 0
+  icon: {fileID: 21300000, guid: 1842825a73b2d9b408e5ead227ea1141, type: 3}
+  miniSprite: {fileID: 0}
+  homeDepth: 1
+  preferredBait: []
+  elements:
+  - {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
+  - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
+  agility:
+    min: 10
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  attack:
+    min: 10
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  special:
+    min: 20
+    max: 40
+    minTalent: 0
+    maxTalent: 0
+  fortitude:
+    min: 10
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  specialFortitude:
+    min: 10
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  accuracy:
+    min: 50
+    max: 50
+    minTalent: 0
+    maxTalent: 0
+  baseHealth: 120
+  baseStamina: 100
+  baseAbilities:
+  - potentialAbilities:
+    - {fileID: 11400000, guid: b82acbfe5004fbe45b49ec2f1c4f5455, type: 2}
+    - {fileID: 11400000, guid: 14a089054367e8c418b1c6278d9dba99, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 0cac0b9dc949bdd4eb5e8e2655c26707, type: 2}
+    - {fileID: 11400000, guid: 443b8912f46740140b4725fee5d3085b, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: bb9e47fdeb55a7141a3bd68f84319a96, type: 2}
+    - {fileID: 11400000, guid: 7917483379e230a4aa99b81d7324e023, type: 2}
+  difficulty: 0
+  attackAnimation: {fileID: 0}
+  idleAnimation: {fileID: 0}

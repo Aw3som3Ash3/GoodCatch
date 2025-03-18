@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbca3b7d848eb741a4e895a774aa707, type: 3}
   m_Name: Marked
   m_EditorClassIdentifier: 
-  duration: 0
+  duration: 1
   icon: {fileID: 0}
   effectUsage: 0
-  damageBonus: 0
+  damageBonus: 0.5

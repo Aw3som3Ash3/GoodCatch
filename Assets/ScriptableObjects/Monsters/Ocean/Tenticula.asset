@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Tenticula
   m_EditorClassIdentifier: 
-  description: 
+  description: Small but mighty, they lurk the deep depths of the ocean constantly
+    searching for its prey. It's tentacles sharp at the ends resembling vampire teeth.
   model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
   fishId: 18
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: 0
+  homeDepth: 4
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
@@ -54,7 +55,16 @@ MonoBehaviour:
     maxTalent: 0
   baseHealth: 75
   baseStamina: 110
-  baseAbilities: []
+  baseAbilities:
+  - potentialAbilities:
+    - {fileID: 11400000, guid: f2ed205cc07d3f04c973a09fc19496a2, type: 2}
+    - {fileID: 11400000, guid: 99a85ce6319a0994eab96b2c03ea4d5a, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 49ab7f6dd4012ca42bee25ed2a36c401, type: 2}
+    - {fileID: 11400000, guid: 1044313177b826d4d9334e43ccb92fc4, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 2785f2ba1d82bc542ad4dcbd60f4e64b, type: 2}
+    - {fileID: 11400000, guid: 30266ea6e5707f846bff93d0c30dbaf9, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
