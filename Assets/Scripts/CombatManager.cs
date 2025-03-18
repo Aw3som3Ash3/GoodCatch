@@ -107,7 +107,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         InputManager.OnInputChange += InputChanged;
         //combatUI.UseNet += UseNet;
     }
-
+    private void OnDestroy()
+    {
+        InputManager.OnInputChange -= InputChanged;
+        CompletedAllActions = null;
+    }
     private void InputChanged(InputMethod method)
     {
 
@@ -418,33 +422,49 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void EndFight(Team winningTeam)
     {
-       
-        StartCoroutine(CombatVictoryScreen(winningTeam));
         playerFishes.ForEach((f) => f.UpdateHealth(getFishesTurn[f].Health));
+        combatUI.EnableUI(false);
+        StartCoroutine(CombatVictoryScreen(winningTeam));
+       
     }
 
     IEnumerator CombatVictoryScreen(Team winningTeam)
     {
-        var victoryScreen = new CombatVictory(playerFishes,enemyFishes,fishCaught);
+        var victoryScreen = new NewCombatVictory(playerFishes,fishCaught);
         ui.rootVisualElement.Add(victoryScreen);
         combatUI.SetEnabled(false);
-       
+        InputManager.Input.UI.Pause.performed += Skip;
+        GameManager.Instance.canPause = false;
+
+        void Skip(InputAction.CallbackContext context)
+        {
+
+            InputManager.Input.UI.Pause.performed -= Skip;
+            InputManager.OnInputChange -= InputChanged;
+            GameManager.Instance.CombatEnded(winningTeam);
+            GameManager.Instance.canPause = true;
+            StopAllCoroutines();
+        }
+        
         if (winningTeam==Team.player)
         {
 
             foreach (var fish in playerFishes)
             {
-                victoryScreen.fishXpBar[fish].value = fish.Xp;
+                //victoryScreen.fishXpBar[fish].value = fish.Xp;
             }
-            RewardXP();
+            var deltaXps= RewardXP();
             yield return new WaitForFixedUpdate();
             for (int i = 0; i < 300; i++)
             {
 
                 foreach (var fish in playerFishes)
                 {
-                    victoryScreen.fishXpBar[fish].value = Mathf.MoveTowards(victoryScreen.fishXpBar[fish].value, fish.Xp, 1);
-                   
+                    //victoryScreen.fishProfile[fish].value = Mathf.MoveTowards(victoryScreen.fishXpBar[fish].value, fish.Xp, 1);
+                    if (victoryScreen.fishProfile[fish].UpdateXpManual(deltaXps[fish].deltaXp * (1f / 300f)))
+                    {
+                        victoryScreen.fishProfile[fish].UpdateLevelManual(1);
+                    }
 
 
                 }
@@ -469,16 +489,23 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         GameManager.Instance.CombatEnded(winningTeam);
 
     }
-    void RewardXP()
+    Dictionary<FishMonster,(float deltaXp,int deltaLevel)> RewardXP()
     {
-        foreach(FishMonster fish in playerFishes)
+        Dictionary<FishMonster, (float deltaXp, int deltaLevel)> delta = new();
+        foreach (FishMonster fish in playerFishes)
         {
-            foreach(FishMonster enemy in enemyFishes)
+            var deltaXp = 0f;
+            int startLevel = fish.Level;
+            foreach (FishMonster enemy in enemyFishes)
             {
-                fish.AddXp(((float)enemy.Level / fish.Level)*100);
+                float xpToAdd = ((float)enemy.Level / fish.Level) * 100;
+                fish.AddXp(xpToAdd);
+                deltaXp += xpToAdd;
             }
-            
+
+            delta[fish] = (deltaXp, fish.Level - startLevel);
         }
+        return delta;
     }
     void StartTurn()
     {

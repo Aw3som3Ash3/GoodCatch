@@ -1,0 +1,126 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ModLevelUp.uss?fileID=7433441132597879392&amp;guid=e5d63ae619400d34b9195fa35a2a81d9&amp;type=3#ModLevelUp" />
+    <ui:VisualElement name="ModLevelUpBG" style="flex-grow: 0; width: 653px;">
+        <ui:VisualElement name="RowHolder" style="flex-grow: 0;">
+            <ui:VisualElement name="TitleRow" style="flex-grow: 0;">
+                <ui:Label tabindex="-1" text="Level Up!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LevelUpTitle" style="font-size: 75px; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="StatRow" style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="ColumOne" style="flex-grow: 1;">
+                    <ui:VisualElement name="Health" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement name="HPBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Hp" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
+                            <ui:VisualElement name="ContentContainer" style="flex-grow: 0; width: 195px; background-image: none; align-self: center;">
+                                <ui:VisualElement name="ArrowContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/Arrow.png?fileID=2800000&amp;guid=a48ea4fa35349a64783af7c097fe42fc&amp;type=3#Arrow&quot;); height: 41px; margin-top: 10px;">
+                                    <ui:Label tabindex="-1" text="+100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IncreasedAmount" style="-unity-text-align: upper-center; font-size: 26px; bottom: 20px; position: absolute; left: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SumStat" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Stamina" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement name="HPBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Stamina" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
+                            <ui:VisualElement name="ContentContainer" style="flex-grow: 0; width: 195px; background-image: none; align-self: center;">
+                                <ui:VisualElement name="ArrowContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/Arrow.png?fileID=2800000&amp;guid=a48ea4fa35349a64783af7c097fe42fc&amp;type=3#Arrow&quot;); height: 41px; margin-top: 10px;">
+                                    <ui:Label tabindex="-1" text="+100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IncreasedAmount" style="-unity-text-align: upper-center; font-size: 26px; bottom: 20px; position: absolute; left: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SumStat" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Attack" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement name="HPBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Attack" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
+                            <ui:VisualElement name="ContentContainer" style="flex-grow: 0; width: 195px; background-image: none; align-self: center;">
+                                <ui:VisualElement name="ArrowContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/Arrow.png?fileID=2800000&amp;guid=a48ea4fa35349a64783af7c097fe42fc&amp;type=3#Arrow&quot;); height: 41px; margin-top: 10px;">
+                                    <ui:Label tabindex="-1" text="+100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IncreasedAmount" style="-unity-text-align: upper-center; font-size: 26px; bottom: 20px; position: absolute; left: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SumStat" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Defence" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement name="HPBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Defence" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
+                            <ui:VisualElement name="ContentContainer" style="flex-grow: 0; width: 195px; background-image: none; align-self: center;">
+                                <ui:VisualElement name="ArrowContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/Arrow.png?fileID=2800000&amp;guid=a48ea4fa35349a64783af7c097fe42fc&amp;type=3#Arrow&quot;); height: 41px; margin-top: 10px;">
+                                    <ui:Label tabindex="-1" text="+100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IncreasedAmount" style="-unity-text-align: upper-center; font-size: 26px; bottom: 20px; position: absolute; left: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SumStat" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Magic" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement name="HPBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Magic" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
+                            <ui:VisualElement name="ContentContainer" style="flex-grow: 0; width: 195px; background-image: none; align-self: center;">
+                                <ui:VisualElement name="ArrowContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/Arrow.png?fileID=2800000&amp;guid=a48ea4fa35349a64783af7c097fe42fc&amp;type=3#Arrow&quot;); height: 41px; margin-top: 10px;">
+                                    <ui:Label tabindex="-1" text="+100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IncreasedAmount" style="-unity-text-align: upper-center; font-size: 26px; bottom: 20px; position: absolute; left: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SumStat" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Resistance" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement name="HPBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Resistance" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; transition-property: all, ignored; transition-duration: 0s, 0s; transition-timing-function: ease, ease; transition-delay: 0s, 0s;">
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
+                            <ui:VisualElement name="ContentContainer" style="flex-grow: 0; width: 195px; background-image: none; align-self: center;">
+                                <ui:VisualElement name="ArrowContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/Arrow.png?fileID=2800000&amp;guid=a48ea4fa35349a64783af7c097fe42fc&amp;type=3#Arrow&quot;); height: 41px; margin-top: 10px;">
+                                    <ui:Label tabindex="-1" text="+100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IncreasedAmount" style="-unity-text-align: upper-center; font-size: 26px; bottom: 20px; position: absolute; left: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SumStat" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Accuracy" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement name="HPBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Accuracy" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
+                            <ui:VisualElement name="ContentContainer" style="flex-grow: 0; width: 195px; background-image: none; align-self: center;">
+                                <ui:VisualElement name="ArrowContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/Arrow.png?fileID=2800000&amp;guid=a48ea4fa35349a64783af7c097fe42fc&amp;type=3#Arrow&quot;); height: 41px; margin-top: 10px;">
+                                    <ui:Label tabindex="-1" text="+100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IncreasedAmount" style="-unity-text-align: upper-center; font-size: 26px; bottom: 20px; position: absolute; left: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SumStat" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Agility" style="flex-grow: 0; flex-direction: row;">
+                        <ui:VisualElement name="HPBox" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="Agility" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
+                            <ui:VisualElement name="ContentContainer" style="flex-grow: 0; width: 195px; background-image: none; align-self: center;">
+                                <ui:VisualElement name="ArrowContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Art/2D/UI/Arrow.png?fileID=2800000&amp;guid=a48ea4fa35349a64783af7c097fe42fc&amp;type=3#Arrow&quot;); height: 41px; margin-top: 10px;">
+                                    <ui:Label tabindex="-1" text="+100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="IncreasedAmount" style="-unity-text-align: upper-center; font-size: 26px; bottom: 20px; position: absolute; left: 60px;" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SumStat" style="font-size: 45px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

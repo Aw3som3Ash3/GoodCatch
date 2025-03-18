@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     public event Action<FishMonsterType> CaughtFish;
     public event Action WonFight;
+    public bool isRespawning { get; private set; }
     public bool canPause=true;
     private void Awake()
     {
@@ -238,7 +239,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             gameData.currentInnId = Inn.StarterInn.innId;
             Debug.Log(Inn.StarterInn);
         }
-       
+        isRespawning = true;
         lastInnVisited.Respawn();
         OnPlayerLost?.Invoke();
         Debug.Log("player has died");
@@ -311,6 +312,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
                 Day += Mathf.FloorToInt((DayTime / 24F));
                 DayTime %= 24;
             }
+            isRespawning = false;
         }));
        
        
@@ -452,6 +454,15 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         fishMonsters.Add(Instance.database.fishMonsters[fish1].GenerateMonster(level1));
         Instance.LoadCombatScene(fishMonsters);
     }
+
+
+    [DevConsoleCommand("StartCombat")]
+    public static void StartCombatByFishName(string fish1, int level1)
+    {
+        List<FishMonster> fishMonsters = new List<FishMonster>();
+        fishMonsters.Add(Instance.database.fishMonsters.Find((f)=>f.name==fish1).GenerateMonster(level1));
+        Instance.LoadCombatScene(fishMonsters);
+    }
     [DevConsoleCommand("StartCombatRandom")]
     public static void StartCombatRandom(int amount, int level)
     {
@@ -465,6 +476,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
         Instance.LoadCombatScene(fishMonsters);
     }
+
     [DevConsoleCommand("BoolTest")]
     public static void TestBool(bool b)
     {
