@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: CactradonDwindler
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 6374090361146703873
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 6374090361146703873
+  decorators:
+  - rid: 931072558350467073
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 931072558350467073
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 512, y: 214.4}
+        guid: e7d4619110900f6498bb5744314f1591
+        quest: {fileID: 11400000, guid: 3705ffc923cefac469db9b8599ba2dc5, type: 2}
+    - rid: 6374090361146703873
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Dwindle the Cactradon population at the oasis. They appear at night
+          more often so keep that in mind.
+        voiceClip: {fileID: 0}
+        guid: e2331979d8c31b64e9e4453a4bce5d94
+        decorators:
+        - rid: 931072558350467073
+        position: {x: 410, y: -26}
+        nextNode:
+          rid: -2

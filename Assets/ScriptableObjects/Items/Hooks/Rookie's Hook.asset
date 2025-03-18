@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Used to catch an opposing monster. A bit crooked, but gets the job
     done. Sometimes.
   itemId: cb0af2b5415304f4792a4a5c14788f41
-  catchBonus: 0.5
+  catchBonus: 1

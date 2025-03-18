@@ -1,0 +1,186 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: Keeps1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136708794253367
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136708794253367
+  - rid: 2727136708794253369
+  - rid: 2727136708794253370
+  - rid: 2727136708794253371
+  - rid: 2727136708794253372
+  - rid: 2727136708794253373
+  - rid: 2727136708794253374
+  - rid: 2727136708794253375
+  - rid: 2727136708794253376
+  decorators:
+  - rid: 2727136708794253377
+  events:
+  - {fileID: 1389975199913444332}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136708794253367
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Morning! I assume King Penguin has introduced himself to you.
+
+          I''m
+          Keeps, I''ve been collecting and researching the monsters
+
+          around
+          here for my whole life. Such fascinating creatures they are!'
+        voiceClip: {fileID: 0}
+        guid: 6a1920241eb554c419a1b418a558072f
+        decorators: []
+        position: {x: 407, y: -23}
+        nextNode:
+          rid: 2727136708794253369
+    - rid: 2727136708794253369
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Speaking of, I'd like to have a quick look at that fish of yours,
+          may I?
+        voiceClip: {fileID: 0}
+        guid: d3639e76fdda81543b1b0bcabc695ab7
+        decorators: []
+        position: {x: 798, y: 0}
+        decisions:
+        - choice: '[Hand over Pyrish]'
+          choiceNode:
+            rid: 2727136708794253370
+        - choice: '[Refuse]'
+          choiceNode:
+            rid: 2727136708794253371
+    - rid: 2727136708794253370
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Many thanks, I promise this will be quick and painless!
+        voiceClip: {fileID: 0}
+        guid: d4bd8212685171148960729fa30491a1
+        decorators: []
+        position: {x: 1741, y: -58}
+        nextNode:
+          rid: 2727136708794253373
+    - rid: 2727136708794253371
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Awww come on, pleeeeeeeeeaaaaaase?~
+        voiceClip: {fileID: 0}
+        guid: 74c4ecb77377f864797f7d32ad977de5
+        decorators: []
+        position: {x: 1269, y: 144}
+        decisions:
+        - choice: '[Hand over Pyrish]'
+          choiceNode:
+            rid: 2727136708794253370
+        - choice: '[Show Pyrish]'
+          choiceNode:
+            rid: 2727136708794253372
+    - rid: 2727136708794253372
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: I guess that will do, give me a moment...
+        voiceClip: {fileID: 0}
+        guid: db69d9ee7eccfff4eaebb489c189e4b4
+        decorators: []
+        position: {x: 1741, y: 172}
+        nextNode:
+          rid: 2727136708794253373
+    - rid: 2727136708794253373
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[Keeps analyzes the Pyrish for a few moments, writing notes
+
+          into
+          his journal. He''s puzzled, but clearly driven by curiousity.]'
+        voiceClip: {fileID: 0}
+        guid: 2fe3212a220711441a40f45324c6dd80
+        decorators: []
+        position: {x: 2131, y: 48}
+        nextNode:
+          rid: 2727136708794253374
+    - rid: 2727136708794253374
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '...intriguing. I''ve never seen any fish like this before. It
+          seems
+
+          like it''s never had to evolve in a way that forced it
+          to survive
+
+          combat...not that your friend here is unremarkable!
+          Not at all!'
+        voiceClip: {fileID: 0}
+        guid: ca64f866a0a62ac44a20ef72287caef5
+        decorators: []
+        position: {x: 2511, y: 48}
+        nextNode:
+          rid: 2727136708794253375
+    - rid: 2727136708794253375
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Anyways, if you find yourself overflowing with creatures, stop
+
+          by
+          the Aquarium to switch your party members! Monster catching
+
+          and
+          battling happens to be a popular hobby around here, and I''m
+
+          in
+          charge of the monster keeping, if you couldn''t tell by my name.'
+        voiceClip: {fileID: 0}
+        guid: 93fce072bec32e3448ead8f469b66921
+        decorators: []
+        position: {x: 2885, y: 48}
+        nextNode:
+          rid: 2727136708794253376
+    - rid: 2727136708794253376
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Why don''t you go and fish at our small oasis up there? Wade
+
+          should
+          be up there fishing right now, go and join him.'
+        voiceClip: {fileID: 0}
+        guid: 2d27eb51b38e3be4b98e0201e68a4391
+        decorators:
+        - rid: 2727136708794253377
+        position: {x: 3284, y: 61}
+        nextNode:
+          rid: -2
+    - rid: 2727136708794253377
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 3296, y: 284}
+        guid: 5a9c42057d27ecf43acb14708f1cae05
+        dialogueEvent: {fileID: 1389975199913444332}
+--- !u!114 &1389975199913444332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: TalkToWade
+  m_EditorClassIdentifier: 

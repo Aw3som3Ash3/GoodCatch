@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: Tutorial Dialogue 3
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 187471312712368147
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 187471312712368147
+  decorators:
+  - rid: 187471312712368149
+  events:
+  - {fileID: 1235379646921652575}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 187471312712368147
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: "Looks like you know the basics of what fishing and combat is like.
+          Well, it\u2019s been nice knowing you, but it\u2019s time to wake up. "
+        voiceClip: {fileID: 0}
+        guid: 4a3f22c9ce4a1ad488772c139f8ae94e
+        decorators:
+        - rid: 187471312712368149
+        position: {x: 423.3333, y: 74.666664}
+        nextNode:
+          rid: -2
+    - rid: 187471312712368149
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 664.6667, y: 378.66666}
+        guid: af180d5579c7dc449884ea0fe0eeefdc
+        dialogueEvent: {fileID: 1235379646921652575}
+--- !u!114 &1235379646921652575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: CompletedTutrorial
+  m_EditorClassIdentifier: 

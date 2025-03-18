@@ -27,4 +27,4 @@ MonoBehaviour:
       data:
         Name: SpeakToNPCQuestRequirement
         IsCompleted: 1
-        npcName: MrSkips
+        npcName: Mr. Skipps
