@@ -30,28 +30,28 @@ MonoBehaviour:
   attack:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   special:
     min: 10
     max: 20
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   fortitude:
     min: 13
     max: 25
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   specialFortitude:
     min: 13
     max: 25
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   baseHealth: 120
   baseStamina: 40
   baseAbilities:
@@ -67,3 +67,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 4821705753396914452, guid: 8a01ab68fce16fe4594d6f4e9ae1c58f, type: 3}
   idleAnimation: {fileID: -3100369314251171874, guid: 8a01ab68fce16fe4594d6f4e9ae1c58f, type: 3}
+  buffAnimation: {fileID: 0}

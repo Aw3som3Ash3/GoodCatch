@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8896a47a71d13e3439e8199b39079c99, type: 3}
-  m_Name: Great Hook
+  m_Name: DecentHook
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  description: Used to catch an opposing monster. Experienced fishers' best reccomendation.
-  itemId: 3e20fb90-601b-41fc-93a5-a4e8e0d685bc
-  catchBonus: 1.5
+  description: Used to catch an opposing monster. Store quality. At least, within
+    the archipelago.
+  itemId: a3307212-6f45-405e-ba85-fe5b60db3f69
+  catchBonus: 1.25

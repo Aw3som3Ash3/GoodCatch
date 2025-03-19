@@ -27,10 +27,14 @@ MonoBehaviour:
   - rid: 2727136708794253374
   - rid: 2727136708794253375
   - rid: 2727136708794253376
+  - rid: 2727136727628251148
   decorators:
   - rid: 2727136708794253377
+  - rid: 2727136727628251147
+  - rid: 2727136727628251181
   events:
   - {fileID: 1389975199913444332}
+  - {fileID: 3059256034209365916}
   references:
     version: 2
     RefIds:
@@ -48,7 +52,8 @@ MonoBehaviour:
           here for my whole life. Such fascinating creatures they are!'
         voiceClip: {fileID: 0}
         guid: 6a1920241eb554c419a1b418a558072f
-        decorators: []
+        decorators:
+        - rid: 2727136727628251181
         position: {x: 407, y: -23}
         nextNode:
           rid: 2727136708794253369
@@ -161,17 +166,44 @@ MonoBehaviour:
           be up there fishing right now, go and join him.'
         voiceClip: {fileID: 0}
         guid: 2d27eb51b38e3be4b98e0201e68a4391
-        decorators:
-        - rid: 2727136708794253377
+        decorators: []
         position: {x: 3284, y: 61}
         nextNode:
-          rid: -2
+          rid: 2727136727628251148
     - rid: 2727136708794253377
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 3296, y: 284}
+        position: {x: 3444, y: 310}
         guid: 5a9c42057d27ecf43acb14708f1cae05
         dialogueEvent: {fileID: 1389975199913444332}
+    - rid: 2727136727628251147
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 3830, y: 300}
+        guid: aeb8597d77fa5ed42a95e55c49f7791d
+        item: {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
+        amount: 25
+    - rid: 2727136727628251148
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[Keeps hands you some Rookie''s Hooks to get you started. You
+
+          can
+          check your inventory in the Pause menu to see them.]'
+        voiceClip: {fileID: 0}
+        guid: 16d5c5b473a49b04296e58e9ec548ecb
+        decorators:
+        - rid: 2727136727628251147
+        - rid: 2727136708794253377
+        position: {x: 3709, y: 88}
+        nextNode:
+          rid: -2
+    - rid: 2727136727628251181
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 436, y: 204}
+        guid: 7943c2f933f720e4a900b004380f8947
+        dialogueEvent: {fileID: 3059256034209365916}
 --- !u!114 &1389975199913444332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,4 +215,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
   m_Name: TalkToWade
+  m_EditorClassIdentifier: 
+--- !u!114 &3059256034209365916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FirstSpeakToKeeps
   m_EditorClassIdentifier: 

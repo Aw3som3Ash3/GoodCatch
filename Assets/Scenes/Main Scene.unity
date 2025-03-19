@@ -884,7 +884,7 @@ PrefabInstance:
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 65d33d0db1bc78a43811bf103f09d88e, type: 2}
+      objectReference: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[1]
       value: 
@@ -2819,7 +2819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe068da1ce4e1649a5065c6df550334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  src: {fileID: 0}
+  src: {fileID: 1004009600}
   clip:
   - {fileID: 8300000, guid: 09bb0356a5efcf34aa0b9db6dcc507b4, type: 3}
   - {fileID: 8300000, guid: 7617324500db479479b093c46a227c1a, type: 3}
@@ -2853,7 +2853,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   src: {fileID: 1004009600}
   clip:
-  - {fileID: 8300000, guid: 881bbb936be7bf7428269031634525f5, type: 3}
   - {fileID: 8300000, guid: 70ac524d65940e54191b8cad19941c5c, type: 3}
   - {fileID: 8300000, guid: 5461cb4da3a7acc43abfb53c713976ee, type: 3}
 --- !u!82 &1004009600
@@ -2866,7 +2865,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -9175835907002796863, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 881bbb936be7bf7428269031634525f5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 70ac524d65940e54191b8cad19941c5c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
@@ -2876,8 +2875,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 138.79
+  MaxDistance: 400
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2912,7 +2911,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -7097,6 +7096,10 @@ PrefabInstance:
     - target: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853259144833596524, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8983103878428997293, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: m_Size.x

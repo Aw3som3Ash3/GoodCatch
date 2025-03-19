@@ -15,7 +15,7 @@ MonoBehaviour:
   description: A puffer fish that feeds on cacti, developing its green appearance.
     Pricks people it likes, unaware it's like a living cactus.
   model: {fileID: 8219524512982235684, guid: 2f2b373e7a6b3da4099933c06ea851db, type: 3}
-  fishId: 7
+  fishId: 10
   icon: {fileID: 21300000, guid: 8b6ef591d687b9442a07c9251a0d2ebd, type: 3}
   miniSprite: {fileID: -1025259575, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 2
@@ -27,17 +27,17 @@ MonoBehaviour:
     min: 5
     max: 10
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   attack:
     min: 10
     max: 20
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   special:
     min: 25
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 5
+    maxTalent: 5
   fortitude:
     min: 5
     max: 10
@@ -46,13 +46,13 @@ MonoBehaviour:
   specialFortitude:
     min: 8
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 2
   baseHealth: 90
   baseStamina: 70
   baseAbilities:
@@ -68,3 +68,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

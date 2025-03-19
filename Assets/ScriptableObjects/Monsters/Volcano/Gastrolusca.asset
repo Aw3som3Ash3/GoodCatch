@@ -15,7 +15,7 @@ MonoBehaviour:
   description: Despite angelic appearance, it's solitary in nature. It attacks with
     its poison clouds to maintain territory.
   model: {fileID: 0}
-  fishId: 0
+  fishId: 16
   icon: {fileID: 21300000, guid: 1842825a73b2d9b408e5ead227ea1141, type: 3}
   miniSprite: {fileID: 0}
   homeDepth: 1
@@ -26,33 +26,33 @@ MonoBehaviour:
   agility:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   attack:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   special:
     min: 20
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   fortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   specialFortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 3
   baseHealth: 120
   baseStamina: 100
   baseAbilities:
@@ -68,3 +68,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 0}
   idleAnimation: {fileID: 0}
+  buffAnimation: {fileID: 0}

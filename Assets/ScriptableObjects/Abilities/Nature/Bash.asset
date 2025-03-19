@@ -19,8 +19,8 @@ MonoBehaviour:
   targetTeam: 1
   targetingType: 0
   piercing: 0
-  staminaUsage: 15
-  baseDamage: 20
+  staminaUsage: 20
+  baseDamage: 25
   accuracy: 0.7
   damageMultiplier: 0.5
   element: {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}

@@ -15,7 +15,7 @@ MonoBehaviour:
   description: A fish made of rocks with a heart of gold. It is the easiest fish
     to domesticate almost as if it's a puppy.
   model: {fileID: 0}
-  fishId: 26
+  fishId: 27
   icon: {fileID: 21300000, guid: 79da186cf396e88419642c6f1bff0289, type: 3}
   miniSprite: {fileID: 0}
   homeDepth: 2
@@ -26,32 +26,32 @@ MonoBehaviour:
     min: 5
     max: 15
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   attack:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   special:
     min: 5
     max: 15
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   fortitude:
     min: 20
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   specialFortitude:
     min: 20
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   baseHealth: 120
   baseStamina: 70
   baseAbilities:
@@ -67,3 +67,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 0}
   idleAnimation: {fileID: 0}
+  buffAnimation: {fileID: 0}

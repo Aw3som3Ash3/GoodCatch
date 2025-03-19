@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8896a47a71d13e3439e8199b39079c99, type: 3}
-  m_Name: Captain's Hook
+  m_Name: GreatHook
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  description: Used to catch an opposing monster. The most premium hook a stranded
-    survivor catching monsters can buy.
-  itemId: a0d86954-1053-405a-aa52-ccd365f5e831
-  catchBonus: 2
+  description: Used to catch an opposing monster. Experienced fishers' best reccomendation.
+  itemId: 3e20fb90-601b-41fc-93a5-a4e8e0d685bc
+  catchBonus: 1.5

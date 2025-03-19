@@ -15,7 +15,7 @@ MonoBehaviour:
   description: Small but mighty, they lurk the deep depths of the ocean constantly
     searching for its prey. It's tentacles sharp at the ends resembling vampire teeth.
   model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 18
+  fishId: 21
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   homeDepth: 4
@@ -26,18 +26,18 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   attack:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 3
   special:
     min: 20
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   fortitude:
     min: 5
     max: 10
@@ -51,8 +51,8 @@ MonoBehaviour:
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   baseHealth: 75
   baseStamina: 110
   baseAbilities:
@@ -68,3 +68,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

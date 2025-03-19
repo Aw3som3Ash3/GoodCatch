@@ -36,8 +36,10 @@ MonoBehaviour:
   - rid: 2727136708794253359
   decorators:
   - rid: 2727136708794253361
+  - rid: 2727136727628251185
   events:
   - {fileID: -3373975592425504694}
+  - {fileID: 1060325558273890312}
   references:
     version: 2
     RefIds:
@@ -113,6 +115,7 @@ MonoBehaviour:
         guid: 0a4ea5fe25f1cb74c8e8b4594cba7d14
         decorators:
         - rid: 2727136708794253361
+        - rid: 2727136727628251185
         position: {x: 1495, y: 35}
         nextNode:
           rid: -2
@@ -122,3 +125,21 @@ MonoBehaviour:
         position: {x: 1519, y: 292}
         guid: 7131490d3e184ab488cabcd91abd8f30
         dialogueEvent: {fileID: -3373975592425504694}
+    - rid: 2727136727628251185
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1871, y: 292}
+        guid: 76fbcd6aca159874a8db14a1d87be054
+        dialogueEvent: {fileID: 1060325558273890312}
+--- !u!114 &1060325558273890312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FirstSpeakToPenguin
+  m_EditorClassIdentifier: 

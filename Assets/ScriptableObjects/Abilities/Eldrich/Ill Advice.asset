@@ -19,11 +19,11 @@ MonoBehaviour:
   targetTeam: 0
   targetingType: 0
   piercing: 0
-  staminaUsage: 10
-  baseDamage: 5
+  staminaUsage: 15
+  baseDamage: 10
   accuracy: 0.9
   damageMultiplier: 0.5
-  element: {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
+  element: {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   effects:
   - statusEffect: {fileID: 11400000, guid: cde6175af00cfd042be40e5f2f7f381f, type: 2}
     effectChance: 1
