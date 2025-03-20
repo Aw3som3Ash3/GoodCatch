@@ -9,10 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe36e9bd50bb6484d94cfa035ae843bc, type: 3}
-  m_Name: Guard Half
+  m_Script: {fileID: 11500000, guid: 4f39fd4c2835cb94cad2e89c37922c49, type: 3}
+  m_Name: Fort Down
   m_EditorClassIdentifier: 
-  duration: 1
-  icon: {fileID: 2800000, guid: d9608ff3789b5524d810e8a6ee2d9c80, type: 3}
+  duration: 2
+  icon: {fileID: 0}
   effectUsage: 0
-  damageTransfer: 0.5
+  agility: 0
+  accuracy: 0
+  attack: 0
+  special: 0
+  fortitude: -5
+  specialFort: 0
+  dodge: 0

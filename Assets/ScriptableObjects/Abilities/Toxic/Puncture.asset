@@ -25,7 +25,7 @@ MonoBehaviour:
   damageMultiplier: 0.7
   element: {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
   effects:
-  - statusEffect: {fileID: 11400000, guid: 8f32b3a618d31f642a3108a7f1db6491, type: 2}
+  - statusEffect: {fileID: 11400000, guid: a9be98526c5a3124db55f3d76ff87d85, type: 2}
     effectChance: 1
   forcedMovement: 0
   icon: {fileID: 0}

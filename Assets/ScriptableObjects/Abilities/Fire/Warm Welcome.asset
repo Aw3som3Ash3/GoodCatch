@@ -22,7 +22,7 @@ MonoBehaviour:
   staminaUsage: 20
   baseDamage: 25
   accuracy: 0.9
-  damageMultiplier: 0.76
+  damageMultiplier: 0.8
   element: {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}
   effects:
   - statusEffect: {fileID: 11400000, guid: 117721be37746594bbae2b229eda4f3e, type: 2}

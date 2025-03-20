@@ -16,7 +16,7 @@ MonoBehaviour:
   abilityType: 0
   availableDepths: -1
   targetableDepths: -1
-  targetTeam: 0
+  targetTeam: 2
   targetingType: 0
   piercing: 0
   staminaUsage: 20
@@ -25,7 +25,7 @@ MonoBehaviour:
   damageMultiplier: 0
   element: {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
   effects:
-  - statusEffect: {fileID: 11400000, guid: af0f557b6ed8c5f459e90c3fbb0a50a7, type: 2}
+  - statusEffect: {fileID: 11400000, guid: c339928976eff9d43bad0e1f090cf63f, type: 2}
     effectChance: 1
   forcedMovement: 0
   icon: {fileID: 0}

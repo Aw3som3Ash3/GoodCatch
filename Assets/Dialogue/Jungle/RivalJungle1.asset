@@ -22,15 +22,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
-  m_Name: RivalJungle
+  m_Name: RivalJungle1
   m_EditorClassIdentifier: 
   rootNode:
     nextNode:
-      rid: 8474350118825885721
+      rid: 2727136756081360896
     guid: root
     position: {x: 0, y: 0}
   nodes:
-  - rid: 8474350118825885721
+  - rid: 2727136756081360896
+  - rid: 2727136756081360897
   decorators:
   - rid: 8474350118825885722
   events:
@@ -40,20 +41,40 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 8474350118825885721
+    - rid: 2727136756081360896
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You again! Come here to take my glory huh?
+        voiceClip: {fileID: 0}
+        guid: a26f205a5285411498ed2b3cc62b71aa
+        decorators: []
+        position: {x: 396, y: -32}
+        decisions:
+        - choice: Yep. Mhm.
+          choiceNode:
+            rid: 2727136756081360897
+        - choice: What?
+          choiceNode:
+            rid: 2727136756081360897
+    - rid: 2727136756081360897
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: You're not taking this chance from me...just go away!
+        dialouge: 'Well it doesn''t matter anyways. This Fire Shrine is written in
+
+          a
+          language that not even I can decipher! Go ahead and see
+
+          for
+          yourself.'
         voiceClip: {fileID: 0}
-        guid: 6984ffbfc7c0cf84892613033ab5f06f
-        decorators:
-        - rid: 8474350118825885722
-        position: {x: 433, y: -56}
+        guid: 228727219010968438ebddb9276f959f
+        decorators: []
+        position: {x: 971, y: 12}
         nextNode:
           rid: -2
     - rid: 8474350118825885722
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 433, y: 148}
+        position: {x: 1057, y: 320}
         guid: 8b5b0e6e6029f14449f05d84b6c30517
         dialogueEvent: {fileID: -2689563288175845740}

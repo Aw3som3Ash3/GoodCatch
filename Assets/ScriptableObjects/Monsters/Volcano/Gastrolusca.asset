@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Despite angelic appearance, it's solitary in nature. It attacks with
     its poison clouds to maintain territory.
-  model: {fileID: 0}
+  model: {fileID: 7444285042290713721, guid: 311691719416ce3478bbea2925e3a76e, type: 3}
   fishId: 16
   icon: {fileID: 21300000, guid: 1842825a73b2d9b408e5ead227ea1141, type: 3}
   miniSprite: {fileID: 0}

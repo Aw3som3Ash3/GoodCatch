@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: LocalVillager
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136756081360902
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136756081360902
+  - rid: 2727136756081360903
+  decorators:
+  - rid: 2727136756081360904
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136756081360902
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: I can't believe it! You've slain the Piranarch!
+        voiceClip: {fileID: 0}
+        guid: b7ef487089b17b94496e28789c38588b
+        decorators: []
+        position: {x: 423, y: 18}
+        nextNode:
+          rid: 2727136756081360903
+    - rid: 2727136756081360903
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Our Chieftain would be pleased to hear about this! Though,
+
+          you
+          may need to get through our guards first. They''re quite
+
+          defensive
+          of our place here, don''t blame them.'
+        voiceClip: {fileID: 0}
+        guid: 70a13bad4a224944cacc65da0bd63503
+        decorators:
+        - rid: 2727136756081360904
+        position: {x: 850, y: -8}
+        nextNode:
+          rid: -2
+    - rid: 2727136756081360904
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 850, y: 223}
+        guid: eb1e762cf4437bb4fbb842d6b3479f29
+        quest: {fileID: 0}

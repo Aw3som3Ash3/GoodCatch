@@ -9,12 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abcbd9e0d3cf0584d8402814dc91eaa2, type: 3}
-  m_Name: ThornsTest
+  m_Script: {fileID: 11500000, guid: 4f39fd4c2835cb94cad2e89c37922c49, type: 3}
+  m_Name: Fort Down
   m_EditorClassIdentifier: 
-  duration: 2
+  duration: 5
   icon: {fileID: 0}
-  effectUsage: 1
-  damage: 5
-  element: {fileID: 0}
-  type: 0
+  effectUsage: 0
+  agility: 0
+  accuracy: 0
+  attack: 0
+  special: 0
+  fortitude: -5
+  specialFort: 0
+  dodge: 0

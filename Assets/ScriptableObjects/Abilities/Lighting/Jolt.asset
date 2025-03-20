@@ -22,7 +22,7 @@ MonoBehaviour:
   staminaUsage: 20
   baseDamage: 20
   accuracy: 0.8
-  damageMultiplier: 0.57
+  damageMultiplier: 0.8
   element: {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
   effects: []
   forcedMovement: 0

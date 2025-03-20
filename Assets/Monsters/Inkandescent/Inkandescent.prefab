@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5886501770149941311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6568387936194778641}
+  m_Layer: 0
+  m_Name: Hook
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6568387936194778641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5886501770149941311}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0109, z: 0.0259}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3591194112718469966}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3917222902586645669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82,6 +113,35 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0c213ba8bf271c249a1f5a6fdde815cd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a8da3e5894fe58a4196886fcf8007c39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6568387936194778641}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a8da3e5894fe58a4196886fcf8007c39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1149727061591111288}
   m_SourcePrefab: {fileID: 100100000, guid: a8da3e5894fe58a4196886fcf8007c39, type: 3}
+--- !u!4 &3591194112718469966 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a8da3e5894fe58a4196886fcf8007c39, type: 3}
+  m_PrefabInstance: {fileID: 3917222902586645669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4223721864620319220 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a8da3e5894fe58a4196886fcf8007c39, type: 3}
+  m_PrefabInstance: {fileID: 3917222902586645669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-1149727061591111288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4223721864620319220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a838b0de85ee8e4d8cf5f2108af8b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hookLocation: {fileID: 6568387936194778641}

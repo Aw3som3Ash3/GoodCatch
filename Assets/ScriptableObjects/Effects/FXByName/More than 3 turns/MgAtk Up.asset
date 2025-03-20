@@ -9,11 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5cb4bb970a7b69409216eef7bbf1f88, type: 3}
-  m_Name: Regen Celestial
+  m_Script: {fileID: 11500000, guid: 4f39fd4c2835cb94cad2e89c37922c49, type: 3}
+  m_Name: MgAtk Up
   m_EditorClassIdentifier: 
-  duration: 3
+  duration: 6
   icon: {fileID: 0}
-  effectUsage: 1
-  damage: -20
-  element: {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
+  effectUsage: 0
+  agility: 0
+  accuracy: 0
+  attack: 0
+  special: 5
+  fortitude: 0
+  specialFort: 0
+  dodge: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Its eyes are on top of its head. It poses as a harmless creature to
     give prey a false sense of security before consuming them.
-  model: {fileID: 0}
+  model: {fileID: 1514589119608888663, guid: d4b416dddc1896048a8c99cd0a27283a, type: 3}
   fishId: 28
   icon: {fileID: 21300000, guid: 1073b64854626134ca0da922b7afa1d7, type: 3}
   miniSprite: {fileID: 0}
