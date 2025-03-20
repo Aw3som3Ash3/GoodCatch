@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Working" style="flex-grow: 1; background-color: rgb(90, 112, 207);">
+        <ui:VisualElement name="Background" style="flex-grow: 0; height: 95%; background-color: rgb(105, 130, 235); margin-right: 1%; margin-left: 1%; margin-top: 1%;">
+            <ui:VisualElement name="InformationRow" style="flex-grow: 0; flex-direction: row; height: 650px;">
+                <ui:VisualElement name="PNGColum" style="flex-grow: 0; flex-direction: column; width: 488px;">
+                    <ui:VisualElement name="PNG" style="flex-grow: 0; height: 394px; background-color: rgb(255, 255, 255); margin-right: 25px; margin-left: 25px; margin-top: 25px; margin-bottom: 10px;" />
+                    <ui:VisualElement name="PNGsmallInfo" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.64); margin-left: 25px; margin-right: 25px;">
+                        <ui:Label tabindex="-1" text="Species Name" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 60px; color: rgb(255, 255, 255);" />
+                        <ui:Label tabindex="-1" text="EXP 0/100" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 60px; color: rgb(255, 255, 255);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="InformationColum" style="flex-grow: 1; margin-top: 25px; background-color: rgba(0, 0, 0, 0.65); margin-right: 25px;">
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="AbilityRow" style="flex-grow: 0; height: 460px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
