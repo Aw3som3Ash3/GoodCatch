@@ -34,10 +34,6 @@ public class AbilityButton : Button
     {
 
     }
-    public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
-    {
-
-    }
     // Start is called before the first frame update
     public AbilityButton()
     {

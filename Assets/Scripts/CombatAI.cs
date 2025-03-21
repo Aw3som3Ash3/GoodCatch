@@ -85,7 +85,7 @@ public class CombatAI : MonoBehaviour
             }
             else
             {
-                currentTurn.EndTurn();
+                Invoke("EndTurn", 2);
             }
             
 
@@ -93,9 +93,16 @@ public class CombatAI : MonoBehaviour
         }
         else
         {
-            currentTurn.EndTurn();
+            Invoke("EndTurn", 2);
         }
 
 
+    }
+
+
+
+    void EndTurn()
+    {
+        currentTurn.EndTurn();
     }
 }

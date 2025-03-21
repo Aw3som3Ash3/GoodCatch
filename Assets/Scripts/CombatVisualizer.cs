@@ -228,7 +228,7 @@ public class CombatVisualizer : MonoBehaviour
         }
           
     }
-    void StopSelectingFish()
+    public void StopSelectingFish()
     {
         foreach (var fish in turnToObject)
         {
@@ -243,7 +243,7 @@ public class CombatVisualizer : MonoBehaviour
         }
     }
 
-    void FinishedSelecting()
+    public void FinishedSelecting()
     {
         Debug.Log("should disable selections");
         foreach(var fish in turnToObject)
