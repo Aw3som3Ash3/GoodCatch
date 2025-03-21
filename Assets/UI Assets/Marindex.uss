@@ -1,7 +1,19 @@
 .Marindex-Row {
     margin-top: 30px;
+    border-bottom-color: rgb(102, 46, 42);
+    border-bottom-width: 10px;
 }
 
-#unity-tabs-container #Label {
-    color: rgba(27, 27, 27, 0);
+#StatContainer .unity-text-element {
+    font-size: 46px;
+    color: rgb(55, 20, 5);
+}
+
+#AgilityRow {
+}
+
+#StatsLabel {
+    font-size: 85px;
+    color: rgb(55, 20, 5);
+    display: flex;
 }

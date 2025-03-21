@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
+  m_Name: Ooh Shiny!
+  m_EditorClassIdentifier: 
+  ignoreSelf: 0
+  abilityType: 1
+  availableDepths: 2
+  targetableDepths: 2
+  targetTeam: 2
+  targetingType: 0
+  piercing: 0
+  staminaUsage: 10
+  baseDamage: 0
+  accuracy: 1
+  damageMultiplier: 0
+  element: {fileID: 11400000, guid: 861589faee089304c8b447c528048ad1, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 76258665cba546349ae0a93f459c9010, type: 2}
+    effectChance: 1
+  - statusEffect: {fileID: 11400000, guid: beb7e7b311f9d8b4fa937f5944a8b563, type: 2}
+    effectChance: 1
+  - statusEffect: {fileID: 11400000, guid: 22d03ae3e93db0d4eb67f9d1ac6358d3, type: 2}
+    effectChance: 1
+  forcedMovement: 0
+  icon: {fileID: 21300000, guid: 1822fc9d94e35e540b485f2698038fbf, type: 3}
+  abilityVFX: {fileID: 0}
+  targetVFX: {fileID: 0}
+  abilityID: 3bea0666-71ff-47a4-8e24-5e0a30408cc7

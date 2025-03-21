@@ -72,7 +72,7 @@ public class FishingMiniGame : MonoBehaviour
         InputManager.Input.Fishing.Hook.performed -= OnHook;
         InputManager.Input.Fishing.Exit.performed -= OnExit;
         Destroy(floater.gameObject);
-        InputManager.EnablePlayer();
+        //InputManager.EnablePlayer();
     }
 
     private void Update()
@@ -111,9 +111,10 @@ public class FishingMiniGame : MonoBehaviour
         {
             fishMonsters.Add(fishZone.GetRandomFish());
         }
+        InputManager.Input.Fishing.Disable();
         SuccesfulFishing?.Invoke();
         GameManager.Instance.LoadCombatScene(fishMonsters, true);
-        ExitFishing();
+        //ExitFishing();
 
     }
 

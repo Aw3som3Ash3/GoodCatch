@@ -8,8 +8,8 @@ using UnityEngine.UIElements;
 public class MarinedexTabs : TabbedMenu
 {
     const string statComponentName="ModStatCompontent";
-    const string infoComponentName="ModInfoComponent";
-    const string localeComponentName= "ModLocaleComponent";
+    const string loreComponentName="ModMLore";
+    const string abilityComponentName= "ModMAbility";
 
     public new class UxmlFactory : UxmlFactory<MarinedexTabs, UxmlTraits> { }
     public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
@@ -37,6 +37,11 @@ public class MarinedexTabs : TabbedMenu
     void Init()
     {
         CreateTab("Stats", statComponentName);
+        CreateTab("Abilities", abilityComponentName);
+        CreateTab("Lore", loreComponentName);
+        InputManager.Input.UI.ChangeTab.performed += (x) => ChangeTab((int)x.ReadValue<float>());
+        InputManager.Input.UI.ChangeTab.Enable();
+
         //dex.CreateTab("Info", dex.infoComponentName);
         //dex.CreateTab("Locale", dex.localeComponentName);
     }

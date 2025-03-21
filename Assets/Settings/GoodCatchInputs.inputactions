@@ -1174,6 +1174,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Fish",
+                    "type": "Button",
+                    "id": "b5762201-dc36-487c-b39b-9cd6a5646738",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1374,6 +1383,28 @@
                     "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9106da5b-9ad2-4d7b-ad1e-7ac544a4ea15",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Fish",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d408ce30-7e82-49f7-8643-b654922c155d",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fish",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -1524,6 +1555,15 @@
                     "name": "MoreInfo",
                     "type": "Button",
                     "id": "d9f78388-ca47-4375-94e8-5eca5a1dc588",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EndTurn",
+                    "type": "Button",
+                    "id": "bf8ac028-5f55-4b56-8be2-e72f729b463e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1684,6 +1724,28 @@
                     "action": "ChangeTab",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2e172fe6-5ce0-455b-90d7-ce9a10d42d0e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "EndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf560742-2725-4e69-a5ad-71021a660fd4",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "EndTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

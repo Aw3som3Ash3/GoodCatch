@@ -122,9 +122,10 @@ public class FishMonsterType : ScriptableObject
     [SerializeField]
     int difficulty;
     [SerializeField]
-    AnimationClip attackAnimation,idleAnimation;
+    AnimationClip attackAnimation,idleAnimation,buffAnimation;
     public AnimationClip AttackAnimation { get { return attackAnimation; } }
     public AnimationClip IdleAnimation { get { return idleAnimation; } }
+    public AnimationClip BuffAnimation { get { return buffAnimation; } }
 
 
 
@@ -319,6 +320,7 @@ public class FishMonster
     public bool isDead { get { return health <= 0; }  }
     public AnimationClip AttackAnimation { get { return type.AttackAnimation; } }
     public AnimationClip IdleAnimation { get { return type.IdleAnimation; } }
+    public AnimationClip BuffAnimation { get { return type.BuffAnimation; } }
 
     public FishMonster(FishMonsterType monsterType, int agility,TalentScale agilityTalent, int attack, TalentScale attackTalent, int special, TalentScale specialTalent, int fortitude, TalentScale fortitudeTalent, int specialFort, TalentScale specialFortTalent, int accuracy,TalentScale accuracyTalent, Ability[] abilities,int startingLevel)
     {
@@ -387,7 +389,7 @@ public class FishMonster
     {
 
         this.xp += xp;
-        if (this.Xp > xpToLevelUp)
+        if (this.Xp >= xpToLevelUp)
         {
             LevelUp();
         }
@@ -443,28 +445,18 @@ public class FishMonster
         float defenseMod =MathF.Pow(MathF.E,-0.015f* (abilityType == Ability.AbilityType.attack ? fortitude.value : specialFort.value));
         float damageTaken = damage * DamageModifier(elementType) * defenseMod;
         effectiveness = GetEffectiveness(elementType);
-        health -= damageTaken;
+        //health -= damageTaken;
         Debug.Log("took " + damageTaken + " damage \n current health: " + Health);
-        if (Health <= 0)
-        {
-            //Feint();
-        }
-        else
-        {
-            ValueChanged?.Invoke();
-        }
+        //ValueChanged?.Invoke();
         return damageTaken;
     }
 
-    public bool CheckDeath()
+    public void UpdateHealth(float health)
     {
-        if (Health <= 0)
-        {
-            Feint();
-            return true;
-        }
-        return false;
+        this.health = health;
     }
+
+  
     public void Restore(float health = 0, float stamina = 0)
     {
         this.health =Mathf.Clamp(this.health+health,0,MaxHealth);

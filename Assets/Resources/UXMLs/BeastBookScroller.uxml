@@ -1,19 +1,35 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/BestiaryListMenu.uss?fileID=7433441132597879392&amp;guid=eeeba0854fec8e1438ce167e19af102d&amp;type=3#BestiaryListMenu" />
-    <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 1; flex-direction: row; background-image: none; background-color: rgb(0, 0, 0);">
+    <Style src="project://database/Assets/UI%20Assets/Marindex.uss?fileID=7433441132597879392&amp;guid=bec157839a408f245a23073832d3f48f&amp;type=3#Marindex" />
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/BigWaterBG.png?fileID=2800000&amp;guid=38b546484b7fb6e4db4f006e1aafa96d&amp;type=3#BigWaterBG&quot;); height: 742px; position: absolute; width: 1931px; top: 1002px; left: -7px;" />
+    <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 0; flex-direction: row; background-image: none; background-color: rgb(0, 0, 0); height: 1009px;">
         <ui:VisualElement name="BookBG" style="flex-grow: 1; flex-direction: row; background-image: none; background-color: rgba(132, 128, 128, 0.46);">
             <ui:VisualElement name="RightSide" style="flex-grow: 0; min-width: auto; background-color: rgba(0, 255, 231, 0); margin-left: 0; margin-bottom: 0; margin-top: 0; margin-right: 0; width: 675px; flex-shrink: 0;">
                 <ui:Label tabindex="-1" text="Marindex" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" style="-unity-font-style: bold; font-size: 90%; -unity-text-align: upper-center; margin-top: 0; padding-right: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-bottom: 0; padding-left: 0;" />
                 <ui:ListView name="FishList" show-alternating-row-backgrounds="ContentOnly" show-border="true" style="height: 100%;" />
             </ui:VisualElement>
-            <ui:VisualElement name="LeftSide" style="flex-grow: 1; max-width: none; background-color: rgb(152, 152, 152);">
-                <ui:VisualElement name="PngBox" style="flex-grow: 1; background-color: rgba(123, 123, 123, 0); padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; min-width: 50%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
-                    <ui:VisualElement name="PngAmount" style="flex-grow: 0; background-color: rgb(144, 76, 76); padding-top: 0; padding-left: 0; padding-bottom: 0; padding-right: 0; align-items: stretch; width: 200px; min-width: auto; min-height: auto; align-self: center; justify-content: center; height: 200px; flex-shrink: 0;" />
-                    <ui:VisualElement name="HoveredNameContainer" style="flex-grow: 0; height: auto; justify-content: center;">
-                        <ui:Label tabindex="-1" text="HoveredFishName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HoveredNameAmount" style="font-size: 49px; -unity-text-align: upper-center; -unity-font: initial; -unity-font-style: bold; color: rgb(255, 255, 255); height: auto;" />
+            <ui:VisualElement name="LeftSide" style="flex-grow: 1; max-width: none; background-image: url(&quot;project://database/Assets/Art/2D/UI/menu_marindex_paper.png?fileID=2800000&amp;guid=290fec8eed1594b4c969a0796b538fe8&amp;type=3#menu_marindex_paper&quot;); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: stretch-to-fill; -unity-slice-scale: 0;">
+                <ui:VisualElement name="PngBox" style="flex-grow: 1; background-color: rgba(123, 123, 123, 0); padding-left: 27px; padding-right: 0; padding-bottom: 0; padding-top: 0; min-width: 31%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; justify-content: center; align-self: flex-start; flex-direction: row;">
+                    <ui:VisualElement name="PngAmount" style="flex-grow: 0; background-color: rgb(144, 76, 76); padding-top: 0; padding-left: 0; padding-bottom: 0; padding-right: 0; align-items: stretch; width: 290px; min-width: auto; min-height: auto; align-self: center; justify-content: center; height: 290px; flex-shrink: 0;" />
+                    <ui:VisualElement name="MonsterHeaderDesc" style="flex-grow: 1; margin-top: 21px;">
+                        <ui:VisualElement style="flex-grow: 0; flex-wrap: nowrap; flex-shrink: 0; flex-direction: row; padding-left: 25px; padding-right: 25px;">
+                            <ui:VisualElement name="HoveredNameContainer" style="flex-grow: 0; height: auto; justify-content: center; align-self: flex-start; flex-wrap: wrap;">
+                                <ui:Label tabindex="-1" text="HoveredFishName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HoveredNameAmount" focusable="false" style="font-size: 45px; -unity-text-align: upper-left; -unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-style: normal; color: rgb(55, 20, 5); display: flex;" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
+                                <ui:Label tabindex="-1" text="Type 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Type1Amount" style="font-size: 45px; color: rgb(55, 20, 5);" />
+                                <ui:Label tabindex="-1" text="||" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px; color: rgb(55, 20, 5);" />
+                                <ui:Label tabindex="-1" text="Type 2" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Type2Amount" style="font-size: 45px; color: rgb(55, 20, 5);" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; padding-left: 25px; padding-right: 25px;">
+                            <ui:Label tabindex="-1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse c" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="flex-wrap: wrap; white-space: normal; font-size: 28px;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="ModContainer" style="flex-grow: 1; height: 630px;" />
+                <ui:VisualElement name="ModContainer" style="flex-grow: 1; height: 630px;">
+                    <MarinedexTabs name="MarinedexTabs" style="height: 742px; flex-grow: 1;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

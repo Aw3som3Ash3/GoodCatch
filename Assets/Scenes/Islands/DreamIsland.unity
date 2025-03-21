@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: b80b8bf201b47da4499b4485a6802d1d, type: 2}
   m_LightingSettings: {fileID: 663455651}
 --- !u!196 &4
 NavMeshSettings:
@@ -321,7 +321,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 2000
   field of view: 70
   orthographic: 0
   orthographic size: 5
@@ -648,6 +648,75 @@ CapsuleCollider:
   m_Height: 0.74532294
   m_Direction: 1
   m_Center: {x: -0.00000075250864, y: -0.07688914, z: -0.043193243}
+--- !u!95 &510201487
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510201477}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &523161364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523161366}
+  - component: {fileID: 523161365}
+  m_Layer: 0
+  m_Name: PauseMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &523161365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523161364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: f4991eff6029a864c9f6c881d9f7aa07, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 5aa65eab58087314693eefd868364124, type: 3}
+  m_SortingOrder: 10
+--- !u!4 &523161366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523161364}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -139.97021, y: 10.129313, z: 12.910453}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &663455651
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1170,6 +1239,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1127383210273269129, guid: 5df5808edbf7a7e409631828a724ed0a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 510201482}
+    - targetCorrespondingSourceObject: {fileID: 1127383210273269129, guid: 5df5808edbf7a7e409631828a724ed0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 510201487}
   m_SourcePrefab: {fileID: 100100000, guid: 5df5808edbf7a7e409631828a724ed0a, type: 3}
 --- !u!1001 &1326339827
 PrefabInstance:
@@ -1679,3 +1751,4 @@ SceneRoots:
   - {fileID: 6566128587476859125}
   - {fileID: 778403261}
   - {fileID: 973141099}
+  - {fileID: 523161366}

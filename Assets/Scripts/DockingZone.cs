@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class DockingZone : MonoBehaviour
+public class DockingZone : SaveableObject, IInteractable
 {
 
     [SerializeField]
@@ -19,9 +20,18 @@ public class DockingZone : MonoBehaviour
     Mesh shipMesh;
     [SerializeField]
     Vector3 gizmoOffset;
+
+    public string StationName => ship!=null? "Enter Ship":"";
+
+
+    public override object DataToSave =>ship!=null? ship.ID:null;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        ship = null;
         if (firstDock)
         {
             ResetShip();
@@ -96,5 +106,31 @@ public class DockingZone : MonoBehaviour
     {
         Gizmos.DrawMesh(shipMesh,0 ,dockingPosition.transform.position+gizmoOffset, dockingPosition.transform.rotation);
       
+    }
+
+    public bool Interact()
+    {
+        if (ship != null)
+        {
+            ship.GetComponentInChildren<ShipControls>().Interact();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+      
+    }
+
+    public override void Load(string json)
+    {
+        var shipId=JsonUtility.FromJson<string>(json);
+        if (shipId == null||shipId=="")
+        {
+            return;
+        }
+        //var ship = FindObjectsOfType<ShipSimulator>().FirstOrDefault((x)=>x.ID==shipId);
+        //this.ship = ship;
+        //DockShip(ship);
     }
 }

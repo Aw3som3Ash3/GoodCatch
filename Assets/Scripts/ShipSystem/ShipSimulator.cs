@@ -11,21 +11,24 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     [SerializeField]
     Transform childrenObject;
     [SerializeField]
-    float maxSpeed, turningSpeed;
+    float maxSpeed, turningSpeed,acceleration;
     public float sailRatio { get; private set; }
     public float turnRatio { get; private set; }
 
     public AudioController audioController;
     public AudioSource audioSource;
     private AudioClip activeClip;
+    ShipControls shipControls;
 
     [SerializeField]
     Transform wheelRight, wheelLeft;
     public Vector3 Velocity { get { return physicSim.velocity; } }
-
-    public object DataToSave => Matrix4x4.TRS(this.transform.position,this.transform.rotation,this.transform.localScale);
+    bool isActive = false;
+    public object DataToSave =>(isActive, Matrix4x4.TRS(this.transform.position,this.transform.rotation,this.transform.localScale));
 
     public string ID => "ship";
+
+
 
     [SerializeField]
     PIDController zTorqueController=new (0.5f,0,0.25f);
@@ -34,6 +37,18 @@ public class ShipSimulator : MonoBehaviour,ISaveable
 
     [SerializeField]
     Transform repawnPoint;
+    private void Awake()
+    {
+        shipControls=this.GetComponentInChildren<ShipControls>();
+        shipControls.OnInteract += OnControlsInteract;
+    }
+
+    private void OnControlsInteract(bool b)
+    {
+        isActive = b;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,13 +66,19 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     private void FixedUpdate()
     {
 
-        physicSim.AddRelativeForce(Vector3.forward * (maxSpeed * sailRatio), ForceMode.Acceleration);
+        Vector3 targetVelocity = this.transform.forward * (maxSpeed * sailRatio - turnRatio / 2);
+        targetVelocity.y = 0;
+        physicSim.velocity = Vector3.MoveTowards(physicSim.velocity, targetVelocity + new Vector3(0, physicSim.velocity.y, 0), acceleration * Time.deltaTime);
+        //physicSim.AddRelativeForce(Vector3.forward * (maxSpeed * sailRatio- turnRatio / 2), ForceMode.Acceleration);
+        
+        //physicSim.maxLinearVelocity = maxSpeed * (1-turnRatio / 2);
         physicSim.AddRelativeTorque(Vector3.up * turningSpeed * turnRatio, ForceMode.Acceleration);
         this.transform.position = physicSim.transform.position;
         this.transform.rotation = physicSim.transform.rotation;
         physicSim.transform.localPosition = Vector3.zero;
         physicSim.transform.localRotation = Quaternion.Euler(Vector3.zero);
-
+        wheelLeft.Rotate(Vector3.right * Mathf.Clamp(sailRatio - turnRatio / 2, -1, 1) * maxSpeed*5 * Time.fixedDeltaTime);
+        wheelRight.Rotate(Vector3.right * Mathf.Clamp(sailRatio + turnRatio/2,-1,1) * maxSpeed*5 * Time.fixedDeltaTime);
 
         physicSim.AddRelativeTorque(Vector3.forward*zTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.z), 0), ForceMode.Acceleration);
         physicSim.AddRelativeTorque(Vector3.right*xTorqueController.PID(Time.fixedDeltaTime, TurnAngleToSignedAngle(this.transform.localEulerAngles.x), 0),ForceMode.Acceleration);
@@ -67,14 +88,14 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     {
         return repawnPoint.position;
     }
-    public void AnchorShip()
-    {
-        physicSim.maxLinearVelocity = 0;
-    }
-    public void UnAnchorShip()
-    {
-        physicSim.maxLinearVelocity = maxSpeed*4;
-    }
+    //public void AnchorShip()
+    //{
+    //    physicSim.maxLinearVelocity = 0;
+    //}
+    //public void UnAnchorShip()
+    //{
+    //    physicSim.maxLinearVelocity = maxSpeed*4;
+    //}
 
     public float TurnAngleToSignedAngle(float angle)
     {
@@ -127,11 +148,16 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     public void Load(string json)
     {
 
-        Matrix4x4 data = JsonUtility.FromJson<Matrix4x4>(json);
+        (bool isActive, Matrix4x4 transforms) data = JsonUtility.FromJson<(bool,Matrix4x4)>(json);
 
-        this.transform.position = data.GetPosition();
-        this.transform.rotation = data.rotation;
-        this.transform.localScale = data.lossyScale;
+        this.transform.position = data.transforms.GetPosition();
+        this.transform.rotation = data.transforms.rotation;
+        this.transform.localScale = data.transforms.lossyScale;
+        isActive = data.isActive;
+        if (isActive&&!GameManager.Instance.isRespawning)
+        {
+            shipControls.Interact();
+        }
 
     }
 

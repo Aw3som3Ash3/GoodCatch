@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Phoendish
   m_EditorClassIdentifier: 
-  description: 
+  description: Its wings burn like fire when it leaps out of the water. They live
+    relatively long lives so there are few in population.
   model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
   fishId: 22
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: 0
+  homeDepth: 1
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}
@@ -56,13 +57,14 @@ MonoBehaviour:
   baseStamina: 80
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 551536d34ef325b459d2524e28241e1f, type: 2}
+    - {fileID: 11400000, guid: 072bd60bf76bb11468733e07c34cbe2d, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: e690565f7ffe3fa419d0d411318ecf9f, type: 2}
+    - {fileID: 11400000, guid: b5535b7f539ae8f43a56020729802d77, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: c10f80ebc7de40242bf51cb826af6df1, type: 2}
+    - {fileID: 11400000, guid: 95943b7c1acca944cb4ab013b5f8426a, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

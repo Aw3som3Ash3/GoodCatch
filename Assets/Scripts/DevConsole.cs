@@ -4,14 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using Unity.VisualScripting;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Playables;
-using UnityEngine.UI;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 
 public class DevConsole : MonoBehaviour
@@ -30,8 +26,7 @@ public class DevConsole : MonoBehaviour
     [SerializeField]
 
     InputAction openConsole;
-
-    Dictionary<string, Command> consoleCommands=new();
+    Dictionary<string, Command> consoleCommands=new(StringComparer.OrdinalIgnoreCase);
 
 
 
@@ -44,14 +39,14 @@ public class DevConsole : MonoBehaviour
     {
         public string commandName;
         public string description;
-        public readonly List<(Delegate @delegate, string[] paramaterNames)> commandActions;
-        public Command(string name,string description, (Delegate action, string[] paramaterNames) command )
+        public readonly List<(Delegate @delegate, (string name, Type type)[] paramaters)> commandActions;
+        public Command(string name,string description, (Delegate action, (string name, Type type)[] paramaters) command )
         {
             commandName = name;
             commandActions = new(){ command };
             this.description = description;
         }
-        public void AddCommand((Delegate action, string[] paramaterNames) command)
+        public void AddCommand((Delegate action, (string name, Type type)[] paramaters) command)
         {
             commandActions.Add(command);
         }
@@ -82,27 +77,35 @@ public class DevConsole : MonoBehaviour
     void Start()
     {
 
-        foreach (var method in TypeCache.GetMethodsWithAttribute<DevConsoleCommand>().Where((m) => m.IsStatic))
+        foreach (var type in Assembly.GetExecutingAssembly().GetTypes().Where(t => t.GetInterfaces().Contains(typeof(IUseDevCommands))))
         {
-            var attr = method.GetCustomAttribute<DevConsoleCommand>();
-            var command = (CommandInvoker(method),method.GetParameters().Select((x) => $"[{x.ParameterType.HumanName()}]{x.Name}"  ).ToArray());
-            if (consoleCommands.ContainsKey(attr.CommandName))
+            foreach (var method in type.GetMethods().Where((x) => x.IsStatic&&x.GetCustomAttribute<DevConsoleCommand>()!=null))
             {
-                consoleCommands[attr.CommandName].AddCommand(command);
-            }
-            else
-            {
-                //consoleCommands.Add(attr.CommandName,(new() { command },attr.Description) );
-                consoleCommands.Add(attr.CommandName,new Command(attr.CommandName,attr.Description,command));
-            }
+                var attr = method.GetCustomAttribute<DevConsoleCommand>();
+
+                var _params = method.GetParameters().Select((x) => ($"[{x.ParameterType.Name}]{x.Name}", x.ParameterType)).ToArray();
 
 
-            if (string.IsNullOrEmpty(consoleCommands[attr.CommandName].description)&& !string.IsNullOrEmpty(attr.Description))
-            {
-                //Debug.Log("has updated description "+ attr.Description);
-                consoleCommands[attr.CommandName].UpdateDescription(attr.Description);
-                //Debug.Log("new description " + consoleCommands[attr.CommandName].description);
+                var command = (CommandInvoker(method), _params);
+                if (consoleCommands.ContainsKey(attr.CommandName.ToLower()))
+                {
+                    consoleCommands[attr.CommandName.ToLower()].AddCommand(command);
+                }
+                else
+                {
+                    //consoleCommands.Add(attr.CommandName,(new() { command },attr.Description) );
+                    consoleCommands.Add(attr.CommandName.ToLower(), new Command(attr.CommandName, attr.Description, command));
+                }
+
+
+                if (string.IsNullOrEmpty(consoleCommands[attr.CommandName].description) && !string.IsNullOrEmpty(attr.Description))
+                {
+                    //Debug.Log("has updated description "+ attr.Description);
+                    consoleCommands[attr.CommandName].UpdateDescription(attr.Description);
+                    //Debug.Log("new description " + consoleCommands[attr.CommandName].description);
+                }
             }
+            
 
         }
         //consoleCommands
@@ -239,7 +242,7 @@ public class DevConsole : MonoBehaviour
     {
         string[] strings = command.Split(" ");
         Debug.Log(command);
-        RunCommand(strings[0], strings.Skip(1).ToArray());
+        RunCommand(strings[0].ToLower(), strings.Skip(1).ToArray());
         commandField.SetValueWithoutNotify("");
        // commandField.Focus();
         previousCommands.AddFirst(command);
@@ -250,7 +253,7 @@ public class DevConsole : MonoBehaviour
     void RunCommand(string command ,string[] args)
     {
         #region Commands Help
-        if (command.FirstCharacterToUpper() == "Help")
+        if (command.ToLower() == "help")
         {
             print("------------------------------------------------------------------------------\n" +
                 "Commands:\n\n");
@@ -258,38 +261,77 @@ public class DevConsole : MonoBehaviour
 
             foreach (var item in consoleCommands.OrderBy((command)=>command.Key))
             {
-                print($"    -{item.Key}: {item.Value.description}");
+                print($"    {item.Key}: {item.Value.description}");
 
             }
             return;
         }
 
-        if (args.Length>0 &&  args[0].FirstCharacterToUpper() == "Help" && consoleCommands.ContainsKey(command))
+        if (args.Length>0 &&  args[0].ToLower() == "help" && consoleCommands.ContainsKey(command))
         {
             print("------------------------------------------------------------------------------\n" +
                 $"{command}: {consoleCommands[command].description}:\n");
-            foreach (var item in consoleCommands[command].commandActions.OrderBy((x)=>x.paramaterNames.Length))
+            foreach (var item in consoleCommands[command].commandActions.OrderBy((x)=>x.paramaters.Length))
             {
                 string paramatersString = " ";
                 //Debug.Log(item.@delegate.GetMethodInfo().Name);
-                var paramaters = item.paramaterNames;
+                var paramaters = item.paramaters;
                 for (int i = 0; i < paramaters.Length; i++)
                 {
-                    paramatersString +=paramaters[i]+" "; 
+                    paramatersString +=paramaters[i].name+" "; 
 
 
                 }
 
-               print("  -"+command + paramatersString);
+               print("  "+command + paramatersString);
             }
             return;
         }
         #endregion
 
 
-        if (consoleCommands.ContainsKey(command))
+        if (consoleCommands.ContainsKey(command.ToLower()))
         {
-            consoleCommands[command].commandActions.Find((x)=> x.@delegate.Method.GetParameters().Length-1==args.Length).@delegate?.DynamicInvoke(args);
+            consoleCommands[command].commandActions.Find((command) =>
+                {
+                    if (command.paramaters.Length == args.Length)
+                    {
+                        for (int i = 0; i < command.paramaters.Length; i++)
+                        {
+                            
+                            switch (command.paramaters[i].type)
+                            {
+                                case Type intType when intType == typeof(int):
+                                    if (!int.TryParse(args[i],out int resultInt))
+                                    {
+                                        return false;
+                                    }
+                                    break;
+                                case Type floatType when floatType == typeof(float):
+                                    if (!float.TryParse(args[i], out float resultFloat))
+                                    {
+                                        return false;
+                                    }
+                                    break;
+
+                                case Type boolType when boolType == typeof(bool):
+                                    if (!bool.TryParse(args[i], out bool resultBool))
+                                    {
+                                        return false;
+                                    }
+                                    break;
+                                case Type stringType when stringType == typeof(string):
+                                    continue;
+                                default: 
+                                    return false;
+
+                            }
+                            //args[i]  command.paramaters[i].type.
+                        }
+                        return true;
+                    }
+                    return false;
+                }).@delegate?.DynamicInvoke(args);
         }
         else
         {

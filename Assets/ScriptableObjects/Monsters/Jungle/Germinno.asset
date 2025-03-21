@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
+  m_Name: Germinno
+  m_EditorClassIdentifier: 
+  description: Its eyes are on top of its head. It poses as a harmless creature to
+    give prey a false sense of security before consuming them.
+  model: {fileID: 0}
+  fishId: 0
+  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  miniSprite: {fileID: 0}
+  homeDepth: 4
+  preferredBait: []
+  elements:
+  - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
+  agility:
+    min: 5
+    max: 15
+    minTalent: 0
+    maxTalent: 0
+  attack:
+    min: 15
+    max: 30
+    minTalent: 0
+    maxTalent: 0
+  special:
+    min: 15
+    max: 30
+    minTalent: 0
+    maxTalent: 0
+  fortitude:
+    min: 20
+    max: 30
+    minTalent: 0
+    maxTalent: 0
+  specialFortitude:
+    min: 20
+    max: 30
+    minTalent: 0
+    maxTalent: 0
+  accuracy:
+    min: 50
+    max: 50
+    minTalent: 0
+    maxTalent: 0
+  baseHealth: 90
+  baseStamina: 50
+  baseAbilities:
+  - potentialAbilities:
+    - {fileID: 11400000, guid: a8035b3bd99139044b2e81087e511dee, type: 2}
+    - {fileID: 11400000, guid: b82acbfe5004fbe45b49ec2f1c4f5455, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 708f1b780ed60d44b8aa684bf3509d7a, type: 2}
+    - {fileID: 11400000, guid: 2785f2ba1d82bc542ad4dcbd60f4e64b, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 2f1ffb4585a203b488f8442c09b5646d, type: 2}
+    - {fileID: 11400000, guid: 30266ea6e5707f846bff93d0c30dbaf9, type: 2}
+  difficulty: 0
+  attackAnimation: {fileID: 0}
+  idleAnimation: {fileID: 0}

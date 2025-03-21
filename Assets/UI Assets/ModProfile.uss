@@ -1,0 +1,49 @@
+#XpBar .unity-progress-bar__progress {
+    max-height: 16px;
+}
+
+#XpBar {
+}
+
+#XpBar #unity-progress-bar .unity-text-element {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    font-size: 0;
+    display: none;
+}
+
+#XpBar #unity-progress-bar .unity-progress-bar__background {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    font-size: 0;
+    display: flex;
+    min-height: 10px;
+    max-height: -12px;
+}
+
+#HpBar .unity-progress-bar__title-container {
+}
+
+#HpBar #unity-progress-bar .unity-progress-bar__background {
+    min-height: 34px;
+}
+
+#HpBar #unity-progress-bar .unity-text-element {
+    padding-left: 52px;
+}
+
+#HpBar #unity-progress-bar .unity-progress-bar__title-container {
+    align-self: flex-start;
+}

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Peeranha
   m_EditorClassIdentifier: 
-  description: 
+  description: Followers of Piranarch. A lone peerana is usually exiled or lost.
+    Dies quickly without the colony. Its last thoughts are of its Queendom and its
+    family.
   model: {fileID: 2032498811498950705, guid: 36c470907c48f0c449fc791803782a0a, type: 3}
-  fishId: 11
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  fishId: 12
+  icon: {fileID: 21300000, guid: 0bd48e3643e85394089f3ac2fb76018f, type: 3}
   miniSprite: {fileID: -1822290715, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
-  homeDepth: 0
+  homeDepth: -1
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
@@ -56,13 +58,14 @@ MonoBehaviour:
   baseStamina: 70
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: f44ce491c38290542b642e451aaae825, type: 2}
-    - {fileID: 11400000, guid: 48adc680ed52273418a1908a6f1db01f, type: 2}
-  - potentialAbilities:
     - {fileID: 11400000, guid: e46ebf49c02a65d499551d7d9c5ffa21, type: 2}
     - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
   - potentialAbilities:
+    - {fileID: 11400000, guid: a51dc785075efc246bd96681f85c007b, type: 2}
+    - {fileID: 11400000, guid: 48adc680ed52273418a1908a6f1db01f, type: 2}
+  - potentialAbilities:
     - {fileID: 11400000, guid: 31d8acb2a826545409e2a394df4fb557, type: 2}
+    - {fileID: 11400000, guid: f44ce491c38290542b642e451aaae825, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
