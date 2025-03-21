@@ -15,6 +15,10 @@ MonoBehaviour:
   type: 0
   description: 
   states:
+  - name: Win against the Bridge Guards
+    description: 
+    requirements:
+    - rid: 2727136773057019920
   - name: Talk to the Bridge Guards
     description: 
     requirements:
@@ -40,3 +44,9 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Talk to the Bridge Guards
         dialogueEvent: {fileID: -3488502027456225855, guid: 863db222677a3da47a7394be72b77f7f, type: 2}
+    - rid: 2727136773057019920
+      type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
+      data:
+        Name: WinNumFight
+        IsCompleted: 0
+        amount: 1
