@@ -19,10 +19,6 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136756081360905
-  - name: Talk to the Bridge Guards
-    description: 
-    requirements:
-    - rid: 2727136756081360907
   references:
     version: 2
     RefIds:
@@ -31,12 +27,5 @@ MonoBehaviour:
       data:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
-        objective: Get through the Bridge Guards
-        dialogueEvent: {fileID: 7972647820795813824, guid: f4ed4ad39091f4940a5ced6ea251079e, type: 2}
-    - rid: 2727136756081360907
-      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: DialogueEventQuestRequirement
-        IsCompleted: 0
         objective: Talk to the Bridge Guards
-        dialogueEvent: {fileID: -3488502027456225855, guid: 863db222677a3da47a7394be72b77f7f, type: 2}
+        dialogueEvent: {fileID: 7972647820795813824, guid: f4ed4ad39091f4940a5ced6ea251079e, type: 2}

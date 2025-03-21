@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-981087878508609765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: ToChieftainFromBridge
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23,7 +35,9 @@ MonoBehaviour:
   - rid: 2727136614816153624
   decorators:
   - rid: 2727136614816153617
-  events: []
+  - rid: 2727136756081360919
+  events:
+  - {fileID: -981087878508609765}
   references:
     version: 2
     RefIds:
@@ -62,6 +76,7 @@ MonoBehaviour:
         guid: b0c9fea676af2d6478b1bdca2e1f8baa
         decorators:
         - rid: 2727136614816153617
+        - rid: 2727136756081360919
         position: {x: 1013, y: -8}
         nextNode:
           rid: -2
@@ -85,3 +100,9 @@ MonoBehaviour:
         position: {x: 449, y: 256}
         nextNode:
           rid: 2727136614816153616
+    - rid: 2727136756081360919
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1499, y: 218}
+        guid: 3c785d33963503443b91b3950c938cd3
+        dialogueEvent: {fileID: -981087878508609765}

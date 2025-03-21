@@ -23,6 +23,7 @@ MonoBehaviour:
   - rid: 2727136614816153612
   decorators:
   - rid: 2727136614816153607
+  - rid: 2727136756081360918
   events:
   - {fileID: 7972647820795813824}
   references:
@@ -69,9 +70,16 @@ MonoBehaviour:
         guid: 00e253b50d3e2fe4dae53c4984eb2bcf
         decorators:
         - rid: 2727136614816153607
+        - rid: 2727136756081360918
         position: {x: 954, y: -136}
         nextNode:
           rid: -2
+    - rid: 2727136756081360918
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1460, y: 46}
+        guid: 8ae6842405de6114badb080308a88846
+        quest: {fileID: 11400000, guid: af866a71657dd754b81b74b943bbf243, type: 2}
 --- !u!114 &7972647820795813824
 MonoBehaviour:
   m_ObjectHideFlags: 0
