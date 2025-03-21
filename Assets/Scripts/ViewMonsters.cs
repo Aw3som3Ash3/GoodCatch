@@ -7,7 +7,7 @@ public class ViewMonsters : VisualElement
 {
     VisualElement monsterIcon;
     ProgressBar healthBar, xpBar;
-    Label nameTitle, levelText, physical, defence, accuracy, magical, resistance, agility;
+    Label nameTitle, levelText, physical, defence, accuracy, magical, resistance, agility, stamina;
     FishMonster fishmonster;
 
 
@@ -41,6 +41,7 @@ public class ViewMonsters : VisualElement
         magical = this.Q<Label>("magical");
         resistance = this.Q<Label>("resistance");
         agility = this.Q<Label>("agility");
+        stamina = this.Q<Label>("stamina");
         xpBar.highValue = 1000;
     }
     public void SetFish(FishMonster fishMonster)
@@ -59,6 +60,7 @@ public class ViewMonsters : VisualElement
         magical.text = fishMonster.Special.value.ToString();
         resistance.text = fishMonster.SpecialFort.value.ToString();
         agility.text = fishMonster.Agility.value.ToString();
+        stamina.text = fishmonster.MaxStamina.ToString();
         this.fishmonster = fishMonster;
     }
     

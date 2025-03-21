@@ -15,9 +15,14 @@
                         <ui:Label tabindex="-1" text="Monster Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="nameTitle" style="font-size: 75px; padding-bottom: 0; margin-bottom: 0; height: 79px; color: rgb(255, 255, 255);" />
                         <ui:Label tabindex="-1" text="Lvl:100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="levelText" style="font-size: 75px; padding-bottom: 0; margin-bottom: 0; height: 79px; color: rgb(255, 255, 255);" />
                     </ui:VisualElement>
-                    <ui:ProgressBar value="22" title="100/100" name="HpBar" style="font-size: 36px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 2px; height: 37px; padding-left: 1px; padding-right: 2px; min-height: 68px;">
-                        <ui:Label tabindex="-1" text="HP" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="position: absolute; top: -13px; left: 2px;" />
-                    </ui:ProgressBar>
+                    <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                        <ui:ProgressBar value="22" title="100/100" name="HpBar" style="font-size: 36px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 2px; height: 37px; padding-left: 1px; padding-right: 2px; min-height: 68px; width: 1135px;">
+                            <ui:Label tabindex="-1" text="HP" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="position: absolute; top: -13px; left: 2px;" />
+                        </ui:ProgressBar>
+                        <ui:VisualElement name="StaminaHolder" style="flex-grow: 1; background-color: rgb(255, 255, 0); margin-bottom: 9px; margin-right: 7px; justify-content: center; height: 58px;">
+                            <ui:Label tabindex="-1" text="000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Stamina" style="justify-content: flex-start; align-self: center; font-size: 60px; padding-bottom: 0; margin-bottom: 0; margin-top: 0; padding-top: 0; top: -5px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
                     <ui:ProgressBar value="50" title="100/100" name="xpBar" style="font-size: 36px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 2px; height: 37px; padding-left: 1px; padding-right: 2px;" />
                     <ui:VisualElement name="BoxInfo" style="flex-grow: 1;">
                         <ui:VisualElement name="Elements" style="flex-grow: 0; flex-direction: row;">
