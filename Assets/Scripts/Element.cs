@@ -24,7 +24,8 @@ public class Element : ScriptableObject
     Element[] weak;
     [SerializeField]
     Element[] veryWeak;
-
+    [SerializeField]
+    Sprite icon;
     public int CompareStrength(Element element)
     {
         if (strong.Contains(element))

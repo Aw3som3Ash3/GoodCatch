@@ -433,7 +433,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         var victoryScreen = new NewCombatVictory(playerFishes,fishCaught);
         ui.rootVisualElement.Add(victoryScreen);
         combatUI.SetEnabled(false);
-        InputManager.Input.UI.Pause.performed += Skip;
+        //InputManager.Input.UI.Pause.performed += Skip;
         GameManager.Instance.canPause = false;
 
         void Skip(InputAction.CallbackContext context)
@@ -511,18 +511,21 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     {
 
         
-        currentTurn.Value.StartTurn();
+       
         
         combatVisualizer.TargetCameraToFish(currentTurn.Value);
         if (currentTurn.Value is EnemyTurn)
         {
             
         }
+        currentTurn.Value.StartTurn();
         //Invoke("turnList[currentTurn].StartTurn",1);
 
     }
     void NextTurn()
     {
+        combatVisualizer.FinishedSelecting();
+        combatVisualizer.StopSelectingFish();
         if (CanFightEnd())
         {
             return;
@@ -634,14 +637,19 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
                 targetedDepth.TargetSide(targetedTeam).ForEach((turn) => turn.CheckDeath());
                 ActionsCompleted();
-                combatUI.EnableButtons();
+                if (currentTurn.Value is PlayerTurn)
+                {
+                    combatUI.EnableButtons();
+                }
+               
             });
            
         } 
     }
     void RemoveFishFromBattle(Turn turn)
     {
-        currentCombatents.Remove(turn);
+        combatVisualizer.RemoveFish(turn);
+        
         combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
         getFishesTurn.Remove(turn.fish);
@@ -650,7 +658,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         {
             depth.RemoveFish(turn);
         }
-        combatVisualizer.RemoveFish(turn);
+        currentCombatents.Remove(turn);
     }
 
     private void Update()
@@ -950,14 +958,20 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         {
             if (Health <= 0)
             {
-                Feint();
+                combatManager.CompletedAllActions +=Feint;
                 return true;
             }
             return false;
         }
         void Feint()
         {
+
+            combatManager.CompletedAllActions -= Feint;
             //isDead = true;
+            if (combatManager.currentTurn.Value == this)
+            {
+                EndTurn();
+            }
             HasFeinted?.Invoke();
             Debug.Log("Should Feint or die");
         }
