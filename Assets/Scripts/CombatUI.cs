@@ -472,6 +472,7 @@ public class CombatUI : VisualElement
         UpdateInfo(fish);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
+            Debug.Log(abilityButtons[i]);
             float damage = fish.GetAbility(i).GetDamage(fish);
             abilityButtons[i].SetAbility(fish.GetAbility(i), damage, fish.Accuracy.value);
             abilityButtons[i].SetEnabled(true);

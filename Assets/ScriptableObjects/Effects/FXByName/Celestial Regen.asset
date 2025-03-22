@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Celestial Regen
   m_EditorClassIdentifier: 
   duration: 3
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: c066ff42510bf5d41ab5794ef377854c, type: 3}
   effectUsage: 1
   damage: -20
   element: {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}

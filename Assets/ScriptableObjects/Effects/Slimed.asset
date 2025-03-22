@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slimed
   m_EditorClassIdentifier: 
   duration: 3
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: c066ff42510bf5d41ab5794ef377854c, type: 3}
   effectUsage: 1
   agility: -5
   accuracy: 0

@@ -17,14 +17,14 @@
     font-size: 60px;
 }
 
-#ExpBar .unity-text-element {
+#xpBar .unity-text-element {
     color: rgba(0, 0, 0, 0);
 }
 
-#ExpBar .unity-progress-bar__progress {
+#xpBar .unity-progress-bar__progress {
     background-color: rgb(36, 201, 255);
 }
 
-#ExpBar .unity-progress-bar__background {
+#xpBar .unity-progress-bar__background {
     background-color: rgb(255, 255, 255);
 }

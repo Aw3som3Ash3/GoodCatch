@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Thorns Eldritch
   m_EditorClassIdentifier: 
   duration: 3
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: c066ff42510bf5d41ab5794ef377854c, type: 3}
   effectUsage: 1
   damage: 10
   element: {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
