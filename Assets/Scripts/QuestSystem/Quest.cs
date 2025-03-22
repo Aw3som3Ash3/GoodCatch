@@ -180,9 +180,9 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         {
             this.quest = quest;
             questId = quest.questId;
-            states=new QuestState[quest.states.Length];
-            states = quest.states.Select(a => (QuestState)a.Clone()).ToArray(); ;
-            foreach(QuestState state in states)
+            states = quest.states;
+            //states = quest.states.Select(a => (QuestState)a.Clone()).ToArray();
+            foreach (QuestState state in states)
             {
                 
                 state.Initialize();
