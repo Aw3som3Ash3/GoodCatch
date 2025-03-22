@@ -11,7 +11,7 @@ using static GameManager;
 public class Bestiary : PausePage
 {
     ListView fishList;
-    Label fishTitle, location, timeOfDay, baits, stamina, hp, agilityMin, attackMin, magicAttackMin, defenseMin, magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax;
+    Label fishTitle, location, timeOfDay, baits, stamina, hp, agilityMin, attackMin, magicAttackMin, defenseMin, magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax, loreAmount;
     List<FishMonsterType> fishMonsters 
     { get 
         { 
@@ -61,6 +61,7 @@ public class Bestiary : PausePage
         baits = this.Q<Label>("BaitAmount");
         stamina = this.Q<Label>("StaAmount");
         hp = this.Q<Label>("HPAmount");
+        loreAmount = this.Q<Label>("LoreAmount");
 
         //agilityMin = this.Q<Label>("MinimumAgilityAmount");
         //attackMin = this.Q<Label>("MinimumPhysicalAttackAmount");
@@ -185,6 +186,8 @@ public class Bestiary : PausePage
             magicDefenseMin.text = fishMonsterType.SpecialFortitude.Min.ToString();
             defenseMin.text = fishMonsterType.Fortitude.Min.ToString();
             defenseMax.text = fishMonsterType.Fortitude.Max.ToString();
+
+            loreAmount.text = fishMonsterType.Description.ToString();
         }
         else
         {

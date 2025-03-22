@@ -23,7 +23,7 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; padding-left: 25px; padding-right: 25px;">
-                            <ui:Label tabindex="-1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse c" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="flex-wrap: wrap; white-space: normal; font-size: 28px;" />
+                            <ui:Label tabindex="-1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse c" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="LoreAmount" style="flex-wrap: wrap; white-space: normal; font-size: 28px;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
