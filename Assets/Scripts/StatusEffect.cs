@@ -64,7 +64,7 @@ public abstract class StatusEffect: ScriptableObject
         public void ResetEffect()
         {
             remainingDuration = effect.duration;
-            
+            DurationChanged?.Invoke(remainingDuration);
         }
     }
 }

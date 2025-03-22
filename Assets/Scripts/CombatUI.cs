@@ -717,6 +717,7 @@ public class CombatUI : VisualElement
         var status = new StatusIcon(instance);
         status.MouseEnter += (action) => action(toolTip);
         status.MouseExit += () => toolTip.visible = false;
+        instance.DurationChanged += (x) => { status.UpdateIcon(x); };
         statusBar.Add(status);
     }
     public void SetTurnMarker(Transform target)

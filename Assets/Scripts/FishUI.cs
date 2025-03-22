@@ -87,6 +87,7 @@ public class FishUI : VisualElement
         statusBar.Remove(status);
         status.MouseEnter -= onHoverStatus;
         status.MouseExit -= onHoverExit;
+       
         statusIcon.Remove(instance);
 
     }
@@ -94,6 +95,7 @@ public class FishUI : VisualElement
     private void NewEffect(StatusEffect.StatusEffectInstance instance)
     {
         var status = new StatusIcon(instance);
+        instance.DurationChanged += (x) => { status.UpdateIcon(x); };
         status.MouseEnter += onHoverStatus;
         status.MouseExit += onHoverExit;
         statusIcon[instance]=status;
