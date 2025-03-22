@@ -516,7 +516,10 @@ public class CombatUI : VisualElement
     public void EnableButtons()
     {
         inputs.Combat.EndTurn.performed += OnEndTurn;
-        moveButton.SetEnabled(currentTurn.ActionLeft);
+        if (moveButton != null)
+        {
+            moveButton.SetEnabled(currentTurn.ActionLeft);
+        }
         for (int i = 0; i < abilityButtons.Length; i++)
         {
             abilityButtons[i].SetEnabled(true);
@@ -530,10 +533,13 @@ public class CombatUI : VisualElement
             }
 
         }
-        foreach (CombatItemUI item in itemBar.Children())
+        if (itemBar != null)
         {
-            
-            item.SetEnabled(currentTurn.ItemUsable(item.item));
+            foreach (CombatItemUI item in itemBar.Children())
+            {
+
+                item.SetEnabled(currentTurn.ItemUsable(item.item));
+            }
         }
         endTurnButton.SetEnabled(true);
         if (currentTurn.ActionLeft)
