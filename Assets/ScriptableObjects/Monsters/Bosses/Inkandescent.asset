@@ -12,49 +12,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Inkandescent
   m_EditorClassIdentifier: 
-  description: 
-  model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 19
+  description: "It catches prey by luring them with its luminescent digestive fluids.
+    It subdues them with its body radiating 10,000\xB0F."
+  model: {fileID: 3310206257890562397, guid: e63042fc75535844ebb0ab7b57c543f7, type: 3}
+  fishId: 23
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: 0
+  homeDepth: -1
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}
   - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   agility:
-    min: 15
-    max: 30
+    min: 35
+    max: 35
     minTalent: 0
     maxTalent: 0
   attack:
-    min: 15
-    max: 30
+    min: 50
+    max: 50
     minTalent: 0
     maxTalent: 0
   special:
-    min: 15
-    max: 30
+    min: 50
+    max: 50
     minTalent: 0
     maxTalent: 0
   fortitude:
-    min: 15
-    max: 30
+    min: 20
+    max: 20
     minTalent: 0
     maxTalent: 0
   specialFortitude:
-    min: 0
-    max: 0
+    min: 20
+    max: 20
     minTalent: 0
     maxTalent: 0
   accuracy:
-    min: 0
-    max: 0
+    min: 50
+    max: 50
     minTalent: 0
     maxTalent: 0
-  baseHealth: 75
-  baseStamina: 75
-  baseAbilities: []
+  baseHealth: 550
+  baseStamina: 180
+  baseAbilities:
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 8ea9acfa0dfef9b4f841e3cd675356ad, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 8c3bab4c2d2d60249bbf6c3621b15aee, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 78cc93ccc6f7ab84382ff5f2924cce36, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}

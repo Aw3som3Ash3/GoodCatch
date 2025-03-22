@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
+  m_Name: Coaliath
+  m_EditorClassIdentifier: 
+  description: A fish made of rocks with a heart of gold. It is the easiest fish
+    to domesticate almost as if it's a puppy.
+  model: {fileID: 0}
+  fishId: 27
+  icon: {fileID: 21300000, guid: 79da186cf396e88419642c6f1bff0289, type: 3}
+  miniSprite: {fileID: 0}
+  homeDepth: 2
+  preferredBait: []
+  elements:
+  - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
+  agility:
+    min: 5
+    max: 15
+    minTalent: 0
+    maxTalent: 1
+  attack:
+    min: 15
+    max: 30
+    minTalent: 2
+    maxTalent: 3
+  special:
+    min: 5
+    max: 15
+    minTalent: 0
+    maxTalent: 1
+  fortitude:
+    min: 20
+    max: 30
+    minTalent: 4
+    maxTalent: 5
+  specialFortitude:
+    min: 20
+    max: 30
+    minTalent: 4
+    maxTalent: 5
+  accuracy:
+    min: 50
+    max: 50
+    minTalent: 1
+    maxTalent: 2
+  baseHealth: 120
+  baseStamina: 70
+  baseAbilities:
+  - potentialAbilities:
+    - {fileID: 11400000, guid: e21e0dca23cf4eb409da00de008424ad, type: 2}
+    - {fileID: 11400000, guid: 67fcadd0cdce4574bb5dd7dad291ed6c, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: 6f0b18afa1bf3f9479af120461844496, type: 2}
+    - {fileID: 11400000, guid: 393983853216d5942aa589ba479dbda9, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: f84a911f78ce9074c9373d5669071b85, type: 2}
+    - {fileID: 11400000, guid: b15adeb7793cf364584a5fd78c0a2bf1, type: 2}
+  difficulty: 0
+  attackAnimation: {fileID: 0}
+  idleAnimation: {fileID: 0}
+  buffAnimation: {fileID: 0}

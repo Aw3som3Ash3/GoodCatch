@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Aegiscute
   m_EditorClassIdentifier: 
-  description: 
+  description: It constantly emitting electricity as it swims. When attacked, it
+    emits an electric blast, knocking back its enemies for a moment to escape.
   model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 24
+  fishId: 25
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: 0
+  homeDepth: 1
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
@@ -25,43 +26,46 @@ MonoBehaviour:
   agility:
     min: 20
     max: 35
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   attack:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   special:
     min: 10
     max: 20
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   fortitude:
     min: 15
     max: 25
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   specialFortitude:
     min: 10
     max: 20
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 3
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 2
   baseHealth: 65
   baseStamina: 80
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: d1bff690dda50ae44bacec0db9f01968, type: 2}
     - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 322af361c845dc84a82d6737b904623d, type: 2}
+    - {fileID: 11400000, guid: 69755b5b279d89248887bebfd7afc2ca, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 766102c97b384ce4c9e11b26b1f15ff2, type: 2}
+    - {fileID: 11400000, guid: f84a911f78ce9074c9373d5669071b85, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

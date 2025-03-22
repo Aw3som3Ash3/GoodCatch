@@ -12,25 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: BladeBill
   m_EditorClassIdentifier: 
-  description: 
+  description: The fiercest fighter of the sea. Fights each other for territorial
+    dispute. Their valor fuels them for a lifetime.
   model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 17
+  fishId: 18
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: 0
+  homeDepth: 1
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
   agility:
     min: 20
     max: 35
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   attack:
     min: 15
     max: 25
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 3
   special:
     min: 5
     max: 10
@@ -39,29 +40,31 @@ MonoBehaviour:
   fortitude:
     min: 15
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   specialFortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 5
+    maxTalent: 5
   baseHealth: 75
   baseStamina: 90
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: e931c4f7cfe397d44bb4653ee8dec15b, type: 2}
+    - {fileID: 11400000, guid: 072bd60bf76bb11468733e07c34cbe2d, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 322af361c845dc84a82d6737b904623d, type: 2}
+    - {fileID: 11400000, guid: b5535b7f539ae8f43a56020729802d77, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: dad2a0b47f961a948911c5cb972fbbfd, type: 2}
+    - {fileID: 11400000, guid: bb7107c52a571604188d7294f95d5f71, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

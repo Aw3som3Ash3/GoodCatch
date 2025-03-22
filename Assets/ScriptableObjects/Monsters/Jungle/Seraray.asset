@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Seraray
   m_EditorClassIdentifier: 
-  description: 
+  description: A ray fish that feels heavenly, bringing peace to the ocean and its
+    inhabitants when nearby.
   model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 13
+  fishId: 22
   icon: {fileID: 21300000, guid: f20264d0a1892024c88c9f36649ff27b, type: 3}
   miniSprite: {fileID: 21300000, guid: f20264d0a1892024c88c9f36649ff27b, type: 3}
-  homeDepth: 0
+  homeDepth: 1
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
@@ -25,23 +26,23 @@ MonoBehaviour:
   agility:
     min: 30
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   attack:
     min: 30
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 4
   special:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   fortitude:
     min: 15
     max: 25
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   specialFortitude:
     min: 5
     max: 10
@@ -50,19 +51,21 @@ MonoBehaviour:
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 5
   baseHealth: 70
   baseStamina: 90
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 072bd60bf76bb11468733e07c34cbe2d, type: 2}
+    - {fileID: 11400000, guid: 14a089054367e8c418b1c6278d9dba99, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: f4c16e1a830dfaf4a8d15a1d90b6bb68, type: 2}
+    - {fileID: 11400000, guid: bb9e47fdeb55a7141a3bd68f84319a96, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: b15adeb7793cf364584a5fd78c0a2bf1, type: 2}
+    - {fileID: 11400000, guid: c966308c70b7cff41afd92215fd5107b, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

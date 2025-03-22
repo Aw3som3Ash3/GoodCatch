@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Germinno
   m_EditorClassIdentifier: 
-  description: 
+  description: Its eyes are on top of its head. It poses as a harmless creature to
+    give prey a false sense of security before consuming them.
   model: {fileID: 0}
-  fishId: 0
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  fishId: 28
+  icon: {fileID: 21300000, guid: 1073b64854626134ca0da922b7afa1d7, type: 3}
   miniSprite: {fileID: 0}
-  homeDepth: 0
+  homeDepth: 4
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
@@ -25,41 +26,45 @@ MonoBehaviour:
     min: 5
     max: 15
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   attack:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   special:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   fortitude:
     min: 20
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 4
   specialFortitude:
     min: 20
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 4
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 2
   baseHealth: 90
   baseStamina: 50
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: a8035b3bd99139044b2e81087e511dee, type: 2}
+    - {fileID: 11400000, guid: b82acbfe5004fbe45b49ec2f1c4f5455, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 708f1b780ed60d44b8aa684bf3509d7a, type: 2}
+    - {fileID: 11400000, guid: 2785f2ba1d82bc542ad4dcbd60f4e64b, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 2f1ffb4585a203b488f8442c09b5646d, type: 2}
+    - {fileID: 11400000, guid: 30266ea6e5707f846bff93d0c30dbaf9, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 0}
   idleAnimation: {fileID: 0}
+  buffAnimation: {fileID: 0}

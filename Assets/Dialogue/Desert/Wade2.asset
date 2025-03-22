@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: Wade2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136708794253367
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136708794253367
+  - rid: 2727136727628251159
+  decorators:
+  - rid: 2727136727628251160
+  - rid: 2727136727628251196
+  events:
+  - {fileID: 9036447550016696027}
+  - {fileID: 5417725798154797186}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136708794253367
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: What!? No way! You musta cheated or somethin' to get that!
+        voiceClip: {fileID: 0}
+        guid: 6a1920241eb554c419a1b418a558072f
+        decorators:
+        - rid: 2727136727628251196
+        position: {x: 426, y: -28}
+        nextNode:
+          rid: 2727136727628251159
+    - rid: 2727136727628251159
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Whateva, I'll just fight you for it instead!
+        voiceClip: {fileID: 0}
+        guid: 78cfded6ea8a5134196c8b8d862da716
+        decorators:
+        - rid: 2727136727628251160
+        position: {x: 832, y: -28}
+        nextNode:
+          rid: -2
+    - rid: 2727136727628251160
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 832, y: 182}
+        guid: 8009a8ee1218a4c4d9bfa0864c797356
+        dialogueEvent: {fileID: 9036447550016696027}
+    - rid: 2727136727628251196
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 407, y: 171}
+        guid: bffd71bfc6a4cd3498e2c80f847484eb
+        dialogueEvent: {fileID: 5417725798154797186}
+--- !u!114 &5417725798154797186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: SpeakToWadeDesertFight
+  m_EditorClassIdentifier: 
+--- !u!114 &9036447550016696027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FirstWadeFight
+  m_EditorClassIdentifier: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: No Touch!
   m_EditorClassIdentifier: 
   duration: 4
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: c066ff42510bf5d41ab5794ef377854c, type: 3}
   effectUsage: 0
   damage: 10
   element: {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}

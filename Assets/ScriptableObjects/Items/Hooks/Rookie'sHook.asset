@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8896a47a71d13e3439e8199b39079c99, type: 3}
+  m_Name: Rookie'sHook
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  description: Used to catch an opposing monster. A bit crooked, but gets the job
+    done. Sometimes.
+  itemId: cb0af2b5415304f4792a4a5c14788f41
+  catchBonus: 1

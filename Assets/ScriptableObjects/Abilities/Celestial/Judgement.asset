@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
+  m_Name: Judgement
+  m_EditorClassIdentifier: 
+  ignoreSelf: 0
+  abilityType: 1
+  availableDepths: 1
+  targetableDepths: 6
+  targetTeam: 1
+  targetingType: 0
+  piercing: 0
+  staminaUsage: 25
+  baseDamage: 25
+  accuracy: 0.6
+  damageMultiplier: 0.5
+  element: {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 117721be37746594bbae2b229eda4f3e, type: 2}
+    effectChance: 0.5
+  forcedMovement: 0
+  icon: {fileID: 0}
+  abilityVFX: {fileID: 0}
+  targetVFX: {fileID: 0}
+  abilityID: 68fbf420-e8ce-4363-be3b-59da1f1f5280

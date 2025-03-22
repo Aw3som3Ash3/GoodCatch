@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Pyrish
   m_EditorClassIdentifier: 
-  description: 
+  description: A common fish with no notable skills. Struggles to stand out, even
+    when compared to a goldfish.
   model: {fileID: 382904234463608869, guid: 7b82c4c356ef77f4fbd0a48f185782a1, type: 3}
-  fishId: 0
+  fishId: 1
   icon: {fileID: 21300000, guid: c241e728dd65ba44b80f5bc3a7491b34, type: 3}
   miniSprite: {fileID: 1569861162, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
-  homeDepth: 0
+  homeDepth: -1
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
@@ -25,32 +26,32 @@ MonoBehaviour:
     min: 15
     max: 30
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 2
   attack:
     min: 15
     max: 30
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 2
   special:
     min: 15
     max: 30
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 2
   fortitude:
     min: 8
     max: 15
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 2
   specialFortitude:
     min: 8
     max: 15
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 2
   accuracy:
     min: 50
     max: 50
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 2
   baseHealth: 100
   baseStamina: 60
   baseAbilities:
@@ -64,3 +65,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: -6041800682480947867, guid: cdcf3c9b8c0f6a643bdb737875dd6491, type: 3}
   idleAnimation: {fileID: -3100369314251171874, guid: 0160b92afe5b5a74a876363f68994f29, type: 3}
+  buffAnimation: {fileID: 0}

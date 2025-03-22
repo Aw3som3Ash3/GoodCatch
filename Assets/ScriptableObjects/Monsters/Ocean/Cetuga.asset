@@ -12,56 +12,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Cetuga
   m_EditorClassIdentifier: 
-  description: 
+  description: A porpoise with a purpose to invade privacy. Its favorite activity
+    is reading people's minds; gossips and laughs to its pod about your personal
+    drama.
   model: {fileID: 1590864492785952054, guid: 56c1bf4b8a58b6e4d9ce8ff18caac8b3, type: 3}
-  fishId: 9
+  fishId: 8
   icon: {fileID: 21300000, guid: e99c3f22db0a15c41901ccf963e294e4, type: 3}
   miniSprite: {fileID: -619332588, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
-  homeDepth: 0
+  homeDepth: 2
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 861589faee089304c8b447c528048ad1, type: 2}
   agility:
     min: 10
     max: 20
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   attack:
     min: 10
     max: 20
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   special:
     min: 20
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   fortitude:
     min: 8
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   specialFortitude:
     min: 10
     max: 20
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 5
   baseHealth: 110
   baseStamina: 70
   baseAbilities:
   - potentialAbilities:
+    - {fileID: 11400000, guid: 152b7232687c7ce4bbbf7f019f494120, type: 2}
     - {fileID: 11400000, guid: 7917483379e230a4aa99b81d7324e023, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 4ea6784133f651442ba2dc5608554c37, type: 2}
+    - {fileID: 11400000, guid: a555c199e2689bc4ab0df0195d3ac0e7, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 2785f2ba1d82bc542ad4dcbd60f4e64b, type: 2}
+    - {fileID: 11400000, guid: 550772ef047084b4c9a924caad28ec7a, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

@@ -178,7 +178,15 @@ public class CombatVisualizer : MonoBehaviour
             return;
         }
         //StartCoroutine(TempAttackAnim(turnToObject[turn].transform.position, turnToObject[target].transform.position, CompletedMove));
-        turnToObject[turn].AttackAnimation(() => { });
+        if (ability.TargetedTeam == Ability.TargetTeam.enemy)
+        {
+            turnToObject[turn].AttackAnimation(() => { });
+        }
+        else
+        {
+            turnToObject[turn].BuffAnimation(() => { });
+        }
+
         //if (ability.AbilityVFX)
         //{
 
@@ -220,7 +228,7 @@ public class CombatVisualizer : MonoBehaviour
         }
           
     }
-    void StopSelectingFish()
+    public void StopSelectingFish()
     {
         foreach (var fish in turnToObject)
         {
@@ -235,7 +243,7 @@ public class CombatVisualizer : MonoBehaviour
         }
     }
 
-    void FinishedSelecting()
+    public void FinishedSelecting()
     {
         Debug.Log("should disable selections");
         foreach(var fish in turnToObject)
@@ -245,6 +253,30 @@ public class CombatVisualizer : MonoBehaviour
             fish.Value.Navigate -= OnFishNavigate;
             selectedFish = null;
         }
+    }
+    public void DoStatusEffect(StatusEffect effect, Turn turn, Action CompletedMove)
+    {
+        StartCoroutine(ParticleStatusEffect(effect, turn, CompletedMove));
+    }
+
+    IEnumerator ParticleStatusEffect(StatusEffect effect,Turn turn ,Action CompletedMove)
+    {
+        if (effect.ParticlePrefab != null)
+        {
+            var particleEffect = Instantiate(effect.ParticlePrefab, turnToObject[turn].transform.position, Quaternion.identity);
+            var main = particleEffect.main;
+            main.stopAction = ParticleSystemStopAction.Destroy;
+            //beam.SetParticles(beam,)
+            //lifetime.constant = 0;
+            particleEffect.Play();
+            yield return new WaitForSeconds(particleEffect.main.duration + particleEffect.main.startLifetime.constant);
+        }
+        else
+        {
+            Debug.LogWarning("missing animation on ability");
+            yield return new WaitForNextFrameUnit();
+        }
+        CompletedMove?.Invoke();
     }
     IEnumerator ParticleAttackAnim(Ability ability,Vector3 start, Vector3 destination, Action CompletedMove)
     {

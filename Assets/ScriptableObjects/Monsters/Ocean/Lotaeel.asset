@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Lotaeel
   m_EditorClassIdentifier: 
-  description: 
+  description: A solitary creature. A grumpy fish that shocks others that invade
+    its personal space.
   model: {fileID: 4971115903728978154, guid: 43411f4c1e67f94419f1d88d2b8e5e01, type: 3}
-  fishId: 8
+  fishId: 12
   icon: {fileID: 21300000, guid: 2488b315dc736994781fe71d6b5c270c, type: 3}
   miniSprite: {fileID: 901536447, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
-  homeDepth: 0
+  homeDepth: 4
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
@@ -25,18 +26,18 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   attack:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   special:
     min: 25
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   fortitude:
     min: 5
     max: 10
@@ -45,24 +46,26 @@ MonoBehaviour:
   specialFortitude:
     min: 10
     max: 20
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 3
   baseHealth: 90
   baseStamina: 60
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: 9870c6867313ff042b2af302d92f3d57, type: 2}
+    - {fileID: 11400000, guid: d1bff690dda50ae44bacec0db9f01968, type: 2}
+    - {fileID: 11400000, guid: f2ed205cc07d3f04c973a09fc19496a2, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 138dd6765ad5b6c48abe9b26327da8d3, type: 2}
-  - potentialAbilities:
     - {fileID: 11400000, guid: babfb648c045671478c8be8f12d909ac, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: c3eadf08d365a6948b60282aded99fe5, type: 2}
+    - {fileID: 11400000, guid: 9870c6867313ff042b2af302d92f3d57, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

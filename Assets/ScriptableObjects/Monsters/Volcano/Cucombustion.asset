@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Cucombustion
   m_EditorClassIdentifier: 
-  description: 
+  description: While not shy, it extremely dislikes being touched by strangers. If
+    uncomfortable, it erupts magma when touched.
   model: {fileID: 1155657516643993098, guid: 1418e7326a986064db840f4b16c82369, type: 3}
-  fishId: 20
+  fishId: 15
   icon: {fileID: 21300000, guid: 43c8f86040d5927468701f7b8f5d58f5, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: -1
+  homeDepth: 4
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}
@@ -30,36 +31,40 @@ MonoBehaviour:
     min: 5
     max: 10
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   special:
     min: 20
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   fortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 3
   specialFortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 3
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   baseHealth: 80
   baseStamina: 70
   baseAbilities:
   - potentialAbilities:
+    - {fileID: 11400000, guid: 551536d34ef325b459d2524e28241e1f, type: 2}
     - {fileID: 11400000, guid: 5cd7b8415f98a9a4483d0688c8ae46cd, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 6582a967d2ab48b42a14934cf3c96901, type: 2}
+    - {fileID: 11400000, guid: cb0708732c6c4a24c9f60a5bc3c5f769, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 8c3bab4c2d2d60249bbf6c3621b15aee, type: 2}
+    - {fileID: 11400000, guid: d20d3edef4cd3ed49ae78cab848f331b, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

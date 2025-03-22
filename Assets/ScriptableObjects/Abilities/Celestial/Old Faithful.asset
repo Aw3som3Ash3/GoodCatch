@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
+  m_Name: Old Faithful
+  m_EditorClassIdentifier: 
+  ignoreSelf: 1
+  abilityType: 1
+  availableDepths: 1
+  targetableDepths: -1
+  targetTeam: 0
+  targetingType: 1
+  piercing: 1
+  staminaUsage: 30
+  baseDamage: -20
+  accuracy: 0.9
+  damageMultiplier: 0.5
+  element: {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 8069c79d608786243be035f7c9c50bf1, type: 2}
+    effectChance: 0.5
+  forcedMovement: 0
+  icon: {fileID: 0}
+  abilityVFX: {fileID: 0}
+  targetVFX: {fileID: 0}
+  abilityID: 02816481-df10-4a6b-88d2-d10293853131

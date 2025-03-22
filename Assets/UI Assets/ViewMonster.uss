@@ -1,0 +1,30 @@
+#HpBar .unity-progress-bar__title-container {
+}
+
+#HpBar #unity-progress-bar {
+    min-height: 59px;
+}
+
+#HpBar .unity-progress-bar__background {
+    background-color: rgb(255, 255, 255);
+}
+
+#HpBar .unity-progress-bar__progress {
+    background-color: rgb(46, 255, 0);
+}
+
+#HpBar .unity-text-element {
+    font-size: 60px;
+}
+
+#xpBar .unity-text-element {
+    color: rgba(0, 0, 0, 0);
+}
+
+#xpBar .unity-progress-bar__progress {
+    background-color: rgb(36, 201, 255);
+}
+
+#xpBar .unity-progress-bar__background {
+    background-color: rgb(255, 255, 255);
+}

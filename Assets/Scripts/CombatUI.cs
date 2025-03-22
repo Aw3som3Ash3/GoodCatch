@@ -472,6 +472,7 @@ public class CombatUI : VisualElement
         UpdateInfo(fish);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
+            Debug.Log(abilityButtons[i]);
             float damage = fish.GetAbility(i).GetDamage(fish);
             abilityButtons[i].SetAbility(fish.GetAbility(i), damage, fish.Accuracy.value);
             abilityButtons[i].SetEnabled(true);
@@ -514,7 +515,7 @@ public class CombatUI : VisualElement
     }
     public void EnableButtons()
     {
-
+        inputs.Combat.EndTurn.performed += OnEndTurn;
         moveButton.SetEnabled(currentTurn.ActionLeft);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
@@ -558,6 +559,8 @@ public class CombatUI : VisualElement
         {
             item.SetEnabled(false);
         }
+        inputs.Combat.EndTurn.performed -= OnEndTurn;
+        
     }
 
     public void UpdateVisuals(PlayerTurn currentTurn)
@@ -726,13 +729,24 @@ public class CombatUI : VisualElement
         return fishUI;
     }
 
-    void EnableUI(bool b)
+    public void EnableUI(bool b)
     {
         this.SetEnabled(!b);
+        if (b)
+        {
+            inputs.Combat.EndTurn.performed += OnEndTurn;
+        }
+        else
+        {
+            inputs.Combat.EndTurn.performed -= OnEndTurn;
+        }
     }
+
+
 
     ~CombatUI() 
     {
         PauseMenu.GamePaused -= EnableUI;
+        inputs.Combat.EndTurn.performed -= OnEndTurn;
     }
 }

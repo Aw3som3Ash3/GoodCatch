@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3373975592425504694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: TalkToKeeps
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: KingPenguin1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136708794253356
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136708794253356
+  - rid: 2727136708794253357
+  - rid: 2727136708794253358
+  - rid: 2727136708794253359
+  decorators:
+  - rid: 2727136708794253361
+  - rid: 2727136727628251185
+  events:
+  - {fileID: -3373975592425504694}
+  - {fileID: 1060325558273890312}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136708794253356
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Ah, you''re awake! I''m King Penguin! We saw you wash ashore and
+
+          tended
+          to your care immediately. Tell me, how do you feel?'
+        voiceClip: {fileID: 0}
+        guid: e38b2c6272d28d340bccf3d5fb733ce3
+        decorators: []
+        position: {x: 447, y: -15}
+        decisions:
+        - choice: Could be worse...
+          choiceNode:
+            rid: 2727136708794253357
+        - choice: Where's...my crew?
+          choiceNode:
+            rid: 2727136708794253358
+    - rid: 2727136708794253357
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Haha, I suppose it could be! Unfortunately however, it seems
+
+          your
+          stay here might be...extended. Not exactly any easy
+
+          way to get
+          past that blasted devil out there. That...leviathan...
+
+          has kept
+          us all here for generations.'
+        voiceClip: {fileID: 0}
+        guid: 1bc69bd7241d94149a516ddf40cecda8
+        decorators: []
+        position: {x: 1006, y: -68}
+        nextNode:
+          rid: 2727136708794253359
+    - rid: 2727136708794253358
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Crew...? I apologize, we saw no others wash upon our shores...
+
+          but
+          if it has anything to do with that wretched beast out there, I
+
+          fear
+          they''re unlikely to have survived. You''re lucky to even be
+
+          all
+          in one piece.'
+        voiceClip: {fileID: 0}
+        guid: 304dff6635617984eb3ee6311014226c
+        decorators: []
+        position: {x: 1006, y: 138}
+        nextNode:
+          rid: 2727136708794253359
+    - rid: 2727136708794253359
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'But I''ve rambled to you long enough. Our egghead we call Keeps
+
+          at
+          the Aquarium wishes to speak to you. Something about a weird
+
+          fish
+          that couldn''t help but be beside you.'
+        voiceClip: {fileID: 0}
+        guid: 0a4ea5fe25f1cb74c8e8b4594cba7d14
+        decorators:
+        - rid: 2727136708794253361
+        - rid: 2727136727628251185
+        position: {x: 1495, y: 35}
+        nextNode:
+          rid: -2
+    - rid: 2727136708794253361
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1519, y: 292}
+        guid: 7131490d3e184ab488cabcd91abd8f30
+        dialogueEvent: {fileID: -3373975592425504694}
+    - rid: 2727136727628251185
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1871, y: 292}
+        guid: 76fbcd6aca159874a8db14a1d87be054
+        dialogueEvent: {fileID: 1060325558273890312}
+--- !u!114 &1060325558273890312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FirstSpeakToPenguin
+  m_EditorClassIdentifier: 

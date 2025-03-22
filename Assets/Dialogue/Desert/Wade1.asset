@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: Wade1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136708794253367
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136708794253367
+  - rid: 2727136727628251153
+  - rid: 2727136727628251154
+  decorators:
+  - rid: 2727136727628251183
+  events:
+  - {fileID: 7705723223025206442}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136708794253367
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Hey you''re that new girl! Sorry about what happened to ya,
+
+          wouldn''t
+          let it happen to me though. Jus'' sayin''.'
+        voiceClip: {fileID: 0}
+        guid: 6a1920241eb554c419a1b418a558072f
+        decorators:
+        - rid: 2727136727628251183
+        position: {x: 407, y: -23}
+        nextNode:
+          rid: 2727136727628251153
+    - rid: 2727136727628251153
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[Wade reels back in an empty hook.]'
+        voiceClip: {fileID: 0}
+        guid: eb0b8276b1be4b943b9da948a7b28ff2
+        decorators: []
+        position: {x: 830, y: -3}
+        nextNode:
+          rid: 2727136727628251154
+    - rid: 2727136727628251154
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Great. Another dud. Gonna hafta tell Keeps his hooks ain''t
+
+          hookin''.
+          If you wanna take a cast at it, be my guest.'
+        voiceClip: {fileID: 0}
+        guid: 58db3fda98809c64e8887a8dc8bb6f56
+        decorators: []
+        position: {x: 1225, y: 8}
+        nextNode:
+          rid: -2
+    - rid: 2727136727628251183
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 432, y: 209}
+        guid: f8a759ced268d7d47bbe58de5589c09c
+        dialogueEvent: {fileID: 7705723223025206442}
+--- !u!114 &7705723223025206442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FirstSpeakToWade
+  m_EditorClassIdentifier: 

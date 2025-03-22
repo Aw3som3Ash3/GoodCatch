@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Tentavolt
   m_EditorClassIdentifier: 
-  description: 
+  description: Each tentacle holds a 3,000 volts, totaling 18,000 volts. The cure
+    for its poison can only be made with the same Tentavolt.
   model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 21
+  fishId: 17
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: -1
+  homeDepth: 4
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
@@ -25,18 +26,18 @@ MonoBehaviour:
   agility:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   attack:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   special:
     min: 15
     max: 25
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   fortitude:
     min: 5
     max: 10
@@ -45,24 +46,26 @@ MonoBehaviour:
   specialFortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 4
   baseHealth: 60
   baseStamina: 100
   baseAbilities:
   - potentialAbilities:
+    - {fileID: 11400000, guid: d1bff690dda50ae44bacec0db9f01968, type: 2}
+    - {fileID: 11400000, guid: b82acbfe5004fbe45b49ec2f1c4f5455, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: c3eadf08d365a6948b60282aded99fe5, type: 2}
     - {fileID: 11400000, guid: 9870c6867313ff042b2af302d92f3d57, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: d785e421f2fe2784f9c2221094b933c3, type: 2}
+    - {fileID: 11400000, guid: 40dc825117cf950478fccefe7fa78f2e, type: 2}
+    - {fileID: 11400000, guid: a8035b3bd99139044b2e81087e511dee, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

@@ -18,8 +18,8 @@ MonoBehaviour:
   targetableDepths: 4
   targetTeam: 0
   targetingType: 0
-  piercing: 1
-  staminaUsage: 5
+  piercing: 0
+  staminaUsage: 10
   baseDamage: -50
   accuracy: 0
   damageMultiplier: 0.8

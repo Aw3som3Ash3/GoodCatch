@@ -15,17 +15,17 @@ MonoBehaviour:
   ignoreSelf: 0
   abilityType: 0
   availableDepths: 6
-  targetableDepths: 5
+  targetableDepths: 3
   targetTeam: 1
   targetingType: 0
   piercing: 0
-  staminaUsage: 15
-  baseDamage: 15
+  staminaUsage: 20
+  baseDamage: 20
   accuracy: 0.6
   damageMultiplier: 0.5
   element: {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
   effects: []
-  forcedMovement: 0
+  forcedMovement: -1
   icon: {fileID: 0}
   abilityVFX: {fileID: 0}
   targetVFX: {fileID: 0}

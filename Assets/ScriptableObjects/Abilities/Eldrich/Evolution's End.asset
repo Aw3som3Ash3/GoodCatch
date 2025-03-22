@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
+  m_Name: Evolution's End
+  m_EditorClassIdentifier: 
+  ignoreSelf: 0
+  abilityType: 1
+  availableDepths: -1
+  targetableDepths: -1
+  targetTeam: 3
+  targetingType: 1
+  piercing: 1
+  staminaUsage: 30
+  baseDamage: 30
+  accuracy: 0.5
+  damageMultiplier: 0.5
+  element: {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
+  effects:
+  - statusEffect: {fileID: 11400000, guid: c8a71b67915034546a31b2cec6651650, type: 2}
+    effectChance: 1
+  forcedMovement: 0
+  icon: {fileID: 0}
+  abilityVFX: {fileID: 0}
+  targetVFX: {fileID: 0}
+  abilityID: 5bea56cc-a346-46b3-ab0d-9fe48edc4327
