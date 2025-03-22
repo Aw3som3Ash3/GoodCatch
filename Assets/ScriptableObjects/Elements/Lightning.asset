@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
   - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   veryWeak: []
+  icon: {fileID: 21300000, guid: a53d5aaf9c8bb9846a5ad02be9b6bc00, type: 3}
