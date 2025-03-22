@@ -1153,6 +1153,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 if (e.IsEffect(effect))
                 {
                     e.ResetEffect(owner);
+                    //NewEffect?.Invoke(instance);
                     return;
                 }
 
