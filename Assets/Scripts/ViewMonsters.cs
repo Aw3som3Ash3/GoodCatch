@@ -10,10 +10,10 @@ public class ViewMonsters : VisualElement
 {
     int abilityTabIndex;
     InputAction tabAbility;
-    VisualElement monsterIcon, elementalIcon1, elementalIcon2, abilityEffectIcons;
+    VisualElement monsterIcon, elementalIcon1, elementalIcon2, abilityEffectIcons, abilityElementIcon;
     ProgressBar healthBar, xpBar;
     Label speciesName,nameTitle, levelText, physical, defence, accuracy, magical, resistance, agility, stamina;
-    Label abilityScaledDamage, abilityStaminaCost, abilityAccuracy, abilityTargetTeam, abilityUsableDepth, abilityTargetableDepth;
+    Label abilityScaledDamage, abilityStaminaCost, abilityAccuracy, abilityTargetTeam, abilityUsableDepth,abilityTargetableDepth, abilityName, abilityElement, abilityType, abilityPiercing, abilityMovement;
     FishMonster fishMonster;
     
 
@@ -60,8 +60,14 @@ public class ViewMonsters : VisualElement
         abilityStaminaCost = this.Q<Label>("StaminaAmount");
         abilityAccuracy = this.Q<Label>("AccuracyAmount");
         abilityTargetTeam = this.Q <Label> ("TargetWhomAmount");
-        abilityUsableDepth = this.Q<Label>("UseLaneAmount");
-        abilityUsableDepth = this.Q<Label>("TargetLaneAmount");
+        abilityName = this.Q<Label>("AbilityName");
+        abilityElement = this.Q<Label>("AbilityElement"); 
+        abilityType = this.Q<Label>("AbilityType");
+        abilityPiercing = this.Q<Label>("PiercingAmount");
+        abilityMovement = this.Q<Label>("MovementAmount");
+        abilityElementIcon = this.Q("AbilityElementIcon");
+        //abilityUsableDepth = this.Q<Label>("UseLaneAmount");
+        //abilityTargetableDepth = this.Q<Label>("TargetLaneAmount");
         abilityEffectIcons = this.Q("PopulateEffects");
 
    
@@ -136,13 +142,32 @@ public class ViewMonsters : VisualElement
     void UpdateAbility()
     {
         Ability ability = fishMonster.GetAbility(abilityTabIndex);
-        abilityScaledDamage.text = ability.GetDamage(fishMonster).ToString();
+        abilityScaledDamage.text = ability.GetDamage(fishMonster).ToString("00");
         abilityStaminaCost.text = ability.StaminaUsage.ToString();
         abilityAccuracy.text = ability.StaminaUsage.ToString();
         abilityTargetTeam.text = ability.TargetedTeam.ToString();
+        abilityName.text = ability.name.ToString();
+        if (ability.AbilityPhysicalMagical == Ability.AbilityType.attack)
+        {
+            abilityType.text = "Physical";
+        }
+        else
+        {
+            abilityType.text = "Magical";
+        }
+        abilityElement.text = ability.Element.name.ToString();
+        abilityPiercing.text = ability.Piercing.ToString();
+        abilityMovement.text = ability.ForcedMovement.ToString();
         //abilityUsableDepth.text = ability.AvailableDepths.ToString();
         //abilityTargetableDepth.text = ability.TargetableDepths.ToString();
         //The two above Broke
+
+        abilityElementIcon.Clear();
+        var value = abilityElementIcon.style.backgroundImage.value;
+        value.sprite = ability.Element.Icon;
+        abilityElementIcon.style.backgroundImage = value;
+
+
 
 
         abilityEffectIcons.Clear();
@@ -151,9 +176,9 @@ public class ViewMonsters : VisualElement
             Label label = new();
             label.style.width = 60;
             label.style.height = 60;
-            var value = label.style.backgroundImage.value;
-            value.texture = effect.Effect.Icon;
-            label.style.backgroundImage = value;
+            var verdict = label.style.backgroundImage.value;
+            verdict.texture = effect.Effect.Icon;
+            label.style.backgroundImage = verdict;
             abilityEffectIcons.Add(label);
         }
     }
