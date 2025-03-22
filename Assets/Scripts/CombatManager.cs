@@ -423,7 +423,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void EndFight(Team winningTeam)
     {
-        playerFishes.ForEach((f) => f.UpdateHealth(getFishesTurn[f].Health));
+        playerFishes.ForEach((f) => {if(getFishesTurn.ContainsKey(f)) f.UpdateHealth(getFishesTurn[f].Health); });
         combatUI.EnableUI(false);
         StartCoroutine(CombatVictoryScreen(winningTeam));
        
