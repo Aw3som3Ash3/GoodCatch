@@ -11,6 +11,9 @@ public abstract class StatusEffect: ScriptableObject
     [SerializeField]
     Texture2D icon;
     public Texture2D Icon { get { return icon; } }
+    [SerializeField]
+    ParticleSystem particlePrefab;
+    public ParticleSystem ParticlePrefab { get { return particlePrefab; } }
     public enum EffectUsage
     {
         preTurn,
