@@ -33,4 +33,12 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: flex-end;">
+            <InputHudTip inputName="Submit" style="width: 60px; height: 60px;" />
+            <ui:Label tabindex="-1" text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; font-size: 48px; margin-right: 849px;" />
+            <InputHudTip inputName="Back" style="width: 60px; height: 60px;" />
+            <ui:Label tabindex="-1" text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; font-size: 48px; margin-right: 32px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
