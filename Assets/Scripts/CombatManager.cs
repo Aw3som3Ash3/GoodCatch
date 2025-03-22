@@ -11,6 +11,7 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static CombatManager;
+using static UnityEngine.VFX.VFXTypeAttribute;
 
 
 public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
@@ -652,7 +653,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         
         combatUI.RemoveTurn(turn);
         turnList.Remove(turn);
-        getFishesTurn.Remove(turn.fish);
+        //getFishesTurn.Remove(turn.fish);
         //playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
@@ -930,12 +931,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         void TickLastEffects()
         {
             List<StatusEffect> effectsToRemove=new();
-            foreach (var effect in lastEffects)
+            foreach (var effect in lastEffects.Keys.ToArray())
             {
-                lastEffects[effect.Key]--;
-                if (effect.Value <= 0)
+                lastEffects[effect]--;
+                if (lastEffects[effect] <= 0)
                 {
-                    effectsToRemove.Add(effect.Key);
+                    effectsToRemove.Add(effect);
                 }
             }
 
@@ -958,7 +959,15 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         {
             if (Health <= 0)
             {
-                combatManager.CompletedAllActions +=Feint;
+                if (actionsCompleted)
+                {
+                    Feint();
+                }
+                else
+                {
+                    combatManager.CompletedAllActions += Feint;
+                }
+               
                 return true;
             }
             return false;
@@ -983,12 +992,22 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
            
             
             combatManager.combatUI.NewTurn(this, team == Team.player);
-            TickEffects(StatusEffect.EffectUsage.preTurn);
-            if (combatManager.CanFightEnd())
+            TickEffects(StatusEffect.EffectUsage.preTurn, () => 
             {
-                //EndTurn();
-                return;
-            }
+                if (actionsLeft <= 0)
+                {
+                    combatManager.combatUI.EnableButtons();
+                    EndTurn();
+                }
+                if (combatManager.CanFightEnd())
+                {
+                    //EndTurn();
+                    return;
+                }
+
+            });
+            
+           
 
             //NewTurn?.Invoke(this, team == Team.player);
 
@@ -1014,9 +1033,13 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             if (actionsCompleted)
             {
                 fish.RecoverStamina();
-                TickEffects(StatusEffect.EffectUsage.postTurn);
-                TurnEnded?.Invoke();
-                combatManager.CanFightEnd();
+                TickEffects(StatusEffect.EffectUsage.postTurn, () =>
+                {
+                    TickLastEffects();
+                    TurnEnded?.Invoke();
+                    combatManager.CanFightEnd();
+                });
+               
             }
             
         }
@@ -1148,33 +1171,61 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             return b;
         }
 
-        public void TickEffects(StatusEffect.EffectUsage usage)
+        public void TickEffects(StatusEffect.EffectUsage usage,Action OnCompleted=null)
         {
             HashSet<StatusEffect.StatusEffectInstance> effectsToRemove = new HashSet<StatusEffect.StatusEffectInstance>();
-            foreach (StatusEffect.StatusEffectInstance effect in effects)
+
+            RecursiveTickEffect(usage, effects.ToArray(), 0, effects.Count, () =>
             {
-                Debug.Log(effect);
-                if(usage == effect.effectUsage)
+
+                foreach (StatusEffect.StatusEffectInstance effect in effects)
                 {
-                    if (!effect.DoEffect(this))
+
+                    if (lastEffects.ContainsKey(effect.effect))
                     {
                         effectsToRemove.Add(effect);
-                        lastEffects[(effect.effect)]=2;
                     }
+
                 }
-                    
 
-            }
-            foreach (var effect in effectsToRemove)
-            {
-                Debug.Log(effect + " removed");
-                effects.Remove(effect);
-                EffectRemoved?.Invoke(effect);
-                
+                foreach (var effect in effectsToRemove)
+                {
+                    Debug.Log(effect + " removed");
+                    effects.Remove(effect);
+                    EffectRemoved?.Invoke(effect);
 
-            }
-            CheckDeath();
+
+                }
+                CheckDeath();
+                OnCompleted?.Invoke();
+            });
+
+
+           
+            
+            
         }
+        void RecursiveTickEffect(StatusEffect.EffectUsage usage,StatusEffect.StatusEffectInstance[] effects, int start, int end,Action OnComplete)
+        {
+
+            if (start == end)
+            {
+                OnComplete?.Invoke();
+                return;
+            }
+
+            if (usage == effects[start].effectUsage)
+            {
+                if (!effects[start].DoEffect(this))
+                {
+                    lastEffects[(effects[start].effect)] = 2;
+                }
+            }
+            combatManager.combatVisualizer.DoStatusEffect(effects[start].effect, this, () => { RecursiveTickEffect(usage, effects, start + 1, end, OnComplete); });
+
+        }
+
+        
         ~Turn()
         {
             fish.ValueChanged-=ValueChanged;
