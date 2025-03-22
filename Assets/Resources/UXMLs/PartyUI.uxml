@@ -1,7 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/PartyUI.uss?fileID=7433441132597879392&amp;guid=f895f876d660f2c49a6df02c1decc556&amp;type=3#PartyUI" />
     <ui:VisualElement name="Background" class="mainbg" style="flex-grow: 1; left: 0; width: auto; flex-direction: column; justify-content: flex-end; background-image: url(&quot;project://database/Assets/Art/2D/UI/wavebgnew.png?fileID=2800000&amp;guid=e578bf09d4e88924e95daa43f3907d06&amp;type=3#wavebgnew&quot;);">
-        <ui:Label tabindex="-1" text="Party" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="Label" style="font-size: 100px; color: rgb(211, 226, 245); align-self: flex-start; border-top-left-radius: 11px; border-top-right-radius: 11px; border-bottom-right-radius: 11px; border-bottom-left-radius: 11px; -unity-text-align: upper-left; top: 2%; display: flex; position: relative; align-items: stretch; left: 63px; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(21, 26, 70); -unity-font-style: bold; text-shadow: 4px 4px 0 rgb(21, 26, 70);" />
         <ui:VisualElement name="PartyPanel" style="flex-grow: 1; flex-direction: row; width: 1331px; justify-content: center; margin-left: 12px; margin-top: 0; flex-wrap: wrap; scale: 1.45 1.45; position: absolute; top: 269px; left: 278px;">
             <FishProfile name="FishProfile1" style="align-self: flex-start;" />
             <FishProfile name="FishProfile2" style="align-self: flex-start;" />
@@ -10,6 +9,7 @@
             <FishProfile name="FishProfile5" style="align-self: flex-start;" />
             <FishProfile name="FishProfile6" style="align-self: flex-start;" />
         </ui:VisualElement>
+        <ui:Label tabindex="-1" text="Party" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="Label" style="font-size: 100px; color: rgb(211, 226, 245); align-self: flex-start; border-top-left-radius: 11px; border-top-right-radius: 11px; border-bottom-right-radius: 11px; border-bottom-left-radius: 11px; -unity-text-align: upper-left; top: 2%; display: flex; position: absolute; align-items: stretch; left: 63px; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(21, 26, 70); -unity-font-style: bold; text-shadow: 4px 4px 0 rgb(21, 26, 70);" />
         <ViewMonsters style="visibility: hidden;" />
         <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; align-self: auto; justify-content: flex-start; align-items: center; left: 29px; position: absolute;">
             <InputHudTip name="InputHudTip" inputName="Submit" style="width: 60px; height: 60px; align-self: center; justify-content: center;" />
