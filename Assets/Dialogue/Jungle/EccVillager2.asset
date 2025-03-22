@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6336766880980905480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: JungleSideComplete
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: EccVillager2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136795739815939
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136795739815939
+  - rid: 2727136795739815940
+  - rid: 2727136795739815941
+  - rid: 2727136795739815942
+  decorators:
+  - rid: 2727136795739815943
+  - rid: 2727136795739815944
+  - rid: 2727136795739815945
+  events:
+  - {fileID: -6336766880980905480}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136795739815939
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: My friend! Why, it's too soon to tell me you've given up isn't
+          it?
+        voiceClip: {fileID: 0}
+        guid: ac3189eafd110124e896323d6f6aaf4c
+        decorators: []
+        position: {x: 458, y: -33}
+        nextNode:
+          rid: 2727136795739815940
+    - rid: 2727136795739815940
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Hm? Astounding! Unthinkable! You've really gone and bested me,
+          and in such short time!
+        voiceClip: {fileID: 0}
+        guid: 54abd013a8df07c449b515dc4f6f2038
+        decorators: []
+        position: {x: 887, y: -33}
+        nextNode:
+          rid: 2727136795739815941
+    - rid: 2727136795739815941
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Well, you've won fair and square. A good bout, my friend! Here
+          is a reward fit for a proper Peeranha pundit!
+        voiceClip: {fileID: 0}
+        guid: 2e9cd1938d632254f9825b5fbbda17c2
+        decorators: []
+        position: {x: 1449, y: -33}
+        nextNode:
+          rid: 2727136795739815942
+    - rid: 2727136795739815942
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You''ve recieved 15 Decent Hooks!]
+
+          [You''ve received
+          15 Balanced Berries!]'
+        voiceClip: {fileID: 0}
+        guid: dda4c44a2ab151b46bd1876e01f35051
+        decorators:
+        - rid: 2727136795739815943
+        - rid: 2727136795739815944
+        - rid: 2727136795739815945
+        position: {x: 2096, y: -33}
+        nextNode:
+          rid: -2
+    - rid: 2727136795739815943
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1920, y: 174}
+        guid: d13ff482575a9df429f043b538bc638f
+        item: {fileID: 11400000, guid: ad0034793246a114db7de9ae1aeb1b27, type: 2}
+        amount: 15
+    - rid: 2727136795739815944
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 2349, y: 174}
+        guid: 253eae70ada18454399d31ca548c542a
+        item: {fileID: 11400000, guid: c1864cc885f58f844bf41a4fd611149c, type: 2}
+        amount: 15
+    - rid: 2727136795739815945
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 2150, y: 296}
+        guid: aaeeeb9808a85a64eace798047660358
+        dialogueEvent: {fileID: -6336766880980905480}

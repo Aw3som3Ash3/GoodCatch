@@ -3,34 +3,130 @@
     <ui:VisualElement style="width: auto;">
         <ui:ScrollView>
             <ui:VisualElement name="Title">
-                <ui:Label tabindex="-1" text="CombatTips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatTips" />
+                <ui:Label tabindex="-1" text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalTypes" />
             </ui:VisualElement>
             <ui:VisualElement name="Details">
-                <ui:Label tabindex="-1" text="During a combat encounter you must select up to three of your monsters in your party to engage in combat.&#10;Remember to place monsters in lanes, that gives you the advantage.&#10;Monsters that you selected might be more useful when placed behind other monsters due to them having lower amount of health!&#10;Same goes other way around. Some of your monsters might be more useful in the front as they have higher health polls and defensive capabilities.&#10;Use the ability of your monster at the bottom of the screen to perform their roles! &#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="Each monster can have up to 2 different Elemental Types. Their Types are multipliers for how much damage they can give to other monsters and take from abilities of other Types. Monsters will show a colored number when they take damage, and the color represents if they took damage from an element they&apos;re weak to. White means neutral damage, Yellow means effective damage, and Red means very effective damage.&#10;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="TypeIcons" style="flex-wrap: wrap; justify-content: center; height: 437px; align-items: flex-start; flex-direction: column;">
+                <ui:VisualElement name="IconsRow1" style="flex-grow: 1; height: 150px; align-self: stretch; align-items: center; flex-direction: row; justify-content: center;">
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Normal.png?fileID=2800000&amp;guid=c066ff42510bf5d41ab5794ef377854c&amp;type=3#Icon_Element_Normal&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Normal" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Fire.png?fileID=2800000&amp;guid=390202383f83cc345895e521ff118a63&amp;type=3#Icon_Element_Fire&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Fire" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Nature.png?fileID=2800000&amp;guid=1b08a9f8bf577be4a80a4a7d22fe21eb&amp;type=3#Icon_Element_Nature&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Nature" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Cold.png?fileID=2800000&amp;guid=fad137c190aaf5d46a3633464a47919e&amp;type=3#Icon_Element_Cold&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Cold" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Earth.png?fileID=2800000&amp;guid=e48835e5af8f9ac4a8acbe812017664a&amp;type=3#Icon_Element_Earth&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Earth" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Lightning.png?fileID=2800000&amp;guid=a53d5aaf9c8bb9846a5ad02be9b6bc00&amp;type=3#Icon_Element_Lightning&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Lightning" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="IconsRow2" style="flex-grow: 1; height: 150px; align-self: stretch; align-items: center; flex-direction: row; justify-content: center;">
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Toxic.png?fileID=2800000&amp;guid=e92a6092584628841ba7f0dec8a34056&amp;type=3#Icon_Element_Toxic&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Toxic" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Wind.png?fileID=2800000&amp;guid=f7c66aac84c23db4d9e803d4c2c32007&amp;type=3#Icon_Element_Wind&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Wind" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Sonic.png?fileID=2800000&amp;guid=9fd7b8f8644577241ba1d7de4bd4291b&amp;type=3#Icon_Element_Sonic&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Sonic" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Abyssal.png?fileID=2800000&amp;guid=1b8e37ff70f0b8f4fb8b10c880d33b03&amp;type=3#Icon_Element_Abyssal&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Abyssal" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Eldritch.png?fileID=2800000&amp;guid=e760a29d209648e4499f09260893138b&amp;type=3#Icon_Element_Eldritch&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Eldritch" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Celestial.png?fileID=2800000&amp;guid=b148f1ea6e9194a4ebb13e4b71c89ce5&amp;type=3#Icon_Element_Celestial&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                            <ui:Label tabindex="-1" text="Celestial" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Title">
+                <ui:Label tabindex="-1" text="Combat Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatTips" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Details">
+                <ui:Label tabindex="-1" text="- During a combat encounter you can select up to three of your monsters in your party to engage in combat.&#10;- Every monster has a certain abilities that can only be used from and to certain lanes. Place them strategically!&#10;- More than one monster can be in a lane at at time. If you place or move another monster into a lane where one already exists, it will move behind them.&#10;- Furthermore, any monster behind another in a lane will take less damage when hit with a damaging ability.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
             </ui:VisualElement>
             <ui:VisualElement name="Title">
                 <ui:Label tabindex="-1" text="Abilities" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Abilities" />
             </ui:VisualElement>
             <ui:VisualElement name="Details">
-                <ui:Label tabindex="-1" text="Monsters have abilities that have some properties to them. A lot of information about your monsters’ abilities can be seen when hovering over the abilities in a tool tip.&#10;Abilities can cause certain status effects to activate on the enemy. The chance of a status effect activating is located inside the tooltip when hovering over your monster’s ability.&#10;There are two types of abilities to be aware of! There are magical and physical types of abilities, and they scale according to their corresponding stats.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:Label tabindex="-1" text="- All damaging abilities are split into 2 different types; Attack (Atk) and Magic (Mag). A monster&apos;s Defense (Def) affects how much they take from an Atk ability, and their Resistance (Res) affects how much they take from a Mag ability.&#10;- Abilities show their lane dependencies by the flaps on their side. The left flaps show where it can be used from, and the right shows where it can be targeted to.&#10;- Hovering over an ability also shows their details, including their name, accuracy, damage, and any status modifiers with their chances of activating.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
             </ui:VisualElement>
             <ui:VisualElement name="Title">
-                <ui:Label tabindex="-1" text="Catching Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CatchingTIps" />
+                <ui:Label tabindex="-1" text="Status Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusEffects" />
             </ui:VisualElement>
             <ui:VisualElement name="Details">
-                <ui:Label tabindex="-1" text="Monsters at higher HP are going to be harder to catch since they haven’t been weakened yet. As the monster’s health goes down, the chance of catching the monster goes up.&#10;To catch the monster, you need to use the hooks you have procured and select the monster you would like to catch. &#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:Label tabindex="-1" text="Some abilities have Status Effects that can be applied to the target. These can modify the following:&#10;   - Attack (Atk) Damage&#10;   - Magic (Mag) Damage&#10;   - Defense (Def) from Atk Damage&#10;   - Resistance (Res) from Mag Damage&#10;   - Accuracy (Acc) of Abilities&#10;   - Agility (Agi), or Turn Order&#10;   - Dodge (Dodge) Chance&#10;&#10;Status Effects aren&apos;t limited to just chance or damage modifiers. The others are:&#10;   - Burn, Poison, Bleed: Deals damage to the target every turn it&apos;s in effect. The difference is the element type!&#10;   - Thorns: Applies an effect that deals small damage back to the attacker. Has different element types.&#10;   - Guard: Transfers some of the damage the target takes back to the monster who gave the effect.&#10;   - Barrier: Completely negates any damage the target takes.&#10;   - Regen: Heals damage to the target every turn it&apos;s in effect.&#10;&#10;Monsters who&apos;ve previously been hit with a Status Effect can&apos;t be hit with the same one again until it&apos;s taken its turn 2 times.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
             </ui:VisualElement>
             <ui:VisualElement name="Title">
-                <ui:Label tabindex="-1" text="Inn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Inn" />
+                <ui:Label tabindex="-1" text="Other Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherEffects" />
             </ui:VisualElement>
             <ui:VisualElement name="Details">
-                <ui:Label tabindex="-1" text="Inns are where the player can rest, pass the time, and heal your monsters. The inn also acts as a spawn anchor when interacting with it." parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:Label tabindex="-1" text="Even fewer abilities have effects that deal with monster&apos;s positioning. Some abilities have piercing, which means it deals the same damage to all monsters in the same lane regardless of their order. Some abilities will force their target to move up or down a set amount of times.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
             </ui:VisualElement>
             <ui:VisualElement name="Title">
                 <ui:Label tabindex="-1" text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatTips" />
             </ui:VisualElement>
             <ui:VisualElement name="Details">
                 <ui:Label tabindex="-1" text="You have your own boat. You can interact with your boat to get on it and drive it around! Your boat is your main journey to get around islands in the archipelago. You can dock your boat at the island’s piers when you approach them.&#10;Outside of boating across the ocean, you will be on foot on the islands where you will be able to sprint.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Title">
+                <ui:Label tabindex="-1" text="Catching Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CatchingTIps" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Details">
+                <ui:Label tabindex="-1" text="Monsters at higher HP are going to be harder to catch since they haven’t been weakened yet. As the monster’s health goes down, the chance of catching the monster goes up.&#10;To catch the monster, you need to use the hooks you have procured and select the monster you would like to catch. " parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Title">
+                <ui:Label tabindex="-1" text="Inn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Inn" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Details">
+                <ui:Label tabindex="-1" text="Inns are where the player can rest, pass the time, and heal your monsters. The inn also acts as a spawn anchor when interacting with it." parse-escape-sequences="true" display-tooltip-when-elided="true" />
             </ui:VisualElement>
         </ui:ScrollView>
     </ui:VisualElement>

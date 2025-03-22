@@ -884,15 +884,15 @@ PrefabInstance:
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 1291035f288ddcc46a706be124f54da3, type: 2}
+      objectReference: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 1dcd175decd3a34429785c289aeebad0, type: 2}
+      objectReference: {fileID: 11400000, guid: 69c52de4159f81445b182d7a74c765fe, type: 2}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 458a3fdc16da2f241ba5e88f5513a267, type: 2}
+      objectReference: {fileID: 11400000, guid: 082d515f808f06a47bd335e4aab82d0e, type: 2}
     - target: {fileID: 5010170607693465644, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
       propertyPath: testfisth.Array.data[3]
       value: 
@@ -3220,7 +3220,7 @@ MonoBehaviour:
       m_Action: Action
       m_Flags: 0
     m_Flags: 0
-  fishType: {fileID: 11400000, guid: 69edc2e2b09f128498b841b6605aad02, type: 2}
+  fishType: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
   numOfFish: 1
 --- !u!4 &1172314990
 Transform:
