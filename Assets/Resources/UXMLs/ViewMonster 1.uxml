@@ -6,7 +6,7 @@
                 <ui:VisualElement name="PNGColum" style="flex-grow: 0; flex-direction: column; width: 488px;">
                     <ui:VisualElement name="monsterIcon" style="flex-grow: 0; height: 394px; background-color: rgb(255, 255, 255); margin-right: 25px; margin-left: 25px; margin-top: 25px; margin-bottom: 10px;" />
                     <ui:VisualElement name="PNGsmallInfo" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.64); margin-left: 25px; margin-right: 25px; padding-left: 5px;">
-                        <ui:Label tabindex="-1" text="Species Name" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 60px; color: rgb(255, 255, 255);" />
+                        <ui:Label tabindex="-1" text="Species Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="speciesName" style="font-size: 60px; color: rgb(255, 255, 255);" />
                         <ui:Label tabindex="-1" text="EXP 0/100" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 60px; color: rgb(255, 255, 255);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
@@ -86,15 +86,15 @@
                                         <ui:Label tabindex="-1" text="Phys/Mag" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 60px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
                                         <ui:Label tabindex="-1" text="Damage" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 60px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
                                     </ui:VisualElement>
-                                    <ui:VisualElement name="PopulateEffects" style="flex-grow: 1; background-color: rgb(255, 255, 255);" />
+                                    <ui:VisualElement name="PopulateEffects" style="flex-grow: 1; flex-direction: row; align-items: center;" />
                                 </ui:VisualElement>
-                                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                                <ui:VisualElement name="Cupcake" style="flex-grow: 1; flex-direction: row;">
                                     <ui:VisualElement name="C1" style="flex-grow: 1;">
                                         <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
                                             <ui:VisualElement style="flex-grow: 0;">
                                                 <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
-                                                    <ui:Label tabindex="-1" text="Base Damage:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
-                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="DamageAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 0, 0);" />
+                                                    <ui:Label tabindex="-1" text="Base Damage:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="DamageAmount" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 0, 0);" />
                                                 </ui:VisualElement>
                                             </ui:VisualElement>
                                             <ui:VisualElement style="flex-grow: 0;" />
@@ -102,8 +102,8 @@
                                         <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
                                             <ui:VisualElement style="flex-grow: 0;">
                                                 <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
-                                                    <ui:Label tabindex="-1" text="Stamina:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
-                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="StaminaAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(245, 255, 0);" />
+                                                    <ui:Label tabindex="-1" text="Stamina:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="StaminaAmount" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(245, 255, 0);" />
                                                 </ui:VisualElement>
                                             </ui:VisualElement>
                                             <ui:VisualElement style="flex-grow: 0;" />
@@ -111,8 +111,8 @@
                                         <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
                                             <ui:VisualElement style="flex-grow: 0;">
                                                 <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
-                                                    <ui:Label tabindex="-1" text="Accuracy:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
-                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="AccuracyAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="Accuracy:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="AccuracyAmount" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
                                                 </ui:VisualElement>
                                             </ui:VisualElement>
                                             <ui:VisualElement style="flex-grow: 0;" />
@@ -122,8 +122,8 @@
                                         <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
                                             <ui:VisualElement style="flex-grow: 0;">
                                                 <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
-                                                    <ui:Label tabindex="-1" text="Target:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
-                                                    <ui:Label tabindex="-1" text="Ally/Enemy" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="TargetWhomAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="Target:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="Ally/Enemy" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="TargetWhomAmount" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
                                                 </ui:VisualElement>
                                             </ui:VisualElement>
                                             <ui:VisualElement style="flex-grow: 0;" />
@@ -131,8 +131,8 @@
                                         <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
                                             <ui:VisualElement style="flex-grow: 0;">
                                                 <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
-                                                    <ui:Label tabindex="-1" text="UsableLane:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
-                                                    <ui:Label tabindex="-1" text="Lane" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="UseLaneAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="UsableLane:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="Lane" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="UseLaneAmount" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
                                                 </ui:VisualElement>
                                             </ui:VisualElement>
                                             <ui:VisualElement style="flex-grow: 0;" />
@@ -140,8 +140,8 @@
                                         <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
                                             <ui:VisualElement style="flex-grow: 0;">
                                                 <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
-                                                    <ui:Label tabindex="-1" text="TargetLane:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
-                                                    <ui:Label tabindex="-1" text="Lane" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="TagetLaneAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="TargetLane:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="Lane" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="TagetLaneAmount" style="padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
                                                 </ui:VisualElement>
                                             </ui:VisualElement>
                                             <ui:VisualElement style="flex-grow: 0;" />
