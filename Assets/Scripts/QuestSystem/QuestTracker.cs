@@ -186,7 +186,7 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
         foreach(Quest.QuestInstance quest in activeQuests)
         {
             Debug.Log(quest.CurrentState.requirements.Where((x) => x is T).ToList() as List<T>);
-            list.AddRange(quest.CurrentState.requirements.Where((x) => x is T).Select(x=>x as T));
+            list.AddRange(quest.CurrentState.requirements.Where((x) => x is T).Select(x=>x as T).Where(predicate));
         }
         return list;
        //return activeQuests.Select(x => 
