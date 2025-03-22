@@ -13,7 +13,7 @@ public class DialogueEventQuestRequirement : Quest.QuestRequirement
     public override void Init()
     {
         dialogueEvent.Event += RequirementCompleted;
-        
+        base.Init();
     }
 
     
