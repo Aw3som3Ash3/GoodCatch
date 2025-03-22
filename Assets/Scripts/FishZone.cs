@@ -22,6 +22,8 @@ public class FishZone : SaveableObject
     Data data;
     [SerializeField]
     GameObject fishPrefab;
+    [SerializeField]
+    GameObject birds;
     List<FishToCatch> fishes=new();
     [HideInInspector]
     public override object DataToSave => data;
@@ -46,12 +48,13 @@ public class FishZone : SaveableObject
             
             fish.SetIdle(this.transform.position);
         }
+        birds.transform.localPosition=new Vector3(0,75,0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        birds.transform.Rotate(0, -10*Time.deltaTime, 0);
     }
     public FishToCatch GetFishObect()
     {

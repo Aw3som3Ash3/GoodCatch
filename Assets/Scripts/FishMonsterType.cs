@@ -27,6 +27,7 @@ public class FishMonsterType : ScriptableObject
 
     [Header("Description")]
     [SerializeField]
+    [Multiline]
     string description;
     public String Description { get { return description; } }
 
