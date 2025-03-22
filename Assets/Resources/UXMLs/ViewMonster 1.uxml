@@ -20,7 +20,7 @@
                             <ui:Label tabindex="-1" text="HP" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="position: absolute; top: -13px; left: 2px;" />
                         </ui:ProgressBar>
                         <ui:VisualElement name="StaminaHolder" style="flex-grow: 1; background-color: rgb(255, 255, 0); margin-bottom: 9px; margin-right: 7px; justify-content: center; height: 58px;">
-                            <ui:Label tabindex="-1" text="000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Stamina" style="justify-content: flex-start; align-self: center; font-size: 60px; padding-bottom: 0; margin-bottom: 0; margin-top: 0; padding-top: 0; top: -5px;" />
+                            <ui:Label tabindex="-1" text="000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="stamina" style="justify-content: flex-start; align-self: center; font-size: 60px; padding-bottom: 0; margin-bottom: 0; margin-top: 0; padding-top: 0; top: -5px;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:ProgressBar value="50" title="100/100" name="xpBar" style="font-size: 36px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 2px; height: 37px; padding-left: 1px; padding-right: 2px;" />
@@ -28,11 +28,8 @@
                         <ui:VisualElement name="Elements" style="flex-grow: 0; flex-direction: row;">
                             <ui:VisualElement name="Element1" style="flex-grow: 1; flex-direction: row; align-items: center;">
                                 <ui:Label tabindex="-1" text="Element" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="font-size: 75px; color: rgb(255, 255, 255);" />
-                                <ui:VisualElement name="ElementalIcon" style="flex-grow: 0; width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
-                            </ui:VisualElement>
-                            <ui:VisualElement name="Element2" style="flex-grow: 1; flex-direction: row; align-items: center;">
-                                <ui:Label tabindex="-1" text="Element" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="font-size: 75px; color: rgb(255, 255, 255);" />
-                                <ui:VisualElement name="ElementalIcon" style="flex-grow: 0; width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
+                                <ui:VisualElement name="elementalIcon1" style="flex-grow: 0; width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0);" />
+                                <ui:VisualElement name="elementalIcon2" style="flex-grow: 0; width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0); margin-left: 13px;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; flex-direction: row;">

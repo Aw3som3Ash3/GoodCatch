@@ -270,7 +270,7 @@ public class PauseMenu : VisualElement
     void Party()
     {
         lastSelected = party;
-        PartyUI partyUI = new();
+        NewPartyUI partyUI = new();
         this.Add(partyUI);
         partyUI.UpdateUI();
         menu.visible = false;

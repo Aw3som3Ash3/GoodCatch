@@ -45,6 +45,7 @@ public class FishProfile : VisualElement
 
     public void SetFish(FishMonster fishMonster)
     {
+        nameTitle.text = fishMonster.Name;
         var iconVal = fishIcon.style.backgroundImage.value;
         iconVal.sprite = fishMonster.MiniSprite;
         fishIcon.style.backgroundImage=iconVal;
