@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: FakeCoconut
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136782752415750
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136782752415750
+  - rid: 2727136782752415751
+  - rid: 2727136782752415752
+  - rid: 2727136782752415753
+  decorators:
+  - rid: 2727136782752415754
+  events:
+  - {fileID: 1671467918280419507}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136782752415750
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[This coconut seems oddly out of place...knock on it?]'
+        voiceClip: {fileID: 0}
+        guid: bff8763e1228d074aa7b94c61787ae90
+        decorators: []
+        position: {x: 457, y: -76}
+        decisions:
+        - choice: Knock, knock!
+          choiceNode:
+            rid: 2727136782752415752
+        - choice: ...
+          choiceNode:
+            rid: 2727136782752415751
+    - rid: 2727136782752415751
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You leave it alone.]'
+        voiceClip: {fileID: 0}
+        guid: c860ff0acdc61964a8756150032fe0ca
+        decorators: []
+        position: {x: 989, y: 62}
+        nextNode:
+          rid: -2
+    - rid: 2727136782752415752
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You knock on the coconut...]'
+        voiceClip: {fileID: 0}
+        guid: 1f5ffbde801c4c340a6efd9eb0cf2246
+        decorators: []
+        position: {x: 989, y: -202}
+        nextNode:
+          rid: 2727136782752415753
+    - rid: 2727136782752415753
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[It cracks very easily open, almost like a container. Inside you
+          find
+
+          what seems to be a family photo.]'
+        voiceClip: {fileID: 0}
+        guid: 71eedada41f1b124a96477448b2dfa31
+        decorators:
+        - rid: 2727136782752415754
+        position: {x: 1429, y: -202}
+        nextNode:
+          rid: -2
+    - rid: 2727136782752415754
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1429, y: -14}
+        guid: 30eadb1af0ace714aa892153276f946e
+        dialogueEvent: {fileID: 1671467918280419507}
+--- !u!114 &1671467918280419507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FoundDesertPhoto
+  m_EditorClassIdentifier: 

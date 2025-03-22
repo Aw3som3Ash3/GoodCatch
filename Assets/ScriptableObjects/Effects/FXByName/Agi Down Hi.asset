@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Agi Down Hi
   m_EditorClassIdentifier: 
   duration: 3
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 275a5f688b12cbd4e97496ecc24e910a, type: 3}
+  particlePrefab: {fileID: 0}
   effectUsage: 0
   agility: -10
   accuracy: 0

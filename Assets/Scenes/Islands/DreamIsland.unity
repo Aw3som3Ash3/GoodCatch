@@ -619,7 +619,7 @@ MonoBehaviour:
   skipTutorial: {fileID: -541169476730117253, guid: b1b8d447fd36aa04e9db1fe24deb413f, type: 2}
   finishedTutorial: {fileID: 1235379646921652575, guid: 05a6ee9ca7d9ed54588f1edf21460624, type: 2}
   healFish: {fileID: -8881602098096103646, guid: 7e73032f89e4ff943a4c1f4d73d93120, type: 2}
-  postTutorialQuest: {fileID: 11400000, guid: 63e22f4c34faafe40a67bcabe0d63e00, type: 2}
+  postTutorialQuest: {fileID: 11400000, guid: 5f8b5bcae935ee94a8003537ef3c7554, type: 2}
   mudskipper: {fileID: 11400000, guid: 65d33d0db1bc78a43811bf103f09d88e, type: 2}
   pyrishForSKippingQuest: {fileID: 11400000, guid: acb0ed3855ab60d4fbda3097c441491d, type: 2}
   items:

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Dodge Up Hi
   m_EditorClassIdentifier: 
   duration: 3
-  icon: {fileID: 2800000, guid: c066ff42510bf5d41ab5794ef377854c, type: 3}
+  icon: {fileID: 2800000, guid: 6d8c51f9e47bd874280a530c51878aef, type: 3}
+  particlePrefab: {fileID: 0}
   effectUsage: 0
   agility: 0
   accuracy: 0

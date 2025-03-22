@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2619619700649774585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: DesertSideComplete
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: DesertFisher2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136782752415756
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136782752415756
+  - rid: 2727136782752415757
+  - rid: 2727136782752415758
+  decorators:
+  - rid: 2727136782752415759
+  - rid: 2727136782752415760
+  - rid: 2727136782752415761
+  events:
+  - {fileID: -2619619700649774585}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136782752415756
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You found it? Great! You say it's under some trees behind the huts?
+          How'd I completely forget such an obvious spot like that?
+        voiceClip: {fileID: 0}
+        guid: 6540b9e3e5f0101488912f0748bb587d
+        decorators: []
+        position: {x: 404, y: -40}
+        nextNode:
+          rid: 2727136782752415757
+    - rid: 2727136782752415757
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: No matter, thanks for your help! Come back sometime when I eventually
+          forget again haha.
+        voiceClip: {fileID: 0}
+        guid: 5b952a5dc05f5cd4b8aedb06b9a45ed1
+        decorators: []
+        position: {x: 1132, y: -40}
+        nextNode:
+          rid: 2727136782752415758
+    - rid: 2727136782752415758
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You recieved 20 Rookie''s Hooks!]
+
+          [You recieved 20
+          Boring Berries!]'
+        voiceClip: {fileID: 0}
+        guid: b82b59dd6eab69a4e8913eac7dda00f0
+        decorators:
+        - rid: 2727136782752415759
+        - rid: 2727136782752415760
+        - rid: 2727136782752415761
+        position: {x: 1672, y: -40}
+        nextNode:
+          rid: -2
+    - rid: 2727136782752415759
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1568, y: 165}
+        guid: 4fc3996f74e3b004da9e2aa94b93b713
+        item: {fileID: 11400000, guid: fce70c5c6fbc11d4b9ae760c50ea2d44, type: 2}
+        amount: 20
+    - rid: 2727136782752415760
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1950, y: 165}
+        guid: 0944f6f077031c24aba23d65c5fa2211
+        item: {fileID: 11400000, guid: 56e96ed5831dfd74e87b7f5dc91ac75e, type: 2}
+        amount: 20
+    - rid: 2727136782752415761
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1688, y: 306}
+        guid: 230f169a2b2263a419c28818a708e495
+        dialogueEvent: {fileID: -2619619700649774585}

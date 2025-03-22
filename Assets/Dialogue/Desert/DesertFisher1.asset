@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: DesertFisher1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136782752415744
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136782752415744
+  - rid: 2727136782752415746
+  - rid: 2727136782752415747
+  decorators:
+  - rid: 2727136782752415745
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136782752415744
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Hmmmm...oh hey there! Sorry, just tryin' to remember where I lost
+          a family heirloom. See, I thought I was clever hiding it somewhere on this
+          island instead of my house...what a fool I am. Think you can help me out?
+        voiceClip: {fileID: 0}
+        guid: 02802cbdb19582d4da787145c5b8d397
+        decorators: []
+        position: {x: 385, y: -87}
+        decisions:
+        - choice: Sure thing!
+          choiceNode:
+            rid: 2727136782752415746
+        - choice: Sorry, I'm busy!
+          choiceNode:
+            rid: 2727136782752415747
+    - rid: 2727136782752415745
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1340, y: 13}
+        guid: bca4e562aaa67aa4c9a02c8df70792c4
+        quest: {fileID: 11400000, guid: 6d71fe48b0c76a24bb1ffba4dd2046f2, type: 2}
+    - rid: 2727136782752415746
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Great! I don''t remember where on the island I put it, but I can
+
+          tell
+          you that it looks exactly like a coconut! Come back to me
+
+          when
+          you''ve found it!'
+        voiceClip: {fileID: 0}
+        guid: 74d1fd4dfc43d7549b51090cb1cdd197
+        decorators:
+        - rid: 2727136782752415745
+        position: {x: 1340, y: -186}
+        nextNode:
+          rid: -2
+    - rid: 2727136782752415747
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Don't sweat it!
+        voiceClip: {fileID: 0}
+        guid: 5f970c07a31a35f4b81c65a8ebaab3e0
+        decorators: []
+        position: {x: 1340, y: 140}
+        nextNode:
+          rid: -2
