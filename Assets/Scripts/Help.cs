@@ -8,10 +8,10 @@ namespace help
 { 
 
 
-public class Help : VisualElement
-{
-    [UnityEngine.Scripting.Preserve]
-    public new class UxmlFactory : UxmlFactory<Help> { }
+    public class Help : VisualElement
+    {
+        [UnityEngine.Scripting.Preserve]
+        public new class UxmlFactory : UxmlFactory<Help> { }
 
-}
+    }
 }
