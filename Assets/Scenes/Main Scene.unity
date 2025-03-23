@@ -3220,7 +3220,7 @@ MonoBehaviour:
       m_Action: Action
       m_Flags: 0
     m_Flags: 0
-  fishType: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
+  fishType: {fileID: 11400000, guid: 13efd9c6dde9cbc4b8cb9a9dd6d87ef9, type: 2}
   numOfFish: 1
 --- !u!4 &1172314990
 Transform:

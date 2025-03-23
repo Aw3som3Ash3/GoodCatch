@@ -16,8 +16,8 @@ MonoBehaviour:
     dispute. Their valor fuels them for a lifetime.
   model: {fileID: 4551804166297048305, guid: fe4f8bf31d53899449e7d778b855b30b, type: 3}
   fishId: 18
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  icon: {fileID: 21300000, guid: 4d3769536478a5847b0a8b149ffd0843, type: 3}
+  miniSprite: {fileID: 21300000, guid: 4d3769536478a5847b0a8b149ffd0843, type: 3}
   homeDepth: 1
   preferredBait: []
   elements:

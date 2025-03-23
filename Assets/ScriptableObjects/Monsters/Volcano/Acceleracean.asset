@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Blitz through the ocean ramming into its prey like a jet plane. If
     its prey doesn't die by whiplash it dies by physical trauma.
-  model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
+  model: {fileID: 5507925807022775459, guid: 48f1cd69585ccef408a6062cc9e1a0a8, type: 3}
   fishId: 24
   icon: {fileID: 21300000, guid: ee7dc243640b8f6458161c3ae89febe3, type: 3}
-  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  miniSprite: {fileID: 21300000, guid: 4ab5af3fba4c6bb47ad8c35d03d4a773, type: 3}
   homeDepth: 1
   preferredBait: []
   elements:
