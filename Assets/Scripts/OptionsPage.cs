@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class OptionsPage : PausePage
 {
-    Button settings, controls, saveAndQuit, mainMenu;
+    Button settings, controls, saveAndQuit, mainMenu, help;
     VisualElement settingsBox,menuContainer;
     SaveAndLoadScreen saveAndLoadScreen;
     SettingsUI settingsUI;
@@ -48,6 +48,8 @@ public class OptionsPage : PausePage
         controls=this.Q<Button>("Controls");
         controls.clicked += OnControls;
         menuContainer=this.Q("menu-container");
+        help = this.Q<Button>("Help");
+
         menuContainer.Remove(controlTabs);
         menuContainer.Remove(settingsUI);
         this.focusable = true;

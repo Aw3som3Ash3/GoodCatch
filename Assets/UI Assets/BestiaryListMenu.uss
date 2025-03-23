@@ -106,3 +106,11 @@ Scroller .unity-repeat-button {
     background-color: rgb(69, 27, 54);
     -unity-background-image-tint-color: rgb(255, 0, 0);
 }
+
+#changeTabLeftIcon {
+    min-width: 60px;
+}
+
+#changeTabRightIcon {
+    min-width: 60px;
+}
