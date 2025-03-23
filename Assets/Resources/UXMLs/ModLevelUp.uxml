@@ -9,7 +9,7 @@
                 <ui:VisualElement name="ColumOne" style="flex-grow: 1;">
                     <ui:VisualElement name="Health" style="flex-grow: 0; flex-direction: row;">
                         <ui:VisualElement name="HPBox" style="flex-grow: 1;">
-                            <ui:Label tabindex="-1" text="Hp" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                            <ui:Label tabindex="-1" text="HP" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
                             <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />
@@ -51,7 +51,7 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="Defence" style="flex-grow: 0; flex-direction: row;">
                         <ui:VisualElement name="HPBox" style="flex-grow: 1;">
-                            <ui:Label tabindex="-1" text="Defence" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
+                            <ui:Label tabindex="-1" text="Defense" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 45px;" />
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
                             <ui:Label tabindex="-1" text="999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OriginalStat" style="font-size: 45px;" />

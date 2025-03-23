@@ -1,7 +1,11 @@
 .unity-text-element {
     font-size: 38px;
-    color: rgb(224, 223, 245);
+    color: rgb(255, 255, 255);
     -unity-text-outline-width: 1px;
     text-shadow: 1px 2px 0 rgb(21, 26, 70);
     -unity-text-outline-color: rgb(21, 26, 70);
+}
+
+InputHudTip {
+    -unity-background-scale-mode: scale-to-fit;
 }

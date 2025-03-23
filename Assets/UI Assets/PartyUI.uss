@@ -60,6 +60,7 @@
 }
 
 .partymember {
+    transition-duration: 0.1s;
 }
 
 .partyborder {
@@ -81,8 +82,8 @@
 
 .partymember:hover {
     transition-duration: 0.1s;
-    scale: 1.02 1;
-    transform-origin: left;
+    scale: 1.02 1.02;
+    transform-origin: center;
 }
 
 .partymember:focus {
