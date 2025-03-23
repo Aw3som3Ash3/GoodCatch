@@ -13,7 +13,8 @@ public class OptionsPage : PausePage
     SaveAndLoadScreen saveAndLoadScreen;
     SettingsUI settingsUI;
     ControlTabs controlTabs;
-    
+    Help helpUI;
+
     public new class UxmlFactory : UxmlFactory<OptionsPage, OptionsPage.UxmlTraits>
     {
 
@@ -48,7 +49,12 @@ public class OptionsPage : PausePage
         controls=this.Q<Button>("Controls");
         controls.clicked += OnControls;
         menuContainer=this.Q("menu-container");
-        help = this.Q<Button>("Help");
+
+        help = this.Q<Button>("help");
+        help.clicked += OnHelp;
+        //helpUI = this.Q<Help>();
+        //helpUI.visible = (false);
+
 
         menuContainer.Remove(controlTabs);
         menuContainer.Remove(settingsUI);
@@ -91,12 +97,29 @@ public class OptionsPage : PausePage
     {
         settingsUI.visible = (true);
         controlTabs.visible = (false);
+        help.visible = (false);
         if (menuContainer.Contains(controlTabs))
         {
             menuContainer.Remove(controlTabs);
         }
         menuContainer.Add(settingsUI);
         //throw new NotImplementedException();
+    }
+    private void OnHelp()
+    {
+        //helpUI.visible = (true);
+        controlTabs.visible = (false);
+        settingsUI.visible = (false);
+       // menuContainer.Add(helpUI);
+        //helpUI.StretchToParentSize();
+        if (menuContainer.Contains(settingsUI))
+        {
+            menuContainer.Remove(settingsUI);
+        }
+        if (menuContainer.Contains(controlTabs))
+        {
+            menuContainer.Remove(controlTabs);
+        }
     }
 
 
@@ -112,11 +135,12 @@ public class OptionsPage : PausePage
 
 public class OptionsPageMenu : VisualElement
 {
-    Button settings, controls, load, mainMenu;
+    Button settings, controls, load, mainMenu, help;
     VisualElement settingsBox, menuContainer;
 
     SettingsUI settingsUI;
     ControlTabs controlTabs;
+    Help helpUI;
 
     public new class UxmlFactory : UxmlFactory<OptionsPageMenu, OptionsPageMenu.UxmlTraits>
     {
@@ -152,6 +176,10 @@ public class OptionsPageMenu : VisualElement
         menuContainer.Remove(settingsUI);
         this.focusable = true;
         this.delegatesFocus = true;
+        help = this.Q<Button>("help");
+        help.clicked += OnHelp;
+        //helpUI = this.Q<Help>();
+        //helpUI.visible = (false);
 
     }
 
@@ -159,6 +187,7 @@ public class OptionsPageMenu : VisualElement
     {
         settingsUI.visible = (false);
         controlTabs.visible = (false);
+        //helpUI.visible = (false);
     }
     public void OpenOptions()
     {
@@ -170,6 +199,7 @@ public class OptionsPageMenu : VisualElement
     {
         settingsUI.visible = (false);
         controlTabs.visible = (true);
+        //helpUI.visible = (false);
         menuContainer.Add(controlTabs);
         controlTabs.StretchToParentSize();
 
@@ -183,12 +213,23 @@ public class OptionsPageMenu : VisualElement
     {
         settingsUI.visible = (true);
         controlTabs.visible = (false);
+        //helpUI.visible = (false);
+        if (menuContainer.Contains(help))
+        {
+            menuContainer.Remove(help);
+        }
+        menuContainer.Add(settingsUI);
+        //throw new NotImplementedException();
+    }
+    private void OnHelp()
+    {
+        //helpUI.visible = (true);
+        controlTabs.visible = (false);
+        settingsUI.visible = (false);
         if (menuContainer.Contains(controlTabs))
         {
             menuContainer.Remove(controlTabs);
         }
-        menuContainer.Add(settingsUI);
-        //throw new NotImplementedException();
     }
 
 
