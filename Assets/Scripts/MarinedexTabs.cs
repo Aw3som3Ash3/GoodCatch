@@ -78,7 +78,7 @@ public class MarinedexTabs : TabbedMenu
             visualTreeAsset.CloneTree(content);
             if (content != null)
             {
-                CreateTab(tabName + "-tab", content);
+                CreateTab(tabName, content);
             }
         }
     }
