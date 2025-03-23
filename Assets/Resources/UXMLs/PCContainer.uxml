@@ -1,11 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="CombatDraftUI" src="project://database/Assets/Prefabs/UI/CombatDraftUI.uxml?fileID=9197481963319205126&amp;guid=c9f3f371f0f564e4da7b341113edc46d&amp;type=3#CombatDraftUI" />
-    <ui:Template name="MostLeftContainerPC" src="project://database/Assets/Prefabs/UI/MostLeftContainerPC.uxml?fileID=9197481963319205126&amp;guid=f152e1acab934a8448622719ed794884&amp;type=3#MostLeftContainerPC" />
-    <Style src="project://database/Assets/PcContainer.uss?fileID=7433441132597879392&amp;guid=5a6c8eda080156e43ba9c9a9bc4aec6a&amp;type=3#PcContainer" />
+    <ui:Template name="CombatDraftUI" src="project://database/Assets/Resources/UXMLs/CombatDraftUI.uxml?fileID=9197481963319205126&amp;guid=c9f3f371f0f564e4da7b341113edc46d&amp;type=3#CombatDraftUI" />
+    <ui:Template name="MostLeftContainerPC" src="project://database/Assets/Resources/UXMLs/MostLeftContainerPC.uxml?fileID=9197481963319205126&amp;guid=f152e1acab934a8448622719ed794884&amp;type=3#MostLeftContainerPC" />
+    <Style src="project://database/Assets/UI%20Assets/PcContainer.uss?fileID=7433441132597879392&amp;guid=5a6c8eda080156e43ba9c9a9bc4aec6a&amp;type=3#PcContainer" />
     <Style src="project://database/Assets/UI%20Toolkit/UnityThemes/GoodCatchStyleSheet.uss?fileID=7433441132597879392&amp;guid=3514bcc995f7ff84c8e081dd8739d774&amp;type=3#GoodCatchStyleSheet" />
-    <ui:VisualElement name="PCWorkSpace" style="flex-grow: 1; white-space: normal; -unity-text-align: upper-left; flex-direction: row; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; background-color: rgba(134, 186, 196, 0.69); background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/BackgroundBlue.png?fileID=21300000&amp;guid=105d2de50369d544ba3b58bc33bf2630&amp;type=3#BackgroundBlue&quot;);">
-        <ui:VisualElement name="Container" style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
-            <ui:VisualElement name="PictureContainer" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/Border%20Rectaangle.png?fileID=21300000&amp;guid=a9dd5b3d4e5e2464ba2d56cc2260efff&amp;type=3#Border Rectaangle&quot;); border-top-width: 16px; border-left-width: 0; align-items: flex-end; border-right-width: 20px; width: 590px; margin-right: 24px;">
+    <ui:VisualElement name="MenuBackground" style="flex-grow: 1; position: absolute; width: 100%; height: 872px; background-image: url(&quot;project://database/Assets/Art/2D/UI/wavebgnew.png?fileID=2800000&amp;guid=e578bf09d4e88924e95daa43f3907d06&amp;type=3#wavebgnew&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.82); transform-origin: center; justify-content: flex-end; flex-direction: column-reverse; top: 208px;" />
+    <ui:VisualElement name="PCWorkSpace" style="flex-grow: 1; white-space: normal; -unity-text-align: upper-left; flex-direction: row; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px;">
+        <ui:VisualElement name="Container" style="flex-grow: 1; flex-direction: row; justify-content: flex-end; padding-right: 85px;">
+            <ui:VisualElement name="PictureContainer" style="flex-grow: 0; align-items: flex-end; width: 590px; margin-right: 24px; background-color: rgb(21, 26, 70); border-left-color: rgb(21, 26, 70); border-right-color: rgb(21, 26, 70); border-top-color: rgb(21, 26, 70); border-bottom-color: rgb(21, 26, 70); border-top-width: 20px; border-right-width: 20px; border-bottom-width: 20px; border-left-width: 20px; border-top-left-radius: 52px; border-top-right-radius: 52px; border-bottom-right-radius: 52px; border-bottom-left-radius: 52px;">
                 <ui:VisualElement name="LeftViewAlpha" style="flex-grow: 0; min-width: auto; width: 551px; background-image: none;">
                     <ui:VisualElement name="FillAmount" style="flex-grow: 1; width: 552px; height: 955px; align-self: auto; justify-content: flex-end; padding-left: 0;">
                         <ui:Instance template="CombatDraftUI" name="CombatDraftUI" style="position: absolute; visibility: hidden; top: 0; bottom: 0; right: 0; left: 0;" />
@@ -13,8 +14,8 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="PCContainerAlpha" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-left: 0; -unity-text-outline-color: rgba(255, 255, 255, 0); max-width: 1013px; justify-content: flex-end; background-color: rgba(255, 0, 0, 0);">
-                <FishventoryTab style="height: 77%; max-width: 1013px; justify-content: space-around; align-items: center; color: rgb(255, 255, 255); background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/FatRectangle.png?fileID=21300000&amp;guid=026b4f33dfa19194fbe2b782d0eca8a4&amp;type=3#FatRectangle&quot;);" />
+            <ui:VisualElement name="PCContainerAlpha" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-left: 0; -unity-text-outline-color: rgba(255, 255, 255, 0); max-width: 1013px; justify-content: flex-end; background-color: rgba(255, 0, 0, 0); flex-shrink: 0;">
+                <FishventoryTab name="FishventoryTab" style="height: 77%; max-width: 1013px; justify-content: space-around; align-items: center; color: rgb(255, 255, 255);" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
