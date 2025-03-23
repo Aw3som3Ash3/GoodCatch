@@ -48,7 +48,7 @@ public class FishZone : SaveableObject
             
             fish.SetIdle(this.transform.position);
         }
-        birds.transform.localPosition=new Vector3(0,75,0);
+        birds.transform.localPosition=new Vector3(0,35,0);
     }
 
     // Update is called once per frame

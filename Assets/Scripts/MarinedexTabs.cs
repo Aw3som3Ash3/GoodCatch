@@ -38,7 +38,7 @@ public class MarinedexTabs : TabbedMenu
     {
         CreateTab("Stats", statComponentName);
         CreateTab("Abilities", abilityComponentName);
-        CreateTab("Lore", loreComponentName);
+        //CreateTab("Lore", loreComponentName);
         InputManager.Input.UI.ChangeTab.performed += (x) => ChangeTab((int)x.ReadValue<float>());
         InputManager.Input.UI.ChangeTab.Enable();
 
@@ -78,7 +78,7 @@ public class MarinedexTabs : TabbedMenu
             visualTreeAsset.CloneTree(content);
             if (content != null)
             {
-                CreateTab(tabName + "-tab", content);
+                CreateTab(tabName, content);
             }
         }
     }

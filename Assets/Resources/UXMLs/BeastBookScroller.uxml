@@ -1,11 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/BestiaryListMenu.uss?fileID=7433441132597879392&amp;guid=eeeba0854fec8e1438ce167e19af102d&amp;type=3#BestiaryListMenu" />
     <Style src="project://database/Assets/UI%20Assets/Marindex.uss?fileID=7433441132597879392&amp;guid=bec157839a408f245a23073832d3f48f&amp;type=3#Marindex" />
-    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/BigWaterBG.png?fileID=2800000&amp;guid=38b546484b7fb6e4db4f006e1aafa96d&amp;type=3#BigWaterBG&quot;); height: 742px; position: absolute; width: 1931px; top: 1002px; left: -7px;" />
-    <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 0; flex-direction: row; background-image: none; background-color: rgb(0, 0, 0); height: 1009px;">
-        <ui:VisualElement name="BookBG" style="flex-grow: 1; flex-direction: row; background-image: none; background-color: rgba(132, 128, 128, 0.46);">
-            <ui:VisualElement name="RightSide" style="flex-grow: 0; min-width: auto; background-color: rgba(0, 255, 231, 0); margin-left: 0; margin-bottom: 0; margin-top: 0; margin-right: 0; width: 675px; flex-shrink: 0;">
-                <ui:Label tabindex="-1" text="Marindex" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" style="-unity-font-style: bold; font-size: 90%; -unity-text-align: upper-center; margin-top: 0; padding-right: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-bottom: 0; padding-left: 0;" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Art/2D/UI/wavebgnew.png?fileID=2800000&amp;guid=e578bf09d4e88924e95daa43f3907d06&amp;type=3#wavebgnew&quot;); height: 90px; position: absolute; width: 1931px; top: 1002px; left: -7px; -unity-background-scale-mode: scale-and-crop; -unity-slice-top: 40;" />
+    <ui:VisualElement name="BeastBookWorkSpace" style="flex-grow: 0; flex-direction: row; height: 1009px;">
+        <ui:VisualElement name="BookBG" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="RightSide" style="flex-grow: 0; min-width: auto; background-color: rgb(55, 20, 5); margin-left: 0; margin-bottom: 0; margin-top: 0; margin-right: 0; width: 675px; flex-shrink: 0; border-top-right-radius: 18px; border-bottom-right-radius: 18px;">
+                <ui:Label tabindex="-1" text="Marindex" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" style="-unity-font-style: bold; font-size: 90%; -unity-text-align: upper-center; margin-top: 0; padding-right: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(122, 59, 55); text-shadow: 1px 5px 0 rgb(122, 59, 55); -unity-text-outline-width: 3px;" />
                 <ui:ListView name="FishList" show-alternating-row-backgrounds="ContentOnly" show-border="true" style="height: 100%;" />
             </ui:VisualElement>
             <ui:VisualElement name="LeftSide" style="flex-grow: 1; max-width: none; background-image: url(&quot;project://database/Assets/Art/2D/UI/menu_marindex_paper.png?fileID=2800000&amp;guid=290fec8eed1594b4c969a0796b538fe8&amp;type=3#menu_marindex_paper&quot;); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: stretch-to-fill; -unity-slice-scale: 0;">
@@ -23,7 +23,7 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement style="flex-grow: 1; padding-left: 25px; padding-right: 25px;">
-                            <ui:Label tabindex="-1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse c" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="LoreAmount" style="flex-wrap: wrap; white-space: normal; font-size: 28px;" />
+                            <ui:Label tabindex="-1" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse c" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="LoreAmount" style="flex-wrap: wrap; white-space: normal; font-size: 28px; color: rgb(55, 20, 5);" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
@@ -33,7 +33,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement style="flex-grow: 1;">
+    <ui:VisualElement style="flex-grow: 1; color: rgb(255, 255, 255); -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(21, 26, 70); -unity-font-style: normal; text-shadow: 2px 2px 0 rgb(21, 26, 70);">
         <ui:VisualElement style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: flex-end;">
             <InputHudTip inputName="Submit" style="width: 60px; height: 60px;" />
             <ui:Label tabindex="-1" text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-top: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; font-size: 48px; margin-right: 849px;" />

@@ -1,15 +1,19 @@
 .unity-tab-button {
     color: rgb(0, 0, 0);
     margin-top: -19px;
+    transition-duration: 0.1s;
 }
 
 .unity-tab-button__content {
-    width: 126px;
-    margin-right: 75px;
+    width: 257px;
     min-height: 123px;
-    background-color: rgba(44, 58, 111, 0.71);
-    color: rgb(255, 255, 255);
-    background-image: url("project://database/Assets/Prefabs/UI/UI-Png/Smeb.png?fileID=2800000&guid=d4b26366d79863e479e2919ca6c5ecce&type=3#Smeb");
+    background-color: rgba(127, 127, 127, 0);
+    color: rgb(211, 226, 245);
+    background-image: url("project://database/Assets/Art/2D/LoganInvetory/inventory_list_tab.png?fileID=2800000&guid=cac62e4c54764154086735480205e43e&type=3#inventory_list_tab");
+    -unity-background-scale-mode: scale-to-fit;
+    justify-content: center;
+    font-size: 57px;
+    -unity-text-align: middle-center;
 }
 
 .unity-tabbed-view__tabs-container {
@@ -19,35 +23,57 @@
     min-height: auto;
     -unity-text-outline-color: rgba(255, 119, 119, 0);
     background-color: rgb(255, 0, 0);
+    flex-direction: row;
+    justify-content: space-between;
+    width: 801px;
 }
 
 .unity-tab-button:hover {
     color: rgb(0, 0, 0);
     margin-top: -19px;
-    scale: 1.6 1.6;
+    scale: 1 1;
     transform-origin: bottom;
     transition-duration: 0.1s;
+    translate: 0 -20px;
 }
 
 .unity-tab-button:focus {
     color: rgb(0, 0, 0);
     margin-top: -19px;
-    scale: 1.6 1.6;
+    scale: 1 1;
     transform-origin: bottom;
     transition-duration: 0.1s;
+    translate: 0 -20px;
 }
 
 .unity-tab-button--active {
     bottom: 0;
     transform-origin: bottom;
-    scale: 1.5 1.5;
     color: rgb(255, 255, 255);
     background-color: rgba(255, 0, 0, 0);
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    translate: 0 -20px;
 }
 
 #unity-content-container {
     align-self: stretch;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    padding-left: 3%;
+    padding-top: 3%;
+    background-color: rgb(21, 26, 70);
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    border-left-color: rgb(21, 26, 70);
+    border-right-color: rgb(21, 26, 70);
+    border-top-color: rgb(21, 26, 70);
+    border-bottom-color: rgb(21, 26, 70);
+    border-top-left-radius: 39px;
+    border-top-right-radius: 39px;
+    border-bottom-right-radius: 39px;
+    border-bottom-left-radius: 39px;
 }
 
 .Aquarium-Box {
@@ -58,15 +84,27 @@
 
 .Aquarium-slot {
     align-items: auto;
+    background-color: rgb(211, 226, 245);
+    border-top-left-radius: 40%;
+    border-top-right-radius: 40%;
+    border-bottom-right-radius: 40%;
+    border-bottom-left-radius: 40%;
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    transition-duration: 0.1s;
 }
 
 .Aquarium-slot:hover {
     scale: 1.1 1.1;
     transition-duration: 0.1s;
+    background-color: rgb(154, 185, 216);
 }
 
 .Aquarium-slot:focus {
     scale: 1.1 1.1;
+    background-color: rgb(154, 185, 216);
 }
 
 .Aquarium-slot__Selected {
@@ -173,10 +211,7 @@
 
 #unity-tabs-container {
     background-color: rgba(255, 255, 255, 0);
-}
-
-.unity-tab-button__content:hover {
-    background-color: rgb(255, 0, 0);
+    flex-direction: row;
 }
 
 #Tab1:hover {
@@ -195,8 +230,8 @@
 }
 
 #Label {
-    margin-left: 27px;
-    font-size: 24px;
+    align-self: center;
+    margin-bottom: 20px;
 }
 
 .unity-tab-button__content:focus {
@@ -223,4 +258,17 @@
 #AddToPartyButton:hover {
     transform-origin: center;
     scale: 1.1 1.1;
+}
+
+#unity-topbar-container {
+    width: 100%;
+    justify-content: space-between;
+    padding-right: 1%;
+    padding-left: 1%;
+    flex-direction: row;
+    align-items: stretch;
+    translate: 0 40px;
+}
+
+#unity-topbar-container > #changeTabLeftIcon {
 }

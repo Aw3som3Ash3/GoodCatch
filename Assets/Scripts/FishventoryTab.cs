@@ -48,9 +48,9 @@ public class FishventoryTab : TabbedMenu
             Debug.Log(box);
             content.Add(box);
 
-            TabMenuButton tab = new TabMenuButton("Tab "+(i + 1), box);
+            TabMenuButton tab = new TabMenuButton("Box "+(i + 1), box);
             //tab.RegisterCallback<NavigationSubmitEvent>((x) => { Activate(tab);});
-            tab.name = "Tab"+(i + 1);
+            tab.name = "Box"+(i + 1);
             this.AddTab(tab,false);
             tab.tabIndex = 1;
             tabs.Add(tab);

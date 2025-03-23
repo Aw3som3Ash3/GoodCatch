@@ -32,7 +32,7 @@
     display: flex;
     min-height: 10px;
     max-height: -12px;
-    background-color: rgb(56, 63, 142);
+    background-color: rgb(21, 26, 70);
 }
 
 #HpBar .unity-progress-bar__title-container {
@@ -40,7 +40,7 @@
 
 #HpBar #unity-progress-bar .unity-progress-bar__background {
     min-height: 34px;
-    background-color: rgb(56, 63, 142);
+    background-color: rgb(21, 26, 70);
     border-top-width: 1px;
     border-right-width: 1px;
     border-bottom-width: 1px;
@@ -66,8 +66,8 @@
 .unity-text-element {
     color: rgb(255, 255, 255);
     -unity-text-outline-width: 2px;
-    -unity-text-outline-color: rgb(0, 0, 0);
-    text-shadow: 2px 3px 0 rgb(0, 0, 0);
+    -unity-text-outline-color: rgb(21, 26, 70);
+    text-shadow: 2px 3px 0 rgb(21, 26, 70);
 }
 
 #HpBar .unity-progress-bar__progress {
