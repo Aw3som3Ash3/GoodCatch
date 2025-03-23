@@ -23,6 +23,7 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136782752415755
+    - rid: 2727136822063005696
   references:
     version: 2
     RefIds:
@@ -37,6 +38,12 @@ MonoBehaviour:
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         objective: Return to the Desert Fisherman
         dialogueEvent: {fileID: -2619619700649774585, guid: 0f2c5083b5787734ca4e1a686c7ce0f7, type: 2}
+    - rid: 2727136822063005696
+      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: SpeakToNPCQuestRequirement
+        IsCompleted: 0
+        npcName: Desert Fisherman

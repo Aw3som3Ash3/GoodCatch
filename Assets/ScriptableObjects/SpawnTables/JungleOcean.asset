@@ -14,15 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   daySpawn:
   - monster: {fileID: 11400000, guid: 5880d3e7f6b0c7e4c8e8fdc20562efaf, type: 2}
+    minLevel: 10
+    maxLevel: 15
     weight: 15
   - monster: {fileID: 11400000, guid: d8bbbd344bf167f4a8a1570cef709d8c, type: 2}
+    minLevel: 10
+    maxLevel: 15
     weight: 15
   - monster: {fileID: 11400000, guid: be86766beb7a3a24ea242a56cd406d0d, type: 2}
+    minLevel: 10
+    maxLevel: 15
     weight: 30
   nightSpawn:
-  - monster: {fileID: 11400000, guid: 87003e928c2aae646859a2a02e2532bc, type: 2}
+  - monster: {fileID: 11400000, guid: 458a3fdc16da2f241ba5e88f5513a267, type: 2}
+    minLevel: 10
+    maxLevel: 15
     weight: 70
   - monster: {fileID: 11400000, guid: 8953b5ad629f2fe4ca62f25fd4972500, type: 2}
+    minLevel: 10
+    maxLevel: 15
     weight: 20
   - monster: {fileID: 11400000, guid: be86766beb7a3a24ea242a56cd406d0d, type: 2}
-    weight: 50
+    minLevel: 10
+    maxLevel: 15
+    weight: 30

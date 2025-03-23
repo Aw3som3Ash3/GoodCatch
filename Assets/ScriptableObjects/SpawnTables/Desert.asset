@@ -21,6 +21,10 @@ MonoBehaviour:
     minLevel: 5
     maxLevel: 10
     weight: 10
+  - monster: {fileID: 11400000, guid: 69edc2e2b09f128498b841b6605aad02, type: 2}
+    minLevel: 5
+    maxLevel: 10
+    weight: 10
   nightSpawn:
   - monster: {fileID: 11400000, guid: 69edc2e2b09f128498b841b6605aad02, type: 2}
     minLevel: 5
