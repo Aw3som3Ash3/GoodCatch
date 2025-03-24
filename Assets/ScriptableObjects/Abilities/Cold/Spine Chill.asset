@@ -28,7 +28,7 @@ MonoBehaviour:
   - statusEffect: {fileID: 11400000, guid: 721f506c3824c484180cf5dd91f70e18, type: 2}
     effectChance: 1
   forcedMovement: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4d35211cbb6a26b47b090b8923ba7431, type: 3}
   abilityVFX: {fileID: 0}
   targetVFX: {fileID: 0}
   abilityID: 5dbadc35-df76-4869-a523-79ba41025aa5

@@ -57,9 +57,9 @@ MonoBehaviour:
   baseStamina: 180
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: 8ea9acfa0dfef9b4f841e3cd675356ad, type: 2}
+    - {fileID: 11400000, guid: 9996d26aab0e20645a44bdc98a2cf3b2, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: 8c3bab4c2d2d60249bbf6c3621b15aee, type: 2}
+    - {fileID: 11400000, guid: 2aad17546bf6fb64aa1775f83a472c3e, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 78cc93ccc6f7ab84382ff5f2924cce36, type: 2}
   difficulty: 0

@@ -24,7 +24,9 @@ MonoBehaviour:
   - rid: 2727136822063005755
   decorators:
   - rid: 2727136822063005765
-  events: []
+  - rid: 2727136841486303245
+  events:
+  - {fileID: 2822260499742996474}
   references:
     version: 2
     RefIds:
@@ -36,8 +38,9 @@ MonoBehaviour:
         dialouge: Hail! I'm Tom, our local fisherman. What can I do ya for?
         voiceClip: {fileID: 0}
         guid: 648481f899d5f834cb953cfe49d10553
-        decorators: []
-        position: {x: 419, y: -34}
+        decorators:
+        - rid: 2727136841486303245
+        position: {x: 403, y: -46}
         nextNode:
           rid: 2727136822063005750
     - rid: 2727136822063005750
@@ -81,3 +84,21 @@ MonoBehaviour:
         position: {x: 2483, y: 171}
         guid: 8aaeb70c185ba5549ac1082257924bc0
         quest: {fileID: 11400000, guid: f4faac87e6c2af74cb65231d07027fa7, type: 2}
+    - rid: 2727136841486303245
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 379, y: 171}
+        guid: 638b76d438bac3542b7215c35cf91853
+        dialogueEvent: {fileID: 2822260499742996474}
+--- !u!114 &2822260499742996474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: SpeakTomFirst
+  m_EditorClassIdentifier: 
