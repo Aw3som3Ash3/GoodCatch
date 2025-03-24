@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 4552200859703e244b5f4ddfd6c878e6
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: a17cda521bac65a4697baea8897658bd
+    m_Address: Assets/Art/Models/Environment/Volcano/Cave Beta/Black Transparent.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d99fc42e68fd4324ebfab605b97fa579, type: 2}
   m_SchemaSet:
