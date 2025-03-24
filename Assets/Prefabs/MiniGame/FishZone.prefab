@@ -77,6 +77,7 @@ MonoBehaviour:
   fishPrefab: {fileID: 8345133552398499377, guid: de60a903b61aa0e47a726695ed6f3e68, type: 3}
   birds: {fileID: 7175842684454737116}
   radius: 0
+  birdHeight: 100
 --- !u!23 &5078687736627899050
 MeshRenderer:
   m_ObjectHideFlags: 0

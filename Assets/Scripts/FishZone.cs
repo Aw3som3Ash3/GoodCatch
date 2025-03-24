@@ -31,9 +31,13 @@ public class FishZone : SaveableObject
     float radius;
     public float Radius { get {return radius; } }
 
+    public int birdHeight = 50;
+
     // Start is called before the first frame update
     void Start()
     {
+        birdHeight = UnityEngine.Random.Range(birdHeight - 15, birdHeight + 10);
+
         data.amount = UnityEngine.Random.Range(minAmount, maxAmount + 1);
 
         for (int i = 0; i < data.amount; i++)
@@ -48,7 +52,7 @@ public class FishZone : SaveableObject
             
             fish.SetIdle(this.transform.position);
         }
-        birds.transform.localPosition=new Vector3(0,35,0);
+        birds.transform.localPosition=new Vector3(0,birdHeight,0);
     }
 
     // Update is called once per frame

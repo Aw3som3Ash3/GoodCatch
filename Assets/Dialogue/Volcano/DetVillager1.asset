@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3135735193973782846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FightDetVill
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: DetVillager1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136841486303309
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136841486303309
+  - rid: 2727136841486303310
+  - rid: 2727136841486303311
+  - rid: 2727136841486303312
+  - rid: 2727136841486303313
+  - rid: 2727136841486303314
+  decorators:
+  - rid: 2727136841486303315
+  - rid: 2727136841486303316
+  events:
+  - {fileID: -3135735193973782846}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136841486303309
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Not strong enough...not yet...you there! You look like you've fought
+          a monster or two!
+        voiceClip: {fileID: 0}
+        guid: f3a8326b35852b94c94e0332301e3e6a
+        decorators: []
+        position: {x: 420, y: -33}
+        nextNode:
+          rid: 2727136841486303310
+    - rid: 2727136841486303310
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: My team needs some training, but all my friends don't wanna train
+          with us anymore! They say that I'm "too harsh" or "too competitive" and
+          that I "need to stop trying to optimize every little thing like they're
+          just numbers!"
+        voiceClip: {fileID: 0}
+        guid: 7c3f93b434e8dbb4ab53c2ac7d96cdac
+        decorators: []
+        position: {x: 975, y: -33}
+        nextNode:
+          rid: 2727136841486303311
+    - rid: 2727136841486303311
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You understand me, don't you? Building the perfect team so that
+          you can break through the limits of what's possible?
+        voiceClip: {fileID: 0}
+        guid: 87e28886efc83584dbf1d92a2e563446
+        decorators: []
+        position: {x: 1829, y: -33}
+        nextNode:
+          rid: 2727136841486303312
+    - rid: 2727136841486303312
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Well if you do, then you won't mind if I train with you, right?
+          RIGHT?!?!
+        voiceClip: {fileID: 0}
+        guid: b3a29137492c0a34599bd0a8f9c74eb5
+        decorators:
+        - rid: 2727136841486303316
+        position: {x: 2502, y: -33}
+        decisions:
+        - choice: RIGHT!!!
+          choiceNode:
+            rid: 2727136841486303314
+        - choice: Uhhhh....
+          choiceNode:
+            rid: 2727136841486303313
+    - rid: 2727136841486303313
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Hmph, guess not. Where can a girl find a decent challenge in monster
+          to monster combat around here...?
+        voiceClip: {fileID: 0}
+        guid: 947e05a3b5fb9ac42bc170dadf99d069
+        decorators: []
+        position: {x: 3000, y: 155}
+        nextNode:
+          rid: -2
+    - rid: 2727136841486303314
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: I thought so! Then let's begin!
+        voiceClip: {fileID: 0}
+        guid: 7e424ad6cb24d4642a29c78c9188539c
+        decorators:
+        - rid: 2727136841486303315
+        position: {x: 3000, y: -143}
+        nextNode:
+          rid: -2
+    - rid: 2727136841486303315
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 3000, y: 38}
+        guid: b4ddbf8249a7a2d40a1e5694f8b8f912
+        dialogueEvent: {fileID: -3135735193973782846}
+    - rid: 2727136841486303316
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 2552, y: 256}
+        guid: d89f22e74d4a4824a8aa039d90a166e7
+        quest: {fileID: 0}
