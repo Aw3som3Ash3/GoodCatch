@@ -42,7 +42,7 @@ MonoBehaviour:
         - choice: Can I speak to the Chieftain?
           choiceNode:
             rid: 2727136822063005727
-        - choice: Where's the Water Shrine?
+        - choice: Where's the Ice Shrine?
           choiceNode:
             rid: 2727136822063005728
     - rid: 2727136822063005727
@@ -52,14 +52,15 @@ MonoBehaviour:
           now!
         voiceClip: {fileID: 0}
         guid: 3cecc7206ee8e1444a90ccba8024955d
-        decorators: []
+        decorators:
+        - rid: 2727136822063005729
         position: {x: 1046, y: -94}
         nextNode:
           rid: -2
     - rid: 2727136822063005728
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: Water Shrine? Nobody's spoken of that in ages! Our chieftain may
+        dialouge: Ice Shrine? Nobody's spoken of that in ages! Our chieftain may
           have information about that. She'll be in the room to the left of this
           entrance.
         voiceClip: {fileID: 0}

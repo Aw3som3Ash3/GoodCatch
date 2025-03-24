@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: FishermanTom1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136822063005749
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136822063005749
+  - rid: 2727136822063005750
+  - rid: 2727136822063005754
+  - rid: 2727136822063005755
+  decorators:
+  - rid: 2727136822063005765
+  - rid: 2727136841486303245
+  events:
+  - {fileID: 2822260499742996474}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136822063005749
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Hail! I'm Tom, our local fisherman. What can I do ya for?
+        voiceClip: {fileID: 0}
+        guid: 648481f899d5f834cb953cfe49d10553
+        decorators:
+        - rid: 2727136841486303245
+        position: {x: 403, y: -46}
+        nextNode:
+          rid: 2727136822063005750
+    - rid: 2727136822063005750
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: The Chieftain sent ya, eh? Says the Fire Spirit is real and all
+          that, eh? Says I got a whooooole heap 'a supplies I can just give to anyone
+          I meet, eh?
+        voiceClip: {fileID: 0}
+        guid: 1b29d50a31d907947bfd5a5ded525154
+        decorators: []
+        position: {x: 827, y: -34}
+        nextNode:
+          rid: 2727136822063005755
+    - rid: 2727136822063005754
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Bring me an Acceleracean and a Gastrolusca, one each! Now move
+          it!
+        voiceClip: {fileID: 0}
+        guid: 264598ced412daf4c9a260a0bbc945c3
+        decorators:
+        - rid: 2727136822063005765
+        position: {x: 2440, y: -34}
+        nextNode:
+          rid: -2
+    - rid: 2727136822063005755
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Well let's say that I do got some supplies that could help ya...but
+          you'll hafta earn it! Help me catch a few critters and I get ya some goods!
+        voiceClip: {fileID: 0}
+        guid: 6081169218846b144a658ec2f30ba9e1
+        decorators: []
+        position: {x: 1651, y: -34}
+        nextNode:
+          rid: 2727136822063005754
+    - rid: 2727136822063005765
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 2483, y: 171}
+        guid: 8aaeb70c185ba5549ac1082257924bc0
+        quest: {fileID: 11400000, guid: f4faac87e6c2af74cb65231d07027fa7, type: 2}
+    - rid: 2727136841486303245
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 379, y: 171}
+        guid: 638b76d438bac3542b7215c35cf91853
+        dialogueEvent: {fileID: 2822260499742996474}
+--- !u!114 &2822260499742996474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: SpeakTomFirst
+  m_EditorClassIdentifier: 

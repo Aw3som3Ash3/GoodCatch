@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c963494cf0a2f459443dfc8ab404fb, type: 3}
+  m_Name: VolcanoVillageTomQuest
+  m_EditorClassIdentifier: 
+  type: 0
+  description: 
+  states:
+  - name: Catch 1 Acceleracean and 1 Gastrolusca
+    description: 
+    requirements:
+    - rid: 2727136822063005766
+    - rid: 2727136822063005767
+  - name: Return to Fisherman Tom
+    description: 
+    requirements:
+    - rid: 2727136822063005768
+  - name: Slay the Inkandescent
+    description: 
+    requirements:
+    - rid: 2727136841486303286
+  - name: Speak to the Volcano Chieftain
+    description: 
+    requirements:
+    - rid: 2727136841486303295
+  references:
+    version: 2
+    RefIds:
+    - rid: 2727136822063005766
+      type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: CatchNumOfSpecificFishRequirement
+        IsCompleted: 1
+        targetOfFish: 1
+        currentAmount: 2
+        fishMonsterType: {fileID: 11400000, guid: 13efd9c6dde9cbc4b8cb9a9dd6d87ef9, type: 2}
+    - rid: 2727136822063005767
+      type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: CatchNumOfSpecificFishRequirement
+        IsCompleted: 1
+        targetOfFish: 1
+        currentAmount: 2
+        fishMonsterType: {fileID: 11400000, guid: 1576371e21edf0b41abcd9d364ab581d, type: 2}
+    - rid: 2727136822063005768
+      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: SpeakToNPCQuestRequirement
+        IsCompleted: 0
+        npcName: Fisherman Tom
+    - rid: 2727136841486303286
+      type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
+      data:
+        Name: WinNumFight
+        IsCompleted: 0
+        amount: 1
+    - rid: 2727136841486303295
+      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: SpeakToNPCQuestRequirement
+        IsCompleted: 0
+        npcName: Volcano Chieftain
