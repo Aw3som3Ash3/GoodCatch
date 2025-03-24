@@ -19,6 +19,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136822063005730
+  - name: Speak to the Fisherman Tom
+    description: 
+    requirements:
+    - rid: 2727136822063005747
   references:
     version: 2
     RefIds:
@@ -28,3 +32,9 @@ MonoBehaviour:
         Name: SpeakToNPCQuestRequirement
         IsCompleted: 0
         npcName: Volcano Chieftain
+    - rid: 2727136822063005747
+      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: SpeakToNPCQuestRequirement
+        IsCompleted: 0
+        npcName: Fisherman Tom

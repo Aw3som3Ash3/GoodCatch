@@ -27,6 +27,7 @@ MonoBehaviour:
   - rid: 2727136822063005740
   - rid: 2727136822063005744
   - rid: 2727136822063005745
+  - rid: 2727136822063005748
   decorators: []
   events: []
   references:
@@ -52,19 +53,21 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: bc4afc9b68f7c324a9b52f312b952b15
         decorators: []
-        position: {x: 1032, y: 321}
+        position: {x: 1496, y: 228}
         nextNode:
           rid: 2727136822063005736
     - rid: 2727136822063005735
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: '[You quickly clasp her hand, and the chieftain gasps.]'
+        dialouge: '[You quickly clasp her hand, and the chieftain gasps. A warm aura
+          surges and twists around her arm. The energy flows through her fingertips,
+          then fades.]'
         voiceClip: {fileID: 0}
         guid: b216174e4484c944991297a59c1a51b9
         decorators: []
-        position: {x: 1662, y: -61}
+        position: {x: 2939, y: -51}
         nextNode:
-          rid: -2
+          rid: 2727136822063005744
     - rid: 2727136822063005736
       type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -72,12 +75,12 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 645302018beb8ad4bb220e5ff87a4b94
         decorators: []
-        position: {x: 1471, y: 147}
+        position: {x: 1496, y: -71}
         decisions:
-        - choice: 
+        - choice: '[Tell her of the Fire Spirit]'
           choiceNode:
-            rid: 2727136822063005735
-        - choice: 
+            rid: 2727136822063005748
+        - choice: '[Plead with her]'
           choiceNode:
             rid: 2727136822063005734
     - rid: 2727136822063005737
@@ -89,16 +92,15 @@ MonoBehaviour:
         decorators: []
         position: {x: 1032, y: -50}
         nextNode:
-          rid: 2727136822063005735
+          rid: 2727136822063005736
     - rid: 2727136822063005739
       type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: How absurd! The Fire Spirit is only a bedtime story, enough of
-          this already.
+        dialouge: '[The chieftain appears very frustrated.]'
         voiceClip: {fileID: 0}
         guid: 99ab6f21d29555e4fbd1e440f0bdde6a
         decorators: []
-        position: {x: 1925, y: -92}
+        position: {x: 2447, y: -71}
         decisions:
         - choice: '[Clasp her hand]'
           choiceNode:
@@ -114,34 +116,9 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 744c2eb2a90c25441a86ff80b4c55734
         decorators: []
-        position: {x: 1874, y: 228}
+        position: {x: 2471, y: 290}
         nextNode:
-          rid: 2727136822063005741
-    - rid: 2727136822063005741
-      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: Tch! Do not insult me with such a frivolous fairy tale!
-        voiceClip: {fileID: 0}
-        guid: 645302018beb8ad4bb220e5ff87a4b94
-        decorators: []
-        position: {x: 1429, y: -92}
-        decisions:
-        - choice: '[Speak of the Fire Spirit]'
-          choiceNode:
-            rid: 2727136822063005739
-        - choice: '[Plead with her]'
-          choiceNode:
-            rid: 2727136822063005742
-    - rid: 2727136822063005742
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: '[You attempt to plead with her, but she seems to ignore you.]'
-        voiceClip: {fileID: 0}
-        guid: bc4afc9b68f7c324a9b52f312b952b15
-        decorators: []
-        position: {x: 1489, y: 228}
-        nextNode:
-          rid: 2727136822063005741
+          rid: 2727136822063005739
     - rid: 2727136822063005743
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -161,17 +138,29 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 5de61559c5e3f9c439b4f927d6b9d82e
         decorators: []
-        position: {x: 3266, y: -92}
+        position: {x: 3765, y: -38}
         nextNode:
           rid: 2727136822063005745
     - rid: 2727136822063005745
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
         dialouge: With this power...you could take down the Inkandescent, maybe even
-          Tempus Primus! Please, if anyone can slay the
+          Tempus Primus! Go speak to our fisherman, Tom, he may have supplies to
+          help you. He'll be directly outside, across the lava lake.
         voiceClip: {fileID: 0}
         guid: 173a558ca8b609e45bd3211a6f0b2af5
         decorators: []
-        position: {x: 3665, y: -92}
+        position: {x: 4160, y: -38}
         nextNode:
           rid: -2
+    - rid: 2727136822063005748
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: How absurd! The Fire Spirit is only a bedtime story, enough of
+          this already.
+        voiceClip: {fileID: 0}
+        guid: 71d23c0faec3d3949b54dfdfc5bb3478
+        decorators: []
+        position: {x: 1988, y: -71}
+        nextNode:
+          rid: 2727136822063005739

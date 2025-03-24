@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2959565552225748507, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
       propertyPath: m_Name
-      value: FemaleVillager (Keeps)
+      value: FemaleVillager (Volcano Chieftain)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Volcano Chieftain
-  baseDialogue: {fileID: 11400000, guid: bd1e4cb6e44e94d4f8dbe8343c8faa79, type: 2}
+  baseDialogue: {fileID: 11400000, guid: 80d1ac9705b351b469a590cb187ab950, type: 2}
   questBasedDialogues: []
 --- !u!4 &141577025 stripped
 Transform:
@@ -1081,6 +1081,87 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &575196172
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2318496406209989534, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_Name
+      value: Male_NPC (Fisherman Tom)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -693.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.092
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 444.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.22576454
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.97418195
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -153.904
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: npcName
+      value: Fisherman Tom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: baseDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 9019ebe1cc6301a4a9436284e2a1a3c7, type: 2}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[0].quest
+      value: 
+      objectReference: {fileID: 11400000, guid: f4faac87e6c2af74cb65231d07027fa7, type: 2}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[0].dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 535c205222efc344aa6e4b995bc949d8, type: 2}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[0].stateName
+      value: Return to Fisherman Tom
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
 --- !u!1 &649309593
 GameObject:
   m_ObjectHideFlags: 0
@@ -6389,6 +6470,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed3a5d4ef91a85848b4ac36f9122a0b6, type: 3}
+--- !u!1001 &1094627836
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1334915658}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 74.52261
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 74.52262
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 74.52265
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.85
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.375
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.555
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7559199
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6530291
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.034992754
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.030230224
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -81.647
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -5.301
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ba1104475f6fbd4b8388c99278eaf65, type: 2}
+    - target: {fileID: 919132149155446097, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+      propertyPath: m_Name
+      value: sign_low (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+--- !u!4 &1094627837 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
+  m_PrefabInstance: {fileID: 1094627836}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1108092682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6889,6 +7048,7 @@ Transform:
   - {fileID: 1039867154}
   - {fileID: 933032155}
   - {fileID: 141577025}
+  - {fileID: 1094627837}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1446070086 stripped
@@ -7143,7 +7303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.81
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7189,7 +7349,10 @@ PrefabInstance:
     - {fileID: 1808970678878381639, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2931343322485882040, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1866655151}
   m_SourcePrefab: {fileID: 100100000, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
 --- !u!1001 &1514710478
 PrefabInstance:
@@ -52838,7 +53001,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2318496406209989534, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: m_Name
-      value: Male_NPC (Dock Villager)
+      value: Male_NPC (Volcano Greeter)
       objectReference: {fileID: 0}
     - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53039,6 +53202,23 @@ Transform:
   - {fileID: 1685233747}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1866655149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2931343322485882040, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+  m_PrefabInstance: {fileID: 1485416883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866655151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866655149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2505cb2d14f753f4fb903697db433648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1894408036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53097,7 +53277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.81
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -53626,6 +53806,7 @@ SceneRoots:
   - {fileID: 562797161}
   - {fileID: 536792328}
   - {fileID: 1785011169}
+  - {fileID: 575196172}
   - {fileID: 75162804}
   - {fileID: 1334915658}
   - {fileID: 518356547}
