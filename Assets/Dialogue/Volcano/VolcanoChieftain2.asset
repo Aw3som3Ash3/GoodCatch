@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: VolcanoChieftain2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136822063005731
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136822063005731
+  - rid: 2727136841486303296
+  - rid: 2727136841486303297
+  decorators:
+  - rid: 2727136841486303298
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136822063005731
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Finally...the Inkandescent's reign of terror is over...
+        voiceClip: {fileID: 0}
+        guid: d36c262c3f3106749b8aac0ee3055426
+        decorators: []
+        position: {x: 404, y: -30}
+        nextNode:
+          rid: 2727136841486303296
+    - rid: 2727136841486303296
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Thank you, sincerely. I shall now tell you of the Ice Shrine's
+          location.
+        voiceClip: {fileID: 0}
+        guid: f4471f42414fca246a0344524d2b6e98
+        decorators: []
+        position: {x: 803, y: -30}
+        nextNode:
+          rid: 2727136841486303297
+    - rid: 2727136841486303297
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Just behind the desert island lies a much smaller island. You'll
+          find just a large shrine with a symbol, similar to the Fire Shrine. I wish
+          you luck, on your journey, survivor.
+        voiceClip: {fileID: 0}
+        guid: db8cc38ca8a032943b2973dff70043d7
+        decorators:
+        - rid: 2727136841486303298
+        position: {x: 1257, y: -30}
+        nextNode:
+          rid: -2
+    - rid: 2727136841486303298
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1492, y: 221}
+        guid: d6afc96e50b51c84caf3b5b2a45f1946
+        quest: {fileID: 11400000, guid: f6efbd43e62945d4488b8bab7d64773c, type: 2}
