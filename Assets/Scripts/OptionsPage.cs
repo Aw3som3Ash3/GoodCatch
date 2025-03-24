@@ -88,6 +88,7 @@ public class OptionsPage : PausePage
     {
         settingsUI.visible = (false);
         controlTabs.visible = (true);
+        menuContainer.Clear();
         menuContainer.Add(controlTabs);
         controlTabs.StretchToParentSize();
         
@@ -107,6 +108,7 @@ public class OptionsPage : PausePage
             menuContainer.Remove(controlTabs);
             menuContainer.Clear();
         }
+        menuContainer.Clear();
         menuContainer.Add(settingsUI);
         //throw new NotImplementedException();
     }
