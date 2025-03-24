@@ -30,5 +30,8 @@
 }
 
 #Cupcake .unity-text-element {
-    font-size: 60px;
+    font-size: 48px;
+    padding-bottom: 91px;
+    padding-top: 52px;
+    margin-bottom: 10px;
 }
