@@ -86,7 +86,7 @@ MonoBehaviour:
     - rid: 2727136822063005737
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: You ask of the location of the Water Shrine?
+        dialouge: You ask of the location of the Ice Shrine?
         voiceClip: {fileID: 0}
         guid: 889306478d9294447975a5fe70900b14
         decorators: []
@@ -146,7 +146,8 @@ MonoBehaviour:
       data:
         dialouge: With this power...you could take down the Inkandescent, maybe even
           Tempus Primus! Go speak to our fisherman, Tom, he may have supplies to
-          help you. He'll be directly outside, across the lava lake.
+          help you. He'll be directly outside, across the lava lake. And once you've
+          slain the Inkandescent, I shall tell you of the Ice Shrine.
         voiceClip: {fileID: 0}
         guid: 173a558ca8b609e45bd3211a6f0b2af5
         decorators: []

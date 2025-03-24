@@ -97,7 +97,8 @@ MonoBehaviour:
     - rid: 2727136822063005763
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: Pleasure ta be acquainted! See ya 'round, eh?
+        dialouge: Pleasure ta be acquainted! Now go and give that big bundle o' pool
+          noodles what for!
         voiceClip: {fileID: 0}
         guid: 6e22add2732df334eb2a79a135e792b2
         decorators: []

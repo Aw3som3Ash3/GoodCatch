@@ -28,6 +28,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136841486303286
+  - name: Speak to the Volcano Chieftain
+    description: 
+    requirements:
+    - rid: 2727136841486303295
   references:
     version: 2
     RefIds:
@@ -59,3 +63,9 @@ MonoBehaviour:
         Name: WinNumFight
         IsCompleted: 0
         amount: 1
+    - rid: 2727136841486303295
+      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: SpeakToNPCQuestRequirement
+        IsCompleted: 0
+        npcName: Volcano Chieftain
