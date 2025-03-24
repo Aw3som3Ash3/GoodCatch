@@ -260,7 +260,7 @@ public class FishMonster
     public Attribute Agility { get { return agility; } }
     [SerializeField]
     Attribute accuracy;
-    public Attribute Accuracy { get;}
+    public Attribute Accuracy { get { return accuracy; } }
     [SerializeField]
     Attribute attack;
     public Attribute Attack { get { return attack; } }
