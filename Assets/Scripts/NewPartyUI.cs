@@ -55,6 +55,8 @@ public class NewPartyUI : PausePage
     {
         if (viewMonster.visible)
         {
+            viewMonster.Close();
+
             viewMonster.visible = false;
             return false;
         }

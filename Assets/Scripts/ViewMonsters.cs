@@ -11,6 +11,7 @@ public class ViewMonsters : VisualElement
     int abilityTabIndex;
     InputAction tabAbility;
     VisualElement monsterIcon, elementalIcon1, elementalIcon2, abilityEffectIcons, abilityElementIcon;
+    VisualElement abilityPicture, friendlyLaneOne, friendlyLaneTwo, friendlyLaneThree, enemyLaneOne, enemyLaneTwo, enemyLaneThree,tabLeft, tabRight;
     ProgressBar healthBar, xpBar;
     Label speciesName,nameTitle, levelText, physical, defence, accuracy, magical, resistance, agility, stamina;
     Label abilityScaledDamage, abilityStaminaCost, abilityAccuracy, abilityTargetTeam, abilityUsableDepth,abilityTargetableDepth, abilityName, abilityElement, abilityType, abilityPiercing, abilityMovement;
@@ -53,9 +54,7 @@ public class ViewMonsters : VisualElement
         elementalIcon2 = this.Q("elementalIcon2");
         speciesName = this.Q<Label>("speciesName");
         xpBar.highValue = 1000;
-        tabAbility = InputManager.Input.UI.ChangeTab;
-        tabAbility.performed += OnAbilityTab;
-
+        
         abilityScaledDamage = this.Q<Label>("DamageAmount");
         abilityStaminaCost = this.Q<Label>("StaminaAmount");
         abilityAccuracy = this.Q<Label>("AccuracyAmount");
@@ -69,8 +68,58 @@ public class ViewMonsters : VisualElement
         //abilityUsableDepth = this.Q<Label>("UseLaneAmount");
         //abilityTargetableDepth = this.Q<Label>("TargetLaneAmount");
         abilityEffectIcons = this.Q("PopulateEffects");
+        abilityPicture = this.Q("AbilityPicture");
+        friendlyLaneOne = this.Q("FriendlyLaneOne");
+        friendlyLaneTwo = this.Q("FriendlyLaneTwo");
+        friendlyLaneThree = this.Q("FriendlyLaneThree");
 
-   
+        enemyLaneOne = this.Q("EnemyLaneOne");
+        enemyLaneTwo = this.Q("EnemyLaneTwo");
+        enemyLaneThree = this.Q("EnemyLaneThree");
+
+        tabLeft = this.Q("TabLeft");
+        
+        tabRight = this.Q("TabRight");
+
+
+
+    }
+    public void Close()
+    {
+        tabAbility.performed -= OnAbilityTab;
+        tabAbility.Disable();
+        InputManager.OnInputChange -= OnInputChange;
+    }
+
+    private void OnInputChange(InputMethod method)
+    {
+        ChangeTabIcons(method);
+    }
+
+    void ChangeTabIcons(InputMethod inputMethod)
+    {
+        foreach (var binding in InputManager.Input.UI.ChangeTab.bindings.Where((x) => x.groups == (inputMethod == InputMethod.mouseAndKeyboard ? "Keyboard&Mouse" : "Gamepad")))
+        {
+            if (binding.isPartOfComposite)
+            {
+                if (binding.name == "positive")
+                {
+                    InputDisplayer.GetInputIcon(binding, inputMethod).Completed += (x) => tabRight.style.backgroundImage = x.Result;
+
+
+                    Debug.Log("has binding " + binding.effectivePath);
+
+                }
+                else if (binding.name == "negative")
+                {
+                    InputDisplayer.GetInputIcon(binding, inputMethod).Completed += (x) => tabLeft.style.backgroundImage = x.Result;
+                }
+            }
+
+
+
+
+        }
     }
 
     private void OnAbilityTab(InputAction.CallbackContext context)
@@ -94,6 +143,8 @@ public class ViewMonsters : VisualElement
 
     public void SetFish(FishMonster fishMonster)
     {
+        abilityTabIndex = 0;
+
         nameTitle.text = fishMonster.Name;
         speciesName.text = fishMonster.Type.name;
         var iconVal = monsterIcon.style.backgroundImage.value;
@@ -122,6 +173,12 @@ public class ViewMonsters : VisualElement
             elementalIcon2.style.backgroundImage = null;
         }
 
+        ChangeTabIcons(InputManager.inputMethod);
+        InputManager.OnInputChange += OnInputChange;
+
+        tabAbility = InputManager.Input.UI.ChangeTab;
+        tabAbility.performed += OnAbilityTab;
+        tabAbility.Enable();
 
         levelText.text = $"Lv.{fishMonster.Level.ToString("000")}";
         healthBar.highValue = fishMonster.MaxHealth;
@@ -144,7 +201,7 @@ public class ViewMonsters : VisualElement
         Ability ability = fishMonster.GetAbility(abilityTabIndex);
         abilityScaledDamage.text = ability.GetDamage(fishMonster).ToString("00");
         abilityStaminaCost.text = ability.StaminaUsage.ToString();
-        abilityAccuracy.text = ability.StaminaUsage.ToString();
+        abilityAccuracy.text = (ability.Accuracy*100).ToString();
         abilityTargetTeam.text = ability.TargetedTeam.ToString();
         abilityName.text = ability.name.ToString();
         if (ability.AbilityPhysicalMagical == Ability.AbilityType.attack)
@@ -162,12 +219,29 @@ public class ViewMonsters : VisualElement
         //abilityTargetableDepth.text = ability.TargetableDepths.ToString();
         //The two above Broke
 
+       
+        abilityPicture.Clear();
+        var conclusion = abilityPicture.style.backgroundImage.value;
+        conclusion.sprite = ability.Icon;
+        abilityPicture.style.backgroundImage = conclusion;
+
         abilityElementIcon.Clear();
         var value = abilityElementIcon.style.backgroundImage.value;
         value.sprite = ability.Element.Icon;
         abilityElementIcon.style.backgroundImage = value;
 
 
+        friendlyLaneOne.style.backgroundColor = ability.AvailableDepths.HasFlag(Depth.shallow) ? Color.blue: Color.grey;
+
+        friendlyLaneTwo.style.backgroundColor = ability.AvailableDepths.HasFlag(Depth.middle) ? Color.blue : Color.grey;
+
+        friendlyLaneThree.style.backgroundColor = ability.AvailableDepths.HasFlag(Depth.abyss) ? Color.blue : Color.grey;
+
+        enemyLaneOne.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.shallow) ? ability.TargetedTeam == Ability.TargetTeam.enemy ? Color.red: Color.green : Color.grey;
+
+        enemyLaneTwo.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.middle) ? ability.TargetedTeam == Ability.TargetTeam.enemy ? Color.red : Color.green : Color.grey;
+
+        enemyLaneThree.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.abyss) ? ability.TargetedTeam == Ability.TargetTeam.enemy ? Color.red : Color.green : Color.grey;
 
 
         abilityEffectIcons.Clear();
