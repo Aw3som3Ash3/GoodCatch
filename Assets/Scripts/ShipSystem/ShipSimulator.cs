@@ -35,24 +35,48 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     [SerializeField]
     PIDController xTorqueController=new(0.5f,0,0.25f);
 
+  
+    //GameObject BoatSmokeVFX1obj;
+    
+    //ParticleSystem BoatSmokeVFX2obj;
+    [SerializeField]
+    ParticleSystem BoatSmokeVFX1;
+    [SerializeField]
+    ParticleSystem BoatSmokeVFX2;
+
     [SerializeField]
     Transform repawnPoint;
     private void Awake()
     {
         shipControls=this.GetComponentInChildren<ShipControls>();
         shipControls.OnInteract += OnControlsInteract;
+        //BoatSmokeVFX1=BoatSmokeVFX1obj.GetComponent<ParticleSystem>();
+        //BoatSmokeVFX2=BoatSmokeVFX2obj.GetComponent<ParticleSystem>();
     }
 
     private void OnControlsInteract(bool b)
     {
         isActive = b;
+
+        if(b)
+        {
+            BoatSmokeVFX1.Play();
+            BoatSmokeVFX2.Play();
+            AddObject(PlayerController.player.transform);
+           
+        }
+        else
+        {
+            BoatSmokeVFX1.Stop();
+            BoatSmokeVFX2.Stop();
+        }
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         //sailRatio = 1;
         //sail.SetrWindStrength(1);
         //sail.SetSailsAmount(sailRatio);
@@ -145,6 +169,10 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         obj.SetParent(childrenObject);
     }
 
+    public void RemoveObject(Transform obj)
+    {
+        obj.SetParent(null);
+    }
     public void Load(string json)
     {
 
