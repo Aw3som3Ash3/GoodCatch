@@ -75,15 +75,15 @@
                             <ui:Label tabindex="-1" text="AbilityName" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityName" style="font-size: 60px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
                             <ui:VisualElement name="AbilityRep" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0); width: 457px; flex-direction: row; align-items: center; transform-origin: left bottom; scale: 1.14 1.14;">
                                 <ui:VisualElement style="flex-grow: 1; align-items: center; height: 218px; justify-content: space-between;">
-                                    <ui:VisualElement style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
-                                    <ui:VisualElement style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
-                                    <ui:VisualElement style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
+                                    <ui:VisualElement name="FriendLane1" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
+                                    <ui:VisualElement name="FriendLane2" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
+                                    <ui:VisualElement name="FriendLane3" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
                                 </ui:VisualElement>
-                                <ui:VisualElement style="flex-grow: 1; width: 218px; height: 218px; background-color: rgba(0, 0, 0, 0.6);" />
+                                <ui:VisualElement name="AbilityPicture" style="flex-grow: 1; width: 218px; height: 218px; background-color: rgba(0, 0, 0, 0.6);" />
                                 <ui:VisualElement style="flex-grow: 1; align-items: center; height: 218px; justify-content: space-between;">
-                                    <ui:VisualElement style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
-                                    <ui:VisualElement style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
-                                    <ui:VisualElement style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
+                                    <ui:VisualElement name="EnemyLane1" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
+                                    <ui:VisualElement name="EnemyLane2" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
+                                    <ui:VisualElement name="EnemyLane3" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
