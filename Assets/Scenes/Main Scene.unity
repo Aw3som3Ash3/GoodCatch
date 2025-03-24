@@ -21299,7 +21299,7 @@ Transform:
   m_GameObject: {fileID: 2061899154}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9491812, z: 0, w: -0.3147302}
-  m_LocalPosition: {x: -8.954531, y: 5.1819973, z: 56.326923}
+  m_LocalPosition: {x: -10.935162, y: 5.1819973, z: 53.668644}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22023,7 +22023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.000001
+      value: 1.0000013
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22031,7 +22031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.0000014
+      value: -1.6849824
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5494617037479837059, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
@@ -22184,75 +22184,6 @@ PrefabInstance:
       addedObject: {fileID: 568719737}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
---- !u!1001 &2762786264757623813
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 17.0498
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 17.0498
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 17.0498
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -956
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1408
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9302017
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.21185572
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.2922526
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.06656125
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -25.661
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -34.884
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402504807122047023, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3253907832602844335, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
-      propertyPath: m_Name
-      value: Temp Tempus Primus, Lord of Storms
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
 --- !u!1001 &3587763584466161095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22414,7 +22345,6 @@ SceneRoots:
   - {fileID: 1110349346}
   - {fileID: 1172314990}
   - {fileID: 119904985}
-  - {fileID: 2762786264757623813}
   - {fileID: 112713768}
   - {fileID: 1426963061}
   - {fileID: 1721713081}
