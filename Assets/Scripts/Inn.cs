@@ -69,7 +69,7 @@ public class Inn : MonoBehaviour, IInteractable
     }
     public bool Interact()
     {
-        InnVisited?.Invoke(this);
+        /*InnVisited?.Invoke(this);
         if (GameManager.Instance.CurrentTimeOfDay.HasFlag(GameManager.TimeOfDay.Night))
         {
             dialogue.DisplayFirstOption(SleepThroughNight);
@@ -77,7 +77,10 @@ public class Inn : MonoBehaviour, IInteractable
         }
        print("it is not night time could not sleep");
        dialogue.CantSleepMessage();
-       return false;
+       return false;*/
+
+       dialogue.DisplayFirstOption(SleepThroughNight);
+       return true;
     }
     public Vector3 GetRepsawnPoint()
     {

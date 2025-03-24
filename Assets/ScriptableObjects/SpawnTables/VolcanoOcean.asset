@@ -13,12 +13,36 @@ MonoBehaviour:
   m_Name: VolcanoOcean
   m_EditorClassIdentifier: 
   daySpawn:
-  - monster: {fileID: 11400000, guid: f804a3725d90a7b4c80c36d5e7f44278, type: 2}
-    weight: 20
-  nightSpawn:
-  - monster: {fileID: 11400000, guid: 87003e928c2aae646859a2a02e2532bc, type: 2}
-    weight: 20
-  - monster: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
+  - monster: {fileID: 11400000, guid: 1576371e21edf0b41abcd9d364ab581d, type: 2}
+    minLevel: 15
+    maxLevel: 20
     weight: 10
-  - monster: {fileID: 11400000, guid: 68f5f9f6ff91d7d4da0e9a5975fc5fcd, type: 2}
+  - monster: {fileID: 11400000, guid: 69c52de4159f81445b182d7a74c765fe, type: 2}
+    minLevel: 15
+    maxLevel: 20
     weight: 15
+  - monster: {fileID: 11400000, guid: 13efd9c6dde9cbc4b8cb9a9dd6d87ef9, type: 2}
+    minLevel: 15
+    maxLevel: 20
+    weight: 15
+  - monster: {fileID: 11400000, guid: 082d515f808f06a47bd335e4aab82d0e, type: 2}
+    minLevel: 15
+    maxLevel: 20
+    weight: 10
+  nightSpawn:
+  - monster: {fileID: 11400000, guid: f804a3725d90a7b4c80c36d5e7f44278, type: 2}
+    minLevel: 15
+    maxLevel: 20
+    weight: 10
+  - monster: {fileID: 11400000, guid: 13efd9c6dde9cbc4b8cb9a9dd6d87ef9, type: 2}
+    minLevel: 15
+    maxLevel: 20
+    weight: 15
+  - monster: {fileID: 11400000, guid: 69c52de4159f81445b182d7a74c765fe, type: 2}
+    minLevel: 15
+    maxLevel: 20
+    weight: 15
+  - monster: {fileID: 11400000, guid: d8bbbd344bf167f4a8a1570cef709d8c, type: 2}
+    minLevel: 15
+    maxLevel: 20
+    weight: 10
