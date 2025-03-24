@@ -46,7 +46,8 @@ MonoBehaviour:
     - rid: 2727136756081360898
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: '[The Fire Shrine happens to be written in perfect English.]'
+        dialouge: '[The Fire Shrine happens to be conveniently written in perfect
+          English.]'
         voiceClip: {fileID: 0}
         guid: a764eca88c4162244948a62f81ddf9ef
         decorators: []
@@ -64,7 +65,7 @@ MonoBehaviour:
         decorators:
         - rid: 2727136756081360900
         - rid: 2727136756081360901
-        position: {x: 789, y: -18}
+        position: {x: 871, y: -18}
         nextNode:
           rid: -2
     - rid: 2727136756081360900
