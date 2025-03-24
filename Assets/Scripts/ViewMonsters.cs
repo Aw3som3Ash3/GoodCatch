@@ -237,11 +237,11 @@ public class ViewMonsters : VisualElement
 
         friendlyLaneThree.style.backgroundColor = ability.AvailableDepths.HasFlag(Depth.abyss) ? Color.blue : Color.grey;
 
-        enemyLaneOne.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.shallow) ? Color.red : Color.grey;
+        enemyLaneOne.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.shallow) ? ability.TargetedTeam == Ability.TargetTeam.enemy ? Color.red: Color.green : Color.grey;
 
-        enemyLaneTwo.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.middle) ? Color.red : Color.grey;
+        enemyLaneTwo.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.middle) ? ability.TargetedTeam == Ability.TargetTeam.enemy ? Color.red : Color.green : Color.grey;
 
-        enemyLaneThree.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.abyss) ? Color.red : Color.grey;
+        enemyLaneThree.style.backgroundColor = ability.TargetableDepths.HasFlag(Depth.abyss) ? ability.TargetedTeam == Ability.TargetTeam.enemy ? Color.red : Color.green : Color.grey;
 
 
         abilityEffectIcons.Clear();
