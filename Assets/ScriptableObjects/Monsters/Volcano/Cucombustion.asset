@@ -15,9 +15,9 @@ MonoBehaviour:
   description: While not shy, it extremely dislikes being touched by strangers. If
     uncomfortable, it erupts magma when touched.
   model: {fileID: 1155657516643993098, guid: 1418e7326a986064db840f4b16c82369, type: 3}
-  fishId: 20
+  fishId: 15
   icon: {fileID: 21300000, guid: 43c8f86040d5927468701f7b8f5d58f5, type: 3}
-  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  miniSprite: {fileID: 21300000, guid: 1c6375bb8b53e5b4383adaf4e461fd46, type: 3}
   homeDepth: 4
   preferredBait: []
   elements:
@@ -31,27 +31,27 @@ MonoBehaviour:
     min: 5
     max: 10
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   special:
     min: 20
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   fortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 3
   specialFortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 3
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   baseHealth: 80
   baseStamina: 70
   baseAbilities:
@@ -67,3 +67,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

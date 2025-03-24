@@ -15,7 +15,7 @@ MonoBehaviour:
   description: A fish possessing absurd narcissism. So obsessed with its own image,
     it gets caught on purpose to show off its beauty.
   model: {fileID: 903130045763395845, guid: b4df2d84339a66642a31d1531b159912, type: 3}
-  fishId: 2
+  fishId: 3
   icon: {fileID: 21300000, guid: 9f6c6235079cb304b8ad890c62a1bac0, type: 3}
   miniSprite: {fileID: 2146591605, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 2
@@ -25,28 +25,28 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   attack:
     min: 20
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 5
   special:
     min: 5
     max: 10
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   fortitude:
     min: 8
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   specialFortitude:
     min: 5
     max: 10
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   accuracy:
     min: 50
     max: 50
@@ -67,3 +67,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

@@ -11,7 +11,7 @@ using static GameManager;
 public class Bestiary : PausePage
 {
     ListView fishList;
-    Label fishTitle, location, timeOfDay, baits, stamina, hp, agilityMin, attackMin, magicAttackMin, defenseMin, magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax;
+    Label fishTitle, location, timeOfDay, baits, stamina, hp, agilityMin, attackMin, magicAttackMin, defenseMin, magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax, loreAmount, healthAmount, staminaAmount, accuracyMin, accuracyMax, type1, type2;
     List<FishMonsterType> fishMonsters 
     { get 
         { 
@@ -61,6 +61,13 @@ public class Bestiary : PausePage
         baits = this.Q<Label>("BaitAmount");
         stamina = this.Q<Label>("StaAmount");
         hp = this.Q<Label>("HPAmount");
+        loreAmount = this.Q<Label>("LoreAmount");
+
+        healthAmount = this.Q<Label>("HealthAmount");
+        staminaAmount = this.Q<Label>("StaminaAmount");
+        type1 = this.Q<Label>("Type1Amount");
+        type2 = this.Q<Label>("Type2Amount");
+        //accuracyMax = this.Q<Label>("MaximumAccuracy");
 
         //agilityMin = this.Q<Label>("MinimumAgilityAmount");
         //attackMin = this.Q<Label>("MinimumPhysicalAttackAmount");
@@ -166,6 +173,11 @@ public class Bestiary : PausePage
         defenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumPFAmount");
         magicDefenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumMFAmount");
 
+        healthAmount = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("HealthAmount");
+        staminaAmount = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("StaminaAmount");
+        accuracyMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumAccuracyAmount");
+        accuracyMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumAccuracyAmount");
+
         Debug.Log(fishMonsterType);
         Debug.Log(agilityMin);
         //fishTitle.text = fishMonsterType.name; 
@@ -185,6 +197,15 @@ public class Bestiary : PausePage
             magicDefenseMin.text = fishMonsterType.SpecialFortitude.Min.ToString();
             defenseMin.text = fishMonsterType.Fortitude.Min.ToString();
             defenseMax.text = fishMonsterType.Fortitude.Max.ToString();
+
+            loreAmount.text = fishMonsterType.Description.ToString();
+            healthAmount.text = fishMonsterType.BaseHealth.ToString();
+            staminaAmount.text = fishMonsterType.BaseStamina.ToString();
+            accuracyMin.text = fishMonsterType.Accuracy.Min.ToString();
+            accuracyMax.text = fishMonsterType.Accuracy.Max.ToString();
+
+            type1.text = fishMonsterType.Elements[0].name.ToString(); 
+            type2.text = fishMonsterType.Elements[1].name.ToString();
         }
         else
         {
@@ -200,6 +221,12 @@ public class Bestiary : PausePage
             magicDefenseMin.text = "??";
             defenseMin.text = "??";
             defenseMax.text = "??";
+
+            staminaAmount.text = "??";
+            healthAmount.text = "??";
+            accuracyMin.text = "??";
+            accuracyMax.text = "??";
+            loreAmount.text = "???";
         }
        
     }
@@ -251,7 +278,7 @@ public class BestiarySlot : VisualElement
 
 public class BestiaryPage:VisualElement
 {
-    Label fishTitle,location,timeOfDay,baits,stamina,hp,agilityMin,attackMin,magicAttackMin,defenseMin,magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax;
+    Label fishTitle,location,timeOfDay,baits,stamina,hp,agilityMin,attackMin,magicAttackMin,defenseMin,magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax, staminaAmount;
     
     
     public new class UxmlFactory : UxmlFactory<BestiaryPage, BestiaryPage.UxmlTraits>
@@ -302,6 +329,8 @@ public class BestiaryPage:VisualElement
         defenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumPFAmount");
         magicDefenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumMFAmount");
 
+        staminaAmount = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("StaminaAmount");
+
 
         Debug.Log(fishMonsterType);
         Debug.Log(agilityMin);
@@ -320,6 +349,8 @@ public class BestiaryPage:VisualElement
         magicDefenseMin.text = fishMonsterType.SpecialFortitude.Min.ToString();
         defenseMin.text = fishMonsterType.Fortitude.Min.ToString();
         defenseMax.text = fishMonsterType.Fortitude.Max.ToString();
+
+        staminaAmount.text = fishMonsterType.BaseStamina.ToString();
     }
 
 }

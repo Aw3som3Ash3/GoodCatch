@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "It catches prey by luring them with its luminescent digestive fluids.
     It subdues them with its body radiating 10,000\xB0F."
-  model: {fileID: 3310206257890562397, guid: e63042fc75535844ebb0ab7b57c543f7, type: 3}
+  model: {fileID: 4223721864620319220, guid: 517b174774df03645bed9ab6742eaf6c, type: 3}
   fishId: 23
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: -1
+  homeDepth: 2
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}
@@ -57,11 +57,12 @@ MonoBehaviour:
   baseStamina: 180
   baseAbilities:
   - potentialAbilities:
-    - {fileID: 11400000, guid: 8ea9acfa0dfef9b4f841e3cd675356ad, type: 2}
+    - {fileID: 11400000, guid: 9996d26aab0e20645a44bdc98a2cf3b2, type: 2}
   - potentialAbilities:
-    - {fileID: 11400000, guid: 8c3bab4c2d2d60249bbf6c3621b15aee, type: 2}
+    - {fileID: 11400000, guid: 2aad17546bf6fb64aa1775f83a472c3e, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 78cc93ccc6f7ab84382ff5f2924cce36, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

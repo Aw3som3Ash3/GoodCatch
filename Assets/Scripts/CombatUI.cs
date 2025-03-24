@@ -472,6 +472,7 @@ public class CombatUI : VisualElement
         UpdateInfo(fish);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
+            Debug.Log(abilityButtons[i]);
             float damage = fish.GetAbility(i).GetDamage(fish);
             abilityButtons[i].SetAbility(fish.GetAbility(i), damage, fish.Accuracy.value);
             abilityButtons[i].SetEnabled(true);
@@ -515,7 +516,10 @@ public class CombatUI : VisualElement
     public void EnableButtons()
     {
         inputs.Combat.EndTurn.performed += OnEndTurn;
-        moveButton.SetEnabled(currentTurn.ActionLeft);
+        if (moveButton != null)
+        {
+            moveButton.SetEnabled(currentTurn.ActionLeft);
+        }
         for (int i = 0; i < abilityButtons.Length; i++)
         {
             abilityButtons[i].SetEnabled(true);
@@ -529,10 +533,13 @@ public class CombatUI : VisualElement
             }
 
         }
-        foreach (CombatItemUI item in itemBar.Children())
+        if (itemBar != null)
         {
-            
-            item.SetEnabled(currentTurn.ItemUsable(item.item));
+            foreach (CombatItemUI item in itemBar.Children())
+            {
+
+                item.SetEnabled(currentTurn.ItemUsable(item.item));
+            }
         }
         endTurnButton.SetEnabled(true);
         if (currentTurn.ActionLeft)
@@ -710,6 +717,7 @@ public class CombatUI : VisualElement
         var status = new StatusIcon(instance);
         status.MouseEnter += (action) => action(toolTip);
         status.MouseExit += () => toolTip.visible = false;
+        instance.DurationChanged += (x) => { status.UpdateIcon(x); };
         statusBar.Add(status);
     }
     public void SetTurnMarker(Transform target)

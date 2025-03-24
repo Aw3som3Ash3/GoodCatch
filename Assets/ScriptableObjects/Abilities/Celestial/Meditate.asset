@@ -16,10 +16,10 @@ MonoBehaviour:
   abilityType: 1
   availableDepths: 3
   targetableDepths: 3
-  targetTeam: 0
+  targetTeam: 2
   targetingType: 0
   piercing: 0
-  staminaUsage: 20
+  staminaUsage: 25
   baseDamage: -50
   accuracy: 0.7
   damageMultiplier: 0

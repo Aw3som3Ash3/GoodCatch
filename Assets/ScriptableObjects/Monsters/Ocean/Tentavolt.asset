@@ -15,9 +15,9 @@ MonoBehaviour:
   description: Each tentacle holds a 3,000 volts, totaling 18,000 volts. The cure
     for its poison can only be made with the same Tentavolt.
   model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 21
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  fishId: 17
+  icon: {fileID: 21300000, guid: 22b51ab1994a0134fb69d7b8d66056c6, type: 3}
+  miniSprite: {fileID: 21300000, guid: 22b51ab1994a0134fb69d7b8d66056c6, type: 3}
   homeDepth: 4
   preferredBait: []
   elements:
@@ -26,18 +26,18 @@ MonoBehaviour:
   agility:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   attack:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   special:
     min: 15
     max: 25
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   fortitude:
     min: 5
     max: 10
@@ -46,13 +46,13 @@ MonoBehaviour:
   specialFortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 4
   baseHealth: 60
   baseStamina: 100
   baseAbilities:
@@ -68,3 +68,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

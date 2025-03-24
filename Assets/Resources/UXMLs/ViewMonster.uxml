@@ -1,0 +1,159 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/ViewMonster.uss?fileID=7433441132597879392&amp;guid=a1beefa9e2e0c66449e63cadbaca7244&amp;type=3#ViewMonster" />
+    <ui:VisualElement name="Working" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/System_Menu_BG_v2.png?fileID=2800000&amp;guid=b4bc9a62b1b1d434d82285b14b8b7bcf&amp;type=3#System_Menu_BG_v2&quot;);">
+        <ui:VisualElement name="Background" style="flex-grow: 0; height: 95%; margin-right: 1%; margin-left: 1%; margin-top: 1%;">
+            <ui:VisualElement name="InformationRow" style="flex-grow: 0; flex-direction: row; height: 650px;">
+                <ui:VisualElement name="PNGColum" style="flex-grow: 0; flex-direction: column; width: 488px;">
+                    <ui:VisualElement name="PNG" style="flex-grow: 0; height: 394px; background-color: rgb(255, 255, 255); margin-right: 25px; margin-left: 25px; margin-top: 25px; margin-bottom: 10px;" />
+                    <ui:VisualElement name="PNGsmallInfo" style="flex-grow: 1; background-color: rgb(21, 26, 70); margin-left: 25px; margin-right: 25px; padding-left: 11px; padding-top: 3px; -unity-text-align: upper-center; border-top-left-radius: 45px; border-top-right-radius: 45px; border-bottom-right-radius: 45px; border-bottom-left-radius: 45px;">
+                        <ui:Label tabindex="-1" text="Species Name" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 60px; color: rgb(255, 255, 255); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                        <ui:Label tabindex="-1" text="EXP 0/100" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 60px; color: rgb(255, 255, 255);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="InformationColum" style="flex-grow: 1; margin-top: 25px; background-color: rgb(21, 26, 70); margin-right: 25px; padding-left: 30px; border-top-left-radius: 60px; border-top-right-radius: 60px; border-bottom-right-radius: 60px; border-bottom-left-radius: 60px; padding-right: 30px;">
+                    <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: space-between; margin-right: 10px;">
+                        <ui:Label tabindex="-1" text="Monster Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NameAmount" style="font-size: 75px; padding-bottom: 0; margin-bottom: 0; height: 79px; color: rgb(255, 255, 255);" />
+                        <ui:Label tabindex="-1" text="Lvl:100" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LvlAmount" style="font-size: 75px; padding-bottom: 0; margin-bottom: 0; height: 79px; color: rgb(255, 255, 255); -unity-text-align: upper-right; align-self: flex-end;" />
+                    </ui:VisualElement>
+                    <ui:ProgressBar value="22" title="100/100" name="HpBar" style="font-size: 36px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 2px; height: 37px; padding-left: 1px; padding-right: 2px; min-height: 68px;">
+                        <ui:Label tabindex="-1" text="HP" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="position: absolute; top: -13px; left: 2px;" />
+                    </ui:ProgressBar>
+                    <ui:ProgressBar value="50" title="100/100" name="ExpBar" style="font-size: 36px; margin-top: 0; margin-right: 4px; margin-bottom: 0; margin-left: 2px; height: 37px; padding-left: 1px; padding-right: 2px;" />
+                    <ui:VisualElement name="BoxInfo" style="flex-grow: 1;">
+                        <ui:VisualElement name="Elements" style="flex-grow: 0; flex-direction: row;">
+                            <ui:VisualElement name="Element1" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                <ui:VisualElement name="ElementalIcon" style="flex-grow: 0; width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
+                                <ui:Label tabindex="-1" text="Element" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="font-size: 75px; color: rgb(255, 255, 255);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="Element2" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                                <ui:VisualElement name="ElementalIcon" style="flex-grow: 0; width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
+                                <ui:Label tabindex="-1" text="Element" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="font-size: 75px; color: rgb(255, 255, 255);" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                            <ui:VisualElement name="VisualElement" style="width: 50%;">
+                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Physical" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255); align-self: auto; align-items: auto; -unity-text-align: upper-left;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Defence" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Accuracy" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1;">
+                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Magical" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Resistance" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                    <ui:Label tabindex="-1" text="Agility" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                    <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; margin-bottom: 0; padding-bottom: 0; padding-top: 0; margin-top: 0; color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="AbilityRow" style="flex-grow: 0; height: 460px; margin-right: 25px; margin-left: 25px; margin-top: 0; margin-bottom: 25px; flex-direction: row; padding-top: 25px; justify-content: center;">
+                <ui:VisualElement name="LeftButton" style="flex-grow: 0; width: 210px; background-color: rgb(21, 26, 70); margin-right: 5px; border-bottom-left-radius: 80px; border-top-left-radius: 80px;">
+                    <InputHudTip style="width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="AbiltyOverview" style="flex-grow: 1; background-color: rgb(21, 26, 70);">
+                    <ui:VisualElement name="AbilityBox" style="flex-grow: 1; background-color: rgba(37, 45, 82, 0); width: 1400px; flex-direction: row;">
+                        <ui:VisualElement style="flex-grow: 0;">
+                            <ui:Label tabindex="-1" text="AbilityName" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 60px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+                            <ui:VisualElement name="VisualElement" style="flex-grow: 1; height: 0; background-color: rgb(255, 255, 255); width: 457px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1;">
+                            <ui:VisualElement name="ElementType" style="flex-grow: 0; flex-direction: row; align-items: center;">
+                                <ui:Label tabindex="-1" text="Type" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 60px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                <ui:VisualElement style="flex-grow: 0; width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
+                            </ui:VisualElement>
+                            <ui:VisualElement name="AbilityDetails" style="flex-grow: 1;">
+                                <ui:VisualElement name="TitleContainer" style="flex-grow: 0; flex-direction: row;">
+                                    <ui:VisualElement name="Title" style="flex-grow: 0; flex-direction: row;">
+                                        <ui:Label tabindex="-1" text="Phys/Mag" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 60px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                        <ui:Label tabindex="-1" text="Damage" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 60px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="PopulateEffects" style="flex-grow: 1; background-color: rgb(255, 255, 255);" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                                    <ui:VisualElement name="C1" style="flex-grow: 1;">
+                                        <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
+                                            <ui:VisualElement style="flex-grow: 0;">
+                                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                                    <ui:Label tabindex="-1" text="Base Damage:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="DamageAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 0, 0);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement style="flex-grow: 0;" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
+                                            <ui:VisualElement style="flex-grow: 0;">
+                                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                                    <ui:Label tabindex="-1" text="Stamina:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="StaminaAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(245, 255, 0);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement style="flex-grow: 0;" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
+                                            <ui:VisualElement style="flex-grow: 0;">
+                                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                                    <ui:Label tabindex="-1" text="Accuracy:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="AccuracyAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement style="flex-grow: 0;" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                    <ui:VisualElement name="C1" style="flex-grow: 0; width: 50%;">
+                                        <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
+                                            <ui:VisualElement style="flex-grow: 0;">
+                                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                                    <ui:Label tabindex="-1" text="Target:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="Ally/Enemy" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="TargetWhomAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement style="flex-grow: 0;" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
+                                            <ui:VisualElement style="flex-grow: 0;">
+                                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                                    <ui:Label tabindex="-1" text="UsableLane:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="Lane" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="UseLaneAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement style="flex-grow: 0;" />
+                                        </ui:VisualElement>
+                                        <ui:VisualElement name="VS" style="flex-grow: 0; flex-direction: row;">
+                                            <ui:VisualElement style="flex-grow: 0;">
+                                                <ui:VisualElement style="flex-grow: 0; flex-direction: row;">
+                                                    <ui:Label tabindex="-1" text="TargetLane:" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                    <ui:Label tabindex="-1" text="Lane" parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="TagetLaneAmount" style="font-size: 48px; padding-bottom: 0; padding-top: 0; margin-bottom: 0; margin-top: 0; background-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+                                                </ui:VisualElement>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement style="flex-grow: 0;" />
+                                        </ui:VisualElement>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="RightButton" style="flex-grow: 0; width: 210px; background-color: rgb(21, 26, 70); margin-left: 5px; border-top-right-radius: 80px; border-bottom-right-radius: 80px;">
+                    <InputHudTip style="width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

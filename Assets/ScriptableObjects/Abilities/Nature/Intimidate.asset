@@ -19,13 +19,13 @@ MonoBehaviour:
   targetTeam: 1
   targetingType: 0
   piercing: 0
-  staminaUsage: 15
-  baseDamage: 1
+  staminaUsage: 20
+  baseDamage: 0
   accuracy: 0.6
   damageMultiplier: 0
   element: {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
   effects:
-  - statusEffect: {fileID: 11400000, guid: 0be3586c1f5c34844b32f1d43eb478e1, type: 2}
+  - statusEffect: {fileID: 11400000, guid: a9be98526c5a3124db55f3d76ff87d85, type: 2}
     effectChance: 1
   forcedMovement: 0
   icon: {fileID: 21300000, guid: 4d8ed6deb0150454da8235eda7eefeaa, type: 3}

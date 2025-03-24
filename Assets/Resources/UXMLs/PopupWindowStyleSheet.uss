@@ -1,0 +1,15 @@
+.popup_container {
+position: absolute;
+width: 100%;
+height: 100%;
+align-items: center;
+justify-content: center;
+align-content: center;
+background-color: rgba(0, 0, 0, 0.23);
+}
+
+.popup_window {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 0, 0);
+}

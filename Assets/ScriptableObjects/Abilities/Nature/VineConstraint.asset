@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
   m_Name: VineConstraint
   m_EditorClassIdentifier: 
+  ignoreSelf: 0
   abilityType: 1
   availableDepths: -1
   targetableDepths: 1
   targetTeam: 1
   targetingType: 0
   piercing: 1
-  staminaUsage: 25
-  baseDamage: 5
+  staminaUsage: 30
+  baseDamage: 10
   accuracy: 0.65
   damageMultiplier: 0.8
   element: {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}

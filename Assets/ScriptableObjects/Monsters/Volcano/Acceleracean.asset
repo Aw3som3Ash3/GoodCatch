@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Blitz through the ocean ramming into its prey like a jet plane. If
     its prey doesn't die by whiplash it dies by physical trauma.
-  model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
+  model: {fileID: 5507925807022775459, guid: 48f1cd69585ccef408a6062cc9e1a0a8, type: 3}
   fishId: 24
   icon: {fileID: 21300000, guid: ee7dc243640b8f6458161c3ae89febe3, type: 3}
-  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  miniSprite: {fileID: 21300000, guid: 4ab5af3fba4c6bb47ad8c35d03d4a773, type: 3}
   homeDepth: 1
   preferredBait: []
   elements:
@@ -26,33 +26,33 @@ MonoBehaviour:
   agility:
     min: 40
     max: 45
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 5
+    maxTalent: 5
   attack:
     min: 25
     max: 45
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   special:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   fortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   specialFortitude:
     min: 10
     max: 15
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 3
   baseHealth: 70
   baseStamina: 90
   baseAbilities:
@@ -68,3 +68,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

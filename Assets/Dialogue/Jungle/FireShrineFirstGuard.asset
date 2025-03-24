@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9217259632993510754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FireShrineFirstGuardBattle
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: FireShrineFirstGuard
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136614816153632
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136614816153632
+  decorators:
+  - rid: 2727136614816153633
+  events:
+  - {fileID: -9217259632993510754}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136614816153632
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Hey you can't be here!
+        voiceClip: {fileID: 0}
+        guid: fab6da9d804b57c42b2c33a0279b8737
+        decorators:
+        - rid: 2727136614816153633
+        position: {x: 437, y: -45}
+        nextNode:
+          rid: -2
+    - rid: 2727136614816153633
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 884, y: 96}
+        guid: 7e44e4e5a5345fb42aa1140e39789f67
+        dialogueEvent: {fileID: -9217259632993510754}

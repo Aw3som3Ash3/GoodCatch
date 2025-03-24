@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f39fd4c2835cb94cad2e89c37922c49, type: 3}
+  m_Name: Def Down
+  m_EditorClassIdentifier: 
+  duration: 2
+  icon: {fileID: 2800000, guid: d690df996c4f9d44faac560914df90ec, type: 3}
+  particlePrefab: {fileID: 0}
+  effectUsage: 0
+  agility: 0
+  accuracy: 0
+  attack: 0
+  special: 0
+  fortitude: -5
+  specialFort: 0
+  dodge: 0

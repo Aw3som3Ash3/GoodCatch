@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
   m_Name: Neurotoxin
   m_EditorClassIdentifier: 
+  ignoreSelf: 0
   abilityType: 1
   availableDepths: -1
   targetableDepths: -1
   targetTeam: 1
   targetingType: 0
   piercing: 0
-  staminaUsage: 20
-  baseDamage: 30
+  staminaUsage: 25
+  baseDamage: 35
   accuracy: 0.5
   damageMultiplier: 0
   element: {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}

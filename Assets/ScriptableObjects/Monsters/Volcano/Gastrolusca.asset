@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Despite angelic appearance, it's solitary in nature. It attacks with
     its poison clouds to maintain territory.
-  model: {fileID: 0}
-  fishId: 0
+  model: {fileID: 7444285042290713721, guid: 311691719416ce3478bbea2925e3a76e, type: 3}
+  fishId: 16
   icon: {fileID: 21300000, guid: 1842825a73b2d9b408e5ead227ea1141, type: 3}
-  miniSprite: {fileID: 0}
+  miniSprite: {fileID: 21300000, guid: a45de398f4c746446a01b683dd2efc96, type: 3}
   homeDepth: 1
   preferredBait: []
   elements:
@@ -26,33 +26,33 @@ MonoBehaviour:
   agility:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   attack:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   special:
     min: 20
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   fortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   specialFortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 3
   baseHealth: 120
   baseStamina: 100
   baseAbilities:
@@ -66,5 +66,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bb9e47fdeb55a7141a3bd68f84319a96, type: 2}
     - {fileID: 11400000, guid: 7917483379e230a4aa99b81d7324e023, type: 2}
   difficulty: 0
-  attackAnimation: {fileID: 0}
-  idleAnimation: {fileID: 0}
+  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
+  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

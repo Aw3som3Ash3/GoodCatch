@@ -49,6 +49,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
     }
     [SerializeField]
     AbilityType abilityType;
+    public AbilityType AbilityPhysicalMagical { get { return abilityType; } }
     [SerializeField]
     Depth availableDepths, targetableDepths;
     public Depth AvailableDepths { get { return availableDepths; } }

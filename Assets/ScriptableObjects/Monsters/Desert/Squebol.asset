@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Squebol
   m_EditorClassIdentifier: 
-  description: A species of fish with legs; the species is amidst evolution. When
-    angered, its gills flare up and rise.
+  description: 'A species of fish with legs; the species is amidst evolution. When
+    angered, its gills flare up and rise. '
   model: {fileID: 8411331747693932238, guid: a115ee5914b549d4d8efaf0aa420f74d, type: 3}
-  fishId: 5
+  fishId: 2
   icon: {fileID: 21300000, guid: 26447eecb64ed1a4690ff5b89fd9bbf1, type: 3}
   miniSprite: {fileID: 1714699419, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 4
@@ -25,23 +25,23 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   attack:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   special:
     min: 10
     max: 20
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   fortitude:
     min: 8
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   specialFortitude:
     min: 5
     max: 10
@@ -50,8 +50,8 @@ MonoBehaviour:
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   baseHealth: 90
   baseStamina: 70
   baseAbilities:
@@ -67,3 +67,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

@@ -14,25 +14,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   daySpawn:
   - monster: {fileID: 11400000, guid: 8953b5ad629f2fe4ca62f25fd4972500, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 10
   - monster: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 15
   - monster: {fileID: 11400000, guid: 082d515f808f06a47bd335e4aab82d0e, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 10
   - monster: {fileID: 11400000, guid: 1e0338ef5cf739c45b80d4f88f911772, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 15
   - monster: {fileID: 11400000, guid: 68f5f9f6ff91d7d4da0e9a5975fc5fcd, type: 2}
+    minLevel: 5
+    maxLevel: 20
+    weight: 10
+  - monster: {fileID: 11400000, guid: 1dcd175decd3a34429785c289aeebad0, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 10
   nightSpawn:
-  - monster: {fileID: 11400000, guid: 87003e928c2aae646859a2a02e2532bc, type: 2}
+  - monster: {fileID: 11400000, guid: 68f5f9f6ff91d7d4da0e9a5975fc5fcd, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 15
   - monster: {fileID: 11400000, guid: d8bbbd344bf167f4a8a1570cef709d8c, type: 2}
-    weight: 10
+    minLevel: 5
+    maxLevel: 20
+    weight: 20
   - monster: {fileID: 11400000, guid: 082d515f808f06a47bd335e4aab82d0e, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 20
   - monster: {fileID: 11400000, guid: 20d1643e9c9804d4980342bf986c3f74, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 10
   - monster: {fileID: 11400000, guid: 8953b5ad629f2fe4ca62f25fd4972500, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 5
   - monster: {fileID: 11400000, guid: 1e0338ef5cf739c45b80d4f88f911772, type: 2}
+    minLevel: 5
+    maxLevel: 20
     weight: 10

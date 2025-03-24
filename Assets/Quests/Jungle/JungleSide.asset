@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c963494cf0a2f459443dfc8ab404fb, type: 3}
+  m_Name: JungleSide
+  m_EditorClassIdentifier: 
+  type: 1
+  description: 
+  states:
+  - name: Catch 5 Peeranhas
+    description: 
+    requirements:
+    - rid: 2727136795739815937
+  - name: Talk to the Eccentric Villager
+    description: 
+    requirements:
+    - rid: 2727136795739815938
+  references:
+    version: 2
+    RefIds:
+    - rid: 2727136795739815937
+      type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: CatchNumOfSpecificFishRequirement
+        IsCompleted: 0
+        targetOfFish: 5
+        currentAmount: 0
+        fishMonsterType: {fileID: 11400000, guid: be86766beb7a3a24ea242a56cd406d0d, type: 2}
+    - rid: 2727136795739815938
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Talk to the Eccentric Villager
+        dialogueEvent: {fileID: -6336766880980905480, guid: 9994274f46ab3354abc032ced1cebf7b, type: 2}

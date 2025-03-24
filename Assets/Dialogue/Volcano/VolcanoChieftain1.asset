@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: VolcanoChieftain1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136822063005731
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136822063005731
+  - rid: 2727136822063005734
+  - rid: 2727136822063005735
+  - rid: 2727136822063005736
+  - rid: 2727136822063005737
+  - rid: 2727136822063005739
+  - rid: 2727136822063005740
+  - rid: 2727136822063005744
+  - rid: 2727136822063005745
+  - rid: 2727136822063005748
+  decorators: []
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136822063005731
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Greetings, fellow survivor. You speak to the chieftain of our village.
+          What is it that you seek?
+        voiceClip: {fileID: 0}
+        guid: d36c262c3f3106749b8aac0ee3055426
+        decorators: []
+        position: {x: 404, y: -30}
+        nextNode:
+          rid: 2727136822063005737
+    - rid: 2727136822063005734
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You attempt to plead with her, but she seems to ignore you.]'
+        voiceClip: {fileID: 0}
+        guid: bc4afc9b68f7c324a9b52f312b952b15
+        decorators: []
+        position: {x: 1496, y: 228}
+        nextNode:
+          rid: 2727136822063005736
+    - rid: 2727136822063005735
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You quickly clasp her hand, and the chieftain gasps. A warm aura
+          surges and twists around her arm. The energy flows through her fingertips,
+          then fades.]'
+        voiceClip: {fileID: 0}
+        guid: b216174e4484c944991297a59c1a51b9
+        decorators: []
+        position: {x: 2939, y: -51}
+        nextNode:
+          rid: 2727136822063005744
+    - rid: 2727136822063005736
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Tch! Do not insult me with such a frivolous fairy tale!
+        voiceClip: {fileID: 0}
+        guid: 645302018beb8ad4bb220e5ff87a4b94
+        decorators: []
+        position: {x: 1496, y: -71}
+        decisions:
+        - choice: '[Tell her of the Fire Spirit]'
+          choiceNode:
+            rid: 2727136822063005748
+        - choice: '[Plead with her]'
+          choiceNode:
+            rid: 2727136822063005734
+    - rid: 2727136822063005737
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You ask of the location of the Ice Shrine?
+        voiceClip: {fileID: 0}
+        guid: 889306478d9294447975a5fe70900b14
+        decorators: []
+        position: {x: 1032, y: -50}
+        nextNode:
+          rid: 2727136822063005736
+    - rid: 2727136822063005739
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[The chieftain appears very frustrated.]'
+        voiceClip: {fileID: 0}
+        guid: 99ab6f21d29555e4fbd1e440f0bdde6a
+        decorators: []
+        position: {x: 2447, y: -71}
+        decisions:
+        - choice: '[Clasp her hand]'
+          choiceNode:
+            rid: 2727136822063005743
+        - choice: '[Plead some more]'
+          choiceNode:
+            rid: 2727136822063005740
+    - rid: 2727136822063005740
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You attempt to plead more with her, but she seems to ignore you.
+          You can''t see her face, but you can feel the disgust in her silent expression.]'
+        voiceClip: {fileID: 0}
+        guid: 744c2eb2a90c25441a86ff80b4c55734
+        decorators: []
+        position: {x: 2471, y: 290}
+        nextNode:
+          rid: 2727136822063005739
+    - rid: 2727136822063005743
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You quickly clasp her hand, and the chieftain gasps. A warm aura
+          envelopes and twists towards her hand. The energy courses through her fingertips
+          for a moment before wading.]'
+        voiceClip: {fileID: 0}
+        guid: b216174e4484c944991297a59c1a51b9
+        decorators: []
+        position: {x: 2406, y: -92}
+        nextNode:
+          rid: 2727136822063005744
+    - rid: 2727136822063005744
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Impossible...the Fire Spirit is real?
+        voiceClip: {fileID: 0}
+        guid: 5de61559c5e3f9c439b4f927d6b9d82e
+        decorators: []
+        position: {x: 3765, y: -38}
+        nextNode:
+          rid: 2727136822063005745
+    - rid: 2727136822063005745
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: With this power...you could take down the Inkandescent, maybe even
+          Tempus Primus! Go speak to our fisherman, Tom, he may have supplies to
+          help you. He'll be directly outside, across the lava lake. And once you've
+          slain the Inkandescent, I shall tell you of the Ice Shrine.
+        voiceClip: {fileID: 0}
+        guid: 173a558ca8b609e45bd3211a6f0b2af5
+        decorators: []
+        position: {x: 4160, y: -38}
+        nextNode:
+          rid: -2
+    - rid: 2727136822063005748
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: How absurd! The Fire Spirit is only a bedtime story, enough of
+          this already.
+        voiceClip: {fileID: 0}
+        guid: 71d23c0faec3d3949b54dfdfc5bb3478
+        decorators: []
+        position: {x: 1988, y: -71}
+        nextNode:
+          rid: 2727136822063005739

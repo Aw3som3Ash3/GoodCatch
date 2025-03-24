@@ -45,7 +45,8 @@ public class CombatAI : MonoBehaviour
             {
                 if (tryCount >=5)
                 {
-                    break;
+                    Invoke("EndTurn", 2);
+                    return;
                 }
                 abilityIndex = Random.Range(0, 3);
                 tryCount++;
@@ -85,7 +86,7 @@ public class CombatAI : MonoBehaviour
             }
             else
             {
-                currentTurn.EndTurn();
+                Invoke("EndTurn", 2);
             }
             
 
@@ -93,9 +94,16 @@ public class CombatAI : MonoBehaviour
         }
         else
         {
-            currentTurn.EndTurn();
+            Invoke("EndTurn", 2);
         }
 
 
+    }
+
+
+
+    void EndTurn()
+    {
+        currentTurn.EndTurn();
     }
 }

@@ -40,3 +40,11 @@
 
 #unity-content-container {
 }
+
+#Row2 Label {
+    color: rgb(211, 226, 245);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(21, 26, 70);
+    font-size: 49px;
+    text-shadow: 2px 2px 0 rgb(21, 26, 70);
+}

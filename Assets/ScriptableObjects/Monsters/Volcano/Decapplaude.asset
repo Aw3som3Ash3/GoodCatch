@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Its hands are special anemones that generate fire, creating fiery
     dances that inspire other fish to realize their potential.
-  model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 16
+  model: {fileID: 3452435611435181451, guid: 29a6610aa28ee944f85b7656942b9533, type: 3}
+  fishId: 20
   icon: {fileID: 21300000, guid: d9fc94b69b7efa04db9ecf35acd3ffed, type: 3}
-  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  miniSprite: {fileID: 21300000, guid: cd8f56a1142831a47a7a73b3c81c4ebe, type: 3}
   homeDepth: 4
   preferredBait: []
   elements:
@@ -26,33 +26,33 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   attack:
     min: 20
     max: 35
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 4
   special:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   fortitude:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   specialFortitude:
     min: 5
     max: 10
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 1
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 2
   baseHealth: 100
   baseStamina: 90
   baseAbilities:
@@ -66,5 +66,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c10f80ebc7de40242bf51cb826af6df1, type: 2}
     - {fileID: 11400000, guid: bb7107c52a571604188d7294f95d5f71, type: 2}
   difficulty: 0
-  attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
-  idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  attackAnimation: {fileID: 4821705753396914452, guid: fc549775a7131b1439da1c1d8ea700c1, type: 3}
+  idleAnimation: {fileID: -3100369314251171874, guid: fc549775a7131b1439da1c1d8ea700c1, type: 3}
+  buffAnimation: {fileID: 4015888343340434481, guid: fc549775a7131b1439da1c1d8ea700c1, type: 3}

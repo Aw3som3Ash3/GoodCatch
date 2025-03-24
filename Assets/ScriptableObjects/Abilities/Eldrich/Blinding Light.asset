@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoreSelf: 0
   abilityType: 1
-  availableDepths: 4
+  availableDepths: -1
   targetableDepths: -1
   targetTeam: 1
   targetingType: 1
   piercing: 0
-  staminaUsage: 25
+  staminaUsage: 30
   baseDamage: 0
   accuracy: 0.9
-  damageMultiplier: 0.83
-  element: {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
+  damageMultiplier: 0
+  element: {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   effects:
-  - statusEffect: {fileID: 11400000, guid: ecb4f94c5a9ddc645bcd45d1c902b8f7, type: 2}
+  - statusEffect: {fileID: 11400000, guid: 22d03ae3e93db0d4eb67f9d1ac6358d3, type: 2}
     effectChance: 1
   - statusEffect: {fileID: 11400000, guid: 03aea42deaffc924eaceb399f58df1d0, type: 2}
     effectChance: 0.6

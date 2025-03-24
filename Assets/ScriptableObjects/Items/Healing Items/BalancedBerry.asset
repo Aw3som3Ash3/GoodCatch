@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27da976d20d545d43974b9560760965c, type: 3}
+  m_Name: BalancedBerry
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  description: Used to restore a good amount of health to an ally in battle. Sour
+    and tart, but overall not bad.
+  itemId: 69570c96-c609-427c-88a5-f284be3b3d8c
+  potionVFX: {fileID: 7504169191687348763, guid: 605e85bf51b67a34aa2f597ee4c5ed0a, type: 3}
+  healingAmount: 50

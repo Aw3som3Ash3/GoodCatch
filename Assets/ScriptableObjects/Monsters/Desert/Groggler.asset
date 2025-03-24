@@ -22,36 +22,37 @@ MonoBehaviour:
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
+  - {fileID: 11400000, guid: 995284df01056f249b16f9aa1d66683e, type: 2}
   agility:
     min: 10
     max: 20
     minTalent: 0
-    maxTalent: 0
+    maxTalent: 2
   attack:
     min: 15
     max: 30
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   special:
     min: 20
     max: 40
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 4
+    maxTalent: 5
   fortitude:
     min: 8
     max: 15
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 2
+    maxTalent: 3
   specialFortitude:
     min: 13
     max: 25
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 3
+    maxTalent: 5
   accuracy:
     min: 50
     max: 50
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 3
   baseHealth: 110
   baseStamina: 50
   baseAbilities:
@@ -67,3 +68,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}
