@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         
         //InputUser.PerformPairingWithDevice()
         gameData.hasSeenFish = new bool[database.fishMonsters.Count];
-        
+        canPause = true;
         InputManager.Input.UI.Pause.Enable();
         InputManager.Input.UI.Pause.performed +=(x)=> 
         {

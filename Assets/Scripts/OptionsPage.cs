@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class OptionsPage : PausePage
 {
-    Button settings, controls, saveAndQuit, mainMenu;
+    Button settings, controls, saveAndQuit, mainMenu,help;
     VisualElement settingsBox,menuContainer;
     SaveAndLoadScreen saveAndLoadScreen;
     SettingsUI settingsUI;
@@ -48,6 +48,8 @@ public class OptionsPage : PausePage
         controls=this.Q<Button>("Controls");
         controls.clicked += OnControls;
         menuContainer=this.Q("menu-container");
+        help = this.Q<Button>("Help");
+        help.clicked += OnHelp;
         menuContainer.Remove(controlTabs);
         menuContainer.Remove(settingsUI);
         this.focusable = true;
@@ -55,6 +57,16 @@ public class OptionsPage : PausePage
 
     }
 
+    void OnHelp()
+    {
+        VisualElement helpRoot = new();
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/ModHelp");
+
+        visualTreeAsset.CloneTree(helpRoot);
+        menuContainer.Clear();
+        menuContainer.Add(helpRoot);
+
+    }
     private void SaveAndQuit()
     {
         SavingSystem.SaveGame(SavingSystem.SaveMode.ManualSave);
@@ -82,6 +94,7 @@ public class OptionsPage : PausePage
         if (menuContainer.Contains(settingsUI))
         {
             menuContainer.Remove(settingsUI);
+            menuContainer.Clear();
         }
       
     }
@@ -92,6 +105,7 @@ public class OptionsPage : PausePage
         if (menuContainer.Contains(controlTabs))
         {
             menuContainer.Remove(controlTabs);
+            menuContainer.Clear();
         }
         menuContainer.Add(settingsUI);
         //throw new NotImplementedException();
@@ -110,7 +124,7 @@ public class OptionsPage : PausePage
 
 public class OptionsPageMenu : VisualElement
 {
-    Button settings, controls, load, mainMenu;
+    Button settings, controls, load, mainMenu,help;
     VisualElement settingsBox, menuContainer;
 
     SettingsUI settingsUI;
@@ -146,10 +160,13 @@ public class OptionsPageMenu : VisualElement
         controls = this.Q<Button>("Controls");
         controls.clicked += OnControls;
         menuContainer = this.Q("menu-container");
+        help = this.Q<Button>("Help");
+        help.clicked += OnHelp;
         menuContainer.Remove(controlTabs);
         menuContainer.Remove(settingsUI);
         this.focusable = true;
         this.delegatesFocus = true;
+
 
     }
 
@@ -188,6 +205,15 @@ public class OptionsPageMenu : VisualElement
         menuContainer.Add(settingsUI);
         //throw new NotImplementedException();
     }
+    void OnHelp()
+    {
+        VisualElement helpRoot = new();
+        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/ModHelp");
 
+        visualTreeAsset.CloneTree(helpRoot);
+        menuContainer.Clear();
+        menuContainer.Add(helpRoot);
+
+    }
 
 }
