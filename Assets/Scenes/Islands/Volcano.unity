@@ -188,6 +188,86 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
   m_PrefabInstance: {fileID: 191287605}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &75162804
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -690.903
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.092
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 444.374
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.10272545
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9947098
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -168.208
+      objectReference: {fileID: 0}
+    - target: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2959565552225748507, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_Name
+      value: FemaleVillager (Keeps)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2959565552225748507, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 75162806}
+  m_SourcePrefab: {fileID: 100100000, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+--- !u!1 &75162805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2959565552225748507, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+  m_PrefabInstance: {fileID: 75162804}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &75162806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75162805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c11ca95dc4a5ee249b04050fcad685dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Volcano Chieftain
+  baseDialogue: {fileID: 11400000, guid: bd1e4cb6e44e94d4f8dbe8343c8faa79, type: 2}
+  questBasedDialogues: []
 --- !u!4 &141577025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
@@ -52807,7 +52887,7 @@ PrefabInstance:
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: baseDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 71f89e8556ca6234cb392c5f28a888c1, type: 2}
+      objectReference: {fileID: 11400000, guid: 7ce9c0664a6b6864d99c009a977c613f, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
       value: 0
@@ -53546,6 +53626,7 @@ SceneRoots:
   - {fileID: 562797161}
   - {fileID: 536792328}
   - {fileID: 1785011169}
+  - {fileID: 75162804}
   - {fileID: 1334915658}
   - {fileID: 518356547}
   - {fileID: 2030517167}
