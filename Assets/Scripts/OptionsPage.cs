@@ -185,13 +185,14 @@ public class OptionsPageMenu : VisualElement
     {
         settingsUI.visible = (false);
         controlTabs.visible = (true);
+        menuContainer.Clear();
         menuContainer.Add(controlTabs);
         controlTabs.StretchToParentSize();
 
         if (menuContainer.Contains(settingsUI))
         {
             menuContainer.Remove(settingsUI);
-            menuContainer.Clear();
+            
         }
 
     }
@@ -202,8 +203,8 @@ public class OptionsPageMenu : VisualElement
         if (menuContainer.Contains(controlTabs))
         {
             menuContainer.Remove(controlTabs);
-            menuContainer.Clear();
         }
+        menuContainer.Clear();
         menuContainer.Add(settingsUI);
         //throw new NotImplementedException();
     }
