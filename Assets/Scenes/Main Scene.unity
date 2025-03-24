@@ -1081,6 +1081,11 @@ MonoBehaviour:
   dockExit: {fileID: 359108788}
   shipMesh: {fileID: 0}
   gizmoOffset: {x: 0, y: 1, z: 0}
+--- !u!4 &295265076 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5099071819252406064, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+  m_PrefabInstance: {fileID: 1078248768278574333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &296420413 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
@@ -1809,7 +1814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 568719737}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1824,14 +1829,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568719736}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 934430878}
   - {fileID: 875029825}
-  m_Father: {fileID: 1641322164}
+  m_Father: {fileID: 295265076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &571597279
 PrefabInstance:
@@ -2939,9 +2944,7 @@ GameObject:
   - component: {fileID: 875029825}
   - component: {fileID: 875029829}
   - component: {fileID: 875029828}
-  - component: {fileID: 875029827}
-  - component: {fileID: 875029826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BoatSmoke (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2963,40 +2966,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 568719737}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
---- !u!114 &875029826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875029824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe0b7663f32213449bbe30ee5cf5974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SmokeVFX: {fileID: 875029829}
---- !u!135 &875029827
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875029824}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 208.5
-  m_Center: {x: 0, y: 0, z: -146.8}
 --- !u!199 &875029828
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -3088,7 +3057,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -3144,7 +3113,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -7816,9 +7785,7 @@ GameObject:
   - component: {fileID: 934430878}
   - component: {fileID: 934430882}
   - component: {fileID: 934430881}
-  - component: {fileID: 934430880}
-  - component: {fileID: 934430879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BoatSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7840,40 +7807,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 568719737}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
---- !u!114 &934430879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934430877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe0b7663f32213449bbe30ee5cf5974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SmokeVFX: {fileID: 934430882}
---- !u!135 &934430880
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934430877}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 208.5
-  m_Center: {x: 0, y: 0, z: -146.8}
 --- !u!199 &934430881
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -7965,7 +7898,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -8021,7 +7954,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -19834,11 +19767,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
   m_PrefabInstance: {fileID: 1629756841}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1641322164 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
-  m_PrefabInstance: {fileID: 1078248768278574333}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1663180769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21371,7 +21299,7 @@ Transform:
   m_GameObject: {fileID: 2061899154}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9491812, z: 0, w: -0.3147302}
-  m_LocalPosition: {x: -10.935162, y: 5.1819973, z: 53.668644}
+  m_LocalPosition: {x: -8.954531, y: 5.1819973, z: 56.326923}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22095,7 +22023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0000013
+      value: 1.000001
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22103,9 +22031,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.6849824
+      value: -5.0000014
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5494617037479837059, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22141,6 +22070,14 @@ PrefabInstance:
       objectReference: {fileID: 934430882}
     - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
       propertyPath: BoatSmokeVFX2
+      value: 
+      objectReference: {fileID: 875029829}
+    - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: BoatSmokeVFX1obj
+      value: 
+      objectReference: {fileID: 934430877}
+    - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      propertyPath: BoatSmokeVFX2obj
       value: 
       objectReference: {fileID: 875029829}
     - target: {fileID: 1936619306830230393, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
@@ -22242,8 +22179,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8765542480062088670, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
-      insertIndex: 0
+    - targetCorrespondingSourceObject: {fileID: 5099071819252406064, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 568719737}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f9eaf48bd59e84a88ded1e8d128b32, type: 3}

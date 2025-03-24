@@ -35,6 +35,10 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     [SerializeField]
     PIDController xTorqueController=new(0.5f,0,0.25f);
 
+  
+    //GameObject BoatSmokeVFX1obj;
+    
+    //ParticleSystem BoatSmokeVFX2obj;
     [SerializeField]
     ParticleSystem BoatSmokeVFX1;
     [SerializeField]
@@ -46,6 +50,8 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     {
         shipControls=this.GetComponentInChildren<ShipControls>();
         shipControls.OnInteract += OnControlsInteract;
+        //BoatSmokeVFX1=BoatSmokeVFX1obj.GetComponent<ParticleSystem>();
+        //BoatSmokeVFX2=BoatSmokeVFX2obj.GetComponent<ParticleSystem>();
     }
 
     private void OnControlsInteract(bool b)
@@ -56,6 +62,8 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         {
             BoatSmokeVFX1.Play();
             BoatSmokeVFX2.Play();
+            AddObject(PlayerController.player.transform);
+           
         }
         else
         {
@@ -161,6 +169,10 @@ public class ShipSimulator : MonoBehaviour,ISaveable
         obj.SetParent(childrenObject);
     }
 
+    public void RemoveObject(Transform obj)
+    {
+        obj.SetParent(null);
+    }
     public void Load(string json)
     {
 
