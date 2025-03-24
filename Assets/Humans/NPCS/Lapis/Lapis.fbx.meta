@@ -17,7 +17,42 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'CC_Base_L_Thigh'
+      : position error = 35.552261 mm\n\t'CC_Base_L_Calf' : position error = 112.094185
+      mm\n\t'CC_Base_L_Foot' : position error = 135.426590 mm\n\t'CC_Base_L_ToeBase'
+      : position error = 38.370861 mm\n\t'CC_Base_R_Thigh' : position error = 36.117172
+      mm\n\t'CC_Base_R_Calf' : position error = 112.133156 mm\n\t'CC_Base_R_Foot'
+      : position error = 135.274353 mm\n\t'CC_Base_R_ToeBase' : position error =
+      38.371098 mm\n\t'CC_Base_Spine01' : position error = 5.786654 mm\n\t'CC_Base_Spine02'
+      : position error = 1.893023 mm\n\t'CC_Base_NeckTwist01' : position error =
+      3.735245 mm\n\t'CC_Base_NeckTwist02' : position error = 5.511791 mm\n\t'CC_Base_Head'
+      : position error = 5.511920 mm\n\t'CC_Base_L_Clavicle' : position error = 14.953829
+      mm\n\t'CC_Base_L_Upperarm' : position error = 38.035362 mm\n\t'CC_Base_L_Forearm'
+      : position error = 36.215321 mm\n\t'CC_Base_L_Hand' : position error = 104.635468
+      mm\n\t'CC_Base_L_Mid1' : position error = 38.997849 mm\n\t'CC_Base_L_Mid2'
+      : position error = 14.877353 mm\n\t'CC_Base_L_Mid3' : position error = 8.596526
+      mm\n\t'CC_Base_L_Index1' : position error = 37.658295 mm\n\t'CC_Base_L_Index2'
+      : position error = 3.702610 mm\n\t'CC_Base_L_Index3' : position error = 10.567440
+      mm\n\t'CC_Base_L_Ring1' : position error = 42.394081 mm\n\t'CC_Base_L_Ring2'
+      : position error = 7.278097 mm\n\t'CC_Base_L_Ring3' : position error = 9.144553
+      mm\n\t'CC_Base_L_Pinky1' : position error = 43.357033 mm\n\t'CC_Base_L_Pinky2'
+      : position error = 4.384197 mm\n\t'CC_Base_L_Pinky3' : position error = 9.185000
+      mm\n\t'CC_Base_L_Thumb1' : position error = 14.656838 mm\n\t'CC_Base_L_Thumb2'
+      : position error = 21.912287 mm\n\t'CC_Base_L_Thumb3' : position error = 27.607630
+      mm\n\t'CC_Base_R_Clavicle' : position error = 15.469108 mm\n\t'CC_Base_R_Upperarm'
+      : position error = 37.554108 mm\n\t'CC_Base_R_Forearm' : position error = 35.696857
+      mm\n\t'CC_Base_R_Hand' : position error = 99.986549 mm\n\t'CC_Base_R_Mid1'
+      : position error = 38.992203 mm\n\t'CC_Base_R_Mid2' : position error = 14.481852
+      mm\n\t'CC_Base_R_Mid3' : position error = 8.445966 mm\n\t'CC_Base_R_Ring1'
+      : position error = 42.219982 mm\n\t'CC_Base_R_Ring2' : position error = 7.198994
+      mm\n\t'CC_Base_R_Ring3' : position error = 8.878022 mm\n\t'CC_Base_R_Thumb1'
+      : position error = 14.656742 mm\n\t'CC_Base_R_Thumb2' : position error = 24.539629
+      mm\n\t'CC_Base_R_Thumb3' : position error = 27.306471 mm\n\t'CC_Base_R_Index1'
+      : position error = 37.744991 mm\n\t'CC_Base_R_Index2' : position error = 3.805925
+      mm\n\t'CC_Base_R_Index3' : position error = 10.733378 mm\n\t'CC_Base_R_Pinky1'
+      : position error = 43.085827 mm\n\t'CC_Base_R_Pinky2' : position error = 4.399107
+      mm\n\t'CC_Base_R_Pinky3' : position error = 9.206004 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
