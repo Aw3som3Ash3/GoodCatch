@@ -36,6 +36,11 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     PIDController xTorqueController=new(0.5f,0,0.25f);
 
     [SerializeField]
+    ParticleSystem BoatSmokeVFX1;
+    [SerializeField]
+    ParticleSystem BoatSmokeVFX2;
+
+    [SerializeField]
     Transform repawnPoint;
     private void Awake()
     {
@@ -46,13 +51,24 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     private void OnControlsInteract(bool b)
     {
         isActive = b;
+
+        if(b)
+        {
+            BoatSmokeVFX1.Play();
+            BoatSmokeVFX2.Play();
+        }
+        else
+        {
+            BoatSmokeVFX1.Stop();
+            BoatSmokeVFX2.Stop();
+        }
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         //sailRatio = 1;
         //sail.SetrWindStrength(1);
         //sail.SetSailsAmount(sailRatio);
