@@ -66,8 +66,8 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="AbilityRow" style="flex-grow: 0; height: 460px; margin-right: 25px; margin-left: 25px; margin-top: 0; margin-bottom: 25px; flex-direction: row; padding-top: 25px; justify-content: center;">
-                <ui:VisualElement name="LeftButton" style="flex-grow: 0; width: 210px; background-color: rgb(21, 26, 70); margin-right: 5px; border-top-left-radius: 80px; border-bottom-left-radius: 80px;">
-                    <InputHudTip style="width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
+                <ui:VisualElement name="LeftButton" style="flex-grow: 0; width: 210px; background-color: rgb(21, 26, 70); margin-right: 5px; border-top-left-radius: 80px; border-bottom-left-radius: 80px; justify-content: center; align-items: center;">
+                    <InputHudTip inputName="ChangeTab" style="width: 60px; height: 60px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="AbiltyOverview" style="flex-grow: 1; background-color: rgb(21, 26, 70);">
                     <ui:VisualElement name="AbilityBox" style="flex-grow: 1; background-color: rgba(37, 45, 82, 0); width: 1400px; flex-direction: row;">
@@ -152,8 +152,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="RightButton" style="flex-grow: 0; width: 210px; background-color: rgb(21, 26, 70); margin-left: 5px; border-top-right-radius: 80px; border-bottom-right-radius: 80px;">
-                    <InputHudTip style="width: 60px; height: 60px; background-color: rgb(255, 255, 255);" />
+                <ui:VisualElement name="RightButton" style="flex-grow: 0; width: 210px; background-color: rgb(21, 26, 70); margin-left: 5px; border-top-right-radius: 80px; border-bottom-right-radius: 80px; justify-content: center; align-items: center;">
+                    <InputHudTip inputName="ChangeTab" style="width: 60px; height: 60px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
