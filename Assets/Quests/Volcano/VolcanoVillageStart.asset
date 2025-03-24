@@ -22,7 +22,7 @@ MonoBehaviour:
   - name: Speak to the Fisherman Tom
     description: 
     requirements:
-    - rid: 2727136822063005747
+    - rid: 2727136841486303246
   references:
     version: 2
     RefIds:
@@ -30,11 +30,12 @@ MonoBehaviour:
       type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: SpeakToNPCQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         npcName: Volcano Chieftain
-    - rid: 2727136822063005747
-      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+    - rid: 2727136841486303246
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
-        Name: SpeakToNPCQuestRequirement
-        IsCompleted: 0
-        npcName: Fisherman Tom
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 1
+        objective: Speak to the Fisherman Tom
+        dialogueEvent: {fileID: 2822260499742996474, guid: 9019ebe1cc6301a4a9436284e2a1a3c7, type: 2}

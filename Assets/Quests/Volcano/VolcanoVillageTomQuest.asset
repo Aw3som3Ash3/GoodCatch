@@ -24,6 +24,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136822063005768
+  - name: Slay the Inkandescent
+    description: 
+    requirements:
+    - rid: 2727136841486303286
   references:
     version: 2
     RefIds:
@@ -31,17 +35,17 @@ MonoBehaviour:
       type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: CatchNumOfSpecificFishRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         targetOfFish: 1
-        currentAmount: 0
+        currentAmount: 2
         fishMonsterType: {fileID: 11400000, guid: 13efd9c6dde9cbc4b8cb9a9dd6d87ef9, type: 2}
     - rid: 2727136822063005767
       type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: CatchNumOfSpecificFishRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         targetOfFish: 1
-        currentAmount: 0
+        currentAmount: 2
         fishMonsterType: {fileID: 11400000, guid: 1576371e21edf0b41abcd9d364ab581d, type: 2}
     - rid: 2727136822063005768
       type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
@@ -49,3 +53,9 @@ MonoBehaviour:
         Name: SpeakToNPCQuestRequirement
         IsCompleted: 0
         npcName: Fisherman Tom
+    - rid: 2727136841486303286
+      type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
+      data:
+        Name: WinNumFight
+        IsCompleted: 0
+        amount: 1
