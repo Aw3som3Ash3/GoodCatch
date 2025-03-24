@@ -11,6 +11,7 @@ public class ViewMonsters : VisualElement
     int abilityTabIndex;
     InputAction tabAbility;
     VisualElement monsterIcon, elementalIcon1, elementalIcon2, abilityEffectIcons, abilityElementIcon;
+    VisualElement abilityPicture, laneOne, LaneTWo;
     ProgressBar healthBar, xpBar;
     Label speciesName,nameTitle, levelText, physical, defence, accuracy, magical, resistance, agility, stamina;
     Label abilityScaledDamage, abilityStaminaCost, abilityAccuracy, abilityTargetTeam, abilityUsableDepth,abilityTargetableDepth, abilityName, abilityElement, abilityType, abilityPiercing, abilityMovement;
@@ -69,8 +70,10 @@ public class ViewMonsters : VisualElement
         //abilityUsableDepth = this.Q<Label>("UseLaneAmount");
         //abilityTargetableDepth = this.Q<Label>("TargetLaneAmount");
         abilityEffectIcons = this.Q("PopulateEffects");
+        abilityPicture = this.Q("AbilityPicture");
+     
 
-   
+
     }
 
     private void OnAbilityTab(InputAction.CallbackContext context)
@@ -161,6 +164,12 @@ public class ViewMonsters : VisualElement
         //abilityUsableDepth.text = ability.AvailableDepths.ToString();
         //abilityTargetableDepth.text = ability.TargetableDepths.ToString();
         //The two above Broke
+
+       
+        abilityPicture.Clear();
+        var conclusion = abilityPicture.style.backgroundImage.value;
+        conclusion.sprite = ability.Icon;
+        abilityPicture.style.backgroundImage = conclusion;
 
         abilityElementIcon.Clear();
         var value = abilityElementIcon.style.backgroundImage.value;

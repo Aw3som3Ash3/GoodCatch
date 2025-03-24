@@ -79,7 +79,7 @@
                                     <ui:VisualElement name="FriendLane2" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
                                     <ui:VisualElement name="FriendLane3" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
                                 </ui:VisualElement>
-                                <ui:VisualElement name="AbilityPicture" style="flex-grow: 1; width: 218px; height: 218px; background-color: rgba(0, 0, 0, 0.6);" />
+                                <ui:VisualElement name="AbilityPicture" style="flex-grow: 1; width: 218px; height: 218px;" />
                                 <ui:VisualElement style="flex-grow: 1; align-items: center; height: 218px; justify-content: space-between;">
                                     <ui:VisualElement name="EnemyLane1" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
                                     <ui:VisualElement name="EnemyLane2" style="flex-grow: 0; width: 103px; height: 45px; background-color: rgba(0, 0, 0, 0.62);" />
