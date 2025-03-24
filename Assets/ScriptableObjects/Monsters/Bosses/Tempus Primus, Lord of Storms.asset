@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tempus Primus, Lord of Storms
   m_EditorClassIdentifier: 
   description: The beginning of the storm, and the end of the ecosystem.
-  model: {fileID: 3253907832602844335, guid: 3a9083d40aa45314db6912e58a8c416f, type: 3}
+  model: {fileID: 8314033061284529085, guid: 528ab21bbaed05641a1b76116eab1ce2, type: 3}
   fishId: 0
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 0}
@@ -63,3 +63,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}
   idleAnimation: {fileID: 7400000, guid: 5423820f17d45944e803cac8b92dd4cb, type: 2}
+  buffAnimation: {fileID: 0}

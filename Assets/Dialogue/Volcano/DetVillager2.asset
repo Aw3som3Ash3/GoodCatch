@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: DetVillager2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136841486303309
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136841486303309
+  - rid: 2727136841486303321
+  - rid: 2727136841486303322
+  - rid: 2727136841486303323
+  decorators:
+  - rid: 2727136841486303324
+  - rid: 2727136841486303325
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136841486303309
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Incredible...your team is not to be taken lightly!
+        voiceClip: {fileID: 0}
+        guid: f3a8326b35852b94c94e0332301e3e6a
+        decorators: []
+        position: {x: 420, y: -33}
+        nextNode:
+          rid: 2727136841486303321
+    - rid: 2727136841486303321
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: I've lost, and for that I thank you. It's been quite some time
+          since I faced such a fierce opponent.
+        voiceClip: {fileID: 0}
+        guid: af68d06d410b8e640a5c3133673f63f0
+        decorators: []
+        position: {x: 868, y: -33}
+        nextNode:
+          rid: 2727136841486303322
+    - rid: 2727136841486303322
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Now to optimize even more! This spreadsheet won't fill out itself!
+        voiceClip: {fileID: 0}
+        guid: f0ec0e18ab878aa48af1d2ea1dc8fe8f
+        decorators: []
+        position: {x: 1438, y: -33}
+        nextNode:
+          rid: 2727136841486303323
+    - rid: 2727136841486303323
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You''ve recieved 5 Captain''s Hooks!]
+
+          [You''ve recieved
+          5 Blessed Berries!]'
+        voiceClip: {fileID: 0}
+        guid: c55477cf19b730643a6ae0bf413aa693
+        decorators:
+        - rid: 2727136841486303324
+        - rid: 2727136841486303325
+        position: {x: 1856, y: -33}
+        nextNode:
+          rid: -2
+    - rid: 2727136841486303324
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1680, y: 206}
+        guid: 82c3ea9eef091974d9fc13c4a832c80a
+        item: {fileID: 11400000, guid: 331f5016716ecc54ea2416fb68709cac, type: 2}
+        amount: 5
+    - rid: 2727136841486303325
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 2119, y: 206}
+        guid: 49ad2fe6df6df4b4180273d9e75213c4
+        item: {fileID: 11400000, guid: 57f6fe3503415d3418f0c41501234bc4, type: 2}
+        amount: 5

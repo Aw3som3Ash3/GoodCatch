@@ -19,6 +19,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136841486303299
+  - name: Slay Tempus Primus, The Lord of Storms
+    description: 
+    requirements:
+    - rid: 2727136841486303304
   references:
     version: 2
     RefIds:
@@ -28,3 +32,9 @@ MonoBehaviour:
         Name: SpeakToNPCQuestRequirement
         IsCompleted: 0
         npcName: Ice Shrine
+    - rid: 2727136841486303304
+      type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
+      data:
+        Name: WinNumFight
+        IsCompleted: 0
+        amount: 1
