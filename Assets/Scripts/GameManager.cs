@@ -580,10 +580,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             }
 
 
-            SavingSystem.LoadGame();
-
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            UnityEngine.Cursor.visible = false;
+            SavingSystem.LoadSceneData();
 
 
         };
