@@ -553,7 +553,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
                 FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
                 {
                     SavingSystem.LoadGame();
-                    SceneManager.sceneLoaded -= SceneLoaded;
+                   
                     UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                     UnityEngine.Cursor.visible = false;
                     if (winningTeam == Team.enemy)
@@ -572,7 +572,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             else
             {
                 SavingSystem.LoadGame();
-                SceneManager.sceneLoaded -= SceneLoaded;
+               
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 UnityEngine.Cursor.visible = false;
                 if (winningTeam == Team.enemy)
