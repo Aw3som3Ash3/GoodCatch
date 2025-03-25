@@ -19,7 +19,7 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 4799112187029225480
-  - name: Speak To MrSkips
+  - name: Speak To MrSkipps
     description: 
     requirements:
     - rid: 4799112187029225487
@@ -30,7 +30,7 @@ MonoBehaviour:
       type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
       data:
         Name: WinNumFight
-        IsCompleted: 0
+        IsCompleted: 1
         amount: 1
     - rid: 4799112187029225487
       type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}

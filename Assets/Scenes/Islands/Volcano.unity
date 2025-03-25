@@ -594,7 +594,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1808970678878381639, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
       propertyPath: innId
-      value: Desert Inn
+      value: Volcano Inn
       objectReference: {fileID: 0}
     - target: {fileID: 1808970678878381639, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
       propertyPath: isStartInn
