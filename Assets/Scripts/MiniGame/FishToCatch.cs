@@ -124,12 +124,16 @@ public class FishToCatch : MonoBehaviour
         }
         if(hook != null)
         {
-            while (hook.position.y < (startY))
+            while (hook != null&&hook.position.y < (startY))
             {
                 hook.Translate(Vector3.up * 1.5f * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
             }
-            hook.GetComponent<SimpleWaterPhysics>().enabled = true;
+            if (hook != null)
+            {
+                hook.GetComponent<SimpleWaterPhysics>().enabled = true;
+            }
+           
         }
        
         //ResetBehaviour();

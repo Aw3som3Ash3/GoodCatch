@@ -478,7 +478,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         }
         else
         {
-            for (int i = 0; i < 300; i++)
+            for (int i = 0; i < 50; i++)
             {
                 yield return new WaitForFixedUpdate();
             }
@@ -667,7 +667,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     private void Update()
     {
-        if (currentTurn != null&& (combatVisualizer.turnToObject.ContainsKey(currentTurn.Value)|| combatVisualizer.turnToObject?[currentTurn.Value] != null))
+        if (currentTurn != null&& (combatVisualizer.turnToObject.ContainsKey(currentTurn.Value)&& combatVisualizer.turnToObject?[currentTurn.Value] != null))   
         {
             combatUI.SetTurnMarker(combatVisualizer.turnToObject[currentTurn.Value].transform);
         }

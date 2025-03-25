@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         if(gameData.currentInnId == null|| gameData.currentInnId=="")
         {
             gameData.currentInnId = Inn.StarterInn.innId;
-            Debug.Log(Inn.StarterInn);
+            Debug.Log("respawning at:"+Inn.StarterInn);
         }
         isRespawning = true;
         lastInnVisited.Respawn();
@@ -506,7 +506,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         //mainEventSystem.enabled = false;
         CombatManager.NewCombat(enemyFishes, rewardFish);
         inCombat = true;
-        SceneManager.sceneLoaded += SceneLoaded;
+        
         
        
     }
@@ -518,7 +518,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         //mainEventSystem.enabled = false;
         CombatManager.NewCombat(enemyFishes, false);
         inCombat = true;
-        SceneManager.sceneLoaded += SceneLoaded;
+        
         OnPlayerLost += OnPlayerLostFight;
         WonFight += PlayerWonFight;
 
@@ -533,62 +533,82 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
 
     }
+    //Action OnCombatEnded;
     public void CombatEnded(Team winningTeam)
     {
 
-        if (winningTeam == Team.enemy)
-        {
-            SceneManager.sceneLoaded += SceneLoadedLost;
-        }
-        else
-        {
-            WonFight?.Invoke();
-        }
+       
         SavingSystem.SaveSelf(this,this.gameObject.scene.buildIndex);
         var questTracker = FindObjectOfType<QuestTracker>();
         SavingSystem.SaveSelf(questTracker, questTracker.gameObject.scene.buildIndex);
+        Debug.Log(winningTeam);
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
-        SceneManager.LoadScene(gameData.currentScene);
+        SceneManager.LoadSceneAsync(gameData.currentScene).completed +=(Operation)=> 
+        {
+            Debug.Log("scene has loaded after combat");
+            var sceneloader = FindAnyObjectByType<SceneLoader>();
+            if (sceneloader !=null)
+            {
+                FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
+                {
+                    SavingSystem.LoadGame();
+                   
+                    UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                    UnityEngine.Cursor.visible = false;
+                    if (winningTeam == Team.enemy)
+                    {
+
+                        PlayerLost();
+                    }
+                    else
+                    {
+                        WonFight?.Invoke();
+                    }
+                   
+
+                };
+            }
+            else
+            {
+                SavingSystem.LoadGame();
+               
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
+                if (winningTeam == Team.enemy)
+                {
+
+                    PlayerLost();
+                }
+                else
+                {
+                    WonFight?.Invoke();
+                }
+            }
+           
+
+
+           
+
+        };
 
         
         inCombat = false;
        
     }
 
+
+
     void SceneLoadedLost(Scene arg0, LoadSceneMode arg1)
     {
         if(arg0.name=="Main Scene")
         {
-            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
-            {
-                PlayerLost();
-                SceneManager.sceneLoaded -= SceneLoadedLost;
-            };
+            
         }
         
        
     }
 
-    void SceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (arg0.name == "BattleScene 1")
-        {
-            inCombat = true;
-            
-        }
-        else if(arg0.buildIndex == gameData.currentScene)
-        {
-            print("should load");
-            SavingSystem.LoadGame();
-            SceneManager.sceneLoaded -= SceneLoaded;
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            UnityEngine.Cursor.visible = false;
-            //InputManager.EnablePlayer();
-
-        }
-        
-    }
 
     public void Load(string json)
     {
