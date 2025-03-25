@@ -606,6 +606,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     public void Load(string json)
     {
+        Debug.Log(json);
         gameData =new();
         gameData = JsonUtility.FromJson<GameData>(json);
     }
