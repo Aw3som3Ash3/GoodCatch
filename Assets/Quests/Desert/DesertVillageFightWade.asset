@@ -30,7 +30,7 @@ MonoBehaviour:
   - name: Speak to King Penguin
     description: 
     requirements:
-    - rid: 2727136845632372736
+    - rid: 2727136848657514514
   - name: Dock at the Jungle island
     description: 
     requirements:
@@ -57,7 +57,7 @@ MonoBehaviour:
       data:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
-        objective: Speak to King Penguin
+        objective: Return to Keeps
         dialogueEvent: {fileID: 3059256034209365916, guid: 637efafee8a7a794aad3ef61dbc3250e, type: 2}
     - rid: 2727136845632372760
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
@@ -66,3 +66,10 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Dock at the Jungle island
         dialogueEvent: {fileID: 5792923631883937358, guid: 71f89e8556ca6234cb392c5f28a888c1, type: 2}
+    - rid: 2727136848657514514
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Speak to King Penguin
+        dialogueEvent: {fileID: -2727414724657458790, guid: 83a865b89217db0488306491da535c1b, type: 2}
