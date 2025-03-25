@@ -536,35 +536,62 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     public void CombatEnded(Team winningTeam)
     {
 
-        if (winningTeam == Team.enemy)
-        {
-            SceneManager.sceneLoaded += SceneLoadedLost;
-        }
-        else
-        {
-            WonFight?.Invoke();
-        }
+       
         SavingSystem.SaveSelf(this,this.gameObject.scene.buildIndex);
         var questTracker = FindObjectOfType<QuestTracker>();
         SavingSystem.SaveSelf(questTracker, questTracker.gameObject.scene.buildIndex);
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
-        SceneManager.LoadScene(gameData.currentScene);
+        SceneManager.LoadSceneAsync(gameData.currentScene).completed +=(Operation)=> 
+        {
+            var sceneloader = FindAnyObjectByType<SceneLoader>();
+            if (sceneloader !=null)
+            {
+                FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
+                {
+                    if (winningTeam == Team.enemy)
+                    {
+
+                        PlayerLost();
+                    }
+                    else
+                    {
+                        WonFight?.Invoke();
+                    }
+
+                };
+            }
+            else
+            {
+                if (winningTeam == Team.enemy)
+                {
+
+                    PlayerLost();
+                }
+                else
+                {
+                    WonFight?.Invoke();
+                }
+            }
+           
+
+
+           
+
+        };
 
         
         inCombat = false;
        
     }
 
+
+
     void SceneLoadedLost(Scene arg0, LoadSceneMode arg1)
     {
         if(arg0.name=="Main Scene")
         {
-            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
-            {
-                PlayerLost();
-                SceneManager.sceneLoaded -= SceneLoadedLost;
-            };
+            
         }
         
        
