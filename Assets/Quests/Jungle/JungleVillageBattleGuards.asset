@@ -46,6 +46,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136845632372779
+  - name: Talk to the Jungle Chieftain
+    description: 
+    requirements:
+    - rid: 2727136848657514497
   references:
     version: 2
     RefIds:
@@ -104,4 +108,11 @@ MonoBehaviour:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
         objective: Approach the Fire Shrine
+        dialogueEvent: {fileID: 2044407056672784995, guid: 5664853df10a42f4ea80716c003b6f1e, type: 2}
+    - rid: 2727136848657514497
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Talk to the Jungle Chieftain
         dialogueEvent: {fileID: 0}

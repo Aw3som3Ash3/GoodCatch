@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Poison
   m_EditorClassIdentifier: 
   duration: 5
-  icon: {fileID: 2800000, guid: e92a6092584628841ba7f0dec8a34056, type: 3}
+  icon: {fileID: 2800000, guid: 07046a5c599ad0f488d00e43a9f8dff0, type: 3}
+  particlePrefab: {fileID: 0}
   effectUsage: 0
   damage: 25
   element: {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}

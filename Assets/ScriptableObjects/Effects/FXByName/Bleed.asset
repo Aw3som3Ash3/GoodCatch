@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Bleed
   m_EditorClassIdentifier: 
   duration: 5
-  icon: {fileID: 2800000, guid: 318095fd75215e840a9fdf4447228adf, type: 3}
+  icon: {fileID: 2800000, guid: e737235c0634d6c469f3dbb55666bbcd, type: 3}
+  particlePrefab: {fileID: 0}
   effectUsage: 0
   damage: 25
   element: {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
