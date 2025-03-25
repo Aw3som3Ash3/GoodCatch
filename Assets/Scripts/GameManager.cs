@@ -540,6 +540,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         SavingSystem.SaveSelf(this,this.gameObject.scene.buildIndex);
         var questTracker = FindObjectOfType<QuestTracker>();
         SavingSystem.SaveSelf(questTracker, questTracker.gameObject.scene.buildIndex);
+        Debug.Log(winningTeam);
         //InputManager.Input.UI.Disable();
         //InputManager.DisableCombat();
         SceneManager.LoadSceneAsync(gameData.currentScene).completed +=(Operation)=> 
