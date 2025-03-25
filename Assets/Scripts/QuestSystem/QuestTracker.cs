@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
 {
@@ -32,6 +33,7 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            //SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         }
         else
         {
@@ -40,6 +42,19 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
        
        
     }
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+    }
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        foreach(var quest in activeQuests)
+        {
+            quest.ReInitialize();
+        }
+        //throw new NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -175,10 +190,16 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
         currentQuestIndex = data.currentQuestIndex;
         MakeCurrent(activeQuests[currentQuestIndex]);
         OnCurrentQuestUpdate?.Invoke(currentQuest);
+        foreach (var quest in activeQuests)
+        {
+            quest.ReInitialize();
+        }
         
+
+
     }
 
-    
+
 
     public List<T> FindActiveRequirements<T>(Func<T, bool> predicate) where T : Quest.QuestRequirement
     {
