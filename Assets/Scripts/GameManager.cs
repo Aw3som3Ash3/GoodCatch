@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         if(gameData.currentInnId == null|| gameData.currentInnId=="")
         {
             gameData.currentInnId = Inn.StarterInn.innId;
-            Debug.Log(Inn.StarterInn);
+            Debug.Log("respawning at:"+Inn.StarterInn);
         }
         isRespawning = true;
         lastInnVisited.Respawn();
@@ -545,6 +545,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         //InputManager.DisableCombat();
         SceneManager.LoadSceneAsync(gameData.currentScene).completed +=(Operation)=> 
         {
+            Debug.Log("scene has loaded after combat");
             var sceneloader = FindAnyObjectByType<SceneLoader>();
             if (sceneloader !=null)
             {
