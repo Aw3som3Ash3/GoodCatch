@@ -10,6 +10,9 @@ public class NPC : MonoBehaviour, IInteractable
     [SerializeField]
     string npcName;
     public string StationName => $"Talk To {npcName}";
+
+    public bool IsInteractable => !isTalking;
+    bool isTalking;
     [SerializeField]
     Dialogue baseDialogue;
     Animator anim;
@@ -32,9 +35,9 @@ public class NPC : MonoBehaviour, IInteractable
     public virtual bool Interact()
     {
 
-        
+        isTalking = true;
 
-        foreach(QuestBasedDialogue questBasedDialogue in questBasedDialogues)
+        foreach (QuestBasedDialogue questBasedDialogue in questBasedDialogues)
         {
             if (QuestTracker.Instance.IsQuestStateActive(questBasedDialogue.quest, questBasedDialogue.stateName))
             {
@@ -49,7 +52,7 @@ public class NPC : MonoBehaviour, IInteractable
         //throw new System.NotImplementedException();
         return true;
     }
-
+    
     void OnFinishedTalking()
     {
         foreach (var quest in QuestTracker.Instance?.FindActiveRequirements<SpeakToNPCQuestRequirement>((x) => x.NpcName == npcName))
@@ -59,6 +62,7 @@ public class NPC : MonoBehaviour, IInteractable
                 quest.RequirementCompleted();
             }
         }
+        isTalking = false;
     }
     private void OnValidate()
     {
@@ -67,6 +71,7 @@ public class NPC : MonoBehaviour, IInteractable
     // Start is called before the first frame update
     void Start()
     {
+        isTalking = false;
         anim = this.GetComponent<Animator>();
        // var reader = new DialogueReader(dialogue);
         //reader.OnChoiceRequired += NPC_OnChoiceRequired;

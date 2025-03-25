@@ -26,6 +26,8 @@ public class DockingZone : SaveableObject, IInteractable
 
     public override object DataToSave =>ship!=null? ship.ID:null;
 
+    public bool IsInteractable => ship!=null;
+
 
 
     // Start is called before the first frame update
