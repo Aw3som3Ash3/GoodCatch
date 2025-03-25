@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Thorns Lightning
   m_EditorClassIdentifier: 
   duration: 3
-  icon: {fileID: 2800000, guid: c066ff42510bf5d41ab5794ef377854c, type: 3}
+  icon: {fileID: 2800000, guid: 97d5d816986ebe84eb4576530c214d85, type: 3}
+  particlePrefab: {fileID: 0}
   effectUsage: 1
   damage: 10
   element: {fileID: 11400000, guid: 8c7048e405b1c51478198ef5e3f1f5e1, type: 2}
