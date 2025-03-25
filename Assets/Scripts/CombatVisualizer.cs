@@ -75,6 +75,10 @@ public class CombatVisualizer : MonoBehaviour
     }
     public void RemoveFish(CombatManager.Turn turn)
     {
+        if (!turnToObject.ContainsKey(turn))
+        {
+            return;
+        }
         var ui = FishUI[turnToObject[turn]];
         Destroy(turnToObject[turn].gameObject);
         turnToObject.Remove(turn);
