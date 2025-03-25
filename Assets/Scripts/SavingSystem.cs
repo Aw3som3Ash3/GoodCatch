@@ -194,6 +194,18 @@ public static class SavingSystem
         int intValue = int.Parse(fileNum);
         return intValue;
     }
+    public static void LoadSceneData()
+    {
+        var saveables = GameObject.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>();
+        foreach (var saveable in saveables)
+        {
+            int sceneId = (saveable as MonoBehaviour).gameObject.scene.buildIndex;
+            Debug.Log(saveable.ID + ":" + saveable);
+            saveable.Load(data.GetSaveable(saveable.ID, sceneId));
+            Time.timeScale = 1;
+        }
+        
+    }
     static void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
         SceneManager.sceneLoaded -= OnSceneLoad;
