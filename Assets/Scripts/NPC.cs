@@ -55,13 +55,13 @@ public class NPC : MonoBehaviour, IInteractable
     
     void OnFinishedTalking()
     {
-        foreach (var quest in QuestTracker.Instance?.FindActiveRequirements<SpeakToNPCQuestRequirement>((x) => x.NpcName == npcName))
-        {
-            if (quest != null)
-            {
-                quest.RequirementCompleted();
-            }
-        }
+        //foreach (var quest in QuestTracker.Instance?.FindActiveRequirements<SpeakToNPCQuestRequirement>((x) => x.NpcName == npcName))
+        //{
+        //    if (quest != null)
+        //    {
+        //        quest.RequirementCompleted();
+        //    }
+        //}
         isTalking = false;
     }
     private void OnValidate()
