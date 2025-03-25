@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499cc2f123f328f488d63efae9068537, type: 3}
   m_Name: Posion Spray
   m_EditorClassIdentifier: 
+  ignoreSelf: 0
   abilityType: 0
   availableDepths: -1
   targetableDepths: -1
@@ -27,6 +28,7 @@ MonoBehaviour:
   - statusEffect: {fileID: 11400000, guid: 117721be37746594bbae2b229eda4f3e, type: 2}
     effectChance: 0.765
   forcedMovement: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: dca2aae921a469146b812a7923373040, type: 3}
   abilityVFX: {fileID: 7579806966704569852, guid: 66b248630fe299d4495b86d60f9552bf, type: 3}
   targetVFX: {fileID: 0}
+  abilityID: 3c1c5792-e064-4fcb-99f3-957c9942f432
