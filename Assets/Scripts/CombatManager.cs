@@ -112,6 +112,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     {
         InputManager.OnInputChange -= InputChanged;
         CompletedAllActions = null;
+        combatUI.EnableUI(false);
     }
     private void InputChanged(InputMethod method)
     {
@@ -355,6 +356,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
 
     }
+    
     private void OnDisable()
     {
         Turn.TurnEnded -= NextTurn;
