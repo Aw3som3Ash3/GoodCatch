@@ -499,7 +499,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             int startLevel = fish.Level;
             foreach (FishMonster enemy in enemyFishes)
             {
-                float xpToAdd = ((float)enemy.Level / fish.Level) * 100;
+                float xpToAdd = ((float)enemy.Level / fish.Level) * 200;
                 fish.AddXp(xpToAdd);
                 deltaXp += xpToAdd;
             }
