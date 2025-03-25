@@ -9,6 +9,9 @@ using UnityEngine.UIElements;
 public class Inn : MonoBehaviour, IInteractable
 {
     public string StationName => "Inn";
+
+    public bool IsInteractable => true;
+
     [SerializeField]
     public string innId;
     [SerializeField]

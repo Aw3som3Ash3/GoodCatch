@@ -7,6 +7,8 @@ public class AquariumStation : MonoBehaviour, IInteractable
 {
     public string StationName => "Aquarium";
 
+    public bool IsInteractable => true;
+
     public bool Interact()
     {
         //FindObjectOfType<UIDocument>().rootVisualElement.Add();

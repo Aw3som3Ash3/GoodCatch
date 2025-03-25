@@ -10,6 +10,7 @@ public class DialogueEvent : ScriptableObject
     public event Action @Event;
     public void Invoke()
     {
+        Debug.Log("should invoke event: " + name);
         Event?.Invoke();
     }
 }

@@ -54,5 +54,8 @@ public abstract class Station : MonoBehaviour, IInteractable
     }
 
     public string StationName => stationName;
+
+    public bool IsInteractable => !beingUsed;
+
     public abstract void Use();
 }

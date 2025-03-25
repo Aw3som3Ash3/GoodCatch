@@ -112,6 +112,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     {
         InputManager.OnInputChange -= InputChanged;
         CompletedAllActions = null;
+        combatUI.EnableUI(false);
     }
     private void InputChanged(InputMethod method)
     {
@@ -355,6 +356,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
 
     }
+    
     private void OnDisable()
     {
         Turn.TurnEnded -= NextTurn;
@@ -423,8 +425,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void EndFight(Team winningTeam)
     {
-        playerFishes.ForEach((f) => {if(getFishesTurn.ContainsKey(f)) f.UpdateHealth(getFishesTurn[f].Health); });
         combatUI.EnableUI(false);
+        playerFishes.ForEach((f) => {if(getFishesTurn.ContainsKey(f)) f.UpdateHealth(getFishesTurn[f].Health); });
+        
         StartCoroutine(CombatVictoryScreen(winningTeam));
        
     }
@@ -499,7 +502,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             int startLevel = fish.Level;
             foreach (FishMonster enemy in enemyFishes)
             {
-                float xpToAdd = ((float)enemy.Level / fish.Level) * 100;
+                float xpToAdd = ((float)enemy.Level / fish.Level) * 200;
                 fish.AddXp(xpToAdd);
                 deltaXp += xpToAdd;
             }

@@ -1,8 +1,9 @@
 public interface IInteractable
 {
+    public bool IsInteractable { get;}
     public bool Interactable()
     {
-        return true;
+        return IsInteractable;
 
     }
     public bool Interact();

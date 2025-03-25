@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
 
             if (interactable != null)
             {
-                return true;
+                return interactable.Interactable();
             }
         }
         interactable = null;

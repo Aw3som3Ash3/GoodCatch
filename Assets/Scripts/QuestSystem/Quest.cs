@@ -76,6 +76,19 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             }
 
         }
+        public void Reinitialize()
+        {
+
+            foreach (QuestRequirement requirment in requirements)
+            {
+                requirment.Completed -= CheckIfCompleted;
+                requirment.Progressed -= OnProgress;
+                requirment.Init();
+                requirment.Completed += CheckIfCompleted;
+                requirment.Progressed += OnProgress;
+            }
+
+        }
         void OnProgress(QuestRequirement questRequirement)
         {
             Progressed?.Invoke(this, questRequirement);
@@ -123,7 +136,10 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
         {
             IsCompleted = false;
         }
+        public virtual void ReInit()
+        {
 
+        }
         public void RequirementCompleted()
         {
             IsCompleted = true;
@@ -182,25 +198,24 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             questId = quest.questId;
             states = quest.states;
             //states = quest.states.Select(a => (QuestState)a.Clone()).ToArray();
-            foreach (QuestState state in states)
-            {
+            //foreach (QuestState state in states)
+            //{
                 
-                state.Initialize();
-            }
+            //    state.Initialize();
+            //}
             currentStateIndex = 0;
+           
             NewQuestState();
         }
 
         void NewQuestState()
         {
+           
             if (CurrentState == null)
             {
                 return;
             }
-            foreach (var item in CurrentState.requirements)
-            {
-                item.Init();
-            }
+            CurrentState.Initialize();
             CurrentState.Completed += StateCompleted;
             CurrentState.Progressed += Progressed;
 
@@ -221,7 +236,15 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             }
 
         }
+        public void ReInitialize()
+        {
 
+            CurrentState.Completed -= StateCompleted;
+            CurrentState.Progressed -= Progressed;
+            CurrentState.Completed += StateCompleted;
+            CurrentState.Progressed += Progressed;
+            CurrentState.Reinitialize();
+        }
 
     }
     string questId;
