@@ -83,7 +83,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             {
                 requirment.Completed -= CheckIfCompleted;
                 requirment.Progressed -= OnProgress;
-                requirment.Init();
+                requirment.ReInit();
                 requirment.Completed += CheckIfCompleted;
                 requirment.Progressed += OnProgress;
             }
