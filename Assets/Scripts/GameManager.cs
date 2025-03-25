@@ -506,7 +506,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         //mainEventSystem.enabled = false;
         CombatManager.NewCombat(enemyFishes, rewardFish);
         inCombat = true;
-        SceneManager.sceneLoaded += SceneLoaded;
+        
         
        
     }
@@ -518,7 +518,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         //mainEventSystem.enabled = false;
         CombatManager.NewCombat(enemyFishes, false);
         inCombat = true;
-        SceneManager.sceneLoaded += SceneLoaded;
+        
         OnPlayerLost += OnPlayerLostFight;
         WonFight += PlayerWonFight;
 
@@ -533,6 +533,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
 
     }
+    //Action OnCombatEnded;
     public void CombatEnded(Team winningTeam)
     {
 
@@ -551,6 +552,10 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             {
                 FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
                 {
+                    SavingSystem.LoadGame();
+                   
+                    UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                    UnityEngine.Cursor.visible = false;
                     if (winningTeam == Team.enemy)
                     {
 
@@ -560,11 +565,16 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
                     {
                         WonFight?.Invoke();
                     }
+                   
 
                 };
             }
             else
             {
+                SavingSystem.LoadGame();
+               
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
                 if (winningTeam == Team.enemy)
                 {
 
@@ -599,25 +609,6 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
        
     }
 
-    void SceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (arg0.name == "BattleScene 1")
-        {
-            inCombat = true;
-            
-        }
-        else if(arg0.buildIndex == gameData.currentScene)
-        {
-            print("should load");
-            SavingSystem.LoadGame();
-            SceneManager.sceneLoaded -= SceneLoaded;
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            UnityEngine.Cursor.visible = false;
-            //InputManager.EnablePlayer();
-
-        }
-        
-    }
 
     public void Load(string json)
     {
