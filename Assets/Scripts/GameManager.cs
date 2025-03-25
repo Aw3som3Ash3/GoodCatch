@@ -552,7 +552,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             {
                 FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
                 {
-                   
+                    SavingSystem.LoadSceneData();
                     if (winningTeam == Team.enemy)
                     {
 
@@ -568,6 +568,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             }
             else
             {
+                SavingSystem.LoadSceneData();
                 if (winningTeam == Team.enemy)
                 {
 
@@ -580,7 +581,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             }
 
 
-            SavingSystem.LoadSceneData();
+            
 
 
         };
