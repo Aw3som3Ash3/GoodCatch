@@ -755,5 +755,6 @@ public class CombatUI : VisualElement
     {
         PauseMenu.GamePaused -= EnableUI;
         inputs.Combat.EndTurn.performed -= OnEndTurn;
+        OnEndTurnInput = null;
     }
 }
