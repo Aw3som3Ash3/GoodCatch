@@ -12,6 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
   m_Name: HealEvent
   m_EditorClassIdentifier: 
+--- !u!114 &-1044863866913260863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: Skipps2
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,12 +44,15 @@ MonoBehaviour:
   nodes:
   - rid: 187471312712368138
   - rid: 187471312712368139
+  - rid: 2727136848657514805
   decorators:
   - rid: 187471312712368140
   - rid: 187471312712368142
   - rid: 187471312712368168
+  - rid: 2727136848657514742
   events:
   - {fileID: -8881602098096103646}
+  - {fileID: -1044863866913260863}
   references:
     version: 2
     RefIds:
@@ -57,7 +72,7 @@ MonoBehaviour:
         - rid: 187471312712368142
         position: {x: 426, y: 106.66667}
         nextNode:
-          rid: 187471312712368139
+          rid: 2727136848657514805
     - rid: 187471312712368139
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -70,7 +85,7 @@ MonoBehaviour:
         guid: 44023665a6923484983808815be91260
         decorators:
         - rid: 187471312712368168
-        position: {x: 1330.1667, y: 190.13336}
+        position: {x: 1604, y: 146}
         nextNode:
           rid: -2
     - rid: 187471312712368140
@@ -89,6 +104,23 @@ MonoBehaviour:
     - rid: 187471312712368168
       type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 1616.6667, y: 493.33334}
+        position: {x: 1891, y: 449}
         guid: 9d3305f64b3abc847bdd4ac42383f719
         quest: {fileID: 11400000, guid: 29ff50a87758d7041b9663d36d45e238, type: 2}
+    - rid: 2727136848657514742
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 719, y: 614}
+        guid: 41362a9bc05cb7141bbc82d5aed970db
+        dialogueEvent: {fileID: -1044863866913260863}
+    - rid: 2727136848657514805
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 
+        voiceClip: {fileID: 0}
+        guid: a7eef01f1d54d164c9dc917933514083
+        decorators:
+        - rid: 2727136848657514742
+        position: {x: 1252, y: 219}
+        nextNode:
+          rid: 187471312712368139

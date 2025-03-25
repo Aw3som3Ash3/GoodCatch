@@ -22,19 +22,20 @@ MonoBehaviour:
   - name: Speak To MrSkipps
     description: 
     requirements:
-    - rid: 4799112187029225487
+    - rid: 2727136848657514741
   references:
     version: 2
     RefIds:
+    - rid: 2727136848657514741
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 1
+        objective: Speak To Mr. Skipps
+        dialogueEvent: {fileID: -1044863866913260863, guid: 7e73032f89e4ff943a4c1f4d73d93120, type: 2}
     - rid: 4799112187029225480
       type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
       data:
         Name: WinNumFight
-        IsCompleted: 1
-        amount: 1
-    - rid: 4799112187029225487
-      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: SpeakToNPCQuestRequirement
         IsCompleted: 0
-        npcName: Mr. Skipps
+        amount: 1

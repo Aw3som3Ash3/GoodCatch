@@ -18,13 +18,14 @@ MonoBehaviour:
   - name: Speak To Mr. Skipps
     description: 
     requirements:
-    - rid: 6225482819130359814
+    - rid: 2727136848657514767
   references:
     version: 2
     RefIds:
-    - rid: 6225482819130359814
-      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+    - rid: 2727136848657514767
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
-        Name: SpeakToNPCQuestRequirement
+        Name: DialogueEventQuestRequirement
         IsCompleted: 1
-        npcName: Mr. Skipps
+        objective: Speak To Mr. Skipps
+        dialogueEvent: {fileID: 2776473753567869983, guid: b1b8d447fd36aa04e9db1fe24deb413f, type: 2}

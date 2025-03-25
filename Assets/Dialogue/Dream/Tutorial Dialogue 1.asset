@@ -38,8 +38,10 @@ MonoBehaviour:
   decorators:
   - rid: 187471312712368129
   - rid: 187471312712368167
+  - rid: 2727136848657514766
   events:
   - {fileID: -541169476730117253}
+  - {fileID: 2776473753567869983}
   references:
     version: 2
     RefIds:
@@ -84,7 +86,8 @@ MonoBehaviour:
           let me help you out! "
         voiceClip: {fileID: 0}
         guid: e44b5b3e173bc1d4983bcb35c246b16b
-        decorators: []
+        decorators:
+        - rid: 2727136848657514766
         position: {x: 1166.6666, y: 192.66667}
         nextNode:
           rid: 187471312712368134
@@ -107,6 +110,12 @@ MonoBehaviour:
         position: {x: 2557, y: 579}
         guid: 9c83146c4d8ef864584e9d524b67fe29
         quest: {fileID: 11400000, guid: 8789b08040d62fd41b8e41e89e17f6f5, type: 2}
+    - rid: 2727136848657514766
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1556, y: 492}
+        guid: 07af191d9a883d043bbaabdc3af4dc90
+        dialogueEvent: {fileID: 2776473753567869983}
     - rid: 6374090520396824595
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -119,3 +128,15 @@ MonoBehaviour:
         position: {x: 2567, y: 238}
         nextNode:
           rid: -2
+--- !u!114 &2776473753567869983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: Skipps1
+  m_EditorClassIdentifier: 

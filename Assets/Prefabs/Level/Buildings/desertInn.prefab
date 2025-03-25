@@ -247,8 +247,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27ed046e071cfb46a9026157a72d990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  innId: 
   respawnPoint: {fileID: 5635896496539704519}
   dialogue: {fileID: 0}
+  dockingZone: {fileID: 0}
+  debugTeleport:
+    m_Name: Debug Teleport
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0d8caee4-8112-466d-a450-bd440b032250
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  isStartInn: 0
 --- !u!136 &8216724604879502233
 CapsuleCollider:
   m_ObjectHideFlags: 0
