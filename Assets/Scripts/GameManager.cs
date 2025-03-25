@@ -552,7 +552,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             {
                 FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () =>
                 {
-                   
+                    SavingSystem.LoadSceneData();
                     if (winningTeam == Team.enemy)
                     {
 
@@ -568,6 +568,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             }
             else
             {
+                SavingSystem.LoadSceneData();
                 if (winningTeam == Team.enemy)
                 {
 
@@ -580,10 +581,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
             }
 
 
-            SavingSystem.LoadGame();
-
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            UnityEngine.Cursor.visible = false;
+            
 
 
         };
@@ -608,6 +606,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
 
     public void Load(string json)
     {
+        Debug.Log(json);
         gameData =new();
         gameData = JsonUtility.FromJson<GameData>(json);
     }

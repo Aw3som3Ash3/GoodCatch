@@ -184,6 +184,7 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
     }
     public void Load(string json)
     {
+        Debug.Log(json);
         var data = JsonUtility.FromJson<(List<Quest.QuestInstance> active, List<Quest.QuestInstance> complete,int currentQuestIndex)>(json);
         activeQuests=data.active;
         completedQuests = data.complete;

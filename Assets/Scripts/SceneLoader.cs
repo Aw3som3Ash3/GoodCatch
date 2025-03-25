@@ -91,6 +91,7 @@ public class SceneLoader : MonoBehaviour
             }
             yield return SceneManager.LoadSceneAsync(allScenes[i], LoadSceneMode.Additive);
         }
+        yield return new WaitForEndOfFrame();
         ScenesLoaded();
 
     }
