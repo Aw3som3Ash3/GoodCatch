@@ -10,7 +10,7 @@ public class TurnOffSmoke : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SmokeVFX.Play();
+        //SmokeVFX.Play();
     }
 
     // Update is called once per frame
@@ -21,11 +21,22 @@ public class TurnOffSmoke : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        SmokeVFX.Stop();
+        //if (!other.gameObject.activeSelf)
+        {
+            SmokeVFX.Stop();
+            Debug.Log("Smoke Stopping");
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        SmokeVFX.Play();
+        //if (!other.gameObject.activeSelf)
+        {
+            SmokeVFX.Play();
+            Debug.Log("Smoke Starting");
+        }
+
+
     }
 }
