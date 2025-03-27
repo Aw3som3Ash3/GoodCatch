@@ -44,12 +44,11 @@ MonoBehaviour:
   nodes:
   - rid: 187471312712368138
   - rid: 187471312712368139
-  - rid: 2727136848657514805
   decorators:
   - rid: 187471312712368140
   - rid: 187471312712368142
   - rid: 187471312712368168
-  - rid: 2727136848657514742
+  - rid: 2727136893888102425
   events:
   - {fileID: -8881602098096103646}
   - {fileID: -1044863866913260863}
@@ -70,9 +69,10 @@ MonoBehaviour:
         decorators:
         - rid: 187471312712368140
         - rid: 187471312712368142
+        - rid: 2727136893888102425
         position: {x: 426, y: 106.66667}
         nextNode:
-          rid: 2727136848657514805
+          rid: 187471312712368139
     - rid: 187471312712368139
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -107,20 +107,9 @@ MonoBehaviour:
         position: {x: 1891, y: 449}
         guid: 9d3305f64b3abc847bdd4ac42383f719
         quest: {fileID: 11400000, guid: 29ff50a87758d7041b9663d36d45e238, type: 2}
-    - rid: 2727136848657514742
+    - rid: 2727136893888102425
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 719, y: 614}
-        guid: 41362a9bc05cb7141bbc82d5aed970db
+        position: {x: 678, y: 572}
+        guid: 6369c245f4a929046a6cbac6e37fae38
         dialogueEvent: {fileID: -1044863866913260863}
-    - rid: 2727136848657514805
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: 
-        voiceClip: {fileID: 0}
-        guid: a7eef01f1d54d164c9dc917933514083
-        decorators:
-        - rid: 2727136848657514742
-        position: {x: 1252, y: 219}
-        nextNode:
-          rid: 187471312712368139

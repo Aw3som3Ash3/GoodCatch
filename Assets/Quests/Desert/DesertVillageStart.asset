@@ -31,6 +31,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136727628251152
+  - name: Speak to Wade again
+    description: 
+    requirements:
+    - rid: 2727136893888102424
   references:
     version: 2
     RefIds:
@@ -38,27 +42,34 @@ MonoBehaviour:
       type: {class: CatchNumOfFishRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: CatchNumOfFishRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         targetOfFish: 1
-        currentAmount: 0
+        currentAmount: 1
     - rid: 2727136727628251180
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         objective: Speak to Keeps
         dialogueEvent: {fileID: 3059256034209365916, guid: bd1e4cb6e44e94d4f8dbe8343c8faa79, type: 2}
     - rid: 2727136727628251182
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         objective: Speak to Wade
         dialogueEvent: {fileID: 7705723223025206442, guid: b22857ed7a631f14b939e319786154e0, type: 2}
     - rid: 2727136795739816025
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         objective: Speak to King Penguin
         dialogueEvent: {fileID: 1060325558273890312, guid: e73170836fcf6cb4e9bd2de2ce9f346d, type: 2}
+    - rid: 2727136893888102424
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Speak to Wade again
+        dialogueEvent: {fileID: 5417725798154797186, guid: b495c2039c7ef6649840c5595395d0a0, type: 2}
