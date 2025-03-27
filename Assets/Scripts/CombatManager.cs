@@ -306,6 +306,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             currentTurn.Value.UseAction();
             GameManager.Instance.PlayerInventory.RemoveItem(hook);
             combatUI.UpdateInventory();
+            CanFightEnd();
         });
 
         
