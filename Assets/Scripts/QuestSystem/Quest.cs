@@ -20,7 +20,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
     }
 
     [Serializable]
-    public class QuestState:ICloneable
+    public class QuestState
     {
         [SerializeField]
         string name;
@@ -106,19 +106,19 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             Completed?.Invoke();
         }
 
-        public object Clone()
-        {
-            Debug.Log(this + " has been cloned");
-            var state= new QuestState();
-            state.name = name;
-            state.description = description;
-            state.requirements = requirements.Select(a => (QuestRequirement)a.Clone()).ToArray(); ;
-            return state;
+        //public object Clone()
+        //{
+        //    Debug.Log(this + " has been cloned");
+        //    var state= new QuestState();
+        //    state.name = name;
+        //    state.description = description;
+        //    state.requirements = requirements.Select(a => (QuestRequirement)a.Clone()).ToArray(); ;
+        //    return state;
             
-        }
+        //}
     }
     [Serializable]
-    public abstract class QuestRequirement:ICloneable
+    public abstract class QuestRequirement
     {
         [HideInInspector]
         public string Name;
@@ -151,12 +151,12 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
             Progressed?.Invoke(this);
         }
 
-        public object Clone()
-        {
-            Debug.Log(this + " has been cloned");
-            //req.Name = Name;
-            return this.MemberwiseClone();
-        }
+        //public object Clone()
+        //{
+        //    Debug.Log(this + " has been cloned");
+        //    //req.Name = Name;
+        //    return this.MemberwiseClone();
+        //}
     }
 
     [Serializable]
