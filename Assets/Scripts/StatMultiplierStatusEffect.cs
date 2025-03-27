@@ -33,6 +33,16 @@ public class StatMultiplierStatusEffect : StatusEffect
         Attribute["dodge"] = dodge;
         
     }
+    private void OnEnable()
+    {
+        Attribute["agility"] = agility;
+        Attribute["accuracy"] = accuracy;
+        Attribute["attack"] = attack;
+        Attribute["special"] = special;
+        Attribute["fortitude"] = fortitude;
+        Attribute["specialFort"] = specialFort;
+        Attribute["dodge"] = dodge;
+    }
     // Start is called before the first frame update
 
 }
