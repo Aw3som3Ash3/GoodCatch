@@ -188,9 +188,12 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
         var data = JsonUtility.FromJson<(List<Quest.QuestInstance> active, List<Quest.QuestInstance> complete,int currentQuestIndex)>(json);
         activeQuests=data.active;
         completedQuests = data.complete;
-        currentQuestIndex = data.currentQuestIndex;
-        MakeCurrent(activeQuests[currentQuestIndex]);
-        OnCurrentQuestUpdate?.Invoke(currentQuest);
+        if (activeQuests.Count > 0)
+        {
+            currentQuestIndex = data.currentQuestIndex;
+            MakeCurrent(activeQuests[currentQuestIndex]);
+            OnCurrentQuestUpdate?.Invoke(currentQuest);
+        }
         foreach (var quest in activeQuests)
         {
             quest.ReInitialize();
