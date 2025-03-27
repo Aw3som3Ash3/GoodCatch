@@ -177,7 +177,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         }
         var targets = targetDepth.TargetSide(targetedTeam);
 
-        if (UnityEngine.Random.Range(0, 1) - ((user.accuracy - (targetTeam == TargetTeam.enemy ? targets[0].dodge : 0)) * 0.01) < accuracy)
+        if (UnityEngine.Random.Range(0, 1) - (((user.accuracy*0.01f)  - (targetTeam == TargetTeam.enemy ? targets[0].dodge : 0)) * 0.01) < accuracy)
         {
             float damageMod = damageMultiplier * (abilityType == AbilityType.attack ? user.attack : user.special);
             
