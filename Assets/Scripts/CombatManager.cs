@@ -195,7 +195,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             manager.getFishesTurn[f].CheckDeath();
            
         });
-        manager.CanFightEnd();
+       
     }
 
     /// <summary>
@@ -367,7 +367,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         destination.AddFish(turn, team);
         combatVisualizer.AddFish(turn, destination.GetSideTransform(team).position, team);
         combatVisualizer.MoveFish(turn, destination.GetPositionOfFish(turn));
-        turn.HasFeinted = () => { RemoveFishFromBattle(turn); Debug.Log(" should have removed fish"); };
+        turn.HasFeinted = () => { RemoveFishFromBattle(turn); Debug.Log(" should have removed fish"); CanFightEnd(); };
 
     }
     //orders the turns by speed value
@@ -393,7 +393,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
         
         CompletedAllActions?.Invoke();
-        CanFightEnd();
+        
 
     }
     bool CanFightEnd()
@@ -530,10 +530,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     {
         combatVisualizer.FinishedSelecting();
         combatVisualizer.StopSelectingFish();
-        if (CanFightEnd())
-        {
-            return;
-        }
+        //if (CanFightEnd())
+        //{
+        //    return;
+        //}
         if (!actionsCompleted && currentTurn.Value.team == Team.player)
         {
             return;
@@ -639,7 +639,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             combatVisualizer.AnimateAttack(ability, turn, targetedFish, () =>
             {
 
-                targetedDepth.TargetSide(targetedTeam).ForEach((turn) => turn.CheckDeath());
+                targetedDepth.TargetSide(targetedTeam)?.ForEach((turn) => turn.CheckDeath());
+                targetedFish.CheckDeath();
                 ActionsCompleted();
                 if (currentTurn.Value is PlayerTurn)
                 {
@@ -968,6 +969,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 }
                 else
                 {
+                    combatManager.CompletedAllActions -= Feint;
                     combatManager.CompletedAllActions += Feint;
                 }
                
@@ -984,6 +986,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             {
                 EndTurn();
             }
+           
             HasFeinted?.Invoke();
             Debug.Log("Should Feint or die");
         }
@@ -1002,11 +1005,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                     combatManager.combatUI.EnableButtons();
                     EndTurn();
                 }
-                if (combatManager.CanFightEnd())
-                {
-                    //EndTurn();
-                    return;
-                }
+                //if (combatManager.CanFightEnd())
+                //{
+                //    //EndTurn();
+                //    return;
+                //}
 
             });
             
@@ -1040,7 +1043,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 {
                     TickLastEffects();
                     TurnEnded?.Invoke();
-                    combatManager.CanFightEnd();
+                    //combatManager.CanFightEnd();
                 });
                
             }
