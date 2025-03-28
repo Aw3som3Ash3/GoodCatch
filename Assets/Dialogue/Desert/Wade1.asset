@@ -23,6 +23,7 @@ MonoBehaviour:
   - rid: 2727136727628251154
   decorators:
   - rid: 2727136727628251183
+  - rid: 2727136931700539414
   events:
   - {fileID: 7705723223025206442}
   references:
@@ -63,7 +64,8 @@ MonoBehaviour:
           If you wanna take a cast at it, be my guest.'
         voiceClip: {fileID: 0}
         guid: 58db3fda98809c64e8887a8dc8bb6f56
-        decorators: []
+        decorators:
+        - rid: 2727136931700539414
         position: {x: 1225, y: 8}
         nextNode:
           rid: -2
@@ -73,6 +75,12 @@ MonoBehaviour:
         position: {x: 432, y: 209}
         guid: f8a759ced268d7d47bbe58de5589c09c
         dialogueEvent: {fileID: 7705723223025206442}
+    - rid: 2727136931700539414
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1243, y: 249}
+        guid: a9809088551820a46878b02eb5f5feaf
+        quest: {fileID: 11400000, guid: ad6a7d31820eab24091428670ce3231e, type: 2}
 --- !u!114 &7705723223025206442
 MonoBehaviour:
   m_ObjectHideFlags: 0
