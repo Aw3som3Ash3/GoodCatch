@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="TitleContainer" style="flex-grow: 0;">
+        <ui:Label tabindex="-1" text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+    </ui:VisualElement>
+    <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="- Fishing Zones can be identified by the circling fish and seagulls overhead of them&#10;- When holding down the Cast button, the amount of time held will determine the distance thrown&#10;- Fishing requires patience, only hook when you see the bobber dip back into the water&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+    </ui:VisualElement>
+</ui:UXML>

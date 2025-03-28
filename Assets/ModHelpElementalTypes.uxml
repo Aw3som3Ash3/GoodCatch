@@ -1,0 +1,46 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="TitleContainer" style="flex-grow: 0;">
+        <ui:Label tabindex="-1" text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+    </ui:VisualElement>
+    <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Each monster can have up to 2 different Elemental Types. Their Types are multipliers for how much damage they can give to other monsters and take from abilities of other Types. Monsters will show a colored number when they take damage, and the color represents if they took damage from an element they&apos;re weak to. White means neutral damage, Yellow means effective damage, and Red means very effective damage." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:VisualElement name="IconsRow1" style="flex-grow: 1; height: 150px; align-self: stretch; align-items: center; flex-direction: row; justify-content: center;">
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Normal.png?fileID=2800000&amp;guid=c066ff42510bf5d41ab5794ef377854c&amp;type=3#Icon_Element_Normal&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                    <ui:Label tabindex="-1" text="Normal" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Fire.png?fileID=2800000&amp;guid=390202383f83cc345895e521ff118a63&amp;type=3#Icon_Element_Fire&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                    <ui:Label tabindex="-1" text="Fire" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Nature.png?fileID=2800000&amp;guid=1b08a9f8bf577be4a80a4a7d22fe21eb&amp;type=3#Icon_Element_Nature&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                    <ui:Label tabindex="-1" text="Nature" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Cold.png?fileID=2800000&amp;guid=fad137c190aaf5d46a3633464a47919e&amp;type=3#Icon_Element_Cold&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                    <ui:Label tabindex="-1" text="Cold" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Earth.png?fileID=2800000&amp;guid=e48835e5af8f9ac4a8acbe812017664a&amp;type=3#Icon_Element_Earth&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                    <ui:Label tabindex="-1" text="Earth" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/Art/2D/ElementIcons/Icon_Element_Lightning.png?fileID=2800000&amp;guid=a53d5aaf9c8bb9846a5ad02be9b6bc00&amp;type=3#Icon_Element_Lightning&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-end; max-height: 80px;">
+                    <ui:Label tabindex="-1" text="Lightning" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 55px; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: stretch; -unity-text-align: upper-center;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

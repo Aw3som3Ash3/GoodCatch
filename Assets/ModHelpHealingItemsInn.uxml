@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="TitleContainer" style="flex-grow: 0;">
+        <ui:Label tabindex="-1" text="Healing Items Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+    </ui:VisualElement>
+    <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Ally monsters can only be healed either by Healing Items or Inns. Inns can only be accessed during night time outside combat, and fully heals the entire party at no cost. Healing Items can only be used during combat in the Items tab, and come in different ranks. Each next rank heals more of a single ally&apos;s health (HP). From lowest to highest healing, the healing items are:&#10;   - Boring Berry&#10;   - Balanced Berry&#10;   - Better Berry&#10;   - Blessed Berry&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+    </ui:VisualElement>
+</ui:UXML>
