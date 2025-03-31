@@ -5,18 +5,18 @@
                 <ui:Label tabindex="-1" text="HELP" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; -unity-text-align: upper-center;" />
             </ui:VisualElement>
             <ui:ScrollView name="ScrollView" style="height: 911px;">
-                <ui:Button text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
-                <ui:Button text="Comabt Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
-                <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
-                <ui:Button text="Ability" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
-                <ui:Button text="StatusEffect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
-                <ui:Button text="Other Effect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
-                <ui:Button text="Healing &amp; Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
-                <ui:Button text="Hooks &amp; Catching" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
-                <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" style="font-size: 75px;" />
+                <ui:Button text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FishingButton" style="font-size: 75px;" />
+                <ui:Button text="Combat Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatButton" style="font-size: 75px;" />
+                <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalButton" style="font-size: 75px;" />
+                <ui:Button text="Ability" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityButton" style="font-size: 75px;" />
+                <ui:Button text="StatusEffect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusButton" style="font-size: 75px;" />
+                <ui:Button text="Other Effect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherButton" style="font-size: 75px;" />
+                <ui:Button text="Healing &amp; Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealingButton" style="font-size: 75px;" />
+                <ui:Button text="Hooks &amp; Catching" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HooksButton" style="font-size: 75px; display: flex;" />
+                <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TravelingButton" style="font-size: 75px;" />
             </ui:ScrollView>
         </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.68);" />
+        <ui:ScrollView name="Description" style="width: 75%; background-color: rgba(255, 255, 255, 0.99);" />
     </ui:VisualElement>
     <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
         <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-self: auto; align-items: stretch; margin-right: 973px;">

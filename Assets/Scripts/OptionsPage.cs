@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 
 public class OptionsPage : PausePage
 {
+    HelpMenu helpMenu;
     Button settings, controls, saveAndQuit, mainMenu,help;
     VisualElement settingsBox,menuContainer;
     SaveAndLoadScreen saveAndLoadScreen;
@@ -54,19 +55,27 @@ public class OptionsPage : PausePage
         menuContainer.Remove(settingsUI);
         this.focusable = true;
         this.delegatesFocus = true;
-
+        helpMenu = new();
     }
 
     void OnHelp()
     {
-        VisualElement helpRoot = new();
-        VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/ModHelp");
-
-        visualTreeAsset.CloneTree(helpRoot);
-        menuContainer.Clear();
-        menuContainer.Add(helpRoot);
-
+        this.parent.Add(helpMenu);
+        this.visible = false;
     }
+
+    public override bool Back()
+    {
+        if (this.parent.Contains(helpMenu))
+        {
+            this.parent.Remove(helpMenu);
+            this.visible = true;
+
+            return false;
+        }
+        return base.Back();
+    }
+
     private void SaveAndQuit()
     {
         SavingSystem.SaveGame(SavingSystem.SaveMode.ManualSave);
