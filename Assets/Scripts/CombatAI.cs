@@ -64,6 +64,10 @@ public class CombatAI : MonoBehaviour
             {
                 for (int i = 1; i < combatManager.depths.Length; i++)
                 {
+                    if (!currentTurn.DepthTargetable(abilityIndex, (Depth)i))
+                    {
+                        return;
+                    }
                     if (currentTurn.fish.GetAbility(abilityIndex).TargetedTeam == Ability.TargetTeam.enemy && combatManager.depths[i].TargetFirst(CombatManager.Team.player)?.Health < weakestTarget?.Health || weakestTarget == null)
                     {
                         weakestTarget = combatManager.depths[i].TargetFirst(CombatManager.Team.player);
