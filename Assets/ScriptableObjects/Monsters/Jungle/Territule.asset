@@ -58,10 +58,10 @@ MonoBehaviour:
   baseAbilities:
   - potentialAbilities:
     - {fileID: 11400000, guid: e46ebf49c02a65d499551d7d9c5ffa21, type: 2}
-    - {fileID: 11400000, guid: f25c3fdc239de8445946189e13d63899, type: 2}
-  - potentialAbilities:
     - {fileID: 11400000, guid: 67fcadd0cdce4574bb5dd7dad291ed6c, type: 2}
+  - potentialAbilities:
     - {fileID: 11400000, guid: 1d361dc7742c0364b8430189cbaa95a8, type: 2}
+    - {fileID: 11400000, guid: f25c3fdc239de8445946189e13d63899, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: d85dd998019c82a49975f554b924132e, type: 2}
     - {fileID: 11400000, guid: 6f0b18afa1bf3f9479af120461844496, type: 2}
