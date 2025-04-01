@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: RivalJungle3
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136845632372767
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136845632372767
+  - rid: 2727136845632372768
+  - rid: 2727136845632372769
+  decorators:
+  - rid: 2727136845632372770
+  - rid: 2727136845632372771
+  - rid: 2727136845632372778
+  events:
+  - {fileID: 1813808995833303404}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136845632372767
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Lost again huh...
+        voiceClip: {fileID: 0}
+        guid: 17fa0ed359346a744ad0d11c6d3213d4
+        decorators: []
+        position: {x: 369, y: -3}
+        nextNode:
+          rid: 2727136845632372768
+    - rid: 2727136845632372768
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Tch. You're bein' a real pain, y'know that? I'll see you around.
+        voiceClip: {fileID: 0}
+        guid: 6ee8b1c4890f8fa43b41f688d289ffce
+        decorators: []
+        position: {x: 797, y: -3}
+        nextNode:
+          rid: 2727136845632372769
+    - rid: 2727136845632372769
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You''ve recieved 15 Decent Hooks!]
+
+          [You''ve recieved
+          15 Balanced Berries!]'
+        voiceClip: {fileID: 0}
+        guid: 418a20f9942088f469b1c5b65aa204ef
+        decorators:
+        - rid: 2727136845632372770
+        - rid: 2727136845632372771
+        - rid: 2727136845632372778
+        position: {x: 1197, y: -3}
+        nextNode:
+          rid: -2
+    - rid: 2727136845632372770
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1075, y: 217}
+        guid: 3267ea2249181ee43922664c5a21395e
+        item: {fileID: 11400000, guid: ad0034793246a114db7de9ae1aeb1b27, type: 2}
+        amount: 15
+    - rid: 2727136845632372771
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1529, y: 217}
+        guid: d119bda60b445b94485ac16deb5b61fb
+        item: {fileID: 11400000, guid: c1864cc885f58f844bf41a4fd611149c, type: 2}
+        amount: 15
+    - rid: 2727136845632372778
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1353, y: 364}
+        guid: fb11498b85c992a4cb9d36b9dc0d5bd7
+        dialogueEvent: {fileID: 1813808995833303404}
+--- !u!114 &1813808995833303404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: WadeDefeatedJungle
+  m_EditorClassIdentifier: 

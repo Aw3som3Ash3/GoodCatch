@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: RivalJungle2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136845632372761
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136845632372761
+  - rid: 2727136845632372765
+  decorators:
+  - rid: 2727136845632372766
+  events:
+  - {fileID: 311289611317764393}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136845632372761
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Huh? It says we gotta fight?
+        voiceClip: {fileID: 0}
+        guid: 014b4472085ffe14081d8fcc253f0cbc
+        decorators: []
+        position: {x: 409, y: -21}
+        nextNode:
+          rid: 2727136845632372765
+    - rid: 2727136845632372765
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You're just makin' that up! But fine! It won't be like last time.
+        voiceClip: {fileID: 0}
+        guid: 4e1aafa433ba89443a5a2b2bd99a2608
+        decorators:
+        - rid: 2727136845632372766
+        position: {x: 861, y: -21}
+        nextNode:
+          rid: -2
+    - rid: 2727136845632372766
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 861, y: 180}
+        guid: 03cdb50aed134954c8da6b59d12e6f5b
+        dialogueEvent: {fileID: 311289611317764393}
+--- !u!114 &311289611317764393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: SecondWadeFight
+  m_EditorClassIdentifier: 

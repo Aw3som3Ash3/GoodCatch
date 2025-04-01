@@ -25,10 +25,31 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136614816153644
-  - name: '"Reason" with the rest of the Guards'
+    - rid: 2727136845632372772
+  - name: Talk to Wade
     description: 
     requirements:
-    - rid: 2727136614816153662
+    - rid: 2727136845632372774
+  - name: Decipher the Fire Shrine
+    description: 
+    requirements:
+    - rid: 2727136845632372775
+  - name: Defeat Wade, again
+    description: 
+    requirements:
+    - rid: 2727136845632372776
+  - name: Talk to Wade again
+    description: 
+    requirements:
+    - rid: 2727136845632372777
+  - name: Approach the Fire Shrine
+    description: 
+    requirements:
+    - rid: 2727136845632372779
+  - name: Talk to the Jungle Chieftain
+    description: 
+    requirements:
+    - rid: 2727136848657514497
   references:
     version: 2
     RefIds:
@@ -46,10 +67,52 @@ MonoBehaviour:
         IsCompleted: 0
         objective: '"Reason" with the First Guard'
         dialogueEvent: {fileID: -9217259632993510754, guid: 57357419aec3d784bacf113e5a214a53, type: 2}
-    - rid: 2727136614816153662
+    - rid: 2727136845632372772
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
         objective: '"Reason" with the Second Guard'
         dialogueEvent: {fileID: 2684726828978241724, guid: eb20a7930481d92469bc941e148e9c8a, type: 2}
+    - rid: 2727136845632372774
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Talk to Wade
+        dialogueEvent: {fileID: 6908321020214782480, guid: 551099be342ac2145af7e9cfb2668c28, type: 2}
+    - rid: 2727136845632372775
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Decipher the Fire Shrine
+        dialogueEvent: {fileID: 1852587620627258891, guid: de4411da0e0b25e428a46c318a89ea9b, type: 2}
+    - rid: 2727136845632372776
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Defeat Wade, again
+        dialogueEvent: {fileID: 311289611317764393, guid: 21444f93ded86fc4b9de3a9a7ed331fc, type: 2}
+    - rid: 2727136845632372777
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Talk to Wade again
+        dialogueEvent: {fileID: 1813808995833303404, guid: 50fb877985cf33241b2c4c5cf6b830f7, type: 2}
+    - rid: 2727136845632372779
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Approach the Fire Shrine
+        dialogueEvent: {fileID: 2044407056672784995, guid: 5664853df10a42f4ea80716c003b6f1e, type: 2}
+    - rid: 2727136848657514497
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Talk to the Jungle Chieftain
+        dialogueEvent: {fileID: 0}

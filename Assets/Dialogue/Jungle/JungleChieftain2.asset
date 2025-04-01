@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1044520457894415015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: JungleEnd
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: JungleChieftain2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136848657514498
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136848657514498
+  - rid: 2727136848657514501
+  - rid: 2727136848657514502
+  - rid: 2727136848657514503
+  - rid: 2727136848657514504
+  - rid: 2727136848657514505
+  - rid: 2727136848657514506
+  - rid: 2727136848657514507
+  decorators:
+  - rid: 2727136848657514508
+  events:
+  - {fileID: -1044520457894415015}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136848657514498
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You're alright! I hope that you found the person you were looking
+          for well?
+        voiceClip: {fileID: 0}
+        guid: 568ff68ba76cf1440abd7c9f390b200b
+        decorators: []
+        position: {x: 388, y: -36}
+        nextNode:
+          rid: 2727136848657514501
+    - rid: 2727136848657514501
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Good to hear! I hope that boy learned something in all his gusto...hm?
+        voiceClip: {fileID: 0}
+        guid: 6984b283f8baa094589bac1398f3d5fe
+        decorators: []
+        position: {x: 880, y: -36}
+        decisions:
+        - choice: '[Clasp his hand]'
+          choiceNode:
+            rid: 2727136848657514503
+        - choice: ...
+          choiceNode:
+            rid: 2727136848657514502
+    - rid: 2727136848657514502
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You look like you've got something to tell me? Go on, what is it?
+        voiceClip: {fileID: 0}
+        guid: 2a527c2c42e1cc946b6016a62853f82e
+        decorators: []
+        position: {x: 1069, y: 220}
+        nextNode:
+          rid: 2727136848657514501
+    - rid: 2727136848657514503
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You clasp his hand, and suddenly a gust of warm energy slithers
+          about his hands. After a short moment, the aura wavers.]'
+        voiceClip: {fileID: 0}
+        guid: 7fa1ddac3ea5afd448c3fdea692134cc
+        decorators: []
+        position: {x: 1376, y: -36}
+        nextNode:
+          rid: 2727136848657514504
+    - rid: 2727136848657514504
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: The legend...it's true? How can this be?
+        voiceClip: {fileID: 0}
+        guid: 2d852c6033b93b7498d19f7bc792dd31
+        decorators: []
+        position: {x: 2124, y: -36}
+        nextNode:
+          rid: 2727136848657514505
+    - rid: 2727136848657514505
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: The story goes that a survivor like us will someday arrive in the
+          midst of a dire situation. In order to save us from the threats that keep
+          us, they would absorb the Spirit of Fire and the Spirit of Ice, and combine
+          their power to take down a great threat.
+        voiceClip: {fileID: 0}
+        guid: 56403d4fafe30d149b19cbdb05803991
+        decorators: []
+        position: {x: 2536, y: -36}
+        nextNode:
+          rid: 2727136848657514506
+    - rid: 2727136848657514506
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Unfortunately, I'm unaware of the location of the Ice Shrine...but
+          I believe the Volcano Chieftain might!
+        voiceClip: {fileID: 0}
+        guid: 3aba89e13f7023d45bf0581b731f18e5
+        decorators: []
+        position: {x: 3444, y: -36}
+        nextNode:
+          rid: 2727136848657514507
+    - rid: 2727136848657514507
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Go now! Request an audience with them and prove that the legend
+          is real! That our freedom can be real!
+        voiceClip: {fileID: 0}
+        guid: 9fb51eae509a1b541a9f2b9b31a05187
+        decorators:
+        - rid: 2727136848657514508
+        position: {x: 4059, y: -36}
+        nextNode:
+          rid: -2
+    - rid: 2727136848657514508
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 4170, y: 164}
+        guid: e289f566097617b40acf6555a81e222c
+        dialogueEvent: {fileID: -1044520457894415015}

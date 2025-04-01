@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Marked
   m_EditorClassIdentifier: 
   duration: 1
-  icon: {fileID: 2800000, guid: c066ff42510bf5d41ab5794ef377854c, type: 3}
+  icon: {fileID: 2800000, guid: b92bac489497bfe44be9844c7f5fd511, type: 3}
   particlePrefab: {fileID: 0}
   effectUsage: 0
   damageBonus: 0.3
