@@ -105,8 +105,7 @@ public class CombatUI : VisualElement
         this.StretchToParentSize();
         this.pickingMode = PickingMode.Ignore;
         this.Q("MainCombat").pickingMode = PickingMode.Ignore;
-        toolTip = new ToolTipBox();
-        this.Add(toolTip);
+       
         tabbedView = this.Q<CombatTabs>("CombatTabs");
         runButton = this.Q<Button>("RunButton");
         runButton.clicked += OnRun;
@@ -133,7 +132,8 @@ public class CombatUI : VisualElement
     public void Initial()
     {
 
-       
+        toolTip = new ToolTipBox();
+        this.Add(toolTip);
         for (int i = 0; i < abilityButtons.Length; i++)
         {
             abilityButtons[i] = this.Q<AbilityButton>("ability" + i);
