@@ -1,0 +1,8 @@
+#Title {
+    font-size: 75px;
+}
+
+#Description {
+    font-size: 45px;
+    white-space: normal;
+}
