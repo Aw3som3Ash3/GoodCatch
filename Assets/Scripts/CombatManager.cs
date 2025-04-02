@@ -50,9 +50,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     [SerializeField]
     public CombatDepth[] depths { get; private set; } = new CombatDepth[3];
-    Dictionary<Depth, CombatDepth> depth = new Dictionary<Depth, CombatDepth>();
+    public Dictionary<Depth, CombatDepth> depth = new Dictionary<Depth, CombatDepth>();
     //Dictionary<FishMonster,CombatDepth> fishCurrentDepth=new Dictionary<FishMonster,CombatDepth>();
-    Dictionary<CombatDepth, int> depthIndex = new Dictionary<CombatDepth, int>();
+   public  Dictionary<CombatDepth, int> depthIndex = new Dictionary<CombatDepth, int>();
 
     [SerializeField]
     Transform shallowsLocation, middleLocation, abyssLocation;
@@ -1059,7 +1059,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             }
            
         }
-        void Move(int depthIndex)
+        public void Move(int depthIndex)
         {
             if(depthIndex < 0)
             {
