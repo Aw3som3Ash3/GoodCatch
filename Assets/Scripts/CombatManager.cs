@@ -342,7 +342,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             UnityEngine.Cursor.visible = false;
         }
         
-        Turn.TurnEnded += NextTurn;
+       
         //combatUI.SetInventory(GameManager.Instance.PlayerInventory);
         for (int i = 0; i < enemyFishes.Count; i++)
         {
@@ -360,7 +360,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     
     private void OnDisable()
     {
-        Turn.TurnEnded -= NextTurn;
+        
     }
     void AddFish(Turn turn, CombatDepth destination, Team team)
     {
@@ -993,8 +993,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         }
         public virtual void StartTurn()
         {
-            
-           
+
+            actionsCompleted = true;
             actionsLeft = actionsPerTurn;
            
             
@@ -1046,7 +1046,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                     TurnEnded?.Invoke();
                     //combatManager.CanFightEnd();
                 });
-               
+                combatManager.NextTurn();
             }
             
         }
