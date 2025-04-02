@@ -41,7 +41,7 @@ public class FishingRod : MonoBehaviour
             Vector3 relativeFloaterPos = this.transform.InverseTransformPoint(floater.LineEndPos);
             for (int i = defualtPositionCount; i < fishingLine.positionCount; i++)
             {
-                Vector3 pos = QuadBezier(lineStart.localPosition,(relativeFloaterPos - lineStart.localPosition)/2 +Vector3.down*2 + Vector3.back * 2 , relativeFloaterPos, (float)(i-2)/ (float)(fishingLine.positionCount - 2));
+                Vector3 pos = QuadBezier(lineStart.localPosition,(relativeFloaterPos - lineStart.localPosition)/2 +Vector3.down*2 + Vector3.back * 2 , relativeFloaterPos, (float)(i- defualtPositionCount) / (float)(fishingLine.positionCount - defualtPositionCount));
                 fishingLine.SetPosition(i, pos);
             }
             fishingLine.SetPosition(fishingLine.positionCount - 1, relativeFloaterPos);

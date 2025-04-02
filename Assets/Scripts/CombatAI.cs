@@ -87,14 +87,32 @@ public class CombatAI : MonoBehaviour
             {
                 currentTurn.UseAbilityDirect(abilityIndex, depthIndex);
                 combatManager.CompletedAllActions += Logic;
+            }else if (!currentTurn.fish.Type.HomeDepth.HasFlag(currentTurn.currentDepth.depth))
+            {
+                combatManager.CompletedAllActions += Logic;
+                int targetIndex=0;
+                switch (currentTurn.fish.Type.HomeDepth)
+                {
+                    case Depth.shallow:
+                        targetIndex = combatManager.depthIndex[combatManager.depth[Depth.shallow]];
+                        break;
+                    case Depth.middle:
+                        targetIndex = combatManager.depthIndex[combatManager.depth[Depth.middle]];
+                        break;
+                    case Depth.abyss:
+                        targetIndex = combatManager.depthIndex[combatManager.depth[Depth.abyss]];
+                        break;
+                }
+                
+                currentTurn.Move(targetIndex- currentTurn.depthIndex);
             }
             else
             {
                 Invoke("EndTurn", 2);
             }
-            
 
-            
+
+
         }
         else
         {

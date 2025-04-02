@@ -61,6 +61,7 @@ public class MudskipperTutorial : NPC
         }
         GameManager.Instance.CapturedFish(pyrishForSKippingQuest);
         QuestTracker.Instance.ForceCompleteQuest(QuestTracker.Instance.currentQuest.Quest);
+        
         FinishedTutorial_Event();
     }
     private void FinishedTutorial_Event()
@@ -74,7 +75,8 @@ public class MudskipperTutorial : NPC
             QuestTracker.Instance.AddQuest(postTutorialQuest, true);
 
         }
-        
+        finishedTutorial.Event -= FinishedTutorial_Event;
+        skipTutorial.Event -= SkippedTutorial;
         LoadMainScene();
     }
 
@@ -88,7 +90,16 @@ public class MudskipperTutorial : NPC
     void LoadMainScene()
     {
         
-        SceneManager.LoadSceneAsync("Main Scene").completed+=(opertaion)=> { FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { Inn.RemoveInnFromDictionary(Inn.StarterInn.innId); GameManager.Instance.ResetLastInn(); }; };
+        SceneManager.LoadSceneAsync("Main Scene").completed+=(opertaion)=> 
+        {
+            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += AllScenesLoaded;
+        };
+
+        void AllScenesLoaded()
+        {
+            Inn.RemoveInnFromDictionary(Inn.StarterInn.innId); GameManager.Instance.ResetLastInn();
+            FindAnyObjectByType<SceneLoader>().AllScenesLoaded -= AllScenesLoaded;
+        }
     }
 
     
