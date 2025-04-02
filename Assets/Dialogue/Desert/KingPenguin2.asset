@@ -32,10 +32,10 @@ MonoBehaviour:
   nodes:
   - rid: 2727136845632372744
   - rid: 2727136845632372745
-  - rid: 2727136845632372746
-  - rid: 2727136845632372747
-  - rid: 2727136845632372748
   - rid: 2727136845632372749
+  - rid: 6498884538079379529
+  - rid: 6498884538079379530
+  - rid: 6498884538079379531
   decorators:
   - rid: 2727136845632372750
   - rid: 2727136845632372751
@@ -50,7 +50,7 @@ MonoBehaviour:
     - rid: 2727136845632372744
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: Hello again! I've got good news!...and also, some bad news.
+        dialouge: Hello again! I've got good news!
         voiceClip: {fileID: 0}
         guid: d38cc466899c9044b8022ad4e3b5c80a
         decorators:
@@ -61,84 +61,81 @@ MonoBehaviour:
     - rid: 2727136845632372745
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: The good news is that we've got a boat on our dock ready for you
-          to travel between islands with. Try to keep it all in one piece please,
-          it's our only one powered by an engine! I would tell you to take your time
-          getting to know the other islands...if not for the bad news.
+        dialouge: We've got a boat on our dock ready for you to travel between islands
+          with. Try to keep it all in one piece please, it's our only one powered
+          by an engine!
         voiceClip: {fileID: 0}
         guid: 254f1407ebedeef4093b3ad5b20ed484
         decorators: []
         position: {x: 820, y: -44}
         nextNode:
-          rid: 2727136845632372746
-    - rid: 2727136845632372746
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: Unfortunately, Wade had suddenly ran off on his canoe to the jungle
-          island, ranting on about how he'll be "the first one to awaken the Fire
-          Shrine!"
-        voiceClip: {fileID: 0}
-        guid: 8694de6809fd54b418fc25b89b6d40d4
-        decorators: []
-        position: {x: 1673, y: -44}
-        nextNode:
-          rid: 2727136845632372747
-    - rid: 2727136845632372747
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: Now I don't mind that he's following a dream, even if most see
-          it as a children's bedtime story. My concern is that the Fire Shrine is
-          guarded heavily! They take it very serious over there to keep it protected,
-          from any man or monster! You've got to get him and make sure he doesn't
-          get himself hurt!
-        voiceClip: {fileID: 0}
-        guid: 581f214ad44a4cc42b9dfeab63366630
-        decorators: []
-        position: {x: 2498, y: -44}
-        nextNode:
-          rid: 2727136845632372748
-    - rid: 2727136845632372748
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: I'll give you some supplies to be on your way. Be warned, however!
-          The front dock is guarded by the perilous Piranarch! Such a beast has terrorized
-          the people of the jungle island forever. I bless you a safe journey, now
-          be on your way!
-        voiceClip: {fileID: 0}
-        guid: 39231f1cc7c8b2449b01e6d9641fe60e
-        decorators: []
-        position: {x: 3363, y: -44}
-        nextNode:
-          rid: 2727136845632372749
+          rid: 6498884538079379529
     - rid: 2727136845632372749
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: 
+        dialouge: '[You''ve recieved 15 Decent Hooks!]
+
+          [You''ve recieved
+          15 Balanced Berries!]'
         voiceClip: {fileID: 0}
         guid: be237a425259e924a937f7ba389efbb1
         decorators:
         - rid: 2727136845632372750
         - rid: 2727136845632372751
-        position: {x: 4258, y: -44}
+        position: {x: 3839, y: -44}
         nextNode:
           rid: -2
     - rid: 2727136845632372750
       type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 4097, y: 180}
+        position: {x: 3472, y: 180}
         guid: 3cdc0862f786b584d88003935afede93
-        item: {fileID: 0}
-        amount: 0
+        item: {fileID: 11400000, guid: ad0034793246a114db7de9ae1aeb1b27, type: 2}
+        amount: 15
     - rid: 2727136845632372751
       type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 4507, y: 180}
+        position: {x: 3882, y: 180}
         guid: 95ef16074b85ca448a750a8f2a554ba7
-        item: {fileID: 0}
-        amount: 0
+        item: {fileID: 11400000, guid: c1864cc885f58f844bf41a4fd611149c, type: 2}
+        amount: 15
     - rid: 2727136845632372753
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
         position: {x: 430, y: 153}
         guid: 2b12902be3ecb4e4fbf311be9fbe5e40
         dialogueEvent: {fileID: -2727414724657458790}
+    - rid: 6498884538079379529
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Now you can go anywhere about the archipelago and catch and fight
+          monsters as you please! Your Help journal should also have more information
+          in the Traveling section.
+        voiceClip: {fileID: 0}
+        guid: 93318a11dd7b79f47a6585118472e486
+        decorators: []
+        position: {x: 1686, y: -44}
+        nextNode:
+          rid: 6498884538079379530
+    - rid: 6498884538079379530
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: If you've got your sights set on visiting the Jungle island, I
+          recommend building up your party first. The dreaded Piranarch guards their
+          entrance, and will destroy anything she sees as a threat to her queendom!
+        voiceClip: {fileID: 0}
+        guid: 580eef86208641e4d835255f03a473e7
+        decorators: []
+        position: {x: 2538, y: -44}
+        nextNode:
+          rid: 6498884538079379531
+    - rid: 6498884538079379531
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Now, here's some items to help you get started. Safe sailing now!
+        voiceClip: {fileID: 0}
+        guid: 48fd81776560e7b40801a0578e0f8b40
+        decorators: []
+        position: {x: 3409, y: -44}
+        nextNode:
+          rid: 2727136845632372749
