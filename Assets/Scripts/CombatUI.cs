@@ -518,7 +518,7 @@ public class CombatUI : VisualElement
         inputs.Combat.EndTurn.performed += OnEndTurn;
         if (moveButton != null)
         {
-            moveButton.SetEnabled(currentTurn.ActionLeft);
+            moveButton.SetEnabled(currentTurn.ActionLeft);      
         }
         for (int i = 0; i < abilityButtons.Length; i++)
         {
