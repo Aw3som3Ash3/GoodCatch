@@ -27,10 +27,18 @@ public class CombatAI : MonoBehaviour
     public void StartTurn(EnemyTurn turn)
     {
         currentTurn = turn;
-
+        EnemyTurn.TurnEnded += OnTurnEnded;
         Invoke("Logic", 2);
     }
-
+    void OnTurnEnded()
+    {
+        CancelInvoke();
+        EnemyTurn.TurnEnded -= OnTurnEnded;
+    }
+    private void OnDestroy()
+    {
+        EnemyTurn.TurnEnded -= OnTurnEnded;
+    }
     public void Logic()
     {
         combatManager.CompletedAllActions -= Logic;
