@@ -218,16 +218,20 @@ public class PauseMenu : VisualElement
             InputManager.OnInputChange -= OnInputChanged;
             GameManager.Instance.canPause = true;
         }
-        var bottomMapping = panel.visualTree.Q("BottomMapping");
-        if (bottomMapping != null)
+        if (panel != null)
         {
-            bottomMapping.visible = !PauseActive;
+            var bottomMapping = panel.visualTree.Q("BottomMapping");
+            if (bottomMapping != null)
+            {
+                bottomMapping.visible = !PauseActive;
+            }
+            var questUI = panel.visualTree.Q("QuestUI");
+            if (questUI != null)
+            {
+                questUI.visible = !PauseActive;
+            }
         }
-        var questUI = panel.visualTree.Q("QuestUI");
-        if (questUI != null)
-        {
-            questUI.visible = !PauseActive;
-        }
+        
         GamePaused?.Invoke(menu.enabledSelf);
     }
 
