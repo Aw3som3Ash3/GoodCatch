@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: DesertWorried1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 6498884538079379565
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 6498884538079379565
+  - rid: 6498884538079379566
+  - rid: 6498884538079379567
+  - rid: 6498884538079379568
+  decorators: []
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 6498884538079379565
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Oh dear...it's worse this time...please be okay...
+        voiceClip: {fileID: 0}
+        guid: 8414a6b22c4c32042a84eddfad520382
+        decorators: []
+        position: {x: 418, y: -44}
+        nextNode:
+          rid: 6498884538079379566
+    - rid: 6498884538079379566
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Oh! Sorry, I've just been worried sick about my kid brother recently.
+          He lives over there at the Jungle, and recently the Piranarch has been
+          more fierce than before.
+        voiceClip: {fileID: 0}
+        guid: 17d3022b0ed277748affeb2302570ca5
+        decorators: []
+        position: {x: 830, y: -44}
+        nextNode:
+          rid: 6498884538079379567
+    - rid: 6498884538079379567
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: I've been looking at it from here for days...that Piranarch hasn't
+          left the dock!
+        voiceClip: {fileID: 0}
+        guid: d953132dfda1725478c90cb76d069d9d
+        decorators: []
+        position: {x: 1676, y: -44}
+        nextNode:
+          rid: 6498884538079379568
+    - rid: 6498884538079379568
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 
+        voiceClip: {fileID: 0}
+        guid: 791da060ed0b0d246b3c4fe547ba2e9e
+        decorators: []
+        position: {x: 2157, y: -44}
+        decisions: []

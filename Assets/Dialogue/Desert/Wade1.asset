@@ -21,6 +21,7 @@ MonoBehaviour:
   - rid: 2727136708794253367
   - rid: 2727136727628251153
   - rid: 2727136727628251154
+  - rid: 6498884538079379532
   decorators:
   - rid: 2727136727628251183
   - rid: 2727136931700539414
@@ -68,7 +69,7 @@ MonoBehaviour:
         - rid: 2727136931700539414
         position: {x: 1225, y: 8}
         nextNode:
-          rid: -2
+          rid: 6498884538079379532
     - rid: 2727136727628251183
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
@@ -81,6 +82,19 @@ MonoBehaviour:
         position: {x: 1243, y: 249}
         guid: a9809088551820a46878b02eb5f5feaf
         quest: {fileID: 11400000, guid: ad6a7d31820eab24091428670ce3231e, type: 2}
+    - rid: 6498884538079379532
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You can cast your fishing rod by holding down the Cast button
+          shown in the bottom left of the screen. Press the prompted button on screen
+          when you see the bobber go down! Seek the Help journal''s Fishing and Combat
+          sections for more info.]'
+        voiceClip: {fileID: 0}
+        guid: be77fd36e7ac67443b68411378cdbee0
+        decorators: []
+        position: {x: 1636, y: 21}
+        nextNode:
+          rid: -2
 --- !u!114 &7705723223025206442
 MonoBehaviour:
   m_ObjectHideFlags: 0

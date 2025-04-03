@@ -47,6 +47,7 @@ public class FishMonsterType : ScriptableObject
     public Sprite MiniSprite { get { return miniSprite; } }
     [SerializeField]
     Depth homeDepth;
+    public Depth HomeDepth { get { return homeDepth; } }
     [SerializeField]
     Bait[] preferredBait;
     [SerializeField]

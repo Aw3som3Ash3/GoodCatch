@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2579113496966068644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: GenericBattle
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: BattleTest1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 6498884538079379533
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 6498884538079379533
+  - rid: 6498884538079379534
+  - rid: 6498884538079379535
+  decorators:
+  - rid: 6498884538079379536
+  events:
+  - {fileID: -2579113496966068644}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6498884538079379533
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Hey there! Care for a match?
+        voiceClip: {fileID: 0}
+        guid: 76cdf694a484a0349ba5909676caa1dd
+        decorators: []
+        position: {x: 393, y: -54}
+        decisions:
+        - choice: Sure!
+          choiceNode:
+            rid: 6498884538079379534
+        - choice: No thanks.
+          choiceNode:
+            rid: 6498884538079379535
+    - rid: 6498884538079379534
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Then let's begin!
+        voiceClip: {fileID: 0}
+        guid: 00203511273ddc44bb72ab5508db8208
+        decorators:
+        - rid: 6498884538079379536
+        position: {x: 918, y: -206}
+        nextNode:
+          rid: -2
+    - rid: 6498884538079379535
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: No problem!
+        voiceClip: {fileID: 0}
+        guid: 61a7e3bd266e2444e8c82be74221651c
+        decorators: []
+        position: {x: 918, y: 108}
+        nextNode:
+          rid: -2
+    - rid: 6498884538079379536
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 918, y: -45}
+        guid: 7defb0395d29cd6478daa2815c638b26
+        dialogueEvent: {fileID: -2579113496966068644}

@@ -49,8 +49,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 1
   accuracy:
-    min: 50
-    max: 50
+    min: 0
+    max: 0
     minTalent: 2
     maxTalent: 2
   baseHealth: 100

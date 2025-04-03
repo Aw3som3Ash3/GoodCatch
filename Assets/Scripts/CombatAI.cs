@@ -27,10 +27,18 @@ public class CombatAI : MonoBehaviour
     public void StartTurn(EnemyTurn turn)
     {
         currentTurn = turn;
-
+        EnemyTurn.TurnEnded += OnTurnEnded;
         Invoke("Logic", 2);
     }
-
+    void OnTurnEnded()
+    {
+        CancelInvoke();
+        EnemyTurn.TurnEnded -= OnTurnEnded;
+    }
+    private void OnDestroy()
+    {
+        EnemyTurn.TurnEnded -= OnTurnEnded;
+    }
     public void Logic()
     {
         combatManager.CompletedAllActions -= Logic;
@@ -64,6 +72,10 @@ public class CombatAI : MonoBehaviour
             {
                 for (int i = 1; i < combatManager.depths.Length; i++)
                 {
+                    if (!currentTurn.DepthTargetable(abilityIndex, combatManager.depths[i].depth))
+                    {
+                        continue;
+                    }
                     if (currentTurn.fish.GetAbility(abilityIndex).TargetedTeam == Ability.TargetTeam.enemy && combatManager.depths[i].TargetFirst(CombatManager.Team.player)?.Health < weakestTarget?.Health || weakestTarget == null)
                     {
                         weakestTarget = combatManager.depths[i].TargetFirst(CombatManager.Team.player);
@@ -79,18 +91,36 @@ public class CombatAI : MonoBehaviour
             }
             
 
-            if (currentTurn.AbilityUsable(abilityIndex))
+            if (currentTurn.AbilityUsable(abilityIndex)&& currentTurn.DepthTargetable(abilityIndex, combatManager.depths[weakestTarget.depthIndex].depth))
             {
                 currentTurn.UseAbilityDirect(abilityIndex, depthIndex);
                 combatManager.CompletedAllActions += Logic;
+            }else if (!currentTurn.fish.Type.HomeDepth.HasFlag(currentTurn.currentDepth.depth))
+            {
+                combatManager.CompletedAllActions += Logic;
+                int targetIndex=0;
+                switch (currentTurn.fish.Type.HomeDepth)
+                {
+                    case Depth.shallow:
+                        targetIndex = combatManager.depthIndex[combatManager.depth[Depth.shallow]];
+                        break;
+                    case Depth.middle:
+                        targetIndex = combatManager.depthIndex[combatManager.depth[Depth.middle]];
+                        break;
+                    case Depth.abyss:
+                        targetIndex = combatManager.depthIndex[combatManager.depth[Depth.abyss]];
+                        break;
+                }
+                
+                currentTurn.Move(targetIndex- currentTurn.depthIndex);
             }
             else
             {
                 Invoke("EndTurn", 2);
             }
-            
 
-            
+
+
         }
         else
         {
