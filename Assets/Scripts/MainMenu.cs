@@ -14,9 +14,9 @@ public class MainMenu : MonoBehaviour
     UIDocument uIDocument;
     VisualElement mainMenu, mainScreen, loadScreen;
     OptionsPageMenu optionsScreen;
+    CreditsScreen credits;
     [SerializeField]
     public AudioMixer mixer;
-
     [SerializeField]
     GameObject[] startingObjects;
 
@@ -30,6 +30,8 @@ public class MainMenu : MonoBehaviour
         loadScreen = uIDocument.rootVisualElement.Q("LoadGameScreen");
         optionsScreen = uIDocument.rootVisualElement.Q<OptionsPageMenu>();
         optionsScreen.visible = false;
+        credits = uIDocument.rootVisualElement.Q<CreditsScreen>();
+        credits.visible = false;
         InputManager.Input.UI.Back.performed+=Back;
         InputManager.Input.UI.Back.Enable();
         GameManager.Instance = null;
@@ -84,6 +86,7 @@ public class MainMenu : MonoBehaviour
             mainScreen.visible = true;
             optionsScreen.visible = false;
             optionsScreen.CloseAll();
+            credits.visible = false;
         }
     }
 
@@ -114,6 +117,11 @@ public class MainMenu : MonoBehaviour
             mainScreen.visible = false;
         };
 
+        mainScreen.Q<Button>("Credits").clicked += () =>
+        {
+            credits.visible = true;
+            mainScreen.visible = false;
+        };
     }
     void NewGame()
     {
