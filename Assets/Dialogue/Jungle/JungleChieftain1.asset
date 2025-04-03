@@ -12,6 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
   m_Name: ToChieftainFromBridge
   m_EditorClassIdentifier: 
+--- !u!114 &-691799829326291022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FirstTalkJungleChief
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,60 +42,35 @@ MonoBehaviour:
     guid: root
     position: {x: 0, y: 0}
   nodes:
-  - rid: 2727136614816153615
   - rid: 2727136614816153616
   - rid: 2727136614816153624
+  - rid: 6498884538079379594
+  - rid: 6498884538079379595
   decorators:
   - rid: 2727136614816153617
-  - rid: 2727136756081360919
+  - rid: 6498884538079379593
   events:
   - {fileID: -981087878508609765}
+  - {fileID: -691799829326291022}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 2727136614816153615
-      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: 'You look like you''re not from around here...apologies for our
-          guards on the bridge,
-
-          they''re just a bit tense. What brings
-          you to our humble village?'
-        voiceClip: {fileID: 0}
-        guid: 64f79409773c6f64ab2092ffe3c2f35e
-        decorators: []
-        position: {x: 440, y: 0}
-        decisions:
-        - choice: Have you seen Dick?
-          choiceNode:
-            rid: -2
     - rid: 2727136614816153616
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: 'Ah, that reckless kid. He stormed through here demanding to see
-
-          the
-          Fire Shrine just on the other side of the island. If you''re going
-
-          after
-          him, I should warn you it''s heavily guarded by the other village.
-
-          I
-          can''t promise you they''ll be so understanding of your situation.'
+        dialouge: You've slain the Piranarch!? But that can't be possible!
         voiceClip: {fileID: 0}
         guid: b0c9fea676af2d6478b1bdca2e1f8baa
-        decorators:
-        - rid: 2727136614816153617
-        - rid: 2727136756081360919
+        decorators: []
         position: {x: 1013, y: -8}
         nextNode:
-          rid: -2
+          rid: 6498884538079379594
     - rid: 2727136614816153617
       type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 1050, y: 240}
+        position: {x: 2223, y: 212}
         guid: 36591360f93e8e949985735a4827e72e
         quest: {fileID: 11400000, guid: a12073368c8a24647a734fd1554280d2, type: 2}
     - rid: 2727136614816153624
@@ -96,13 +83,38 @@ MonoBehaviour:
           you to our humble village?'
         voiceClip: {fileID: 0}
         guid: 443e605aefe9fbf42b33e59d6e9c0c89
-        decorators: []
-        position: {x: 449, y: 256}
+        decorators:
+        - rid: 6498884538079379593
+        position: {x: 440, y: -9}
         nextNode:
           rid: 2727136614816153616
-    - rid: 2727136756081360919
+    - rid: 6498884538079379593
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 1499, y: 218}
-        guid: 3c785d33963503443b91b3950c938cd3
-        dialogueEvent: {fileID: -981087878508609765}
+        position: {x: 499, y: 202}
+        guid: 479c01ec02d7c6a49b32d09e3ff4f46d
+        dialogueEvent: {fileID: -691799829326291022}
+    - rid: 6498884538079379594
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: ...but there's no other way you could've gotten here. That Piranarch
+          has been circling us for days!
+        voiceClip: {fileID: 0}
+        guid: fe3d23dc03a46814a8a868e6da37e3b1
+        decorators: []
+        position: {x: 1416, y: -8}
+        nextNode:
+          rid: 6498884538079379595
+    - rid: 6498884538079379595
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Perhaps you could be the on we're looking for...forgive me, but
+          I believe you're worthy of a few trials. Get to the guards across the waterfall
+          and fight through them to get to the Fire Shrine. Good luck stranger!
+        voiceClip: {fileID: 0}
+        guid: 2ad387bb457ee2247b205fb8d43f48e4
+        decorators:
+        - rid: 2727136614816153617
+        position: {x: 2022, y: -8}
+        nextNode:
+          rid: -2

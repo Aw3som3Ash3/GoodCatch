@@ -6428,21 +6428,33 @@ PrefabInstance:
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: baseDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 7426f18b6b417fc418e2dea282190852, type: 2}
+      objectReference: {fileID: 11400000, guid: ef4a55ff5ae6fac449079da1cb4f4f6d, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].quest
+      value: 
+      objectReference: {fileID: 11400000, guid: a32b239670ec20c488fc99431264cae0, type: 2}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[1].quest
       value: 
       objectReference: {fileID: 11400000, guid: a12073368c8a24647a734fd1554280d2, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].dialogue
       value: 
+      objectReference: {fileID: 11400000, guid: 7426f18b6b417fc418e2dea282190852, type: 2}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[1].dialogue
+      value: 
       objectReference: {fileID: 11400000, guid: 69694fb691fcf9d4aa859d4cfa5e74c5, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].stateName
+      value: Get past the guards and talk to the Jungle Chieftan
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[1].stateName
       value: Jungle End
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8218,7 +8230,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 07f80dee4e68d0c4099315eb6c1f067f, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].quest
@@ -8227,7 +8239,11 @@ PrefabInstance:
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 07f80dee4e68d0c4099315eb6c1f067f, type: 2}
+      objectReference: {fileID: 11400000, guid: de4411da0e0b25e428a46c318a89ea9b, type: 2}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[0].stateName
+      value: Talk with the First Guard
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19224,7 +19240,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2318496406209989534, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: m_Name
-      value: Male_NPC (Dock Villager)
+      value: Male_NPC (Jungle Villager)
       objectReference: {fileID: 0}
     - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19273,22 +19289,22 @@ PrefabInstance:
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: baseDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 71f89e8556ca6234cb392c5f28a888c1, type: 2}
+      objectReference: {fileID: 11400000, guid: ef4a55ff5ae6fac449079da1cb4f4f6d, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].quest
       value: 
-      objectReference: {fileID: 11400000, guid: a12073368c8a24647a734fd1554280d2, type: 2}
+      objectReference: {fileID: 11400000, guid: a32b239670ec20c488fc99431264cae0, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: ef4a55ff5ae6fac449079da1cb4f4f6d, type: 2}
+      objectReference: {fileID: 11400000, guid: 71f89e8556ca6234cb392c5f28a888c1, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].stateName
-      value: Get through the Lead Guard
+      value: Get through to the Jungle Villager at the dock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

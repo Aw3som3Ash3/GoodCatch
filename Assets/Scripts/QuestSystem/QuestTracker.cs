@@ -146,13 +146,12 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
 
     private void CurrentQuestCompleted()
     {
-        OnCurrentQuestUpdate?.Invoke(currentQuest);
+        activeQuests.Remove(currentQuest);
         RemoveCurrent();
-
         if (activeQuests.Count > 0)
         {
             MakeCurrent(activeQuests[0]);
-
+            OnCurrentQuestUpdate?.Invoke(currentQuest);
         }
         else
         {
