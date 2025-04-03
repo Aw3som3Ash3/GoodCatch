@@ -10,3 +10,7 @@
     font-size: 75px;
     color: rgb(255, 255, 255);
 }
+
+.unity-scroller {
+    opacity: 0;
+}
