@@ -119,7 +119,8 @@ public class PauseMenu : VisualElement
     }
     static public PauseMenu Pause()
     {
-        if (mainPause.menu.visible == false)
+
+        if (mainPause != null && mainPause.menu.visible == false)
         {
             mainPause.OnPause();
         }
@@ -162,6 +163,7 @@ public class PauseMenu : VisualElement
             {
                 inputsPrevEnabled[inputAction]=inputAction.enabled;
             }
+            
             //playerControlsEnabled=InputManager.Input.Player.enabled;
 
         }
@@ -190,7 +192,8 @@ public class PauseMenu : VisualElement
                 UnityEngine.Cursor.visible = true;
 
             }
-
+            InputManager.Input.Ship.Disable();
+            InputManager.Input.Fishing.Disable();
             InputManager.DisablePlayer();
             InputManager.Input.UI.Back.Enable();
             InputManager.Input.UI.Back.performed += Back;
@@ -217,16 +220,20 @@ public class PauseMenu : VisualElement
             InputManager.OnInputChange -= OnInputChanged;
             GameManager.Instance.canPause = true;
         }
-        var bottomMapping = panel.visualTree.Q("BottomMapping");
-        if (bottomMapping != null)
+        if (panel != null)
         {
-            bottomMapping.visible = !PauseActive;
+            var bottomMapping = panel.visualTree.Q("BottomMapping");
+            if (bottomMapping != null)
+            {
+                bottomMapping.visible = !PauseActive;
+            }
+            var questUI = panel.visualTree.Q("QuestUI");
+            if (questUI != null)
+            {
+                questUI.visible = !PauseActive;
+            }
         }
-        var questUI = panel.visualTree.Q("QuestUI");
-        if (questUI != null)
-        {
-            questUI.visible = !PauseActive;
-        }
+        
         GamePaused?.Invoke(menu.enabledSelf);
     }
 
