@@ -21,4 +21,5 @@
         </ui:VisualElement>
         <OptionsPageMenu style="visibility: hidden;" />
     </ui:VisualElement>
+    <CreditsScreen />
 </ui:UXML>
