@@ -8222,12 +8222,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: npcName
-      value: Fire Shrine Leading Guardian
+      value: Fire Shrine First Guardian
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: baseDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 07f80dee4e68d0c4099315eb6c1f067f, type: 2}
+      objectReference: {fileID: 11400000, guid: 1d038ecd2405f2e4d9501e060daa4456, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
       value: 1

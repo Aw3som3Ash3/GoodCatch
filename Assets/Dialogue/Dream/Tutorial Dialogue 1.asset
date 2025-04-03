@@ -35,6 +35,7 @@ MonoBehaviour:
   - rid: 187471312712368132
   - rid: 187471312712368134
   - rid: 6374090520396824595
+  - rid: 6498884547100803107
   decorators:
   - rid: 187471312712368129
   - rid: 187471312712368167
@@ -58,7 +59,7 @@ MonoBehaviour:
         decisions:
         - choice: Yes
           choiceNode:
-            rid: 187471312712368132
+            rid: 6498884547100803107
         - choice: No (Skip Tutorial)
           choiceNode:
             rid: 187471312712368130
@@ -126,6 +127,17 @@ MonoBehaviour:
         decorators:
         - rid: 187471312712368167
         position: {x: 2567, y: 238}
+        nextNode:
+          rid: -2
+    - rid: 6498884547100803107
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Too bad! tutorial's haunted.
+        voiceClip: {fileID: 0}
+        guid: 924c7c3ef663c084dae07b97b9f0c1e3
+        decorators:
+        - rid: 187471312712368129
+        position: {x: 925, y: -11}
         nextNode:
           rid: -2
 --- !u!114 &2776473753567869983
