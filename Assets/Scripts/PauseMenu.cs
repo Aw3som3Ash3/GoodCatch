@@ -193,6 +193,7 @@ public class PauseMenu : VisualElement
 
             }
             InputManager.Input.Ship.Disable();
+            InputManager.Input.Fishing.Disable();
             InputManager.DisablePlayer();
             InputManager.Input.UI.Back.Enable();
             InputManager.Input.UI.Back.performed += Back;
