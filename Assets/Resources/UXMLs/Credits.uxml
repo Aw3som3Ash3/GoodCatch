@@ -14,10 +14,6 @@
                     <ui:Label tabindex="-1" text="Creative Director" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
                     <ui:Label tabindex="-1" text="Alfred" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement name="SoundDesigner" class="Space" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sound Desighners" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
-                    <ui:Label tabindex="-1" text="Jaylee Vick&#10;Alfred Ramirez&#10;Christopher Turner" parse-escape-sequences="true" display-tooltip-when-elided="true" />
-                </ui:VisualElement>
                 <ui:VisualElement name="LeadDesigner" class="Space" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Lead Designer" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
                     <ui:Label tabindex="-1" text="Christopher Turner" parse-escape-sequences="true" display-tooltip-when-elided="true" />
@@ -46,16 +42,16 @@
                     <ui:Label tabindex="-1" text="Artist" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
                     <ui:Label tabindex="-1" text="Ana Jimenez&#10;Jordan Wildman" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Animator" class="Space" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Lead Animator" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
-                    <ui:Label tabindex="-1" text="Andrew Bryant" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="SoundDesigner" class="Space" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sound Desighners" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
+                    <ui:Label tabindex="-1" text="Jaylee Vick&#10;Alfred Ramirez&#10;Christopher Turner" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Animations" class="Space" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Animations" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
                     <ui:Label tabindex="-1" text="Andrew Bryant" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
                 <ui:VisualElement name="3D-Artist" class="Space" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="3D_Artists" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
+                    <ui:Label tabindex="-1" text="3D-Artists" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
                     <ui:Label tabindex="-1" text="Andrew Bryant&#10;Ana Jimenez&#10;Jordan Wildman" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
                 <ui:VisualElement name="2D-Artist" class="Space" style="flex-grow: 1;">
