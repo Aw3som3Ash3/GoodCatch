@@ -8,4 +8,5 @@
 .unity-text-element {
     -unity-text-align: upper-center;
     font-size: 75px;
+    color: rgb(255, 255, 255);
 }
