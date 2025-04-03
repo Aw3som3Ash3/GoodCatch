@@ -1,2 +1,23 @@
+#Container {
+    background-color: rgb(65, 65, 65);
+    color: rgb(255, 255, 255);
+    flex-direction: row;
+    justify-content: center;
+    max-height: 110px;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 11px;
+}
+
 #ContainerBeta {
+    background-color: rgb(65, 65, 65);
+    color: rgb(255, 255, 255);
+    flex-direction: row;
+    justify-content: center;
+    max-height: 110px;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 11px;
 }
