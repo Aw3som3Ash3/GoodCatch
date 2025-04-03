@@ -16,7 +16,11 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="SoundDesigner" class="Space" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Sound Desighners" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
-                    <ui:Label tabindex="-1" text="Jaylee Vick&#10;Alfred Ramirez&#10;Christopher Turner&#10;Leo Levain" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                    <ui:Label tabindex="-1" text="Jaylee Vick&#10;Alfred Ramirez&#10;Christopher Turner" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                </ui:VisualElement>
+                <ui:VisualElement name="LeadDesigner" class="Space" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Lead Designer" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
+                    <ui:Label tabindex="-1" text="Christopher Turner" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Designers" class="Space" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Designers" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
