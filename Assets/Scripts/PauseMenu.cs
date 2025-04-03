@@ -119,7 +119,8 @@ public class PauseMenu : VisualElement
     }
     static public PauseMenu Pause()
     {
-        if (mainPause.menu.visible == false)
+
+        if (mainPause != null && mainPause.menu.visible == false)
         {
             mainPause.OnPause();
         }
