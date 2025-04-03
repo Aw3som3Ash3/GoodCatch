@@ -44,7 +44,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="SoundDesigner" class="Space" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Sound Desighners" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
-                    <ui:Label tabindex="-1" text="Jaylee Vick&#10;Alfred Ramirez&#10;Christopher Turner" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                    <ui:Label tabindex="-1" text="Jaylee Vick&#10;Alfred Ramirez" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Animations" class="Space" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Animations" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
