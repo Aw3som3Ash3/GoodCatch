@@ -17,7 +17,7 @@ MonoBehaviour:
 
     pond.'
   states:
-  - name: Reason with the Lead Guard
+  - name: Talk with the First Guard
     description: 
     requirements:
     - rid: 2727136614816153618
@@ -58,7 +58,7 @@ MonoBehaviour:
       data:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
-        objective: Reason with the Guards
+        objective: Talk with the First Guard
         dialogueEvent: {fileID: -6245746496523209256, guid: 07f80dee4e68d0c4099315eb6c1f067f, type: 2}
     - rid: 2727136614816153644
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
