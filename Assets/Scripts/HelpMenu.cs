@@ -5,9 +5,9 @@ using UnityEngine.UIElements;
 
 public class HelpMenu : VisualElement
 {
-    Button fButton, cButton, eButton, aButton, sButton, oButton, hButton, hoButton, tButton;
+    Button fishingButton, combatButton, elementalButton, abilityButton, statusButton, otherButton, healingButton, hooksButton, travelingButton;
     ScrollView description;
-    VisualElement fText, cText, eText, aText, sText, oText, hText, hoText, tText;
+    VisualElement fishingText, combatText, elementalText, abilityText, statusText, otherText, healingText, hooksText, travelingText;
 
     public HelpMenu()
     {
@@ -16,37 +16,37 @@ public class HelpMenu : VisualElement
 
         visualTreeAsset.CloneTree(root);
 
-        fButton = this.Q<Button>("FishingButton");
-        cButton = this.Q<Button>("CombatButton");
-        eButton = this.Q<Button>("ElementalButton");
-        aButton = this.Q<Button>("AbilityButton");
-        sButton = this.Q<Button>("StatusButton");
-        oButton = this.Q<Button>("OtherButton");
-        hButton = this.Q<Button>("HealingButton");
-        hoButton = this.Q<Button>("HooksButton");
-        tButton = this.Q<Button>("TravelingButton");
+        fishingButton = this.Q<Button>("FishingButton");
+        combatButton = this.Q<Button>("CombatButton");
+        elementalButton = this.Q<Button>("ElementalButton");
+        abilityButton = this.Q<Button>("AbilityButton");
+        statusButton = this.Q<Button>("StatusButton");
+        otherButton = this.Q<Button>("OtherButton");
+        healingButton = this.Q<Button>("HealingButton");
+        hooksButton = this.Q<Button>("HooksButton");
+        travelingButton = this.Q<Button>("TravelingButton");
 
         description = this.Q<ScrollView>("Description");
 
-        LoadText(ref fText, "UXMls/ModHelpFishing");
-        LoadText(ref cText, "UXMls/ModHelpCombatTips");
-        LoadText(ref eText, "UXMls/ModHelpElementalTypes");
-        LoadText(ref aText, "UXMls/ModHelpAbility");
-        LoadText(ref sText, "UXMls/ModHelpStatusEffect");
-        LoadText(ref oText, "UXMls/ModHelpOtherEffects");
-        LoadText(ref hText, "UXMls/ModHelpHealingItemsInn");
-        LoadText(ref hoText, "UXMls/ModHelpCatchingTips");
-        LoadText(ref tText, "UXMls/ModHelpTraveling");
+        LoadText(ref fishingText, "UXMls/ModHelpFishing");
+        LoadText(ref combatText, "UXMls/ModHelpCombatTips");
+        LoadText(ref elementalText, "UXMls/ModHelpElementalTypes");
+        LoadText(ref abilityText, "UXMls/ModHelpAbility");
+        LoadText(ref statusText, "UXMls/ModHelpStatusEffect");
+        LoadText(ref otherText, "UXMls/ModHelpOtherEffects");
+        LoadText(ref healingText, "UXMls/ModHelpHealingItemsInn");
+        LoadText(ref hooksText, "UXMls/ModHelpCatchingTips");
+        LoadText(ref travelingText, "UXMls/ModHelpTraveling");
 
-        fButton.clicked += () => OnClick(fText);
-        cButton.clicked += () => OnClick(cText);
-        eButton.clicked += () => OnClick(eText);
-        aButton.clicked += () => OnClick(aText);
-        sButton.clicked += () => OnClick(sText);
-        oButton.clicked += () => OnClick(oText);
-        hButton.clicked += () => OnClick(hText);
-        hoButton.clicked += () => OnClick(hoText);
-        tButton.clicked += () => OnClick(tText);
+        fishingButton.clicked += () => OnClick(fishingText);
+        combatButton.clicked += () => OnClick(combatText);
+        elementalButton.clicked += () => OnClick(elementalText);
+        abilityButton.clicked += () => OnClick(abilityText);
+        statusButton.clicked += () => OnClick(statusText);
+        otherButton.clicked += () => OnClick(otherText);
+        healingButton.clicked += () => OnClick(healingText);
+        hooksButton.clicked += () => OnClick(hooksText);
+        travelingButton.clicked += () => OnClick(travelingText);
     }
 
     void LoadText(ref VisualElement text, string path)
