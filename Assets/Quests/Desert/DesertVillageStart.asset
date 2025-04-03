@@ -27,24 +27,9 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136727628251182
-  - name: Fish in the Oasis
-    description: 
-    requirements:
-    - rid: 2727136727628251152
-  - name: Speak to Wade again
-    description: 
-    requirements:
-    - rid: 2727136893888102424
   references:
     version: 2
     RefIds:
-    - rid: 2727136727628251152
-      type: {class: CatchNumOfFishRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: CatchNumOfFishRequirement
-        IsCompleted: 1
-        targetOfFish: 1
-        currentAmount: 1
     - rid: 2727136727628251180
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -66,10 +51,3 @@ MonoBehaviour:
         IsCompleted: 1
         objective: Speak to King Penguin
         dialogueEvent: {fileID: 1060325558273890312, guid: e73170836fcf6cb4e9bd2de2ce9f346d, type: 2}
-    - rid: 2727136893888102424
-      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: DialogueEventQuestRequirement
-        IsCompleted: 0
-        objective: Speak to Wade again
-        dialogueEvent: {fileID: 5417725798154797186, guid: b495c2039c7ef6649840c5595395d0a0, type: 2}

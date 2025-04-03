@@ -15,11 +15,15 @@ MonoBehaviour:
   type: 0
   description: 
   states:
-  - name: Speak to Wade Again
+  - name: Catch a monster in the Desert oasis
     description: 
     requirements:
-    - rid: 2727136727628251178
-  - name: Defeat Wade
+    - rid: 2727136931700539415
+  - name: Speak to Wade again
+    description: 
+    requirements:
+    - rid: 2727136931700539417
+  - name: Speak to defeated Wade
     description: 
     requirements:
     - rid: 2727136727628251201
@@ -31,26 +35,15 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136848657514514
-  - name: Dock at the Jungle island
-    description: 
-    requirements:
-    - rid: 2727136845632372760
   references:
     version: 2
     RefIds:
-    - rid: 2727136727628251178
-      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: DialogueEventQuestRequirement
-        IsCompleted: 0
-        objective: Speak to Wade Again
-        dialogueEvent: {fileID: 5417725798154797186, guid: b495c2039c7ef6649840c5595395d0a0, type: 2}
     - rid: 2727136727628251201
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
-        objective: Defeat Wade
+        objective: Speak to defeated Wade
         dialogueEvent: {fileID: 5417725798154797186, guid: 64f682716cee5eb4786eb2c8b5dd2989, type: 2}
     - rid: 2727136845632372736
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
@@ -59,13 +52,6 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Return to Keeps
         dialogueEvent: {fileID: 3059256034209365916, guid: 637efafee8a7a794aad3ef61dbc3250e, type: 2}
-    - rid: 2727136845632372760
-      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: DialogueEventQuestRequirement
-        IsCompleted: 0
-        objective: Dock at the Jungle island
-        dialogueEvent: {fileID: 5792923631883937358, guid: 71f89e8556ca6234cb392c5f28a888c1, type: 2}
     - rid: 2727136848657514514
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -73,3 +59,17 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Speak to King Penguin
         dialogueEvent: {fileID: -2727414724657458790, guid: 83a865b89217db0488306491da535c1b, type: 2}
+    - rid: 2727136931700539415
+      type: {class: CatchNumOfFishRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: CatchNumOfFishRequirement
+        IsCompleted: 1
+        targetOfFish: 1
+        currentAmount: 1
+    - rid: 2727136931700539417
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 1
+        objective: Speak to Wade again
+        dialogueEvent: {fileID: 9036447550016696027, guid: b495c2039c7ef6649840c5595395d0a0, type: 2}

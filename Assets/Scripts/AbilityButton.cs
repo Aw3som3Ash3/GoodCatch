@@ -129,7 +129,7 @@ public class AbilityButton : Button
 
 
     }
-    public void SetAbility(Ability ability,float damage,float baseAccuracy) 
+    public void SetAbility(Ability ability,float damage,int baseAccuracy) 
     {
         //for (int i = 0; i < 3; i++)
         //{
@@ -188,7 +188,7 @@ public class AbilityButton : Button
         backgroundValue.sprite= ability.Icon;
         buttonCover.style.backgroundImage=backgroundValue;
         //text = ability.name;
-        this.damageLabel.SetDamage(damage, ability.Accuracy + baseAccuracy);
+        this.damageLabel.SetDamage(damage, ability.Accuracy + baseAccuracy*0.01f);
         effectLabels.Clear();
         for (int i = 0;i<ability.Effects.Length;i++) 
         {

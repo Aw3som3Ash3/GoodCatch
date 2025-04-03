@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: A ray fish that feels heavenly, bringing peace to the ocean and its
     inhabitants when nearby.
-  model: {fileID: 919132149155446097, guid: aa211b044f3a24c4ab638be3cdae2014, type: 3}
-  fishId: 22
+  model: {fileID: 2776650500186122005, guid: 839aae87163e43c4495a33cd43731b82, type: 3}
+  fishId: 18
   icon: {fileID: 21300000, guid: f20264d0a1892024c88c9f36649ff27b, type: 3}
-  miniSprite: {fileID: 21300000, guid: f20264d0a1892024c88c9f36649ff27b, type: 3}
+  miniSprite: {fileID: 21300000, guid: 2d9e35a1ee2f0514ca5099e33a044d6d, type: 3}
   homeDepth: 1
   preferredBait: []
   elements:
@@ -49,8 +49,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   accuracy:
-    min: 50
-    max: 50
+    min: 0
+    max: 0
     minTalent: 2
     maxTalent: 5
   baseHealth: 70

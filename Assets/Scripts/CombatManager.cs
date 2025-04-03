@@ -50,9 +50,9 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     [SerializeField]
     public CombatDepth[] depths { get; private set; } = new CombatDepth[3];
-    Dictionary<Depth, CombatDepth> depth = new Dictionary<Depth, CombatDepth>();
+    public Dictionary<Depth, CombatDepth> depth = new Dictionary<Depth, CombatDepth>();
     //Dictionary<FishMonster,CombatDepth> fishCurrentDepth=new Dictionary<FishMonster,CombatDepth>();
-    Dictionary<CombatDepth, int> depthIndex = new Dictionary<CombatDepth, int>();
+   public  Dictionary<CombatDepth, int> depthIndex = new Dictionary<CombatDepth, int>();
 
     [SerializeField]
     Transform shallowsLocation, middleLocation, abyssLocation;
@@ -342,7 +342,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             UnityEngine.Cursor.visible = false;
         }
         
-        Turn.TurnEnded += NextTurn;
+       
         //combatUI.SetInventory(GameManager.Instance.PlayerInventory);
         for (int i = 0; i < enemyFishes.Count; i++)
         {
@@ -360,7 +360,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     
     private void OnDisable()
     {
-        Turn.TurnEnded -= NextTurn;
+        
     }
     void AddFish(Turn turn, CombatDepth destination, Team team)
     {
@@ -993,8 +993,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         }
         public virtual void StartTurn()
         {
-            
-           
+
+            actionsCompleted = true;
             actionsLeft = actionsPerTurn;
            
             
@@ -1046,7 +1046,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                     TurnEnded?.Invoke();
                     //combatManager.CanFightEnd();
                 });
-               
+                combatManager.NextTurn();
             }
             
         }
@@ -1059,7 +1059,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             }
            
         }
-        void Move(int depthIndex)
+        public void Move(int depthIndex)
         {
             if(depthIndex < 0)
             {

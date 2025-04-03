@@ -22,6 +22,7 @@ MonoBehaviour:
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
+  - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
   agility:
     min: 5
     max: 15
@@ -48,8 +49,8 @@ MonoBehaviour:
     minTalent: 2
     maxTalent: 4
   accuracy:
-    min: 50
-    max: 50
+    min: 0
+    max: 0
     minTalent: 2
     maxTalent: 2
   baseHealth: 90

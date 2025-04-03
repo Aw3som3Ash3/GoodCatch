@@ -25,8 +25,8 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 2
-    maxTalent: 3
+    minTalent: 3
+    maxTalent: 4
   attack:
     min: 15
     max: 30
@@ -48,10 +48,10 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   accuracy:
-    min: 50
-    max: 50
-    minTalent: 2
-    maxTalent: 3
+    min: 0
+    max: 0
+    minTalent: 4
+    maxTalent: 5
   baseHealth: 90
   baseStamina: 70
   baseAbilities:

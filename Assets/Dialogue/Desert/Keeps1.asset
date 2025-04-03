@@ -28,6 +28,7 @@ MonoBehaviour:
   - rid: 2727136708794253375
   - rid: 2727136708794253376
   - rid: 2727136727628251148
+  - rid: 6498884538079379528
   decorators:
   - rid: 2727136708794253377
   - rid: 2727136727628251147
@@ -114,7 +115,7 @@ MonoBehaviour:
         dialouge: '[Keeps analyzes the Pyrish for a few moments, writing notes
 
           into
-          his journal. He''s puzzled, but clearly driven by curiousity.]'
+          her journal. She''s puzzled, but clearly driven by curiousity.]'
         voiceClip: {fileID: 0}
         guid: 2fe3212a220711441a40f45324c6dd80
         decorators: []
@@ -124,14 +125,7 @@ MonoBehaviour:
     - rid: 2727136708794253374
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: '...intriguing. I''ve never seen any fish like this before. It
-          seems
-
-          like it''s never had to evolve in a way that forced it
-          to survive
-
-          combat...not that your friend here is unremarkable!
-          Not at all!'
+        dialouge: Thanks! Just a bit curious, is all.
         voiceClip: {fileID: 0}
         guid: ca64f866a0a62ac44a20ef72287caef5
         decorators: []
@@ -144,13 +138,7 @@ MonoBehaviour:
         dialouge: 'Anyways, if you find yourself overflowing with creatures, stop
 
           by
-          the Aquarium to switch your party members! Monster catching
-
-          and
-          battling happens to be a popular hobby around here, and I''m
-
-          in
-          charge of the monster keeping, if you couldn''t tell by my name.'
+          the Aquarium to switch your party members!'
         voiceClip: {fileID: 0}
         guid: 93fce072bec32e3448ead8f469b66921
         decorators: []
@@ -186,10 +174,10 @@ MonoBehaviour:
     - rid: 2727136727628251148
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: '[Keeps hands you some Rookie''s Hooks to get you started. You
+        dialouge: '[You''ve recieved 25 Rookie''s Hooks!]
 
-          can
-          check your inventory in the Pause menu to see them.]'
+          [Items can be
+          found in the Item menu from the Pause screen.]'
         voiceClip: {fileID: 0}
         guid: 16d5c5b473a49b04296e58e9ec548ecb
         decorators:
@@ -197,13 +185,27 @@ MonoBehaviour:
         - rid: 2727136708794253377
         position: {x: 3709, y: 88}
         nextNode:
-          rid: -2
+          rid: 6498884538079379528
     - rid: 2727136727628251181
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
         position: {x: 436, y: 204}
         guid: 7943c2f933f720e4a900b004380f8947
         dialogueEvent: {fileID: 3059256034209365916}
+    - rid: 6498884538079379528
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'I''ve also given you a Help journal to refer to whenever you need...well,
+          help!
+
+          [The Help journal can be found in the Options menu from
+          the Pause screen.]'
+        voiceClip: {fileID: 0}
+        guid: e5b4c34a1c6f1764788752da8b227391
+        decorators: []
+        position: {x: 4137, y: 88}
+        nextNode:
+          rid: -2
 --- !u!114 &1389975199913444332
 MonoBehaviour:
   m_ObjectHideFlags: 0
