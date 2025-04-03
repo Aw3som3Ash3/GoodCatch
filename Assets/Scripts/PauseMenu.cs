@@ -163,6 +163,7 @@ public class PauseMenu : VisualElement
             {
                 inputsPrevEnabled[inputAction]=inputAction.enabled;
             }
+            
             //playerControlsEnabled=InputManager.Input.Player.enabled;
 
         }
@@ -191,7 +192,7 @@ public class PauseMenu : VisualElement
                 UnityEngine.Cursor.visible = true;
 
             }
-
+            InputManager.Input.Ship.Disable();
             InputManager.DisablePlayer();
             InputManager.Input.UI.Back.Enable();
             InputManager.Input.UI.Back.performed += Back;
