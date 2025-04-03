@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Stun
   m_EditorClassIdentifier: 
   duration: 1
-  icon: {fileID: 2800000, guid: 1931f64eed5a28949a84879f8ff30c1e, type: 3}
+  icon: {fileID: 2800000, guid: be440fd943272114bbbfdbe86b21495e, type: 3}
+  particlePrefab: {fileID: 0}
   effectUsage: 0

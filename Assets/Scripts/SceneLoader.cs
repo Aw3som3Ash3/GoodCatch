@@ -83,6 +83,7 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator LoadWorld()
     {
+        GameManager.Instance.canPause = false;
         for(int i = 0; i < allScenes.Count; i++)
         {
             if (SceneManager.GetSceneByName(allScenes[i]).IsValid())
@@ -98,6 +99,7 @@ public class SceneLoader : MonoBehaviour
 
     void ScenesLoaded()
     {
+        GameManager.Instance.canPause = true;
         playerController.gameObject.SetActive(true);
         //cam.enabled = true;
         mainUI.rootVisualElement.Remove(mainUI.rootVisualElement.Q("LoadingScreen"));

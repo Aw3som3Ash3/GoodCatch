@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Guard 50%
   m_EditorClassIdentifier: 
   duration: 1
-  icon: {fileID: 2800000, guid: d9608ff3789b5524d810e8a6ee2d9c80, type: 3}
+  icon: {fileID: 2800000, guid: f655d728a9f21f540ae71d0e11be6bc4, type: 3}
+  particlePrefab: {fileID: 0}
   effectUsage: 0
   damageTransfer: 0.5

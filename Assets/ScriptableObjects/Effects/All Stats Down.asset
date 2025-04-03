@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: All Stats Down
   m_EditorClassIdentifier: 
   duration: 1
-  icon: {fileID: 2800000, guid: c066ff42510bf5d41ab5794ef377854c, type: 3}
+  icon: {fileID: 2800000, guid: 0a64b2fd94f733643a062b690e47ce4a, type: 3}
+  particlePrefab: {fileID: 0}
   effectUsage: 0
   agility: -5
   accuracy: -5

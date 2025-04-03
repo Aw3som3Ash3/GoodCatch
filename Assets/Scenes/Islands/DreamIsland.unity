@@ -122,6 +122,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &62080417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 62080419}
+  - component: {fileID: 62080418}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &62080418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62080417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14d65787143aec4592a4a6382eebc5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allScenes:
+  - DreamIsland
+  playerController: {fileID: 1153808661}
+  mainUI: {fileID: 1508715977}
+--- !u!4 &62080419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62080417}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -99.75769, y: 13.820763, z: 39.633766}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &277277098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -611,7 +659,7 @@ MonoBehaviour:
   baseDialogue: {fileID: 11400000, guid: b1b8d447fd36aa04e9db1fe24deb413f, type: 2}
   questBasedDialogues:
   - quest: {fileID: 11400000, guid: 8789b08040d62fd41b8e41e89e17f6f5, type: 2}
-    stateName: Speak To MrSkips
+    stateName: Speak To MrSkipps
     dialogue: {fileID: 11400000, guid: 7e73032f89e4ff943a4c1f4d73d93120, type: 2}
   - quest: {fileID: 11400000, guid: 29ff50a87758d7041b9663d36d45e238, type: 2}
     stateName: Speak To MrSkips
@@ -717,6 +765,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &654872830
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1808970678878381639, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: innId
+      value: Dream Inn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.449
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.75202423
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.65913546
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 277.53198
+      objectReference: {fileID: 0}
+    - target: {fileID: 2586730383157208578, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2931343322485882040, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_Name
+      value: desertInn
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635896496539704519, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.495
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b039dca27ba770428c0bbb65d58aa5c, type: 3}
 --- !u!850595691 &663455651
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1107,6 +1220,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4696074230909722863, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
   m_PrefabInstance: {fileID: 1326339827}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1153808661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4514534321718377144, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
+  m_PrefabInstance: {fileID: 1326339827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d16073f380bbda40a2c1779513bb87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1250704361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1836,3 +1960,5 @@ SceneRoots:
   - {fileID: 973141099}
   - {fileID: 523161366}
   - {fileID: 1936276002}
+  - {fileID: 62080419}
+  - {fileID: 654872830}
