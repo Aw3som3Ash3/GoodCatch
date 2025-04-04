@@ -7,18 +7,18 @@
                     <ui:Label tabindex="-1" text="HELP" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 100px; -unity-text-align: upper-center; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 2px; text-shadow: 2px 3px 0 rgb(0, 0, 0);" />
                 </ui:VisualElement>
                 <ui:ScrollView name="ScrollView" style="height: 799px; width: 588px;">
-                    <ui:Button text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FishingButton" style="font-size: 75px;" />
-                    <ui:Button text="Combat Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatButton" style="font-size: 75px;" />
-                    <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalButton" style="font-size: 75px;" />
-                    <ui:Button text="Ability" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityButton" style="font-size: 75px;" />
-                    <ui:Button text="StatusEffect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusButton" style="font-size: 75px;" />
-                    <ui:Button text="Other Effect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherButton" style="font-size: 75px;" />
-                    <ui:Button text="Healing &amp; Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealingButton" style="font-size: 75px;" />
-                    <ui:Button text="Hooks &amp; Catching" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HooksButton" style="font-size: 75px; display: flex;" />
-                    <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TravelingButton" style="font-size: 75px;" />
+                    <ui:Button text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FishingButton" />
+                    <ui:Button text="Combat" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatButton" />
+                    <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalButton" />
+                    <ui:Button text="Ability" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityButton" />
+                    <ui:Button text="Status Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusButton" />
+                    <ui:Button text="Other Effect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherButton" />
+                    <ui:Button text="Healing &amp; Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealingButton" />
+                    <ui:Button text="Hooks &amp; Catching" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HooksButton" style="display: flex;" />
+                    <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TravelingButton" />
                 </ui:ScrollView>
             </ui:VisualElement>
-            <ui:ScrollView name="Description" style="width: 75%; background-color: rgba(255, 255, 255, 0); padding-right: 35px; padding-left: 35px; flex-grow: 0; justify-content: flex-start;" />
+            <ui:ScrollView name="Description" style="width: 75%; background-color: rgba(255, 255, 255, 0); padding-right: 35px; padding-left: 35px; flex-grow: 0; justify-content: flex-start; background-image: url(&quot;project://database/Assets/Art/2D/UI/menu_marindex_paper.png?fileID=2800000&amp;guid=290fec8eed1594b4c969a0796b538fe8&amp;type=3#menu_marindex_paper&quot;); padding-top: 25px; padding-bottom: 30px;" />
             <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; position: absolute; top: 1015px; left: 561px; display: none;">
                 <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-self: auto; align-items: stretch; margin-right: 973px;">
                     <InputHudTip inputName="Click" style="width: 60px;" />
