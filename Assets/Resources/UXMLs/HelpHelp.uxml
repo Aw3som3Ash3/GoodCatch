@@ -1,32 +1,34 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Assets/HelpCollective.uss?fileID=7433441132597879392&amp;guid=c11ff8e099193d64a82dfcf466018f9a&amp;type=3#HelpCollective" />
-    <ui:VisualElement style="flex-grow: 0; flex-direction: row; height: 95%;">
-        <ui:VisualElement name="VisualElement" style="flex-grow: 0; justify-content: flex-end;">
-            <ui:VisualElement style="flex-grow: 1;">
-                <ui:Label tabindex="-1" text="HELP" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 75px; -unity-text-align: upper-center;" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement name="MainHelp" style="flex-grow: 0; flex-direction: row; background-color: rgba(21, 37, 132, 0); background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/System_Menu_BG_v2.png?fileID=2800000&amp;guid=b4bc9a62b1b1d434d82285b14b8b7bcf&amp;type=3#System_Menu_BG_v2&quot;); min-height: 100%; height: 100%; max-height: 100%; padding-bottom: 5%; padding-top: 5%;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; justify-content: flex-end;">
+                <ui:VisualElement style="flex-grow: 1; justify-content: center; align-self: center; top: -51px;">
+                    <ui:Label tabindex="-1" text="HELP" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 100px; -unity-text-align: upper-center; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 2px; text-shadow: 2px 3px 0 rgb(0, 0, 0);" />
+                </ui:VisualElement>
+                <ui:ScrollView name="ScrollView" style="height: 799px; width: 588px;">
+                    <ui:Button text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FishingButton" style="font-size: 75px;" />
+                    <ui:Button text="Combat Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatButton" style="font-size: 75px;" />
+                    <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalButton" style="font-size: 75px;" />
+                    <ui:Button text="Ability" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityButton" style="font-size: 75px;" />
+                    <ui:Button text="StatusEffect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusButton" style="font-size: 75px;" />
+                    <ui:Button text="Other Effect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherButton" style="font-size: 75px;" />
+                    <ui:Button text="Healing &amp; Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealingButton" style="font-size: 75px;" />
+                    <ui:Button text="Hooks &amp; Catching" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HooksButton" style="font-size: 75px; display: flex;" />
+                    <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TravelingButton" style="font-size: 75px;" />
+                </ui:ScrollView>
             </ui:VisualElement>
-            <ui:ScrollView name="ScrollView" style="height: 911px;">
-                <ui:Button text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FishingButton" style="font-size: 75px;" />
-                <ui:Button text="Combat Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatButton" style="font-size: 75px;" />
-                <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalButton" style="font-size: 75px;" />
-                <ui:Button text="Ability" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityButton" style="font-size: 75px;" />
-                <ui:Button text="StatusEffect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusButton" style="font-size: 75px;" />
-                <ui:Button text="Other Effect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherButton" style="font-size: 75px;" />
-                <ui:Button text="Healing &amp; Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealingButton" style="font-size: 75px;" />
-                <ui:Button text="Hooks &amp; Catching" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HooksButton" style="font-size: 75px; display: flex;" />
-                <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TravelingButton" style="font-size: 75px;" />
-            </ui:ScrollView>
-        </ui:VisualElement>
-        <ui:ScrollView name="Description" style="width: 75%; background-color: rgba(255, 255, 255, 0.99); padding-right: 35px; padding-left: 35px;" />
-    </ui:VisualElement>
-    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end;">
-        <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-self: auto; align-items: stretch; margin-right: 973px;">
-            <InputHudTip inputName="Click" style="width: 60px;" />
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: flex-start; align-self: center; font-size: 45px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
-        </ui:VisualElement>
-        <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-self: auto; align-items: stretch;">
-            <InputHudTip inputName="back" style="width: 60px;" />
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: flex-start; align-self: center; font-size: 45px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:ScrollView name="Description" style="width: 75%; background-color: rgba(255, 255, 255, 0); padding-right: 35px; padding-left: 35px; flex-grow: 0; justify-content: flex-start;" />
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-end; position: absolute; top: 1015px; left: 561px; display: none;">
+                <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-self: auto; align-items: stretch; margin-right: 973px;">
+                    <InputHudTip inputName="Click" style="width: 60px;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: flex-start; align-self: center; font-size: 45px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-self: auto; align-items: stretch;">
+                    <InputHudTip inputName="back" style="width: 60px;" />
+                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" style="justify-content: flex-start; align-self: center; font-size: 45px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; color: rgb(255, 255, 255);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

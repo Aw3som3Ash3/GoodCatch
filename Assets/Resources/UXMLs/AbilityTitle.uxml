@@ -8,7 +8,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="Content" style="flex-grow: 0; align-self: stretch; width: 75%; border-bottom-width: 0; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
             <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="-unity-text-align: upper-center; align-self: center; -unity-font-style: bold; font-size: 20px;" />
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="-unity-text-align: upper-center;" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="-unity-text-align: upper-center; display: none;" />
         </ui:VisualElement>
         <ui:VisualElement name="TargetableDepths" style="flex-grow: 0; width: 40px; align-self: flex-start; align-items: flex-end; padding-top: 10px; padding-right: 2px; padding-left: 2px; justify-content: flex-start; border-left-width: 0; border-bottom-width: 0; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); height: auto;">
             <ui:VisualElement name="dot1" style="flex-grow: 0; flex-shrink: 0; align-self: center; min-width: 90%; min-height: 30px; background-image: url(&quot;project://database/Assets/Prefabs/UI/UI-Png/DotAloneWhite.png?fileID=2800000&amp;guid=1ad7d73651a3f3446903d1b91dd6cf4b&amp;type=3#DotAloneWhite&quot;); -unity-background-scale-mode: scale-to-fit; height: 32px;" />

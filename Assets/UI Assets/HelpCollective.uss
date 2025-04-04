@@ -6,3 +6,45 @@
     font-size: 45px;
     white-space: normal;
 }
+
+.unity-button {
+    background-color: rgba(83, 100, 212, 0);
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    text-shadow: 2px 3px 0 rgb(0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.unity-button:hover {
+    background-color: rgba(83, 100, 212, 0);
+    color: rgb(145, 194, 255);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    text-shadow: 2px 3px 0 rgb(0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    transform-origin: bottom;
+    translate: 1.2px 1.2px;
+}
+
+.unity-button.unity-text-element {
+}
+
+.unity-scroller {
+    opacity: 0;
+}
+
+#MainHelp {
+    height: 1080px;
+    max-height: 1080px;
+    min-height: 1080px;
+    flex-grow: 1;
+    align-self: stretch;
+    padding-bottom: 10%;
+}
