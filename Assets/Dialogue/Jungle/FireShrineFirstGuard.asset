@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9217259632993510754
+--- !u!114 &-6245746496523209256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
-  m_Name: FireShrineFirstGuardBattle
+  m_Name: JungleFirstGuardBattle
   m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
@@ -26,34 +26,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootNode:
     nextNode:
-      rid: 2727136614816153632
+      rid: 2727136614816153619
     guid: root
     position: {x: 0, y: 0}
   nodes:
-  - rid: 2727136614816153632
+  - rid: 2727136614816153619
+  - rid: 2727136614816153620
+  - rid: 2727136614816153622
   decorators:
-  - rid: 2727136614816153633
+  - rid: 6498884609483210758
   events:
-  - {fileID: -9217259632993510754}
+  - {fileID: -6245746496523209256}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 2727136614816153632
+    - rid: 2727136614816153619
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You approach the Leading Guardian of our Fire Shrine. Do you wish
+          to prove your worth in combat?
+        voiceClip: {fileID: 0}
+        guid: 917d791aa9f27b640a0d021d5f8e9189
+        decorators: []
+        position: {x: 456, y: -29}
+        decisions:
+        - choice: I need to see the shrine.
+          choiceNode:
+            rid: 2727136614816153620
+        - choice: I'm not ready yet.
+          choiceNode:
+            rid: 2727136614816153622
+    - rid: 2727136614816153620
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: Hey you can't be here!
+        dialouge: Then prove to me your worth the audience!
         voiceClip: {fileID: 0}
-        guid: fab6da9d804b57c42b2c33a0279b8737
+        guid: bf68cc100929ba448a05b2deeea1b2d8
         decorators:
-        - rid: 2727136614816153633
-        position: {x: 437, y: -45}
+        - rid: 6498884609483210758
+        position: {x: 1190, y: -253}
         nextNode:
           rid: -2
-    - rid: 2727136614816153633
+    - rid: 2727136614816153622
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: I shall await your return.
+        voiceClip: {fileID: 0}
+        guid: 4648d4116b9e35742a173b659f6a5701
+        decorators: []
+        position: {x: 1190, y: 74}
+        nextNode:
+          rid: -2
+    - rid: 6498884609483210758
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 884, y: 96}
-        guid: 7e44e4e5a5345fb42aa1140e39789f67
-        dialogueEvent: {fileID: -9217259632993510754}
+        position: {x: 1190, y: -79}
+        guid: aedd789634d8e70438e62c815613ab79
+        dialogueEvent: {fileID: -6245746496523209256}

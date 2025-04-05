@@ -34,7 +34,6 @@ MonoBehaviour:
   - rid: 2727136756081360899
   decorators:
   - rid: 2727136756081360900
-  - rid: 2727136756081360901
   events:
   - {fileID: 1852587620627258891}
   - {fileID: -883156444783582144}
@@ -58,28 +57,21 @@ MonoBehaviour:
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
         dialouge: "\u201CA survivor with a creature from beyond these shores shall
-          cross\npaths with a confident warrior, and their mighty clash shall invoke\nthe
-          victor with the Spirit of Fire.\u201D"
+          cross paths with a confident warrior, and their mighty clash shall invoke
+          the victor with the Spirit of Fire.\u201D"
         voiceClip: {fileID: 0}
         guid: 7c69245de7b3255458567132badac459
         decorators:
         - rid: 2727136756081360900
-        - rid: 2727136756081360901
         position: {x: 871, y: -18}
         nextNode:
           rid: -2
     - rid: 2727136756081360900
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 633, y: 205}
+        position: {x: 871, y: 196}
         guid: 4ca53318b4ba12043bed62628b3819ec
         dialogueEvent: {fileID: 1852587620627258891}
-    - rid: 2727136756081360901
-      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
-      data:
-        position: {x: 1041, y: 205}
-        guid: 44e4fe5dd13a6fa44974bb73d6f258a5
-        dialogueEvent: {fileID: -883156444783582144}
 --- !u!114 &1852587620627258891
 MonoBehaviour:
   m_ObjectHideFlags: 0

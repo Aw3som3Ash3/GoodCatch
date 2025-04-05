@@ -38,10 +38,13 @@ MonoBehaviour:
   - rid: 2727136848657514505
   - rid: 2727136848657514506
   - rid: 2727136848657514507
+  - rid: 6498884612026793985
   decorators:
   - rid: 2727136848657514508
+  - rid: 6498884609483210788
   events:
   - {fileID: -1044520457894415015}
+  - {fileID: 6682801961029650548}
   references:
     version: 2
     RefIds:
@@ -50,22 +53,23 @@ MonoBehaviour:
     - rid: 2727136848657514498
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: You're alright! I hope that you found the person you were looking
-          for well?
+        dialouge: You're alright! I assume you've passed the trials then?
         voiceClip: {fileID: 0}
         guid: 568ff68ba76cf1440abd7c9f390b200b
-        decorators: []
+        decorators:
+        - rid: 6498884609483210788
         position: {x: 388, y: -36}
         nextNode:
           rid: 2727136848657514501
     - rid: 2727136848657514501
       type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: Good to hear! I hope that boy learned something in all his gusto...hm?
+        dialouge: This may be odd to ask...but have you felt anything strange since
+          you've touched the shrine?
         voiceClip: {fileID: 0}
         guid: 6984b283f8baa094589bac1398f3d5fe
         decorators: []
-        position: {x: 880, y: -36}
+        position: {x: 821, y: -54}
         decisions:
         - choice: '[Clasp his hand]'
           choiceNode:
@@ -80,30 +84,31 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 2a527c2c42e1cc946b6016a62853f82e
         decorators: []
-        position: {x: 1069, y: 220}
+        position: {x: 936, y: 212}
         nextNode:
           rid: 2727136848657514501
     - rid: 2727136848657514503
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: '[You clasp his hand, and suddenly a gust of warm energy slithers
-          about his hands. After a short moment, the aura wavers.]'
+        dialouge: '[Like you''ve been possessed, you suddenly clasp his hand, and
+          suddenly a gust of warm energy slithers about his hands. After a short
+          moment, the aura wavers.]'
         voiceClip: {fileID: 0}
         guid: 7fa1ddac3ea5afd448c3fdea692134cc
         decorators: []
-        position: {x: 1376, y: -36}
+        position: {x: 1376, y: -54}
         nextNode:
           rid: 2727136848657514504
     - rid: 2727136848657514504
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: The legend...it's true? How can this be?
+        dialouge: ....I can't believe it. The legend is true!
         voiceClip: {fileID: 0}
         guid: 2d852c6033b93b7498d19f7bc792dd31
         decorators: []
-        position: {x: 2124, y: -36}
+        position: {x: 2248, y: -54}
         nextNode:
-          rid: 2727136848657514505
+          rid: 6498884612026793985
     - rid: 2727136848657514505
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -114,7 +119,7 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 56403d4fafe30d149b19cbdb05803991
         decorators: []
-        position: {x: 2536, y: -36}
+        position: {x: 3550, y: -57}
         nextNode:
           rid: 2727136848657514506
     - rid: 2727136848657514506
@@ -125,7 +130,7 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 3aba89e13f7023d45bf0581b731f18e5
         decorators: []
-        position: {x: 3444, y: -36}
+        position: {x: 4413, y: -54}
         nextNode:
           rid: 2727136848657514507
     - rid: 2727136848657514507
@@ -137,12 +142,42 @@ MonoBehaviour:
         guid: 9fb51eae509a1b541a9f2b9b31a05187
         decorators:
         - rid: 2727136848657514508
-        position: {x: 4059, y: -36}
+        position: {x: 5028, y: -54}
         nextNode:
           rid: -2
     - rid: 2727136848657514508
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 4170, y: 164}
+        position: {x: 5139, y: 146}
         guid: e289f566097617b40acf6555a81e222c
         dialogueEvent: {fileID: -1044520457894415015}
+    - rid: 6498884609483210788
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 455, y: 264}
+        guid: 423ceba021b93d6488ab369008a27a2d
+        dialogueEvent: {fileID: 6682801961029650548}
+    - rid: 6498884612026793985
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Ever since our ancestors landed upon these islands, there have
+          been shrines all about the archipelago with prophecies writen on them.
+          Conveniently in English too, for whatever reason.
+        voiceClip: {fileID: 0}
+        guid: c01a89b336fe07248abcd5a2e21a0c92
+        decorators: []
+        position: {x: 2657, y: -54}
+        nextNode:
+          rid: 2727136848657514505
+--- !u!114 &6682801961029650548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: LastTalkToJungleChieftain
+  m_EditorClassIdentifier: 
