@@ -147,7 +147,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         InputManager.Input.UI.Enable();
         combatUI.Draft(playerFishes, (index, callback) =>
         {
-            if (draftedCount > 3)
+            if (draftedCount >= 3)
             {
                 return;
             }
@@ -229,6 +229,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     Stack<(Turn,int index)> draftStack=new();
     void DraftFish(int index,int target)
     {
+        
         Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);
         AddFish(turn, depths[target % 3], Team.player);
         turn.fish.RecoverStamina();
@@ -257,6 +258,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     void CompleteDraft()
     {
+        if (draftedCount <= 0)
+        {
+            return;
+        }
         combatUI.EndDraft -= CompleteDraft;
         currentPhase = CombatPhase.combat;
         undoDraft = null;
