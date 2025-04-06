@@ -132,6 +132,9 @@ public class CombatVisualizer : MonoBehaviour
             case Element.Effectiveness.veryWeak:
                 tmp.color = Color.red;
                 break;
+            case Element.Effectiveness.healing:
+                tmp.color = Color.green;
+                break;
             default:
                 tmp.color = Color.white;
                 break;

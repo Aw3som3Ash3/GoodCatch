@@ -11,6 +11,7 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static CombatManager;
+using static Element;
 using static UnityEngine.VFX.VFXTypeAttribute;
 
 
@@ -959,6 +960,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             health-=damageOut;
             ValueChanged?.Invoke();
             return damageOut;
+        }
+        public void Restore(float hpToRestore)
+        {
+            health += hpToRestore;
+            ValueChanged?.Invoke();
+            combatManager.combatVisualizer.AnimateDamageNumbers(this, hpToRestore, Effectiveness.healing);
         }
         public bool CheckDeath()
         {
