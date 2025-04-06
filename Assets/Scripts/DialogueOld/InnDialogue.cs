@@ -32,6 +32,7 @@ public class InnDialogue : MonoBehaviour
         UIElement.SetActive(false);
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         UnityEngine.Cursor.visible = false;
+        InputManager.EnablePlayer();
         Time.timeScale = 1.0f;
     }
     private void ShowUI()

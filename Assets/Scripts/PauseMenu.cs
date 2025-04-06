@@ -11,6 +11,7 @@ public class PauseMenu : VisualElement
     Button settting, party, bestiary, inventory;
     CursorLockMode prevMode;
     bool prevVisability;
+    Dictionary<InputAction, bool> inputsPrevEnabled=new();
     //PartyUI partyUI;
     //OptionsPage optionsPage;
     //Bestiary bestiaryPage;
@@ -23,7 +24,9 @@ public class PauseMenu : VisualElement
     bool exitCompletely = false;
     static PauseMenu mainPause;
     static public event Action<bool> GamePaused;
+
     public static bool PauseActive { get { return mainPause.menu.visible; } }
+
     public new class UxmlFactory : UxmlFactory<PauseMenu, PauseMenu.UxmlTraits>
     {
 
@@ -116,7 +119,8 @@ public class PauseMenu : VisualElement
     }
     static public PauseMenu Pause()
     {
-        if (mainPause.menu.visible == false)
+
+        if (mainPause != null && mainPause.menu.visible == false)
         {
             mainPause.OnPause();
         }
@@ -154,6 +158,13 @@ public class PauseMenu : VisualElement
         {
             prevVisability = UnityEngine.Cursor.visible;
             prevMode = UnityEngine.Cursor.lockState;
+            
+            foreach(InputAction inputAction in InputManager.Input)
+            {
+                inputsPrevEnabled[inputAction]=inputAction.enabled;
+            }
+            
+            //playerControlsEnabled=InputManager.Input.Player.enabled;
 
         }
         mainPause.SetEnabled(!mainPause.enabledSelf);
@@ -181,10 +192,13 @@ public class PauseMenu : VisualElement
                 UnityEngine.Cursor.visible = true;
 
             }
-
+            InputManager.Input.Ship.Disable();
+            InputManager.Input.Fishing.Disable();
             InputManager.DisablePlayer();
             InputManager.Input.UI.Back.Enable();
             InputManager.Input.UI.Back.performed += Back;
+            InputManager.Input.UI.Back.performed += Back;
+            GameManager.Instance.canPause = false;
             
 
         }
@@ -192,21 +206,34 @@ public class PauseMenu : VisualElement
         {
             UnityEngine.Cursor.lockState = prevMode;
             UnityEngine.Cursor.visible = prevVisability;
-            InputManager.EnablePlayer();
+            foreach (InputAction inputAction in InputManager.Input)
+            {
+                if (inputsPrevEnabled[inputAction])
+                {
+                    inputAction.Enable();
+                }
+                
+            }
+
             InputManager.Input.UI.Back.Disable();
             InputManager.Input.UI.Back.performed -= Back;
             InputManager.OnInputChange -= OnInputChanged;
+            GameManager.Instance.canPause = true;
         }
-        var bottomMapping = panel.visualTree.Q("BottomMapping");
-        if (bottomMapping != null)
+        if (panel != null)
         {
-            bottomMapping.visible = !PauseActive;
+            var bottomMapping = panel.visualTree.Q("BottomMapping");
+            if (bottomMapping != null)
+            {
+                bottomMapping.visible = !PauseActive;
+            }
+            var questUI = panel.visualTree.Q("QuestUI");
+            if (questUI != null)
+            {
+                questUI.visible = !PauseActive;
+            }
         }
-        var questUI = panel.visualTree.Q("QuestUI");
-        if (questUI != null)
-        {
-            questUI.visible = !PauseActive;
-        }
+        
         GamePaused?.Invoke(menu.enabledSelf);
     }
 
