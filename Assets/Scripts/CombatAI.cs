@@ -28,6 +28,7 @@ public class CombatAI : MonoBehaviour
     {
         currentTurn = turn;
         EnemyTurn.TurnEnded += OnTurnEnded;
+        //Logic();
         Invoke("Logic", 2);
     }
     void OnTurnEnded()
@@ -54,6 +55,7 @@ public class CombatAI : MonoBehaviour
                 if (tryCount >=5)
                 {
                     Invoke("EndTurn", 2);
+                  
                     return;
                 }
                 abilityIndex = Random.Range(0, 3);
@@ -112,7 +114,8 @@ public class CombatAI : MonoBehaviour
                         break;
                 }
                 
-                currentTurn.Move(targetIndex- currentTurn.depthIndex);
+                currentTurn.Move(targetIndex); 
+
             }
             else
             {
