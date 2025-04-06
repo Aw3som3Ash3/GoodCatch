@@ -83,7 +83,7 @@ public class CombatAI : MonoBehaviour
             }
             
 
-            if (currentTurn.AbilityUsable(abilityIndex)&& currentTurn.DepthTargetable(abilityIndex, combatManager.depths[weakestTarget.depthIndex].depth))
+            if (currentTurn.AbilityUsable(abilityIndex)&& weakestTarget!=null && currentTurn.DepthTargetable(abilityIndex, combatManager.depths[weakestTarget.depthIndex].depth))
             {
                 currentTurn.UseAbilityDirect(abilityIndex, depthIndex);
                 combatManager.CompletedAllActions += Logic;
