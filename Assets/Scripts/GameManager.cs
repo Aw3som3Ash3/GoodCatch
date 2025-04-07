@@ -186,6 +186,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         else
         {
             Destroy(this.gameObject);
+            return;
         }
         Inn.InnVisited += (inn) => gameData.currentInnId=inn.innId;
 
