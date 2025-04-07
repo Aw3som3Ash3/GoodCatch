@@ -30,7 +30,9 @@ public class CombatAI : MonoBehaviour
     public void StartTurn(EnemyTurn turn)
     {
         currentTurn = turn;
+        actionPending = false;
         StartCoroutine(Logic());
+        
         //Logic();
         //Invoke("Logic", 2);
     }
@@ -51,7 +53,7 @@ public class CombatAI : MonoBehaviour
             {
                 break;
             }
-            actionPending = true;
+          
             CombatManager.Turn weakestTarget = combatManager.depths[0].TargetFirst(CombatManager.Team.player);
             int depthIndex = 0;
             
@@ -64,7 +66,7 @@ public class CombatAI : MonoBehaviour
             {
                 if (hasTried.Count >= 3)
                 {
-                    EndTurn();
+                    break;
                     
                 }
 
@@ -112,9 +114,11 @@ public class CombatAI : MonoBehaviour
             if (currentTurn.AbilityUsable(abilityIndex)&& weakestTarget!=null && currentTurn.DepthTargetable(abilityIndex, combatManager.depths[weakestTarget.depthIndex].depth))
             {
                 currentTurn.UseAbilityDirect(abilityIndex, depthIndex);
+                actionPending = true;
                 combatManager.CompletedAllActions += OnCompletedAllActions;
             }else if (!currentTurn.fish.Type.HomeDepth.HasFlag(currentTurn.currentDepth.depth))
             {
+                actionPending = true;
                 combatManager.CompletedAllActions += OnCompletedAllActions;
                 int targetIndex=0;
                 switch (currentTurn.fish.Type.HomeDepth)
