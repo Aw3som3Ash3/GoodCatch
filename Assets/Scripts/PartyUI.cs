@@ -88,8 +88,11 @@ public class PartyUI : PausePage
 
 
         }
-
-        this.Q("PartyMember" + (1)).Focus();
+        if (InputManager.inputMethod == InputMethod.controller)
+        {
+           this.schedule.Execute(this.Q("PartyMember" + (1)).Focus).ExecuteLater(10);
+        }
+       
     }
 
 
