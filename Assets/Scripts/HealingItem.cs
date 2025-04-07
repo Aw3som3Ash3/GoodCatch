@@ -12,6 +12,6 @@ public class HealingItem : Potion
 
     protected override void PotionEffect(PlayerTurn target)
     {
-        target.fish.Restore(healingAmount);
+        target.Restore(healingAmount);
     }
 }

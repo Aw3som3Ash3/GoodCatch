@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatAI : MonoBehaviour
@@ -49,19 +50,28 @@ public class CombatAI : MonoBehaviour
             int depthIndex = 0;
             
             int abilityIndex = 0;
-            int tryCount=0;
+            //int tryCount=0;
+            HashSet<int> hasTried=new();
+
+
             do
             {
-                if (tryCount >=5)
+                if (hasTried.Count >= 3)
                 {
-                    Invoke("EndTurn", 2);
-                  
+                    EndTurn();
                     return;
                 }
-                abilityIndex = Random.Range(0, 3);
-                tryCount++;
-               
 
+                abilityIndex = Random.Range(0, 3);
+                if (hasTried.Contains(abilityIndex))
+                {
+                    continue;
+                }
+                else
+                {
+                    hasTried.Add(abilityIndex);
+                }
+               
 
             } while (!currentTurn.AbilityUsable(abilityIndex));
 
@@ -93,7 +103,7 @@ public class CombatAI : MonoBehaviour
             }
             
 
-            if (currentTurn.AbilityUsable(abilityIndex)&& currentTurn.DepthTargetable(abilityIndex, combatManager.depths[weakestTarget.depthIndex].depth))
+            if (currentTurn.AbilityUsable(abilityIndex)&& weakestTarget!=null && currentTurn.DepthTargetable(abilityIndex, combatManager.depths[weakestTarget.depthIndex].depth))
             {
                 currentTurn.UseAbilityDirect(abilityIndex, depthIndex);
                 combatManager.CompletedAllActions += Logic;

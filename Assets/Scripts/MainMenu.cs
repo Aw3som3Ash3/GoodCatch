@@ -168,7 +168,7 @@ public class MainMenu : MonoBehaviour
     {
         PlayableDirector playableDirector;
         playableDirector = FindObjectOfType<PlayableDirector>();
-        var mainSceneLoading = SceneManager.LoadSceneAsync("DreamIsland");
+        var mainSceneLoading = SceneManager.LoadSceneAsync("Main Scene");
         mainSceneLoading.allowSceneActivation = false;
         InputAction action = new();
         GoodCatchInputs uIActions = new GoodCatchInputs();
@@ -182,7 +182,7 @@ public class MainMenu : MonoBehaviour
             mainSceneLoading.allowSceneActivation = true;
             mainSceneLoading.completed += (x) =>
             {
-               
+                FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave); GameManager.Instance.ResetLastInn(); };
 
             };
 
