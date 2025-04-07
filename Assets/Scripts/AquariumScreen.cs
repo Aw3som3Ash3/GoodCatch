@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class AquariumScreen : PausePage
@@ -85,10 +86,15 @@ public class AquariumScreen : PausePage
         //    Debug.Log("has box "+i+":  "+ tabs[i]);
         //}
         //contentContainer = this.Q("unity-content-container");
+        InputManager.Input.UI.ChangeTab.performed += ChangeTab;
         fishventoryTab.Focus();
         SetUp();
     }
-
+    public override bool Back()
+    {
+        InputManager.Input.UI.ChangeTab.performed -= ChangeTab;
+        return base.Back();
+    }
     private void OnAddToParty()
     {
 
@@ -134,6 +140,19 @@ public class AquariumScreen : PausePage
         nameTitle.text = slot.fishMonster.Name;
         hp.text = slot.fishMonster.MaxHealth.ToString();
         stamina.text = slot.fishMonster.MaxStamina.ToString();
+    }
+
+
+    void ChangeTab(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            fishventoryTab.ChangeTab((int)context.ReadValue<float>());
+            Debug.Log("tab change: " + (int)context.ReadValue<float>());
+
+
+        }
+
     }
 }
 
@@ -207,5 +226,7 @@ public class AquariumSlot : VisualElement
         
 
     }
+
+   
 }
 
