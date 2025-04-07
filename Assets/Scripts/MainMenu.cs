@@ -147,15 +147,15 @@ public class MainMenu : MonoBehaviour
        
 
     }
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (arg0.name == "Main Scene")
-        {
-            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);  GameManager.Instance.ResetLastInn(); } ;
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+    //private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    //{
+    //    if (arg0.name == "Main Scene")
+    //    {
+    //        FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);  GameManager.Instance.ResetLastInn(); } ;
+    //        SceneManager.sceneLoaded -= OnSceneLoaded;
             
-        }
-    }
+    //    }
+    //}
     private void OnSceneLoaded(AsyncOperation operation)
     {
         PlayableDirector playableDirector;

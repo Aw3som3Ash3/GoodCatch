@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class CombatAI : MonoBehaviour
     CombatManager combatManager;
 
     EnemyTurn currentTurn;
+    bool actionPending = false;
 
     public void SetCombatManager(CombatManager combatManager)
     {
@@ -28,24 +30,28 @@ public class CombatAI : MonoBehaviour
     public void StartTurn(EnemyTurn turn)
     {
         currentTurn = turn;
-        EnemyTurn.TurnEnded += OnTurnEnded;
+        StartCoroutine(Logic());
         //Logic();
-        Invoke("Logic", 2);
+        //Invoke("Logic", 2);
     }
-    void OnTurnEnded()
+    void OnCompletedAllActions()
     {
-        CancelInvoke();
-        EnemyTurn.TurnEnded -= OnTurnEnded;
+        actionPending = false;
     }
-    private void OnDestroy()
+    IEnumerator Logic()
     {
-        EnemyTurn.TurnEnded -= OnTurnEnded;
-    }
-    public void Logic()
-    {
-        combatManager.CompletedAllActions -= Logic;
-        if (currentTurn.actionsLeft > 0)
+        yield return new WaitForSeconds(1);
+
+       
+        //combatManager.CompletedAllActions -= Logic;
+        while (true)
         {
+            yield return new WaitWhile(()=>actionPending);
+            if(currentTurn.actionsLeft <= 0)
+            {
+                break;
+            }
+            actionPending = true;
             CombatManager.Turn weakestTarget = combatManager.depths[0].TargetFirst(CombatManager.Team.player);
             int depthIndex = 0;
             
@@ -59,7 +65,7 @@ public class CombatAI : MonoBehaviour
                 if (hasTried.Count >= 3)
                 {
                     EndTurn();
-                    return;
+                    
                 }
 
                 abilityIndex = Random.Range(0, 3);
@@ -106,10 +112,10 @@ public class CombatAI : MonoBehaviour
             if (currentTurn.AbilityUsable(abilityIndex)&& weakestTarget!=null && currentTurn.DepthTargetable(abilityIndex, combatManager.depths[weakestTarget.depthIndex].depth))
             {
                 currentTurn.UseAbilityDirect(abilityIndex, depthIndex);
-                combatManager.CompletedAllActions += Logic;
+                combatManager.CompletedAllActions += OnCompletedAllActions;
             }else if (!currentTurn.fish.Type.HomeDepth.HasFlag(currentTurn.currentDepth.depth))
             {
-                combatManager.CompletedAllActions += Logic;
+                combatManager.CompletedAllActions += OnCompletedAllActions;
                 int targetIndex=0;
                 switch (currentTurn.fish.Type.HomeDepth)
                 {
@@ -129,16 +135,15 @@ public class CombatAI : MonoBehaviour
             }
             else
             {
-                Invoke("EndTurn", 2);
+                break;
             }
 
 
 
         }
-        else
-        {
-            Invoke("EndTurn", 2);
-        }
+        yield return new WaitForSeconds(1);
+        EndTurn();
+
 
 
     }

@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static CombatManager;
-using static UnityEngine.Rendering.DebugUI;
 
 public class CombatVisualizer : MonoBehaviour
 {
