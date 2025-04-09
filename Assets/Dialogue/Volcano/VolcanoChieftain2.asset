@@ -23,7 +23,9 @@ MonoBehaviour:
   - rid: 2727136841486303297
   decorators:
   - rid: 2727136841486303298
-  events: []
+  - rid: 6498884696608866684
+  events:
+  - {fileID: 2418612260988350617}
   references:
     version: 2
     RefIds:
@@ -46,7 +48,8 @@ MonoBehaviour:
           location.
         voiceClip: {fileID: 0}
         guid: f4471f42414fca246a0344524d2b6e98
-        decorators: []
+        decorators:
+        - rid: 6498884696608866684
         position: {x: 803, y: -30}
         nextNode:
           rid: 2727136841486303297
@@ -69,3 +72,21 @@ MonoBehaviour:
         position: {x: 1492, y: 221}
         guid: d6afc96e50b51c84caf3b5b2a45f1946
         quest: {fileID: 11400000, guid: f6efbd43e62945d4488b8bab7d64773c, type: 2}
+    - rid: 6498884696608866684
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 815, y: 194}
+        guid: ce623872d7a5763419b133ad5a1a30bb
+        dialogueEvent: {fileID: 2418612260988350617}
+--- !u!114 &2418612260988350617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: LastSpeakToVolcanoChieftain
+  m_EditorClassIdentifier: 

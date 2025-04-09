@@ -1293,8 +1293,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Volcano Chieftain
-  baseDialogue: {fileID: 11400000, guid: 80d1ac9705b351b469a590cb187ab950, type: 2}
+  baseDialogue: {fileID: 11400000, guid: 94420a0e020e9874181a7114a7fc6820, type: 2}
   questBasedDialogues:
+  - quest: {fileID: 11400000, guid: 6973da5433d9f434393061f5b878e833, type: 2}
+    stateName: Speak to the Volcano Chieftain
+    dialogue: {fileID: 11400000, guid: 80d1ac9705b351b469a590cb187ab950, type: 2}
   - quest: {fileID: 11400000, guid: f4faac87e6c2af74cb65231d07027fa7, type: 2}
     stateName: Speak to the Volcano Chieftain
     dialogue: {fileID: 11400000, guid: 1abfaa772ec6cae4fb9a099db1e00262, type: 2}
@@ -5373,25 +5376,37 @@ PrefabInstance:
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: baseDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 9019ebe1cc6301a4a9436284e2a1a3c7, type: 2}
+      objectReference: {fileID: 11400000, guid: 94420a0e020e9874181a7114a7fc6820, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: npcTitleText
       value: 
       objectReference: {fileID: 575196174}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].quest
+      value: 
+      objectReference: {fileID: 11400000, guid: 6973da5433d9f434393061f5b878e833, type: 2}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[1].quest
       value: 
       objectReference: {fileID: 11400000, guid: f4faac87e6c2af74cb65231d07027fa7, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].dialogue
       value: 
+      objectReference: {fileID: 11400000, guid: 9019ebe1cc6301a4a9436284e2a1a3c7, type: 2}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[1].dialogue
+      value: 
       objectReference: {fileID: 11400000, guid: 535c205222efc344aa6e4b995bc949d8, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].stateName
+      value: Speak to the Fisherman Tom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: questBasedDialogues.Array.data[1].stateName
       value: Return to Fisherman Tom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -64639,7 +64654,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Determined Villager
   baseDialogue: {fileID: 11400000, guid: 653086b965e97d04396add0297d8c7c5, type: 2}
-  questBasedDialogues: []
+  questBasedDialogues:
+  - quest: {fileID: 11400000, guid: 57eb44828ac73cc4ca484913c088c456, type: 2}
+    stateName: Speak to the Determined Villager
+    dialogue: {fileID: 11400000, guid: ce073507d6cd72e4f8613ace98b61763, type: 2}
   npcTitleText: {fileID: 1428900721}
 --- !u!1 &1784920473
 GameObject:

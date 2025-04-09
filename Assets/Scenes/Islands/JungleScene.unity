@@ -7080,7 +7080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ce85c94b1d14441a144d6621aeae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startBattleEvent: {fileID: 2684726828978241724, guid: eb20a7930481d92469bc941e148e9c8a, type: 2}
+  startBattleEvent: {fileID: 2684726828978241724, guid: 234a75ac28e254446b44cb1f0a94fece, type: 2}
   fishToFight:
   - fishMonsters: {fileID: 11400000, guid: a1edc9789a38b3a47ae17c831183c6dc, type: 2}
     level: 3
@@ -14360,7 +14360,7 @@ PrefabInstance:
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: eb20a7930481d92469bc941e148e9c8a, type: 2}
+      objectReference: {fileID: 11400000, guid: 234a75ac28e254446b44cb1f0a94fece, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].stateName
       value: Fight the Third Guard
@@ -17880,7 +17880,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2318496406209989534, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: m_Name
-      value: Male_NPC (Jungle Villager)
+      value: Male_NPC (Observant Dockhand)
       objectReference: {fileID: 0}
     - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: m_LocalPosition.x

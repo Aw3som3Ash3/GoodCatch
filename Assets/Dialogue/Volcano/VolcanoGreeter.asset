@@ -21,7 +21,8 @@ MonoBehaviour:
   - rid: 2727136822063005726
   - rid: 2727136822063005727
   - rid: 2727136822063005728
-  decorators: []
+  decorators:
+  - rid: 6498884696608866601
   events: []
   references:
     version: 2
@@ -51,7 +52,8 @@ MonoBehaviour:
           now!
         voiceClip: {fileID: 0}
         guid: 3cecc7206ee8e1444a90ccba8024955d
-        decorators: []
+        decorators:
+        - rid: 6498884696608866601
         position: {x: 1046, y: -94}
         nextNode:
           rid: -2
@@ -63,7 +65,14 @@ MonoBehaviour:
           entrance.
         voiceClip: {fileID: 0}
         guid: 5bbc8cd414b75804484640ac68b7231a
-        decorators: []
+        decorators:
+        - rid: 6498884696608866601
         position: {x: 1046, y: 139}
         nextNode:
           rid: -2
+    - rid: 6498884696608866601
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1324, y: 349}
+        guid: 129c3ac3952c3214b98cb3d0db44be8e
+        quest: {fileID: 11400000, guid: 6973da5433d9f434393061f5b878e833, type: 2}

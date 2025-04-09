@@ -42,7 +42,6 @@ MonoBehaviour:
   decorators:
   - rid: 2727136848657514508
   - rid: 6498884609483210788
-  - rid: 6498884683246075904
   events:
   - {fileID: -1044520457894415015}
   - {fileID: 6682801961029650548}
@@ -143,7 +142,6 @@ MonoBehaviour:
         guid: 9fb51eae509a1b541a9f2b9b31a05187
         decorators:
         - rid: 2727136848657514508
-        - rid: 6498884683246075904
         position: {x: 5028, y: -54}
         nextNode:
           rid: -2
@@ -171,12 +169,6 @@ MonoBehaviour:
         position: {x: 2657, y: -54}
         nextNode:
           rid: 2727136848657514505
-    - rid: 6498884683246075904
-      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
-      data:
-        position: {x: 5518, y: 140}
-        guid: 14c98b7069935b44cbcfcd39371fe963
-        quest: {fileID: 0}
 --- !u!114 &6682801961029650548
 MonoBehaviour:
   m_ObjectHideFlags: 0

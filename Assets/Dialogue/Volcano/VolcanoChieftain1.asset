@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1684043646503106773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: FirstSpeakToVolcanoChieftain
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20,16 +32,16 @@ MonoBehaviour:
   nodes:
   - rid: 2727136822063005731
   - rid: 2727136822063005734
-  - rid: 2727136822063005735
   - rid: 2727136822063005736
   - rid: 2727136822063005737
-  - rid: 2727136822063005739
-  - rid: 2727136822063005740
-  - rid: 2727136822063005744
-  - rid: 2727136822063005745
   - rid: 2727136822063005748
-  decorators: []
-  events: []
+  - rid: 6498884696608866605
+  - rid: 6498884696608866606
+  - rid: 6498884696608866607
+  decorators:
+  - rid: 6498884696608866600
+  events:
+  - {fileID: -1684043646503106773}
   references:
     version: 2
     RefIds:
@@ -42,7 +54,8 @@ MonoBehaviour:
           What is it that you seek?
         voiceClip: {fileID: 0}
         guid: d36c262c3f3106749b8aac0ee3055426
-        decorators: []
+        decorators:
+        - rid: 6498884696608866600
         position: {x: 404, y: -30}
         nextNode:
           rid: 2727136822063005737
@@ -56,18 +69,6 @@ MonoBehaviour:
         position: {x: 1496, y: 228}
         nextNode:
           rid: 2727136822063005736
-    - rid: 2727136822063005735
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: '[You quickly clasp her hand, and the chieftain gasps. A warm aura
-          surges and twists around her arm. The energy flows through her fingertips,
-          then fades.]'
-        voiceClip: {fileID: 0}
-        guid: b216174e4484c944991297a59c1a51b9
-        decorators: []
-        position: {x: 2939, y: -51}
-        nextNode:
-          rid: 2727136822063005744
     - rid: 2727136822063005736
       type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -93,67 +94,6 @@ MonoBehaviour:
         position: {x: 1032, y: -50}
         nextNode:
           rid: 2727136822063005736
-    - rid: 2727136822063005739
-      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: '[The chieftain appears very frustrated.]'
-        voiceClip: {fileID: 0}
-        guid: 99ab6f21d29555e4fbd1e440f0bdde6a
-        decorators: []
-        position: {x: 2447, y: -71}
-        decisions:
-        - choice: '[Clasp her hand]'
-          choiceNode:
-            rid: 2727136822063005743
-        - choice: '[Plead some more]'
-          choiceNode:
-            rid: 2727136822063005740
-    - rid: 2727136822063005740
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: '[You attempt to plead more with her, but she seems to ignore you.
-          You can''t see her face, but you can feel the disgust in her silent expression.]'
-        voiceClip: {fileID: 0}
-        guid: 744c2eb2a90c25441a86ff80b4c55734
-        decorators: []
-        position: {x: 2471, y: 290}
-        nextNode:
-          rid: 2727136822063005739
-    - rid: 2727136822063005743
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: '[You quickly clasp her hand, and the chieftain gasps. A warm aura
-          envelopes and twists towards her hand. The energy courses through her fingertips
-          for a moment before wading.]'
-        voiceClip: {fileID: 0}
-        guid: b216174e4484c944991297a59c1a51b9
-        decorators: []
-        position: {x: 2406, y: -92}
-        nextNode:
-          rid: 2727136822063005744
-    - rid: 2727136822063005744
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: Impossible...the Fire Spirit is real?
-        voiceClip: {fileID: 0}
-        guid: 5de61559c5e3f9c439b4f927d6b9d82e
-        decorators: []
-        position: {x: 3765, y: -38}
-        nextNode:
-          rid: 2727136822063005745
-    - rid: 2727136822063005745
-      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
-      data:
-        dialouge: With this power...you could take down the Inkandescent, maybe even
-          Tempus Primus! Go speak to our fisherman, Tom, he may have supplies to
-          help you. He'll be directly outside, across the lava lake. And once you've
-          slain the Inkandescent, I shall tell you of the Ice Shrine.
-        voiceClip: {fileID: 0}
-        guid: 173a558ca8b609e45bd3211a6f0b2af5
-        decorators: []
-        position: {x: 4160, y: -38}
-        nextNode:
-          rid: -2
     - rid: 2727136822063005748
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -164,4 +104,45 @@ MonoBehaviour:
         decorators: []
         position: {x: 1988, y: -71}
         nextNode:
-          rid: 2727136822063005739
+          rid: 6498884696608866605
+    - rid: 6498884696608866600
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 487, y: 228}
+        guid: d0cdca783c19e444eb97575bdab18841
+        dialogueEvent: {fileID: -1684043646503106773}
+    - rid: 6498884696608866605
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'If you wish to prove that you somehow have gained such a power,
+          then save us from the beast within this volcano. '
+        voiceClip: {fileID: 0}
+        guid: 959099b093bc7504497221c88599f568
+        decorators: []
+        position: {x: 2462, y: -71}
+        nextNode:
+          rid: 6498884696608866606
+    - rid: 6498884696608866606
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: The Inkandescent has been terrorizing our people here for too long.
+          It would only ever make rare appearances before, but recently it's like
+          it's been posessed!
+        voiceClip: {fileID: 0}
+        guid: bd9e327b8fb546345bfd4b94b9e7d0f4
+        decorators: []
+        position: {x: 3202, y: -71}
+        nextNode:
+          rid: 6498884696608866607
+    - rid: 6498884696608866607
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: I can even offer you some supplies for this task and your foolish
+          "quest." Seek out Fisherman Tom, he's located just across the lava pool
+          from here.
+        voiceClip: {fileID: 0}
+        guid: 9155b87631b2c9f42a17001a770730b2
+        decorators: []
+        position: {x: 4089, y: -71}
+        nextNode:
+          rid: -2

@@ -33,9 +33,11 @@ MonoBehaviour:
   - rid: 6498884683246075906
   - rid: 6498884683246075907
   - rid: 6498884683246075908
+  - rid: 6498884696608866602
   decorators:
   - rid: 6498884683246075909
-  - rid: 6498884683246075910
+  - rid: 6498884696608866603
+  - rid: 6498884696608866604
   events:
   - {fileID: -5188043786842454438}
   references:
@@ -74,20 +76,42 @@ MonoBehaviour:
           it should be a straight shot from here to it's dock. Safe sailing now!
         voiceClip: {fileID: 0}
         guid: 8c806f5d205c4a444bc503548122a876
-        decorators:
-        - rid: 6498884683246075910
+        decorators: []
         position: {x: 1776, y: -41}
         nextNode:
-          rid: -2
+          rid: 6498884696608866602
     - rid: 6498884683246075909
       type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
       data:
         position: {x: 407, y: 161}
         guid: 2aa988203e0b74e44875e148286bf369
         dialogueEvent: {fileID: -5188043786842454438}
-    - rid: 6498884683246075910
-      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+    - rid: 6498884696608866602
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 1956, y: 171}
-        guid: 10c81f6be716982499de53ad58fffd78
-        quest: {fileID: 11400000, guid: 6973da5433d9f434393061f5b878e833, type: 2}
+        dialouge: '[You''ve received 10 Great Hooks!]
+
+          [You''ve received
+          10 Brilliant Berries!]'
+        voiceClip: {fileID: 0}
+        guid: 9e1345a64e3a24b46928cc756c4bd903
+        decorators:
+        - rid: 6498884696608866603
+        - rid: 6498884696608866604
+        position: {x: 2531, y: -51}
+        nextNode:
+          rid: -2
+    - rid: 6498884696608866603
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 2369, y: 156}
+        guid: ede5b48fbe6e10246a7ef24e4810e392
+        item: {fileID: 11400000, guid: 7590918fabcb5f1458e6d46206984530, type: 2}
+        amount: 10
+    - rid: 6498884696608866604
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 2759, y: 156}
+        guid: 8af1baf47c83b2342a709108d25b4d3f
+        item: {fileID: 11400000, guid: 2b29ef3e8ee5731458b4a67df15001b0, type: 2}
+        amount: 10

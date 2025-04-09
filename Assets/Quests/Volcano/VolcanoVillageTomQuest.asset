@@ -23,7 +23,7 @@ MonoBehaviour:
   - name: Return to Fisherman Tom
     description: 
     requirements:
-    - rid: 2727136822063005768
+    - rid: 6498884696608866681
   - name: Slay the Inkandescent
     description: 
     requirements:
@@ -31,7 +31,7 @@ MonoBehaviour:
   - name: Speak to the Volcano Chieftain
     description: 
     requirements:
-    - rid: 2727136841486303295
+    - rid: 6498884696608866683
   references:
     version: 2
     RefIds:
@@ -39,9 +39,9 @@ MonoBehaviour:
       type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: CatchNumOfSpecificFishRequirement
-        IsCompleted: 1
+        IsCompleted: 0
         targetOfFish: 1
-        currentAmount: 2
+        currentAmount: 0
         fishMonsterType: {fileID: 11400000, guid: 13efd9c6dde9cbc4b8cb9a9dd6d87ef9, type: 2}
     - rid: 2727136822063005767
       type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
@@ -49,23 +49,25 @@ MonoBehaviour:
         Name: CatchNumOfSpecificFishRequirement
         IsCompleted: 1
         targetOfFish: 1
-        currentAmount: 2
+        currentAmount: 1
         fishMonsterType: {fileID: 11400000, guid: 1576371e21edf0b41abcd9d364ab581d, type: 2}
-    - rid: 2727136822063005768
-      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: SpeakToNPCQuestRequirement
-        IsCompleted: 0
-        npcName: Fisherman Tom
     - rid: 2727136841486303286
       type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
       data:
         Name: WinNumFight
         IsCompleted: 0
         amount: 1
-    - rid: 2727136841486303295
-      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+    - rid: 6498884696608866681
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
-        Name: SpeakToNPCQuestRequirement
+        Name: DialogueEventQuestRequirement
         IsCompleted: 0
-        npcName: Volcano Chieftain
+        objective: Return to Fisherman Tom
+        dialogueEvent: {fileID: 6255377547164968989, guid: 535c205222efc344aa6e4b995bc949d8, type: 2}
+    - rid: 6498884696608866683
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Speak to the Volcano Chieftain
+        dialogueEvent: {fileID: 2418612260988350617, guid: 1abfaa772ec6cae4fb9a099db1e00262, type: 2}
