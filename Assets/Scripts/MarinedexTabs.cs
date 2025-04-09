@@ -91,7 +91,7 @@ public class MarinedexTabs : TabbedMenu
             defenseMin.text = fishMonsterType.Fortitude.Min.ToString();
             defenseMax.text = fishMonsterType.Fortitude.Max.ToString();
 
-            loreAmount.text = fishMonsterType.Description.ToString();
+            
             healthAmount.text = fishMonsterType.BaseHealth.ToString();
             staminaAmount.text = fishMonsterType.BaseStamina.ToString();
             accuracyMin.text = fishMonsterType.Accuracy.Min.ToString();
