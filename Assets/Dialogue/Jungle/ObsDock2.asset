@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5188043786842454438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: TalkToObsDockEndJungle
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: ObsDock2
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 6498884683246075906
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 6498884683246075906
+  - rid: 6498884683246075907
+  - rid: 6498884683246075908
+  decorators:
+  - rid: 6498884683246075909
+  - rid: 6498884683246075910
+  events:
+  - {fileID: -5188043786842454438}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6498884683246075906
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Hey there, friend! How's the Piranarch pounder doing?...No? I'll
+          workshop it.
+        voiceClip: {fileID: 0}
+        guid: b83f175bbca26ca41869dad4c6e9d098
+        decorators:
+        - rid: 6498884683246075909
+        position: {x: 390, y: -41}
+        nextNode:
+          rid: 6498884683246075907
+    - rid: 6498884683246075907
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: You're heading towards the volcano? Shouldn't be a problem to find!
+          It's that mountainous landmass with smoke coming out of it, in case you've
+          never seen a volcano before.
+        voiceClip: {fileID: 0}
+        guid: 5c1cc0d22582a1348a94efd6148eb4e9
+        decorators: []
+        position: {x: 895, y: -41}
+        nextNode:
+          rid: 6498884683246075908
+    - rid: 6498884683246075908
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: The entrance there is facing in the direction of our island, so
+          it should be a straight shot from here to it's dock. Safe sailing now!
+        voiceClip: {fileID: 0}
+        guid: 8c806f5d205c4a444bc503548122a876
+        decorators:
+        - rid: 6498884683246075910
+        position: {x: 1776, y: -41}
+        nextNode:
+          rid: -2
+    - rid: 6498884683246075909
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 407, y: 161}
+        guid: 2aa988203e0b74e44875e148286bf369
+        dialogueEvent: {fileID: -5188043786842454438}
+    - rid: 6498884683246075910
+      type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1956, y: 171}
+        guid: 10c81f6be716982499de53ad58fffd78
+        quest: {fileID: 11400000, guid: 6973da5433d9f434393061f5b878e833, type: 2}

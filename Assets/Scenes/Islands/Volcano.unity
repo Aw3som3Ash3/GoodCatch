@@ -1260,6 +1260,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FemaleVillager (Volcano Chieftain)
       objectReference: {fileID: 0}
+    - target: {fileID: 8439479878787790835, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1267,6 +1271,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2959565552225748507, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 75162806}
+    - targetCorrespondingSourceObject: {fileID: 1514449191577475931, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
 --- !u!1 &75162805 stripped
 GameObject:
@@ -1291,6 +1298,7 @@ MonoBehaviour:
   - quest: {fileID: 11400000, guid: f4faac87e6c2af74cb65231d07027fa7, type: 2}
     stateName: Speak to the Volcano Chieftain
     dialogue: {fileID: 11400000, guid: 1abfaa772ec6cae4fb9a099db1e00262, type: 2}
+  npcTitleText: {fileID: 405415413}
 --- !u!4 &75162807 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2475200359758716065, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
@@ -3226,7 +3234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.27
+      value: 2.26
       objectReference: {fileID: 0}
     - target: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3234,7 +3242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.1
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3839,6 +3847,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7884327943582170498, guid: 2ab88cc5e064e934396a75c488b65575, type: 3}
   m_PrefabInstance: {fileID: 401001652}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &405415413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3517315859301358501, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+  m_PrefabInstance: {fileID: 75162804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &434939008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5356,6 +5375,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 9019ebe1cc6301a4a9436284e2a1a3c7, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: npcTitleText
+      value: 
+      objectReference: {fileID: 575196174}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5374,13 +5397,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4872113606921817067, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
 --- !u!4 &575196173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
   m_PrefabInstance: {fileID: 575196172}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &575196174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8757029128025382020, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+  m_PrefabInstance: {fileID: 575196172}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &576950529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16648,6 +16685,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7884327943582170498, guid: 2ab88cc5e064e934396a75c488b65575, type: 3}
   m_PrefabInstance: {fileID: 1421677002}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1428900721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3517315859301358501, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+  m_PrefabInstance: {fileID: 1777849850}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1436414512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17454,7 +17502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.77
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17462,7 +17510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.55
+      value: 5.61
       objectReference: {fileID: 0}
     - target: {fileID: 8697713531815885932, guid: 7f522b39f6e1d324b89641a6a66d2493, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64528,6 +64576,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FemaleVillager (Determined Villager)
       objectReference: {fileID: 0}
+    - target: {fileID: 8439479878787790835, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8605097903353761557, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
       propertyPath: m_Materials.Array.data[5]
       value: 
@@ -64559,6 +64611,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2959565552225748507, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1777849853}
+    - targetCorrespondingSourceObject: {fileID: 1514449191577475931, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 82d77c1b6690095468b31aa59c59fc0a, type: 3}
 --- !u!4 &1777849851 stripped
 Transform:
@@ -64585,6 +64640,7 @@ MonoBehaviour:
   npcName: Determined Villager
   baseDialogue: {fileID: 11400000, guid: 653086b965e97d04396add0297d8c7c5, type: 2}
   questBasedDialogues: []
+  npcTitleText: {fileID: 1428900721}
 --- !u!1 &1784920473
 GameObject:
   m_ObjectHideFlags: 0
@@ -64751,6 +64807,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7ce9c0664a6b6864d99c009a977c613f, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: npcTitleText
+      value: 
+      objectReference: {fileID: 1785011171}
+    - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -64769,13 +64829,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4872113606921817067, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
 --- !u!4 &1785011170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
   m_PrefabInstance: {fileID: 1785011169}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1785011171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8757029128025382020, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+  m_PrefabInstance: {fileID: 1785011169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1803730032
 PrefabInstance:
   m_ObjectHideFlags: 0

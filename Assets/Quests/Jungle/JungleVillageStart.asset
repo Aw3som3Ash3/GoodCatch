@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 0
   description: 
   states:
-  - name: Get through to the Jungle Villager at the dock
+  - name: Get through to the Observant Dockhand at the jungle
     description: 
     requirements:
     - rid: 2727136756081360905
@@ -31,7 +31,7 @@ MonoBehaviour:
       data:
         Name: DialogueEventQuestRequirement
         IsCompleted: 1
-        objective: Get through to the Jungle Villager at the dock
+        objective: Get through to the Observant Dockhand at the jungle
         dialogueEvent: {fileID: 5792923631883937358, guid: 71f89e8556ca6234cb392c5f28a888c1, type: 2}
     - rid: 6498884538079379573
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}

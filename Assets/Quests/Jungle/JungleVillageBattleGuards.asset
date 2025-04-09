@@ -53,6 +53,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 6498884609483210787
+  - name: Talk to the Observant Dockhand
+    description: 
+    requirements:
+    - rid: 6498884683246075905
   references:
     version: 2
     RefIds:
@@ -119,3 +123,10 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Talk to the Jungle Chieftain
         dialogueEvent: {fileID: 6682801961029650548, guid: 69694fb691fcf9d4aa859d4cfa5e74c5, type: 2}
+    - rid: 6498884683246075905
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Talk to the Observant Dockhand
+        dialogueEvent: {fileID: -5188043786842454438, guid: 15e5db72915b9ed49af8a95f3ab52f2b, type: 2}
