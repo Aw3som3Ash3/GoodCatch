@@ -12,7 +12,7 @@ public class MarinedexTabs : TabbedMenu
     const string abilityComponentName= "ModMAbility";
     Label fishTitle, location, timeOfDay, baits, stamina, hp, agilityMin, attackMin, magicAttackMin, defenseMin, magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax, loreAmount, healthAmount, staminaAmount, accuracyMin, accuracyMax, type1, type2;
     VisualElement abilities, stats;
-    AbilityButton[] abilityButtons= new AbilityButton[6];
+    AbilityButton[] abilityButtons=new AbilityButton[6];
     public new class UxmlFactory : UxmlFactory<MarinedexTabs, UxmlTraits> { }
     public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
     {
@@ -91,6 +91,7 @@ public class MarinedexTabs : TabbedMenu
             defenseMin.text = fishMonsterType.Fortitude.Min.ToString();
             defenseMax.text = fishMonsterType.Fortitude.Max.ToString();
 
+            
             healthAmount.text = fishMonsterType.BaseHealth.ToString();
             staminaAmount.text = fishMonsterType.BaseStamina.ToString();
             accuracyMin.text = fishMonsterType.Accuracy.Min.ToString();
@@ -123,9 +124,11 @@ public class MarinedexTabs : TabbedMenu
     }
     void SetAbilityPage(FishMonsterType fishMonsterType)
     {
-        for (int i = 0; i < abilityButtons.Length; i++)
+        for (int i = 0; i < abilityButtons.Length/2; i++)
         {
-            var ability = fishMonsterType.BaseAbilities[i].GetAbility();
+            var ability = fishMonsterType.BaseAbilities[i*2].potentialAbilities[i*2];
+            abilityButtons[i].SetAbility(ability,0,0);
+            ability = fishMonsterType.BaseAbilities[i * 2].potentialAbilities[i * 2+1];
             abilityButtons[i].SetAbility(ability,0,0);
         }
     }
