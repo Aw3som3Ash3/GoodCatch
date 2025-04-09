@@ -31,7 +31,7 @@ MonoBehaviour:
     effectChance: 0.5
   - statusEffect: {fileID: 11400000, guid: 69de1df71430a4741a5a34aa2534552e, type: 2}
     effectChance: 0.5
-  - statusEffect: {fileID: 11400000, guid: a0dc885ca6c89a14bb6af05d22632544, type: 2}
+  - statusEffect: {fileID: 11400000, guid: 1bdaeb9c2032c9945b40d4b17cbb3e78, type: 2}
     effectChance: 1
   forcedMovement: 0
   icon: {fileID: 21300000, guid: 1ad57c4fba9f49a4a96916ca89bbde69, type: 3}

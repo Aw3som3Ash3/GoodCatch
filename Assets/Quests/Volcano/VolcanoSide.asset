@@ -19,10 +19,6 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136841486303317
-  - name: Defeat the Determined Villager
-    description: 
-    requirements:
-    - rid: 2727136841486303320
   references:
     version: 2
     RefIds:
@@ -32,11 +28,4 @@ MonoBehaviour:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
         objective: Speak to the Determined Villager
-        dialogueEvent: {fileID: -3135735193973782846, guid: 653086b965e97d04396add0297d8c7c5, type: 2}
-    - rid: 2727136841486303320
-      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: DialogueEventQuestRequirement
-        IsCompleted: 0
-        objective: 
-        dialogueEvent: {fileID: 0}
+        dialogueEvent: {fileID: 6556301516806690936, guid: ce073507d6cd72e4f8613ace98b61763, type: 2}

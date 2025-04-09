@@ -21,6 +21,7 @@ MonoBehaviour:
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
+  - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   agility:
     min: 45
     max: 45
@@ -56,9 +57,12 @@ MonoBehaviour:
   baseAbilities:
   - potentialAbilities:
     - {fileID: 11400000, guid: ab4a81457af34374fb40887e9f8d113d, type: 2}
+    - {fileID: 11400000, guid: ab4a81457af34374fb40887e9f8d113d, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 2313a43cfdc78404fafd1f423f78c5fa, type: 2}
+    - {fileID: 11400000, guid: 2313a43cfdc78404fafd1f423f78c5fa, type: 2}
   - potentialAbilities:
+    - {fileID: 11400000, guid: 1981dc13cdc0efd4bb9f99ed2120ee09, type: 2}
     - {fileID: 11400000, guid: 1981dc13cdc0efd4bb9f99ed2120ee09, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}

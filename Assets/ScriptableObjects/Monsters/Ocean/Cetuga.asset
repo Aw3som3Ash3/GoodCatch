@@ -16,12 +16,13 @@ MonoBehaviour:
     is reading people's minds; gossips and laughs to its pod about your personal
     drama.
   model: {fileID: 1590864492785952054, guid: 56c1bf4b8a58b6e4d9ce8ff18caac8b3, type: 3}
-  fishId: 8
+  fishId: 7
   icon: {fileID: 21300000, guid: e99c3f22db0a15c41901ccf963e294e4, type: 3}
   miniSprite: {fileID: -619332588, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 2
   preferredBait: []
   elements:
+  - {fileID: 11400000, guid: 861589faee089304c8b447c528048ad1, type: 2}
   - {fileID: 11400000, guid: 861589faee089304c8b447c528048ad1, type: 2}
   agility:
     min: 10

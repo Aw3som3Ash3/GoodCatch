@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: ObsDock1
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136756081360902
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136756081360902
+  - rid: 2727136756081360903
+  - rid: 2727136773057019904
+  decorators:
+  - rid: 2727136756081360910
+  - rid: 2727136773057019905
+  events:
+  - {fileID: 5792923631883937358}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136756081360902
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: I can't believe it! You've slain the Piranarch!
+        voiceClip: {fileID: 0}
+        guid: b7ef487089b17b94496e28789c38588b
+        decorators: []
+        position: {x: 423, y: 18}
+        nextNode:
+          rid: 2727136756081360903
+    - rid: 2727136756081360903
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: 'Our Chieftain would be pleased to hear about this! Though,
+
+          you
+          may need to get through our guards first. They''re quite
+
+          defensive
+          of our place here, don''t blame them.'
+        voiceClip: {fileID: 0}
+        guid: 70a13bad4a224944cacc65da0bd63503
+        decorators:
+        - rid: 2727136756081360910
+        position: {x: 1036, y: -8}
+        nextNode:
+          rid: 2727136773057019904
+    - rid: 2727136756081360910
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1036, y: 222}
+        guid: a499b3b07a3f9204dabd454825285966
+        dialogueEvent: {fileID: 5792923631883937358}
+    - rid: 2727136773057019904
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You recieved 10 Balanced Berries!]'
+        voiceClip: {fileID: 0}
+        guid: b66b6df2bd760b541adf563da38ef948
+        decorators:
+        - rid: 2727136773057019905
+        position: {x: 1637, y: 8}
+        nextNode:
+          rid: -2
+    - rid: 2727136773057019905
+      type: {class: DialogueGiveItemDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1637, y: 198}
+        guid: 0bea268ce940759418649f8896124b23
+        item: {fileID: 11400000, guid: c1864cc885f58f844bf41a4fd611149c, type: 2}
+        amount: 10
+--- !u!114 &5792923631883937358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: StartJungle
+  m_EditorClassIdentifier: 

@@ -15,12 +15,13 @@ MonoBehaviour:
   description: A thoughtless creature that roams the ocean floor with no goal. Stops
     whatever it's doing to look at shiny objects.
   model: {fileID: 5694862167236661731, guid: 4539f28628ca93d44856dba2ea651fd5, type: 3}
-  fishId: 9
+  fishId: 8
   icon: {fileID: 21300000, guid: 8aace6d844f85dd4386bb882ceb79d16, type: 3}
   miniSprite: {fileID: -2146833316, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 2
   preferredBait: []
   elements:
+  - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
   - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
   agility:
     min: 5
