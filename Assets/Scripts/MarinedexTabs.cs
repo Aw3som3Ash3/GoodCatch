@@ -126,10 +126,10 @@ public class MarinedexTabs : TabbedMenu
     {
         for (int i = 0; i < abilityButtons.Length/2; i++)
         {
-            var ability = fishMonsterType.BaseAbilities[i*2].potentialAbilities[i*2];
-            abilityButtons[i].SetAbility(ability,0,0);
-            ability = fishMonsterType.BaseAbilities[i * 2].potentialAbilities[i * 2+1];
-            abilityButtons[i].SetAbility(ability,0,0);
+            var ability = fishMonsterType.BaseAbilities[i].potentialAbilities[i*2];
+            abilityButtons[i*2].SetAbility(ability,0,0);
+            ability = fishMonsterType.BaseAbilities[i].potentialAbilities[i * 2+1];
+            abilityButtons[i*2+1].SetAbility(ability,0,0);
         }
     }
     public void SetPage(FishMonsterType fishMonsterType)
