@@ -77,7 +77,7 @@ public class NPC : MonoBehaviour, IInteractable
     {
         isTalking = false;
         anim = this.GetComponent<Animator>();
-        npcTitleText.text = name;
+        npcTitleText.text = npcName;
        // var reader = new DialogueReader(dialogue);
         //reader.OnChoiceRequired += NPC_OnChoiceRequired;
         //reader.Next();
