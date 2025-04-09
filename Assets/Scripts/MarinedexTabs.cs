@@ -124,9 +124,11 @@ public class MarinedexTabs : TabbedMenu
     }
     void SetAbilityPage(FishMonsterType fishMonsterType)
     {
-        for (int i = 0; i < abilityButtons.Length; i++)
+        for (int i = 0; i < abilityButtons.Length/2; i++)
         {
-            var ability = fishMonsterType.BaseAbilities[i].GetAbility();
+            var ability = fishMonsterType.BaseAbilities[i*2].potentialAbilities[i*2];
+            abilityButtons[i].SetAbility(ability,0,0);
+            ability = fishMonsterType.BaseAbilities[i * 2].potentialAbilities[i * 2+1];
             abilityButtons[i].SetAbility(ability,0,0);
         }
     }

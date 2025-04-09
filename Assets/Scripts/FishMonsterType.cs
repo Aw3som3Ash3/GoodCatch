@@ -101,7 +101,7 @@ public class FishMonsterType : ScriptableObject
     public struct AbilityOptions
     {
         [SerializeField]
-        Ability[] potentialAbilities;
+        public Ability[] potentialAbilities;
 
         public Ability GetAbility()
         {
