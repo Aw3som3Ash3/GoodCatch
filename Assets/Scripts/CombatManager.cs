@@ -85,6 +85,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     [SerializeField]
     [HideInInspector]
     UnityEngine.Random.State randomState;
+
+    bool hasFightEnded;
     private void Awake()
     {
         depths[0] = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -432,6 +434,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void EndFight(Team winningTeam)
     {
+        if (hasFightEnded)
+        {
+            return;
+        }
+        hasFightEnded = true;
         combatUI.EnableUI(false);
         playerFishes.ForEach((f) => {if(getFishesTurn.ContainsKey(f)) f.UpdateHealth(getFishesTurn[f].Health); });
         
@@ -441,6 +448,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     IEnumerator CombatVictoryScreen(Team winningTeam)
     {
+        
+       
         var victoryScreen = new NewCombatVictory(playerFishes,fishCaught);
         ui.rootVisualElement.Add(victoryScreen);
         combatUI.SetEnabled(false);
