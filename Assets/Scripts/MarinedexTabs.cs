@@ -12,7 +12,7 @@ public class MarinedexTabs : TabbedMenu
     const string abilityComponentName= "ModMAbility";
     Label fishTitle, location, timeOfDay, baits, stamina, hp, agilityMin, attackMin, magicAttackMin, defenseMin, magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax, loreAmount, healthAmount, staminaAmount, accuracyMin, accuracyMax, type1, type2;
     VisualElement abilities, stats;
-    AbilityButton[] abilityButtons=AbilityButton[6];
+    AbilityButton[] abilityButtons=new AbilityButton[6];
     public new class UxmlFactory : UxmlFactory<MarinedexTabs, UxmlTraits> { }
     public new class UxmlTraits : UnityEngine.UIElements.UxmlTraits
     {
