@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Assets/Torment.uss?fileID=7433441132597879392&amp;guid=52eb19e9187b3d64ba580c99a66d7a75&amp;type=3#Torment" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgb(0, 0, 0);">
         <ui:ScrollView style="flex-grow: 1;">
-            <ui:VisualElement name="Container" style="flex-grow: 1; height: 9165px; top: 1500px;">
+            <ui:VisualElement name="Container" style="flex-grow: 1; height: 11000px; top: 1500px;">
                 <ui:VisualElement name="Title" class="Space" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="Credits" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
                 </ui:VisualElement>
@@ -86,7 +86,7 @@
                     <ui:Label tabindex="-1" text="VFX" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
                     <ui:Label tabindex="-1" text="Christopher Turner&#10;Ashton Adkins" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
-                <ui:VisualElement name="FallenSouls" class="Space" style="flex-grow: 1;">
+                <ui:VisualElement name="FallenSouls" class="Space" style="flex-grow: 1; padding-bottom: 1076px;">
                     <ui:Label tabindex="-1" text="SpecialThanks" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
                     <ui:Label tabindex="-1" text="Gideon Shbeeb" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
