@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class CreditsScreen : VisualElement
 {
+    ScrollView credits;
+
     public new class UxmlFactory : UxmlFactory<CreditsScreen, CreditsScreen.UxmlTraits>
     {
 
