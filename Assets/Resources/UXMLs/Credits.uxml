@@ -88,7 +88,7 @@
                 </ui:VisualElement>
                 <ui:VisualElement name="FallenSouls" class="Space" style="flex-grow: 1;">
                     <ui:Label tabindex="-1" text="SpecialThanks" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Bigger" />
-                    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                    <ui:Label tabindex="-1" text="Gideon Shbeeb" parse-escape-sequences="true" display-tooltip-when-elided="true" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:ScrollView>
