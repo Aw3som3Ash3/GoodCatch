@@ -38,7 +38,10 @@ public class NPCBattler : MonoBehaviour
             startBattleEvent.Event += StartFight;
         }
     }
-
+    private void OnDestroy()
+    {
+        startBattleEvent.Event -= StartFight;
+    }
     // Update is called once per frame
     void Update()
     {
