@@ -143,10 +143,10 @@ public class PauseMenu : VisualElement
     }
     void OnPause()
     {
-        if (!GameManager.Instance.canPause)
-        {
-            return;
-        }
+        //if (!GameManager.Instance.canPause)
+        //{
+        //    return;
+        //}
         
         //Debug.Log(party.focusController.focusedElement);
         Debug.Log("pausing");

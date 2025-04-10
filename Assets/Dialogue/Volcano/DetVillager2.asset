@@ -25,7 +25,9 @@ MonoBehaviour:
   decorators:
   - rid: 2727136841486303324
   - rid: 2727136841486303325
-  events: []
+  - rid: 6498884696608866610
+  events:
+  - {fileID: 6556301516806690936}
   references:
     version: 2
     RefIds:
@@ -74,6 +76,7 @@ MonoBehaviour:
         decorators:
         - rid: 2727136841486303324
         - rid: 2727136841486303325
+        - rid: 6498884696608866610
         position: {x: 1856, y: -33}
         nextNode:
           rid: -2
@@ -91,3 +94,21 @@ MonoBehaviour:
         guid: 49ad2fe6df6df4b4180273d9e75213c4
         item: {fileID: 11400000, guid: 57f6fe3503415d3418f0c41501234bc4, type: 2}
         amount: 5
+    - rid: 6498884696608866610
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1889, y: 353}
+        guid: 9b032300046c4ea49957d3d5fc42cc42
+        dialogueEvent: {fileID: 6556301516806690936}
+--- !u!114 &6556301516806690936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: SpeakToDetVill
+  m_EditorClassIdentifier: 

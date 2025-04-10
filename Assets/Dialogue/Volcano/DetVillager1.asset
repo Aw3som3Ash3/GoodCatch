@@ -37,7 +37,6 @@ MonoBehaviour:
   - rid: 2727136841486303313
   - rid: 2727136841486303314
   decorators:
-  - rid: 2727136841486303315
   - rid: 2727136841486303316
   events:
   - {fileID: -3135735193973782846}
@@ -88,8 +87,7 @@ MonoBehaviour:
           RIGHT?!?!
         voiceClip: {fileID: 0}
         guid: b3a29137492c0a34599bd0a8f9c74eb5
-        decorators:
-        - rid: 2727136841486303316
+        decorators: []
         position: {x: 2502, y: -33}
         decisions:
         - choice: RIGHT!!!
@@ -116,19 +114,13 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 7e424ad6cb24d4642a29c78c9188539c
         decorators:
-        - rid: 2727136841486303315
+        - rid: 2727136841486303316
         position: {x: 3000, y: -143}
         nextNode:
           rid: -2
-    - rid: 2727136841486303315
-      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
-      data:
-        position: {x: 3000, y: 38}
-        guid: b4ddbf8249a7a2d40a1e5694f8b8f912
-        dialogueEvent: {fileID: -3135735193973782846}
     - rid: 2727136841486303316
       type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 2552, y: 256}
+        position: {x: 3000, y: 44}
         guid: d89f22e74d4a4824a8aa039d90a166e7
-        quest: {fileID: 0}
+        quest: {fileID: 11400000, guid: 57eb44828ac73cc4ca484913c088c456, type: 2}

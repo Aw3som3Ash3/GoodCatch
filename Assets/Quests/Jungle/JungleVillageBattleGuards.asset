@@ -53,6 +53,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 6498884609483210787
+  - name: Talk to the Observant Dockhand
+    description: 
+    requirements:
+    - rid: 6498884683246075905
   references:
     version: 2
     RefIds:
@@ -60,7 +64,7 @@ MonoBehaviour:
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         objective: Fight the First Guard
         dialogueEvent: {fileID: -6245746496523209256, guid: 07f80dee4e68d0c4099315eb6c1f067f, type: 2}
     - rid: 2727136845632372774
@@ -102,7 +106,7 @@ MonoBehaviour:
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         objective: Fight the Second Guard
         dialogueEvent: {fileID: -9217259632993510754, guid: 57357419aec3d784bacf113e5a214a53, type: 2}
     - rid: 6498884609483210786
@@ -111,7 +115,7 @@ MonoBehaviour:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
         objective: Fight the Third Guard
-        dialogueEvent: {fileID: 2684726828978241724, guid: eb20a7930481d92469bc941e148e9c8a, type: 2}
+        dialogueEvent: {fileID: 2684726828978241724, guid: 234a75ac28e254446b44cb1f0a94fece, type: 2}
     - rid: 6498884609483210787
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -119,3 +123,10 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Talk to the Jungle Chieftain
         dialogueEvent: {fileID: 6682801961029650548, guid: 69694fb691fcf9d4aa859d4cfa5e74c5, type: 2}
+    - rid: 6498884683246075905
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Talk to the Observant Dockhand
+        dialogueEvent: {fileID: -5188043786842454438, guid: 15e5db72915b9ed49af8a95f3ab52f2b, type: 2}

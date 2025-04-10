@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using static NPC;
@@ -29,6 +30,9 @@ public class NPC : MonoBehaviour, IInteractable
 
     [SerializeField]
     List<QuestBasedDialogue> questBasedDialogues;
+
+    [SerializeField]
+    TextMeshPro npcTitleText;
 
     //[SerializeField]
     //List<UnityEvent> events;
@@ -73,6 +77,7 @@ public class NPC : MonoBehaviour, IInteractable
     {
         isTalking = false;
         anim = this.GetComponent<Animator>();
+        npcTitleText.text = npcName;
        // var reader = new DialogueReader(dialogue);
         //reader.OnChoiceRequired += NPC_OnChoiceRequired;
         //reader.Next();
@@ -89,6 +94,6 @@ public class NPC : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        
+        npcTitleText.transform.rotation = Camera.main.transform.rotation;
     }
 }
