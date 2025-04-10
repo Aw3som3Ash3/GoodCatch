@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     VisualElement mainMenu, mainScreen, loadScreen;
     OptionsPageMenu optionsScreen;
     CreditsScreen credits;
-    [SerializeField]
+    [SerializeField] CreditsController creditsController;
     public AudioMixer mixer;
     [SerializeField]
     GameObject[] startingObjects;
@@ -121,6 +121,7 @@ public class MainMenu : MonoBehaviour
         {
             credits.visible = true;
             mainScreen.visible = false;
+            creditsController.StartScroll();
         };
     }
     void NewGame()

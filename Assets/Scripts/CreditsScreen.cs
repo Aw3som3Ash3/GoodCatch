@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Recorder.OutputPath;
 
 public class CreditsScreen : VisualElement
 {
+    ScrollView credits;
+
     public new class UxmlFactory : UxmlFactory<CreditsScreen, CreditsScreen.UxmlTraits>
     {
 
