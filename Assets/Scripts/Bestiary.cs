@@ -159,6 +159,21 @@ public class Bestiary : PausePage
     }
     public void SetPage(FishMonsterType fishMonsterType)
     {
+        fishTitle.text = fishMonsterType.name;
+        loreAmount.text = fishMonsterType.Description;
+        type1.text = fishMonsterType.Elements[0].name;
+        if (fishMonsterType.Elements.Length >= 2)
+        {
+            type2.text = fishMonsterType.Elements[1].name;
+
+        }
+        else 
+        {
+            type2.text = "";
+        }
+       
+
+
         marinedexTabs.SetPage(fishMonsterType);
         
        
