@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3286190678484192317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: IceShrineLocated
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10,7 +22,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
-  m_Name: IceShrine
+  m_Name: IceShrineQuest
   m_EditorClassIdentifier: 
   rootNode:
     nextNode:
@@ -22,8 +34,10 @@ MonoBehaviour:
   - rid: 2727136841486303301
   - rid: 2727136841486303302
   - rid: 2727136841486303303
-  decorators: []
-  events: []
+  decorators:
+  - rid: 6498884742222971152
+  events:
+  - {fileID: -3286190678484192317}
   references:
     version: 2
     RefIds:
@@ -36,7 +50,8 @@ MonoBehaviour:
           written in perfect English.]'
         voiceClip: {fileID: 0}
         guid: 39298d1d863e20e4898b4b29adadde78
-        decorators: []
+        decorators:
+        - rid: 6498884742222971152
         position: {x: 411, y: -49}
         nextNode:
           rid: 2727136841486303301
@@ -74,3 +89,9 @@ MonoBehaviour:
         position: {x: 2605, y: -27}
         nextNode:
           rid: -2
+    - rid: 6498884742222971152
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 514, y: 179}
+        guid: 9edf07c57627cf441969ce37c42c3213
+        dialogueEvent: {fileID: -3286190678484192317}

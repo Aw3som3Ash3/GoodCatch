@@ -18,23 +18,25 @@ MonoBehaviour:
   - name: Locate the Ice Shrine
     description: 
     requirements:
-    - rid: 2727136841486303299
+    - rid: 6498884742222971151
   - name: Slay Tempus Primus, The Lord of Storms
     description: 
     requirements:
-    - rid: 2727136841486303304
+    - rid: 6498884742222971154
   references:
     version: 2
     RefIds:
-    - rid: 2727136841486303299
-      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
+    - rid: 6498884742222971151
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
-        Name: SpeakToNPCQuestRequirement
+        Name: DialogueEventQuestRequirement
         IsCompleted: 0
-        npcName: Ice Shrine
-    - rid: 2727136841486303304
-      type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
+        objective: Locate the Ice Shrine
+        dialogueEvent: {fileID: -3286190678484192317, guid: c3edef9e2b22335479077eea60d92d40, type: 2}
+    - rid: 6498884742222971154
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
-        Name: WinNumFight
+        Name: DialogueEventQuestRequirement
         IsCompleted: 0
-        amount: 1
+        objective: Slay Tempus Primus, and free the Wind Spirit
+        dialogueEvent: {fileID: -466276538399708723, guid: a80f5f6265af99d459911c56fc6d233e, type: 2}
