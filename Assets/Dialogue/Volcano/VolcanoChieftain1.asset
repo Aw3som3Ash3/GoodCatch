@@ -38,6 +38,7 @@ MonoBehaviour:
   - rid: 6498884696608866605
   - rid: 6498884696608866606
   - rid: 6498884696608866607
+  - rid: 6498884742222971084
   decorators:
   - rid: 6498884696608866600
   events:
@@ -133,7 +134,7 @@ MonoBehaviour:
         decorators: []
         position: {x: 3202, y: -71}
         nextNode:
-          rid: 6498884696608866607
+          rid: 6498884742222971084
     - rid: 6498884696608866607
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -143,6 +144,17 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 9155b87631b2c9f42a17001a770730b2
         decorators: []
-        position: {x: 4089, y: -71}
+        position: {x: 4600, y: -58}
         nextNode:
           rid: -2
+    - rid: 6498884742222971084
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: It's even been guarding OUR supply of coconuts from us. Bring me
+          back one as proof of it's defeat.
+        voiceClip: {fileID: 0}
+        guid: 55da585c7e5e10347bb29f48e6bc4776
+        decorators: []
+        position: {x: 4033, y: -58}
+        nextNode:
+          rid: 6498884696608866607
