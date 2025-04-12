@@ -48,12 +48,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -152823510490420671, guid: 5ea26f7600cc12044a2c8e7e0592ffeb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5ea26f7600cc12044a2c8e7e0592ffeb, type: 3}
       propertyPath: m_Name
       value: smallJungleTree_low
       objectReference: {fileID: 0}
+    - target: {fileID: 4480205251750324954, guid: 5ea26f7600cc12044a2c8e7e0592ffeb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4480205251750324954, guid: 5ea26f7600cc12044a2c8e7e0592ffeb, type: 3}
+    - {fileID: -152823510490420671, guid: 5ea26f7600cc12044a2c8e7e0592ffeb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ea26f7600cc12044a2c8e7e0592ffeb, type: 3}
@@ -92,7 +102,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -2272786833634963155, guid: 5ea26f7600cc12044a2c8e7e0592ffeb, type: 3}
+  m_Mesh: {fileID: 6263942923259569728, guid: b7a397b6ac8538f4a954c201e9133bdc, type: 3}
 --- !u!23 &5731729790335919258
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113,7 +123,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 65b83e744871c3d4b9eabd76938242e5, type: 2}
+  - {fileID: 2100000, guid: 08b676412e60a4b4ea3a2921e6925a8d, type: 2}
+  - {fileID: 2100000, guid: 2fc497c35865fd7428cfa4604b3ca0fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,4 +153,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8700521575736080527}
-  m_Mesh: {fileID: -2272786833634963155, guid: 5ea26f7600cc12044a2c8e7e0592ffeb, type: 3}
+  m_Mesh: {fileID: 6263942923259569728, guid: b7a397b6ac8538f4a954c201e9133bdc, type: 3}
