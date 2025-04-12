@@ -14,7 +14,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="VisualElement" style="flex-grow: 0; height: 580px; width: 712px; position: absolute; top: 430px; left: 1207px;">
-            <ui:VisualElement name="PopulateWithChatLog" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.58); border-top-left-radius: 45px; border-top-right-radius: 45px; border-bottom-right-radius: 45px; border-bottom-left-radius: 45px;" />
+            <ui:VisualElement name="PopulateWithChatLog" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.58); border-top-left-radius: 45px; border-top-right-radius: 45px; border-bottom-right-radius: 45px; border-bottom-left-radius: 45px; opacity: 0;" />
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="LevelUpPopUp" style="flex-grow: 1; position: absolute; top: 106px; left: 735px; background-color: rgb(255, 255, 255); border-top-left-radius: 51px; border-top-right-radius: 51px; border-bottom-right-radius: 51px; border-bottom-left-radius: 51px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px;">

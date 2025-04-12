@@ -36,8 +36,8 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="StatWindow" style="flex-grow: 1; flex-direction: column; width: auto;">
-                    <ui:VisualElement name="AddElement" style="flex-grow: 0; flex-shrink: 0; height: auto; flex-direction: row; justify-content: space-around; color: rgb(255, 255, 255); -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0);">
-                        <ui:Label tabindex="-1" text="Delete" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 29px; -unity-text-outline-color: rgb(21, 26, 70);" />
+                    <ui:VisualElement name="AddElement" style="flex-grow: 0; flex-shrink: 0; height: auto; flex-direction: row; justify-content: space-around; color: rgb(255, 255, 255); -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); font-size: 29px;">
+                        <ui:Label tabindex="-1" text="Delete" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-outline-color: rgb(21, 26, 70);" />
                     </ui:VisualElement>
                     <ui:VisualElement style="flex-grow: 0; flex-direction: row; flex-shrink: 0; width: 472px; color: rgb(255, 255, 255); -unity-text-outline-color: rgb(21, 26, 70); -unity-text-outline-width: 1px;">
                         <ui:VisualElement name="LeftStats" style="flex-grow: 1; height: auto; align-items: center;">
