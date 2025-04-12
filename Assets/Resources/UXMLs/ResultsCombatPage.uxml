@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/UI%20Assets/ResultCombat.uss?fileID=7433441132597879392&amp;guid=6ce86f66d9a64904ea0e401813950077&amp;type=3#ResultCombat" />
     <ui:VisualElement name="Background" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="40PercentOfThePage" style="flex-grow: 0; width: 40%; flex-shrink: 0; height: 95%; justify-content: flex-start; background-color: rgba(21, 26, 70, 0.53); border-bottom-right-radius: 80px;">
-            <ui:Label tabindex="-1" text="VICTORY!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 60px; -unity-text-align: upper-center; color: rgb(211, 226, 245); -unity-text-outline-width: 3px; -unity-font-style: bold; -unity-text-outline-color: rgb(21, 26, 70); text-shadow: 0 6px 0 rgb(21, 26, 70);" />
+            <ui:Label tabindex="-1" text="FINISHED!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" style="font-size: 60px; -unity-text-align: upper-center; color: rgb(211, 226, 245); -unity-text-outline-width: 3px; -unity-font-style: bold; -unity-text-outline-color: rgb(21, 26, 70); text-shadow: 0 6px 0 rgb(21, 26, 70);" />
             <ui:VisualElement name="Populate" style="flex-grow: 1; justify-content: flex-start; align-self: center;">
                 <FishProfile name="FishProfile1" />
                 <FishProfile name="FishProfile2" />
