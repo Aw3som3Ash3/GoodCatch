@@ -117,9 +117,9 @@ public class AquariumScreen : PausePage
 
     void SetUp()
     {
-        foreach(var fish in GameManager.Instance.StoredFishventory.Fishies)
+        for(int i=0;i< GameManager.Instance.StoredFishventory.Fishies.Count;i++)
         {
-            var slot = new AquariumSlot(fish);
+            var slot = new AquariumSlot(GameManager.Instance.StoredFishventory.Fishies[i], i);
             fishventoryTab.tabContent[0].Add(slot);
             slot.Selected += OnSelect;
         }
@@ -161,6 +161,7 @@ public class AquariumScreen : PausePage
 public class AquariumSlot : VisualElement
 {
 
+    int slotNum;
     public FishMonster fishMonster { get; private set; }
     VisualElement slotBox;
     VisualElement sprite;
@@ -188,6 +189,7 @@ public class AquariumSlot : VisualElement
     public FishMonster Swap(FishMonster fishMonster)
     {
         var temp = this.fishMonster;
+        GameManager.Instance.StoredFishventory.SwapFish(slotNum, fishMonster);
         this.fishMonster = fishMonster;
         var value= sprite.style.backgroundImage.value;
         value.sprite= fishMonster.MiniSprite;
@@ -199,13 +201,14 @@ public class AquariumSlot : VisualElement
         Init();
         sprite.visible = false;
     }
-    public AquariumSlot(FishMonster fishMonster)
+    public AquariumSlot(FishMonster fishMonster, int slotNum)
     {
         Init();
         this.fishMonster = fishMonster;
         var value = sprite.style.backgroundImage.value;
-        value.sprite= fishMonster.MiniSprite;
+        value.sprite = fishMonster.MiniSprite;
         sprite.style.backgroundImage = value;
+        this.slotNum = slotNum;
     }
     void Init()
     {
