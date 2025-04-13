@@ -229,6 +229,7 @@ public class CombatUI : VisualElement
         {
             Label label = new();
             label.text = fish.Type.Elements[i].name;
+            label.style.fontSize = 29;
             addElem.Add(label);
         }
            

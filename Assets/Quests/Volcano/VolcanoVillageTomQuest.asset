@@ -24,10 +24,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 6498884696608866681
-  - name: Slay the Inkandescent
+  - name: Slay the Inkandescent and save the coconuts
     description: 
     requirements:
-    - rid: 2727136841486303286
+    - rid: 6498884742222971085
   - name: Speak to the Volcano Chieftain
     description: 
     requirements:
@@ -39,9 +39,9 @@ MonoBehaviour:
       type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: CatchNumOfSpecificFishRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         targetOfFish: 1
-        currentAmount: 0
+        currentAmount: 1
         fishMonsterType: {fileID: 11400000, guid: 13efd9c6dde9cbc4b8cb9a9dd6d87ef9, type: 2}
     - rid: 2727136822063005767
       type: {class: CatchNumOfSpecificFishRequirement, ns: , asm: Assembly-CSharp}
@@ -51,17 +51,11 @@ MonoBehaviour:
         targetOfFish: 1
         currentAmount: 1
         fishMonsterType: {fileID: 11400000, guid: 1576371e21edf0b41abcd9d364ab581d, type: 2}
-    - rid: 2727136841486303286
-      type: {class: WinNumFight, ns: , asm: Assembly-CSharp}
-      data:
-        Name: WinNumFight
-        IsCompleted: 0
-        amount: 1
     - rid: 6498884696608866681
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
+        IsCompleted: 1
         objective: Return to Fisherman Tom
         dialogueEvent: {fileID: 6255377547164968989, guid: 535c205222efc344aa6e4b995bc949d8, type: 2}
     - rid: 6498884696608866683
@@ -71,3 +65,10 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Speak to the Volcano Chieftain
         dialogueEvent: {fileID: 2418612260988350617, guid: 1abfaa772ec6cae4fb9a099db1e00262, type: 2}
+    - rid: 6498884742222971085
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Slay the Inkandescent and save the coconuts
+        dialogueEvent: {fileID: -4200885021004857360, guid: 3121d5ff386d0e54badee06900408b59, type: 2}

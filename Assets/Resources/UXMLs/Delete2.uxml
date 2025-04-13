@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Assets/Marindex.uss?fileID=7433441132597879392&amp;guid=bec157839a408f245a23073832d3f48f&amp;type=3#Marindex" />
+    <ui:VisualElement name="Workspace" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="BookBackground" style="flex-grow: 1; flex-direction: row; margin-left: 60px; margin-right: 60px; margin-top: 120px; margin-bottom: 120px; background-color: rgba(255, 255, 255, 0); background-image: none;">
+            <ui:VisualElement name="LeftSpace" style="flex-grow: 1; min-width: 50%; max-width: 50%; justify-content: space-around; background-image: url(&quot;project://database/Assets/Art/2D/UI/menu_marindex_paper.png?fileID=2800000&amp;guid=290fec8eed1594b4c969a0796b538fe8&amp;type=3#menu_marindex_paper&quot;);">
+                <ui:VisualElement name="PortraitController" style="flex-grow: 1; justify-content: center; margin-top: 22px;">
+                    <ui:VisualElement name="PortraitAmount" style="flex-grow: 0; flex-shrink: 0; align-items: stretch; align-self: center; width: 600px; height: 600px; margin-top: 0; -unity-text-outline-color: rgba(0, 0, 0, 0); background-color: rgba(0, 0, 0, 0.43);" />
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MonsterNameAmount" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; font-size: 100px; -unity-text-align: upper-center; margin-bottom: 33px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="RightSpace" style="flex-grow: 1; max-width: 50%; min-width: 50%; background-image: url(&quot;project://database/Assets/Art/2D/UI/menu_marindex_paper.png?fileID=2800000&amp;guid=290fec8eed1594b4c969a0796b538fe8&amp;type=3#menu_marindex_paper&quot;);">
+                <MarinedexTabs stat-uxml="ModStatCompontent" style="height: 816px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

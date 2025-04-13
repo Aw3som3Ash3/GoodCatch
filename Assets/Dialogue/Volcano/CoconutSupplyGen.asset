@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: CoconutSupplyGen
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 6498884742222971089
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 6498884742222971089
+  - rid: 6498884742222971090
+  - rid: 6498884742222971091
+  decorators: []
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6498884742222971089
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You think for a second...what in the world is this supply doing
+          here?]'
+        voiceClip: {fileID: 0}
+        guid: 3e7923b88bec31d448f7f5262993066d
+        decorators: []
+        position: {x: 420, y: 0}
+        nextNode:
+          rid: 6498884742222971090
+    - rid: 6498884742222971090
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[The Chieftain said these were guarded but not stolen...so were
+          these always here or were they stolen THEN guarded?]'
+        voiceClip: {fileID: 0}
+        guid: ad7f167bd7ddb91498d8dc46a3d202f7
+        decorators: []
+        position: {x: 924, y: 0}
+        nextNode:
+          rid: 6498884742222971091
+    - rid: 6498884742222971091
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[Maybe they like warm coconut water. Or warm coconuts in general.
+          Maybe...maybe you''ve spent too much time thinking about this.]'
+        voiceClip: {fileID: 0}
+        guid: 1d314ae2ce5596d4fa1d272de6ca9f97
+        decorators: []
+        position: {x: 1691, y: 0}
+        nextNode:
+          rid: -2
