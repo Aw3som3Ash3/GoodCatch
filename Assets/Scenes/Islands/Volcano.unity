@@ -2899,6 +2899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286558351}
   - component: {fileID: 286558350}
+  - component: {fileID: 286558352}
   m_Layer: 0
   m_Name: Ambience
   m_TagString: Untagged
@@ -2916,7 +2917,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -9175835907002796863, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
-  m_audioClip: {fileID: 8300000, guid: f80a234e2a660d24791180fbb806f21c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ffbedc59b5490f94188a55bde9e622a9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
@@ -3017,6 +3018,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &286558352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286558349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe068da1ce4e1649a5065c6df550334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  src: {fileID: 286558350}
+  clip:
+  - {fileID: 8300000, guid: f80a234e2a660d24791180fbb806f21c, type: 3}
+  - {fileID: 8300000, guid: b3028558f5555234286325db758111df, type: 3}
 --- !u!1 &298985270
 GameObject:
   m_ObjectHideFlags: 0
@@ -12254,6 +12271,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7381355496296071556, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: npcName
       value: Fisherman Tom
@@ -15540,6 +15561,7 @@ GameObject:
   - component: {fileID: 909720961}
   - component: {fileID: 909720963}
   - component: {fileID: 909720962}
+  - component: {fileID: 909720964}
   m_Layer: 0
   m_Name: VolcanoSmoke
   m_TagString: Untagged
@@ -20359,6 +20381,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!210 &909720964
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909720960}
+  m_Enabled: 1
+  m_SortingLayerID: -1115590479
+  m_SortingLayer: -2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1001 &910517259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72763,6 +72797,10 @@ PrefabInstance:
     - target: {fileID: 3127508727450226980, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381355496296071556, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: npcName

@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditsUIDocument: {fileID: 76238154}
-  scrollDuration: 30
+  scrollDuration: 5
 --- !u!4 &295875038
 Transform:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680278accd120d04594f0780209ea9e2, type: 3}
   m_Name: Squebol
   m_EditorClassIdentifier: 
-  description: 'A species of fish with legs; the species is amidst evolution. When
-    angered, its gills flare up and rise. '
+  description: A species of fish with legs; the species is amidst evolution. When
+    angered, its gills flare up and rise. Can only be caught during the day.
   model: {fileID: 8411331747693932238, guid: a115ee5914b549d4d8efaf0aa420f74d, type: 3}
   fishId: 1
   icon: {fileID: 21300000, guid: 26447eecb64ed1a4690ff5b89fd9bbf1, type: 3}
@@ -21,7 +21,6 @@ MonoBehaviour:
   homeDepth: 4
   preferredBait: []
   elements:
-  - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
   - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
   agility:
     min: 15

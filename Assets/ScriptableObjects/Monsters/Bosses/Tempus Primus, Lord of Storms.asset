@@ -21,7 +21,6 @@ MonoBehaviour:
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
-  - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   agility:
     min: 45
     max: 45

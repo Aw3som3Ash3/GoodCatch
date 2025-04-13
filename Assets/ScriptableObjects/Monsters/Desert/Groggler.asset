@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Groggler
   m_EditorClassIdentifier: 
   description: A miserable fish with insomnia. Hopes everyone else can suffer with
-    insomnia like they do.
+    insomnia like they do. Can only be caught during the night.
   model: {fileID: 4942503580885688230, guid: 42d915e0573419044b6a6ab843b5a4ed, type: 3}
-  fishId: 6
+  fishId: 5
   icon: {fileID: 21300000, guid: c0d9793fba118294cb480b1743212496, type: 3}
   miniSprite: {fileID: 361366141, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 4

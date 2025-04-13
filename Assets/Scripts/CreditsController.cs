@@ -14,7 +14,7 @@ public class CreditsController : MonoBehaviour
     {
         var root = creditsUIDocument.rootVisualElement;
         credits = root.Q<ScrollView>("Credits");
-        fallenSouls = root.Q<VisualElement>("FallenSouls");
+        fallenSouls = root.Q<VisualElement>("GameTitle");
 
         if (credits != null && fallenSouls != null)
         {

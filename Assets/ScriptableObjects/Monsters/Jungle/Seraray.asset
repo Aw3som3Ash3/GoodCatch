@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Seraray
   m_EditorClassIdentifier: 
   description: A ray fish that feels heavenly, bringing peace to the ocean and its
-    inhabitants when nearby.
+    inhabitants when nearby. Can only be caught during the day.
   model: {fileID: 2776650500186122005, guid: 839aae87163e43c4495a33cd43731b82, type: 3}
   fishId: 18
   icon: {fileID: 21300000, guid: f20264d0a1892024c88c9f36649ff27b, type: 3}

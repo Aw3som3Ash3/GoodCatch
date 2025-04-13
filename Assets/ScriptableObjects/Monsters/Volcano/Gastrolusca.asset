@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Gastrolusca
   m_EditorClassIdentifier: 
   description: Despite angelic appearance, it's solitary in nature. It attacks with
-    its poison clouds to maintain territory.
+    its poison clouds to maintain territory. Can only be caught during the day.
   model: {fileID: 7444285042290713721, guid: 311691719416ce3478bbea2925e3a76e, type: 3}
-  fishId: 16
-  icon: {fileID: 21300000, guid: 1842825a73b2d9b408e5ead227ea1141, type: 3}
+  fishId: 15
+  icon: {fileID: 21300000, guid: 16890d945eb3c6d418178785215aab8f, type: 3}
   miniSprite: {fileID: 21300000, guid: a45de398f4c746446a01b683dd2efc96, type: 3}
   homeDepth: 1
   preferredBait: []
