@@ -1076,12 +1076,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                     combatManager.combatUI.EnableButtons();
                 }
                 
-                if (actionsLeft <= 0)
+                if (actionsLeft <= 0|| CheckDeath())
                 {
                     //combatManager.combatUI.EnableButtons();
                     EndTurn();
                 }
-               
+                
                 //if (combatManager.CanFightEnd())
                 //{
                 //    //EndTurn();
@@ -1112,7 +1112,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         }
         public void EndTurn()
         {
-            
+            if (health <= 0)
+            {
+                TurnEnded?.Invoke();
+                combatManager.NextTurn();
+                return;
+            }
             if (actionsCompleted)
             {
                 fish.RecoverStamina();
@@ -1120,6 +1125,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 {
                     TickLastEffects();
                     TurnEnded?.Invoke();
+                    CheckDeath();
                     //combatManager.CanFightEnd();
                 });
                 combatManager.NextTurn();
@@ -1296,7 +1302,6 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
 
                 }
-                CheckDeath();
                 OnCompleted?.Invoke();
             });
 
