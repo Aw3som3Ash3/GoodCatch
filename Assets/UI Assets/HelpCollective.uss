@@ -54,10 +54,6 @@
 .unity-button.unity-text-element {
 }
 
-.unity-scroller {
-    right: 30px;
-}
-
 #Description.unity-scroller {
 }
 
@@ -108,4 +104,9 @@
     flex-grow: 1;
     align-self: stretch;
     padding-bottom: 10%;
+}
+
+.unity-scroller {
+    right: 30px;
+    background-color: rgba(109, 134, 243, 0);
 }
