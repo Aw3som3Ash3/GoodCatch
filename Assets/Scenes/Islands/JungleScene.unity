@@ -8456,7 +8456,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 69694fb691fcf9d4aa859d4cfa5e74c5, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].stateName
-      value: Get past the guards and talk to the Jungle Chieftan
+      value: Talk to the Jungle Chieftan
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[1].stateName
@@ -16610,7 +16610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.9
+      value: 14.36
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16618,31 +16618,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.87944394
+      value: 0.87890065
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.09839306
+      value: 0.09037716
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.46571943
+      value: -0.467341
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0016342871
+      value: -0.030953895
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 9.877
+      value: 7.466
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -56.284
+      value: -56.528
       objectReference: {fileID: 0}
     - target: {fileID: 4826130359727305410, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -5.506
+      value: -8.052
       objectReference: {fileID: 0}
     - target: {fileID: 5310319360021522552, guid: 00c9cb403c679f14282950367d9a83f5, type: 3}
       propertyPath: m_Name

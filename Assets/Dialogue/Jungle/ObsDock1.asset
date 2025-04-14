@@ -44,18 +44,13 @@ MonoBehaviour:
     - rid: 2727136756081360903
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: 'Our Chieftain would be pleased to hear about this! Though,
-
-          you
-          may need to get through our guards first. They''re quite
-
-          defensive
-          of our place here, don''t blame them.'
+        dialouge: Our Chieftain would be pleased to hear about this! He's just past
+          the bridge in the center of town.
         voiceClip: {fileID: 0}
         guid: 70a13bad4a224944cacc65da0bd63503
         decorators:
         - rid: 2727136756081360910
-        position: {x: 1036, y: -8}
+        position: {x: 923, y: 8}
         nextNode:
           rid: 2727136773057019904
     - rid: 2727136756081360910
