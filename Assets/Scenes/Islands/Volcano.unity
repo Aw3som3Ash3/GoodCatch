@@ -23441,6 +23441,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1259166895}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1259166897}
   m_SourcePrefab: {fileID: 100100000, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
 --- !u!4 &1259166893 stripped
 Transform:
@@ -23496,6 +23499,18 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!210 &1259166897
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259166894}
+  m_Enabled: 1
+  m_SortingLayerID: -1115590479
+  m_SortingLayer: -2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!4 &1259919051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 182297424342402177, guid: 1f741f7db7ba17a4eb3e9871cc0b0471, type: 3}
@@ -72281,6 +72296,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1701308059}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1701308061}
   m_SourcePrefab: {fileID: 100100000, guid: 7fec0948b62f91748b871c140538ae2c, type: 3}
 --- !u!4 &1701308057 stripped
 Transform:
@@ -72336,6 +72354,18 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!210 &1701308061
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701308058}
+  m_Enabled: 1
+  m_SortingLayerID: -1115590479
+  m_SortingLayer: -2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &1726239603
 GameObject:
   m_ObjectHideFlags: 0
