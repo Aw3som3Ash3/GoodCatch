@@ -8240,6 +8240,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14751f71e517a464595959946ac0b602, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461083639703b5846a6627d02d8a4360, type: 2}
     - target: {fileID: 919132149155446097, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
       propertyPath: m_Name
       value: basicHut_low (2)
@@ -8533,6 +8541,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 180024c569ee2984b8048d8c62e2fdc2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 673f2deabf15fa74d84779dadd065df6, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 180024c569ee2984b8048d8c62e2fdc2, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed76102723f25bb4e8f396b720052c4b, type: 2}
     - target: {fileID: 919132149155446097, guid: 180024c569ee2984b8048d8c62e2fdc2, type: 3}
       propertyPath: m_Name
       value: shop_low (1)
@@ -9012,6 +9028,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14751f71e517a464595959946ac0b602, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461083639703b5846a6627d02d8a4360, type: 2}
     - target: {fileID: 919132149155446097, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
       propertyPath: m_Name
       value: basicHut_low
@@ -10285,6 +10309,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14751f71e517a464595959946ac0b602, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461083639703b5846a6627d02d8a4360, type: 2}
     - target: {fileID: 919132149155446097, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
       propertyPath: m_Name
       value: basicHut_low (1)
@@ -12729,6 +12761,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 180024c569ee2984b8048d8c62e2fdc2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 673f2deabf15fa74d84779dadd065df6, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 180024c569ee2984b8048d8c62e2fdc2, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed76102723f25bb4e8f396b720052c4b, type: 2}
     - target: {fileID: 919132149155446097, guid: 180024c569ee2984b8048d8c62e2fdc2, type: 3}
       propertyPath: m_Name
       value: shop_low
@@ -15689,6 +15729,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14751f71e517a464595959946ac0b602, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461083639703b5846a6627d02d8a4360, type: 2}
     - target: {fileID: 919132149155446097, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
       propertyPath: m_Name
       value: basicHut_low (3)
@@ -16403,6 +16451,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14751f71e517a464595959946ac0b602, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461083639703b5846a6627d02d8a4360, type: 2}
     - target: {fileID: 919132149155446097, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
       propertyPath: m_Name
       value: basicHut_low (4)
@@ -19461,6 +19517,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14751f71e517a464595959946ac0b602, type: 2}
+    - target: {fileID: -7511558181221131132, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461083639703b5846a6627d02d8a4360, type: 2}
     - target: {fileID: 919132149155446097, guid: c15e3595fe182c841b7859a3609abc30, type: 3}
       propertyPath: m_Name
       value: basicHut_low (5)
@@ -21813,6 +21877,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1349367211}
     m_Modifications:
+    - target: {fileID: 3837294308594025226, guid: 38b5dca447d172e438dc28a182e5e6c1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fce009d0221bf0d45937660155ddeb46, type: 2}
+    - target: {fileID: 3837294308594025226, guid: 38b5dca447d172e438dc28a182e5e6c1, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c6a2c8a02a312d34bb8be6bbd557bea5, type: 2}
     - target: {fileID: 4498293397649258718, guid: 38b5dca447d172e438dc28a182e5e6c1, type: 3}
       propertyPath: dockingZone
       value: 
