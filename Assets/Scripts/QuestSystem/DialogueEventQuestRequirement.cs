@@ -17,7 +17,10 @@ public class DialogueEventQuestRequirement : Quest.QuestRequirement
     }
     public override void ReInit()
     {
-        dialogueEvent.Event -= RequirementCompleted;
+        if (dialogueEvent != null)
+        {
+            dialogueEvent.Event -= RequirementCompleted;
+        }
         dialogueEvent.Event += RequirementCompleted;
         
     }
