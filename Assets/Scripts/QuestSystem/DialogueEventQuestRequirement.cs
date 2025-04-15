@@ -12,7 +12,15 @@ public class DialogueEventQuestRequirement : Quest.QuestRequirement
 
     public override void Init()
     {
-        dialogueEvent.Event += RequirementCompleted;
+        if (dialogueEvent != null)
+        {
+            
+            dialogueEvent.Event += RequirementCompleted;
+        }
+        else
+        {
+            Debug.LogWarning("Missing Quest Requirment Event");
+        }
         base.Init();
     }
     public override void ReInit()
@@ -20,8 +28,9 @@ public class DialogueEventQuestRequirement : Quest.QuestRequirement
         if (dialogueEvent != null)
         {
             dialogueEvent.Event -= RequirementCompleted;
+            dialogueEvent.Event += RequirementCompleted;
         }
-        dialogueEvent.Event += RequirementCompleted;
+        
         
     }
 
