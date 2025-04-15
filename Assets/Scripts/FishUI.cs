@@ -10,7 +10,7 @@ public class FishUI : VisualElement
 {
     CombatManager.Turn turn;
     ProgressBar healthBar, staminaBar;
-   
+    Label levelAmount;
     VisualElement statusBar;
 
     Transform target;
@@ -52,6 +52,7 @@ public class FishUI : VisualElement
         SetFish(turn, target);
         statusBar = this.Q("StatusBar");
         this.Q<Label>("FishName").text = turn.fish.Name;
+        this.Q<Label>("FishLevel").text = turn.fish.Level.ToString("000");
     }
     // Update is called once per frame
     public void UpdatePosition()
