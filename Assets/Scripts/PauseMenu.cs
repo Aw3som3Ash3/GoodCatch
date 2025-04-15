@@ -37,6 +37,13 @@ public class PauseMenu : VisualElement
     }
     public PauseMenu()
     {
+        if (mainPause != null)
+        {
+            InputManager.Input.UI.Back.Disable();
+            InputManager.Input.UI.Back.performed -= mainPause.Back;
+            InputManager.OnInputChange -= mainPause.OnInputChanged;
+        }
+
         VisualElement root = this;
         VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/PauseMenu");
 
@@ -201,7 +208,6 @@ public class PauseMenu : VisualElement
             InputManager.DisablePlayer();
             InputManager.Input.UI.Back.Enable();
             InputManager.Input.UI.Back.performed += Back;
-            InputManager.Input.UI.Back.performed += Back;
             GameManager.Instance.canPause = false;
             
 
@@ -240,7 +246,7 @@ public class PauseMenu : VisualElement
         
         GamePaused?.Invoke(menu.enabledSelf);
     }
-
+   
     void Back(InputAction.CallbackContext context=default)
     {
         if (currentPage != null)
