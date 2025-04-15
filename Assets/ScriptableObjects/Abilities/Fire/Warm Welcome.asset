@@ -32,5 +32,5 @@ MonoBehaviour:
   forcedMovement: 0
   icon: {fileID: 21300000, guid: 424d98b83368c7d459c57e3a2a9124e0, type: 3}
   abilityVFX: {fileID: 0}
-  targetVFX: {fileID: 0}
+  targetVFX: {fileID: 7504169191687348763, guid: 75dffcb467955b3469a64f61c3aeda16, type: 3}
   abilityID: 7afdd4b0-b5d5-4512-bb9a-fe6ace4021ea

@@ -17,4 +17,4 @@ MonoBehaviour:
     and tart, but overall not bad.
   itemId: 69570c96-c609-427c-88a5-f284be3b3d8c
   potionVFX: {fileID: 7504169191687348763, guid: 605e85bf51b67a34aa2f597ee4c5ed0a, type: 3}
-  healingAmount: 50
+  healingAmount: 100

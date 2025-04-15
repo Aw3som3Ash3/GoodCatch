@@ -17,4 +17,4 @@ MonoBehaviour:
     to be sweet, juicy, and rich in vitamin C!
   itemId: 6d8ed694-dce4-4a6e-94b0-37f968eb7477
   potionVFX: {fileID: 7504169191687348763, guid: 605e85bf51b67a34aa2f597ee4c5ed0a, type: 3}
-  healingAmount: 100
+  healingAmount: 200
