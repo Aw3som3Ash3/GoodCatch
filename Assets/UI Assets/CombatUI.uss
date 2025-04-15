@@ -115,6 +115,7 @@
     border-left-width: 4px;
     margin-right: 5px;
     margin-left: 5px;
+    transition-duration: 0.1s;
 }
 
 #CombatTabs .unity-tab-button--active {
@@ -239,6 +240,7 @@
     -unity-font: url("project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=39d3fbe29a2d10d41a2da4caa4f8466f&type=3#LilitaOne-Regular");
     -unity-font-definition: initial;
     scale: 1 1;
+    transition-duration: 0.1s;
 }
 
 #Move:hover {
@@ -507,10 +509,12 @@
 
 #Profile {
     bottom: 174px;
+    transition-duration: 0.1s;
 }
 
 #Profile.ProfileCollapsed {
     bottom: -10px;
+    transition-duration: 0.1s;
 }
 
 #StatWindow .unity-text-element {
