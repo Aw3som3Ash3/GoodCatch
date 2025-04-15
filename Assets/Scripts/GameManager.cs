@@ -322,13 +322,13 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     {
 
         float targetTime = timeOfDayStart[timeOfDay];
-        if (this.CurrentTimeOfDay == timeOfDay)
-        {
-            return;
-        }
+        //if (this.CurrentTimeOfDay == timeOfDay)
+        //{
+        //    return;
+        //}
         StartCoroutine(FadeToBlack(() =>
         {
-            if (DayTime > targetTime)
+            if (DayTime >= targetTime)
             {
                 Day++;
             }
