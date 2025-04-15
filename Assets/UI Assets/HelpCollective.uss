@@ -54,11 +54,12 @@
 .unity-button.unity-text-element {
 }
 
-.unity-scroller {
-    right: 20px;
+#ScrollView .unity-scroller {
+    right: 30px;
 }
 
-#Description.unity-scroller {
+#Description .unity-scroller {
+    bottom: 15px;
 }
 
 #unity-low-button {

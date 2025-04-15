@@ -1,8 +1,20 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="TitleContainer" style="flex-grow: 0;">
-        <ui:Label tabindex="-1" text="Ability" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+        <ui:Label tabindex="-1" text="Abilities" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
     </ui:VisualElement>
     <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
-        <ui:Label tabindex="-1" text="- All damaging abilities are split into 2 different types; Attack (Atk) and Magic (Mag)&#10;- A monster&apos;s Defense (Def) affects how much they take from an Atk ability, and their Resistance (Res) affects how much they take from a Mag ability&#10;- Abilities show their lane dependencies by the flaps on their side; the left flaps show where it can be used from, and the right shows where it can be targeted to&#10;- Hovering over an ability also shows their details, including their name, accuracy, damage, and any status modifiers with their chances of activating&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:Label tabindex="-1" text="- All damaging abilities are split into 2 different types; Attack (Atk) and Magic (Mag)&#10;- A monster&apos;s Defense (Def) affects how much they take from an Atk ability, and their Resistance (Res) affects how much they take from a Mag ability&#10;- Abilities show their lane dependencies by the flaps on their side; the left flaps show where it can be used from, and the right shows where it can be targeted to&#10;- Abilities also show what type of Elemental damage they do based on their color palette&#10;- Hovering over an ability also shows their details, including their name, accuracy, damage, and any status modifiers with their chances of activating&#10;- The Anchor button allows the current monster to move to any lane&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:VisualElement name="IconsRow1" style="flex-grow: 1; align-self: stretch; align-items: center; flex-direction: row; justify-content: center; flex-wrap: nowrap;">
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/abilities1.png?fileID=2800000&amp;guid=9193152a3574776499a7b5adfb29bbb0&amp;type=3#abilities1&quot;); -unity-background-scale-mode: scale-to-fit; max-height: 700px; height: 700px;" />
+                <ui:Label tabindex="-1" text="Example of abilities and the tooltip. Treasure Trove can only be used from the middle lane and to all 3 lanes.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="flex-wrap: wrap; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="IconsRow2" style="flex-grow: 1; align-self: stretch; align-items: center; flex-direction: row; justify-content: center; flex-wrap: nowrap;">
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/abilities2.png?fileID=2800000&amp;guid=d8cf63c80095e974fae0d3730a2cf71b&amp;type=3#abilities2&quot;); -unity-background-scale-mode: scale-to-fit; max-height: 700px; height: 700px;" />
+                <ui:Label tabindex="-1" text="The Move ability is selected. The selected lane is highlighted red, while available lanes are yellow.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="flex-wrap: wrap; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
