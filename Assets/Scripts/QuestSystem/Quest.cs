@@ -299,7 +299,12 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
         GameManager.Instance.CaughtFish += OnFishCaught;
         //throw new NotImplementedException();
     }
-
+    public override void ReInit()
+    {
+        base.ReInit();
+        GameManager.Instance.CaughtFish -= OnFishCaught;
+        GameManager.Instance.CaughtFish += OnFishCaught;
+    }
     protected virtual void OnFishCaught(FishMonsterType type)
     {
         currentAmount++;

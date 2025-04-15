@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4200885021004857360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: GrabCoconutsVolcano
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: CoconutSupplyQuest
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 6498884742222971087
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 6498884742222971087
+  - rid: 6498884742222971088
+  decorators:
+  - rid: 6498884742222971086
+  events:
+  - {fileID: -4200885021004857360}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6498884742222971086
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 1215, y: 227}
+        guid: 3a54ec080d9f3c146bc13fbd6efbc06d
+        dialogueEvent: {fileID: -4200885021004857360}
+    - rid: 6498884742222971087
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[Upon touching one of the coconuts you feel it''s hotter than
+          you expected. For a second you''re disappointed in your train of thought.]'
+        voiceClip: {fileID: 0}
+        guid: 2cc5e20661f4dd14b8a4be5a72112336
+        decorators: []
+        position: {x: 404, y: -3}
+        nextNode:
+          rid: 6498884742222971088
+    - rid: 6498884742222971088
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[You carefully grab one of the coconuts.]'
+        voiceClip: {fileID: 0}
+        guid: 4b11a415120faa445a7338222c961155
+        decorators:
+        - rid: 6498884742222971086
+        position: {x: 1215, y: -3}
+        nextNode:
+          rid: -2

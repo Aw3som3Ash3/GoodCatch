@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270705409364b044a78748b29b502ed, type: 3}
   m_Name: Lightning
   m_EditorClassIdentifier: 
-  strong: []
+  strong:
+  - {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
+  - {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
+  - {fileID: 11400000, guid: 861589faee089304c8b447c528048ad1, type: 2}
+  - {fileID: 11400000, guid: 5c4a2f4ae3600074b9670808b9fb20f7, type: 2}
   veryStrong: []
   weak:
   - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}

@@ -49,8 +49,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   accuracy:
-    min: 50
-    max: 50
+    min: 0
+    max: 0
     minTalent: 0
     maxTalent: 0
   baseHealth: 550
@@ -58,9 +58,12 @@ MonoBehaviour:
   baseAbilities:
   - potentialAbilities:
     - {fileID: 11400000, guid: 9996d26aab0e20645a44bdc98a2cf3b2, type: 2}
+    - {fileID: 11400000, guid: 9996d26aab0e20645a44bdc98a2cf3b2, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 2aad17546bf6fb64aa1775f83a472c3e, type: 2}
+    - {fileID: 11400000, guid: 2aad17546bf6fb64aa1775f83a472c3e, type: 2}
   - potentialAbilities:
+    - {fileID: 11400000, guid: 78cc93ccc6f7ab84382ff5f2924cce36, type: 2}
     - {fileID: 11400000, guid: 78cc93ccc6f7ab84382ff5f2924cce36, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}

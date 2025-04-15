@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Lotaeel
   m_EditorClassIdentifier: 
   description: A solitary creature. A grumpy fish that shocks others that invade
-    its personal space.
+    its personal space. Can only be caught during the night.
   model: {fileID: 4971115903728978154, guid: 43411f4c1e67f94419f1d88d2b8e5e01, type: 3}
-  fishId: 12
+  fishId: 11
   icon: {fileID: 21300000, guid: 2488b315dc736994781fe71d6b5c270c, type: 3}
   miniSprite: {fileID: 901536447, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 4
@@ -49,8 +49,8 @@ MonoBehaviour:
     minTalent: 3
     maxTalent: 4
   accuracy:
-    min: 50
-    max: 50
+    min: 0
+    max: 0
     minTalent: 3
     maxTalent: 3
   baseHealth: 90

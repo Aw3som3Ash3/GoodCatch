@@ -18,7 +18,7 @@ MonoBehaviour:
   - name: Speak to the Volcano Chieftain
     description: 
     requirements:
-    - rid: 2727136822063005730
+    - rid: 6498884696608866599
   - name: Speak to the Fisherman Tom
     description: 
     requirements:
@@ -26,12 +26,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2727136822063005730
-      type: {class: SpeakToNPCQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: SpeakToNPCQuestRequirement
-        IsCompleted: 1
-        npcName: Volcano Chieftain
     - rid: 2727136841486303246
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -39,3 +33,10 @@ MonoBehaviour:
         IsCompleted: 1
         objective: Speak to the Fisherman Tom
         dialogueEvent: {fileID: 2822260499742996474, guid: 9019ebe1cc6301a4a9436284e2a1a3c7, type: 2}
+    - rid: 6498884696608866599
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Speak to the Volcano Chieftain
+        dialogueEvent: {fileID: -1684043646503106773, guid: 80d1ac9705b351b469a590cb187ab950, type: 2}

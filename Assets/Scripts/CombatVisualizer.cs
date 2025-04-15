@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static CombatManager;
-using static UnityEngine.Rendering.DebugUI;
 
 public class CombatVisualizer : MonoBehaviour
 {
@@ -131,6 +130,9 @@ public class CombatVisualizer : MonoBehaviour
                 break;
             case Element.Effectiveness.veryWeak:
                 tmp.color = Color.red;
+                break;
+            case Element.Effectiveness.healing:
+                tmp.color = Color.green;
                 break;
             default:
                 tmp.color = Color.white;

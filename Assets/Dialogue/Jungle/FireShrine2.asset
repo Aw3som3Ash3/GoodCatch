@@ -57,8 +57,7 @@ MonoBehaviour:
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
         dialouge: '[After a large burst, the energy wades away. You feel a new sensation,
-          like another soul resides within you. There''s no doubt, the Fire Spirit
-          is real, and you''ve become it''s vessel.]'
+          like another soul resides within you.]'
         voiceClip: {fileID: 0}
         guid: 4254c97783edb8045bd94a2ccb3b9a0f
         decorators:

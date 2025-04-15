@@ -17,15 +17,18 @@ MonoBehaviour:
 
     pond.'
   states:
-  - name: Reason with the Lead Guard
+  - name: Fight the First Guard
     description: 
     requirements:
     - rid: 2727136614816153618
-  - name: '"Reason" with the rest of the Guards'
+  - name: Fight the Second Guard
     description: 
     requirements:
-    - rid: 2727136614816153644
-    - rid: 2727136845632372772
+    - rid: 6498884609483210785
+  - name: Fight the Third Guard
+    description: 
+    requirements:
+    - rid: 6498884609483210786
   - name: Talk to Wade
     description: 
     requirements:
@@ -49,7 +52,11 @@ MonoBehaviour:
   - name: Talk to the Jungle Chieftain
     description: 
     requirements:
-    - rid: 2727136848657514497
+    - rid: 6498884609483210787
+  - name: Talk to the Observant Dockhand
+    description: 
+    requirements:
+    - rid: 6498884683246075905
   references:
     version: 2
     RefIds:
@@ -57,23 +64,9 @@ MonoBehaviour:
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
-        objective: Reason with the Guards
+        IsCompleted: 1
+        objective: Fight the First Guard
         dialogueEvent: {fileID: -6245746496523209256, guid: 07f80dee4e68d0c4099315eb6c1f067f, type: 2}
-    - rid: 2727136614816153644
-      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: DialogueEventQuestRequirement
-        IsCompleted: 0
-        objective: '"Reason" with the First Guard'
-        dialogueEvent: {fileID: -9217259632993510754, guid: 57357419aec3d784bacf113e5a214a53, type: 2}
-    - rid: 2727136845632372772
-      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
-      data:
-        Name: DialogueEventQuestRequirement
-        IsCompleted: 0
-        objective: '"Reason" with the Second Guard'
-        dialogueEvent: {fileID: 2684726828978241724, guid: eb20a7930481d92469bc941e148e9c8a, type: 2}
     - rid: 2727136845632372774
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
@@ -109,10 +102,31 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Approach the Fire Shrine
         dialogueEvent: {fileID: 2044407056672784995, guid: 5664853df10a42f4ea80716c003b6f1e, type: 2}
-    - rid: 2727136848657514497
+    - rid: 6498884609483210785
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 1
+        objective: Fight the Second Guard
+        dialogueEvent: {fileID: -9217259632993510754, guid: 57357419aec3d784bacf113e5a214a53, type: 2}
+    - rid: 6498884609483210786
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Fight the Third Guard
+        dialogueEvent: {fileID: 2684726828978241724, guid: 234a75ac28e254446b44cb1f0a94fece, type: 2}
+    - rid: 6498884609483210787
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
         IsCompleted: 0
         objective: Talk to the Jungle Chieftain
-        dialogueEvent: {fileID: 0}
+        dialogueEvent: {fileID: 6682801961029650548, guid: 69694fb691fcf9d4aa859d4cfa5e74c5, type: 2}
+    - rid: 6498884683246075905
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Talk to the Observant Dockhand
+        dialogueEvent: {fileID: -5188043786842454438, guid: 15e5db72915b9ed49af8a95f3ab52f2b, type: 2}

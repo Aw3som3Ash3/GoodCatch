@@ -15,7 +15,7 @@ MonoBehaviour:
   description: A common fish with no notable skills. struggles to stand out, even
     when compared to a goldfish.
   model: {fileID: 382904234463608869, guid: 7b82c4c356ef77f4fbd0a48f185782a1, type: 3}
-  fishId: 1
+  fishId: 0
   icon: {fileID: 21300000, guid: c241e728dd65ba44b80f5bc3a7491b34, type: 3}
   miniSprite: {fileID: 1569861162, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: -1
@@ -25,43 +25,45 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 0
+    minTalent: 2
     maxTalent: 2
   attack:
     min: 15
     max: 30
-    minTalent: 0
+    minTalent: 2
     maxTalent: 2
   special:
     min: 15
     max: 30
-    minTalent: 0
+    minTalent: 2
     maxTalent: 2
   fortitude:
     min: 8
     max: 15
-    minTalent: 0
+    minTalent: 2
     maxTalent: 2
   specialFortitude:
     min: 8
     max: 15
-    minTalent: 0
+    minTalent: 2
     maxTalent: 2
   accuracy:
-    min: 50
-    max: 50
-    minTalent: 0
+    min: 0
+    max: 0
+    minTalent: 2
     maxTalent: 2
   baseHealth: 100
   baseStamina: 60
   baseAbilities:
   - potentialAbilities:
     - {fileID: 11400000, guid: f25c3fdc239de8445946189e13d63899, type: 2}
+    - {fileID: 11400000, guid: f25c3fdc239de8445946189e13d63899, type: 2}
+  - potentialAbilities:
+    - {fileID: 11400000, guid: cc66e03fb8c405f4791b4f79a64c4412, type: 2}
+    - {fileID: 11400000, guid: cc66e03fb8c405f4791b4f79a64c4412, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
-  - potentialAbilities:
-    - {fileID: 11400000, guid: f5e161f5f7750b6468c04d356a177b7c, type: 2}
-    - {fileID: 11400000, guid: e46ebf49c02a65d499551d7d9c5ffa21, type: 2}
+    - {fileID: 11400000, guid: 2ddbf7504282ae043ad458c9cf9f98ea, type: 2}
   difficulty: 0
   attackAnimation: {fileID: -6041800682480947867, guid: cdcf3c9b8c0f6a643bdb737875dd6491, type: 3}
   idleAnimation: {fileID: -3100369314251171874, guid: 0160b92afe5b5a74a876363f68994f29, type: 3}

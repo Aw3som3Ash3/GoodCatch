@@ -120,7 +120,7 @@ public class PauseMenu : VisualElement
     static public PauseMenu Pause()
     {
 
-        if (mainPause != null && mainPause.menu.visible == false)
+        if (mainPause != null && mainPause.menu.visible == false && mainPause.menu.panel!=null)
         {
             mainPause.OnPause();
         }
@@ -143,6 +143,10 @@ public class PauseMenu : VisualElement
     }
     void OnPause()
     {
+        //if (!GameManager.Instance.canPause)
+        //{
+        //    return;
+        //}
         
         //Debug.Log(party.focusController.focusedElement);
         Debug.Log("pausing");

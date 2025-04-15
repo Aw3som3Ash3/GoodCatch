@@ -98,10 +98,10 @@ public class FishMonsterType : ScriptableObject
     public int BaseStamina { get { return baseStamina; } }
 
     [Serializable]
-    struct AbilityOptions
+    public struct AbilityOptions
     {
         [SerializeField]
-        Ability[] potentialAbilities;
+        public Ability[] potentialAbilities;
 
         public Ability GetAbility()
         {
@@ -119,7 +119,7 @@ public class FishMonsterType : ScriptableObject
 
     [SerializeField]
     AbilityOptions[] baseAbilities;
-
+    public AbilityOptions[] BaseAbilities { get => baseAbilities; }
     [Header("Misc")]
     [SerializeField]
     int difficulty;

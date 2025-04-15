@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="TitleContainer" style="flex-grow: 0;">
+        <ui:Label tabindex="-1" text="Other Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+    </ui:VisualElement>
+    <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Even fewer abilities have effects that deal with monster&apos;s positioning. Some abilities have piercing, which means it deals the same damage to all monsters in the same lane regardless of their order. Some abilities will force their target to move up or down a set amount of times." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+    </ui:VisualElement>
+</ui:UXML>

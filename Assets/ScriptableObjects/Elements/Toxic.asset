@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270705409364b044a78748b29b502ed, type: 3}
   m_Name: Toxic
   m_EditorClassIdentifier: 
-  strong: []
+  strong:
+  - {fileID: 11400000}
   veryStrong: []
   weak:
   - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
   - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
+  - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
+  - {fileID: 11400000, guid: 801555cfe6ea0704daef34d579a22ef1, type: 2}
   veryWeak: []
   icon: {fileID: 21300000, guid: e92a6092584628841ba7f0dec8a34056, type: 3}

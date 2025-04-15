@@ -15,7 +15,7 @@ MonoBehaviour:
   description: A clam that evolved into an apex predator; eating everything it sees.
     Often dies from overeating in unregulated habitats.
   model: {fileID: 400586666108097786, guid: 26bb219abaeddd642a919f2814219b5e, type: 3}
-  fishId: 7
+  fishId: 6
   icon: {fileID: 21300000, guid: 194b6b521222ee84cbb448ef968ba16b, type: 3}
   miniSprite: {fileID: -299405754, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 2
@@ -48,8 +48,8 @@ MonoBehaviour:
     minTalent: 4
     maxTalent: 5
   accuracy:
-    min: 50
-    max: 50
+    min: 0
+    max: 0
     minTalent: 2
     maxTalent: 3
   baseHealth: 120

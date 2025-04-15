@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class AquariumScreen : PausePage
@@ -85,10 +86,15 @@ public class AquariumScreen : PausePage
         //    Debug.Log("has box "+i+":  "+ tabs[i]);
         //}
         //contentContainer = this.Q("unity-content-container");
+        InputManager.Input.UI.ChangeTab.performed += ChangeTab;
         fishventoryTab.Focus();
         SetUp();
     }
-
+    public override bool Back()
+    {
+        InputManager.Input.UI.ChangeTab.performed -= ChangeTab;
+        return base.Back();
+    }
     private void OnAddToParty()
     {
 
@@ -111,9 +117,9 @@ public class AquariumScreen : PausePage
 
     void SetUp()
     {
-        foreach(var fish in GameManager.Instance.StoredFishventory.Fishies)
+        for(int i=0;i< GameManager.Instance.StoredFishventory.Fishies.Count;i++)
         {
-            var slot = new AquariumSlot(fish);
+            var slot = new AquariumSlot(GameManager.Instance.StoredFishventory.Fishies[i], i);
             fishventoryTab.tabContent[0].Add(slot);
             slot.Selected += OnSelect;
         }
@@ -135,6 +141,19 @@ public class AquariumScreen : PausePage
         hp.text = slot.fishMonster.MaxHealth.ToString();
         stamina.text = slot.fishMonster.MaxStamina.ToString();
     }
+
+
+    void ChangeTab(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            fishventoryTab.ChangeTab((int)context.ReadValue<float>());
+            Debug.Log("tab change: " + (int)context.ReadValue<float>());
+
+
+        }
+
+    }
 }
 
 
@@ -142,6 +161,7 @@ public class AquariumScreen : PausePage
 public class AquariumSlot : VisualElement
 {
 
+    int slotNum;
     public FishMonster fishMonster { get; private set; }
     VisualElement slotBox;
     VisualElement sprite;
@@ -169,6 +189,7 @@ public class AquariumSlot : VisualElement
     public FishMonster Swap(FishMonster fishMonster)
     {
         var temp = this.fishMonster;
+        GameManager.Instance.StoredFishventory.SwapFish(slotNum, fishMonster);
         this.fishMonster = fishMonster;
         var value= sprite.style.backgroundImage.value;
         value.sprite= fishMonster.MiniSprite;
@@ -180,13 +201,14 @@ public class AquariumSlot : VisualElement
         Init();
         sprite.visible = false;
     }
-    public AquariumSlot(FishMonster fishMonster)
+    public AquariumSlot(FishMonster fishMonster, int slotNum)
     {
         Init();
         this.fishMonster = fishMonster;
         var value = sprite.style.backgroundImage.value;
-        value.sprite= fishMonster.MiniSprite;
+        value.sprite = fishMonster.MiniSprite;
         sprite.style.backgroundImage = value;
+        this.slotNum = slotNum;
     }
     void Init()
     {
@@ -207,5 +229,7 @@ public class AquariumSlot : VisualElement
         
 
     }
+
+   
 }
 

@@ -11,6 +11,7 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static CombatManager;
+using static Element;
 using static UnityEngine.VFX.VFXTypeAttribute;
 
 
@@ -84,6 +85,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     [SerializeField]
     [HideInInspector]
     UnityEngine.Random.State randomState;
+
+    bool hasFightEnded;
     private void Awake()
     {
         depths[0] = new CombatDepth(Depth.shallow, shallowsLocation.GetChild(0), shallowsLocation.GetChild(1));
@@ -146,7 +149,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         InputManager.Input.UI.Enable();
         combatUI.Draft(playerFishes, (index, callback) =>
         {
-            if (draftedCount > 3)
+            if (draftedCount >= 3)
             {
                 return;
             }
@@ -228,6 +231,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     Stack<(Turn,int index)> draftStack=new();
     void DraftFish(int index,int target)
     {
+        
         Turn turn = new PlayerTurn(this, playerFishes[index], depths[target % 3]);
         AddFish(turn, depths[target % 3], Team.player);
         turn.fish.RecoverStamina();
@@ -256,6 +260,10 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     void CompleteDraft()
     {
+        if (draftedCount <= 0)
+        {
+            return;
+        }
         combatUI.EndDraft -= CompleteDraft;
         currentPhase = CombatPhase.combat;
         undoDraft = null;
@@ -426,6 +434,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void EndFight(Team winningTeam)
     {
+        if (hasFightEnded)
+        {
+            return;
+        }
+        hasFightEnded = true;
         combatUI.EnableUI(false);
         playerFishes.ForEach((f) => {if(getFishesTurn.ContainsKey(f)) f.UpdateHealth(getFishesTurn[f].Health); });
         
@@ -435,6 +448,8 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
     IEnumerator CombatVictoryScreen(Team winningTeam)
     {
+        
+       
         var victoryScreen = new NewCombatVictory(playerFishes,fishCaught);
         ui.rootVisualElement.Add(victoryScreen);
         combatUI.SetEnabled(false);
@@ -503,7 +518,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             int startLevel = fish.Level;
             foreach (FishMonster enemy in enemyFishes)
             {
-                float xpToAdd = ((float)enemy.Level / fish.Level) * 200;
+                float xpToAdd = ((float)enemy.Level / fish.Level) * 800;
                 fish.AddXp(xpToAdd);
                 deltaXp += xpToAdd;
             }
@@ -570,6 +585,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         }
 
     }
+   
     void UseAbility(Turn turn, Ability ability, int depthIndex)
     {
         //Ability ability = turn.fish.GetAbility(index);
@@ -596,7 +612,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             {
                 ActionsCompleted();
                 turn.CheckDeath();
-                combatUI.EnableButtons();
+                if (currentTurn.Value.team == Team.player)
+                {
+                    combatUI.EnableButtons();
+                }
+                
 
             });
            
@@ -616,8 +636,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                         {
                             depth.TargetSide(targetedTeam).ForEach((turn) => turn.CheckDeath());
                             ActionsCompleted();
-                            combatUI.EnableButtons();
-                            
+
+                            if (currentTurn.Value.team == Team.player)
+                            {
+                                combatUI.EnableButtons();
+                            }
+
                         });
                     }
                     
@@ -641,7 +665,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             {
 
                 targetedDepth.TargetSide(targetedTeam)?.ForEach((turn) => turn.CheckDeath());
-                targetedFish.CheckDeath();
+                if (ability.ForcedMovement!=0)
+                {
+                    targetedFish.CheckDeath();
+                }
+                
                 ActionsCompleted();
                 if (currentTurn.Value is PlayerTurn)
                 {
@@ -662,7 +690,31 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         //playerFishes.Remove(turn.fish);
         foreach (CombatDepth depth in depths)
         {
-            depth.RemoveFish(turn);
+            if (depth.RemoveFish(turn,out var team))
+            {
+                if (team == Team.player)
+                {
+                    foreach (Turn t in depth.player)
+                    {
+                        combatVisualizer.MoveFish(t, depth.GetPositionOfFish(t));
+                    }
+                }
+                else if (team == Team.enemy)
+                {
+                    foreach (Turn t in depth.enemy)
+                    {
+                        combatVisualizer.MoveFish(t, depth.GetPositionOfFish(t));
+                    }
+
+                }
+               
+
+            }
+        
+
+
+           
+
         }
         currentCombatents.Remove(turn);
     }
@@ -728,10 +780,22 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             }
 
         }
-        public void RemoveFish(Turn turn)
+        public bool RemoveFish(Turn turn,out Team team)
         {
-            player.Remove(turn);
-            enemy.Remove(turn);
+            if (player.Contains(turn))
+            {
+                player.Remove(turn);
+                team=Team.player;
+                return true;
+            }
+            else if (enemy.Contains(turn))
+            {
+                enemy.Remove(turn);
+                team = Team.enemy;
+                return true;
+            }
+            team=Team.player;
+            return false;
 
         }
         public Turn TargetFirst(Team team)
@@ -960,6 +1024,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             ValueChanged?.Invoke();
             return damageOut;
         }
+        public void Restore(float hpToRestore)
+        {
+            health += hpToRestore;
+            ValueChanged?.Invoke();
+            combatManager.combatVisualizer.AnimateDamageNumbers(this, hpToRestore, Effectiveness.healing);
+        }
         public bool CheckDeath()
         {
             if (Health <= 0)
@@ -1001,11 +1071,17 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             combatManager.combatUI.NewTurn(this, team == Team.player);
             TickEffects(StatusEffect.EffectUsage.preTurn, () => 
             {
-                if (actionsLeft <= 0)
+                if (team == Team.player)
                 {
                     combatManager.combatUI.EnableButtons();
+                }
+                
+                if (actionsLeft <= 0|| CheckDeath())
+                {
+                    //combatManager.combatUI.EnableButtons();
                     EndTurn();
                 }
+                
                 //if (combatManager.CanFightEnd())
                 //{
                 //    //EndTurn();
@@ -1014,7 +1090,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
             });
             
-           
+
 
             //NewTurn?.Invoke(this, team == Team.player);
 
@@ -1036,7 +1112,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         }
         public void EndTurn()
         {
-            
+            if (health <= 0)
+            {
+                TurnEnded?.Invoke();
+                combatManager.NextTurn();
+                return;
+            }
             if (actionsCompleted)
             {
                 fish.RecoverStamina();
@@ -1044,6 +1125,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 {
                     TickLastEffects();
                     TurnEnded?.Invoke();
+                    CheckDeath();
                     //combatManager.CanFightEnd();
                 });
                 combatManager.NextTurn();
@@ -1074,7 +1156,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             }
             if (prevDepth != null)
             {
-                prevDepth.RemoveFish(this);
+                prevDepth.RemoveFish(this,out _);
             }
             targetDepth.AddFish(this, team);
             currentDepth = targetDepth;
@@ -1111,7 +1193,16 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             {
                 return;
             }
-            combatManager.UseItem(item, () => { UseAction(); callback?.Invoke(true); }, () => {callback?.Invoke(false);});
+            combatManager.UseItem(item, () => 
+            { 
+                UseAction(); 
+                callback?.Invoke(true);
+
+            }, () => 
+            {
+                callback?.Invoke(false);
+               
+            });
             
                     
         }
@@ -1127,7 +1218,14 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 }
                 else
                 {
-                    combatManager.combatVisualizer.StartTargeting(DepthTargetable, abilityIndex, (i) => { if (i >= 0) { UseAbilityDirect(abilityIndex, i); } callback.Invoke(); });
+                    combatManager.combatVisualizer.StartTargeting(DepthTargetable, abilityIndex, (i) => 
+                    { 
+                        if (i >= 0) 
+                        { 
+                            UseAbilityDirect(abilityIndex, i);
+                        } 
+                        callback.Invoke(); 
+                    });
                 }
                
 
@@ -1204,7 +1302,6 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
 
                 }
-                CheckDeath();
                 OnCompleted?.Invoke();
             });
 
@@ -1216,7 +1313,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         void RecursiveTickEffect(StatusEffect.EffectUsage usage,StatusEffect.StatusEffectInstance[] effects, int start, int end,Action OnComplete)
         {
 
-            if (start == end)
+            if (start >= end)
             {
                 OnComplete?.Invoke();
                 return;
@@ -1263,7 +1360,11 @@ public class EnemyTurn : CombatManager.Turn
     public override void StartTurn()
     {
         base.StartTurn();
-        combatManager.combatAI.StartTurn(this);
+        if (actionsLeft > 0)
+        {
+            combatManager.combatAI.StartTurn(this);
+        }
+        
         //if (actionsLeft>0)
         //{
         //    Debug.Log(actionsLeft);

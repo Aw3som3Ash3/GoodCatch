@@ -15,10 +15,14 @@ MonoBehaviour:
   type: 0
   description: 
   states:
-  - name: Get through the Bridge Guards
+  - name: Get through to the Observant Dockhand at the jungle
     description: 
     requirements:
     - rid: 2727136756081360905
+  - name: Get past the guards and talk to the Jungle Chieftan
+    description: 
+    requirements:
+    - rid: 6498884538079379573
   references:
     version: 2
     RefIds:
@@ -26,6 +30,13 @@ MonoBehaviour:
       type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
       data:
         Name: DialogueEventQuestRequirement
-        IsCompleted: 0
-        objective: Talk to the Bridge Guards
-        dialogueEvent: {fileID: 7972647820795813824, guid: f4ed4ad39091f4940a5ced6ea251079e, type: 2}
+        IsCompleted: 1
+        objective: Get through to the Observant Dockhand at the jungle
+        dialogueEvent: {fileID: 5792923631883937358, guid: 71f89e8556ca6234cb392c5f28a888c1, type: 2}
+    - rid: 6498884538079379573
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 1
+        objective: Get past the guards and talk to the Jungle Chieftan
+        dialogueEvent: {fileID: -691799829326291022, guid: 7426f18b6b417fc418e2dea282190852, type: 2}

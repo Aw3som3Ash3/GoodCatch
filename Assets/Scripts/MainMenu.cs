@@ -14,9 +14,9 @@ public class MainMenu : MonoBehaviour
     UIDocument uIDocument;
     VisualElement mainMenu, mainScreen, loadScreen;
     OptionsPageMenu optionsScreen;
-    [SerializeField]
+    CreditsScreen credits;
+    [SerializeField] CreditsController creditsController;
     public AudioMixer mixer;
-
     [SerializeField]
     GameObject[] startingObjects;
 
@@ -30,6 +30,8 @@ public class MainMenu : MonoBehaviour
         loadScreen = uIDocument.rootVisualElement.Q("LoadGameScreen");
         optionsScreen = uIDocument.rootVisualElement.Q<OptionsPageMenu>();
         optionsScreen.visible = false;
+        credits = uIDocument.rootVisualElement.Q<CreditsScreen>();
+        credits.visible = false;
         InputManager.Input.UI.Back.performed+=Back;
         InputManager.Input.UI.Back.Enable();
         GameManager.Instance = null;
@@ -84,6 +86,7 @@ public class MainMenu : MonoBehaviour
             mainScreen.visible = true;
             optionsScreen.visible = false;
             optionsScreen.CloseAll();
+            credits.visible = false;
         }
     }
 
@@ -114,6 +117,12 @@ public class MainMenu : MonoBehaviour
             mainScreen.visible = false;
         };
 
+        mainScreen.Q<Button>("Credits").clicked += () =>
+        {
+            credits.visible = true;
+            mainScreen.visible = false;
+            creditsController.StartScroll();
+        };
     }
     void NewGame()
     {
@@ -147,20 +156,20 @@ public class MainMenu : MonoBehaviour
        
 
     }
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (arg0.name == "Main Scene")
-        {
-            FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);  GameManager.Instance.ResetLastInn(); } ;
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+    //private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    //{
+    //    if (arg0.name == "Main Scene")
+    //    {
+    //        FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);  GameManager.Instance.ResetLastInn(); } ;
+    //        SceneManager.sceneLoaded -= OnSceneLoaded;
             
-        }
-    }
+    //    }
+    //}
     private void OnSceneLoaded(AsyncOperation operation)
     {
         PlayableDirector playableDirector;
         playableDirector = FindObjectOfType<PlayableDirector>();
-        var mainSceneLoading = SceneManager.LoadSceneAsync("DreamIsland");
+        var mainSceneLoading = SceneManager.LoadSceneAsync("Main Scene");
         mainSceneLoading.allowSceneActivation = false;
         InputAction action = new();
         GoodCatchInputs uIActions = new GoodCatchInputs();
@@ -174,7 +183,7 @@ public class MainMenu : MonoBehaviour
             mainSceneLoading.allowSceneActivation = true;
             mainSceneLoading.completed += (x) =>
             {
-               
+                FindAnyObjectByType<SceneLoader>().AllScenesLoaded += () => { SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave); GameManager.Instance.ResetLastInn(); };
 
             };
 

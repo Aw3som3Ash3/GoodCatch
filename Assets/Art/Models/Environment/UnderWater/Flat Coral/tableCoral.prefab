@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c2acab019d4ead34b92ccd447534621c, type: 2}
     - target: {fileID: 919132149155446097, guid: ff152087aa34a3a48b3cde3be8d4e35e, type: 3}
       propertyPath: m_Name
-      value: tableCoral_low
+      value: tableCoral
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

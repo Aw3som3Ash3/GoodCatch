@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="TitleContainer" style="flex-grow: 0;">
+        <ui:Label tabindex="-1" text="Catching Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+    </ui:VisualElement>
+    <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Monsters are much easier to catch the lower their health is. Hooks will come in different ranks, each next rank giving a boost in catch chance. From lowest to highest catch chance, the hooks are:&#10;   - Rookie&apos;s Hook&#10;   - Decent Hook&#10;   - Great Hook&#10;   - Captain&apos;s Hook" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+    </ui:VisualElement>
+</ui:UXML>

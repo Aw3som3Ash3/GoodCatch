@@ -46,9 +46,9 @@ MonoBehaviour:
     - rid: 2727136822063005750
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: The Chieftain sent ya, eh? Says the Fire Spirit is real and all
-          that, eh? Says I got a whooooole heap 'a supplies I can just give to anyone
-          I meet, eh?
+        dialouge: The Chieftain sent ya, eh? Says you wanna prove you've got the
+          Fire Spirit, eh? Says I got a whooooole heap 'a supplies I can just give
+          to anyone I meet, eh?
         voiceClip: {fileID: 0}
         guid: 1b29d50a31d907947bfd5a5ded525154
         decorators: []
@@ -64,7 +64,7 @@ MonoBehaviour:
         guid: 264598ced412daf4c9a260a0bbc945c3
         decorators:
         - rid: 2727136822063005765
-        position: {x: 2440, y: -34}
+        position: {x: 2525, y: -31}
         nextNode:
           rid: -2
     - rid: 2727136822063005755
@@ -75,13 +75,13 @@ MonoBehaviour:
         voiceClip: {fileID: 0}
         guid: 6081169218846b144a658ec2f30ba9e1
         decorators: []
-        position: {x: 1651, y: -34}
+        position: {x: 1736, y: -31}
         nextNode:
           rid: 2727136822063005754
     - rid: 2727136822063005765
       type: {class: GiveQuestDecorator, ns: , asm: Assembly-CSharp}
       data:
-        position: {x: 2483, y: 171}
+        position: {x: 2568, y: 174}
         guid: 8aaeb70c185ba5549ac1082257924bc0
         quest: {fileID: 11400000, guid: f4faac87e6c2af74cb65231d07027fa7, type: 2}
     - rid: 2727136841486303245

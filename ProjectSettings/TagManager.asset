@@ -27,8 +27,8 @@ TagManager:
   - CombatFloatingText
   - Dock
   - FishSilhouette
-  - 
-  - 
+  - InvisWall
+  - InvisWallBoat
   - 
   - 
   - 
@@ -41,6 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BehindWater
+    uniqueID: 1570093927
+    locked: 0
+  - name: BehindNames
+    uniqueID: 3179376817
+    locked: 0
+  - name: Mid
+    uniqueID: 239330773
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

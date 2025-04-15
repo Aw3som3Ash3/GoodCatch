@@ -13,7 +13,8 @@ public class Element : ScriptableObject
         strong,
         veryStrong,
         weak,
-        veryWeak
+        veryWeak,
+        healing
     }
 
     [SerializeField]

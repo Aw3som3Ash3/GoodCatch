@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Aegiscute
   m_EditorClassIdentifier: 
   description: It constantly emitting electricity as it swims. When attacked, it
-    emits an electric blast, knocking back its enemies for a moment to escape.
+    emits an electric blast, knocking back its enemies for a moment to escape. Can
+    only be caught during the night.
   model: {fileID: 3839559299291352316, guid: 501609f303d83c64e8c543ac0e293b4b, type: 3}
-  fishId: 25
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  fishId: 21
+  icon: {fileID: 21300000, guid: 7a0f8271e0ee3464092bb61242511744, type: 3}
+  miniSprite: {fileID: 21300000, guid: bed3e800ed90dc04db979394e783581e, type: 3}
   homeDepth: 1
   preferredBait: []
   elements:
@@ -49,8 +50,8 @@ MonoBehaviour:
     minTalent: 3
     maxTalent: 3
   accuracy:
-    min: 50
-    max: 50
+    min: 0
+    max: 0
     minTalent: 2
     maxTalent: 2
   baseHealth: 65

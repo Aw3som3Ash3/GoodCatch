@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa88eeb6ccc1dd84a98b7b4007986d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  creditsController: {fileID: 295875037}
   mixer: {fileID: 24100000, guid: 25dbafaf242bc1041bb3c3a66a81f8ca, type: 2}
   startingObjects:
   - {fileID: 41092281630482985, guid: c4bca3b27b8c4a44abdcd10da911a481, type: 3}
@@ -234,6 +235,52 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &295875036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 295875038}
+  - component: {fileID: 295875037}
+  m_Layer: 0
+  m_Name: CreditsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &295875037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295875036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a82e1caa0f5b2f64c9058c8d1182f5fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creditsUIDocument: {fileID: 76238154}
+  scrollDuration: 5
+--- !u!4 &295875038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295875036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25.824728, y: 24.071823, z: 77.12705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &392706865
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,3 +672,4 @@ SceneRoots:
   - {fileID: 1528803923}
   - {fileID: 76238155}
   - {fileID: 1835196532}
+  - {fileID: 295875038}

@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0270705409364b044a78748b29b502ed, type: 3}
   m_Name: Cold
   m_EditorClassIdentifier: 
-  strong: []
+  strong:
+  - {fileID: 11400000, guid: 9a1ba55548da1004fbf0c344357a6ae0, type: 2}
+  - {fileID: 11400000, guid: fcd04d00b9b016b4d933faa3caf51f90, type: 2}
+  - {fileID: 11400000, guid: 357e3a5bd8371e2458dc0e9144dcc9fc, type: 2}
   veryStrong: []
   weak:
   - {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}
   - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
+  - {fileID: 11400000, guid: 861589faee089304c8b447c528048ad1, type: 2}
+  - {fileID: 11400000, guid: 8c2a39ae365fd1d4fb0a459b45e1b144, type: 2}
   veryWeak: []
   icon: {fileID: 21300000, guid: fad137c190aaf5d46a3633464a47919e, type: 3}

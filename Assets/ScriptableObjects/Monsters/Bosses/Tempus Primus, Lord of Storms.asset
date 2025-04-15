@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: The beginning of the storm, and the end of the ecosystem.
   model: {fileID: 8314033061284529085, guid: 528ab21bbaed05641a1b76116eab1ce2, type: 3}
-  fishId: 0
+  fishId: 23
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 0}
-  homeDepth: 0
+  homeDepth: 2
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
@@ -47,8 +47,8 @@ MonoBehaviour:
     minTalent: 0
     maxTalent: 0
   accuracy:
-    min: 50
-    max: 50
+    min: 0
+    max: 0
     minTalent: 0
     maxTalent: 0
   baseHealth: 750
@@ -56,9 +56,12 @@ MonoBehaviour:
   baseAbilities:
   - potentialAbilities:
     - {fileID: 11400000, guid: ab4a81457af34374fb40887e9f8d113d, type: 2}
+    - {fileID: 11400000, guid: ab4a81457af34374fb40887e9f8d113d, type: 2}
   - potentialAbilities:
     - {fileID: 11400000, guid: 2313a43cfdc78404fafd1f423f78c5fa, type: 2}
+    - {fileID: 11400000, guid: 2313a43cfdc78404fafd1f423f78c5fa, type: 2}
   - potentialAbilities:
+    - {fileID: 11400000, guid: 1981dc13cdc0efd4bb9f99ed2120ee09, type: 2}
     - {fileID: 11400000, guid: 1981dc13cdc0efd4bb9f99ed2120ee09, type: 2}
   difficulty: 0
   attackAnimation: {fileID: 7400000, guid: 9f27b6b8392c78c47b31acfae16fea8d, type: 2}

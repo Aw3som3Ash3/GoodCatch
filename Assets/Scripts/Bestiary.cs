@@ -12,6 +12,7 @@ public class Bestiary : PausePage
 {
     ListView fishList;
     Label fishTitle, location, timeOfDay, baits, stamina, hp, agilityMin, attackMin, magicAttackMin, defenseMin, magicDefenseMin, agilityMax, attackMax, magicAttackMax, defenseMax, magicDefenseMax, loreAmount, healthAmount, staminaAmount, accuracyMin, accuracyMax, type1, type2;
+    MarinedexTabs marinedexTabs;
     List<FishMonsterType> fishMonsters 
     { get 
         { 
@@ -67,6 +68,7 @@ public class Bestiary : PausePage
         staminaAmount = this.Q<Label>("StaminaAmount");
         type1 = this.Q<Label>("Type1Amount");
         type2 = this.Q<Label>("Type2Amount");
+        marinedexTabs = this.Q<MarinedexTabs>();
         //accuracyMax = this.Q<Label>("MaximumAccuracy");
 
         //agilityMin = this.Q<Label>("MinimumAgilityAmount");
@@ -157,77 +159,24 @@ public class Bestiary : PausePage
     }
     public void SetPage(FishMonsterType fishMonsterType)
     {
-
-        Debug.Log(this.Q<MarinedexTabs>().Q("Stats-content"));
-
-        agilityMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumAgilityAmount");
-        attackMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumPhysicalAttackAmount");
-        magicAttackMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumMagicalAttackAmount");
-        defenseMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumPFAmount");
-        magicDefenseMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumMFAmount");
-
-
-        agilityMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumAgilityAmount");
-        attackMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumPhysicalAttackAmount");
-        magicAttackMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumMagicalAttackAmount");
-        defenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumPFAmount");
-        magicDefenseMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumMFAmount");
-
-        healthAmount = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("HealthAmount");
-        staminaAmount = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("StaminaAmount");
-        accuracyMin = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MinimumAccuracyAmount");
-        accuracyMax = this.Q<MarinedexTabs>().Q("unity-content-container").Q("Stats-content").Q<Label>("MaximumAccuracyAmount");
-
-        Debug.Log(fishMonsterType);
-        Debug.Log(agilityMin);
-        //fishTitle.text = fishMonsterType.name; 
-        //stamina.text = fishMonsterType.BaseStamina.ToString();
-        //hp.text=fishMonsterType.BaseHealth.ToString();
-        if (hasSeenFish[fishMonsterType.fishId])
+        //fishTitle.text = fishMonsterType.name;
+        loreAmount.text = fishMonsterType.Description;
+        type1.text = fishMonsterType.Elements[0].name;
+        if (fishMonsterType.Elements.Length >= 2)
         {
-            agilityMax.text = fishMonsterType.Agility.Max.ToString();
-            agilityMin.text = fishMonsterType.Agility.Min.ToString();
-            attackMin.text = fishMonsterType.Attack.Min.ToString();
-            attackMax.text = fishMonsterType.Attack.Max.ToString();
+            type2.text = fishMonsterType.Elements[1].name;
 
-            magicAttackMax.text = fishMonsterType.Special.Max.ToString();
-            magicAttackMin.text = fishMonsterType.Special.Min.ToString();
-
-            magicDefenseMax.text = fishMonsterType.SpecialFortitude.Max.ToString();
-            magicDefenseMin.text = fishMonsterType.SpecialFortitude.Min.ToString();
-            defenseMin.text = fishMonsterType.Fortitude.Min.ToString();
-            defenseMax.text = fishMonsterType.Fortitude.Max.ToString();
-
-            loreAmount.text = fishMonsterType.Description.ToString();
-            healthAmount.text = fishMonsterType.BaseHealth.ToString();
-            staminaAmount.text = fishMonsterType.BaseStamina.ToString();
-            accuracyMin.text = fishMonsterType.Accuracy.Min.ToString();
-            accuracyMax.text = fishMonsterType.Accuracy.Max.ToString();
-
-            type1.text = fishMonsterType.Elements[0].name.ToString(); 
-            type2.text = fishMonsterType.Elements[1].name.ToString();
         }
-        else
+        else 
         {
-            agilityMax.text = "??";
-            agilityMin.text = "??";
-            attackMin.text = "??";
-            attackMax.text = "??";
-
-            magicAttackMax.text = "??";
-            magicAttackMin.text = "??";
-
-            magicDefenseMax.text = "??";
-            magicDefenseMin.text = "??";
-            defenseMin.text = "??";
-            defenseMax.text = "??";
-
-            staminaAmount.text = "??";
-            healthAmount.text = "??";
-            accuracyMin.text = "??";
-            accuracyMax.text = "??";
-            loreAmount.text = "???";
+            type2.text = "";
         }
+       
+
+
+        marinedexTabs.SetPage(fishMonsterType);
+        
+       
        
     }
     public override bool Back()
