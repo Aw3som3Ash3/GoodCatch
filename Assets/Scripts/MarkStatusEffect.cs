@@ -45,6 +45,7 @@ public class MarkStatusEffect : DefensiveEffect
         public override float MitigateDamage(float damage, Element element, Ability.AbilityType type, StatusEffectInstance effectInstance)
         {
             DoEffect(owner);
+            
             return damage+ damage*(effect as MarkStatusEffect).damageBonus;
         }
     }
