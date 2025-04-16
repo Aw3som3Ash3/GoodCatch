@@ -14,7 +14,11 @@ public class Quest : ScriptableObject
     [RuntimeInitializeOnLoadMethod]
     static void SetUp()
     {
-      getQuestById = new();
+        if (getQuestById == null)
+        {
+            getQuestById = new();
+        }
+     
     }
 
     void OnEnable()
@@ -27,6 +31,10 @@ public class Quest : ScriptableObject
     }
     void SetUpId() 
     {
+        if (getQuestById == null)
+        {
+            getQuestById = new();
+        }
         questId = name;
         int counter = 0;
         while (getQuestById.ContainsKey(questId) && getQuestById[questId] != this)
