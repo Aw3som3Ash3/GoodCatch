@@ -1334,6 +1334,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 lastEffects[(effectInstance.effect)] = 2;
                 effectInstance.DurationChanged = null;
                 effects.Remove(effectInstance);
+                EffectRemoved?.Invoke(effectInstance);
             }
            
         }
