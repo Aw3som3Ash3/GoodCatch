@@ -26,7 +26,7 @@ public class FishToCatch : MonoBehaviour
     float timer;
     Vector3 destination;
 
-    public void SetIdle(Vector3 center)
+    public void SetIdle()
     {
         
         behaviour = FishBehaviour.idle;
