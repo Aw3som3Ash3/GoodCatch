@@ -25,6 +25,10 @@ public class FishDatabase : ScriptableObject, ISerializationCallbackReceiver
     {
         GetFish = new Dictionary<int, FishMonsterType>();
     }
+    private void OnEnable()
+    {
+        RegenerateIDs();
+    }
     public FishMonsterType GetRandom()
     {
         return fishMonsters[1];
