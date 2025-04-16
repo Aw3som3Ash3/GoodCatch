@@ -450,7 +450,7 @@ public class CombatUI : VisualElement
     }
     void UseAbility(int index)
     {
-        if (currentTurn != null)
+        if (currentTurn == null)
         {
             return;
         }
