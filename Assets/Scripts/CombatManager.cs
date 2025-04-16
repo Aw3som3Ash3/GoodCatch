@@ -1261,6 +1261,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             var instance = effect.NewInstance(owner);
             effects.Add(instance);
             lastEffects.Remove(effect);
+            instance.DurationChanged += (x) => { if (x <= 0) { RemoveEffect(instance); } };
             NewEffect?.Invoke(instance);
         }
         public bool HadEffectLastTurn(StatusEffect effect)
@@ -1326,10 +1327,15 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
         }
 
-        public void RemoveEffect(StatusEffect.StatusEffectInstance effectInstance)
+        void RemoveEffect(StatusEffect.StatusEffectInstance effectInstance)
         {
-            lastEffects[(effectInstance.effect)] = 2;
-            effects.Remove(effectInstance);
+            if (effects.Contains(effectInstance))
+            {
+                lastEffects[(effectInstance.effect)] = 2;
+                effectInstance.DurationChanged = null;
+                effects.Remove(effectInstance);
+            }
+           
         }
         ~Turn()
         {
