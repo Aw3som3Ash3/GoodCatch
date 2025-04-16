@@ -450,6 +450,10 @@ public class CombatUI : VisualElement
     }
     void UseAbility(int index)
     {
+        if (currentTurn != null)
+        {
+            return;
+        }
         abilityButtons[index].AddToClassList("AbilitySelected");
         currentTurn.UseAbility(index, () => 
         {
