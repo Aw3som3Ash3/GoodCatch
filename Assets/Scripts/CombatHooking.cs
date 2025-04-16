@@ -67,8 +67,8 @@ public class CombatHooking : MonoBehaviour
             lineRenderer.SetPosition(1, hook.transform.localPosition);
             yield return null;
         }
-        Destroy(hook.gameObject);
+        
         Completed?.Invoke();
-
+        Destroy(this.gameObject);
     }
 }
