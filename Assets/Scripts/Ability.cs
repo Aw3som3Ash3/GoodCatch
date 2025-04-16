@@ -189,7 +189,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
 
                     if (targets[i].effects.Count > 0)
                     {
-                        var effects =targets[i].effects.Where((x) => x is DefensiveEffect.DefensiveEffectInstance).ToArray()
+                        var effects = targets[i].effects.Where((x) => x is DefensiveEffect.DefensiveEffectInstance).ToArray();
                         foreach (var effectInstance in effects)
                         {
                             propigatedDamage = (effectInstance as DefensiveEffect.DefensiveEffectInstance).MitigateDamage(propigatedDamage, element, abilityType, effectInstance);
