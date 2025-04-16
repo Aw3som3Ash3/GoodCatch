@@ -469,36 +469,29 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         
         if (winningTeam==Team.player)
         {
-
-            foreach (var fish in playerFishes)
-            {
-                //victoryScreen.fishXpBar[fish].value = fish.Xp;
-            }
             var deltaXps= RewardXP();
-            yield return new WaitForFixedUpdate();
-            for (int i = 0; i < 300; i++)
+            yield return null;
+            for (float i = 0; i < 3; i+=Time.deltaTime)
             {
 
                 foreach (var fish in playerFishes)
                 {
                     //victoryScreen.fishProfile[fish].value = Mathf.MoveTowards(victoryScreen.fishXpBar[fish].value, fish.Xp, 1);
-                    if (victoryScreen.fishProfile[fish].UpdateXpManual(deltaXps[fish].deltaXp * (1f / 300f)))
+                    if (victoryScreen.fishProfile[fish].UpdateXpManual(deltaXps[fish].deltaXp * Time.deltaTime))
                     {
                         victoryScreen.fishProfile[fish].UpdateLevelManual(1);
                     }
 
 
                 }
-                yield return new WaitForFixedUpdate();
+                yield return null;
             }
 
         }
         else
         {
-            for (int i = 0; i < 50; i++)
-            {
-                yield return new WaitForFixedUpdate();
-            }
+            yield return new WaitForSeconds(1);
+            
 
         }
         //ui.rootVisualElement.Remove(combatUI);
