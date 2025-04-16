@@ -8,10 +8,36 @@ using static Quest;
 
 [CreateAssetMenu(fileName = "Quest", menuName = "Quest System/Quest", order = 3)]
 
-public class Quest : ScriptableObject,ISerializationCallbackReceiver
+public class Quest : ScriptableObject
 {
-    public static Dictionary<string, Quest> getQuestById = new();
-    
+    public static Dictionary<string, Quest> getQuestById;
+    [RuntimeInitializeOnLoadMethod]
+    static void SetUp()
+    {
+      getQuestById = new();
+    }
+
+    void OnEnable()
+    {
+       SetUpId();
+    }
+    private void OnValidate()
+    {
+        SetUpId();
+    }
+    void SetUpId() 
+    {
+        questId = name;
+        int counter = 0;
+        while (getQuestById.ContainsKey(questId) && getQuestById[questId] != this)
+        {
+            counter++;
+            questId = name + counter;
+
+
+        }
+        getQuestById[questId] = this;
+    }
     public enum QuestType
     {
         Main,
@@ -163,7 +189,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
     public class QuestInstance
     {
         Quest quest;
-        public Quest @Quest { get { if (quest == null) { quest = Quest.getQuestById[questId]; } return quest; } set { quest = value; } }
+        public Quest @Quest { get { if (quest == null&& Quest.getQuestById.ContainsKey(questId)) { quest = Quest.getQuestById[questId]; } return quest; } set { quest = value; } }
         [SerializeField]
         string questId;
         public string QuestName { get { return @Quest.name; } }
@@ -261,23 +287,7 @@ public class Quest : ScriptableObject,ISerializationCallbackReceiver
     {
         return new QuestInstance(this);
     }
-    public void OnBeforeSerialize()
-    {
-        
-    }
-
-    public void OnAfterDeserialize()
-    {
-        if (questId == null || questId == "" || (getQuestById.ContainsKey(questId) && getQuestById[questId] != this))
-        {
-            questId = Guid.NewGuid().ToString();
-
-        }
-        getQuestById[questId] = this;
-
-
-        
-    }
+    
 }
 
 
