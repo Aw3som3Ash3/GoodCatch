@@ -368,10 +368,11 @@
     border-right-width: 5px;
     border-bottom-width: 5px;
     border-left-width: 5px;
-    border-left-color: rgb(0, 0, 255);
-    border-right-color: rgb(0, 0, 255);
-    border-top-color: rgb(0, 0, 255);
-    border-bottom-color: rgb(0, 0, 255);
+    border-left-color: rgb(37, 55, 134);
+    border-right-color: rgb(37, 55, 134);
+    border-top-color: rgb(37, 55, 134);
+    border-bottom-color: rgb(37, 55, 134);
+    transition-duration: 0.1s;
 }
 
 .DraftSlot:hover {
@@ -391,10 +392,10 @@
     border-right-width: 5px;
     border-bottom-width: 5px;
     border-left-width: 5px;
-    border-left-color: rgb(2, 0, 255);
-    border-right-color: rgb(2, 0, 255);
-    border-top-color: rgb(2, 0, 255);
-    border-bottom-color: rgb(2, 0, 255);
+    border-left-color: rgb(61, 95, 203);
+    border-right-color: rgb(61, 95, 203);
+    border-top-color: rgb(61, 95, 203);
+    border-bottom-color: rgb(61, 95, 203);
     transition-duration: 0.1s;
     scale: 1.1 1.1;
 }
@@ -416,10 +417,10 @@
     border-right-width: 5px;
     border-bottom-width: 5px;
     border-left-width: 5px;
-    border-left-color: rgb(2, 0, 255);
-    border-right-color: rgb(2, 0, 255);
-    border-top-color: rgb(2, 0, 255);
-    border-bottom-color: rgb(2, 0, 255);
+    border-left-color: rgb(61, 95, 203);
+    border-right-color: rgb(61, 95, 203);
+    border-top-color: rgb(61, 95, 203);
+    border-bottom-color: rgb(61, 95, 203);
     transition-duration: 0.1s;
     scale: 1.1 1.1;
 }
@@ -441,10 +442,10 @@
     border-right-width: 5px;
     border-bottom-width: 5px;
     border-left-width: 5px;
-    border-left-color: rgb(2, 0, 255);
-    border-right-color: rgb(2, 0, 255);
-    border-top-color: rgb(2, 0, 255);
-    border-bottom-color: rgb(2, 0, 255);
+    border-left-color: rgb(231, 196, 66);
+    border-right-color: rgb(231, 196, 66);
+    border-top-color: rgb(231, 196, 66);
+    border-bottom-color: rgb(231, 196, 66);
     transition-duration: 0.1s;
     scale: 1.1 1.1;
 }
@@ -508,10 +509,12 @@
 
 #Profile {
     bottom: 179px;
+    transition-duration: 0.1s;
 }
 
 #Profile.ProfileCollapsed {
     bottom: 0;
+    transition-duration: 0.1s;
 }
 
 #StatWindow .unity-text-element {

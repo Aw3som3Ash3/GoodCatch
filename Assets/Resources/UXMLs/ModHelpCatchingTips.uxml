@@ -3,6 +3,23 @@
         <ui:Label tabindex="-1" text="Catching Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
     </ui:VisualElement>
     <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
-        <ui:Label tabindex="-1" text="Monsters are much easier to catch the lower their health is. Hooks will come in different ranks, each next rank giving a boost in catch chance. From lowest to highest catch chance, the hooks are:&#10;   - Rookie&apos;s Hook&#10;   - Decent Hook&#10;   - Great Hook&#10;   - Captain&apos;s Hook" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:Label tabindex="-1" text="Monsters are much easier to catch the lower their health is. Hooks will come in different ranks, each next rank giving a boost in catch chance. Hooks can only be used during battle from the Items tab. To use one, select it then select the desired target to catch.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:VisualElement name="Images" style="flex-grow: 1; height: 500px; align-self: stretch; align-items: center; flex-direction: column; justify-content: center;">
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/catching1.png?fileID=2800000&amp;guid=3fcd86422caf2bc44917cbf242be9e58&amp;type=3#catching1&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-start; max-height: 100px;">
+                <ui:Label tabindex="-1" text="Hooks can be found in the Items tab during combat.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: center; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Images" style="flex-grow: 1; height: 500px; align-self: stretch; align-items: center; flex-direction: column; justify-content: center;">
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/catching2.png?fileID=2800000&amp;guid=c1eeedcecebbc2d4ca8d136ae9d5f138&amp;type=3#catching2&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-start; max-height: 100px;">
+                <ui:Label tabindex="-1" text="Monsters targeted for capture are highlighted with a&#10;yellow outline.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: center; -unity-text-align: upper-center;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label tabindex="-1" text="From lowest to highest catch chance, the hooks are:&#10;   - Rookie&apos;s Hook&#10;   - Decent Hook&#10;   - Great Hook&#10;   - Captain&apos;s Hook" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
     </ui:VisualElement>
 </ui:UXML>

@@ -10,12 +10,12 @@
                     <ui:Button text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FishingButton" />
                     <ui:Button text="Combat" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatButton" />
                     <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalButton" />
-                    <ui:Button text="Ability" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityButton" />
+                    <ui:Button text="Abilities" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityButton" />
                     <ui:Button text="Status Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusButton" />
-                    <ui:Button text="Other Effect" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherButton" />
+                    <ui:Button text="Other Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherButton" />
+                    <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TravelingButton" />
                     <ui:Button text="Healing &amp; Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealingButton" />
                     <ui:Button text="Hooks &amp; Catching" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HooksButton" style="display: flex;" />
-                    <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TravelingButton" />
                 </ui:ScrollView>
             </ui:VisualElement>
             <ui:ScrollView name="Description" style="width: 75%; background-color: rgba(255, 255, 255, 0); padding-right: 35px; padding-left: 35px; flex-grow: 0; justify-content: flex-start; background-image: url(&quot;project://database/Assets/Art/2D/UI/menu_marindex_paper.png?fileID=2800000&amp;guid=290fec8eed1594b4c969a0796b538fe8&amp;type=3#menu_marindex_paper&quot;); padding-top: 25px; padding-bottom: 30px;" />

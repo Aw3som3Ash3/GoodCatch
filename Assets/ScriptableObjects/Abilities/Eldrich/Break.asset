@@ -26,7 +26,7 @@ MonoBehaviour:
   element: {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
   effects: []
   forcedMovement: 0
-  icon: {fileID: 21300000, guid: 760df110b8d0963478dc033642c5be14, type: 3}
+  icon: {fileID: 21300000, guid: 7d6c25069f57b6840a82e51d12151186, type: 3}
   abilityVFX: {fileID: 0}
-  targetVFX: {fileID: 0}
+  targetVFX: {fileID: 7504169191687348763, guid: 75dffcb467955b3469a64f61c3aeda16, type: 3}
   abilityID: 19dfe467-dd79-4ae6-be61-0a5483ac5e61

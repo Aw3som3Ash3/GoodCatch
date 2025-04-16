@@ -19,7 +19,7 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 2727136756081360905
-  - name: Get past the guards and talk to the Jungle Chieftan
+  - name: Talk to the Jungle Chieftan
     description: 
     requirements:
     - rid: 6498884538079379573
@@ -38,5 +38,5 @@ MonoBehaviour:
       data:
         Name: DialogueEventQuestRequirement
         IsCompleted: 1
-        objective: Get past the guards and talk to the Jungle Chieftan
+        objective: Talk to the Jungle Chieftan
         dialogueEvent: {fileID: -691799829326291022, guid: 7426f18b6b417fc418e2dea282190852, type: 2}
