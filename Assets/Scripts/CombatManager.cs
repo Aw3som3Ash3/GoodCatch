@@ -476,10 +476,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
                 foreach (var fish in playerFishes)
                 {
+                    var profile = victoryScreen.fishProfile[fish];
                     //victoryScreen.fishProfile[fish].value = Mathf.MoveTowards(victoryScreen.fishXpBar[fish].value, fish.Xp, 1);
-                    if (victoryScreen.fishProfile[fish].UpdateXpManual(deltaXps[fish].deltaXp * Time.deltaTime/3))
+                    if (profile.UpdateXpManual(deltaXps[fish].deltaXp * Time.deltaTime/3))
                     {
-                        victoryScreen.fishProfile[fish].UpdateLevelManual(1);
+                        profile.UpdateLevelManual(1);
                     }
 
 
