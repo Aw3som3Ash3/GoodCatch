@@ -38,7 +38,7 @@ public class CombatHooking : MonoBehaviour
             hook.transform.position = Vector3.MoveTowards(hook.transform.position, pos, hookSpeed*Time.deltaTime);
             //hook.transform.Translate(Vector3.down * hookSpeed * Time.fixedDeltaTime);
             lineRenderer.SetPosition(1, hook.transform.localPosition);
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         if (shouldCatch)
@@ -65,8 +65,9 @@ public class CombatHooking : MonoBehaviour
         {
             hook.transform.position = Vector3.MoveTowards(hook.transform.position, this.transform.position, hookSpeed * 2 * Time.deltaTime);
             lineRenderer.SetPosition(1, hook.transform.localPosition);
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
+        Destroy(hook.gameObject);
         Completed?.Invoke();
 
     }
