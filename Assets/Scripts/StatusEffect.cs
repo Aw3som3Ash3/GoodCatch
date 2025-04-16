@@ -17,7 +17,8 @@ public abstract class StatusEffect: ScriptableObject
     public enum EffectUsage
     {
         preTurn,
-        postTurn
+        postTurn,
+        noTick
     }
     [SerializeField]
     EffectUsage effectUsage;
