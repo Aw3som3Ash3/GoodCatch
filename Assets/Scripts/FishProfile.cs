@@ -71,7 +71,7 @@ public class FishProfile : VisualElement
     public bool UpdateXpManual(float xpToAdd)
     {
         xpBar.value += xpToAdd;
-        Debug.Log(fishMonster.Xp);
+        //Debug.Log(fishMonster.Xp);
         if (xpBar.value > xpBar.highValue)
         {
             xpBar.value %= xpBar.highValue;
