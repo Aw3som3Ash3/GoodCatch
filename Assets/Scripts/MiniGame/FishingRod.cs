@@ -84,7 +84,11 @@ public class FishingRod : MonoBehaviour
 
     void FishingCompleted()
     {
-        Destroy(floater.gameObject); 
+        if (floater.gameObject != null)
+        {
+            Destroy(floater.gameObject);
+        }
+       
         OnComplete?.Invoke();
         FishingMiniGame.SuccesfulFishing -= FishingCompleted;
     }

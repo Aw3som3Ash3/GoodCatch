@@ -12,8 +12,14 @@ public class DoTStatusEffect : StatusEffect
 
     public override void DoEffect(CombatManager.Turn turn)
     {
+        if (damage > 0)
+        {
+            turn.TakeDamage(damage, element, Ability.AbilityType.special);
+        }else if (damage < 0)
+        {
+            turn.Restore(-damage);
+        }
         
-        turn.TakeDamage(damage, element, Ability.AbilityType.special);
     }
 
 
