@@ -310,6 +310,10 @@ public class CombatVisualizer : MonoBehaviour
         }
         if(ability.TargetVFX != null)
         {
+            var hitEffect=Instantiate(ability.AbilityVFX, destination, Quaternion.identity);
+            var main = hitEffect.main;
+            main.stopAction = ParticleSystemStopAction.Destroy;
+            yield return new WaitForSeconds(main.duration);
 
         }
         CompletedMove?.Invoke();
