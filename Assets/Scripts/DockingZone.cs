@@ -126,6 +126,10 @@ public class DockingZone : SaveableObject, IInteractable
 
     public override void Load(string json)
     {
+        if (json == null)
+        {
+            return;
+        }
         var shipId=JsonUtility.FromJson<string>(json);
         if (shipId == null||shipId=="")
         {

@@ -75,6 +75,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 84957882f27506546bb5316f3ad7e45e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2661231961599082181}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 84957882f27506546bb5316f3ad7e45e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3066962809337603555}
   m_SourcePrefab: {fileID: 100100000, guid: 84957882f27506546bb5316f3ad7e45e, type: 3}
 --- !u!1 &4675928024429547860 stripped
 GameObject:
@@ -104,6 +107,18 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!210 &3066962809337603555
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4675928024429547860}
+  m_Enabled: 1
+  m_SortingLayerID: -1115590479
+  m_SortingLayer: -2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!4 &5453836535773957102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 84957882f27506546bb5316f3ad7e45e, type: 3}
@@ -163,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0c245f41d77809c44ac69b7797d1d2b9, type: 2}
     - target: {fileID: 919132149155446097, guid: 84957882f27506546bb5316f3ad7e45e, type: 3}
       propertyPath: m_Name
-      value: aquarium_low
+      value: aquarium
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

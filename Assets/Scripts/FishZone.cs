@@ -75,6 +75,11 @@ public class FishZone : SaveableObject
     }
     public override void Load(string json)
     {
+        if (json == null)
+        {
+            return;
+        }
+        
         //JsonUtility.FromJsonOverwrite(json, this);
         var data = JsonUtility.FromJson<Data>(json);
         this.data = data;
