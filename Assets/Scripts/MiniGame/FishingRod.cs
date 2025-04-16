@@ -88,7 +88,7 @@ public class FishingRod : MonoBehaviour
         {
             Destroy(floater.gameObject);
         }
-       
+
         OnComplete?.Invoke();
         FishingMiniGame.SuccesfulFishing -= FishingCompleted;
     }

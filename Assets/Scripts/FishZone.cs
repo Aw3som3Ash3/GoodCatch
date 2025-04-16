@@ -50,7 +50,8 @@ public class FishZone : SaveableObject
             fish.transform.localPosition= dir * 1 * (radius + UnityEngine.Random.Range(-0.5f,0.5f));
             fish.transform.localRotation = rot;
             
-            fish.SetIdle(this.transform.position);
+            //fish.SetIdle(this.transform.position);
+            fish.SetIdle();
         }
         birds.transform.localPosition=new Vector3(0,birdHeight,0);
     }
