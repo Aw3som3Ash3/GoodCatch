@@ -79,7 +79,7 @@ public class FishZone : SaveableObject
         {
             return;
         }
-        va
+        
         //JsonUtility.FromJsonOverwrite(json, this);
         var data = JsonUtility.FromJson<Data>(json);
         this.data = data;

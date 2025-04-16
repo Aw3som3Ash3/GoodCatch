@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -1018,6 +1019,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
         public float TakeDamage(float damage, Element elementType, Ability.AbilityType abilityType )
         {
             Element.Effectiveness effectiveness;
+            
             var damageOut= fish.TakeDamage(damage, elementType, abilityType, out effectiveness);
             combatManager.combatVisualizer.AnimateDamageNumbers(this, damageOut, effectiveness);
             health-=damageOut;
@@ -1265,6 +1267,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             }
             var instance = effect.NewInstance(owner);
             effects.Add(instance);
+            lastEffects.Remove(effect);
             NewEffect?.Invoke(instance);
         }
         public bool HadEffectLastTurn(StatusEffect effect)
@@ -1330,7 +1333,11 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
 
         }
 
-        
+        public void RemoveEffect(StatusEffect.StatusEffectInstance effectInstance)
+        {
+            lastEffects[(effectInstance.effect)] = 2;
+            effects.Remove(effectInstance);
+        }
         ~Turn()
         {
             fish.ValueChanged-=ValueChanged;
