@@ -138,6 +138,7 @@ public static class SavingSystem
     }
     public static void LoadGame(int slotNum)
     {
+        data = null;
         currentSlot= slotNum;
         LoadGame();
     }
