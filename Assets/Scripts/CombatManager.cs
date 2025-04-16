@@ -1071,7 +1071,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                     combatManager.combatUI.EnableButtons();
                 }
                 
-                if (actionsLeft <= 0|| CheckDeath())
+                if (CheckDeath()||actionsLeft <= 0)
                 {
                     //combatManager.combatUI.EnableButtons();
                     EndTurn();
