@@ -15,7 +15,7 @@ MonoBehaviour:
   description: A common fish with no notable skills. struggles to stand out, even
     when compared to a goldfish.
   model: {fileID: 382904234463608869, guid: 7b82c4c356ef77f4fbd0a48f185782a1, type: 3}
-  fishId: 0
+  fishId: 1
   icon: {fileID: 21300000, guid: c241e728dd65ba44b80f5bc3a7491b34, type: 3}
   miniSprite: {fileID: 1569861162, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: -1
@@ -25,33 +25,33 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 2
-    maxTalent: 2
+    minTalent: 4
+    maxTalent: 4
   attack:
     min: 15
     max: 30
-    minTalent: 2
-    maxTalent: 2
+    minTalent: 4
+    maxTalent: 4
   special:
     min: 15
     max: 30
-    minTalent: 2
-    maxTalent: 2
+    minTalent: 4
+    maxTalent: 4
   fortitude:
     min: 8
     max: 15
-    minTalent: 2
-    maxTalent: 2
+    minTalent: 4
+    maxTalent: 4
   specialFortitude:
     min: 8
     max: 15
-    minTalent: 2
-    maxTalent: 2
+    minTalent: 4
+    maxTalent: 4
   accuracy:
     min: 0
     max: 0
-    minTalent: 2
-    maxTalent: 2
+    minTalent: 4
+    maxTalent: 4
   baseHealth: 100
   baseStamina: 60
   baseAbilities:

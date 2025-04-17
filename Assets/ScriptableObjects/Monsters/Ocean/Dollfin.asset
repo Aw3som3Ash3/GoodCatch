@@ -15,7 +15,7 @@ MonoBehaviour:
   description: Has extreme jealousy for Glamvish's popularity. Its desire to be beautiful
     is shattered by the weight of its appearance.
   model: {fileID: 4702024725110380459, guid: 0de245b804d8130479eea1c35fa4f2fc, type: 3}
-  fishId: 10
+  fishId: 11
   icon: {fileID: 21300000, guid: 2dd69fad33b28c745b19d797d64db325, type: 3}
   miniSprite: {fileID: 929911299, guid: e594e3d34993e884789c3b09251a0dc5, type: 3}
   homeDepth: 4
@@ -26,33 +26,33 @@ MonoBehaviour:
   agility:
     min: 20
     max: 40
-    minTalent: 4
-    maxTalent: 5
+    minTalent: 8
+    maxTalent: 4
   attack:
     min: 25
     max: 50
-    minTalent: 4
-    maxTalent: 5
+    minTalent: 8
+    maxTalent: 8
   special:
     min: 10
     max: 20
-    minTalent: 1
-    maxTalent: 2
+    minTalent: 8
+    maxTalent: 16
   fortitude:
     min: 5
     max: 10
-    minTalent: 0
-    maxTalent: 1
+    minTalent: 1
+    maxTalent: 2
   specialFortitude:
     min: 5
     max: 10
-    minTalent: 0
-    maxTalent: 1
+    minTalent: 1
+    maxTalent: 2
   accuracy:
     min: 15
     max: 30
     minTalent: 4
-    maxTalent: 5
+    maxTalent: 4
   baseHealth: 100
   baseStamina: 60
   baseAbilities:
