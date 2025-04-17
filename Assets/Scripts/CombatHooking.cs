@@ -39,7 +39,7 @@ public class CombatHooking : MonoBehaviour
             Debug.Log(Vector3.Distance(hook.transform.position, pos));
             hook.transform.position = Vector3.MoveTowards(hook.transform.position, pos, hookSpeed*Time.deltaTime);
             //hook.transform.Translate(Vector3.down * hookSpeed * Time.fixedDeltaTime);
-            lineRenderer.SetPosition(1, hookPivot.localPosition);
+            lineRenderer.SetPosition(1, hook.transform.localPosition+ hookPivot.localPosition);
             yield return null;
         }
 
@@ -66,7 +66,7 @@ public class CombatHooking : MonoBehaviour
         while (Vector3.Distance(this.transform.position, hook.transform.position) > 0)
         {
             hook.transform.position = Vector3.MoveTowards(hook.transform.position, this.transform.position, hookSpeed * 2 * Time.deltaTime);
-            lineRenderer.SetPosition(1, hookPivot.localPosition);
+            lineRenderer.SetPosition(1, hook.transform.localPosition + hookPivot.localPosition);
             yield return null;
         }
         
