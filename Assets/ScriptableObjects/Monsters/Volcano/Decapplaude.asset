@@ -15,7 +15,7 @@ MonoBehaviour:
   description: Its hands are special anemones that generate fire, creating fiery
     dances that inspire other fish to realize their potential.
   model: {fileID: 3452435611435181451, guid: 29a6610aa28ee944f85b7656942b9533, type: 3}
-  fishId: 20
+  fishId: 18
   icon: {fileID: 21300000, guid: d9fc94b69b7efa04db9ecf35acd3ffed, type: 3}
   miniSprite: {fileID: 21300000, guid: cd8f56a1142831a47a7a73b3c81c4ebe, type: 3}
   homeDepth: 4
@@ -26,33 +26,33 @@ MonoBehaviour:
   agility:
     min: 15
     max: 30
-    minTalent: 2
-    maxTalent: 3
+    minTalent: 8
+    maxTalent: 8
   attack:
     min: 20
     max: 35
-    minTalent: 3
-    maxTalent: 4
+    minTalent: 8
+    maxTalent: 8
   special:
     min: 15
     max: 30
-    minTalent: 2
-    maxTalent: 3
+    minTalent: 4
+    maxTalent: 8
   fortitude:
     min: 10
     max: 15
-    minTalent: 2
-    maxTalent: 3
+    minTalent: 4
+    maxTalent: 4
   specialFortitude:
     min: 5
     max: 10
-    minTalent: 0
-    maxTalent: 1
+    minTalent: 1
+    maxTalent: 2
   accuracy:
     min: 0
     max: 0
-    minTalent: 2
-    maxTalent: 2
+    minTalent: 4
+    maxTalent: 4
   baseHealth: 100
   baseStamina: 90
   baseAbilities:
