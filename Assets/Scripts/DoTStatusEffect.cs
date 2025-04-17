@@ -40,7 +40,7 @@ public class DoTStatusEffect : StatusEffect
             }
             else if (((DoTStatusEffect)effect).damage < 0)
             {
-                turn.Restore(-((DoTStatusEffect)effect).damage);
+                turn.Restore(-((DoTStatusEffect)effect).damage + (owner.special * 0.01f) * ((DoTStatusEffect)effect).damageScale);
             }
 
             return base.DoEffect(turn);
