@@ -85,7 +85,7 @@ public class FishingRod : MonoBehaviour
 
     void FishingCompleted()
     {
-        if (floater.gameObject != null)
+        if (floater != null)
         {
             Destroy(floater.gameObject);
         }

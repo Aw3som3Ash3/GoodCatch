@@ -335,7 +335,7 @@ public class FishMonster
     [SerializeField]
     float maxStamina;
     public float MaxStamina { get { return maxStamina; } }
-    public float Dodge { get { return agility.value / 2; } }
+    public float Dodge { get { return agility.value / 3; } }
     public Sprite Icon { get { return Type.Icon; } }
     public Sprite MiniSprite { get { return Type.MiniSprite; } }
     public GameObject Model { get { return Type.Model; } }
