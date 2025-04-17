@@ -528,3 +528,7 @@
     -unity-text-outline-width: 2px;
     -unity-text-outline-color: rgb(21, 26, 70);
 }
+
+#SwapTab {
+    display: none;
+}
