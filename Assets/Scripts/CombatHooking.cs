@@ -39,7 +39,7 @@ public class CombatHooking : MonoBehaviour
             Debug.Log(Vector3.Distance(hook.transform.position, pos));
             hook.transform.position = Vector3.MoveTowards(hook.transform.position, pos, hookSpeed*Time.deltaTime);
             //hook.transform.Translate(Vector3.down * hookSpeed * Time.fixedDeltaTime);
-            lineRenderer.SetPosition(1, hook.transform.position+ hookPivot.localPosition);
+            lineRenderer.SetPosition(1, hook.transform.localPosition+ hookPivot.localPosition);
             yield return null;
         }
 
