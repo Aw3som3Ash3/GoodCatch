@@ -266,10 +266,10 @@ public enum TalentScale
 {
     F=1,
     D=2,
-    C=4,
-    B=8,
-    A=16,
-    S=32
+    C=3,
+    B=5,
+    A=8,
+    S=13
 
 }
 [Serializable]
