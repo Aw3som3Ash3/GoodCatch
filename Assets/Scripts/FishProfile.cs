@@ -86,7 +86,7 @@ public class FishProfile : VisualElement
     }
     public void UpdateLevelManual(int level)
     {
-        Debug.Log(fishMonster.Xp);
+        //Debug.Log(fishMonster.Xp);
         baseLevel += level;
         levelText.text = $"Lv.{baseLevel.ToString("000")}";
 
