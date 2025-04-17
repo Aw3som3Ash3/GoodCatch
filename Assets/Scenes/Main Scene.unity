@@ -1260,7 +1260,7 @@ MonoBehaviour:
   fishMonster2: {fileID: 11400000, guid: 28e3832a5c8e98f4fab239307eaf1c9e, type: 2}
   fishMonster3: {fileID: 0}
   startLevel1: 0
-  startLevel2: 100
+  startLevel2: 1
   startLevel3: 0
 --- !u!4 &375022793 stripped
 Transform:
