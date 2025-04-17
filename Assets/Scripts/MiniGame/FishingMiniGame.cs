@@ -57,7 +57,12 @@ public class FishingMiniGame : MonoBehaviour
         }
         
     }
-
+    private void OnDestroy()
+    {
+        InputManager.Input.Fishing.Disable();
+        InputManager.Input.Fishing.Hook.performed -= OnHook;
+        InputManager.Input.Fishing.Exit.performed -= OnExit;
+    }
     void OnExit(InputAction.CallbackContext context)
     {
         OnCancel?.Invoke();

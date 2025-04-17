@@ -16,7 +16,7 @@ MonoBehaviour:
     dispute. Their valor fuels them for a lifetime. Can only be caught during the
     day.
   model: {fileID: 4551804166297048305, guid: fe4f8bf31d53899449e7d778b855b30b, type: 3}
-  fishId: 16
+  fishId: 17
   icon: {fileID: 21300000, guid: 4d3769536478a5847b0a8b149ffd0843, type: 3}
   miniSprite: {fileID: 21300000, guid: 4d3769536478a5847b0a8b149ffd0843, type: 3}
   homeDepth: 1
@@ -26,18 +26,18 @@ MonoBehaviour:
   agility:
     min: 20
     max: 35
-    minTalent: 3
-    maxTalent: 4
+    minTalent: 4
+    maxTalent: 8
   attack:
     min: 15
     max: 25
-    minTalent: 3
-    maxTalent: 3
+    minTalent: 8
+    maxTalent: 16
   special:
     min: 5
     max: 10
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 2
   fortitude:
     min: 15
     max: 15
@@ -51,8 +51,8 @@ MonoBehaviour:
   accuracy:
     min: 0
     max: 0
-    minTalent: 5
-    maxTalent: 5
+    minTalent: 8
+    maxTalent: 32
   baseHealth: 75
   baseStamina: 90
   baseAbilities:

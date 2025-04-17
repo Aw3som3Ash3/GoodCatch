@@ -142,7 +142,56 @@ public class FishMonsterType : ScriptableObject
     TalentScale CalculateTalent(Attribute attribute)
     {
         TalentScale talent;
-        int x = UnityEngine.Random.Range((int)attribute.MinTalent*10, (int)attribute.MaxTalent * 10) + UnityEngine.Random.Range((int)attribute.MinTalent * 10, (int)attribute.MaxTalent * 10);
+
+        int max=0;
+        int min=0;
+
+        switch (attribute.MaxTalent)
+        {
+            case TalentScale.F:
+                max = 20;
+                break;
+            case TalentScale.D:
+                max = 40;
+                break;
+            case TalentScale.C:
+                max = 60;
+                break;
+            case TalentScale.B:
+                max = 80;
+                break;
+            case TalentScale.A:
+                max = 95;
+                break;
+            case TalentScale.S:
+                max = 100;
+                break;
+        }
+        switch (attribute.MinTalent)
+        {
+            case TalentScale.F:
+                min = 0;
+                break;
+            case TalentScale.D:
+                min = 21;
+                break;
+            case TalentScale.C:
+                min = 41;
+                break;
+            case TalentScale.B:
+                min = 61;
+                break;
+            case TalentScale.A:
+                min = 81;
+                break;
+            case TalentScale.S:
+                min = 96;
+                break;
+        }
+
+        int x = UnityEngine.Random.Range(min, max+1);
+
+
         if (x >= 95)
         {
             talent = TalentScale.S;
@@ -210,17 +259,17 @@ public class FishMonsterType : ScriptableObject
         return abilities;
     }
 
-   
+
 
 }
 public enum TalentScale
 {
-    F,
-    D,
-    C,
-    B,
-    A,
-    S
+    F=1,
+    D=2,
+    C=4,
+    B=8,
+    A=16,
+    S=32
 
 }
 [Serializable]
@@ -404,18 +453,19 @@ public class FishMonster
         health = MaxHealth;
         maxStamina = StaminaFormula();
         stamina = MaxStamina;
-        LevelAttribute(agility);
-        LevelAttribute(attack);
-        LevelAttribute(fortitude);
-        LevelAttribute(special);
-        LevelAttribute(specialFort);
-        LevelAttribute(accuracy);
+        LevelAttribute(ref agility);
+        LevelAttribute(ref attack);
+        LevelAttribute(ref fortitude);
+        LevelAttribute(ref special);
+        LevelAttribute(ref specialFort);
+        LevelAttribute(ref accuracy);
 
 
     }
-    void LevelAttribute(Attribute attribute)
+    void LevelAttribute(ref Attribute attribute)
     {
-        attribute.value += (int)attribute.talent+1;
+        Debug.Log("should level attribute to" +attribute.talent);
+        attribute.value += (int)attribute.talent;
     }
     int HealthFormula()
     {
