@@ -17,4 +17,5 @@ MonoBehaviour:
   particlePrefab: {fileID: 0}
   effectUsage: 0
   damage: 25
+  damageScale: 0.5
   element: {fileID: 11400000, guid: 9cbac93e945e0a5469f38dfda707a9d1, type: 2}
