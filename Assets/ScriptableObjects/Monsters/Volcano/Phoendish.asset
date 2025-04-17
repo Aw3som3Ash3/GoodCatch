@@ -26,8 +26,8 @@ MonoBehaviour:
   agility:
     min: 30
     max: 40
-    minTalent: 4
-    maxTalent: 5
+    minTalent: 8
+    maxTalent: 16
   attack:
     min: 15
     max: 25
