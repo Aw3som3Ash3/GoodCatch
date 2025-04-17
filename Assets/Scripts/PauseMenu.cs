@@ -312,7 +312,7 @@ public class PauseMenu : VisualElement
         partyUI.UpdateUI();
         menu.visible = false;
         menu.SetEnabled(false);
-        partyUI.Focus();
+        //partyUI.Focus();
         currentPage =partyUI;
         this.delegatesFocus = true;
     }

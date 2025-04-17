@@ -26,6 +26,7 @@ public class NewPartyUI : PausePage
             fishProfiles[i] = this.Q<FishProfile>("FishProfile" + (i + 1));
             int index = i;
             fishProfiles[i].RegisterCallback<ClickEvent>(evt => OpenFishInfo(index));
+            fishProfiles[i].RegisterCallback<NavigationSubmitEvent>(evt => OpenFishInfo(index));
         }
 
     }
@@ -44,6 +45,7 @@ public class NewPartyUI : PausePage
                 fishProfiles[i].visible = false;
             }
         }
+        schedule.Execute(() => fishProfiles[0].Focus()).ExecuteLater(25);
     }
     private void OpenFishInfo(int index)
     {
