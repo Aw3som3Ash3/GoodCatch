@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Recorder.OutputPath;
 
 public class CombatItemUI : VisualElement
 {
