@@ -99,7 +99,19 @@ public class CombatVisualizer : MonoBehaviour
         
 
     }
-   
+    public void MissedAttack(Turn turn)
+    {
+
+        var textObj = new GameObject("misssed text", typeof(TextMeshPro));
+        textObj.transform.position = turnToObject[turn].transform.position;
+        textObj.transform.rotation = Camera.main.transform.rotation;
+        textObj.layer = 16;
+        var tmp = textObj.GetComponent<TextMeshPro>();
+        tmp.text = "MISSED";
+        tmp.alignment = TMPro.TextAlignmentOptions.Center;
+        tmp.fontSize = 11;
+        StartCoroutine(AnimateDamageNumbers(textObj));
+    }
     public void AnimateDamageNumbers(Turn turn,float damage,Element.Effectiveness effectiveness, bool healing=false)
     {
         if (!turnToObject.ContainsKey(turn))
