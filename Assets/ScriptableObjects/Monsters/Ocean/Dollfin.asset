@@ -27,7 +27,7 @@ MonoBehaviour:
     min: 20
     max: 40
     minTalent: 8
-    maxTalent: 4
+    maxTalent: 13
   attack:
     min: 25
     max: 50
@@ -37,7 +37,7 @@ MonoBehaviour:
     min: 10
     max: 20
     minTalent: 8
-    maxTalent: 16
+    maxTalent: 13
   fortitude:
     min: 5
     max: 10
@@ -51,8 +51,8 @@ MonoBehaviour:
   accuracy:
     min: 15
     max: 30
-    minTalent: 4
-    maxTalent: 4
+    minTalent: 3
+    maxTalent: 8
   baseHealth: 100
   baseStamina: 60
   baseAbilities:
