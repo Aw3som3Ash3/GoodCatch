@@ -69,6 +69,40 @@ public class CombatItemUI : VisualElement
         if (element.EnableToolTip(this))
         {
             element.content.Clear();
+            VisualElement content=new();
+
+            if(item is CombatHook)
+            {
+                VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/ToolTipStatusHook");
+
+
+                visualTreeAsset.CloneTree(content);
+                content.Q<Label>("CatchChanceAmount").text = ((CombatHook)item).CatchBonus.ToString("0.00");
+                content.Q<Label>("HookName").text = ((CombatHook)item).name;
+            } else if( item is HealingItem)
+            {
+                VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/ToolTipStatusPotion");
+
+
+                visualTreeAsset.CloneTree(content);
+                content.Q<Label>("PotionName").text = item.name;
+                content.Q<Label>("PotionEffectText").text = "Heal";
+                content.Q<Label>("PotionEffectTextAmount").text = ((HealingItem)item).HealingAmount.ToString("000");
+            }
+            else if (item is StatusPotion)
+            {
+                VisualTreeAsset visualTreeAsset = Resources.Load<VisualTreeAsset>("UXMLs/ToolTipStatusPotion");
+
+
+                visualTreeAsset.CloneTree(content);
+                content.Q<Label>("PotionName").text = item.name;
+                content.Q<Label>("PotionEffectText").text = "Status Effect";
+                content.Q<Label>("PotionEffectTextAmount").text = ((StatusPotion)item).StatusEffect.name.ToString();
+            }
+            element.content.Add(content);
+            //element.content.Add();
+
+
         }
        
     }
