@@ -15,7 +15,7 @@ MonoBehaviour:
   description: A ray fish that feels heavenly, bringing peace to the ocean and its
     inhabitants when nearby. Can only be caught during the day.
   model: {fileID: 2776650500186122005, guid: 839aae87163e43c4495a33cd43731b82, type: 3}
-  fishId: 18
+  fishId: 19
   icon: {fileID: 21300000, guid: f20264d0a1892024c88c9f36649ff27b, type: 3}
   miniSprite: {fileID: 21300000, guid: 2d9e35a1ee2f0514ca5099e33a044d6d, type: 3}
   homeDepth: 1
@@ -27,32 +27,32 @@ MonoBehaviour:
     min: 30
     max: 40
     minTalent: 4
-    maxTalent: 5
+    maxTalent: 16
   attack:
     min: 30
     max: 40
     minTalent: 4
-    maxTalent: 4
+    maxTalent: 8
   special:
     min: 15
     max: 30
     minTalent: 2
-    maxTalent: 3
+    maxTalent: 16
   fortitude:
     min: 15
     max: 25
-    minTalent: 3
+    minTalent: 1
     maxTalent: 4
   specialFortitude:
     min: 5
     max: 10
-    minTalent: 0
-    maxTalent: 0
+    minTalent: 1
+    maxTalent: 32
   accuracy:
     min: 0
     max: 0
     minTalent: 2
-    maxTalent: 5
+    maxTalent: 4
   baseHealth: 70
   baseStamina: 90
   baseAbilities:

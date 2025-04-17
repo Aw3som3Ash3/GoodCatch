@@ -3946,7 +3946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ce85c94b1d14441a144d6621aeae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startBattleEvent: {fileID: -6245746496523209256, guid: 07f80dee4e68d0c4099315eb6c1f067f, type: 2}
+  startBattleEvent: {fileID: -6245746496523209256, guid: 57357419aec3d784bacf113e5a214a53, type: 2}
   fishToFight:
   - fishMonsters: {fileID: 11400000, guid: 5880d3e7f6b0c7e4c8e8fdc20562efaf, type: 2}
     level: 3
@@ -4677,7 +4677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ce85c94b1d14441a144d6621aeae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startBattleEvent: {fileID: -9217259632993510754, guid: 57357419aec3d784bacf113e5a214a53, type: 2}
+  startBattleEvent: {fileID: -9217259632993510754, guid: eb20a7930481d92469bc941e148e9c8a, type: 2}
   fishToFight:
   - fishMonsters: {fileID: 11400000, guid: 68f5f9f6ff91d7d4da0e9a5975fc5fcd, type: 2}
     level: 3
