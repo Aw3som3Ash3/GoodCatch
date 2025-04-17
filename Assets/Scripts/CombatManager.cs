@@ -539,8 +539,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
     }
     void NextTurn()
     {
-        combatVisualizer.FinishedSelecting();
-        combatVisualizer.StopSelectingFish();
+        combatVisualizer.StopTargeting();
         //if (CanFightEnd())
         //{
         //    return;
@@ -1130,6 +1129,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                 combatManager.NextTurn();
                 return;
             }
+            combatManager.combatVisualizer.StopTargeting();
             if (actionsCompleted)
             {
                 fish.RecoverStamina();
@@ -1138,9 +1138,12 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
                     TickLastEffects();
                     TurnEnded?.Invoke();
                     CheckDeath();
+                    combatManager.NextTurn();
                     //combatManager.CanFightEnd();
                 });
-                combatManager.NextTurn();
+                
+
+               
             }
             
         }
