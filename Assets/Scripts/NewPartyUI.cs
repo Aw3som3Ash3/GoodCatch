@@ -44,6 +44,7 @@ public class NewPartyUI : PausePage
                 fishProfiles[i].visible = false;
             }
         }
+        schedule.Execute(() => fishProfiles[0].Focus()).ExecuteLater(25);
     }
     private void OpenFishInfo(int index)
     {
