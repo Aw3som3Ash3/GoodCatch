@@ -408,7 +408,7 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
     [DevConsoleCommand("AddItem")]
     public static void AddItems(string name,string amount)
     {
-        var item = Item.getItemById.Select((x) => x.Value).First((x)=>x.name==name);
+        var item = Item.getItemById.Select((x) => x.Value).First((x)=>x.name.Replace(" ","")==name);
         Instance.PlayerInventory.AddItem(item,int.Parse(amount));
 
     }
