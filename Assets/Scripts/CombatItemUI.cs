@@ -87,7 +87,7 @@ public class CombatItemUI : VisualElement
                 visualTreeAsset.CloneTree(content);
                 content.Q<Label>("PotionName").text = item.name;
                 content.Q<Label>("PotionEffectText").text = "Heal";
-                content.Q<Label>("PotionEffectTextAmount").text = ((HealingItem)item).HealingAmount.ToString("000");
+                content.Q<Label>("PotionEffectAmount").text = ((HealingItem)item).HealingAmount.ToString("000");
             }
             else if (item is StatusPotion)
             {
@@ -97,7 +97,7 @@ public class CombatItemUI : VisualElement
                 visualTreeAsset.CloneTree(content);
                 content.Q<Label>("PotionName").text = item.name;
                 content.Q<Label>("PotionEffectText").text = "Status Effect";
-                content.Q<Label>("PotionEffectTextAmount").text = ((StatusPotion)item).StatusEffect.name.ToString();
+                content.Q<Label>("PotionEffectAmount").text = ((StatusPotion)item).StatusEffect.name.ToString();
             }
             element.content.Add(content);
             //element.content.Add();
