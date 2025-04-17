@@ -458,7 +458,7 @@ public class CombatVisualizer : MonoBehaviour
         DepthSelection =targeted;
 
     }
-    void StopTargeting()
+    public void StopTargeting()
     {
         //DepthSelection?.Invoke(-1);
         DepthSelection = null;
