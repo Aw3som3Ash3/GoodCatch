@@ -464,7 +464,8 @@ public class FishMonster
     }
     void LevelAttribute(Attribute attribute)
     {
-        attribute.value += (int)attribute.talent+1;
+        Debug.Log("should level attribute to" +attribute.talent);
+        attribute.value += (int)attribute.talent;
     }
     int HealthFormula()
     {
