@@ -66,8 +66,12 @@ public class FishingMiniGame : MonoBehaviour
     void ExitFishing()
     {
         prompt.DisableUI();
-        fishToCatch.SetIdle();
-       InputManager.Input.Fishing.Disable();
+        if (fishToCatch != null)
+        {
+            fishToCatch.SetIdle();
+        }
+        
+        InputManager.Input.Fishing.Disable();
         Destroy(this.gameObject);
         InputManager.Input.Fishing.Hook.performed -= OnHook;
         InputManager.Input.Fishing.Exit.performed -= OnExit;

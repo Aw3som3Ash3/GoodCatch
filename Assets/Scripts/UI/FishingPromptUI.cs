@@ -17,16 +17,22 @@ public class FishingPromptUI : MonoBehaviour
 
     void Start()
     {
-        UIElement.SetActive(false);
+        if (UIElement != null)
+            UIElement.SetActive(false);
     }
 
     public void ShowUI()
     {
-        UIElement.SetActive(true);
+        if (UIElement != null)
+            UIElement.SetActive(true);
     }
 
     public void DisableUI()
     {
-        UIElement.SetActive(false);
+        if (UIElement != null)
+        {
+            UIElement.SetActive(false);
+        }
+        
     }
 }

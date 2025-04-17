@@ -55,12 +55,13 @@ public class FishingRod : MonoBehaviour
     public void CastLine(Vector3 lookDir,float force,Action callback)
     {
         audioController.PlayClipRandom();
-
+        
         if (floater != null)
         {
             Destroy(floater.gameObject);
         }
         OnComplete += callback;
+        OnComplete += () => { OnComplete = null; };
         Debug.Log("CASTING");
         floater = Instantiate(floaterPrefab, lineStart.transform.position, floaterPrefab.transform.rotation).GetComponent<Floater>();
         floater.completed += OnComplete;

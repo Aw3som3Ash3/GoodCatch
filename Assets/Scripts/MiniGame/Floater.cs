@@ -39,7 +39,11 @@ public class Floater : MonoBehaviour
         Destroy(gameObject);
         InputManager.EnablePlayer();
     }
-   
+    private void OnDestroy()
+    {
+        HitWater = null;
+        completed=null;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.collider.CompareTag("Water"))

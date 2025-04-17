@@ -37,9 +37,6 @@ public class ShipControls : Station
     void Start()
     {
         InputManager.Input.Ship.Disable();
-        InputManager.Input.Ship.Move.performed += OnMove;
-        InputManager.Input.Ship.Exit.performed += OnLeaveStation;
-        InputManager.Input.Ship.Fish.performed += OnCast;
     }
     public override bool Interact()
     {
@@ -53,6 +50,9 @@ public class ShipControls : Station
             currentDock = null;
         }
         InputManager.Input.Ship.Enable();
+        InputManager.Input.Ship.Move.performed += OnMove;
+        InputManager.Input.Ship.Exit.performed += OnLeaveStation;
+        InputManager.Input.Ship.Fish.performed += OnCast;
         InputManager.DisablePlayer();
         //InputManager.Input.Ship.Exit.performed += OnLeaveStation;
         PlayerController.player.SetVisibility(false);
@@ -110,6 +110,9 @@ public class ShipControls : Station
        
        
         InputManager.Input.Ship.Disable();
+        InputManager.Input.Ship.Move.performed -= OnMove;
+        InputManager.Input.Ship.Exit.performed -= OnLeaveStation;
+        InputManager.Input.Ship.Fish.performed -= OnCast;
         OnInteract?.Invoke(false);
         base.LeaveSation();
 
