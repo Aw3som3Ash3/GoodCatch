@@ -453,16 +453,16 @@ public class FishMonster
         health = MaxHealth;
         maxStamina = StaminaFormula();
         stamina = MaxStamina;
-        LevelAttribute(agility);
-        LevelAttribute(attack);
-        LevelAttribute(fortitude);
-        LevelAttribute(special);
-        LevelAttribute(specialFort);
-        LevelAttribute(accuracy);
+        LevelAttribute(ref agility);
+        LevelAttribute(ref attack);
+        LevelAttribute(ref fortitude);
+        LevelAttribute(ref special);
+        LevelAttribute(ref specialFort);
+        LevelAttribute(ref accuracy);
 
 
     }
-    void LevelAttribute(Attribute attribute)
+    void LevelAttribute(ref Attribute attribute)
     {
         Debug.Log("should level attribute to" +attribute.talent);
         attribute.value += (int)attribute.talent;
