@@ -240,6 +240,7 @@ public class Ability : ScriptableObject,ISerializationCallbackReceiver
         }
         else
         {
+
             Debug.Log("missed target");
             return false;
         }

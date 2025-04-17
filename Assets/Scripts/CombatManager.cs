@@ -625,21 +625,29 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             {
                 if (depth.SideHasFish(targetedTeam) && ability.DepthTargetable(depth.depth))
                 {
-                    if(ability.UseAbility(turn, depth))
+                    bool targetHit=ability.UseAbility(turn, depth))
+                    
+
+                    combatVisualizer.AnimateAttack(ability, turn, depth.TargetFirst(targetedTeam), () =>
                     {
-                        combatVisualizer.AnimateAttack(ability, turn, depth.TargetFirst(targetedTeam), () =>
+                        if (targetHit)
                         {
                             depth.TargetSide(targetedTeam).ForEach((turn) => turn.CheckDeath());
-                            ActionsCompleted();
+                        }
+                        else
+                        {
+                            combatVisualizer.MissedAttack(turn);
+                        }
+                       
+                        ActionsCompleted();
 
-                            if (currentTurn.Value.team == Team.player)
-                            {
-                                combatUI.EnableButtons();
-                            }
+                        if (currentTurn.Value.team == Team.player)
+                        {
+                            combatUI.EnableButtons();
+                        }
 
-                        });
-                    }
-                    
+                    });
+
                 }
             }
         }
@@ -655,15 +663,23 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             }
             //ui.UpdateActionsLeft(turnList[currentTurn].actionsLeft);
             // var attackingFish = turn.fish;
-            ability.UseAbility(turn, targetedDepth);
+            bool targetHit= ability.UseAbility(turn, targetedDepth);
             combatVisualizer.AnimateAttack(ability, turn, targetedFish, () =>
             {
-
-                targetedDepth.TargetSide(targetedTeam)?.ForEach((turn) => turn.CheckDeath());
-                if (ability.ForcedMovement!=0)
+                if (targetHit)
                 {
-                    targetedFish.CheckDeath();
+                    targetedDepth.TargetSide(targetedTeam)?.ForEach((turn) => turn.CheckDeath());
+                    if (ability.ForcedMovement != 0)
+                    {
+                        targetedFish.CheckDeath();
+                    }
+
                 }
+                else
+                {
+                    combatVisualizer.MissedAttack(turn);
+                }
+                
                 
                 ActionsCompleted();
                 if (currentTurn.Value is PlayerTurn)
