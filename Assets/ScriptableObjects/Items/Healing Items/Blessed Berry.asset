@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27da976d20d545d43974b9560760965c, type: 3}
-  m_Name: BoringBerry
+  m_Name: Blessed Berry
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  description: Used to restore a bit of health to an ally in battle. It's edible,
-    at least.
-  itemId: 7d31b6a3-bf2d-4b52-8480-589ff3e14962
+  description: Used to restore to the max amount of health to an ally in battle.
+    A recipe gatekept by only a few, this berry was bred to be the best.
+  itemId: 90c072ab-3f70-4d79-99a8-d350bd5795ac
   potionVFX: {fileID: 7504169191687348763, guid: 605e85bf51b67a34aa2f597ee4c5ed0a, type: 3}
-  healingAmount: 50
+  healingAmount: 999
