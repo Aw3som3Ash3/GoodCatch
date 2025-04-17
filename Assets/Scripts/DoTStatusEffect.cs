@@ -36,11 +36,11 @@ public class DoTStatusEffect : StatusEffect
 
             if (((DoTStatusEffect)effect).damage > 0)
             {
-                turn.TakeDamage(((DoTStatusEffect)effect).damage+ (owner.special*0.01f) * ((DoTStatusEffect)effect).damageScale, ((DoTStatusEffect)effect).element, Ability.AbilityType.special);
+                turn.TakeDamage(((DoTStatusEffect)effect).damage+ (owner.special) * ((DoTStatusEffect)effect).damageScale, ((DoTStatusEffect)effect).element, Ability.AbilityType.special);
             }
             else if (((DoTStatusEffect)effect).damage < 0)
             {
-                turn.Restore(-((DoTStatusEffect)effect).damage + (owner.special * 0.01f) * ((DoTStatusEffect)effect).damageScale);
+                turn.Restore(-((DoTStatusEffect)effect).damage + (owner.special) * ((DoTStatusEffect)effect).damageScale);
             }
 
             return base.DoEffect(turn);
