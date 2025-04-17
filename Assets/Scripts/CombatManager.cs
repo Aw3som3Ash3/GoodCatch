@@ -625,7 +625,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             {
                 if (depth.SideHasFish(targetedTeam) && ability.DepthTargetable(depth.depth))
                 {
-                    bool targetHit=ability.UseAbility(turn, depth))
+                    bool targetHit = ability.UseAbility(turn, depth);
                     
 
                     combatVisualizer.AnimateAttack(ability, turn, depth.TargetFirst(targetedTeam), () =>
