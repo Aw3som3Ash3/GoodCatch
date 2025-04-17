@@ -46,7 +46,7 @@ public abstract class StatusEffect: ScriptableObject
             this.effect = effect;
             this.owner = owner;
         }
-        public bool DoEffect(CombatManager.Turn turn)
+        public virtual bool DoEffect(CombatManager.Turn turn)
         {
             remainingDuration--;
             DurationChanged?.Invoke(remainingDuration);
