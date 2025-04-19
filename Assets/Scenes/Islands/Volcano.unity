@@ -22729,7 +22729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8500059
+      value: -3.47
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22737,7 +22737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5549922
+      value: 3.48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22770,7 +22770,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5ba1104475f6fbd4b8388c99278eaf65, type: 2}
+      objectReference: {fileID: 2100000, guid: 81723b672da606840bb257b8d288e7c4, type: 2}
     - target: {fileID: 919132149155446097, guid: c10f0b4c6188f3e47a6136fa49603dcf, type: 3}
       propertyPath: m_Name
       value: sign_low (1)
@@ -82417,6 +82417,9 @@ MonoBehaviour:
   fishMonster1: {fileID: 0}
   fishMonster2: {fileID: 11400000, guid: b894782db77fd4c4a97a9fa05e35d7a6, type: 2}
   fishMonster3: {fileID: 0}
+  startLevel1: 0
+  startLevel2: 0
+  startLevel3: 0
 --- !u!135 &2124609004
 SphereCollider:
   m_ObjectHideFlags: 0
