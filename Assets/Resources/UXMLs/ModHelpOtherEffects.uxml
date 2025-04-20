@@ -3,6 +3,12 @@
         <ui:Label tabindex="-1" text="Other Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
     </ui:VisualElement>
     <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
-        <ui:Label tabindex="-1" text="Even fewer abilities have effects that deal with monster&apos;s positioning. Some abilities have piercing, which means it deals the same damage to all monsters in the same lane regardless of their order. Some abilities will force their target to move up or down a set amount of times." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:Label tabindex="-1" text="Even fewer abilities have effects that deal with monster&apos;s positioning. Some abilities have piercing, which means it deals damage with no falloff to all monsters in the same lane (e.g. Piercing True = No damage falloff in to stacked monsters in a lane). Some abilities will force their target to move up or down a set amount of times (e.g. Movement: 1 = 1 lane up, Movement -2 = 2 lanes down).&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+    </ui:VisualElement>
+    <ui:VisualElement name="IconsRow1" style="flex-grow: 1; align-self: stretch; align-items: center; flex-direction: row; justify-content: center; flex-wrap: nowrap;">
+        <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+            <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/otherfx1.png?fileID=2800000&amp;guid=a88c978f93c0647448b0177d4024ce42&amp;type=3#otherfx1&quot;); -unity-background-scale-mode: scale-to-fit; max-height: 700px; height: 700px;" />
+            <ui:Label tabindex="-1" text="These effects, as well as many other ability details, can be within a party member&apos;s profile via the Party menu.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="flex-wrap: wrap; -unity-text-align: upper-left;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

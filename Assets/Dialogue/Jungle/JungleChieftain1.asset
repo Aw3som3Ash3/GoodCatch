@@ -109,7 +109,7 @@ MonoBehaviour:
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
         dialouge: Perhaps you could be the on we're looking for...forgive me, but
-          I believe you're worthy of a few trials. Get to the guards across the waterfall
+          I believe you're worthy of a few trials. Get to the guards across the river
           and fight through them to get to the Fire Shrine. Good luck stranger!
         voiceClip: {fileID: 0}
         guid: 2ad387bb457ee2247b205fb8d43f48e4

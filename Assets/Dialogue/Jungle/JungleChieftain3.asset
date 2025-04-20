@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: JungleChieftain3
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136848657514498
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136848657514498
+  decorators: []
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136848657514498
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Get to the guards across the river and fight through them to get
+          to the Fire Shrine down the path. Good luck stranger!
+        voiceClip: {fileID: 0}
+        guid: 568ff68ba76cf1440abd7c9f390b200b
+        decorators: []
+        position: {x: 388, y: -36}
+        nextNode:
+          rid: -2
