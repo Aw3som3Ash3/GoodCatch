@@ -118,7 +118,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -6755346868496197673}
-    m_Duration: 2
+    m_Duration: 4
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1708364038595824914}
     m_EaseInDuration: 0
@@ -184,10 +184,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: opening_slide_1.1
   - m_Version: 1
-    m_Start: 2
+    m_Start: 4
     m_ClipIn: 0
     m_Asset: {fileID: 1655923198838132182}
-    m_Duration: 2
+    m_Duration: 4
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1708364038595824914}
     m_EaseInDuration: 0
@@ -253,10 +253,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: opening_storyboard_2
   - m_Version: 1
-    m_Start: 4
+    m_Start: 8
     m_ClipIn: 0
     m_Asset: {fileID: 7822225845528583795}
-    m_Duration: 2
+    m_Duration: 4
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1708364038595824914}
     m_EaseInDuration: 0
@@ -322,10 +322,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: opening_storyboard_3
   - m_Version: 1
-    m_Start: 6
+    m_Start: 12
     m_ClipIn: 0
     m_Asset: {fileID: 1175908520786501555}
-    m_Duration: 2
+    m_Duration: 4
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1708364038595824914}
     m_EaseInDuration: 0
@@ -391,10 +391,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: opening_storyboard_4
   - m_Version: 1
-    m_Start: 8
+    m_Start: 16
     m_ClipIn: 0
     m_Asset: {fileID: 7579644645599798910}
-    m_Duration: 2
+    m_Duration: 4
     m_TimeScale: 1
     m_ParentTrack: {fileID: 1708364038595824914}
     m_EaseInDuration: 0
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_TrackProperties:
     volume: 1
     stereoPan: 0
-    spatialBlend: 0
+    spatialBlend: 0.5247849
 --- !u!114 &6655071993156459547
 MonoBehaviour:
   m_ObjectHideFlags: 1
