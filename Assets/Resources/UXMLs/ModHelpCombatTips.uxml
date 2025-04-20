@@ -1,8 +1,21 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="TitleContainer" style="flex-grow: 0;">
-        <ui:Label tabindex="-1" text="Combat Tips" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+        <ui:Label tabindex="-1" text="Combat" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
     </ui:VisualElement>
     <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
-        <ui:Label tabindex="-1" text="- During a combat encounter you can select up to three of your monsters in your party to engage in combat&#10;- Every monster has a certain abilities that can only be used from and to certain lanes, place them strategically!&#10;- More than one monster can be in a lane at at time; if you place or move another monster into a lane where one already exists, it will move behind them.&#10;- Any monster behind another in a lane will take less damage when hit with a damaging ability&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:Label tabindex="-1" text="Combat begins with the Draft Phase, in which you select any monster in your current party and place them into the fight. Select the monster&apos;s icon, then select any lane to place your monster. Selected lanes are highlighted in red, and your team in combat can only have up to 3 members. If you change your mind on an already placed monster, press right click on mouse or B on controller to undo the placement." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:VisualElement name="IconsRow1" style="flex-grow: 1; align-self: stretch; align-items: center; flex-direction: row; justify-content: center; flex-wrap: nowrap;">
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/combat1.png?fileID=2800000&amp;guid=0c4295dcb23917640b120ffc35cb6092&amp;type=3#combat1&quot;); -unity-background-scale-mode: scale-to-fit; max-height: 700px; height: 700px;" />
+                <ui:Label tabindex="-1" text="The monster you select during draft will display a preview of their abilities, as well as their current Health (HP), Stamina (SP), and other stat details below. These can be accessed at any time by pressing the corresponding button shown above the HP bar.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="flex-wrap: wrap; -unity-text-align: upper-left;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label tabindex="-1" text="After confirming your team in Draft Phase, the fight can commence! Monster HP and SP can also be shown below them, as well as their status effects and current level. Turn order is displayed at the top, with the left most monster always being the current monster&apos;s turn. Any monster to the right is in line for their turn." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:VisualElement name="IconsRow2" style="flex-grow: 1; align-self: stretch; align-items: center; flex-direction: row; justify-content: center; flex-wrap: nowrap;">
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/combat2.png?fileID=2800000&amp;guid=e5a6df9909350d342a249fec5f1ea393&amp;type=3#combat2&quot;); -unity-background-scale-mode: scale-to-fit; max-height: 700px; height: 700px;" />
+                <ui:Label tabindex="-1" text="Your monster can only use one ability or item per turn, of which afterwards you&apos;ll be forced to end your turn. Choose wisely!&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="flex-wrap: wrap; -unity-text-align: upper-left;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

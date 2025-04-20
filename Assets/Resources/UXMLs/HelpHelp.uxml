@@ -9,8 +9,8 @@
                 <ui:ScrollView name="ScrollView" style="height: 799px; width: 588px;">
                     <ui:Button text="Fishing" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FishingButton" />
                     <ui:Button text="Combat" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatButton" />
-                    <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalButton" />
                     <ui:Button text="Abilities" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AbilityButton" />
+                    <ui:Button text="Elemental Types" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementalButton" />
                     <ui:Button text="Status Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatusButton" />
                     <ui:Button text="Other Effects" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OtherButton" />
                     <ui:Button text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TravelingButton" />
