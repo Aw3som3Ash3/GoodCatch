@@ -6,7 +6,7 @@
         <ui:Label tabindex="-1" text="Monsters are much easier to catch the lower their health is. Hooks will come in different ranks, each next rank giving a boost in catch chance. Hooks can only be used during battle from the Items tab. To use one, select it then select the desired target to catch.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
         <ui:VisualElement name="IconsRow1" style="flex-grow: 1; align-self: stretch; align-items: center; flex-direction: row; justify-content: center; flex-wrap: nowrap;">
             <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/catching1.png?fileID=2800000&amp;guid=3fcd86422caf2bc44917cbf242be9e58&amp;type=3#catching1&quot;); -unity-background-scale-mode: scale-to-fit; max-height: 700px; height: 700px;" />
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/catching1%201.png?fileID=2800000&amp;guid=5998c249ef5188340967230ce876df1e&amp;type=3#catching1 1&quot;); -unity-background-scale-mode: scale-to-fit; max-height: 700px; height: 700px;" />
                 <ui:Label tabindex="-1" text="Hooks can be found in the Items tab during combat.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="flex-wrap: wrap; -unity-text-align: upper-left;" />
             </ui:VisualElement>
         </ui:VisualElement>
