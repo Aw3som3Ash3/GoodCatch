@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8896a47a71d13e3439e8199b39079c99, type: 3}
-  m_Name: Rookie'sHook
+  m_Name: Rookie's Hook
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
   description: Used to catch an opposing monster. A bit crooked, but gets the job

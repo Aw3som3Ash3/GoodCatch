@@ -31,27 +31,27 @@ MonoBehaviour:
     min: 5
     max: 10
     minTalent: 2
-    maxTalent: 4
+    maxTalent: 5
   special:
     min: 20
     max: 40
     minTalent: 8
-    maxTalent: 16
+    maxTalent: 5
   fortitude:
     min: 5
     max: 10
-    minTalent: 2
-    maxTalent: 4
+    minTalent: 1
+    maxTalent: 3
   specialFortitude:
     min: 10
     max: 20
-    minTalent: 8
-    maxTalent: 16
+    minTalent: 1
+    maxTalent: 8
   accuracy:
     min: 0
     max: 0
     minTalent: 2
-    maxTalent: 4
+    maxTalent: 8
   baseHealth: 110
   baseStamina: 50
   baseAbilities:

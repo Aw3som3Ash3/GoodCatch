@@ -31,23 +31,23 @@ MonoBehaviour:
   attack:
     min: 10
     max: 15
-    minTalent: 0
-    maxTalent: 1
+    minTalent: 1
+    maxTalent: 2
   special:
     min: 15
     max: 30
     minTalent: 2
-    maxTalent: 3
+    maxTalent: 5
   fortitude:
     min: 15
     max: 25
     minTalent: 3
-    maxTalent: 4
+    maxTalent: 3
   specialFortitude:
     min: 15
     max: 25
     minTalent: 3
-    maxTalent: 4
+    maxTalent: 8
   accuracy:
     min: 0
     max: 0

@@ -26,13 +26,13 @@ MonoBehaviour:
   agility:
     min: 20
     max: 35
-    minTalent: 4
+    minTalent: 3
     maxTalent: 8
   attack:
     min: 15
     max: 25
     minTalent: 8
-    maxTalent: 16
+    maxTalent: 13
   special:
     min: 5
     max: 10
@@ -52,7 +52,7 @@ MonoBehaviour:
     min: 0
     max: 0
     minTalent: 8
-    maxTalent: 32
+    maxTalent: 13
   baseHealth: 75
   baseStamina: 90
   baseAbilities:

@@ -1424,6 +1424,9 @@ MonoBehaviour:
   fishMonster1: {fileID: 0}
   fishMonster2: {fileID: 11400000, guid: 28e3832a5c8e98f4fab239307eaf1c9e, type: 2}
   fishMonster3: {fileID: 0}
+  startLevel1: 0
+  startLevel2: 0
+  startLevel3: 0
 --- !u!4 &375022793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7440471430513932866, guid: 528ab21bbaed05641a1b76116eab1ce2, type: 3}
@@ -21740,7 +21743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11ca95dc4a5ee249b04050fcad685dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Wind Shrine (TO BE MOVED WITHIN TEMPUS MODEL)
+  npcName: Wind Shrine
   baseDialogue: {fileID: 11400000, guid: 875e6b7fb4c0e9148b5bf611ae41c543, type: 2}
   questBasedDialogues:
   - quest: {fileID: 11400000, guid: f6efbd43e62945d4488b8bab7d64773c, type: 2}
@@ -23023,7 +23026,7 @@ Transform:
   m_GameObject: {fileID: 2061899154}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9491812, z: 0, w: -0.3147302}
-  m_LocalPosition: {x: -11.106769, y: 5.1819973, z: 53.438324}
+  m_LocalPosition: {x: -8.954531, y: 5.1819973, z: 56.326923}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23603,7 +23606,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0000015
+      value: 1.000001
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23611,7 +23614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7526077783615441307, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3977606
+      value: -5.0000014
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5494617037479837059, guid: 9128e24e1780279409be2547bfddea4b, type: 3}
