@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class CreditsController : MonoBehaviour
@@ -41,5 +42,7 @@ public class CreditsController : MonoBehaviour
             credits.verticalScroller.value = Mathf.Lerp(credits.verticalScroller.lowValue, credits.verticalScroller.highValue , t);
             yield return null;
         }
+
+        SceneManager.LoadScene("MainMenu");
     }
 }

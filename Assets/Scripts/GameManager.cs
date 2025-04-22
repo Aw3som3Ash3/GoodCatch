@@ -534,6 +534,17 @@ public class GameManager : MonoBehaviour,ISaveable,IUseDevCommands
         }
 
     }
+    public void LoadEndBossCombatScene(List<FishMonster> enemyFishes, string objectid)
+    {
+        LoadBossCombatScene(enemyFishes,objectid);
+        WonFight += PlayerWonFight;
+        void PlayerWonFight()
+        {
+            WonFight -= PlayerWonFight;
+            SavingSystem.SaveGame(SavingSystem.SaveMode.AutoSave);
+            SceneManager.LoadScene("CreditsScreen");
+        }
+    }
     //Action OnCombatEnded;
     public void CombatEnded(Team winningTeam)
     {
