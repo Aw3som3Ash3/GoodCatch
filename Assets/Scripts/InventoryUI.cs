@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class InventoryUI : PausePage
 {
     VisualElement leftTab, rightTab;
+    Label itemName, ownedAmount, detailText;
     InventoryTabs inventoryTabs;
     public new class UxmlFactory : UxmlFactory<InventoryUI, InventoryUI.UxmlTraits>
     {
@@ -39,10 +40,23 @@ public class InventoryUI : PausePage
         rightTab = this.Q("RightBumper");
         this.focusable = true;
         this.delegatesFocus = true;
-
+        detailText = this.Q<Label>("DetailText");
+        itemName = this.Q<Label>("ItemName");
+        ownedAmount = this.Q<Label>("OwnedAmount");
+        inventoryTabs.onSelectionChange += OnSelectionChange;
 
 
     }
+
+    private void OnSelectionChange(IEnumerable<object> enumerable)
+    {
+        ItemInventory.ItemSlot item = enumerable.FirstOrDefault() as ItemInventory.ItemSlot;
+        Debug.Log("item selected: " + item?.Item.name);
+        detailText.text = item?.Item.Description;
+        itemName.text = item?.Item.name;
+        ownedAmount.text = item?.amount.ToString();
+    }
+
     public override bool Back()
     {
         InputManager.Input.UI.ChangeTab.performed -= ChangeTab;

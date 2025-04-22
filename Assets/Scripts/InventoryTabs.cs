@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,9 @@ using UnityEngine.UIElements;
 
 public class InventoryTabs : TabbedMenu
 {
-    readonly string[] menus = new string[]{ "consumables","abilities","junk" };
+    readonly string[] menus = new string[]{ "Consumables","Abilities","Misc" };
+    public event Action<IEnumerable<object>> onSelectionChange;
+
     public new class UxmlFactory : UxmlFactory<InventoryTabs, UxmlTraits> { }
     public InventoryTabs()
     {
@@ -129,7 +132,7 @@ public class InventoryTabs : TabbedMenu
                 (element as Label).text = playerInventory[index].amount.ToString();
 
         };
-        
+        listView.selectionChanged += onSelectionChange;
 
         listView.itemsSource = playerInventory;
         //var nameCell= new Label();
