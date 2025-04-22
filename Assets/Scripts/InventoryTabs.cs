@@ -29,14 +29,17 @@ public class InventoryTabs : TabbedMenu
      
                 SetList(listView, dummyList);
             }
-           
-            
+
+            listView.selectionChanged += SelectionChanged;
             TabMenuButton menu = new TabMenuButton(menus[i], listView);
             menu.focusable = false;
             AddTab(menu,i==0? true:false);
         }
         
-
+        void SelectionChanged(IEnumerable<object> enemmumerable)
+        {
+            onSelectionChange.Invoke(enemmumerable);
+        }
 
         
     }
@@ -132,7 +135,7 @@ public class InventoryTabs : TabbedMenu
                 (element as Label).text = playerInventory[index].amount.ToString();
 
         };
-        listView.selectionChanged += onSelectionChange;
+        
 
         listView.itemsSource = playerInventory;
         //var nameCell= new Label();
@@ -163,6 +166,8 @@ public class InventoryTabs : TabbedMenu
         // Set a fixed item height matching the height of the item provided in makeItem. 
         // For dynamic height, see the virtualizationMethod property.
         listView.fixedItemHeight = 45;
+
+       
     }
 
     
