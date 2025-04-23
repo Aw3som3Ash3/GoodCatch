@@ -388,7 +388,7 @@ public class CombatManager : MonoBehaviour,IUseDevCommands,ISaveable
             turn.RollInitiative();
         }
         turnList.Clear();
-        foreach(Turn turn in currentCombatents.OrderBy((x) => x.initiative))
+        foreach(Turn turn in currentCombatents.OrderByDescending((x) => x.initiative))
         {
             turnList.AddLast(turn);
         }
