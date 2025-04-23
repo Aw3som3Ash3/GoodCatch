@@ -17,7 +17,7 @@ MonoBehaviour:
   fishId: 24
   icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
   miniSprite: {fileID: 0}
-  homeDepth: 2
+  homeDepth: 1
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}
@@ -51,7 +51,7 @@ MonoBehaviour:
     max: 0
     minTalent: 1
     maxTalent: 1
-  baseHealth: 750
+  baseHealth: 650
   baseStamina: 200
   baseAbilities:
   - potentialAbilities:

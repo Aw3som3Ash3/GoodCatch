@@ -19,6 +19,7 @@ MonoBehaviour:
     position: {x: 0, y: 0}
   nodes:
   - rid: 2727136848657514513
+  - rid: 6498885017429082178
   decorators: []
   events: []
   references:
@@ -29,13 +30,24 @@ MonoBehaviour:
     - rid: 2727136848657514513
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: You've ever encountered the rare Eldrich type monster? Incredibly
+        dialouge: You've ever encountered the rare Eldritch type monster? Incredibly
           durable, and nearly resistant to everything! Rumors say that it takes the
           darkness of the depths or the light of the divine to do even decent damage
-          to them. How's that even any fair?
+          to them.
         voiceClip: {fileID: 0}
         guid: 3c1e9c02eadf7d546a74963b7b03cd01
         decorators: []
         position: {x: 412, y: -15}
+        nextNode:
+          rid: 6498885017429082178
+    - rid: 6498885017429082178
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: But I've got a theory that Eldritch are especially weak to themselves!
+          Now if only we could find one to catch...
+        voiceClip: {fileID: 0}
+        guid: f661e4fd8454f6447b0cd5c86cfb8c1f
+        decorators: []
+        position: {x: 1267, y: -15}
         nextNode:
           rid: -2

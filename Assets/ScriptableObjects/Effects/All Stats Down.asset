@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f39fd4c2835cb94cad2e89c37922c49, type: 3}
   m_Name: All Stats Down
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 2
   icon: {fileID: 2800000, guid: 0a64b2fd94f733643a062b690e47ce4a, type: 3}
   particlePrefab: {fileID: 0}
   effectUsage: 0
