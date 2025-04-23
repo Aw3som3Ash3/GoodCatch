@@ -15,7 +15,7 @@ public class DialogueEvent : ScriptableObject
     }
     public void RemoveEvent(Action action)
     {
-        if (Event != null)
+        if (Event== action)
         {
             Event-= action;
         }
