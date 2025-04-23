@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class CreditsController : MonoBehaviour
@@ -9,37 +10,39 @@ public class CreditsController : MonoBehaviour
 
     private ScrollView credits;
     private VisualElement fallenSouls;
-
+    private void Start()
+    {
+        StartScroll();
+    }
     public void StartScroll()
     {
+        Debug.Log("start credit scroll");
         var root = creditsUIDocument.rootVisualElement;
-        credits = root.Q<ScrollView>("Credits");
-        fallenSouls = root.Q<VisualElement>("GameTitle");
+        credits = root.Q<ScrollView>();
 
-        if (credits != null && fallenSouls != null)
+        if (credits != null)
         {
-            StartCoroutine(SmoothScrollToElement(fallenSouls, scrollDuration));
+            StartCoroutine(SmoothScrollToElement(scrollDuration));
         }
     }
-
-    private IEnumerator SmoothScrollToElement(VisualElement target, float duration)
+    private IEnumerator SmoothScrollToElement(float duration)
     {
         Vector2 startOffset = credits.scrollOffset;
 
         // ScrollTo helps force layout so we can get the correct final offset
-        credits.ScrollTo(target);
-        Vector2 endOffset = credits.scrollOffset;
-        credits.scrollOffset = startOffset; // Reset so we can interpolate
+        //credits.ScrollTo(target);
+        //Vector2 endOffset = credits.scrollOffset;
+        //credits.scrollOffset = startOffset; // Reset so we can interpolate
 
         float elapsed = 0f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
-            credits.scrollOffset = Vector2.Lerp(startOffset, endOffset, t);
+            credits.verticalScroller.value = Mathf.Lerp(credits.verticalScroller.lowValue, credits.verticalScroller.highValue , t);
             yield return null;
         }
 
-        credits.scrollOffset = endOffset; // Ensure final position is exact
+        SceneManager.LoadScene("MainMenu");
     }
 }

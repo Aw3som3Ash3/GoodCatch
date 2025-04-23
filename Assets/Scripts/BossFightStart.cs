@@ -10,6 +10,8 @@ public class BossFightStart : TransformSaver
     [SerializeField] FishMonsterType fishMonster3;
     [SerializeField]
     int startLevel1, startLevel2, startLevel3;
+    [SerializeField]
+    bool isFinalBoss;
 
     private void Awake()
     {
@@ -29,7 +31,15 @@ public class BossFightStart : TransformSaver
         if (other.gameObject.tag == "Player")
         {
             this.gameObject.SetActive(false);
-            GameManager.Instance.LoadBossCombatScene(fishMonsters,ID);
+            if (isFinalBoss)
+            {
+                GameManager.Instance.LoadBossCombatScene(fishMonsters, ID);
+            }
+            else
+            {
+                GameManager.Instance.LoadEndBossCombatScene(fishMonsters, ID);
+            }
+           
             Debug.Log("Boss destroyed.");
         }
     }
