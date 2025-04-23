@@ -29,6 +29,7 @@ MonoBehaviour:
   - rid: 2727136708794253376
   - rid: 2727136727628251148
   - rid: 6498884538079379528
+  - rid: 6498884945941889075
   decorators:
   - rid: 2727136708794253377
   - rid: 2727136727628251147
@@ -148,14 +149,14 @@ MonoBehaviour:
     - rid: 2727136708794253376
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: 'Why don''t you go and fish at our small oasis up there? Wade
+        dialouge: 'Why don''t you go and fish at our small oasis up the hill? Wade
 
           should
           be up there fishing right now, go and join him.'
         voiceClip: {fileID: 0}
         guid: 2d27eb51b38e3be4b98e0201e68a4391
         decorators: []
-        position: {x: 3284, y: 61}
+        position: {x: 3285, y: 61}
         nextNode:
           rid: 2727136727628251148
     - rid: 2727136708794253377
@@ -195,15 +196,24 @@ MonoBehaviour:
     - rid: 6498884538079379528
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
-        dialouge: 'I''ve also given you a Help journal to refer to whenever you need...well,
-          help!
-
-          [The Help journal can be found in the Options menu from
-          the Pause screen.]'
+        dialouge: I've also given you a Help journal to refer to whenever you need...well,
+          help! I reccomend taking a look at the Fishing and Combat sections first
+          to get you started.
         voiceClip: {fileID: 0}
         guid: e5b4c34a1c6f1764788752da8b227391
         decorators: []
         position: {x: 4137, y: 88}
+        nextNode:
+          rid: 6498884945941889075
+    - rid: 6498884945941889075
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: '[The Help journal can be found in the Options menu from the Pause
+          screen.]'
+        voiceClip: {fileID: 0}
+        guid: e55b73f9cb561024698ff0b68a0700df
+        decorators: []
+        position: {x: 5007, y: 88}
         nextNode:
           rid: -2
 --- !u!114 &1389975199913444332

@@ -24,23 +24,23 @@ MonoBehaviour:
   agility:
     min: 45
     max: 45
-    minTalent: 8
-    maxTalent: 8
+    minTalent: 1
+    maxTalent: 1
   attack:
     min: 55
     max: 55
-    minTalent: 8
-    maxTalent: 8
+    minTalent: 1
+    maxTalent: 1
   special:
     min: 55
     max: 55
-    minTalent: 8
-    maxTalent: 8
+    minTalent: 1
+    maxTalent: 1
   fortitude:
     min: 30
     max: 30
-    minTalent: 8
-    maxTalent: 8
+    minTalent: 1
+    maxTalent: 1
   specialFortitude:
     min: 30
     max: 30

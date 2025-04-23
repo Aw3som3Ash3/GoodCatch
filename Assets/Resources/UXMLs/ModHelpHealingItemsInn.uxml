@@ -1,20 +1,20 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="TitleContainer" style="flex-grow: 0;">
-        <ui:Label tabindex="-1" text="Healing Items Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
+        <ui:Label tabindex="-1" text="Healing Items &amp; Inns" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
     </ui:VisualElement>
     <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
         <ui:Label tabindex="-1" text="Ally monsters can only be healed either by Healing Items or Inns. Inns can only be accessed during night time outside combat, and fully heals the entire party at no cost. Healing Items can only be used during combat in the Items tab, and come in different ranks. Each next rank heals more of a single ally&apos;s health (HP).&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
         <ui:VisualElement name="IconsRow1" style="flex-grow: 1; height: 500px; align-self: stretch; align-items: center; flex-direction: row; justify-content: center;">
             <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
                 <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/inn1.png?fileID=2800000&amp;guid=edef608ff17043d4da469530ac60a88d&amp;type=3#inn1&quot;); -unity-background-scale-mode: scale-to-fit;" />
-                <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-start; max-height: 100px;">
+                <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-start; max-height: 150px;">
                     <ui:Label tabindex="-1" text="Inns always have a sign of a snoozing&#10;Groggler outside it&apos;s entrance.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: center; -unity-text-align: upper-center;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="IconsRow1" style="flex-grow: 1; height: 500px; align-self: stretch; align-items: center; flex-direction: row; justify-content: center;">
             <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/healing1.png?fileID=2800000&amp;guid=3da682120188a3f4ba422d26e9bb610f&amp;type=3#healing1&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/healing1%201.png?fileID=2800000&amp;guid=5c17bce3609f09d4ca25a59ccc474727&amp;type=3#healing1 1&quot;); -unity-background-scale-mode: scale-to-fit;" />
                 <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-start; max-height: 100px;">
                     <ui:Label tabindex="-1" text="Healing items are found in the items tab during combat.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: center; -unity-text-align: upper-center;" />
                 </ui:VisualElement>
@@ -22,7 +22,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="IconsRow1" style="flex-grow: 1; height: 500px; align-self: stretch; align-items: center; flex-direction: row; justify-content: center;">
             <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/healing2.png?fileID=2800000&amp;guid=70054a163ffaa2b429dbca76417d350b&amp;type=3#healing2&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/healing2%201.png?fileID=2800000&amp;guid=0594dd0a221ba0e41bee752cfd6b0e0a&amp;type=3#healing2 1&quot;); -unity-background-scale-mode: scale-to-fit;" />
                 <ui:VisualElement name="Row2" style="flex-grow: 1; height: auto; align-self: stretch; flex-direction: column; align-items: center; justify-content: flex-start; max-height: 100px;">
                     <ui:Label tabindex="-1" text="These items can only be used on the current monster&apos;s turn.&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ElementName" style="-unity-font: url(&quot;project://database/Assets/Fonts/LilitaOne-Regular.ttf?fileID=12800000&amp;guid=39d3fbe29a2d10d41a2da4caa4f8466f&amp;type=3#LilitaOne-Regular&quot;); -unity-font-definition: initial; flex-wrap: wrap; align-items: center; justify-content: flex-end; align-self: center; -unity-text-align: upper-center;" />
                 </ui:VisualElement>

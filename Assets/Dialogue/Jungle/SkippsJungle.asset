@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: SkippsJungle
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136848657514513
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136848657514513
+  - rid: 6498884945941889077
+  - rid: 6498884945941889079
+  - rid: 6498884945941889080
+  - rid: 6498884945941889081
+  - rid: 6498884945941889082
+  - rid: 6498884945941889083
+  - rid: 6498884945941889084
+  decorators: []
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136848657514513
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: What the-? Oh skip! Where did you come from? Who sent you???
+        voiceClip: {fileID: 0}
+        guid: 3c1e9c02eadf7d546a74963b7b03cd01
+        decorators: []
+        position: {x: 412, y: -15}
+        nextNode:
+          rid: 6498884945941889077
+    - rid: 6498884945941889077
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Oh, you're not a guard? Phew, that's a relief...
+        voiceClip: {fileID: 0}
+        guid: 0e772fd4694156b488dcefb985cf0fcc
+        decorators: []
+        position: {x: 845, y: -15}
+        nextNode:
+          rid: 6498884945941889080
+    - rid: 6498884945941889079
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: The what? I got no idea what that is, lady.
+        voiceClip: {fileID: 0}
+        guid: f2a4b6557df587c479e62ffd1b7ed6cb
+        decorators: []
+        position: {x: 2005, y: 137}
+        nextNode:
+          rid: 6498884945941889082
+    - rid: 6498884945941889080
+      type: {class: BranchingDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Say...you're probably the first person I met that hasn't immediately
+          been scared off! I guess you've seen stranger things huh?
+        voiceClip: {fileID: 0}
+        guid: 66ea231c9ea857b4698ae53a167a2862
+        decorators: []
+        position: {x: 1241, y: -15}
+        decisions:
+        - choice: Not this strange!
+          choiceNode:
+            rid: 6498884945941889081
+        - choice: Like the show?
+          choiceNode:
+            rid: 6498884945941889079
+    - rid: 6498884945941889081
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Well you played it off pretty well I'd say!
+        voiceClip: {fileID: 0}
+        guid: 693f057f4a293024e8433b566cd552c9
+        decorators: []
+        position: {x: 2005, y: -69}
+        nextNode:
+          rid: 6498884945941889082
+    - rid: 6498884945941889082
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Anyways, I've basically become a crappy fairy tale around here.
+          I am a bigger than usual Squebol, sure.
+        voiceClip: {fileID: 0}
+        guid: 88c65596ca999184c9eea4172996502c
+        decorators: []
+        position: {x: 2427, y: 7}
+        nextNode:
+          rid: 6498884945941889084
+    - rid: 6498884945941889083
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Anyways, don't rat me out to the guards! I'm tryna crack a huge
+          scandal case, rumors say the fire shrine guards are tryna unionize and
+          get dental with their benefits. Something about them being scared they'll
+          turn into a gross looking cre-oh tempus dammit.
+        voiceClip: {fileID: 0}
+        guid: e9c6f1996960b2c40af6655bbfd437ff
+        decorators: []
+        position: {x: 3927, y: 7}
+        nextNode:
+          rid: -2
+    - rid: 6498884945941889084
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: But then to go and tell their kids that I'm a "horrid, disgusting,
+          vile, putrid creature of the depths" that they'll turn into if they don't
+          brush their teeth twice a day? Barbaric I say!
+        voiceClip: {fileID: 0}
+        guid: 1cf9616d8e8979e4aa629f4931ef3ba3
+        decorators: []
+        position: {x: 3067, y: 7}
+        nextNode:
+          rid: 6498884945941889083

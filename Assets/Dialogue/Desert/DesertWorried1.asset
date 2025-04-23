@@ -59,8 +59,8 @@ MonoBehaviour:
       type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
       data:
         dialouge: Oh! Sorry, I've just been worried sick about my kid brother recently.
-          He lives over there at the Jungle, and recently the Piranarch has been
-          more fierce than before.
+          He lives over there at the Jungle, the island full of trees, and recently
+          the Piranarch has been more fierce than before.
         voiceClip: {fileID: 0}
         guid: 17d3022b0ed277748affeb2302570ca5
         decorators: []

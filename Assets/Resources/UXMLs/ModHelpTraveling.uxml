@@ -3,10 +3,16 @@
         <ui:Label tabindex="-1" text="Traveling" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" />
     </ui:VisualElement>
     <ui:VisualElement name="DescriptionContainer" style="flex-grow: 1;">
-        <ui:Label tabindex="-1" text="The Ship is Emma&apos;s method of transportation across the seas. While next to a dock and using the Ship, press the Interact button again to dock and exit the boat. Docking locations are defined by an Anchor icon shown overhead. You can also fish while in the boat by angling the rear over a Fishing Zone and pressing the Cast button." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:Label tabindex="-1" text="The Ship is Emma&apos;s method of transportation across the seas. You can also fish while in the boat by angling the rear over a Fishing Zone and pressing the Cast button.&#10;While next to a dock and using the Ship, press the Interact button again to dock and exit the boat. Docking locations are defined by an Anchor icon shown overhead. " parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
         <ui:VisualElement name="IconsRow1" style="flex-grow: 1; height: 600px; align-self: stretch; align-items: center; flex-direction: row; justify-content: center;">
             <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/boat1.png?fileID=2800000&amp;guid=6e7caa9fd58418d44ac591595701de6c&amp;type=3#boat1&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/boat2.png?fileID=2800000&amp;guid=ac11a925c276e1049941182100dcf5da&amp;type=3#boat2&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:Label tabindex="-1" text="You&apos;ll also encounter red exclamation icons as you travel. These icons are warnings that a boss fight will occur when entering it&apos;s range, regardless of whether you&apos;re in the boat or not." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
+        <ui:VisualElement name="IconsRow1" style="flex-grow: 1; height: 600px; align-self: stretch; align-items: center; flex-direction: row; justify-content: center;">
+            <ui:VisualElement style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; align-self: stretch; flex-wrap: wrap; align-items: center; justify-content: flex-end;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: stretch; background-image: url(&quot;project://database/Assets/HelpMenuScreenshots/boss1.png?fileID=2800000&amp;guid=0c5897d997c53fb43bed02966809f3be&amp;type=3#boss1&quot;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

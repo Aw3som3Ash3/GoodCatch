@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: BasicHint3
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136848657514513
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136848657514513
+  decorators: []
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136848657514513
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Some kids kept calling me a 'Sonic Type' just because I like talking
+          so much. Really shocked and knocked the wind outta me, kids can be so mean!
+        voiceClip: {fileID: 0}
+        guid: 3c1e9c02eadf7d546a74963b7b03cd01
+        decorators: []
+        position: {x: 412, y: -15}
+        nextNode:
+          rid: -2

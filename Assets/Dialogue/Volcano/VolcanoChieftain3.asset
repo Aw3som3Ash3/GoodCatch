@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8619220ca63d64cbbb05881339d479, type: 3}
+  m_Name: VolcanoChieftain3
+  m_EditorClassIdentifier: 
+  rootNode:
+    nextNode:
+      rid: 2727136822063005731
+    guid: root
+    position: {x: 0, y: 0}
+  nodes:
+  - rid: 2727136822063005731
+  decorators: []
+  events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2727136822063005731
+      type: {class: BasicDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        dialouge: Seek out Fisherman Tom, he's located just across the lava pool
+          and to the right of the main entrance from here.
+        voiceClip: {fileID: 0}
+        guid: d36c262c3f3106749b8aac0ee3055426
+        decorators: []
+        position: {x: 404, y: -30}
+        nextNode:
+          rid: -2

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,9 @@ using UnityEngine.UIElements;
 
 public class InventoryTabs : TabbedMenu
 {
-    readonly string[] menus = new string[]{ "consumables","abilities","junk" };
+    readonly string[] menus = new string[]{ "Consumables","Abilities","Misc" };
+    public event Action<IEnumerable<object>> onSelectionChange;
+
     public new class UxmlFactory : UxmlFactory<InventoryTabs, UxmlTraits> { }
     public InventoryTabs()
     {
@@ -26,14 +29,17 @@ public class InventoryTabs : TabbedMenu
      
                 SetList(listView, dummyList);
             }
-           
-            
+
+            listView.selectionChanged += SelectionChanged;
             TabMenuButton menu = new TabMenuButton(menus[i], listView);
             menu.focusable = false;
             AddTab(menu,i==0? true:false);
         }
         
-
+        void SelectionChanged(IEnumerable<object> enemmumerable)
+        {
+            onSelectionChange.Invoke(enemmumerable);
+        }
 
         
     }
@@ -160,6 +166,8 @@ public class InventoryTabs : TabbedMenu
         // Set a fixed item height matching the height of the item provided in makeItem. 
         // For dynamic height, see the virtualizationMethod property.
         listView.fixedItemHeight = 45;
+
+       
     }
 
     
