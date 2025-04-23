@@ -33,11 +33,12 @@ public class BossFightStart : TransformSaver
             this.gameObject.SetActive(false);
             if (isFinalBoss)
             {
-                GameManager.Instance.LoadBossCombatScene(fishMonsters, ID);
+                GameManager.Instance.LoadEndBossCombatScene(fishMonsters, ID);
+               
             }
             else
             {
-                GameManager.Instance.LoadEndBossCombatScene(fishMonsters, ID);
+                GameManager.Instance.LoadBossCombatScene(fishMonsters, ID);
             }
            
             Debug.Log("Boss destroyed.");
