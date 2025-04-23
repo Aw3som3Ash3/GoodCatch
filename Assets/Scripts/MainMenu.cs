@@ -30,8 +30,6 @@ public class MainMenu : MonoBehaviour
         loadScreen = uIDocument.rootVisualElement.Q("LoadGameScreen");
         optionsScreen = uIDocument.rootVisualElement.Q<OptionsPageMenu>();
         optionsScreen.visible = false;
-        credits = uIDocument.rootVisualElement.Q<CreditsScreen>();
-        credits.visible = false;
         InputManager.Input.UI.Back.performed+=Back;
         InputManager.Input.UI.Back.Enable();
         GameManager.Instance = null;
