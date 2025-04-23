@@ -119,9 +119,7 @@ public class MainMenu : MonoBehaviour
 
         mainScreen.Q<Button>("Credits").clicked += () =>
         {
-            credits.visible = true;
-            mainScreen.visible = false;
-            creditsController.StartScroll();
+            SceneManager.LoadScene("CreditsScreen");
         };
     }
     void NewGame()
