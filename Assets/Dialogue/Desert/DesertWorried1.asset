@@ -38,8 +38,10 @@ MonoBehaviour:
   - rid: 6498884538079379570
   decorators:
   - rid: 6498884538079379572
+  - rid: 6498885017429082207
   events:
   - {fileID: -7450367209609044827}
+  - {fileID: 2756071527594208185}
   references:
     version: 2
     RefIds:
@@ -63,7 +65,8 @@ MonoBehaviour:
           the Piranarch has been more fierce than before.
         voiceClip: {fileID: 0}
         guid: 17d3022b0ed277748affeb2302570ca5
-        decorators: []
+        decorators:
+        - rid: 6498885017429082207
         position: {x: 830, y: -44}
         nextNode:
           rid: 6498884538079379567
@@ -123,3 +126,21 @@ MonoBehaviour:
         position: {x: 3048, y: 41}
         guid: 03fa4a18e21199e448ae342aad957880
         quest: {fileID: 11400000, guid: a32b239670ec20c488fc99431264cae0, type: 2}
+    - rid: 6498885017429082207
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 996, y: 154}
+        guid: 285bfa043b2e38346a168e0932764db4
+        dialogueEvent: {fileID: 2756071527594208185}
+--- !u!114 &2756071527594208185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: TalkToWorried
+  m_EditorClassIdentifier: 

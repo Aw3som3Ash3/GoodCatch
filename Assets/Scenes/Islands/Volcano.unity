@@ -74222,7 +74222,7 @@ PrefabInstance:
       objectReference: {fileID: 1785011171}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].quest
@@ -74231,10 +74231,10 @@ PrefabInstance:
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].dialogue
       value: 
-      objectReference: {fileID: 11400000, guid: ef4a55ff5ae6fac449079da1cb4f4f6d, type: 2}
+      objectReference: {fileID: 11400000, guid: 7ce9c0664a6b6864d99c009a977c613f, type: 2}
     - target: {fileID: 7899628539369311722, guid: 84a47b70b7c1c0a478c9afa4a9f91ec6, type: 3}
       propertyPath: questBasedDialogues.Array.data[0].stateName
-      value: Get through the Lead Guard
+      value: Enter the Volcano and Speak to the Greeter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -82723,6 +82723,7 @@ MonoBehaviour:
   startLevel1: 0
   startLevel2: 15
   startLevel3: 0
+  isFinalBoss: 0
 --- !u!135 &2124609004
 SphereCollider:
   m_ObjectHideFlags: 0

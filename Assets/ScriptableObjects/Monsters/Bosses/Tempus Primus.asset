@@ -15,8 +15,8 @@ MonoBehaviour:
   description: The beginning of the storm, and the end of the ecosystem.
   model: {fileID: 4117744509787701325, guid: 80c59ebaef4fdeb4280abc6b7642c912, type: 3}
   fishId: 24
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  miniSprite: {fileID: 0}
+  icon: {fileID: 21300000, guid: 03ec7af3f80091f469fdc997bd1dc640, type: 3}
+  miniSprite: {fileID: 21300000, guid: 03ec7af3f80091f469fdc997bd1dc640, type: 3}
   homeDepth: 1
   preferredBait: []
   elements:
