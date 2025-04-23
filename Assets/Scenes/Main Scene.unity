@@ -1673,6 +1673,7 @@ MonoBehaviour:
   startLevel1: 0
   startLevel2: 20
   startLevel3: 0
+  isFinalBoss: 1
 --- !u!4 &375022793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7440471430513932866, guid: 528ab21bbaed05641a1b76116eab1ce2, type: 3}
