@@ -27,7 +27,7 @@ public class DialogueEventQuestRequirement : Quest.QuestRequirement
     {
         if (dialogueEvent != null)
         {
-            dialogueEvent.RemoveEvent(RequirementCompleted);
+            //dialogueEvent.RemoveEvent(RequirementCompleted);
             dialogueEvent.Event += RequirementCompleted;
         }
         
