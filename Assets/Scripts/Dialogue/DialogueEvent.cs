@@ -13,6 +13,14 @@ public class DialogueEvent : ScriptableObject
         Debug.Log("should invoke event: " + name);
         Event?.Invoke();
     }
+    public void RemoveEvent(Action action)
+    {
+        if (Event != null)
+        {
+            Event-= action;
+        }
+        
+    }
     public void ResetEvent()
     {
         Event = null;
