@@ -55,7 +55,7 @@ public class DockingZone : SaveableObject, IInteractable
     {
 
         this.ship = ship;
-        //ship.AnchorShip();
+        ship.shipControls.LeaveSation();
         ship.transform.position=dockingPosition.position;
         ship.transform.rotation=dockingPosition.rotation;
         //joint=ship.PhysicSim.gameObject.AddComponent<FixedJoint>();
