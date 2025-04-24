@@ -24,10 +24,7 @@ public class Quest : ScriptableObject
     void OnEnable()
     {
        SetUpId();
-        foreach(var state in states)
-        {
-            state.Initialize();
-        }
+       
     }
     private void OnValidate()
     {
@@ -302,9 +299,10 @@ public class Quest : ScriptableObject
 
             CurrentState.Completed -= StateCompleted;
             CurrentState.Progressed -= Progressed;
+            CurrentState.Initialize();
             CurrentState.Completed += StateCompleted;
             CurrentState.Progressed += Progressed;
-            CurrentState.Reinitialize();
+            
         }
         public void Close()
         {
