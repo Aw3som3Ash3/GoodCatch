@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour,ISaveable,IUseDevCommands
     Animator anim;
 
 
-    bool inStation;
+    public bool inStation;
     bool sprinting;
 
     string id="player";
