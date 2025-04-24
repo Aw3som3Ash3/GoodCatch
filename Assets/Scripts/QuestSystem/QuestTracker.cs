@@ -45,6 +45,10 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+        foreach(var quest in activeQuests)
+        {
+            quest.Close();
+        }
     }
     private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
@@ -236,4 +240,6 @@ public class QuestTracker : MonoBehaviour,ISaveable,IUseDevCommands
         }
         return false;
     }
+
+    
 }

@@ -27,11 +27,17 @@ public class DialogueEventQuestRequirement : Quest.QuestRequirement
     {
         if (dialogueEvent != null)
         {
-            //dialogueEvent.RemoveEvent(RequirementCompleted);
+
+            dialogueEvent.Event -= RequirementCompleted;
             dialogueEvent.Event += RequirementCompleted;
         }
         
         
+    }
+
+    public override void Clear()
+    {
+        dialogueEvent.Event-=RequirementCompleted;
     }
 
 }

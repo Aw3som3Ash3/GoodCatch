@@ -133,13 +133,32 @@ public class Quest : ScriptableObject
             {
                 if (!requirment.IsCompleted)
                 {
+
                     return;
                 }
+               
+
+            }
+
+            foreach (QuestRequirement requirment in requirements)
+            {
+                requirment.Completed -= CheckIfCompleted;
+                requirment.Progressed -= OnProgress;
+                requirment.Clear();
 
             }
             Completed?.Invoke();
         }
+        public void Close()
+        {
+            foreach (QuestRequirement requirment in requirements)
+            {
+                requirment.Completed -= CheckIfCompleted;
+                requirment.Progressed -= OnProgress;
+                requirment.Clear();
 
+            }
+        }
         //public object Clone()
         //{
         //    Debug.Log(this + " has been cloned");
@@ -171,6 +190,10 @@ public class Quest : ScriptableObject
             IsCompleted = false;
         }
         public virtual void ReInit()
+        {
+
+        }
+        public virtual void Clear()
         {
 
         }
@@ -279,6 +302,12 @@ public class Quest : ScriptableObject
             CurrentState.Progressed += Progressed;
             CurrentState.Reinitialize();
         }
+        public void Close()
+        {
+            CurrentState.Completed -= StateCompleted;
+            CurrentState.Progressed -= Progressed;
+            CurrentState.Close();
+        }
 
     }
     string questId;
@@ -322,6 +351,10 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
         base.ReInit();
         GameManager.Instance.CaughtFish -= OnFishCaught;
         GameManager.Instance.CaughtFish += OnFishCaught;
+    }
+    public override void Clear()
+    {
+        GameManager.Instance.CaughtFish -= OnFishCaught;
     }
     protected virtual void OnFishCaught(FishMonsterType type)
     {
