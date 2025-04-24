@@ -66,8 +66,9 @@ public class Inn : MonoBehaviour, IInteractable
         Debug.Log(respawnPoint.position);
         PlayerController.player.SetPosition(respawnPoint.position);
         PlayerController.player.SetVisibility(true);
-        InputManager.EnablePlayer();
-
+        PlayerController.player.inStation = false;
+       InputManager.EnablePlayer();
+    
         if (dockingZone != null)
         {
             dockingZone.ResetShip();
