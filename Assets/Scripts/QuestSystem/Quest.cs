@@ -24,6 +24,10 @@ public class Quest : ScriptableObject
     void OnEnable()
     {
        SetUpId();
+        foreach(var state in states)
+        {
+            state.Initialize();
+        }
     }
     private void OnValidate()
     {
