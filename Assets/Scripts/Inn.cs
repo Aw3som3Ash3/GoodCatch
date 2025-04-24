@@ -70,6 +70,7 @@ public class Inn : MonoBehaviour, IInteractable
         Debug.Log(respawnPoint.position);
         PlayerController.player.SetPosition(respawnPoint.position);
         PlayerController.player.SetVisibility(true);
+        InputManager.EnablePlayer();
     }
     public bool Interact()
     {
