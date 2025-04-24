@@ -15,7 +15,7 @@ public class DialogueEventQuestRequirement : Quest.QuestRequirement
         if (dialogueEvent != null)
         {
             
-            dialogueEvent.Event += RequirementCompleted;
+            dialogueEvent.Event += CompletedDialogueEvent;
         }
         else
         {
@@ -23,21 +23,25 @@ public class DialogueEventQuestRequirement : Quest.QuestRequirement
         }
         base.Init();
     }
+    public void CompletedDialogueEvent()
+    {
+        dialogueEvent.Event -= CompletedDialogueEvent;
+        RequirementCompleted();
+    }
     public override void ReInit()
     {
         if (dialogueEvent != null)
         {
-
-            dialogueEvent.Event -= RequirementCompleted;
-            dialogueEvent.Event += RequirementCompleted;
+            
+            dialogueEvent.Event -= CompletedDialogueEvent;
+            dialogueEvent.Event += CompletedDialogueEvent;
         }
         
         
     }
-
     public override void Clear()
     {
-        dialogueEvent.Event-=RequirementCompleted;
+        //dialogueEvent.Event-=RequirementCompleted;
     }
 
 }
