@@ -354,7 +354,7 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
     }
     public override void Clear()
     {
-        GameManager.Instance.CaughtFish -= OnFishCaught;
+        //GameManager.Instance.CaughtFish -= OnFishCaught;
     }
     protected virtual void OnFishCaught(FishMonsterType type)
     {
