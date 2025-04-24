@@ -347,7 +347,11 @@ public class CatchNumOfFishRequirement : Quest.QuestRequirement
     {
         base.Init();
         currentAmount = 0;
-        GameManager.Instance.CaughtFish += OnFishCaught;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.CaughtFish += OnFishCaught;
+        }
+       
         //throw new NotImplementedException();
     }
     public override void ReInit()
