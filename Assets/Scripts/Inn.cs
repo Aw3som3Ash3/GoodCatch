@@ -61,16 +61,17 @@ public class Inn : MonoBehaviour, IInteractable
     }
     public void Respawn()
     {
-        if (dockingZone != null)
-        {
-            dockingZone.ResetShip();
-        }
         Debug.Log(PlayerController.player);
         Debug.Log(innId);
         Debug.Log(respawnPoint.position);
         PlayerController.player.SetPosition(respawnPoint.position);
         PlayerController.player.SetVisibility(true);
         InputManager.EnablePlayer();
+
+        if (dockingZone != null)
+        {
+            dockingZone.ResetShip();
+        }
     }
     public bool Interact()
     {
