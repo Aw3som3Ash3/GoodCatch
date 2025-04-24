@@ -18,7 +18,7 @@ public class ShipSimulator : MonoBehaviour,ISaveable
     public AudioController audioController;
     public AudioSource audioSource;
     private AudioClip activeClip;
-    ShipControls shipControls;
+    public ShipControls shipControls { get; private set; }
 
     [SerializeField]
     Transform wheelRight, wheelLeft;

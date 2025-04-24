@@ -84,7 +84,7 @@ public class MainMenu : MonoBehaviour
             mainScreen.visible = true;
             optionsScreen.visible = false;
             optionsScreen.CloseAll();
-            credits.visible = false;
+            //credits.visible = false;
         }
     }
 
