@@ -69,6 +69,7 @@ public class Inn : MonoBehaviour, IInteractable
         Debug.Log(innId);
         Debug.Log(respawnPoint.position);
         PlayerController.player.SetPosition(respawnPoint.position);
+        PlayerController.player.SetVisibility(true);
     }
     public bool Interact()
     {
