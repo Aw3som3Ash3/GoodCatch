@@ -16,9 +16,9 @@ MonoBehaviour:
     It subdues them with its body radiating 10,000\xB0F."
   model: {fileID: 4223721864620319220, guid: 517b174774df03645bed9ab6742eaf6c, type: 3}
   fishId: 20
-  icon: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
+  icon: {fileID: 21300000, guid: 480f88b27f6824243b2dc233a68692df, type: 3}
   miniSprite: {fileID: 21300000, guid: 21a43db5e3806f845aba9a9020332a96, type: 3}
-  homeDepth: 2
+  homeDepth: 4
   preferredBait: []
   elements:
   - {fileID: 11400000, guid: 4dab2066931946c468daeeb8d91e523a, type: 2}

@@ -57,6 +57,10 @@ MonoBehaviour:
     description: 
     requirements:
     - rid: 6498884683246075905
+  - name: Enter the Volcano and Speak to the Greeter
+    description: 
+    requirements:
+    - rid: 6498885017429082209
   references:
     version: 2
     RefIds:
@@ -130,3 +134,10 @@ MonoBehaviour:
         IsCompleted: 0
         objective: Talk to the Observant Dockhand
         dialogueEvent: {fileID: -5188043786842454438, guid: 15e5db72915b9ed49af8a95f3ab52f2b, type: 2}
+    - rid: 6498885017429082209
+      type: {class: DialogueEventQuestRequirement, ns: , asm: Assembly-CSharp}
+      data:
+        Name: DialogueEventQuestRequirement
+        IsCompleted: 0
+        objective: Enter the Volcano and Speak to the Greeter
+        dialogueEvent: {fileID: -2397175828530075900, guid: 7ce9c0664a6b6864d99c009a977c613f, type: 2}

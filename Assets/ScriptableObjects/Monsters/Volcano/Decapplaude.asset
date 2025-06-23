@@ -68,4 +68,4 @@ MonoBehaviour:
   difficulty: 0
   attackAnimation: {fileID: 4821705753396914452, guid: fc549775a7131b1439da1c1d8ea700c1, type: 3}
   idleAnimation: {fileID: -3100369314251171874, guid: fc549775a7131b1439da1c1d8ea700c1, type: 3}
-  buffAnimation: {fileID: 4015888343340434481, guid: fc549775a7131b1439da1c1d8ea700c1, type: 3}
+  buffAnimation: {fileID: 0}

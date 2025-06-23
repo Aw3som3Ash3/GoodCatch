@@ -16,11 +16,11 @@ MonoBehaviour:
   abilityType: 1
   availableDepths: -1
   targetableDepths: -1
-  targetTeam: 3
+  targetTeam: 1
   targetingType: 1
   piercing: 1
   staminaUsage: 30
-  baseDamage: 30
+  baseDamage: 10
   accuracy: 1
   damageMultiplier: 0.7
   element: {fileID: 11400000, guid: a43ea0cc59fdd26498d9f0e971ff4c5c, type: 2}

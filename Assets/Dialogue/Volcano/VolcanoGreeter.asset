@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2397175828530075900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26f7388a0ed95841ad5d95715d26fd0, type: 3}
+  m_Name: EnterVolcano
+  m_EditorClassIdentifier: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23,7 +35,9 @@ MonoBehaviour:
   - rid: 2727136822063005728
   decorators:
   - rid: 6498884696608866601
-  events: []
+  - rid: 6498885017429082210
+  events:
+  - {fileID: -2397175828530075900}
   references:
     version: 2
     RefIds:
@@ -36,8 +50,9 @@ MonoBehaviour:
           brings you to our humble village?
         voiceClip: {fileID: 0}
         guid: 8cb3c00012ff83048a9756af44aa2809
-        decorators: []
-        position: {x: 438, y: -51}
+        decorators:
+        - rid: 6498885017429082210
+        position: {x: 438, y: -61}
         decisions:
         - choice: Can I speak to the Chieftain?
           choiceNode:
@@ -76,3 +91,9 @@ MonoBehaviour:
         position: {x: 1324, y: 349}
         guid: 129c3ac3952c3214b98cb3d0db44be8e
         quest: {fileID: 11400000, guid: 6973da5433d9f434393061f5b878e833, type: 2}
+    - rid: 6498885017429082210
+      type: {class: DialogueEventDecorator, ns: , asm: Assembly-CSharp}
+      data:
+        position: {x: 542, y: 186}
+        guid: caa6b9e8dbde4f64da24d0b3dabd9a31
+        dialogueEvent: {fileID: -2397175828530075900}
