@@ -112,6 +112,16 @@
         "com.unity.testtools.codecoverage": "1.2.5"
       }
     },
+    "com.unity.film-internal-utilities": {
+      "version": "0.19.2-preview",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.2.18",
+        "com.unity.modules.uielements": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.formats.fbx": {
       "version": "4.2.1",
       "depth": 1,
@@ -381,6 +391,16 @@
       "dependencies": {
         "com.unity.sysroot": "2.0.10",
         "com.unity.sysroot.linux-x86_64": "2.0.9"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.toonshader": {
+      "version": "0.11.1-preview",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "10.0.0",
+        "com.unity.film-internal-utilities": "0.19.2-preview"
       },
       "url": "https://packages.unity.com"
     },
